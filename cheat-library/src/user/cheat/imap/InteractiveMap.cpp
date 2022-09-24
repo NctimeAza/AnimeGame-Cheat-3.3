@@ -725,7 +725,7 @@ namespace cheat::feature
 	void InteractiveMap::CompletePoint(PointData* pointData)
 	{
 		std::lock_guard _userDataLock(m_UserDataMutex);
-		LOG_WARNING("Complete point at %.0f.", game::EntityManager::instance().avatar()->distance(pointData->levelPosition));
+		LOG_INFO("Complete point at %.0f.", game::EntityManager::instance().avatar()->distance(pointData->levelPosition));
 
 		if (std::find_if(m_CompletedPoints.begin(), m_CompletedPoints.end(), [=](PointData* data) { return pointData->id == data->id; }) != std::end(m_CompletedPoints))
 			return;
@@ -958,7 +958,7 @@ namespace cheat::feature
 			auto nearestPoint = FindNearestPoint(label, entity->levelPosition(), f_GatheredItemsDetectRange, sceneID);
 			if (nearestPoint == nullptr)
 			{
-				LOG_WARNING("Failed to find uncompleted point for this object.");
+				LOG_INFO("Failed to find uncompleted point for this object.");
 				return;
 			}
 			CompletePoint(nearestPoint);
