@@ -4,9 +4,9 @@
 </p>
 
 <p align="center">
-	<a href="https://github.com/Akebi-Group/Akebi-GC/releases/latest"><img src="https://img.shields.io/github/v/release/Akebi-Group/Akebi-GC?style=for-the-badge"></a>
-	<a href="https://github.com/Akebi-Group/Akebi-GC/releases"><img src="https://img.shields.io/github/downloads/Akebi-Group/Akebi-GC/total.svg?style=for-the-badge"></a>
-	<a href="https://github.com/Akebi-Group/Akebi-GC/graphs/contributors"><img src="https://img.shields.io/github/contributors/Akebi-Group/Akebi-GC?style=for-the-badge&color=red"></a>
+	<a href="https://github.com/Papaya-Group/Akebi-GC/releases/latest"><img src="https://img.shields.io/github/v/release/Papaya-Group/Akebi-GC?style=for-the-badge"></a>
+	<a href="https://github.com/Papaya-Group/Akebi-GC/releases"><img src="https://img.shields.io/github/downloads/Papaya-Group/Akebi-GC/total.svg?style=for-the-badge"></a>
+	<a href="https://github.com/Papaya-Group/Akebi-GC/graphs/contributors"><img src="https://img.shields.io/github/contributors/Papaya-Group/Akebi-GC?style=for-the-badge&color=red"></a>
 	<a href="https://discord.gg/MmV8hNZB9S"><img src="https://img.shields.io/discord/440536354544156683?label=Discord&logo=discord&style=for-the-badge&color=blueviolet"></a>
 </p>
 
@@ -17,11 +17,11 @@
 <h1 align="center">Getting Started</h1>
 
 ## Stable Release
-1. Head over to the [releases page](https://github.com/Akebi-Group/Akebi-GC/releases)
+1. Head over to the [releases page](https://github.com/Papaya-Group/Akebi-GC/releases)
 2. Download the latest binaries
 
 ## Latest Release
-1. Head over to the [Action](https://github.com/Akebi-Group/Akebi-GC/actions) page
+1. Head over to the [Action](https://github.com/Papaya-Group/Akebi-GC/actions) page
 1. Click Publish workflow
 1. Select most recent workflow with green checkmark ✔ (Choose your client version **GLOBAL/CN/BETA**)
 	<p align="center">
@@ -33,7 +33,7 @@
 	</p>
 
 ## Building from source
-Check our wiki - [Building](https://github.com/Akebi-Group/Akebi-GC/wiki/Building%EF%BD%9C%E5%BB%BA%E7%BD%AE)
+Check our wiki - [Building](https://github.com/Papaya-Group/Akebi-GC/wiki/Building%EF%BD%9C%E5%BB%BA%E7%BD%AE)
 
 ### Usage
 1. Ensure that `CLibrary.dll` is in the same folder that `injector.exe`.
@@ -136,7 +136,7 @@ Welcome to the short explanation for bug reporting
 1. Write down what happened, as well as your first thoughts on what you think caused it.
 1. Can it be reproduced? Yes or no. If yes: Explain in as much clear as possible. i.e what happens when the bug occurs and why it occurs. 
 1. Tell us which version you are using. copy the `SHA`/ Version Number of the latest commit when you built the mod. For example: `bd17a00ec388f3b93624280cde9e1c66e740edf9` / Release 0.7
-1. [Open an Issue(there's a template!)](https://github.com/Akebi-Group/Akebi-GC/issues)
+1. [Open an Issue(there's a template!)](https://github.com/Papaya-Group/Akebi-GC/issues)
 
 <h1 align="center">Contributing</h1>
 
@@ -146,9 +146,9 @@ Welcome to the short explanation for bug reporting
 1. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 1. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 1. Push to the Branch (`git push origin feature/AmazingFeature`)
-2. [Open a Pull Request](https://github.com/Akebi-Group/Akebi-GC/pulls)
+2. [Open a Pull Request](https://github.com/Papaya-Group/Akebi-GC/pulls)
 
 ## Suggestions
 
-Open an [issue](https://github.com/Akebi-Group/Akebi-GC/issues) with the title of the suggestion you want to make.
+Open an [issue](https://github.com/Papaya-Group/Akebi-GC/issues) with the title of the suggestion you want to make.
 In the description, make sure it is **descriptive enough** so our devs can understand what you want and how you want it.  
