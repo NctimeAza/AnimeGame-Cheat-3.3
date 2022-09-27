@@ -4188,12 +4188,12 @@ namespace app {
         struct AbilityComponentProxy* _abilityProxy;
         struct TokenManager* _tokenMgr;
         VisionType__Enum _NLFDIGCIFIA_k__BackingField;
-        bool _createDuringReconnectingSceneInitFinish_k__BackingField;
-        bool _isCleared;
-        bool _checkRemoveifCached_k__BackingField;
-        bool _hasAddedInitialComponents;
-        float OCMDCLDBJLP;
-        bool _isEntityReady;
+        bool _MMIHONCELFL_k__BackingField;
+        bool PLEPGEFAIND;
+        bool _GDKDNDAGBFB_k__BackingField;
+        bool PBKECDHGBIN;
+        float OACIBKKCGCO;
+        bool HBECPLJFPOI;
         struct Action_1_BaseEntity_* onComponentInitPostCallback;
         struct Action_1_BaseEntity_* onEntityReadyPreCallback;
         struct Action_1_BaseEntity_* onEntityReadyBeforePostCallback;
@@ -4332,6 +4332,7 @@ namespace app {
         struct RuntimeAnimatorController* _remoteRuntimeAnimatorController;
         uint32_t _authorityRuntimeAnimatorHandler;
         uint32_t _remoteRuntimeAnimatorHandler;
+        bool CNFCMHJGBFI;
         struct Dictionary_2_System_Int32_System_Boolean_* _boolPersistentParams;
         struct Dictionary_2_System_Int32_System_Int32_* _intPersistentParams;
         struct Dictionary_2_System_Int32_System_Single_* _floatPersistentParams;
@@ -12403,6 +12404,46 @@ namespace app {
         struct Proto_SceneEntityInfo__Class* klass;
         MonitorData* monitor;
         struct Proto_SceneEntityInfo__Fields fields;
+    };
+
+    enum class KIOMHHDFLGB__Enum : int32_t {
+        JAEEILGFCIF = 0x00000000,
+        GPBMPFOFKPI = 0x00000001,
+        PDNEMDNJLAK = 0x00000002,
+        CNONBPNAGKM = 0x00000003,
+    };
+
+    struct Proto_PlayerLuaShellNotify__Fields {
+        struct MessageBase_1__Fields _;
+        KIOMHHDFLGB__Enum KJGNKMBMJAF;
+        uint32_t KDEAHJMLKOH;
+        struct JIBNKGMEPOL* CBPBIHBNKPB;
+        uint32_t PDHPAMDOCIL;
+    };
+
+    struct Proto_PlayerLuaShellNotify {
+        struct Proto_PlayerLuaShellNotify__Class* klass;
+        MonitorData* monitor;
+        struct Proto_PlayerLuaShellNotify__Fields fields;
+    };
+
+    enum class Proto_WindSeedClientNotify_Proto_WindSeedClientNotify_NotifyOneofCase__Enum : int32_t {
+        None = 0x00000000,
+        RefreshNotify = 0x0000000e,
+        AddWindBulletNotify = 0x00000006,
+        AreaNotify = 0x00000004,
+    };
+
+    struct Proto_WindSeedClientNotify__Fields {
+        struct MessageBase_1__Fields _;
+        struct Object* notify_;
+        Proto_WindSeedClientNotify_Proto_WindSeedClientNotify_NotifyOneofCase__Enum BIICPNABLEO;
+    };
+
+    struct Proto_WindSeedClientNotify {
+        struct Proto_WindSeedClientNotify__Class* klass;
+        MonitorData* monitor;
+        struct Proto_WindSeedClientNotify__Fields fields;
     };
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)

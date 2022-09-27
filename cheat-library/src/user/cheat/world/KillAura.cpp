@@ -9,34 +9,34 @@
 #include <cheat/game/util.h>
 #include <cheat/game/filters.h>
 
-namespace cheat::feature 
+namespace cheat::feature
 {
 	static void BaseMoveSyncPlugin_ConvertSyncTaskToMotionInfo_Hook(app::BaseMoveSyncPlugin* __this, MethodInfo* method);
 
-    KillAura::KillAura() : Feature(),
-        NF(f_Enabled,      "Kill aura",                 "KillAura", false),
-		NF(f_DamageMode,   "Damage mode",               "Damage mode", false),
-		NF(f_PercentDamageMode, "Percent damage mode",  "Damage mode", false),
-		NF(f_InstantDeathMode,   "Instant death",       "Instant death", false),
-        NF(f_OnlyTargeted, "Only targeted",             "KillAura", true),
-        NF(f_Range,        "Range",                     "KillAura", 15.0f),
-        NF(f_AttackDelay,  "Attack delay time (in ms)", "KillAura", 100),
-        NF(f_RepeatDelay,  "Repeat delay time (in ms)", "KillAura", 1000),
+	KillAura::KillAura() : Feature(),
+		NF(f_Enabled, "Kill aura", "KillAura", false),
+		NF(f_DamageMode, "Damage mode", "Damage mode", false),
+		NF(f_PercentDamageMode, "Percent damage mode", "Damage mode", false),
+		NF(f_InstantDeathMode, "Instant death", "Instant death", false),
+		NF(f_OnlyTargeted, "Only targeted", "KillAura", true),
+		NF(f_Range, "Range", "KillAura", 15.0f),
+		NF(f_AttackDelay, "Attack delay time (in ms)", "KillAura", 100),
+		NF(f_RepeatDelay, "Repeat delay time (in ms)", "KillAura", 1000),
 		NF(f_DamageValue, "Crash damage value", "Damage mode", 233.0f),
 		NF(f_PercentDamageTimes, "Times to kill", "Damage mode", 3)
-    { 
+	{
 		events::GameUpdateEvent += MY_METHOD_HANDLER(KillAura::OnGameUpdate);
 		HookManager::install(app::MoleMole_BaseMoveSyncPlugin_ConvertSyncTaskToMotionInfo, BaseMoveSyncPlugin_ConvertSyncTaskToMotionInfo_Hook);
 	}
 
-    const FeatureGUIInfo& KillAura::GetGUIInfo() const
-    {
-        static const FeatureGUIInfo info{ "Kill Aura", "World", true };
-        return info;
-    }
+	const FeatureGUIInfo& KillAura::GetGUIInfo() const
+	{
+		static const FeatureGUIInfo info{ "Kill Aura", "World", true };
+		return info;
+	}
 
-    void KillAura::DrawMain()
-    {
+	void KillAura::DrawMain()
+	{
 		ConfigWidget("Enable Kill Aura", f_Enabled, "Enables kill aura. Need to choose a mode to work.");
 		ImGui::SameLine();
 		ImGui::TextColored(ImColor(255, 165, 0, 255), "Choose any or both modes below.");
@@ -63,29 +63,29 @@ namespace cheat::feature
 		ConfigWidget("Only Hostile/Aggro", f_OnlyTargeted, "If enabled, kill aura will only affect monsters targeting/aggro towards you.");
 		ConfigWidget("Crash Attack Delay (ms)", f_AttackDelay, 1, 0, 1000, "Delay in ms before next crash damage.");
 		ConfigWidget("Crash Repeat Delay (ms)", f_RepeatDelay, 1, 100, 2000, "Delay in ms before crash damaging same monster.");
-    }
+	}
 
-    bool KillAura::NeedStatusDraw() const
+	bool KillAura::NeedStatusDraw() const
 	{
-        return f_Enabled;
-    }
+		return f_Enabled;
+	}
 
-    void KillAura::DrawStatus() 
-    { 
-        ImGui::Text("Kill Aura [%s%s]\n[%.01fm|%s|%dms|%dms]", 
+	void KillAura::DrawStatus()
+	{
+		ImGui::Text("Kill Aura [%s%s]\n[%.01fm|%s|%dms|%dms]",
 			f_DamageMode && f_InstantDeathMode ? "Extreme" : f_DamageMode ? "Crash" : f_InstantDeathMode ? "Instant" : "None",
 			f_DamageMode ? !f_PercentDamageMode ? "|Fixed" : fmt::format("|Rate({})", f_PercentDamageTimes.value()).c_str() : "",
 			f_Range.value(),
 			f_OnlyTargeted ? "Aggro" : "All",
 			f_AttackDelay.value(),
 			f_RepeatDelay.value());
-    }
+	}
 
-    KillAura& KillAura::GetInstance()
-    {
-        static KillAura instance;
-        return instance;
-    }
+	KillAura& KillAura::GetInstance()
+	{
+		static KillAura instance;
+		return instance;
+	}
 
 	// Kill aura logic is just emulate monster fall crash, so simple but works.
 	// Note. No work on mob with shield, maybe update like auto ore destroy.
@@ -112,7 +112,7 @@ namespace cheat::feature
 
 		auto& manager = game::EntityManager::instance();
 
-		for (const auto& monster : manager.entities(game::filters::combined::Monsters))   
+		for (const auto& monster : manager.entities(game::filters::combined::Monsters))
 		{
 			auto monsterID = monster->runtimeID();
 
@@ -130,12 +130,12 @@ namespace cheat::feature
 			if (combatProp == nullptr)
 				continue;
 
-			auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
-			auto isLockHp = combatProp->fields.islockHP == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.islockHP, nullptr);
-			auto isInvincible = combatProp->fields.isInvincible == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isInvincible, nullptr);
-			auto HP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.HP, nullptr);
-			if (maxHP < 10 || HP < 2 || isLockHp || isInvincible)
-				continue;
+			//auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
+			//auto isLockHp = combatProp->fields.islockHP == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.islockHP, nullptr);
+			//auto isInvincible = combatProp->fields.isInvincible == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isInvincible, nullptr);
+			//auto HP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.HP, nullptr);
+			//if (maxHP < 10 || HP < 2 || isLockHp || isInvincible)
+			//	continue;
 
 			if (f_OnlyTargeted && combat->fields._attackTarget.runtimeID != manager.avatar()->runtimeID())
 				continue;
@@ -167,13 +167,13 @@ namespace cheat::feature
 		}
 
 		attackSet.erase(monster->runtimeID());
-		
+
 		auto combat = monster->combat();
 
 		auto crashEvt = app::MoleMole_EventHelper_Allocate_103(*app::MoleMole_EventHelper_Allocate_103__MethodInfo);
 		app::MoleMole_EvtCrash_Init(crashEvt, monster->runtimeID(), nullptr);
-		
-		if(!f_PercentDamageMode)
+
+		if (!f_PercentDamageMode)
 		{
 			//Migita^Rin#1762: Fixed inaccurate damage caused by floating point precision(Maybe)
 			float FPValue;

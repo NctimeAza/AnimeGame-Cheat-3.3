@@ -11,7 +11,7 @@ namespace cheat::feature
     static bool onEntityAppear = false;
     static void MoleMole_PlayerModule_EntityAppear_Hook(app::MoleMole_PlayerModule* __this, app::Proto_SceneEntityInfo* entity, app::VisionType__Enum type, uint32_t infoParam, MethodInfo* method);
     std::vector<std::string> animations;
-    
+
     AnimationChanger::AnimationChanger() : Feature(),
         NF(f_Enabled, "Animation Changer", "Visuals::AnimationChanger", false),
         NF(f_Animation, "Animation", "Visuals::AnimationChanger", "Attack01"),
@@ -39,7 +39,7 @@ namespace cheat::feature
             {
                 if (ImGui::BeginCombo("Animations", f_Animation.value().c_str()))
                 {
-                    for (auto &animation : animations)
+                    for (auto& animation : animations)
                     {
                         bool is_selected = (f_Animation.value().c_str() == animation);
                         if (ImGui::Selectable(animation.c_str(), is_selected))
@@ -97,12 +97,14 @@ namespace cheat::feature
             return;
 
         auto avatarName = avatar->name();
-        std::string objectName = il2cppi_to_string(app::Object_1_get_name(reinterpret_cast<app::Object_1*>(avatar->gameObject()), nullptr)).c_str();
-        
-        auto gameObj = app::GameObject_Find(string_to_il2cppi("EntityRoot/AvatarRoot/" + avatarName.substr(0, avatarName.find_first_of(" ")) + "/OffsetDummy/" + objectName.c_str()), nullptr);
+        //std::string objectName = il2cppi_to_string(app::Object_1_get_name(reinterpret_cast<app::Object_1*>(avatar->gameObject()), nullptr)).c_str();
+        //LOG_DEBUG("avatarName = %s", avatarName.c_str());
+        //LOG_DEBUG("objectName = %s", objectName.c_str());
+        // path sample: EntityRoot/AvatarRoot/Avatar_Girl_Sword_Nilou(Clone)/OffsetDummy/Avatar_Girl_Sword_Nilou
+        auto gameObj = app::GameObject_Find(string_to_il2cppi("EntityRoot/AvatarRoot/" + avatarName.substr(0, avatarName.find_first_of(" ")) + "/OffsetDummy/" + avatarName.substr(0, avatarName.find_first_of("("))), nullptr);
         if (gameObj == nullptr)
             return;
-        
+
         auto acComponent = app::GameObject_GetComponentByName(gameObj, string_to_il2cppi("AnimatorController"), nullptr);
         if (acComponent == nullptr)
             return;
@@ -122,7 +124,7 @@ namespace cheat::feature
                 isFull = true;
                 continue;
             }
-            
+
             animations.push_back(il2cppi_to_string(stateNamesArray->vector[i]).c_str());
         }
 
@@ -132,7 +134,7 @@ namespace cheat::feature
             isFull = false;
             onEntityAppear = true;
         }
-        
+
         if (f_ApplyKey.value().IsPressed())
             app::Animator_Play(avatar->animator(), string_to_il2cppi(f_Animation.value().c_str()), 0, 0, nullptr);
 
