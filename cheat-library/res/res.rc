@@ -271,6 +271,8 @@ HDCRIMSONFOX            PNG                     "iconsHD\\CrimsonFox.png"
 
 HDCROW                  PNG                     "iconsHD\\Crow.png"
 
+HDCRUDECHEST            PNG                     "iconsHD\\RockPile.png"
+
 HDCRYOBATHYSMALVISHAP   PNG                     "iconsHD\\CryoBathysmalVishap.png"
 
 HDCRYOCRYSTALFLY        PNG                     "iconsHD\\CryoCrystalfly.png"
@@ -1418,6 +1420,8 @@ CRIMSONFLANKPIGEON      PNG                     "icons\\CrimsonflankPigeon.png"
 CRIMSONFOX              PNG                     "icons\\CrimsonFox.png"
 
 CROW                    PNG                     "icons\\Crow.png"
+
+CRUDECHEST              PNG                     "icons\\RockPile.png"
 
 CRYOBATHYSMALVISHAP     PNG                     "icons\\CryoBathysmalVishap.png"
 
