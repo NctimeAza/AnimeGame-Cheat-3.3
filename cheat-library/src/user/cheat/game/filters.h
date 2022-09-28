@@ -63,6 +63,7 @@ namespace cheat::game::filters
 		extern SimpleFilter KeySigil;
 		extern SimpleFilter ShrineOfDepth;
 		extern SimpleFilter TimeTrialChallenge;
+		extern SimpleFilter SacredSeal;
 	}
 
 	namespace guide
@@ -82,6 +83,7 @@ namespace cheat::game::filters
 		extern SimpleFilter ClusterleafOfCultivation;
 		extern SimpleFilter DendroRock;
 		extern SimpleFilter DendroPile;
+		extern SimpleFilter SandPile;
 	}
 
 	namespace living
@@ -233,7 +235,7 @@ namespace cheat::game::filters
 		extern SimpleFilter SentryTurrets;
 		extern SimpleFilter AeonblightDrake;
 		extern SimpleFilter PrimalConstruct;
-		extern SimpleFilter SemiPerpetualControlMatrix;
+		extern SimpleFilter AlgorithmOfSemiIntransientMatrixOfOverseerNetwork;
 		extern SimpleFilter Scorpion;
 		extern SimpleFilter Vulture;
 	}
@@ -292,7 +294,7 @@ namespace cheat::game::filters
 		extern SimpleFilter Viparyas;
 		extern SimpleFilter ZaytunPeach;
 		extern SimpleFilter Redcrest;
-		extern SimpleFilter Ajilenakh;
+		extern SimpleFilter AjilenakhNut;
 	}
 
 	namespace puzzle
@@ -343,6 +345,11 @@ namespace cheat::game::filters
 		extern SimpleFilter SumeruPuzzles;
 		extern SimpleFilter TheWithering;
 		extern SimpleFilter PhantasmalGate;
+		extern SimpleFilter PrimalObelisk;
+		extern SimpleFilter IllusionMural;
+		extern SimpleFilter EverlightCell;
+		extern SimpleFilter PrimalEmber;
+		extern SimpleFilter PrimalSandglass;
 	}
 
 	namespace combined

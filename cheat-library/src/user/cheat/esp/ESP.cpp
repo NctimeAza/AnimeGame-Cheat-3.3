@@ -635,6 +635,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(featured, ItemDrops);
 		ADD_FILTER_FIELD(featured, KeySigil);
 		ADD_FILTER_FIELD(featured, Lumenspar);
+		ADD_FILTER_FIELD(featured, SacredSeal);
 		ADD_FILTER_FIELD(featured, ShrineOfDepth);
 		ADD_FILTER_FIELD(featured, TimeTrialChallenge);
 
@@ -651,6 +652,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(guide, PlacesofEssenceWorship);
 		ADD_FILTER_FIELD(guide, Pot);
 		ADD_FILTER_FIELD(guide, RuinBrazier);
+		ADD_FILTER_FIELD(guide, SandPile);
 		ADD_FILTER_FIELD(guide, Stormstone);
 		ADD_FILTER_FIELD(guide, TriangularMechanism);
 
@@ -735,8 +737,9 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, GoldenWolflord);
 		ADD_FILTER_FIELD(monster, MaguuKenki);
 		// Sumeru
-		ADD_FILTER_FIELD(monster, JadeplumeTerrorshroom);
 		ADD_FILTER_FIELD(monster, AeonblightDrake);
+		ADD_FILTER_FIELD(monster, AlgorithmOfSemiIntransientMatrixOfOverseerNetwork);
+		ADD_FILTER_FIELD(monster, JadeplumeTerrorshroom);
 		// Regular. Alphabetical.
 		ADD_FILTER_FIELD(monster, AbyssMage);
 		ADD_FILTER_FIELD(monster, BlackSerpentKnight);
@@ -780,7 +783,6 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, Samachurl);
 		ADD_FILTER_FIELD(monster, SangonomiyaCohort);
 		ADD_FILTER_FIELD(monster, Scorpion);
-		ADD_FILTER_FIELD(monster, SemiPerpetualControlMatrix);
 		ADD_FILTER_FIELD(monster, ShadowyHusk);
 		ADD_FILTER_FIELD(monster, ShaggySumpterBeast);
 		ADD_FILTER_FIELD(monster, ShogunateInfantry);
@@ -795,7 +797,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, Whopperflower);
 		ADD_FILTER_FIELD(monster, WingedShroom);
 
-		ADD_FILTER_FIELD(plant, Ajilenakh);
+		ADD_FILTER_FIELD(plant, AjilenakhNut);
 		ADD_FILTER_FIELD(plant, AmakumoFruit);
 		ADD_FILTER_FIELD(plant, Apple);
 		ADD_FILTER_FIELD(plant, BambooShoot);
@@ -848,15 +850,15 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(puzzle, BakeDanuki);
 		ADD_FILTER_FIELD(puzzle, BloattyFloatty);
 		ADD_FILTER_FIELD(puzzle, CubeDevices);
-		ADD_FILTER_FIELD(puzzle, SumeruPuzzles);
-		ADD_FILTER_FIELD(puzzle, TheWithering);
 		ADD_FILTER_FIELD(puzzle, EightStoneTablets);
 		ADD_FILTER_FIELD(puzzle, ElectricConduction);
 		ADD_FILTER_FIELD(puzzle, ElectroSeelie);
 		ADD_FILTER_FIELD(puzzle, ElementalMonument);
+		ADD_FILTER_FIELD(puzzle, EverlightCell);
 		ADD_FILTER_FIELD(puzzle, FloatingAnemoSlime);
 		ADD_FILTER_FIELD(puzzle, Geogranum);
 		ADD_FILTER_FIELD(puzzle, GeoPuzzle);
+		ADD_FILTER_FIELD(puzzle, IllusionMural);
 		ADD_FILTER_FIELD(puzzle, LargeRockPile);
 		ADD_FILTER_FIELD(puzzle, LightningStrikeProbe);
 		ADD_FILTER_FIELD(puzzle, LightUpTilePuzzle);
@@ -868,6 +870,9 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(puzzle, PhantasmalGate);
 		ADD_FILTER_FIELD(puzzle, PirateHelm);
 		ADD_FILTER_FIELD(puzzle, PressurePlate);
+		ADD_FILTER_FIELD(puzzle, PrimalEmber);
+		ADD_FILTER_FIELD(puzzle, PrimalObelisk); // might be shared entity
+		ADD_FILTER_FIELD(puzzle, PrimalSandglass);
 		ADD_FILTER_FIELD(puzzle, RelayStone);
 		ADD_FILTER_FIELD(puzzle, SaghiraMachine);
 		ADD_FILTER_FIELD(puzzle, SealLocations);
@@ -876,8 +881,10 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(puzzle, SmallRockPile);
 		ADD_FILTER_FIELD(puzzle, StonePillarSeal);
 		ADD_FILTER_FIELD(puzzle, StormBarrier);
+		ADD_FILTER_FIELD(puzzle, SumeruPuzzles);
 		ADD_FILTER_FIELD(puzzle, SwordHilt);
 		ADD_FILTER_FIELD(puzzle, Temari);
+		ADD_FILTER_FIELD(puzzle, TheWithering);
 		ADD_FILTER_FIELD(puzzle, TimeTrialChallengeCollection);
 		ADD_FILTER_FIELD(puzzle, TorchPuzzle);
 		ADD_FILTER_FIELD(puzzle, TriYanaSeeds);

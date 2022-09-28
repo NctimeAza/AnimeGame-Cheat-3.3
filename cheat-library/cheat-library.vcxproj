@@ -251,6 +251,7 @@
     <Image Include="res\iconsHD\AquilaFavonia.png" />
     <Image Include="res\iconsHD\Aranara.png" />
     <Image Include="res\iconsHD\AratakiItto.png" />
+    <Image Include="res\iconsHD\AthelWood.png" />
     <Image Include="res\iconsHD\Azhdaha.png" />
     <Image Include="res\iconsHD\Barbara.png" />
     <Image Include="res\iconsHD\BeginnersProtector.png" />
@@ -295,6 +296,7 @@
     <Image Include="res\iconsHD\DendroPile.png" />
     <Image Include="res\iconsHD\DendroPuzzles.png" />
     <Image Include="res\iconsHD\DendroRock.png" />
+    <Image Include="res\iconsHD\DesertFox.png" />
     <Image Include="res\iconsHD\Diluc.png" />
     <Image Include="res\iconsHD\Diona.png" />
     <Image Include="res\iconsHD\DodocoTales.png" />
@@ -317,6 +319,7 @@
     <Image Include="res\iconsHD\Eremite.png" />
     <Image Include="res\iconsHD\Eula.png" />
     <Image Include="res\iconsHD\EverlastingMoonglow.png" />
+    <Image Include="res\iconsHD\EverlightCell.png" />
     <Image Include="res\iconsHD\EyeofPerception.png" />
     <Image Include="res\iconsHD\FadingTwilight.png" />
     <Image Include="res\iconsHD\Falcon.png" />
@@ -474,6 +477,7 @@
     <Image Include="res\iconsHD\HydroBathysmalVishap.png" />
     <Image Include="res\iconsHD\HydroHypostasis.png" />
     <Image Include="res\iconsHD\Illusion.png" />
+    <Image Include="res\iconsHD\IllusionMural.png" />
     <Image Include="res\iconsHD\ImagingConch.png" />
     <Image Include="res\iconsHD\InazumaShrineofDepths.png" />
     <Image Include="res\iconsHD\Inu.png" />
@@ -556,6 +560,7 @@
     <Image Include="res\iconsHD\Mondstadt.png" />
     <Image Include="res\iconsHD\Moonpiercer.png" />
     <Image Include="res\iconsHD\Mora.png" />
+    <Image Include="res\iconsHD\MountainDateWood.png" />
     <Image Include="res\iconsHD\MouunsMoon.png" />
     <Image Include="res\iconsHD\MudFrog.png" />
     <Image Include="res\iconsHD\Mushroom.png" />
@@ -597,6 +602,9 @@
     <Image Include="res\iconsHD\Predator.png" />
     <Image Include="res\iconsHD\PressurePlate.png" />
     <Image Include="res\iconsHD\PrimalConstruct.png" />
+    <Image Include="res\iconsHD\PrimalEmber.png" />
+    <Image Include="res\iconsHD\PrimalObelis.png" />
+    <Image Include="res\iconsHD\PrimalSandglass.png" />
     <Image Include="res\iconsHD\PrimoGeovishap.png" />
     <Image Include="res\iconsHD\PrimordialJadeCutter.png" />
     <Image Include="res\iconsHD\PrimordialJadeWingedSpear.png" />
@@ -628,6 +636,7 @@
     <Image Include="res\iconsHD\RedFinnedUnagi.png" />
     <Image Include="res\iconsHD\RedHornedLizard.png" />
     <Image Include="res\iconsHD\RedhornStonethresher.png" />
+    <Image Include="res\iconsHD\RedTailedLizard.png" />
     <Image Include="res\iconsHD\RedTailedWeasel.png" />
     <Image Include="res\iconsHD\RelayStone.png" />
     <Image Include="res\iconsHD\RemarkableChest.png" />
@@ -652,6 +661,7 @@
     <Image Include="res\iconsHD\Rust.png" />
     <Image Include="res\iconsHD\RustyKoi.png" />
     <Image Include="res\iconsHD\SacredSakura.png" />
+    <Image Include="res\iconsHD\SacredSeal.png" />
     <Image Include="res\iconsHD\SacrificialBow.png" />
     <Image Include="res\iconsHD\SacrificialFragments.png" />
     <Image Include="res\iconsHD\SacrificialGreatsword.png" />
@@ -661,6 +671,7 @@
     <Image Include="res\iconsHD\Salamander.png" />
     <Image Include="res\iconsHD\Samachurl.png" />
     <Image Include="res\iconsHD\SandbearerWood.png" />
+    <Image Include="res\iconsHD\SandPile.png" />
     <Image Include="res\iconsHD\SandstormAngler.png" />
     <Image Include="res\iconsHD\SangonomiyaCohort.png" />
     <Image Include="res\iconsHD\SangonomiyaKokomi.png" />
@@ -836,6 +847,7 @@
     <Image Include="res\icons\Amber.png" />
     <Image Include="res\icons\Andrius.png" />
     <Image Include="res\icons\Aranara.png" />
+    <Image Include="res\icons\AthelWood.png" />
     <Image Include="res\icons\Avatar.png" />
     <Image Include="res\icons\Azhdaha.png" />
     <Image Include="res\icons\BlackSerpentKnight.png" />
@@ -856,6 +868,7 @@
     <Image Include="res\icons\DendroPile.png" />
     <Image Include="res\icons\DendroPuzzles.png" />
     <Image Include="res\icons\DendroRock.png" />
+    <Image Include="res\icons\DesertFox.png" />
     <Image Include="res\icons\Dog.png" />
     <Image Include="res\icons\DreadfulWithering.png" />
     <Image Include="res\icons\DreamForm.png" />
@@ -865,6 +878,7 @@
     <Image Include="res\icons\ElectroAbyssLector.png" />
     <Image Include="res\icons\ElectroRegisvine.png" />
     <Image Include="res\icons\Eremite.png" />
+    <Image Include="res\icons\EverlightCell.png" />
     <Image Include="res\icons\Falcon.png" />
     <Image Include="res\icons\Finch.png" />
     <Image Include="res\icons\FloatingHydroFungus.png" />
@@ -997,6 +1011,7 @@
     <Image Include="res\icons\HydroBathysmalVishap.png" />
     <Image Include="res\icons\HydroHypostasis.png" />
     <Image Include="res\icons\Illusion.png" />
+    <Image Include="res\icons\IllusionMural.png" />
     <Image Include="res\icons\ImagingConch.png" />
     <Image Include="res\icons\InazumaShrineofDepths.png" />
     <Image Include="res\icons\Inu.png" />
@@ -1049,6 +1064,7 @@
     <Image Include="res\icons\Mitachurl.png" />
     <Image Include="res\icons\Mondstadt.png" />
     <Image Include="res\icons\Mora.png" />
+    <Image Include="res\icons\MountainDateWood.png" />
     <Image Include="res\icons\MudFrog.png" />
     <Image Include="res\icons\Mushroom.png" />
     <Image Include="res\icons\MysteriousCarvings.png" />
@@ -1081,6 +1097,9 @@
     <Image Include="res\icons\PreciousChest.png" />
     <Image Include="res\icons\PressurePlate.png" />
     <Image Include="res\icons\PrimalConstruct.png" />
+    <Image Include="res\icons\PrimalEmber.png" />
+    <Image Include="res\icons\PrimalObelis.png" />
+    <Image Include="res\icons\PrimalSandglass.png" />
     <Image Include="res\icons\PrimoGeovishap.png" />
     <Image Include="res\icons\Pufferfish.png" />
     <Image Include="res\icons\PurpleShirakodai.png" />
@@ -1098,6 +1117,7 @@
     <Image Include="res\icons\Redcrest.png" />
     <Image Include="res\icons\RedFinnedUnagi.png" />
     <Image Include="res\icons\RedHornedLizard.png" />
+    <Image Include="res\icons\RedTailedLizard.png" />
     <Image Include="res\icons\RedTailedWeasel.png" />
     <Image Include="res\icons\RelayStone.png" />
     <Image Include="res\icons\RemarkableChest.png" />
@@ -1115,11 +1135,13 @@
     <Image Include="res\icons\RukkhashavaMushroom.png" />
     <Image Include="res\icons\RustyKoi.png" />
     <Image Include="res\icons\SacredSakura.png" />
+    <Image Include="res\icons\SacredSeal.png" />
     <Image Include="res\icons\SaghiraMachine.png" />
     <Image Include="res\icons\SakuraBloom.png" />
     <Image Include="res\icons\Salamander.png" />
     <Image Include="res\icons\Samachurl.png" />
     <Image Include="res\icons\SandbearerWood.png" />
+    <Image Include="res\icons\SandPile.png" />
     <Image Include="res\icons\SandstormAngler.png" />
     <Image Include="res\icons\SangonomiyaCohort.png" />
     <Image Include="res\icons\SangoPearl.png" />

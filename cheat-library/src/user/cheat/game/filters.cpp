@@ -62,6 +62,7 @@ namespace cheat::game::filters
 		SimpleFilter KeySigil = { EntityType__Enum_1::GatherObject, "RuneContent" };
 		SimpleFilter ShrineOfDepth = { EntityType__Enum_1::Gadget, "Temple" };
 		SimpleFilter TimeTrialChallenge = { EntityType__Enum_1::Field, "Challengestarter_" };
+		SimpleFilter SacredSeal = { EntityType__Enum_1::Chest, "DeshretRune" };
 	}
 
 	namespace guide
@@ -81,6 +82,7 @@ namespace cheat::game::filters
 		SimpleFilter ClusterleafOfCultivation = { EntityType__Enum_1::Gadget, "RaioFlower" };
 		SimpleFilter DendroRock = { EntityType__Enum_1::Gadget, "GrassSealStone" };
 		SimpleFilter DendroPile = { EntityType__Enum_1::Gadget, "XuMiPlantinshitou" };
+		SimpleFilter SandPile = { EntityType__Enum_1::Gadget, "SandPile" };
 	}
 
 	namespace living
@@ -233,7 +235,7 @@ namespace cheat::game::filters
 		SimpleFilter SentryTurrets = { EntityType__Enum_1::Field, "SentryTurrets_" };
 		SimpleFilter AeonblightDrake = { EntityType__Enum_1::Monster, "Gargoyle_Fafnir_" };
 		SimpleFilter PrimalConstruct = { EntityType__Enum_1::Monster, "Monolith_Ordinator_" };
-		SimpleFilter SemiPerpetualControlMatrix = { EntityType__Enum_1::Monster, "Monolith_Starchild" };
+		SimpleFilter AlgorithmOfSemiIntransientMatrixOfOverseerNetwork = { EntityType__Enum_1::Monster, "Monolith_Starchild" };
 		SimpleFilter Scorpion = { EntityType__Enum_1::Monster, "Scorpion_" };
 		SimpleFilter Vulture = { EntityType__Enum_1::Monster, "Vulture_" };
 	}
@@ -292,7 +294,7 @@ namespace cheat::game::filters
 		SimpleFilter Viparyas = { EntityType__Enum_1::GatherObject, "_DreamerPlant" };
 		SimpleFilter ZaytunPeach = { EntityType__Enum_1::GatherObject, "_Olea" };
 		SimpleFilter Redcrest = { EntityType__Enum_1::GatherObject, "RedPearlFruit" };
-		SimpleFilter Ajilenakh = { EntityType__Enum_1::GatherObject, "DatePalm" };
+		SimpleFilter AjilenakhNut = { EntityType__Enum_1::GatherObject, "DatePalm" };
 	}
 
 	namespace puzzle
@@ -343,6 +345,11 @@ namespace cheat::game::filters
 		SimpleFilter SumeruPuzzles = { EntityType__Enum_1::Gadget, "AyusProjector" };
 		SimpleFilter TheWithering = { EntityType__Enum_1::Gadget, "DeathZonePoint" };
 		SimpleFilter PhantasmalGate = { EntityType__Enum_1::Field, "DreamlandDoor" };
+		SimpleFilter PrimalObelisk = { EntityType__Enum_1::Gadget, "EmptyGadget" };
+		SimpleFilter IllusionMural = { EntityType__Enum_1::Field, "MirageMural" };
+		SimpleFilter EverlightCell = { EntityType__Enum_1::Field, "LaserGenerator" };
+		SimpleFilter PrimalEmber = { EntityType__Enum_1::Field, "CommonOperatorOnWall" };
+		SimpleFilter PrimalSandglass = { EntityType__Enum_1::Gadget, "DeshretSandglass" };
 	}
 
 	namespace combined
@@ -542,7 +549,7 @@ namespace cheat::game::filters
 			monster::ElectroRegisvine,
 			monster::JadeplumeTerrorshroom,
 			monster::AeonblightDrake,
-			monster::SemiPerpetualControlMatrix
+			monster::AlgorithmOfSemiIntransientMatrixOfOverseerNetwork
 
 		};
 		SimpleFilter MonsterShielded = {

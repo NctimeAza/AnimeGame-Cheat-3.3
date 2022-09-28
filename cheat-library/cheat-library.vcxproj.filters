@@ -3520,5 +3520,71 @@
     <Image Include="res\icons\SemiPerpetualControlMatrix.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\PrimalSandglass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\SacredSeal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\SandPile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\EverlightCell.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\IllusionMural.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\PrimalEmber.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\PrimalObelis.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\EverlightCell.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\IllusionMural.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\PrimalEmber.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\PrimalObelis.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\PrimalSandglass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\SacredSeal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\SandPile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\AthelWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\DesertFox.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\MountainDateWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\RedTailedLizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\AthelWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\DesertFox.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\MountainDateWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\RedTailedLizard.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
