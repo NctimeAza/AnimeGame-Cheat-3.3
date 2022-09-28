@@ -9,6 +9,7 @@
 
 namespace cheat::feature 
 {
+	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void* __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method);
 	static void LCSelectPickup_AddInteeBtnByID_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
 	static bool LCSelectPickup_IsInPosition_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
 	static bool LCSelectPickup_IsOutPosition_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
@@ -39,6 +40,7 @@ namespace cheat::feature
 		HookManager::install(app::MoleMole_LCSelectPickup_AddInteeBtnByID, LCSelectPickup_AddInteeBtnByID_Hook);
 		HookManager::install(app::MoleMole_LCSelectPickup_IsInPosition, LCSelectPickup_IsInPosition_Hook);
 		HookManager::install(app::MoleMole_LCSelectPickup_IsOutPosition, LCSelectPickup_IsOutPosition_Hook);
+		HookManager::install(app::MoleMole_ItemModule_OnCheckAddItemExceedLimitNotify, ItemModule_OnCheckAddItemExceedLimitNotify_Hook);
 
 		events::GameUpdateEvent += MY_METHOD_HANDLER(AutoLoot::OnGameUpdate);
 	}
@@ -297,6 +299,26 @@ namespace cheat::feature
 		autoLoot.OnCheckIsInPosition(result, entity);
 
 		return result;
+	}
+
+	void AutoLoot::clear_toBeLootedItems()
+	{
+		for (int i = 0; i < toBeLootedItems.size(); ++i)
+		{
+			toBeLootedItems.pop();
+		}
+	}
+
+	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void*  __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method)
+	{
+		AutoLoot& autoLoot = AutoLoot::GetInstance();
+		// Temporary toggles autoloot off, not saved to config
+		autoLoot.f_AutoPickup.value().enabled = false;
+		
+		// Clear loot queue
+		autoLoot.clear_toBeLootedItems();
+
+		return CALL_ORIGIN(ItemModule_OnCheckAddItemExceedLimitNotify_Hook, __this, notify, method);
 	}
 }
 

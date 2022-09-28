@@ -41,6 +41,8 @@ namespace cheat::feature
 		bool OnCreateButton(app::BaseEntity* entity);
 		void OnGameUpdate();
 		void OnCheckIsInPosition(bool& result, app::BaseEntity* entity);
+
+		void clear_toBeLootedItems();
 	
 	private:
 		
