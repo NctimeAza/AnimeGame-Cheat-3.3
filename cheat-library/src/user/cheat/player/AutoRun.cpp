@@ -68,10 +68,6 @@ namespace cheat::feature
 		avatarEntity->setRelativePosition(newPos);
 	}
 
-	void TestFeature() {
-		
-	}
-
 	void AutoRun::OnGameUpdate() {
 		if (f_Enabled) {
 			float speed = f_Speed.value();
