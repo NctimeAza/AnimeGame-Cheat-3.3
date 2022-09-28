@@ -26,6 +26,7 @@ namespace cheat::game::filters
 		extern ChestFilter LuxuriousChest;
 		extern ChestFilter RemarkableChest;
 		extern ChestFilter SearchPoint;
+		extern ChestFilter CrudeChest;
 
 		extern ChestFilter SLocked;
 		extern ChestFilter SInLock;

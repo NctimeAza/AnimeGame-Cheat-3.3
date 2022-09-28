@@ -622,6 +622,7 @@ namespace cheat::feature
 		// Other Chests
 		ADD_FILTER_FIELD(chest, BuriedChest);
 		ADD_FILTER_FIELD(chest, SearchPoint);
+		ADD_FILTER_FIELD(chest, CrudeChest);
 		
 
 		ADD_FILTER_FIELD(featured, Anemoculus);

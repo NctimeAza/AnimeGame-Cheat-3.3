@@ -26,6 +26,7 @@ namespace cheat::game::filters
 		ChestFilter LuxuriousChest = ChestFilter(Chest::ChestRarity::Luxurious);
 		ChestFilter RemarkableChest = ChestFilter(Chest::ChestRarity::Remarkable);
 		ChestFilter SearchPoint = ChestFilter(Chest::ItemType::Investigate);
+		ChestFilter CrudeChest = ChestFilter(Chest::ItemType::CrudeChest);
 
 		ChestFilter SLocked = ChestFilter(Chest::ChestState::Locked);
 		ChestFilter SInLock = ChestFilter(Chest::ChestState::InRock);

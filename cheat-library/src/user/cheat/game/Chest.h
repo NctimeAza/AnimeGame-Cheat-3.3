@@ -13,6 +13,7 @@ namespace cheat::game
 		{
 			None,
 			Chest,
+			CrudeChest,
 			Investigate,
 			BookPage,
 			BGM,
