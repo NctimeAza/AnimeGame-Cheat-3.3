@@ -522,40 +522,37 @@ namespace cheat::feature::esp::render
 
 		if (HP == 0)
 			return;
+		
+		std::string text;
+		text = fmt::format("{} hp", HP);
 
-		if (esp.f_DrawHealth)
+		ImVec2 healthPosition;
+		if (!boxRect.empty()) {
+			healthPosition = { boxRect.xMin, boxRect.yMin - esp.f_FontSize };
+		}
+		else
 		{
-			std::string text;
-			text = fmt::format("{} hp", HP);
+			auto screenPos = GetEntityScreenPos(entity);
+			if (!screenPos)
+				return;
+			healthPosition = *screenPos;
 
-			ImVec2 healthPosition;
-			if (!boxRect.empty()) {
-				healthPosition = { boxRect.xMin, boxRect.yMin - esp.f_FontSize };
-			}
-			else
-			{
-				auto screenPos = GetEntityScreenPos(entity);
-				if (!screenPos)
-					return;
-				healthPosition = *screenPos;
-
-				// Might need to be aware of performance hit but there shouldn't be any.
-				ImGuiContext& g = *GImGui;
-				ImFont* font = g.Font;
-				auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
-				healthPosition.x -= (textSize.x / 2.0f);
-			}
-
-			healthPosition.y += esp.f_FontSize;
-			auto draw = ImGui::GetBackgroundDrawList();
-			auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
-			// Outline
-			if (esp.f_FontOutline)
-				DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
-			else
-				draw->AddText(font, static_cast<float>(esp.f_FontSize), healthPosition, color, text.c_str());
+			// Might need to be aware of performance hit but there shouldn't be any.
+			ImGuiContext& g = *GImGui;
+			ImFont* font = g.Font;
+			auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
+			healthPosition.x -= (textSize.x / 2.0f);
+			healthPosition.y -= esp.f_FontSize;
 		}
 
+		healthPosition.y += esp.f_FontSize;
+		auto draw = ImGui::GetBackgroundDrawList();
+		auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
+		// Outline
+		if (esp.f_FontOutline)
+			DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
+		else
+			draw->AddText(font, static_cast<float>(esp.f_FontSize), healthPosition, color, text.c_str());
 	}
 
 	bool DrawEntity(const std::string& name, game::Entity* entity, const ImColor& color, const ImColor& contrastColor)

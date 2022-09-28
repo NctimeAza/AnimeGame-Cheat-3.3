@@ -73,6 +73,5 @@ namespace cheat::feature
 			float speed = f_Speed.value();
 			EnableAutoRun(speed);
 		}
-
 	}
 }
