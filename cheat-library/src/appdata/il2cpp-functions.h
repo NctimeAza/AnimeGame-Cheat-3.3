@@ -6,7 +6,6 @@
 // ******************************************************************************
 using namespace app;
 
-
 // Map hooks
 DO_APP_FUNC(0x0307B130, void, MoleMole_InLevelMapPageContext_OnMarkClicked, (InLevelMapPageContext* __this, MonoMapMark* mark, MethodInfo* method));
 DO_APP_FUNC(0x03087990, void, MoleMole_InLevelMapPageContext_OnMapClicked, (InLevelMapPageContext* __this, Vector2 screenPos, MethodInfo* method));
@@ -68,6 +67,8 @@ DO_APP_FUNC(0x01BC86B0, bool, MoleMole_LCSelectPickup_IsInPosition, (void* __thi
 DO_APP_FUNC(0x01BC71B0, bool, MoleMole_LCSelectPickup_IsOutPosition, (void* __this, BaseEntity* entity, MethodInfo* method));
 DO_APP_FUNC(0x01778850, void, MoleMole_ItemModule_PickItem, (MoleMole_ItemModule* __this, uint32_t entityID, MethodInfo* method));
 DO_APP_FUNC(0x011C87B0, void, MoleMole_LevelSceneElementViewPlugin_Tick, (LevelSceneElementViewPlugin* __this, float inDeltaTime, MethodInfo* method));
+// Bag item exceeded
+DO_APP_FUNC(0x01774D90, void, MoleMole_ItemModule_OnCheckAddItemExceedLimitNotify, (/*MoleMole_ItemModule* */ void* __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method));
 
 
 // Dialog skipping
