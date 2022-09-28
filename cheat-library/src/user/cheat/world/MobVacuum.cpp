@@ -160,7 +160,7 @@ namespace cheat::feature
                 auto monsters = app::Transform_GetChild(reinterpret_cast<app::Transform*>(transform), i, nullptr);
                 auto monsterGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(monsters), nullptr);
                 auto monsterTransform = app::GameObject_GetComponentByName(monsterGameObject, string_to_il2cppi("Transform"), nullptr);
-                auto transformChild = app::Transform_GetChild(reinterpret_cast<app::Transform*>(monsterTransform), 1, nullptr);
+                auto transformChild = app::Transform_FindChild(reinterpret_cast<app::Transform*>(monsterTransform), string_to_il2cppi("Collider"), nullptr);
                 auto colliderGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(transformChild), nullptr);
                 if (app::GameObject_get_active(colliderGameObject, nullptr) == v)
                     continue;
