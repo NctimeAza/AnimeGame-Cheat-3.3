@@ -514,42 +514,47 @@ namespace cheat::feature::esp::render
 		auto& esp = ESP::GetInstance();
 		auto& manager = game::EntityManager::instance();
 		auto baseCombat = entity->combat();
-
 		if (baseCombat == nullptr)
 			return;
 
-		std::string text;
 		auto HP = app::MoleMole_SafeFloat_get_Value(baseCombat->fields._combatProperty_k__BackingField->fields.HP, nullptr);
-		HP = round(HP);
-		text = fmt::format("{} hp", trunc(HP));
+		HP = trunc(round(HP));
 
-		ImVec2 healthPosition;
-		if (!boxRect.empty()) {
-			healthPosition = { boxRect.xMin, boxRect.yMin  - esp.f_FontSize};
-		}
-		else
+		if (HP == 0)
+			return;
+
+		if (esp.f_DrawHealth)
 		{
-			auto screenPos = GetEntityScreenPos(entity);
-			if (!screenPos)
-				return;
-			healthPosition = *screenPos;
+			std::string text;
+			text = fmt::format("{} hp", HP);
 
-			// Might need to be aware of performance hit but there shouldn't be any.
-			ImGuiContext& g = *GImGui;
-			ImFont* font = g.Font;
-			auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
-			healthPosition.x -= (textSize.x / 2.0f);
-			healthPosition.y -= esp.f_FontSize;
+			ImVec2 healthPosition;
+			if (!boxRect.empty()) {
+				healthPosition = { boxRect.xMin, boxRect.yMin - esp.f_FontSize };
+			}
+			else
+			{
+				auto screenPos = GetEntityScreenPos(entity);
+				if (!screenPos)
+					return;
+				healthPosition = *screenPos;
+
+				// Might need to be aware of performance hit but there shouldn't be any.
+				ImGuiContext& g = *GImGui;
+				ImFont* font = g.Font;
+				auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
+				healthPosition.x -= (textSize.x / 2.0f);
+			}
+
+			healthPosition.y += esp.f_FontSize;
+			auto draw = ImGui::GetBackgroundDrawList();
+			auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
+			// Outline
+			if (esp.f_FontOutline)
+				DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
+			else
+				draw->AddText(font, static_cast<float>(esp.f_FontSize), healthPosition, color, text.c_str());
 		}
-
-		healthPosition.y += esp.f_FontSize;
-		auto draw = ImGui::GetBackgroundDrawList();
-		auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
-		// Outline
-		if (esp.f_FontOutline)
-			DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
-		else
-			draw->AddText(font, static_cast<float>(esp.f_FontSize), healthPosition, color, text.c_str());
 
 	}
 
