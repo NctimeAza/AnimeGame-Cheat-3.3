@@ -524,7 +524,7 @@ namespace cheat::feature::esp::render
 			return;
 		
 		std::string text;
-		text = fmt::format("{} hp", HP);
+		text = fmt::format("HP: {}", HP);
 
 		ImVec2 healthPosition;
 		if (!boxRect.empty()) {
