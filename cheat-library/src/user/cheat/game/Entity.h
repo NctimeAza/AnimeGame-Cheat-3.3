@@ -26,6 +26,7 @@ namespace cheat::game
 		bool isGadget();
 		bool isChest();
 		bool isAvatar();
+		bool isMonster();
 
 		bool isLoaded();
 

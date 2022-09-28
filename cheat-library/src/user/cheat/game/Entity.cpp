@@ -132,6 +132,12 @@ namespace cheat::game
 		return m_RawEntity->fields.entityType == app::EntityType__Enum_1::Chest;
 	}
 
+	bool Entity::isMonster() {
+		if (m_RawEntity == nullptr)
+			return false;
+		return m_RawEntity->fields.entityType == app::EntityType__Enum_1::Monster;
+	}
+
 	bool Entity::isAvatar()
 	{
 		if (m_RawEntity == nullptr)

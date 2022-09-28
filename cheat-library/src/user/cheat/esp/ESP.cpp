@@ -31,7 +31,8 @@ namespace cheat::feature
 		NF(f_TracerSize, "Tracer Size", "ESP", 1.0f),
 		NF(f_MiddleScreenTracer, "Middle Screen Tracer", "ESP", false),
 		NF(f_DrawDistance, "Draw Distance", "ESP", false),
-		NF(f_DrawName, "Draw Name", "ESP", false),
+		NF(f_DrawName, "Draw Name", "ESP", false),	
+		NF(f_DrawHealth, "Draw Health", "ESP", false),
 
 		NF(f_FontSize, "Font Size", "ESP", 12.0f),
 		NF(f_FontOutline, "Font outline", "ESP", true),
@@ -88,6 +89,8 @@ namespace cheat::feature
 			ImGui::Spacing();
 			ConfigWidget(f_DrawName, "Draw name of object.");
 			ConfigWidget(f_DrawDistance, "Draw distance of object.");
+			ImGui::Spacing();
+			ConfigWidget(f_DrawHealth, "Draw health of object.");
 
 			ImGui::Spacing();
 			ConfigWidget(f_FontSize, 1, 1, 100, "Font size of name or distance.");
@@ -130,13 +133,14 @@ namespace cheat::feature
 
 	void ESP::DrawStatus()
 	{
-		ImGui::Text("ESP [%.01fm|%s|%s%s%s%s]",
+		ImGui::Text("ESP [%.01fm|%s|%s%s%s%s%s]",
 			f_Range.value(),
 			f_DrawBoxMode.value() == DrawMode::Box ? "Box" : f_DrawBoxMode.value() == DrawMode::Rectangle ? "Rect" : "None",
 			f_Fill ? "F" : "",
 			f_DrawTracerMode.value() == DrawTracerMode::Line ? "L" : f_DrawTracerMode.value() == DrawTracerMode::OffscreenArrows ? "A" : "",
 			f_DrawName ? "N" : "",
-			f_DrawDistance ? "D" : ""
+			f_DrawDistance ? "D" : "",
+			f_DrawHealth ? "H" : ""
 		);
 	}
 

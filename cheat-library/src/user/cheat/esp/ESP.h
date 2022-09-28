@@ -35,6 +35,7 @@ namespace cheat::feature
 
 		config::Field<bool> f_DrawDistance;
 		config::Field<bool> f_DrawName;
+		config::Field<bool> f_DrawHealth;
 		//config::Field<bool> f_HideCompleted;
 		config::Field<float> f_ArrowRadius;
 		config::Field<float> f_OutlineThickness;
