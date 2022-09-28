@@ -877,6 +877,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(puzzle, StormBarrier);
 		ADD_FILTER_FIELD(puzzle, SwordHilt);
 		ADD_FILTER_FIELD(puzzle, Temari);
+		ADD_FILTER_FIELD(puzzle, TimeTrialChallengeCollection);
 		ADD_FILTER_FIELD(puzzle, TorchPuzzle);
 		ADD_FILTER_FIELD(puzzle, TriYanaSeeds);
 		ADD_FILTER_FIELD(puzzle, UniqueRocks);
