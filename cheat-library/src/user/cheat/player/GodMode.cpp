@@ -7,7 +7,9 @@
 namespace cheat::feature 
 {
     GodMode::GodMode() : Feature(),
-        NFEX(f_Enabled, "God mode", "m_GodMode", "Player", false, false)
+        NF(f_Enabled, "God Mode", "GodMode", false),
+        NF(f_Conditional, "Conditional", "GodMode", false),
+        NF(f_MinHealth, "Minimum Health", "GodMode", 95.0f)
     {
 		HookManager::install(app::VCHumanoidMove_NotifyLandVelocity, VCHumanoidMove_NotifyLandVelocity_Hook);
 		HookManager::install(app::Miscs_CheckTargetAttackable, Miscs_CheckTargetAttackable_Hook);
@@ -17,13 +19,19 @@ namespace cheat::feature
 
     const FeatureGUIInfo& GodMode::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "Player", false };
+        static const FeatureGUIInfo info{ "God Mode", "Player", false };
         return info;
     }
 
     void GodMode::DrawMain()
     {
         ConfigWidget("God Mode", f_Enabled, "Enables god mode, i.e. no incoming damage including environmental damage.\n");
+        ImGui::Indent();
+        ConfigWidget("Conditional", f_Conditional, "Enables god mode when the character's health drops\n"
+            "below the specified minimum.\n");
+        if(f_Conditional)
+            ConfigWidget("Minimum Health", f_MinHealth, 0.1f, 0.1f, 100.0f, "Minimum health (in %) required before god mode takes effect.");
+        ImGui::Unindent();
     }
 
     bool GodMode::NeedStatusDraw() const
@@ -34,6 +42,8 @@ namespace cheat::feature
     void GodMode::DrawStatus() 
     {
         ImGui::Text("God Mode");
+        if (f_Conditional)
+            ImGui::Text("Conditional [%0.2f]", f_MinHealth.value());
     }
 
     GodMode& GodMode::GetInstance()
@@ -42,14 +52,32 @@ namespace cheat::feature
         return instance;
     }
 
+    bool HealthLowThanMin(game::Entity avatar)
+    {
+        auto& gm = GodMode::GetInstance();
+        auto combat = avatar.combat();
+        if (combat == nullptr)
+            return false;
+
+        float health = app::MoleMole_SafeFloat_get_Value(avatar.combat()->fields._combatProperty_k__BackingField->fields.HP, nullptr);
+        float maxHealth = app::MoleMole_SafeFloat_get_Value(avatar.combat()->fields._combatProperty_k__BackingField->fields.maxHP, nullptr);
+        bool isLowThanMin = 100.0f - (((maxHealth - health) / ((maxHealth + health) / 2.0f)) * 100.0f) <= gm.f_MinHealth.value();
+        return isLowThanMin;
+    }
+
 	// Attack immunity (return false when target is avatar, that mean avatar entity isn't attackable)
 	bool GodMode::Miscs_CheckTargetAttackable_Hook(app::BaseEntity* attacker, app::BaseEntity* target, MethodInfo* method)
 	{
         auto& gm = GodMode::GetInstance();
         auto& manager = game::EntityManager::instance();
         auto entity = manager.entity(target);
-		if (gm.f_Enabled && entity->isAvatar())
-			return false;
+        if (gm.f_Enabled && entity->isAvatar())
+            if (gm.f_Conditional) { // Calculate only when conditional is enabled
+                if (HealthLowThanMin(target))
+                    return false;
+            }
+            else
+                return false;
 
 		return CALL_ORIGIN(Miscs_CheckTargetAttackable_Hook, attacker, target, method);
 	}
@@ -62,9 +90,20 @@ namespace cheat::feature
         auto& gm = GodMode::GetInstance();
 		if (gm.f_Enabled && -velocity.y > 13)
 		{
-			float randAdd = (float)(std::rand() % 1000) / 1000;
-			velocity.y = -8 - randAdd;
-			reachMaxDownVelocityTime = 0;
+            if (gm.f_Conditional)
+            {
+                if (HealthLowThanMin(__this->fields._._._._entity))
+                {
+                    float randAdd = (float)(std::rand() % 1000) / 1000;
+                    velocity.y = -8 - randAdd;
+                    reachMaxDownVelocityTime = 0;
+                }
+            }
+            else {
+                float randAdd = (float)(std::rand() % 1000) / 1000;
+                velocity.y = -8 - randAdd;
+                reachMaxDownVelocityTime = 0;
+            }
 		}
 		// LOG_DEBUG("%s, %f", il2cppi_to_string(velocity).c_str(), reachMaxDownVelocityTime);
 		CALL_ORIGIN(VCHumanoidMove_NotifyLandVelocity_Hook, __this, velocity, reachMaxDownVelocityTime, method);
@@ -84,8 +123,15 @@ namespace cheat::feature
     // Environmental damage immunity (Thanks to RELOADED#7236 / GitHub: @34736384)
     bool GodMode::MoleMole_ActorAbilityPlugin_HanlderModifierThinkTimerUp_Hook(app::ActorAbilityPlugin* __this, float delay, app::Object* arg, MethodInfo* method)
     {
+        auto& gm = GodMode::GetInstance();
+
         if (GetInstance().NeedBlockHanlerModifierThinkTimeUp(arg))
-            return false;
+            if (gm.f_Conditional) {
+                if (HealthLowThanMin(__this->fields._.owner->fields._entity))
+                    return false;
+            }
+            else 
+                return false;
 
         return CALL_ORIGIN(MoleMole_ActorAbilityPlugin_HanlderModifierThinkTimerUp_Hook, __this, delay, arg, method);
     }
