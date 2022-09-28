@@ -20,7 +20,9 @@ namespace cheat::game
 
 		if (name().find("TreasureBox") != std::string::npos)
 			m_ItemType = ItemType::Chest;
-		else if (name().find("Search") != std::string::npos || name().find("JunkChest") != std::string::npos || name().find("SumeruCrudeChest") != std::string::npos)
+		else if (name().find("SumeruCrudeChest") != std::string::npos || name().find("DesertCrudeChest") != std::string::npos)
+			m_ItemType = ItemType::CrudeChest;
+		else if (name().find("Search") != std::string::npos || name().find("JunkChest") != std::string::npos)
 			m_ItemType = ItemType::Investigate;
 		else if (name().find("BookPage") != std::string::npos)
 			m_ItemType = ItemType::BookPage;
@@ -143,6 +145,7 @@ namespace cheat::game
 				return ImColor(72, 72, 72);
 			}
 		}
+		case ItemType::CrudeChest:
 		case ItemType::Investigate:
 		case ItemType::BookPage:
 		case ItemType::BGM:
@@ -178,6 +181,8 @@ namespace cheat::game
 				return "UNK";
 			}
 		}
+		case ItemType::CrudeChest:
+			return "CRU";
 		case ItemType::Investigate:
 			return "INV";
 		case ItemType::BookPage:
