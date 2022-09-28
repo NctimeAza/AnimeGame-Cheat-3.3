@@ -61,7 +61,7 @@ namespace cheat::feature
 
         float health = app::MoleMole_SafeFloat_get_Value(avatar.combat()->fields._combatProperty_k__BackingField->fields.HP, nullptr);
         float maxHealth = app::MoleMole_SafeFloat_get_Value(avatar.combat()->fields._combatProperty_k__BackingField->fields.maxHP, nullptr);
-        bool isLowThanMin = 100.0f - (((maxHealth - health) / ((maxHealth + health) / 2.0f)) * 100.0f) <= gm.f_MinHealth.value();
+        bool isLowThanMin = 100.0f - (100.0f - ((health / maxHealth) * 100.0f)) <= gm.f_MinHealth.value();
         return isLowThanMin;
     }
 
