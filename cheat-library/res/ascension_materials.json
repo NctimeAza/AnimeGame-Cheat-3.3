@@ -47,19 +47,6 @@
             ],
             "icon": "https://upload-static.hoyoverse.com/hk4e/e20200928calculate/item_icon_ue2ezc/ad10101e8f126b1eb5302c1bfa14ac84.png"
         },
-        "10000007": {
-            "name": "Traveler",
-            "clear_name": "Traveler",
-            "materials": [
-                43,
-                53,
-                55,
-                56,
-                57,
-                149
-            ],
-            "icon": "https://uploadstatic-sea.hoyoverse.com/hk4e/e20200928calculate/character_icon/UI_AvatarIcon_PlayerGirl.png"
-        },
         "10000014": {
             "name": "Barbara",
             "clear_name": "Barbara",
@@ -108,7 +95,7 @@
         },
         "10000021": {
             "name": "Amber",
-            "clear_name": "Amber",
+            "clear_name": "CharacterAmber",
             "materials": [
                 33,
                 56,
@@ -224,7 +211,7 @@
         },
         "10000033": {
             "name": "Tartaglia",
-            "clear_name": "Tartaglia",
+            "clear_name": "CharacterTartaglia",
             "materials": [
                 25,
                 26,
