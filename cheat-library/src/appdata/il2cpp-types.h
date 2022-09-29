@@ -6121,6 +6121,23 @@ namespace app {
         Other = 0x00000003,
     };
 
+	enum class RealScenePointType__Enum : int32_t
+	{
+		Other = 0x00000000,
+		TransPointNormal = 0x00000001,
+		TransPointStatue = 0x00000002,
+		TransPointPortal = 0x00000003,
+		DungeonEntry = 0x00000004,
+		DungeonExit = 0x00000005,
+		DungeonWayPoint = 0x00000006,
+		DungeonQuitPoint = 0x00000007,
+		DungeonRewardPoint = 0x00000008,
+		PersonalSceneJumpPoint = 0x00000009,
+		SceneBuildingPoint = 0x0000000a,
+		DungeonSlipRevivePoint = 0x0000000b,
+		VehicleSummonPoint = 0x0000000c,
+	};
+
     struct Vector {
         float _x;
         float _y;
@@ -6142,10 +6159,37 @@ namespace app {
     };
 
     struct ConfigScenePoint {
-        void* klass;
+		struct ConfigScenePoint__Class* klass;
         MonitorData* monitor;
         struct ConfigScenePoint__Fields fields;
     };
+
+	struct ConfigScenePoint__VTable
+	{
+		VirtualInvokeData Equals;
+		VirtualInvokeData Finalize;
+		VirtualInvokeData GetHashCode;
+		VirtualInvokeData ToString;
+		VirtualInvokeData InitEmpty;
+		VirtualInvokeData ObjectContentHashOnto;
+		VirtualInvokeData get_pointType;
+		VirtualInvokeData ObjectContentHashOnto_1;
+		VirtualInvokeData ForeachRefTypeMember;
+		VirtualInvokeData Clone;
+		VirtualInvokeData GetHashNum;
+		VirtualInvokeData InitEmpty_1;
+		VirtualInvokeData FromBinary;
+	};
+
+	struct ConfigScenePoint__Class
+	{
+		Il2CppClass_0 _0;
+		Il2CppRuntimeInterfaceOffsetPair* interfaceOffsets;
+		struct ConfigScenePoint__StaticFields* static_fields;
+		const Il2CppRGCTXData* rgctx_data;
+		Il2CppClass_1 _1;
+		struct ConfigScenePoint__VTable vtable;
+	};
 
     struct Nullable_1_UnityEngine_Vector3_ {
         struct Vector3 value;

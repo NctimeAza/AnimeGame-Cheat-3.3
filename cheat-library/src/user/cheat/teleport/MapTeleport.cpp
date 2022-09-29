@@ -144,8 +144,9 @@ namespace cheat::feature
 
 		auto relativePos = app::WorldShiftManager_GetRelativePosition(worldPosition, nullptr);
 		auto groundHeight = app::Miscs_CalcCurrentGroundHeight(relativePos.x, relativePos.z, nullptr);
+		auto mapManager = GET_SINGLETON(MoleMole_MapManager);
 
-		TeleportTo({ worldPosition.x, groundHeight > 0 ? groundHeight + 5 : f_DefaultHeight, worldPosition.z }, true, game::GetCurrentMapSceneID());
+		TeleportTo({ worldPosition.x, groundHeight > 0 ? groundHeight + 5 : f_DefaultHeight, worldPosition.z }, true, mapManager ? mapManager->fields.mapSceneID : game::GetCurrentMapSceneID());
 	}
 
 	// Calling teleport if map clicked.

@@ -156,6 +156,10 @@ namespace cheat::feature
                             ImGui::Text("areaId: %u", areaId);
                             ImGui::Text("areaUnlocked: %s", app::MoleMole_MapModule_IsAreaUnlock(singleton, sceneId, areaId, nullptr) ? "true" : "false");
                             ImGui::Text("gadgetIdRawNum: %u", location.gadgetIdRawNum);
+							auto configScenePoint = waypoint.config;
+							auto get_pointType = (app::RealScenePointType__Enum(*)(app::ConfigScenePoint*, MethodInfo*))configScenePoint->klass->vtable.get_pointType.methodPtr;
+							auto get_pointType_MethodInfo = (MethodInfo*)configScenePoint->klass->vtable.get_pointType.method;
+							ImGui::Text("RealType :%s", magic_enum::enum_name(get_pointType(configScenePoint, get_pointType_MethodInfo)).data());
                         }
 
                         ImGui::TreePop();
