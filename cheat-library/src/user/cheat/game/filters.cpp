@@ -307,7 +307,7 @@ namespace cheat::game::filters
 		SimpleFilter ElectricConduction = { EntityType__Enum_1::Gear, "_ElectricPowerSource" };
 		SimpleFilter RelayStone = { EntityType__Enum_1::Worktop, "_ElectricTransfer_" };
 		WhitelistFilter ElectroSeelie = { {EntityType__Enum_1::Field, EntityType__Enum_1::Platform }, "_ElectricSeelie" };
-		SimpleFilter ElementalMonument = { EntityType__Enum_1::Gear, "_ElemTablet" };
+		WhitelistFilter ElementalMonument = { EntityType__Enum_1::Gear, {"_ElemTablet", "_DesertElemTablet", "_MirageElemTablet"}};
 		SimpleFilter FloatingAnemoSlime = { EntityType__Enum_1::Platform, "_WindSlime" };
 		SimpleFilter Geogranum = { EntityType__Enum_1::Gadget, "_Property_Prop_RockFragment" };
 		SimpleFilter GeoPuzzle = { EntityType__Enum_1::Field, "_Rockstraight_" };
