@@ -3415,14 +3415,14 @@ namespace app {
         struct NetworkManager_1__Fields fields;
     };
 
-    struct __declspec(align(8)) MessageBase_1__Fields {
+    struct __declspec(align(8)) Google_Protobuf_MessageBase__Fields {
         int32_t count;
         uint8_t _flag;
         int32_t recycleVersionStamp;
     };
 
     struct PlayerLoginReq__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         struct String* string_1;
         struct String* string_2;
         struct String* string_3;
@@ -5185,7 +5185,7 @@ namespace app {
     };
 
     struct Vector_1__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         float x;
         float y;
         float z;
@@ -5198,7 +5198,7 @@ namespace app {
     };
 
     struct PlayerEnterSceneNotify__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         uint32_t prevSceneId_;
         uint32_t dungeonId_;
         bool isSkipUi_;
@@ -6121,22 +6121,22 @@ namespace app {
         Other = 0x00000003,
     };
 
-	enum class RealScenePointType__Enum : int32_t
-	{
-		Other = 0x00000000,
-		TransPointNormal = 0x00000001,
-		TransPointStatue = 0x00000002,
-		TransPointPortal = 0x00000003,
-		DungeonEntry = 0x00000004,
-		DungeonExit = 0x00000005,
-		DungeonWayPoint = 0x00000006,
-		DungeonQuitPoint = 0x00000007,
-		DungeonRewardPoint = 0x00000008,
-		PersonalSceneJumpPoint = 0x00000009,
-		SceneBuildingPoint = 0x0000000a,
-		DungeonSlipRevivePoint = 0x0000000b,
-		VehicleSummonPoint = 0x0000000c,
-	};
+    enum class RealScenePointType__Enum : int32_t
+    {
+        Other = 0x00000000,
+        TransPointNormal = 0x00000001,
+        TransPointStatue = 0x00000002,
+        TransPointPortal = 0x00000003,
+        DungeonEntry = 0x00000004,
+        DungeonExit = 0x00000005,
+        DungeonWayPoint = 0x00000006,
+        DungeonQuitPoint = 0x00000007,
+        DungeonRewardPoint = 0x00000008,
+        PersonalSceneJumpPoint = 0x00000009,
+        SceneBuildingPoint = 0x0000000a,
+        DungeonSlipRevivePoint = 0x0000000b,
+        VehicleSummonPoint = 0x0000000c,
+    };
 
     struct Vector {
         float _x;
@@ -6159,37 +6159,37 @@ namespace app {
     };
 
     struct ConfigScenePoint {
-		struct ConfigScenePoint__Class* klass;
+        struct ConfigScenePoint__Class* klass;
         MonitorData* monitor;
         struct ConfigScenePoint__Fields fields;
     };
 
-	struct ConfigScenePoint__VTable
-	{
-		VirtualInvokeData Equals;
-		VirtualInvokeData Finalize;
-		VirtualInvokeData GetHashCode;
-		VirtualInvokeData ToString;
-		VirtualInvokeData InitEmpty;
-		VirtualInvokeData ObjectContentHashOnto;
-		VirtualInvokeData get_pointType;
-		VirtualInvokeData ObjectContentHashOnto_1;
-		VirtualInvokeData ForeachRefTypeMember;
-		VirtualInvokeData Clone;
-		VirtualInvokeData GetHashNum;
-		VirtualInvokeData InitEmpty_1;
-		VirtualInvokeData FromBinary;
-	};
+    struct ConfigScenePoint__VTable
+    {
+        VirtualInvokeData Equals;
+        VirtualInvokeData Finalize;
+        VirtualInvokeData GetHashCode;
+        VirtualInvokeData ToString;
+        VirtualInvokeData InitEmpty;
+        VirtualInvokeData ObjectContentHashOnto;
+        VirtualInvokeData get_pointType;
+        VirtualInvokeData ObjectContentHashOnto_1;
+        VirtualInvokeData ForeachRefTypeMember;
+        VirtualInvokeData Clone;
+        VirtualInvokeData GetHashNum;
+        VirtualInvokeData InitEmpty_1;
+        VirtualInvokeData FromBinary;
+    };
 
-	struct ConfigScenePoint__Class
-	{
-		Il2CppClass_0 _0;
-		Il2CppRuntimeInterfaceOffsetPair* interfaceOffsets;
-		struct ConfigScenePoint__StaticFields* static_fields;
-		const Il2CppRGCTXData* rgctx_data;
-		Il2CppClass_1 _1;
-		struct ConfigScenePoint__VTable vtable;
-	};
+    struct ConfigScenePoint__Class
+    {
+        Il2CppClass_0 _0;
+        Il2CppRuntimeInterfaceOffsetPair* interfaceOffsets;
+        struct ConfigScenePoint__StaticFields* static_fields;
+        const Il2CppRGCTXData* rgctx_data;
+        Il2CppClass_1 _1;
+        struct ConfigScenePoint__VTable vtable;
+    };
 
     struct Nullable_1_UnityEngine_Vector3_ {
         struct Vector3 value;
@@ -6709,7 +6709,7 @@ namespace app {
     };
 
     struct HPAJEKCBMID__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         GBCFKNINCEI__Enum FNCGEGNMAAD;
         ForwardType__Enum PPBIOJBJAHO;
         struct NHHMPCAAKGF* GEOJBAGNEDC;
@@ -7333,7 +7333,7 @@ namespace app {
     };
 
     struct AbilityIdentifier_1__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         uint32_t instancedAbilityId_;
         uint32_t abilityCasterId_;
         int32_t localId_;
@@ -7349,7 +7349,7 @@ namespace app {
     };
 
     struct AttackHitEffectResult__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         uint32_t hitEffLevel_;
         float retreatStrength_;
         float airStrength_;
@@ -7365,7 +7365,7 @@ namespace app {
     };
 
     struct AttackResult_1__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         bool isResistText_;
         uint32_t HEFALFKIKJK;
         uint32_t amplifyReactionType_;
@@ -7465,7 +7465,7 @@ namespace app {
     };
 
     struct MotionInfo__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         struct Vector_1* pos_;
         struct Vector_1* rot_;
         struct Vector_1* speed_;
@@ -8890,7 +8890,7 @@ namespace app {
 
     struct __declspec(align(8)) JDBPGPCCJJP__Fields {
         struct JPIOKGLLCPH* Head;
-        struct MessageBase_1* Body;
+        struct Google_Protobuf_MessageBase* Body;
         bool _selfAllocBody;
         uint32_t ODEHIAOBAKE;
         uint32_t _packetSize;
@@ -10738,7 +10738,7 @@ namespace app {
     };
 
     struct GadgetInteractRsp__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         uint32_t gadgetEntityId_;
         InteractType__Enum interactType_;
         InterOpType__Enum opType_;
@@ -10851,7 +10851,7 @@ namespace app {
     };
 
     struct FishBiteRsp__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         int32_t retcode_;
     };
 
@@ -10862,7 +10862,7 @@ namespace app {
     };
 
     struct FishBattleBeginRsp__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         int32_t retcode_;
     };
 
@@ -10900,7 +10900,7 @@ namespace app {
     };
 
     struct FishBattleEndRsp__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         bool isGotReward_;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* KNIFJPABHLH;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* CPIOJKAIMFE;
@@ -11437,7 +11437,7 @@ namespace app {
     };
 
     struct PlayerCookRsp__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
         uint32_t cookCount_;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
@@ -11537,7 +11537,7 @@ namespace app {
     };
 
     struct CookRecipeData_1__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         uint32_t recipeId_;
         uint32_t proficiency_;
     };
@@ -12425,7 +12425,7 @@ namespace app {
     };
 
     struct Proto_SceneEntityInfo__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         Proto_ProtEntityType__Enum entityType_;
         uint32_t entityId_;
         struct String* name_;
@@ -12459,7 +12459,7 @@ namespace app {
     };
 
     struct Proto_PlayerLuaShellNotify__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         KIOMHHDFLGB__Enum KJGNKMBMJAF;
         uint32_t KDEAHJMLKOH;
         struct JIBNKGMEPOL* CBPBIHBNKPB;
@@ -12480,7 +12480,7 @@ namespace app {
     };
 
     struct Proto_WindSeedClientNotify__Fields {
-        struct MessageBase_1__Fields _;
+        struct Google_Protobuf_MessageBase__Fields _;
         struct Object* notify_;
         Proto_WindSeedClientNotify_Proto_WindSeedClientNotify_NotifyOneofCase__Enum BIICPNABLEO;
     };
@@ -12489,6 +12489,309 @@ namespace app {
         struct Proto_WindSeedClientNotify__Class* klass;
         MonitorData* monitor;
         struct Proto_WindSeedClientNotify__Fields fields;
+    };
+
+    struct RuntimeAnimatorController__Fields {
+        struct Object_1__Fields _;
+    };
+
+    struct RuntimeAnimatorController {
+        struct RuntimeAnimatorController__Class* klass;
+        MonitorData* monitor;
+        struct RuntimeAnimatorController__Fields fields;
+    };
+
+    struct Proto_AbilitySyncStateInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        bool isInited_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AbilityScalarValueEntry_* dynamicValueMap_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AbilityAppliedAbility_* appliedAbilities_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AbilityAppliedModifier_* appliedModifiers_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AbilityMixinRecoverInfo_* mixinRecoverInfos_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AbilityScalarValueEntry_* sgvDynamicValueMap_;
+    };
+
+    struct Proto_AbilitySyncStateInfo {
+        struct Proto_AbilitySyncStateInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_AbilitySyncStateInfo__Fields fields;
+    };
+
+    struct __declspec(align(8)) MoleMole_DataItem__Fields {
+        uint32_t _entityId_k__BackingField;
+        struct Dictionary_2_MoleMole_SafeUInt32_MoleMole_SafeDouble_* _cacheNormalPropValueDic;
+        struct Dictionary_2_MoleMole_SafeUInt32_MoleMole_SafeFloat_* _cacheFightPropValueDic;
+        bool _isToBeRemoved;
+        bool _unCacheEntity;
+        MoleMole_Config_JsonClimateType__Enum climateType;
+        uint32_t climateAreaID;
+    };
+
+    struct MoleMole_DataItem {
+        struct MoleMole_DataItem__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_DataItem__Fields fields;
+    };
+
+    struct MoleMole_MonsterDataItem__Fields {
+        struct MoleMole_DataItem__Fields _;
+        uint32_t configId;
+        uint32_t blockId;
+        uint32_t blockHash;
+        uint32_t groupId;
+        uint32_t mapInstId;
+        uint32_t randomPoolId;
+        uint32_t markFlag;
+        uint32_t titleId;
+        uint32_t specialNameId;
+        struct MoleMole_LCAIBetaData* aiData;
+        struct List_1_MoleMole_MonsterDataItem_MoleMole_MonsterDataItem_WeaponInfo_* weaponList;
+        bool isElite;
+        struct List_1_System_UInt32_* affixList;
+        uint32_t summonTag;
+        struct Dictionary_2_System_UInt32_System_Int32_* summonTagMap;
+        uint32_t fishId;
+        uint32_t fishPoolEntityId;
+    };
+
+    struct MoleMole_MonsterDataItem {
+        struct MoleMole_MonsterDataItem__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_MonsterDataItem__Fields fields;
+    };
+
+    struct __declspec(align(8)) MoleMole_LCAIBetaData__Fields {
+        struct Nullable_1_UnityEngine_Vector3_ bornPos;
+        uint32_t initialPoseID;
+        uint32_t currentPoseID;
+        float defendAreaRange;
+        uint32_t defendAreaID;
+        uint32_t wanderAreaID;
+        float clearThreatTargetDistance;
+        float forceAlertDistanceLimit;
+        struct String* nerveSettingName;
+        struct String* sensingTemplate;
+        bool disableWander;
+        uint32_t landingPointID;
+        uint32_t extractionPointID;
+        struct MoleMole_Config_ConfigLevelMonsterAIPatrol* aiPatrolSetting;
+        uint32_t levelRouteID;
+        bool forceCombatOnSpawn;
+        bool standOnDistantMesh;
+        bool overrideUseNavmesh;
+        bool useNavmesh;
+        struct Proto_SceneEntityAiInfo* _protoAIInfo;
+        struct Proto_MonsterRoute* _serverRoute;
+        struct Proto_SceneFishInfo* _fishInfo;
+        struct Nullable_1_UnityEngine_Vector3_ skillAnchorPosition;
+    };
+
+    struct MoleMole_LCAIBetaData {
+        struct MoleMole_LCAIBetaData__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_LCAIBetaData__Fields fields;
+    };
+
+    struct __declspec(align(8)) Delegate__Fields {
+        void* method_ptr;
+        void* invoke_impl;
+        struct Object* m_target;
+        void* method;
+        void* delegate_trampoline;
+        void* extra_arg;
+        void* method_code;
+        struct MethodInfo_1* method_info;
+        struct MethodInfo_1* original_method_info;
+        struct DelegateData* data;
+        bool method_is_virtual;
+    };
+
+    struct Delegate {
+        struct Delegate__Class* klass;
+        MonitorData* monitor;
+        struct Delegate__Fields fields;
+    };
+
+    struct MulticastDelegate__Fields {
+        struct Delegate__Fields _;
+        struct Delegate__Array* delegates;
+    };
+
+    struct Action_1_MoleMole_BaseEntity___Fields {
+        struct MulticastDelegate__Fields _;
+    };
+
+    struct Action_1_MoleMole_BaseEntity_ {
+        struct Action_1_MoleMole_BaseEntity___Class* klass;
+        MonitorData* monitor;
+        struct Action_1_MoleMole_BaseEntity___Fields fields;
+    };
+
+    enum class MoleMole_Config_AvatarUseType__Enum : int32_t {
+        AVATAR_TEST = 0x00000000,
+        AVATAR_SYNC_TEST = 0x00000001,
+        AVATAR_FORMAL = 0x00000002,
+        AVATAR_ABANDON = 0x00000003,
+    };
+
+    enum class MoleMole_Config_BodyType__Enum : int32_t {
+        BODY_NONE = 0x00000000,
+        BODY_BOY = 0x00000001,
+        BODY_GIRL = 0x00000002,
+        BODY_LADY = 0x00000003,
+        BODY_MALE = 0x00000004,
+        BODY_LOLI = 0x00000005,
+    };
+
+    enum class MoleMole_Config_QualityType__Enum : int32_t {
+        QUALITY_NONE = 0x00000000,
+        QUALITY_WHITE = 0x00000001,
+        QUALITY_GREEN = 0x00000002,
+        QUALITY_BLUE = 0x00000003,
+        QUALITY_PURPLE = 0x00000004,
+        QUALITY_ORANGE = 0x00000005,
+        QUALITY_ORANGE_SP = 0x00000069,
+    };
+
+    enum class MoleMole_Config_WeaponType__Enum : int32_t {
+        WEAPON_NONE = 0x00000000,
+        WEAPON_SWORD_ONE_HAND = 0x00000001,
+        WEAPON_CROSSBOW = 0x00000002,
+        WEAPON_STAFF = 0x00000003,
+        WEAPON_DOUBLE_DAGGER = 0x00000004,
+        WEAPON_KATANA = 0x00000005,
+        WEAPON_SHURIKEN = 0x00000006,
+        WEAPON_STICK = 0x00000007,
+        WEAPON_SPEAR = 0x00000008,
+        WEAPON_SHIELD_SMALL = 0x00000009,
+        WEAPON_CATALYST = 0x0000000a,
+        WEAPON_CLAYMORE = 0x0000000b,
+        WEAPON_BOW = 0x0000000c,
+        WEAPON_POLE = 0x0000000d,
+    };
+
+    enum class MoleMole_Config_AvatarIdentityType__Enum : int32_t {
+        AVATAR_IDENTITY_MASTER = 0x00000000,
+        AVATAR_IDENTITY_NORMAL = 0x00000001,
+    };
+
+    struct __declspec(align(8)) MoleMole_Config_EntityExcelConfig__Fields {
+        struct SimpleSafeUInt32 idRawNum;
+        uint32_t _nameTextMapHash;
+        uint8_t _prefabPathHashPre;
+        uint32_t _prefabPathHashSuffix;
+        uint8_t _prefabPathRemoteHashPre;
+        uint32_t _prefabPathRemoteHashSuffix;
+        uint8_t _controllerPathHashPre;
+        uint32_t _controllerPathHashSuffix;
+        uint8_t _controllerPathRemoteHashPre;
+        uint32_t _controllerPathRemoteHashSuffix;
+        struct SimpleSafeUInt32 campIDRawNum;
+        struct String* _LODPatternName;
+    };
+    struct MoleMole_Config_CreatureExcelConfig__Fields {
+        struct MoleMole_Config_EntityExcelConfig__Fields _;
+        struct SimpleSafeFloat hp_baseRawNum;
+        struct SimpleSafeFloat attack_baseRawNum;
+        struct SimpleSafeFloat defense_baseRawNum;
+        struct SimpleSafeFloat criticalRawNum;
+        struct SimpleSafeFloat antiCriticalRawNum;
+        struct SimpleSafeFloat criticalHurtRawNum;
+        struct SimpleSafeFloat fireSubHurtRawNum;
+        struct SimpleSafeFloat grassSubHurtRawNum;
+        struct SimpleSafeFloat waterSubHurtRawNum;
+        struct SimpleSafeFloat elecSubHurtRawNum;
+        struct SimpleSafeFloat windSubHurtRawNum;
+        struct SimpleSafeFloat iceSubHurtRawNum;
+        struct SimpleSafeFloat rockSubHurtRawNum;
+        struct SimpleSafeFloat fireAddHurtRawNum;
+        struct SimpleSafeFloat grassAddHurtRawNum;
+        struct SimpleSafeFloat waterAddHurtRawNum;
+        struct SimpleSafeFloat elecAddHurtRawNum;
+        struct SimpleSafeFloat windAddHurtRawNum;
+        struct SimpleSafeFloat iceAddHurtRawNum;
+        struct SimpleSafeFloat rockAddHurtRawNum;
+        struct MoleMole_Config_FightPropGrowConfig__Array* _propGrowCurves;
+        struct SimpleSafeFloat elementMasteryRawNum;
+        struct SimpleSafeFloat physicalSubHurtRawNum;
+        struct SimpleSafeFloat physicalAddHurtRawNum;
+        uint8_t _prefabPathRagdollHashPre;
+        uint32_t _prefabPathRagdollHashSuffix;
+    };
+    struct MoleMole_Config_AvatarExcelConfig__Fields {
+        struct MoleMole_Config_CreatureExcelConfig__Fields _;
+        MoleMole_Config_AvatarUseType__Enum _useType;
+        MoleMole_Config_BodyType__Enum _bodyType;
+        uint8_t _scriptDataPathHashPre;
+        uint32_t _scriptDataPathHashSuffix;
+        struct String* _iconName;
+        struct String* _sideIconName;
+        MoleMole_Config_QualityType__Enum _qualityType;
+        struct SimpleSafeFloat chargeEfficiencyRawNum;
+        struct SimpleSafeFloat healAddRawNum;
+        struct SimpleSafeFloat healedAddRawNum;
+        uint8_t _combatConfigHashPre;
+        uint32_t _combatConfigHashSuffix;
+        bool _isRangeAttack;
+        struct SimpleSafeUInt32 initialWeaponRawNum;
+        MoleMole_Config_WeaponType__Enum _weaponType;
+        uint8_t _manekinPathHashPre;
+        uint32_t _manekinPathHashSuffix;
+        struct String* _imageName;
+        uint8_t _gachaCardNameHashPre;
+        uint32_t _gachaCardNameHashSuffix;
+        uint8_t _gachaImageNameHashPre;
+        uint32_t _gachaImageNameHashSuffix;
+        uint8_t _coopPicNameHashPre;
+        uint32_t _coopPicNameHashSuffix;
+        struct String* _cutsceneShow;
+        struct SimpleSafeUInt32 skillDepotIdRawNum;
+        struct SimpleSafeFloat staminaRecoverSpeedRawNum;
+        struct SimpleSafeUInt32__Array* _candSkillDepotIds;
+        uint8_t _manekinJsonConfigHashPre;
+        uint32_t _manekinJsonConfigHashSuffix;
+        struct SimpleSafeUInt32 manekinMotionConfigRawNum;
+        uint32_t _descTextMapHash;
+        MoleMole_Config_AvatarIdentityType__Enum _avatarIdentityType;
+        struct SimpleSafeUInt32 avatarPromoteIdRawNum;
+        struct SimpleSafeUInt32__Array* _avatarPromoteRewardLevelList;
+        struct SimpleSafeUInt32__Array* _avatarPromoteRewardIdList;
+        struct SimpleSafeUInt32 featureTagGroupIDRawNum;
+        uint32_t _infoDescTextMapHash;
+        uint8_t _animatorConfigPathHashPre;
+        uint32_t _animatorConfigPathHashSuffix;
+    };
+
+    struct MoleMole_Config_AvatarExcelConfig {
+        struct MoleMole_Config_AvatarExcelConfig__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_Config_AvatarExcelConfig__Fields fields;
+    };
+    struct __declspec(align(8)) Dictionary_2_System_UInt32_MoleMole_Config_AvatarExcelConfig___Fields {
+        struct Int32__Array* buckets;
+        struct Dictionary_2_TKey_TValue_Entry_System_UInt32_MoleMole_Config_AvatarExcelConfig___Array* entries;
+        int32_t count;
+        int32_t version;
+        int32_t freeList;
+        int32_t freeCount;
+        struct IEqualityComparer_1_System_UInt32_* comparer;
+        struct Dictionary_2_TKey_TValue_KeyCollection_System_UInt32_MoleMole_Config_AvatarExcelConfig_* keys;
+        struct Dictionary_2_TKey_TValue_ValueCollection_System_UInt32_MoleMole_Config_AvatarExcelConfig_* values;
+        struct Object* _syncRoot;
+    };
+    struct Dictionary_2_System_UInt32_MoleMole_Config_AvatarExcelConfig_ {
+        struct Dictionary_2_System_UInt32_MoleMole_Config_AvatarExcelConfig___Class* klass;
+        MonitorData* monitor;
+        struct Dictionary_2_System_UInt32_MoleMole_Config_AvatarExcelConfig___Fields fields;
+    };
+
+    struct MiHoYoLodLoader__Fields {
+        struct Behaviour__Fields _;
+    };
+    struct MiHoYoLodLoader {
+        struct MiHoYoLodLoader__Class* klass;
+        MonitorData* monitor;
+        struct MiHoYoLodLoader__Fields fields;
     };
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)

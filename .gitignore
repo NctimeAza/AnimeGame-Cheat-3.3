@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 enc_temp_folder/
 debugger.cpp
+ModelChanger.h
+ModelChanger.cpp

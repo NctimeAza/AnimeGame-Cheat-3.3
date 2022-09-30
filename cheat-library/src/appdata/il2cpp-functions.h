@@ -282,8 +282,9 @@ DO_APP_FUNC_METHODINFO(0x0A4B8E70, MoleMole_BaseEntity_GetMoveComponent_1__Metho
 
 
 DO_APP_FUNC(0x03B1AAD0, List_1_MoleMole_BaseComponent_*, MoleMole_BaseEntity_GetAllLogicComponents, (BaseEntity* __this, MethodInfo* method));
-DO_APP_FUNC(0x03B0F550, GameObject*, MoleMole_BaseEntity_get_gameObject, (BaseEntity* __this, MethodInfo* method));
-DO_APP_FUNC(0x00FE0420, GameObject*, MoleMole_BaseEntity_get_rootGameObject, (BaseEntity* __this, MethodInfo* method));
+DO_APP_FUNC(0x03B0F550, GameObject*, MoleMole_BaseEntity_get_rootGameObject, (BaseEntity* __this, MethodInfo* method));
+DO_APP_FUNC(0x00FE0420, GameObject*, MoleMole_BaseEntity_get_gameObject, (BaseEntity* __this, MethodInfo* method));
+
 
 // type should be 'MoleMole_AvatarEntity' not 'MoleMole_BaseEntity'
 DO_APP_FUNC(0x015C2DB0, BaseEntity*, MoleMole_EntityManager_GetLocalAvatarEntity, (MoleMole_EntityManager* __this, MethodInfo* method));
@@ -378,6 +379,35 @@ DO_APP_FUNC(0x03B78A10, bool, MoleMole_InLevelMainPageContext_DoTeamCountDown_c_
 // 48 8b 8e ? ? ? ? 40 88 ae
 DO_APP_FUNC(0x026A1890, void, MoleMole_InLevelPlayerProfilePageContext_SetupView, (/*MoleMole_InLevelPlayerProfilePageContext*/void* __this, MethodInfo* method));
 DO_APP_FUNC(0x0269A0B0, void, MoleMole_InLevelPlayerProfilePageContext_ClearView, (/*MoleMole_InLevelPlayerProfilePageContext*/void* __this, MethodInfo* method));
+
+
+//Model Changer
+DO_APP_FUNC(0x01BFDA60, Dictionary_2_System_UInt32_MoleMole_Config_AvatarExcelConfig_*, MoleMole_Config_AvatarExcelConfigLoader_get_dataDict, (MethodInfo* method));
+DO_APP_FUNC(0x01BFDF40, MoleMole_Config_AvatarExcelConfig*, MoleMole_Config_AvatarExcelConfigLoader_GetData, (uint32_t id, MethodInfo* method));
+DO_APP_FUNC(0x01BFDA50, String*, MoleMole_Config_AvatarExcelConfigLoader_get_FILE_LOCATION, (MethodInfo* method));
+
+DO_APP_FUNC(0x05B64380, int32_t, MiHoYoLodLoader_get_currentLodLevel, (MiHoYoLodLoader* __this, MethodInfo* method));
+DO_APP_FUNC(0x05B64310, void, MiHoYoLodLoader_PauseLodLoaderWithHighestLodLevel, (MiHoYoLodLoader* __this, MethodInfo* method));
+DO_APP_FUNC(0x05B64320, void, MiHoYoLodLoader_PauseLodLoaderWithSpecificLodLevel, (MiHoYoLodLoader* __this, int32_t pausedLodLevel, MethodInfo* method));
+DO_APP_FUNC(0x05B64370, bool, MiHoYoLodLoader_TryApplySpecificLodLevelImmdiate, (MiHoYoLodLoader* __this, bool gcmesh, MethodInfo* method));
+DO_APP_FUNC(0x05B64340, void, MiHoYoLodLoader_ResumeLodLoader, (MiHoYoLodLoader* __this, MethodInfo* method));
+DO_APP_FUNC(0x05B64300, void, MiHoYoLodLoader_PauseLODManager, (MethodInfo* method));
+DO_APP_FUNC(0x067F92C0, MiHoYoLodLoader*, Component_1_GetComponent_173, (Component_1* __this, MethodInfo* method));
+DO_APP_FUNC(0x010630B0, BaseEntity*, MoleMole_EntityFactory_CreateAvatar, (uint64_t guid, uint32_t entityId, uint32_t configId, uint32_t campID, Vector3 initPos, bool anyncLoad, Action_1_MoleMole_BaseEntity_* loadFinishCallback, uint32_t costumeID, MethodInfo* method));
+DO_APP_FUNC(0x0106E020, BaseEntity*, MoleMole_EntityFactory_CreateMonster, (uint32_t entityId, uint32_t configId, Vector3 initPos, float yaw, int32_t currentPoseID, MoleMole_LCAIBetaData* aiData, Nullable_1_UInt32_ campID, float scale, bool anyncLoad, Action_1_MoleMole_BaseEntity_* loadFinishCallback, bool isElite, List_1_System_UInt32_* affixList, uint32_t authorityPeerId, uint32_t ownerRuntimeID, MoleMole_MonsterDataItem* dataItem, Proto_AbilitySyncStateInfo* abilitySyncInfo, bool isSummoned, bool lightWeight, MethodInfo* method));
+DO_APP_FUNC(0x01066E30, BaseEntity*, MoleMole_EntityFactory_CreateNpcEntity, (uint32_t entityId, uint32_t configId, Vector3 initPos, Vector3 euler, uint32_t roomID, uint32_t questID, bool async, MethodInfo* method));
+DO_APP_FUNC(0x010673A0, BaseEntity*, MoleMole_EntityFactory_CreateNpcPuppetEntity, (uint32_t entityId, uint32_t configId, String* alias, Vector3 initPos, Vector3 euler, bool async, Action_1_MoleMole_BaseEntity_* loadFinishCallback, MethodInfo* method));
+DO_APP_FUNC(0x0106BBA0, BaseEntity*, MoleMole_EntityFactory_CreatePaimon, (MethodInfo* method));
+DO_APP_FUNC(0x05AB46E0, void, Animator_set_cullingMode, (Animator* __this, AnimatorCullingMode__Enum value, MethodInfo* method));
+DO_APP_FUNC(0x05B2C5A0, bool, Behaviour_get_enabled, (Behaviour* __this, MethodInfo* method));
+DO_APP_FUNC(0x05B2C5C0, void, Behaviour_set_enabled, (Behaviour* __this, bool value, MethodInfo* method));
+DO_APP_FUNC(0x05AB4600, RuntimeAnimatorController*, Animator_get_runtimeAnimatorController, (Animator* __this, MethodInfo* method));
+DO_APP_FUNC(0x05AB4730, void, Animator_set_runtimeAnimatorController, (Animator* __this, RuntimeAnimatorController* value, MethodInfo* method));
+DO_APP_FUNC(0x05A4EED0, Transform*, Transform_get_parent, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x05A4F270, void, Transform_set_parent, (Transform* __this, Transform* value, MethodInfo* method));
+DO_APP_FUNC(0x05A4EED0, Transform*, Transform_get_parentInternal, (Transform* __this, MethodInfo* method));
+DO_APP_FUNC(0x05A4F260, void, Transform_set_parentInternal, (Transform* __this, Transform* value, MethodInfo* method));
+DO_APP_FUNC(0x05A4E620, void, Transform_SetSiblingIndex, (Transform* __this, int32_t index, MethodInfo* method));
 
 
 // Singletons
