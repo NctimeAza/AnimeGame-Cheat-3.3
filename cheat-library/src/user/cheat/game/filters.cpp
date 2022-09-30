@@ -252,7 +252,7 @@ namespace cheat::game::filters
 		SimpleFilter Cecilia = { EntityType__Enum_1::GatherObject, "_Cecilia" };
 		SimpleFilter DandelionSeed = { EntityType__Enum_1::GatherObject, "_Plant_Dandelion" };
 		SimpleFilter Dendrobium = { EntityType__Enum_1::GatherObject, "_Blooddendrobe" };
-		SimpleFilter FlamingFlowerStamen = { EntityType__Enum_1::GatherObject, "_Flower_FireFlower" };
+		SimpleFilter FlamingFlowerStamen = { EntityType__Enum_1::GatherObject, "FireFlower_" };
 		SimpleFilter FluorescentFungus = { EntityType__Enum_1::GatherObject, "_Lampmushroom" };
 		SimpleFilter GlazeLily = { EntityType__Enum_1::GatherObject, "_GlazedLily" };
 		SimpleFilter Horsetail = { EntityType__Enum_1::GatherObject, "_HorseTail" };
@@ -261,7 +261,7 @@ namespace cheat::game::filters
 		SimpleFilter LotusHead = { EntityType__Enum_1::GatherObject, "_Lotus_Drop" };
 		SimpleFilter Matsutake = { EntityType__Enum_1::GatherObject, "_Food_Matsutake" };
 		SimpleFilter Mint = { EntityType__Enum_1::GatherObject, "_Plant_Mint" };
-		SimpleFilter MistFlowerCorolla = { EntityType__Enum_1::GatherObject, "_Flower_IceFlower" };
+		SimpleFilter MistFlowerCorolla = { EntityType__Enum_1::GatherObject, "IceFlower_" };
 		SimpleFilter Mushroom = { EntityType__Enum_1::GatherObject, "_Plant_Mushroom" };
 		SimpleFilter NakuWeed = { EntityType__Enum_1::GatherObject, "_Howlgrass" };
 		SimpleFilter PhilanemoMushroom = { EntityType__Enum_1::GatherObject, "_WindmilHunter" };
