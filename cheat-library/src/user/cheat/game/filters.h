@@ -307,7 +307,7 @@ namespace cheat::game::filters
 		extern SimpleFilter ElectricConduction;
 		extern SimpleFilter RelayStone;
 		extern WhitelistFilter ElectroSeelie;
-		extern SimpleFilter ElementalMonument;
+		extern WhitelistFilter ElementalMonument;
 		extern SimpleFilter FloatingAnemoSlime;
 		extern SimpleFilter Geogranum;
 		extern SimpleFilter GeoPuzzle;
