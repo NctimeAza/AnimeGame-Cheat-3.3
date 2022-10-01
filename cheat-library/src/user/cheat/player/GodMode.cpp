@@ -9,7 +9,8 @@ namespace cheat::feature
     GodMode::GodMode() : Feature(),
         NF(f_Enabled, "God Mode", "GodMode", false),
         NF(f_Conditional, "Conditional", "GodMode", false),
-        NF(f_MinHealth, "Minimum Health", "GodMode", 95.0f)
+        NF(f_MinHealth, "Minimum Health", "GodMode", 95.0f),
+        NF(f_MissingRate, "Missing Attack Rate", "GodMode", 100.0f)
     {
 		HookManager::install(app::VCHumanoidMove_NotifyLandVelocity, VCHumanoidMove_NotifyLandVelocity_Hook);
 		HookManager::install(app::Miscs_CheckTargetAttackable, Miscs_CheckTargetAttackable_Hook);
@@ -29,8 +30,11 @@ namespace cheat::feature
         ImGui::Indent();
         ConfigWidget("Conditional", f_Conditional, "Enables god mode when the character's health drops\n"
             "below the specified minimum.\n");
-        if(f_Conditional)
+        if (f_Conditional) {
             ConfigWidget("Minimum Health", f_MinHealth, 0.1f, 0.1f, 100.0f, "Minimum health (in %) required before god mode takes effect.");
+            ConfigWidget("Missing Attack Rate", f_MissingRate, 0.1f, 0.0f, 100.0f, "Randomly missing enemies attack (in %, 0% = never, 100% = always) such as evade ability in other games.");
+        }
+            
         ImGui::Unindent();
     }
 
@@ -43,7 +47,7 @@ namespace cheat::feature
     {
         ImGui::Text("God Mode");
         if (f_Conditional)
-            ImGui::Text("Conditional [%0.2f]", f_MinHealth.value());
+            ImGui::Text("Condition MH%0.2f% | MR%0.2f%", f_MinHealth.value(), f_MissingRate.value());
     }
 
     GodMode& GodMode::GetInstance()
@@ -65,6 +69,22 @@ namespace cheat::feature
         return isLowThanMin;
     }
 
+    bool IsMissingAttack()
+    {
+        auto& gm = GodMode::GetInstance();
+        if (!gm.f_Conditional)
+            return true;
+        if (gm.f_MissingRate >= 100.0f)
+            return true;
+        else if (gm.f_MissingRate <= 0.0f)
+            return false;
+        else 
+        {
+            float rand = (float)(std::rand() % 1000) / 10.0f;
+            return rand <= gm.f_MissingRate.value();
+        }
+    }
+
 	// Attack immunity (return false when target is avatar, that mean avatar entity isn't attackable)
 	bool GodMode::Miscs_CheckTargetAttackable_Hook(app::BaseEntity* attacker, app::BaseEntity* target, MethodInfo* method)
 	{
@@ -73,7 +93,7 @@ namespace cheat::feature
         auto entity = manager.entity(target);
         if (gm.f_Enabled && entity->isAvatar())
             if (gm.f_Conditional) { // Calculate only when conditional is enabled
-                if (HealthLowThanMin(target))
+                if (HealthLowThanMin(target) && IsMissingAttack())
                     return false;
             }
             else
@@ -127,7 +147,7 @@ namespace cheat::feature
 
         if (GetInstance().NeedBlockHanlerModifierThinkTimeUp(arg))
             if (gm.f_Conditional) {
-                if (HealthLowThanMin(__this->fields._.owner->fields._entity))
+                if (HealthLowThanMin(__this->fields._.owner->fields._entity) && IsMissingAttack())
                     return false;
             }
             else 
