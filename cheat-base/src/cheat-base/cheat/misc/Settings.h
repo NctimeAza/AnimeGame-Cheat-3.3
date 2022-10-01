@@ -51,6 +51,7 @@ namespace cheat::feature
 		void ThemeImport(std::filesystem::directory_entry file);
 		void ThemeExport(std::string name, bool replace = false);
 		void ApplyTheme(std::string name);
+		std::string cma;
 
 		void OnExitKeyPressed();
 		Settings();

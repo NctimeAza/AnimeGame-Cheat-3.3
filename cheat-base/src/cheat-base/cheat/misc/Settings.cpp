@@ -6,9 +6,12 @@
 #include <cheat-base/render/gui-util.h>
 #include <misc/cpp/imgui_stdlib.h>
 #include <cheat-base/util.h>
+#include <SimpleIni.h>
 
 #include "shlwapi.h"
 #pragma comment(lib, "shlwapi.lib")
+
+static CSimpleIni ini;
 
 namespace cheat::feature
 {
@@ -399,8 +402,30 @@ namespace cheat::feature
 			ConfigWidget(f_MenuKey, false,
 				"Key to toggle main menu visibility. Cannot be empty.\n"\
 				"If you forget this key, you can see or set it in your config file.");
+			ImGui::InputText("command line arguments", &cma);
+			ImGui::SameLine(); HelpMarker("Lanuch the game with command line arguments");
+			if (ImGui::Button("Refresh"))
+			{
+				std::string cfgpath = (util::GetCurrentPath() / "cfg.ini").string();
+				const char* cfgpathchar = cfgpath.c_str();
+				ini.SetUnicode();
+				ini.LoadFile(cfgpathchar);
+				cma = ini.GetValue("Inject", "GenshinCommandLine");
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Apply"))
+			{
+				std::string cfgpath = (util::GetCurrentPath() / "cfg.ini").string();
+				const char* cfgpathchar = cfgpath.c_str();
+				ini.SetUnicode();
+				ini.LoadFile(cfgpathchar);
+				const char* cmachar = cma.c_str();
+				ini.SetValue("Inject", "GenshinCommandline", cmachar);
+				ini.SaveFile(cfgpathchar);
+			}
+			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
 			ConfigWidget(f_HotkeysEnabled, "Enable hotkeys.");
-					}
+		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Logging");
