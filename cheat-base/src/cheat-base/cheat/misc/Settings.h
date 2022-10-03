@@ -43,7 +43,7 @@ namespace cheat::feature
 		void Init();
 
 	private:
-		struct Theme{
+		struct Theme {
 			std::map<std::string, ImVec4> colors;
 			std::map<std::string, std::any> styles;
 		};
@@ -51,6 +51,7 @@ namespace cheat::feature
 		void ThemeImport(std::filesystem::directory_entry file);
 		void ThemeExport(std::string name, bool replace = false);
 		void ApplyTheme(std::string name);
+		std::string cma;
 
 		void OnExitKeyPressed();
 		Settings();

@@ -41,13 +41,17 @@ int main(int argc, char* argv[])
 
 	current_path(path);
 	ini.SaveFile("cfg.ini");
+	ini.Reset();
 
 	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
 #ifdef _DEBUG
 	std::filesystem::path tempDllPath = std::filesystem::temp_directory_path() / filename;
-
+	ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+	ini.SetValue("Location", "Injector", (std::filesystem::path(argv[0]).parent_path().string()).c_str());
+	ini.SaveFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+	ini.Reset();
 	std::error_code ec;
 	std::filesystem::copy_file(currentDllPath, tempDllPath, std::filesystem::copy_options::update_existing, ec);
 	if (ec)
