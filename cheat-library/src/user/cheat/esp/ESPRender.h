@@ -5,6 +5,7 @@
 #include <il2cpp-appdata.h>
 #include <imgui.h>
 
+#include <cheat/game/filters.h>
 #include <cheat/game/Entity.h>
 
 namespace cheat::feature::esp::render
