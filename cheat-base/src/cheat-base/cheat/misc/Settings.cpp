@@ -406,22 +406,38 @@ namespace cheat::feature
 			ImGui::SameLine(); HelpMarker("Lanuch the game with command line arguments");
 			if (ImGui::Button("Refresh"))
 			{
-				std::string cfgpath = (util::GetCurrentPath() / "cfg.ini").string();
-				const char* cfgpathchar = cfgpath.c_str();
 				ini.SetUnicode();
-				ini.LoadFile(cfgpathchar);
+				#ifdef _DEBUG
+				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+				std::string InjectorPath = ini.GetValue("Location", "Injector");
+				ini.Reset();
+				ini.LoadFile((InjectorPath + "\\cfg.ini").c_str());
 				cma = ini.GetValue("Inject", "GenshinCommandLine");
+				ini.Reset();
+				#else
+				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				cma = ini.GetValue("Inject", "GenshinCommandLine");
+				ini.Reset();
+                #endif
 			}
 			ImGui::SameLine();
 			if (ImGui::Button("Apply"))
 			{
-				std::string cfgpath = (util::GetCurrentPath() / "cfg.ini").string();
-				const char* cfgpathchar = cfgpath.c_str();
 				ini.SetUnicode();
-				ini.LoadFile(cfgpathchar);
-				const char* cmachar = cma.c_str();
-				ini.SetValue("Inject", "GenshinCommandline", cmachar);
-				ini.SaveFile(cfgpathchar);
+				#ifdef _DEBUG
+				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+				std::string InjectorPath = ini.GetValue("Location", "Injector");
+				ini.Reset();
+				ini.LoadFile((InjectorPath + "\\cfg.ini").c_str());
+				ini.SetValue("Inject", "GenshinCommandline", cma.c_str());
+				ini.SaveFile((InjectorPath + "\\cfg.ini").c_str());
+				ini.Reset();
+                #else
+				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				ini.SetValue("Inject", "GenshinCommandline", cma.c_str());
+				ini.SaveFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				ini.Reset();
+                #endif
 			}
 			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
 			ConfigWidget(f_HotkeysEnabled, "Enable hotkeys.");
