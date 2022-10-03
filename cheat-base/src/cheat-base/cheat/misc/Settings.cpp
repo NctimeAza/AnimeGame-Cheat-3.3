@@ -18,7 +18,7 @@ namespace cheat::feature
 	Settings::Settings() : Feature(),
 		NF(f_MenuKey, "Show Cheat Menu Key", "General", Hotkey(VK_F1)),
 		NF(f_HotkeysEnabled, "Hotkeys Enabled", "General", true),
-		
+
 		NF(f_StatusMove, "Move Status Window", "General::StatusWindow", true),
 		NF(f_StatusShow, "Show Status Window", "General::StatusWindow", true),
 
@@ -36,7 +36,7 @@ namespace cheat::feature
 
 		NF(f_FastExitEnable, "Fast Exit", "General::FastExit", false),
 		NF(f_HotkeyExit, "Hotkeys", "General::FastExit", Hotkey(VK_F12)),
-		
+
 		NF(f_FontSize, "Font Size", "General::Theme", 16.0f),
 		NF(f_ShowStyleEditor, "Show Theme Customization", "General::Theme", false),
 		NFS(f_DefaultTheme, "Theme", "General::Theme", ""),
@@ -184,7 +184,7 @@ namespace cheat::feature
 	void Settings::Init() {
 		if (hasLoaded)
 			return;
-		
+
 		if (!std::filesystem::exists(themesDir))
 			std::filesystem::create_directory(themesDir);
 		else
@@ -207,7 +207,7 @@ namespace cheat::feature
 	{
 		if (data.count("Colors") > 0 && data.count("Styles") > 0)
 			return false;
-		
+
 		return true;
 	}
 
@@ -241,13 +241,13 @@ namespace cheat::feature
 
 			for (auto& [styleName, styleValue] : data["Styles"].items())
 			{
-				if(styleValue.is_array())
+				if (styleValue.is_array())
 					theme.styles.insert({ styleName, ImVec2(styleValue.at(0), styleValue.at(1)) });
 				else if (styleValue.is_number_integer())
 					theme.styles.insert({ styleName, styleValue.get<int>() });
-				else if(styleValue.is_boolean())
+				else if (styleValue.is_boolean())
 					theme.styles.insert({ styleName, styleValue.get<bool>() });
-				else 
+				else
 					theme.styles.insert({ styleName, styleValue.get<float>() });
 			}
 		}
@@ -255,7 +255,7 @@ namespace cheat::feature
 		m_Themes.insert({ themeName,  theme });
 
 		// Convert old format to new format
-		if(isOldFormat)
+		if (isOldFormat)
 			ThemeExport(themeName, true);
 	}
 
@@ -407,24 +407,31 @@ namespace cheat::feature
 			if (ImGui::Button("Refresh"))
 			{
 				ini.SetUnicode();
-				#ifdef _DEBUG
+#ifdef _DEBUG
 				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
 				std::string InjectorPath = ini.GetValue("Location", "Injector");
 				ini.Reset();
 				ini.LoadFile((InjectorPath + "\\cfg.ini").c_str());
+				if (!ini.GetValue("Inject", "GenshinCommandLine"))
+					return;
 				cma = ini.GetValue("Inject", "GenshinCommandLine");
 				ini.Reset();
-				#else
+#else
 				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				if (!ini.GetValue("Inject", "GenshinCommandLine"))
+					return;
 				cma = ini.GetValue("Inject", "GenshinCommandLine");
 				ini.Reset();
-                #endif
+#endif
 			}
 			ImGui::SameLine();
 			if (ImGui::Button("Apply"))
 			{
+				if (cma.empty())
+					return;
+
 				ini.SetUnicode();
-				#ifdef _DEBUG
+#ifdef _DEBUG
 				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
 				std::string InjectorPath = ini.GetValue("Location", "Injector");
 				ini.Reset();
@@ -432,12 +439,12 @@ namespace cheat::feature
 				ini.SetValue("Inject", "GenshinCommandline", cma.c_str());
 				ini.SaveFile((InjectorPath + "\\cfg.ini").c_str());
 				ini.Reset();
-                #else
+#else
 				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
 				ini.SetValue("Inject", "GenshinCommandline", cma.c_str());
 				ini.SaveFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
 				ini.Reset();
-                #endif
+#endif
 			}
 			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
 			ConfigWidget(f_HotkeysEnabled, "Enable hotkeys.");
@@ -515,9 +522,9 @@ namespace cheat::feature
 				renderer::SetGlobalFontSize(static_cast<float>(f_FontSize));
 
 			static std::string themeNameBuffer_;
-			
+
 			ImGui::SetNextItemWidth(200);
-		    ImGui::InputText("Theme Name", &themeNameBuffer_);
+			ImGui::InputText("Theme Name", &themeNameBuffer_);
 
 			bool alreadyExist = m_Themes.count(themeNameBuffer_) > 0;
 
@@ -551,7 +558,7 @@ namespace cheat::feature
 				}
 				ImGui::EndCombo();
 			}
-			
+
 			ImGui::SameLine();
 			if (ImGui::Button("Delete Theme"))
 			{

@@ -43,7 +43,7 @@ namespace cheat::feature
 		void Init();
 
 	private:
-		struct Theme{
+		struct Theme {
 			std::map<std::string, ImVec4> colors;
 			std::map<std::string, std::any> styles;
 		};
