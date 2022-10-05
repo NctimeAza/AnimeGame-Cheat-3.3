@@ -194,11 +194,10 @@ namespace cheat::feature::esp::render
 			bounds = GetObjectBounds(entity);
 			if (bounds.m_Extents.x > 1.f || bounds.m_Extents.y > 1.f || bounds.m_Extents.z > 0.8f)
 			{
-				bounds.m_Extents = { 1.f, 1.f, 0.7f };
+				bounds.m_Extents = { 1.f, 1.f, 0.8f };
 			}
 			auto pos = entity->relativePosition();
 			bounds.m_Center = { pos.x + 0.12f,pos.y + 1.f, pos.z + 0.12f };
-			LOG_DEBUG(" %f %f %f", bounds.m_Center.x, bounds.m_Center.y, bounds.m_Center.z);
 			min = bounds.m_Center - bounds.m_Extents;
 			max = bounds.m_Center + bounds.m_Extents;
 		}
@@ -211,14 +210,15 @@ namespace cheat::feature::esp::render
 			min = bounds.m_Center - bounds.m_Extents/2;
 			max = bounds.m_Center + bounds.m_Extents/2;
 		}
-		//m0nkrel: TODO - normalize electroseelie
-		/*else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
+		else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
 		{
 			bounds = GetObjectBounds(entity);
-			bounds.m_Extents = bounds.m_Extents - app::Vector3{3.f, 3.f, 3.f };
+			bounds.m_Extents = bounds.m_Extents - app::Vector3{4.5f, 4.5f, 4.5f };
+			auto pos = entity->relativePosition();
+			bounds.m_Center = { pos.x,pos.y + 1.f, pos.z };
 			min = bounds.m_Center - bounds.m_Extents;
 			max = bounds.m_Center + bounds.m_Extents;
-		}*/
+		}
 		else
 		{
 			bounds = GetObjectBounds(entity);
