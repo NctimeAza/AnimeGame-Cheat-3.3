@@ -16,3 +16,9 @@
 [submodule "cheat-base/vendor/imgui"]
 	path = cheat-base/vendor/imgui
 	url = https://github.com/CallowBlack/imgui-brightness-fix.git
+[submodule "cheat-base/vendor/WinReg"]
+	path = cheat-base/vendor/WinReg
+	url = https://github.com/GiovanniDicanio/WinReg.git
+[submodule "cheat-base/vendor/easy-encryption"]
+	path = cheat-base/vendor/easy-encryption
+	url = https://github.com/philipperemy/easy-encryption.git
