@@ -124,7 +124,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>false</OmitFramePointers>
@@ -189,7 +189,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>false</OmitFramePointers>
@@ -218,7 +218,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -237,7 +237,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -254,7 +254,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <SDLCheck>true</SDLCheck>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\easy-encryption;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>

@@ -9,8 +9,13 @@
 #include "injector.h"
 #include "util.h"
 
+#include <WinReg.hpp>
+#include <encrypt.h>
+
 const std::string GlobalGenshinProcName = "GenshinImpact.exe";
 const std::string ChinaGenshinProcName = "YuanShen.exe";
+std::string ae_Name;
+std::string ae_EncKey;
 
 static CSimpleIni ini;
 
@@ -43,6 +48,36 @@ int main(int argc, char* argv[])
 	ini.SaveFile("cfg.ini");
 	ini.Reset();
 
+	for (int count{ 0 }; count < argc; ++count)
+	{
+		if (std::string_view(argv[count]) == "-account")
+		{
+			ae_Name = argv[++count];
+		}
+		if (std::string_view(argv[count]) == "-key")
+		{
+			ae_EncKey = argv[++count];
+		}
+	}
+	if (!ae_Name.empty() && !ae_EncKey.empty())
+	{
+		ini.SetUnicode();
+		ini.LoadFile("accounts.ini");
+		if (ini.KeyExists("Accounts", ae_Name.c_str()))
+		{
+			std::string EncryptedString = ini.GetValue("Accounts", ae_Name.c_str());
+			std::string DcString = decrypt(EncryptedString, ae_EncKey);
+			winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.SetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810", std::vector<BYTE>(DcString.begin(), DcString.end()));
+			LOG_DEBUG(std::string("Switched account to " + ae_Name).c_str());
+		}
+		else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
+		{
+			LOG_ERROR(std::string(ae_Name + " does not exist").c_str());
+			Sleep(5000);
+		}
+		ini.Reset();
+	}
+	
 	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
