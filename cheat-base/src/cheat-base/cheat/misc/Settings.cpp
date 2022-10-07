@@ -629,6 +629,10 @@ namespace cheat::feature
 					ini.Reset();
 				}
 			}
+			ImGui::SameLine(); HelpMarker(
+				"Quickly switch accounts on launch\n"
+				"to use this, first export the account then add the following arguemnets to a shortcut or a command line\n"
+				"-account \"Account Name\" -key \"Encryption Key\"");
 		}
 		ImGui::EndGroupPanel();
 	}
