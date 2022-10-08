@@ -11,11 +11,13 @@
 
 #include <WinReg.hpp>
 #include <encrypt.h>
+#include <regex>
 
 const std::string GlobalGenshinProcName = "GenshinImpact.exe";
 const std::string ChinaGenshinProcName = "YuanShen.exe";
 std::string ae_Name;
 std::string ae_EncKey;
+std::string ae_Region;
 
 static CSimpleIni ini;
 
@@ -58,6 +60,10 @@ int main(int argc, char* argv[])
 		{
 			ae_EncKey = argv[++count];
 		}
+		if (std::string_view(argv[count]) == "-region")
+		{
+			ae_Region = argv[++count];
+		}
 	}
 	if (!ae_Name.empty() && !ae_EncKey.empty())
 	{
@@ -76,6 +82,29 @@ int main(int argc, char* argv[])
 			Sleep(5000);
 		}
 		ini.Reset();
+	}
+	if (!ae_Region.empty())
+	{
+		std::string regionstring;
+		if (ae_Region == "usa")
+			regionstring = "os_usa";
+		else if (ae_Region == "eu")
+			regionstring = "os_euro";
+		else if (ae_Region == "asia")
+			regionstring = "os_asia";
+		else if (ae_Region == "thm")
+			regionstring = "os_cht";
+		if (!regionstring.empty())
+		{
+			vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"GENERAL_DATA_h2389025596");
+			std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
+			RegisteryValueString = std::regex_replace(RegisteryValueString, std::regex("os_(asia|euro|usa|cht)"), regionstring);
+			winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.SetBinaryValue(L"GENERAL_DATA_h2389025596", std::vector<BYTE>(RegisteryValueString.begin(), RegisteryValueString.end()));
+			LOG_DEBUG(std::string("Switched region to " + ae_Region).c_str());
+		}
+		else if (regionstring.empty())
+			LOG_ERROR(std::string(ae_Region + " is not a valid region").c_str());
+		Sleep(5000);
 	}
 	
 	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");

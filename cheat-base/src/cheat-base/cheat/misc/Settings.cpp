@@ -632,7 +632,9 @@ namespace cheat::feature
 			ImGui::SameLine(); HelpMarker(
 				"Quickly switch accounts on launch\n"
 				"to use this, first export the account then add the following arguemnets to a shortcut or a command line\n"
-				"-account \"Account Name\" -key \"Encryption Key\"");
+				"-account \"Account Name\" -key \"Encryption Key\".\n"
+				"You can also switch the region with -region \"Region Name\"\n"
+				"Availabe regions are \"usa\", \"eu\", \"asia\", \"thm\".");
 		}
 		ImGui::EndGroupPanel();
 	}
