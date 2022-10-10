@@ -10,6 +10,8 @@
 
 #include "shlwapi.h"
 #pragma comment(lib, "shlwapi.lib")
+#include <encrypt.h>
+#include <WinReg.hpp>
 
 static CSimpleIni ini;
 
@@ -570,6 +572,69 @@ namespace cheat::feature
 			}
 
 			ConfigWidget(f_ShowStyleEditor, "Show ImGui theme customization window.");
+		}
+		ImGui::EndGroupPanel();
+
+		ImGui::BeginGroupPanel("Account Switcher");
+		{
+			ImGui::InputText("Account Name", &ae_Name);
+			ImGui::InputText("Encryption Key", &ae_EncKey);
+			if (ImGui::Button("Export"))
+			{
+				if (ae_Name.empty() || ae_EncKey.empty())
+				{
+					ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Please fill both boxes" });
+				}
+				else if (!ae_Name.empty() && !ae_EncKey.empty())
+				{
+					ini.SetUnicode();
+#ifdef _DEBUG
+					ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+					std::string InjectorPath = ini.GetValue("Location", "Injector");
+					ini.Reset();
+					ini.LoadFile((InjectorPath + "\\accounts.ini").c_str());
+					vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
+					ini.SetValue("Accounts", ae_Name.c_str(), encrypt(RegisteryValueString, ae_EncKey).c_str());
+					ini.SaveFile((InjectorPath + "\\accounts.ini").c_str());
+					ini.Reset();
+					ini.SetUnicode();
+					ini.LoadFile((InjectorPath + "\\accounts.ini").c_str());
+					if (ini.KeyExists("Accounts", ae_Name.c_str()))
+					{
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
+						ae_Name.clear();
+						ae_EncKey.clear();
+				    }
+					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
+#else
+					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
+					vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
+					ini.SetValue("Accounts", ae_Name.c_str(), encrypt(RegisteryValueString, ae_EncKey).c_str());
+					ini.SaveFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
+					ini.Reset();
+					ini.SetUnicode();
+					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
+					if (ini.KeyExists("Accounts", ae_Name.c_str()))
+					{
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
+						ae_Name.clear();
+						ae_EncKey.clear();
+					}
+					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
+#endif
+					ini.Reset();
+				}
+			}
+			ImGui::SameLine(); HelpMarker(
+				"Quickly switch accounts on launch\n"
+				"to use this, first export the account then add the following arguemnets to a shortcut or a command line\n"
+				"-account \"Account Name\" -key \"Encryption Key\".\n"
+				"You can also switch the region with -region \"Region Name\"\n"
+				"Availabe regions are \"usa\", \"eu\", \"asia\", \"thm\".");
 		}
 		ImGui::EndGroupPanel();
 	}

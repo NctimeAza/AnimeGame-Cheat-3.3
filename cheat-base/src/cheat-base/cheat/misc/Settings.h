@@ -52,6 +52,8 @@ namespace cheat::feature
 		void ThemeExport(std::string name, bool replace = false);
 		void ApplyTheme(std::string name);
 		std::string cma;
+		std::string ae_Name;
+		std::string ae_EncKey;
 
 		void OnExitKeyPressed();
 		Settings();
