@@ -80,7 +80,7 @@ namespace cheat
 
 #define FEAT_INST(name) &feature::##name##::GetInstance()
 		manager.AddFeatures({
-			&protectionBypass,
+			//&protectionBypass,
 			FEAT_INST(Settings),
 			FEAT_INST(Hotkeys),
 			FEAT_INST(Debug),
@@ -118,7 +118,7 @@ namespace cheat
 			FEAT_INST(CustomTeleports),
 
 			FEAT_INST(ESP),
-			FEAT_INST(InteractiveMap),
+			//FEAT_INST(InteractiveMap),
 
 			FEAT_INST(AutoFish),
 			FEAT_INST(AutoCook),

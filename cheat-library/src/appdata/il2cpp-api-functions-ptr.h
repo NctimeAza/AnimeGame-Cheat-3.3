@@ -5,65 +5,187 @@
 // * IL2CPP API function pointers
 // ******************************************************************************
 
-#define il2cpp_add_internal_call_ptr 0x0069D420
-#define il2cpp_alloc_ptr 0x0069D430
+#pragma region UPDATED
+
+#define il2cpp_init_ptr 0x27781d0 // a1 
+#define il2cpp_shutdown_ptr 0x27784e0 // a1[1] 
+#define il2cpp_set_config_dir_ptr 0x2778440 // a1[2] 
+#define il2cpp_set_data_dir_ptr 0x2778460 // a1[3] 
+#define il2cpp_set_temp_dir_ptr 0x27784d0 // a1[4] 
+#define il2cpp_set_commandline_arguments_ptr 0x2778420 // a1[5] 
+#define il2cpp_set_config_utf16_ptr 0x2778450 // a1[6] 
+#define il2cpp_set_config_ptr 0x2778430 // a1[7] 
+#define il2cpp_set_memory_callbacks_ptr 0x27784a0 // a1[8] 
+#define il2cpp_get_corlib_ptr 0x2778180 // a1[9] 
+#define il2cpp_add_internal_call_ptr 0x2777b30 // a1[10] 
+#define il2cpp_resolve_icall_ptr 0x27783a0 // a1[11] 
+#define il2cpp_alloc_ptr 0x2777b40 // a1[12] 
+#define il2cpp_free_ptr 0x278ddc0 // a1[13] 
+#define il2cpp_array_class_get_ptr 0x2777b50 // a1[14] 
+#define il2cpp_array_length_ptr 0x2777b70 // a1[15] 
+#define il2cpp_array_get_byte_length_ptr 0x279a060 // a1[16] 
+#define il2cpp_array_new_ptr 0x2777b80 // a1[17] 
+#define il2cpp_array_new_specific_ptr 0x2777ba0 // a1[18] 
+#define il2cpp_array_new_full_ptr 0x2777b90 // a1[19] 
+#define il2cpp_bounded_array_class_get_ptr 0x2777bd0 // a1[20] 
+#define il2cpp_array_element_size_ptr 0x2777b60 // a1[21] 
+#define il2cpp_assembly_get_image_ptr 0x2777bc0 // a1[22] 
+#define il2cpp_class_enum_basetype_ptr 0x2777bf0 // a1[23] 
+#define il2cpp_class_is_generic_ptr 0x2777d80 // a1[24] 
+#define il2cpp_class_is_inflated_ptr 0x2777d90 // a1[25] 
+#define il2cpp_class_is_subclass_of_ptr 0x2777db0 // a1[26] 
+#define il2cpp_class_has_parent_ptr 0x2777d30 // a1[27] 
+#define il2cpp_class_from_name_ptr 0x2777c00 // a1[28] 
+#define il2cpp_class_from_system_type_ptr 0x2777c10 // a1[29] 
+#define il2cpp_class_get_fields_ptr 0x2777c80 // a1[30] 
+#define il2cpp_class_get_nested_types_ptr 0x2777ce0 // a1[31] 
+#define il2cpp_class_get_interfaces_ptr 0x2777ca0 // a1[32] 
+#define il2cpp_class_get_field_from_name_ptr 0x2777c70 // a1[33] 
+#define il2cpp_class_get_methods_ptr 0x2777cb0 // a1[34] 
+#define il2cpp_class_get_name_ptr 0x2777cc0 // a1[35] 
+#define il2cpp_class_get_namespace_ptr 0x2777cd0 // a1[36] 
+#define il2cpp_class_get_parent_ptr 0x2777cf0 // a1[37] 
+#define il2cpp_class_get_declaring_type_ptr 0x2777c60 // a1[38] 
+#define il2cpp_class_instance_size_ptr 0x2777d40 // a1[39] 
+#define il2cpp_class_is_valuetype_ptr 0x2805570 // a1[40] 
+#define il2cpp_class_is_blittable_ptr 0x2777d60 // a1[41] 
+#define il2cpp_class_get_flags_ptr 0x2777c90 // a1[42] 
+#define il2cpp_class_is_abstract_ptr 0x2777d50 // a1[43] 
+#define il2cpp_class_is_interface_ptr 0x2777da0 // a1[44] 
+#define il2cpp_class_array_element_size_ptr 0x2777be0 // a1[45] 
+#define il2cpp_class_from_type_ptr 0x2805550 // a1[46] 
+#define il2cpp_object_unbox_ptr 0x20ee9d0 // a1[47] 
+#define il2cpp_class_has_attribute_ptr 0x2777d20 // a1[48] 
+#define il2cpp_class_is_enum_ptr 0x2777d70 // a1[49] 
+#define il2cpp_class_get_assemblyname_ptr 0x2777c20 // a1[51] 
+#define il2cpp_class_get_rank_ptr 0x2777d00 // a1[52] 
+#define il2cpp_class_get_static_field_data_ptr 0x2777d10 // a1[53] 
+#define il2cpp_class_get_bitmap_size_ptr 0x2777c50 // a1[54] 
+#define il2cpp_class_get_bitmap_ptr 0x2777c30 // a1[55] 
+#define il2cpp_domain_get_ptr 0x2777e50 // a1[56] 
+#define il2cpp_domain_assembly_open_ptr 0x2777e40 // a1[57] 
+#define il2cpp_raise_exception_ptr 0x2778360 // a1[58] 
+#define il2cpp_exception_from_name_msg_ptr 0x2777e70 // a1[59] 
+#define il2cpp_get_exception_argument_null_ptr 0x2778190 // a1[60] 
+#define il2cpp_format_exception_ptr 0x2777f20 // a1[61] 
+#define il2cpp_format_stack_trace_ptr 0x2777fd0 // a1[62] 
+#define il2cpp_unhandled_exception_ptr 0x2797690 // a1[63] 
+#define il2cpp_field_get_flags_ptr 0x2777e80 // a1[64] 
+#define il2cpp_field_get_name_ptr 0x2777e90 // a1[65] 
+#define il2cpp_field_get_parent_ptr 0x2777eb0 // a1[66] 
+#define il2cpp_field_get_offset_ptr 0x2777ea0 // a1[67] 
+#define il2cpp_field_get_type_ptr 0x2777ec0 // a1[68] 
+#define il2cpp_field_get_value_object_ptr 0x2777ed0 // a1[69] 
+#define il2cpp_field_has_attribute_ptr 0x2777ee0 // a1[70] 
+#define il2cpp_field_set_value_object_ptr 0x2777f10 // a1[71] 
+#define il2cpp_field_is_literal_ptr 0x2777ef0 // a1[72] 
+#define il2cpp_gc_collect_ptr 0x2778080 // a1[73] 
+#define il2cpp_gc_collect_a_little_ptr 0x2778090 // a1[74] 
+#define il2cpp_gc_disable_ptr 0x27780a0 // a1[75] 
+#define il2cpp_gc_enable_ptr 0x27780c0 // a1[76] 
+#define il2cpp_gc_is_disabled_ptr 0x2778100 // a1[77] 
+#define il2cpp_gc_get_max_time_slice_ns_ptr 0x27780e0 // a1[78] 
+#define il2cpp_gc_set_max_time_slice_ns_ptr 0x2778130 // a1[79] 
+#define il2cpp_gc_is_incremental_ptr 0x2778110 // a1[80] 
+#define il2cpp_gc_get_used_size_ptr 0x27780f0 // a1[81] 
+#define il2cpp_gc_get_heap_size_ptr 0x27780d0 // a1[82] 
+#define il2cpp_gc_wbarrier_set_field_ptr 0x2778140 // a1[83] 
+#define il2cpp_gc_set_enable_get_mem_address_hint_ptr 0x2778120 // a1[87] 
+#define il2cpp_stop_gc_world_ptr 0x2778500 // a1[88] 
+#define il2cpp_start_gc_world_ptr 0x27784f0 // a1[89] 
+#define il2cpp_gchandle_new_ptr 0x2778150 // a1[90] 
+#define il2cpp_gchandle_new_weakref_ptr 0x2778160 // a1[91] 
+#define il2cpp_gchandle_get_target_ptr 0x2792280 // a1[92] 
+#define il2cpp_gchandle_free_ptr 0x278ddb0 // a1[93] 
+#define il2cpp_offset_of_array_bounds_in_array_object_header_ptr 0x213ebe0 // a1[94] 
+#define il2cpp_array_object_header_size_ptr 0x2777bb0 // a1[95] 
+#define il2cpp_offset_of_array_length_in_array_object_header_ptr 0x20a9400 // a1[96] 
+#define il2cpp_unity_liveness_calculation_begin_ptr 0x27786d0 // a1[99] 
+#define il2cpp_unity_liveness_calculation_end_ptr 0x27786e0 // a1[100] 
+#define il2cpp_unity_liveness_calculation_from_root_ptr 0x27786f0 // a1[101] 
+#define il2cpp_unity_liveness_calculation_from_statics_ptr 0x2778700 // a1[102] 
+#define il2cpp_method_get_return_type_ptr 0x2778250 // a1[103] 
+#define il2cpp_method_get_name_ptr 0x2778210 // a1[104] 
+#define il2cpp_method_is_generic_ptr 0x2778270 // a1[105] 
+#define il2cpp_method_is_inflated_ptr 0x2778280 // a1[106] 
+#define il2cpp_method_is_instance_ptr 0x2778290 // a1[107] 
+#define il2cpp_method_get_param_count_ptr 0x2778240 // a1[108] 
+#define il2cpp_property_get_name_ptr 0x2805870 // a1[110] 
+#define il2cpp_method_has_attribute_ptr 0x2778260 // a1[111] 
+#define il2cpp_object_get_class_ptr 0x2778310 // a1[112] 
+#define il2cpp_object_get_size_ptr 0x2778320 // a1[113] 
+#define il2cpp_object_get_virtual_method_ptr 0x2778330 // a1[114] 
+#define il2cpp_object_new_ptr 0x2778340 // a1[115] 
+#define il2cpp_value_box_ptr 0x2805490 // a1[117] 
+#define il2cpp_monitor_enter_ptr 0x27782a0 // a1[118] 
+#define il2cpp_monitor_try_enter_ptr 0x27782e0 // a1[119] 
+#define il2cpp_monitor_exit_ptr 0x27782b0 // a1[120] 
+#define il2cpp_monitor_pulse_ptr 0x27782c0 // a1[121] 
+#define il2cpp_monitor_pulse_all_ptr 0x27782d0 // a1[122] 
+#define il2cpp_monitor_wait_ptr 0x2778300 // a1[123] 
+#define il2cpp_monitor_try_wait_ptr 0x27782f0 // a1[124] 
+#define il2cpp_runtime_invoke_ptr 0x27783b0 // a1[125] 
+#define il2cpp_runtime_invoke_convert_args_ptr 0x27783d0 // a1[126] 
+#define il2cpp_runtime_object_init_ptr 0x27783f0 // a1[127] 
+#define il2cpp_runtime_object_init_exception_ptr 0x2778400 // a1[128] 
+#define il2cpp_runtime_unhandled_exception_policy_set_ptr 0x2778410 // a1[129] 
+#define il2cpp_string_length_ptr 0x2778540 // a1[130] 
+#define il2cpp_string_chars_ptr 0x2778510 // a1[131] 
+#define il2cpp_string_new_wrapper_ptr 0x2778550 // a1[132] 
+#define il2cpp_string_new_len_ptr 0x2778560 // a1[133] 
+#define il2cpp_string_new_utf16_ptr 0x2778570 // a1[134] 
+#define il2cpp_string_new_ptr 0x2778580 // a1[135] 
+#define il2cpp_string_intern_ptr 0x2778520 // a1[136] 
+#define il2cpp_string_is_interned_ptr 0x2778530 // a1[137] 
+#define il2cpp_thread_current_ptr 0x27785a0 // a1[138] 
+#define il2cpp_thread_attach_ptr 0x2778590 // a1[139] 
+#define il2cpp_thread_detach_ptr 0x27785b0 // a1[140] 
+#define il2cpp_enable_object_type_mutex_ptr 0x2777e60 // a1[141] 
+#define il2cpp_type_get_object_ptr 0x2805990 // a1[142] 
+#define il2cpp_type_get_type_ptr 0x27786a0 // a1[143] 
+#define il2cpp_type_get_class_or_element_class_ptr 0x27785d0 // a1[144] 
+#define il2cpp_type_get_name_ptr 0x27785e0 // a1[145] 
+#define il2cpp_type_is_byref_ptr 0x27786b0 // a1[146] 
+#define il2cpp_type_equals_ptr 0x27785c0 // a1[147] 
+#define il2cpp_get_hash_table_memory_ptr 0x27781a0 // a1[148] 
+#define il2cpp_get_meta_data_pool_memory_ptr 0x27781b0 // a1[149] 
+#define il2cpp_set_default_thread_affinity_ptr 0x2778170 // a1[150] 
+#define il2cpp_set_find_plugin_callback_ptr 0x2778490 // a1[151] 
+#define il2cpp_register_log_callback_ptr 0x2778390 // a1[152] 
+#define il2cpp_register_filemodify_callback_ptr 0x2778380 // a1[153] 
+#define il2cpp_register_filedelete_callback_ptr 0x2778370 // a1[154] 
+#define il2cpp_set_disable_gc_parallel_mark_ptr 0x2778480 // a1[155] 
+#define il2cpp_set_parallel_android_affinity_ptr 0x27784b0 // a1[156] 
+#define il2cpp_set_parallel_android_cupcount_ptr 0x27784c0 // a1[157] 
+#define il2cpp_is_debugger_attached_ptr 0x2778200 // a1[164] 
+#define il2cpp_debug_get_method_info_ptr 0x2777e30 // a1[166] 
+#define il2cpp_unity_install_unitytls_interface_ptr 0x27786c0 // a1[167] 
+#define il2cpp_custom_attrs_from_class_ptr 0x2777dd0 // a1[168] 
+#define il2cpp_custom_attrs_from_method_ptr 0x2777df0 // a1[169] 
+#define il2cpp_custom_attrs_get_attr_ptr 0x2777e10 // a1[170] 
+#define il2cpp_custom_attrs_has_attr_ptr 0x2777e20 // a1[171] 
+#define il2cpp_custom_attrs_construct_ptr 0x2777dc0 // a1[172] 
+
+#pragma endregion
+
+#pragma region NOT_UPDATED
+
 #define il2cpp_allocation_granularity_ptr 0x0069DF80
-#define il2cpp_array_class_get_ptr 0x0069D440
-#define il2cpp_array_element_size_ptr 0x0069D450
-#define il2cpp_array_get_byte_length_ptr 0x0069D460
-#define il2cpp_array_length_ptr 0x0069D470
-#define il2cpp_array_new_ptr 0x0069D480
-#define il2cpp_array_new_full_ptr 0x0069D490
-#define il2cpp_array_new_specific_ptr 0x0069D4A0
-#define il2cpp_array_object_header_size_ptr 0x0069D4B0
-#define il2cpp_assembly_get_image_ptr 0x0069D4C0
-#define il2cpp_bounded_array_class_get_ptr 0x0069D4D0
 #define il2cpp_capture_memory_snapshot_ptr 0x0069D4E0
-#define il2cpp_class_array_element_size_ptr 0x0069D4F0
-#define il2cpp_class_enum_basetype_ptr 0x0069D500
 #define il2cpp_class_for_each_ptr 0x0069D510
 #define il2cpp_class_from_il2cpp_type_ptr 0x00728C80
-#define il2cpp_class_from_name_ptr 0x0069D520
-#define il2cpp_class_from_system_type_ptr 0x0069D530
-#define il2cpp_class_from_type_ptr 0x00728C80
-#define il2cpp_class_get_assemblyname_ptr 0x0069D540
-#define il2cpp_class_get_bitmap_ptr 0x0069D550
-#define il2cpp_class_get_bitmap_size_ptr 0x0069D570
 #define il2cpp_class_get_data_size_ptr 0x0069D580
-#define il2cpp_class_get_declaring_type_ptr 0x0069D590
 #define il2cpp_class_get_element_class_ptr 0x0069D5A0
 #define il2cpp_class_get_events_ptr 0x0069D5B0
-#define il2cpp_class_get_field_from_name_ptr 0x0069D5C0
-#define il2cpp_class_get_fields_ptr 0x0069D5D0
-#define il2cpp_class_get_flags_ptr 0x0069D5E0
 #define il2cpp_class_get_image_ptr 0x0069D4C0
-#define il2cpp_class_get_interfaces_ptr 0x0069D5F0
 #define il2cpp_class_get_method_from_name_ptr 0x0069D600
-#define il2cpp_class_get_methods_ptr 0x0069D610
-#define il2cpp_class_get_name_ptr 0x0069D8E0
-#define il2cpp_class_get_namespace_ptr 0x0069E030
-#define il2cpp_class_get_nested_types_ptr 0x0069D620
-#define il2cpp_class_get_parent_ptr 0x0069D630
 #define il2cpp_class_get_properties_ptr 0x0069D640
 #define il2cpp_class_get_property_from_name_ptr 0x0069D650
-#define il2cpp_class_get_rank_ptr 0x0069D660
-#define il2cpp_class_get_static_field_data_ptr 0x0014D3B0
 #define il2cpp_class_get_type_ptr 0x006B82A0
 #define il2cpp_class_get_type_token_ptr 0x0069D670
 #define il2cpp_class_get_userdata_offset_ptr 0x0069D680
-#define il2cpp_class_has_attribute_ptr 0x0069D690
-#define il2cpp_class_has_parent_ptr 0x0069D6A0
 #define il2cpp_class_has_references_ptr 0x0069D6B0
-#define il2cpp_class_instance_size_ptr 0x0069D6C0
-#define il2cpp_class_is_abstract_ptr 0x0069D6D0
 #define il2cpp_class_is_assignable_from_ptr 0x0069D6E0
-#define il2cpp_class_is_blittable_ptr 0x0069D6F0
-#define il2cpp_class_is_enum_ptr 0x0069D700
-#define il2cpp_class_is_generic_ptr 0x0069D710
-#define il2cpp_class_is_inflated_ptr 0x0069D720
-#define il2cpp_class_is_interface_ptr 0x0069D730
-#define il2cpp_class_is_subclass_of_ptr 0x0069D740
-#define il2cpp_class_is_valuetype_ptr 0x00728C90
 #define il2cpp_class_num_fields_ptr 0x0069D750
 #define il2cpp_class_set_userdata_ptr 0x0069D760
 #define il2cpp_class_value_size_ptr 0x0069D770
@@ -71,109 +193,44 @@
 #define il2cpp_current_thread_get_stack_depth_ptr 0x0069D790
 #define il2cpp_current_thread_get_top_frame_ptr 0x0069D7B0
 #define il2cpp_current_thread_walk_frame_stack_ptr 0x0069D7C0
-#define il2cpp_custom_attrs_construct_ptr 0x0069D7D0
 #define il2cpp_custom_attrs_free_ptr 0x0076A070
-#define il2cpp_custom_attrs_from_class_ptr 0x0069D7E0
-#define il2cpp_custom_attrs_from_method_ptr 0x0069D800
-#define il2cpp_custom_attrs_get_attr_ptr 0x0069D820
-#define il2cpp_custom_attrs_has_attr_ptr 0x0069D830
-#define il2cpp_debug_get_method_info_ptr 0x0069D840
 #define il2cpp_debugger_set_agent_options_ptr 0x0076A070
-#define il2cpp_domain_assembly_open_ptr 0x0069D850
-#define il2cpp_domain_get_ptr 0x0069D860
 #define il2cpp_domain_get_assemblies_ptr 0x0069D870
-#define il2cpp_enable_object_type_mutex_ptr 0x0069D8A0
-#define il2cpp_exception_from_name_msg_ptr 0x0069D8B0
-#define il2cpp_field_get_flags_ptr 0x0069D8C0
-#define il2cpp_field_get_name_ptr 0x0069D4C0
-#define il2cpp_field_get_offset_ptr 0x0069D8D0
-#define il2cpp_field_get_parent_ptr 0x0069D8E0
-#define il2cpp_field_get_type_ptr 0x0069E020
 #define il2cpp_field_get_value_ptr 0x0069D8F0
-#define il2cpp_field_get_value_object_ptr 0x0069D900
-#define il2cpp_field_has_attribute_ptr 0x0069D910
-#define il2cpp_field_is_literal_ptr 0x0069D920
 #define il2cpp_field_set_value_ptr 0x0069D930
-#define il2cpp_field_set_value_object_ptr 0x0069D940
 #define il2cpp_field_static_get_value_ptr 0x0069D950
 #define il2cpp_field_static_set_value_ptr 0x0069D960
-#define il2cpp_format_exception_ptr 0x0069D970
-#define il2cpp_format_stack_trace_ptr 0x0069DA20
-#define il2cpp_free_ptr 0x006B3A20
 #define il2cpp_free_captured_memory_snapshot_ptr 0x0069DAD0
-#define il2cpp_gc_collect_ptr 0x0069DAE0
-#define il2cpp_gc_collect_a_little_ptr 0x0069DAF0
-#define il2cpp_gc_disable_ptr 0x0069DB00
 #define il2cpp_gc_dump_append_text_to_log_ptr 0x0069DB10
 #define il2cpp_gc_dump_info_ptr 0x0069DB10
 #define il2cpp_gc_dump_set_large_allocated_block_found_callback_ptr 0x0069DB10
 #define il2cpp_gc_dump_set_small_allocated_block_found_callback_ptr 0x0069DB10
-#define il2cpp_gc_enable_ptr 0x0069DB20
 #define il2cpp_gc_foreach_heap_ptr 0x0069DB30
-#define il2cpp_gc_get_heap_size_ptr 0x0069DB60
-#define il2cpp_gc_get_max_time_slice_ns_ptr 0x0069DB70
-#define il2cpp_gc_get_used_size_ptr 0x0069DB80
 #define il2cpp_gc_has_strict_wbarriers_ptr 0x006BA0D0
-#define il2cpp_gc_is_disabled_ptr 0x0069DB90
-#define il2cpp_gc_is_incremental_ptr 0x0069DBA0
-#define il2cpp_gc_set_enable_get_mem_address_hint_ptr 0x0069DBB0
 #define il2cpp_gc_set_external_allocation_tracker_ptr 0x0076A070
 #define il2cpp_gc_set_external_wbarrier_tracker_ptr 0x0076A070
-#define il2cpp_gc_set_max_time_slice_ns_ptr 0x0069DBC0
 #define il2cpp_gc_set_object_malloc_callback_ptr 0x0069DB10
 #define il2cpp_gc_set_object_return_freelist_callback_ptr 0x0069DB10
-#define il2cpp_gc_wbarrier_set_field_ptr 0x0069DBD0
 #define il2cpp_gchandle_foreach_get_target_ptr 0x0069DBE0
-#define il2cpp_gchandle_free_ptr 0x0069DC10
-#define il2cpp_gchandle_get_target_ptr 0x006B7DA0
-#define il2cpp_gchandle_new_ptr 0x0069DC20
-#define il2cpp_gchandle_new_weakref_ptr 0x0069DC30
 #define il2cpp_get_committed_memory_size_ptr 0x0069DC40
-#define il2cpp_get_corlib_ptr 0x0069DC50
-#define il2cpp_get_exception_argument_null_ptr 0x0069DC60
-#define il2cpp_get_hash_table_memory_ptr 0x0069DC70
-#define il2cpp_get_meta_data_pool_memory_ptr 0x0069DC80
 #define il2cpp_image_get_assembly_ptr 0x0069D8E0
 #define il2cpp_image_get_class_ptr 0x0069DCA0
 #define il2cpp_image_get_class_count_ptr 0x0069DCB0
 #define il2cpp_image_get_entry_point_ptr 0x0069DCC0
 #define il2cpp_image_get_filename_ptr 0x0069D4C0
 #define il2cpp_image_get_name_ptr 0x0069D4C0
-#define il2cpp_init_ptr 0x0069DCD0
 #define il2cpp_init_security_ptr 0x0069DD00
 #define il2cpp_init_utf16_ptr 0x0069DD20
-#define il2cpp_is_debugger_attached_ptr 0x006BA030
 #define il2cpp_is_vm_thread_ptr 0x0069DDD0
 #define il2cpp_method_get_class_ptr 0x0069E020
 #define il2cpp_method_get_declaring_type_ptr 0x0069E020
 #define il2cpp_method_get_flags_ptr 0x0069DDE0
 #define il2cpp_method_get_from_reflection_ptr 0x0069D8E0
-#define il2cpp_method_get_name_ptr 0x0069DE10
 #define il2cpp_method_get_object_ptr 0x0069DE20
 #define il2cpp_method_get_param_ptr 0x0069DE30
-#define il2cpp_method_get_param_count_ptr 0x0069DE40
 #define il2cpp_method_get_param_name_ptr 0x0069DE50
-#define il2cpp_method_get_return_type_ptr 0x0069DE60
 #define il2cpp_method_get_token_ptr 0x0069DE70
-#define il2cpp_method_has_attribute_ptr 0x0069DE80
-#define il2cpp_method_is_generic_ptr 0x0069DE90
-#define il2cpp_method_is_inflated_ptr 0x0069DEA0
-#define il2cpp_method_is_instance_ptr 0x0069DEB0
-#define il2cpp_monitor_enter_ptr 0x0069DEC0
-#define il2cpp_monitor_exit_ptr 0x0069DED0
-#define il2cpp_monitor_pulse_ptr 0x0069DEE0
-#define il2cpp_monitor_pulse_all_ptr 0x0069DEF0
-#define il2cpp_monitor_try_enter_ptr 0x0069DF00
-#define il2cpp_monitor_try_wait_ptr 0x0069DF10
-#define il2cpp_monitor_wait_ptr 0x0069DF20
-#define il2cpp_object_get_class_ptr 0x0069D4C0
-#define il2cpp_object_get_size_ptr 0x0069DF30
-#define il2cpp_object_get_virtual_method_ptr 0x0069DF40
 #define il2cpp_object_header_size_ptr 0x0069DF80
-#define il2cpp_object_new_ptr 0x0069DF50
-#define il2cpp_object_unbox_ptr 0x0069DF70
-#define il2cpp_offset_of_array_bounds_in_array_object_header_ptr 0x0069DF80
-#define il2cpp_offset_of_array_length_in_array_object_header_ptr 0x0015D910
 #define il2cpp_override_stack_backtrace_ptr 0x0069DF90
 #define il2cpp_profiler_install_ptr 0x0069DFA0
 #define il2cpp_profiler_install_allocation_ptr 0x0069DFB0
@@ -184,71 +241,23 @@
 #define il2cpp_profiler_set_events_ptr 0x0069E000
 #define il2cpp_property_get_flags_ptr 0x0069E010
 #define il2cpp_property_get_get_method_ptr 0x0069D8E0
-#define il2cpp_property_get_name_ptr 0x0069E020
 #define il2cpp_property_get_parent_ptr 0x0069D4C0
 #define il2cpp_property_get_set_method_ptr 0x0069E030
-#define il2cpp_raise_exception_ptr 0x0069E040
 #define il2cpp_register_debugger_agent_transport_ptr 0x0076A070
-#define il2cpp_register_filedelete_callback_ptr 0x0069E050
-#define il2cpp_register_filemodify_callback_ptr 0x0069E060
-#define il2cpp_register_log_callback_ptr 0x0069E070
-#define il2cpp_resolve_icall_ptr 0x0069E080
 #define il2cpp_runtime_class_init_ptr 0x00729090
-#define il2cpp_runtime_invoke_ptr 0x0069E090
-#define il2cpp_runtime_invoke_convert_args_ptr 0x0069E0B0
-#define il2cpp_runtime_object_init_ptr 0x0069E0D0
-#define il2cpp_runtime_object_init_exception_ptr 0x0069E0E0
-#define il2cpp_runtime_unhandled_exception_policy_set_ptr 0x0069E0F0
-#define il2cpp_set_commandline_arguments_ptr 0x0069E100
 #define il2cpp_set_commandline_arguments_utf16_ptr 0x0069E110
-#define il2cpp_set_config_ptr 0x0069E120
-#define il2cpp_set_config_dir_ptr 0x0069E130
-#define il2cpp_set_config_utf16_ptr 0x0069E140
-#define il2cpp_set_data_dir_ptr 0x0069E150
-#define il2cpp_set_default_thread_affinity_ptr 0x0069E160
-#define il2cpp_set_disable_gc_parallel_mark_ptr 0x0069E170
-#define il2cpp_set_find_plugin_callback_ptr 0x0069E180
-#define il2cpp_set_memory_callbacks_ptr 0x0069E190
 #define il2cpp_set_output_redirected_file_path_ptr 0x0069DB10
-#define il2cpp_set_parallel_android_affinity_ptr 0x0069E1A0
-#define il2cpp_set_parallel_android_cupcount_ptr 0x0069E1B0
-#define il2cpp_set_temp_dir_ptr 0x0069E1C0
-#define il2cpp_shutdown_ptr 0x0069E1D0
-#define il2cpp_start_gc_world_ptr 0x0069E1E0
 #define il2cpp_stats_dump_to_file_ptr 0x006BA0D0
 #define il2cpp_stats_get_value_ptr 0x006C34A0
-#define il2cpp_stop_gc_world_ptr 0x0069E1F0
-#define il2cpp_string_chars_ptr 0x0069E200
-#define il2cpp_string_intern_ptr 0x0069E210
-#define il2cpp_string_is_interned_ptr 0x0069E220
-#define il2cpp_string_length_ptr 0x0069E230
-#define il2cpp_string_new_ptr 0x007290A0
-#define il2cpp_string_new_len_ptr 0x0069E240
-#define il2cpp_string_new_utf16_ptr 0x0069E250
-#define il2cpp_string_new_wrapper_ptr 0x007290A0
-#define il2cpp_thread_attach_ptr 0x0069E260
-#define il2cpp_thread_current_ptr 0x0069E270
-#define il2cpp_thread_detach_ptr 0x0069E280
 #define il2cpp_thread_get_all_attached_threads_ptr 0x0069E290
 #define il2cpp_thread_get_frame_at_ptr 0x0069E2A0
 #define il2cpp_thread_get_stack_depth_ptr 0x0069E2B0
 #define il2cpp_thread_get_top_frame_ptr 0x0069E2C0
 #define il2cpp_thread_walk_frame_stack_ptr 0x0069E2D0
-#define il2cpp_type_equals_ptr 0x0069E2E0
 #define il2cpp_type_get_assembly_qualified_name_ptr 0x0069E2F0
 #define il2cpp_type_get_attrs_ptr 0x0069E3B0
-#define il2cpp_type_get_class_or_element_class_ptr 0x0069E3C0
-#define il2cpp_type_get_name_ptr 0x0069E3D0
 #define il2cpp_type_get_name_chunked_ptr 0x0069E490
-#define il2cpp_type_get_object_ptr 0x0069E4A0
-#define il2cpp_type_get_type_ptr 0x0069E4B0
-#define il2cpp_type_is_byref_ptr 0x0069E4C0
 #define il2cpp_type_is_pointer_type_ptr 0x0069E4D0
 #define il2cpp_type_is_static_ptr 0x0069E4E0
-#define il2cpp_unhandled_exception_ptr 0x006BD0D0
-#define il2cpp_unity_install_unitytls_interface_ptr 0x0069E4F0
-#define il2cpp_unity_liveness_calculation_begin_ptr 0x0069E500
-#define il2cpp_unity_liveness_calculation_end_ptr 0x0069E510
-#define il2cpp_unity_liveness_calculation_from_root_ptr 0x0069E520
-#define il2cpp_unity_liveness_calculation_from_statics_ptr 0x0069E530
-#define il2cpp_value_box_ptr 0x00728BC0
+
+#pragma endregion
