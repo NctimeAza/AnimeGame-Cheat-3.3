@@ -22,8 +22,8 @@ namespace cheat::feature
         NFEX(f_Enabled, "Disable Protection", "m_DisableMhyProt", "General", true, false),
 		m_CorrectSignatures({})
     {
-		HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
-		HookManager::install(app::CrashReporter, CrashReporter_Hook);
+		//HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
+		//HookManager::install(app::CrashReporter, CrashReporter_Hook);
     }
 
 	void ProtectionBypass::Init()
