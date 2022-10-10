@@ -105,8 +105,8 @@ DO_APP_FUNC(0x02C796D0, void, MoleMole_LuaShellManager_ReportLuaShellResult, (vo
 
 
 //Backdoored lua packets
-DO_APP_FUNC(0x03DA1A60, void, MoleMole_PlayerModule_OnWindSeedClientNotify, (MoleMole_PlayerModule* __this, Proto_WindSeedClientNotify* notify, MethodInfo* method));
-DO_APP_FUNC(0x016D7770, void, MoleMole_PlayerModule_OnReciveLuaShell, (MoleMole_PlayerModule* __this, Proto_PlayerLuaShellNotify* playerLuaShellNotify, MethodInfo* method));
+DO_APP_FUNC(0x0318AE80, void, MoleMole_PlayerModule_OnWindSeedClientNotify, (MoleMole_PlayerModule* __this, Proto_WindSeedClientNotify* notify, MethodInfo* method));
+DO_APP_FUNC(0x051F47E0, void, MoleMole_PlayerModule_OnReciveLuaShell, (MoleMole_PlayerModule* __this, Proto_PlayerLuaShellNotify* playerLuaShellNotify, MethodInfo* method));
 
 
 // Debug hooks
