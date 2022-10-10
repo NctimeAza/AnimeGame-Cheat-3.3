@@ -9018,6 +9018,7 @@ namespace app {
         struct List_1_MoleMole_BaseContextComponent_* _baseComponentList;
         struct List_1_MoleMole_BaseContextComponent_* _tickComponentList;
         struct List_1_MoleMole_BaseContextComponent_* _lateTickComponentList;
+        struct List_1_MoleMole_BaseContextComponent_* _handleAnyNotifyComponentList;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentNotifyRegister;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentPacketRegister;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentActionEventRegister;
@@ -9045,6 +9046,7 @@ namespace app {
         struct Dictionary_2_System_Int32_UniRx_Tuple_3_* _storedJoypadIconStateIns;
         struct Dictionary_2_System_String_HHOMOPLIOLJ_* _name2JoypadController;
         int32_t _pcCursorMode;
+        bool _doJoypadLostFocusBeforeClearView;
         bool _updateJoypadUIModule;
         bool _contextClosed;
         struct List_1_MoleMole_BaseContext_JoypadUIModulesList_* _joypadUIModules;
