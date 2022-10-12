@@ -4158,6 +4158,13 @@ namespace app {
         DGAHPCMJBNI = 0x00000013,
     };
 
+    enum class MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum : int32_t {
+        Default = 0x00000000,
+        Appear = 0x00000001,
+        Revive = 0x00000002,
+        Reuse = 0x00000003,
+    };
+
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
         struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
@@ -4165,7 +4172,7 @@ namespace app {
         struct Config_EntityExcelConfig* excelConfig;
         uint32_t _runtimeID_k__BackingField;
         uint32_t _preRuntimeID_k__BackingField;
-        uint32_t _configID_k__BackingField;
+        uint32_t _configID_k__BackingField; //0x30
         uint32_t _questID_k__BackingField;
         uint32_t _switchToQuestID_k__BackingField;
         struct SimpleSafeUInt32 campID;
@@ -4190,7 +4197,7 @@ namespace app {
         struct TokenManager* _tokenMgr;
         VisionType__Enum _NLFDIGCIFIA_k__BackingField;
         bool _MMIHONCELFL_k__BackingField;
-        void* /*JKGNBIHFLDC*/ KKNFGHGHCFH;
+        MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum KKNFGHGHCFH;
         bool LPLFGOMFINB;
         bool EKGOBHGKBKF;
         bool _GDKDNDAGBFB_k__BackingField;
@@ -4237,7 +4244,7 @@ namespace app {
         struct FixedStack_1_System_Single_* _timeScaleStack;
         struct LCAbilityState* _lcAblityState;
         uint32_t _nextComponentID;
-        EntityType__Enum_1 entityType;
+        EntityType__Enum_1 entityType;//i've gone completely mental
         bool _isAuthority;
         uint32_t authorityPeerId;
         bool OMMGADFPHPB;
