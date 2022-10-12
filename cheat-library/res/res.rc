@@ -324,6 +324,8 @@ HDDENDROCULUS           PNG                     "iconsHD\\Dendroculus.png"
 
 HDDENDROGRANUM          PNG                     "iconsHD\\DendroGranum.png"
 
+HDDENDROHYPOSTASIS      PNG                     "iconsHD\\DendroHypostasis.png"
+
 HDDENDROPILE            PNG                     "iconsHD\\DendroPile.png"
 
 HDDENDROROCK            PNG                     "iconsHD\\DendroRock.png"
@@ -1485,6 +1487,8 @@ DENDROCRYSTALFLY        PNG                     "icons\\DendroCrystalfly.png"
 DENDROCULUS             PNG                     "icons\\Dendroculus.png"
 
 DENDROGRANUM            PNG                     "icons\\DendroGranum.png"
+
+DENDROHYPOSTASIS        PNG                     "icons\\DendroHypostasis.png"
 
 DENDROPILE              PNG                     "icons\\DendroPile.png"
 

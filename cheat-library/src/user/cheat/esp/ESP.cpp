@@ -709,12 +709,13 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(mineral, WhiteIronChunk);
 
 		// Trounce. Arranged by appearance in-game.
-		ADD_FILTER_FIELD(monster, Dvalin);
 		ADD_FILTER_FIELD(monster, Andrius);
-		ADD_FILTER_FIELD(monster, Tartaglia);
 		ADD_FILTER_FIELD(monster, Azhdaha);
+		ADD_FILTER_FIELD(monster, Dvalin);
 		ADD_FILTER_FIELD(monster, Signora);
 		ADD_FILTER_FIELD(monster, Shogun);
+		ADD_FILTER_FIELD(monster, ShokiNoKami);
+		ADD_FILTER_FIELD(monster, Tartaglia);
 		// Bosses. Arranged by "type" then alphabetical.
 		// Regisvines.
 		ADD_FILTER_FIELD(monster, CryoRegisvine);
@@ -724,6 +725,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, AnemoHypostasis);
 		ADD_FILTER_FIELD(monster, CryoHypostasis);
 		ADD_FILTER_FIELD(monster, ElectroHypostasis);
+		ADD_FILTER_FIELD(monster, DendroHypostasis);
 		ADD_FILTER_FIELD(monster, GeoHypostasis);
 		ADD_FILTER_FIELD(monster, HydroHypostasis);
 		ADD_FILTER_FIELD(monster, PyroHypostasis);

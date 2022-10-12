@@ -238,6 +238,8 @@ namespace cheat::game::filters
 		SimpleFilter AlgorithmOfSemiIntransientMatrixOfOverseerNetwork = { EntityType__Enum_1::Monster, "Monolith_Starchild" };
 		SimpleFilter Scorpion = { EntityType__Enum_1::Monster, "Scorpion_" };
 		SimpleFilter Vulture = { EntityType__Enum_1::Monster, "Vulture_" };
+		SimpleFilter DendroHypostasis = { EntityType__Enum_1::Monster, "Effigy_Grass" };
+		SimpleFilter ShokiNoKami = { EntityType__Enum_1::Monster, "Monster_Nada" };
 	}
 
 	namespace plant
@@ -515,6 +517,7 @@ namespace cheat::game::filters
 			monster::Shogun,
 			monster::Andrius,
 			monster::Tartaglia,
+			monster::ShokiNoKami,
 			// Mondstadt
 			monster::CryoRegisvine,
 			monster::ElectroHypostasis,
@@ -549,8 +552,8 @@ namespace cheat::game::filters
 			monster::ElectroRegisvine,
 			monster::JadeplumeTerrorshroom,
 			monster::AeonblightDrake,
-			monster::AlgorithmOfSemiIntransientMatrixOfOverseerNetwork
-
+			monster::AlgorithmOfSemiIntransientMatrixOfOverseerNetwork,
+			monster::DendroHypostasis
 		};
 		SimpleFilter MonsterShielded = {
 			// Taken from https://genshin-impact.fandom.com/wiki/Shields/Enemy.

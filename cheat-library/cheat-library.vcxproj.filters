@@ -3586,5 +3586,11 @@
     <Image Include="res\icons\RedTailedLizard.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\DendroHypostasis.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\DendroHypostasis.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
