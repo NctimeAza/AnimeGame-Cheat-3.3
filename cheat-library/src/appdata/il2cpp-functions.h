@@ -148,7 +148,7 @@ DO_APP_FUNC(0x03FA6B70, void, MoleMole_FishingModule_onFishChosenNotify, (void* 
 // Visuals
 DO_APP_FUNC(0x03BE1A00, void, MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, (SCameraModuleInitialize* __this, double deltaTime, CameraShareData* data, MethodInfo* method));
 DO_APP_FUNC(0x02FE6A20, void, MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue, (MoleMole_VCBaseSetDitherValue* __this, float value, MethodInfo* method));
-DO_APP_FUNC(0x031822A0, void, MoleMole_PlayerModule_EntityAppear, (MoleMole_PlayerModule* __this, Proto_SceneEntityInfo* entity, VisionType__Enum type, uint32_t infoParam, MethodInfo* method));
+DO_APP_FUNC(0x03179760, void, MoleMole_PlayerModule_EntityAppear, (MoleMole_PlayerModule* __this, Proto_SceneEntityInfo* entity, VisionType__Enum type, uint32_t infoParam, MethodInfo* method));
 
 // Chest Indicator | RyujinZX#6666
 DO_APP_FUNC(0x04F92320, bool, MoleMole_LCIndicatorPlugin_DoCheck, (LCIndicatorPlugin* __this, MethodInfo* method));
@@ -257,10 +257,10 @@ DO_APP_FUNC(0x03766330, float, MoleMole_SafeFloat_get_Value, (SafeFloat safeFloa
 // should be 'op_Implicit' not 'set_value'
 DO_APP_FUNC(0x03766420, SafeFloat, MoleMole_SafeFloat_set_Value, (float value, MethodInfo* method));
 
-// 3.2 ResolveCall("e8 ? ? ? ? 48 85 c0 0f 85 ? ? ? ? 48 8b 0d ? ? ? ? e8 ? ? ? ? 4c 8b c3");
-DO_APP_FUNC(0x060D7DD0, LCBaseCombat*, MoleMole_BaseEntity_GetLogicCombatComponent_1, (BaseEntity* __this, MethodInfo* method));
-// 3.2 ResolveMov("48 8b 15 ? ? ? ? 48 8b cb 48 8b f8 e8 ? ? ? ? 48 85 ff 74 ? 48 8b 15");
-DO_APP_FUNC_METHODINFO(0x0CF61BC8, MoleMole_BaseEntity_GetLogicCombatComponent_1__MethodInfo);
+// 3.2 ResolveCall("e8 ? ? ? ? 48 85 c0 0f 84 ? ? ? ? 48 8b b8 ? ? ? ? 48 85 ff 0f 84 ? ? ? ? 48 83 7f");
+DO_APP_FUNC(0x063061E0, LCBaseCombat*, MoleMole_BaseEntity_GetLogicCombatComponent_1, (BaseEntity* __this, MethodInfo* method));
+// 3.2 ResolveMov("48 8b 15 ? ? ? ? 48 8b cb e8 ? ? ? ? 48 8b 15 ? ? ? ? 48 8b cf 4c 8b f0");
+DO_APP_FUNC_METHODINFO(0x0CDBD428, MoleMole_BaseEntity_GetLogicCombatComponent_1__MethodInfo);
 
 DO_APP_FUNC(0x0396CAA0, String*, MoleMole_BaseEntity_ToStringRelease, (BaseEntity* __this, MethodInfo* method));
 
