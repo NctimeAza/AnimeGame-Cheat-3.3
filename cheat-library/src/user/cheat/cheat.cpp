@@ -118,7 +118,7 @@ namespace cheat
 			FEAT_INST(CustomTeleports),
 
 			FEAT_INST(ESP),
-			//FEAT_INST(InteractiveMap),
+			FEAT_INST(InteractiveMap),
 
 			FEAT_INST(AutoFish),
 			FEAT_INST(AutoCook),

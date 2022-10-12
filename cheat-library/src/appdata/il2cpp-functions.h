@@ -111,7 +111,7 @@ DO_APP_FUNC(0x051F47E0, void, MoleMole_PlayerModule_OnReciveLuaShell, (MoleMole_
 
 // Debug hooks
 //DO_APP_FUNC(0x01D2E820, AttackResult_1*, MoleMole_AttackResult_FillProtoAttackResult, (AttackResult* __this, uint32_t attackerID, uint32_t defenseId, AttackResult_1* protoAttackResult, MethodInfo* method));
-DO_APP_FUNC(0x0478A2A0, void, MoleMole_LevelSyncCombatPlugin_SendFaceToDir, (void* __this, uint32_t runtimeID, Vector3 forward, MethodInfo* method));
+//DO_APP_FUNC(0x0478A2A0, void, MoleMole_LevelSyncCombatPlugin_SendFaceToDir, (void* __this, uint32_t runtimeID, Vector3 forward, MethodInfo* method));
 DO_APP_FUNC(0x03977AC0, void, MoleMole_BaseEntity_FireEvent, (BaseEntity* __this, BaseEvent* e, bool immediately, MethodInfo* method));
 DO_APP_FUNC(0x05307260, bool, MoleMole_ActorAbilityPlugin_OnEvent, (void* __this, BaseEvent* e, MethodInfo* method));
 
@@ -312,7 +312,7 @@ DO_APP_FUNC(0x04280A30, void, MoleMole_LCAbilityElement_ReduceModifierDurability
 
 DO_APP_FUNC(0x036F0A90, BaseEntity*, MoleMole_GadgetEntity_GetOwnerEntity, (GadgetEntity* __this, MethodInfo* method));
 
-DO_APP_FUNC(0x02E2F8D0, bool, MoleMole_UIManager_HasEnableMapCamera, (MoleMole_UIManager* __this, MethodInfo* method));
+DO_APP_FUNC(0x02E22100, bool, MoleMole_UIManager_HasEnableMapCamera, (MoleMole_UIManager* __this, MethodInfo* method));
 DO_APP_FUNC(0x02E34010, void, MoleMole_UIManager_EnableInput, (MoleMole_UIManager* __this, bool playerInput, bool clearCurInputState, bool ignoreTouch, MethodInfo* method));
 
 DO_APP_FUNC(0x02F1C8B0, void, MonoMiniMap_Update, (MonoMiniMap* __this, MethodInfo* method));
