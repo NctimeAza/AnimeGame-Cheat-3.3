@@ -238,6 +238,8 @@ namespace cheat::game::filters
 		extern SimpleFilter AlgorithmOfSemiIntransientMatrixOfOverseerNetwork;
 		extern SimpleFilter Scorpion;
 		extern SimpleFilter Vulture;
+		extern SimpleFilter DendroHypostasis;
+		extern SimpleFilter ShokiNoKami;
 	}
 
 	namespace plant

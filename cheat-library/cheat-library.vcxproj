@@ -295,6 +295,7 @@
     <Image Include="res\iconsHD\DendroCrystalfly.png" />
     <Image Include="res\iconsHD\Dendroculus.png" />
     <Image Include="res\iconsHD\DendroGranum.png" />
+    <Image Include="res\iconsHD\DendroHypostasis.png" />
     <Image Include="res\iconsHD\DendroPile.png" />
     <Image Include="res\iconsHD\DendroPuzzles.png" />
     <Image Include="res\iconsHD\DendroRock.png" />
@@ -867,6 +868,7 @@
     <Image Include="res\icons\DendroCrystalfly.png" />
     <Image Include="res\icons\Dendroculus.png" />
     <Image Include="res\icons\DendroGranum.png" />
+    <Image Include="res\icons\DendroHypostasis.png" />
     <Image Include="res\icons\DendroPile.png" />
     <Image Include="res\icons\DendroPuzzles.png" />
     <Image Include="res\icons\DendroRock.png" />
