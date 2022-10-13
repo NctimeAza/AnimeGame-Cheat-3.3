@@ -93,7 +93,7 @@ namespace cheat::feature
         auto entity = manager.entity(target);
         if (gm.f_Enabled && entity->isAvatar())
             if (gm.f_Conditional) { // Calculate only when conditional is enabled
-                if (HealthLowThanMin(target) && IsMissingAttack())
+                if (IsMissingAttack() || HealthLowThanMin(target))
                     return false;
             }
             else
