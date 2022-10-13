@@ -18,6 +18,7 @@ namespace cheat::feature
 
     AutoLoot::AutoLoot() : Feature(),
         NF(f_AutoPickup,     "Auto-pickup drops",               "AutoLoot", false),
+        NF(f_AutoDisablePickupWhenAddItemExceedLimit,     "Auto disable pickup when full",   "AutoLoot", true),
 		NF(f_AutoTreasure,   "Auto-open treasures",             "AutoLoot", false),
 		NF(f_UseCustomRange, "Use custom pickup range",         "AutoLoot", false),
 		NF(f_PickupFilter,	 "Pickup filter",					"AutoLoot", false),
@@ -64,6 +65,11 @@ namespace cheat::feature
 					"Note: Using this with custom range and low delay times is extremely risky.\n" \
 					"Abuse will definitely merit a ban.\n\n" \
 					"If using with custom range, make sure this is turned on FIRST.");
+				ImGui::SameLine();
+				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::Indent();
+				ConfigWidget("Auto disable when bag is full", f_AutoDisablePickupWhenAddItemExceedLimit, "Automatically disables auto pickup when bag is full.\n" \
+					"Note: This includes when seed gadget is full.");
 				ImGui::SameLine();
 				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
 			}
@@ -139,8 +145,9 @@ namespace cheat::feature
 
     void AutoLoot::DrawStatus() 
     {
-		ImGui::Text("Auto Loot\n[%s%s%s%s%s%s]",
+		ImGui::Text("Auto Loot\n[%s%s%s%s%s%s%s]",
 			f_AutoPickup ? "AP" : "",
+			f_AutoPickup && f_AutoDisablePickupWhenAddItemExceedLimit ? "AutoDisable" : "",
 			f_AutoTreasure ? fmt::format("{}AT", f_AutoPickup ? "|" : "").c_str() : "",
 			f_UseCustomRange ? fmt::format("{}CR{:.1f}m", f_AutoPickup || f_AutoTreasure ? "|" : "", f_CustomRange.value()).c_str() : "",
 			f_PickupFilter ? fmt::format("{}PF", f_AutoPickup || f_AutoTreasure || f_UseCustomRange ? "|" : "").c_str() : "",
@@ -312,11 +319,14 @@ namespace cheat::feature
 	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void*  __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method)
 	{
 		AutoLoot& autoLoot = AutoLoot::GetInstance();
-		// Temporary toggles autoloot off, not saved to config
-		autoLoot.f_AutoPickup.value().enabled = false;
-		
-		// Clear loot queue
-		autoLoot.clear_toBeLootedItems();
+		if (autoLoot.f_AutoPickup && autoLoot.f_AutoDisablePickupWhenAddItemExceedLimit)
+		{
+			// Temporary toggles autoloot off, not saved to config
+			autoLoot.f_AutoPickup.value().enabled = false;
+
+			// Clear loot queue
+			autoLoot.clear_toBeLootedItems();
+		}
 
 		return CALL_ORIGIN(ItemModule_OnCheckAddItemExceedLimitNotify_Hook, __this, notify, method);
 	}
