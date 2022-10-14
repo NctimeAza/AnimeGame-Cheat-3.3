@@ -10,6 +10,7 @@ namespace cheat::feature
     {
 	public:
 		config::Field<config::Toggle<Hotkey>> f_AutoPickup;
+		config::Field<config::Toggle<Hotkey>> f_AutoDisablePickupWhenAddItemExceedLimit;
 		config::Field<config::Toggle<Hotkey>> f_AutoTreasure;
 		config::Field<config::Toggle<Hotkey>> f_UseCustomRange;
 		config::Field<config::Toggle<Hotkey>> f_UseDelayTimeFluctuation;
