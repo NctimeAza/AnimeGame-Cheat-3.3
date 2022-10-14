@@ -66,7 +66,10 @@ namespace cheat::feature
 		if (f_Enabled)
 		{
 			ConfigWidget("Toggle Damage Overlay", f_DamageOverlay, "Remove damage output overlay");
-			ConfigWidget("Toggle Enemy HP Overlay", f_HpOverlay, "Remove enemy HP overlay");
+			if (ImGui::Button("Remove HP"))
+			{
+				f_HpOverlay = true;
+			}
 		}
 
 		if (ImGui::BeginTable("FreeCameraDrawTable", 1, ImGuiTableFlags_NoBordersInBody))
@@ -109,6 +112,8 @@ namespace cheat::feature
 			ImGui::EndGroupPanel();
 			ImGui::EndTable();
 		}
+
+
 	}
 
 	bool FreeCamera::NeedStatusDraw() const
@@ -280,10 +285,17 @@ namespace cheat::feature
 			else
 				app::GameObject_SetActive(damageOverlay, !f_DamageOverlay, nullptr);
 
-			if (hpOverlay == nullptr)
+			if (f_HpOverlay)  //Fixed an issue where HpOverlay could not be removed properly.
+			{
+				Sleep(200);
+				f_HpOverlay = false;
 				hpOverlay = app::GameObject_Find(string_to_il2cppi("AvatarBoardCanvasV2(Clone)"), nullptr);
-			else
-				app::GameObject_SetActive(hpOverlay, !f_DamageOverlay, nullptr);
+				while (hpOverlay != nullptr)
+				{
+					app::GameObject_SetActive(hpOverlay, false, nullptr);
+					hpOverlay = app::GameObject_Find(string_to_il2cppi("AvatarBoardCanvasV2(Clone)"), nullptr);
+				}
+			}
 		}
 		else
 		{
