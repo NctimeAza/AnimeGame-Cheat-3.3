@@ -322,6 +322,7 @@ DO_APP_FUNC(0x03EC0CF0, float, MoleMole_InLevelMainPageContext_get_miniMapScale,
 DO_APP_FUNC(0x05ACFF80, void, RenderSettings_set_fog, (bool value, MethodInfo* method));
 DO_APP_FUNC(0x05AFDD10, int32_t, Application_get_targetFrameRate, (MethodInfo* method));
 DO_APP_FUNC(0x05AFE150, void, Application_set_targetFrameRate, (int32_t value, MethodInfo* method));
+DO_APP_FUNC(0x05AFDC40, bool, Application_get_IsFocused, (MethodInfo* method));
 
 DO_APP_FUNC(0x05B57A60, bool, RectTransformUtility_ScreenPointToLocalPointInRectangle, (void* rect, Vector2 screenPoint, void* cam, Vector2* localPoint, MethodInfo* method));
 
