@@ -8,7 +8,9 @@ namespace cheat::feature
 {
     FPSUnlock::FPSUnlock() : Feature(),
 		NF(f_Enabled, "Fps unlock", "Visuals::FPSUnlocker", false),
-        NF(f_Fps, "FPS", "Visuals::FPSUnlocker", 240)
+        NF(f_Fps, "FPS", "Visuals::FPSUnlocker", 240),
+        NF(f_Limit, "Limit", "Visuals::FPSUnlocker", false),
+        NF(f_FpsLimit, "FPS Limit", "Visuals::FPSUnlocker", 30)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(FPSUnlock::OnGameUpdate);
     }
@@ -23,6 +25,14 @@ namespace cheat::feature
     {
         ConfigWidget("", f_Enabled); ImGui::SameLine();
         ConfigWidget(f_Fps, 1, 30, 360, "Unlocks higher framerate.");
+        if (f_Enabled)
+        {
+            ImGui::Indent();
+            ConfigWidget("\n", f_Limit);
+            ImGui::SameLine();
+            ConfigWidget(f_FpsLimit, 1, 5, 360, "Limit framerate while the game window isn't focused.\nThis won't work if the cheat menu is open or if you're in a loading screen.");
+            ImGui::Unindent();
+        }
     }
 
     bool FPSUnlock::NeedStatusDraw() const
@@ -56,6 +66,19 @@ namespace cheat::feature
         _lastEnabledStatus = f_Enabled;
 
         if (f_Enabled)
-			app::Application_set_targetFrameRate(f_Fps, nullptr);
+        {
+            auto loadingManager = GET_SINGLETON(MoleMole_LoadingManager);
+            if (!app::MoleMole_LoadingManager_IsLoaded(loadingManager, nullptr))
+                app::Application_set_targetFrameRate(f_Fps, nullptr);
+            else if (!f_Limit)
+                app::Application_set_targetFrameRate(f_Fps, nullptr);
+            else if (f_Limit)
+            {
+                if (!app::Application_get_IsFocused(nullptr))
+                    app::Application_set_targetFrameRate(f_FpsLimit, nullptr);
+                else
+                    app::Application_set_targetFrameRate(f_Fps, nullptr);
+            }
+        }
     }
 }

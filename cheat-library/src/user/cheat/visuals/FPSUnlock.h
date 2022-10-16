@@ -10,6 +10,8 @@ namespace cheat::feature
 	public:
 		config::Field<bool> f_Enabled;
 		config::Field<int> f_Fps;
+		config::Field<bool> f_Limit;
+		config::Field<int> f_FpsLimit;
 
 		static FPSUnlock& GetInstance();
 
