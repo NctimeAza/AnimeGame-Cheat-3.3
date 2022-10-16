@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 			LOG_ERROR(std::string(ae_Region + " is not a valid region").c_str());
 		Sleep(5000);
 	}
-	
+
 	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
@@ -137,10 +137,9 @@ int main(int argc, char* argv[])
 
 bool OpenGenshinProcess(HANDLE* phProcess, HANDLE* phThread)
 {
-
 	HANDLE hToken;
 	BOOL TokenRet = OpenProcessToken(GetCurrentProcess(), TOKEN_ALL_ACCESS, &hToken);
-	if (!TokenRet) 
+	if (!TokenRet)
 	{
 		LOG_LAST_ERROR("Privilege escalation failed!");
 		return false;
@@ -148,44 +147,59 @@ bool OpenGenshinProcess(HANDLE* phProcess, HANDLE* phThread)
 
 	auto filePath = util::GetOrSelectPath(ini, "Inject", "GenshinPath", "genshin path", "Executable\0GenshinImpact.exe;YuanShen.exe\0");
 	auto commandline = ini.GetValue("Inject", "GenshinCommandLine");
+	auto runAsIs = ini.GetBoolValue("System", "RunAsIs", false);
 
-	LPSTR lpstr = commandline == nullptr ? nullptr : const_cast<LPSTR>(commandline);
 	if (!filePath)
 		return false;
-
-	DWORD pid = FindProcessId("explorer.exe");
-	if (pid == 0)
-	{
-		LOG_ERROR("Can't find 'explorer' pid!");
-		return false;
-	}
 
 	std::string CurrentDirectory = filePath.value();
 	int pos = CurrentDirectory.rfind("\\", CurrentDirectory.length());
 	CurrentDirectory = CurrentDirectory.substr(0, pos);
 
-	HANDLE handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-		
-	SIZE_T lpsize = 0;
-	InitializeProcThreadAttributeList(NULL, 1, 0, &lpsize);
-	
-	char* temp = new char[lpsize];
-	LPPROC_THREAD_ATTRIBUTE_LIST AttributeList = (LPPROC_THREAD_ATTRIBUTE_LIST)temp;
-	InitializeProcThreadAttributeList(AttributeList, 1, 0, &lpsize);
-	if (!UpdateProcThreadAttribute(AttributeList, 0, PROC_THREAD_ATTRIBUTE_PARENT_PROCESS, 
-		&handle, sizeof(HANDLE), NULL, NULL))
-	{
-		LOG_WARNING("UpdateProcThreadAttribute failed ! (%d).\n", GetLastError());
-	}
-	
+	LPSTR lpstr = commandline == nullptr ? nullptr : const_cast<LPSTR>(commandline);
+
+	BOOL result = false;
+	PROCESS_INFORMATION pi{};
 	STARTUPINFOEXA si{};
 	si.StartupInfo.cb = sizeof(si);
-	si.lpAttributeList = AttributeList;
-	
-	PROCESS_INFORMATION pi{};
-	BOOL result = CreateProcessAsUserA(hToken, const_cast<LPSTR>(filePath->data()), lpstr,
-		0, 0, 0, EXTENDED_STARTUPINFO_PRESENT | CREATE_SUSPENDED, 0,
-		(LPSTR)CurrentDirectory.data(), (LPSTARTUPINFOA)&si, &pi);
+
+	if (runAsIs)
+	{
+		result = CreateProcessAsUserA(hToken, const_cast<LPSTR>(filePath->data()), lpstr,
+			0, 0, 0, EXTENDED_STARTUPINFO_PRESENT | CREATE_SUSPENDED, 0,
+			(LPSTR)CurrentDirectory.data(), (LPSTARTUPINFOA)&si, &pi);
+	}
+	else
+	{
+		DWORD pid = FindProcessId("explorer.exe");
+		if (pid == 0)
+		{
+			LOG_ERROR("Can't find 'explorer' pid!");
+			return false;
+		}
+
+		HANDLE handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
+
+		SIZE_T lpsize = 0;
+		InitializeProcThreadAttributeList(NULL, 1, 0, &lpsize);
+
+		char* temp = new char[lpsize];
+		LPPROC_THREAD_ATTRIBUTE_LIST AttributeList = (LPPROC_THREAD_ATTRIBUTE_LIST)temp;
+		InitializeProcThreadAttributeList(AttributeList, 1, 0, &lpsize);
+		if (!UpdateProcThreadAttribute(AttributeList, 0, PROC_THREAD_ATTRIBUTE_PARENT_PROCESS,
+			&handle, sizeof(HANDLE), NULL, NULL))
+		{
+			LOG_WARNING("UpdateProcThreadAttribute failed ! (%d).\n", GetLastError());
+		}
+		si.lpAttributeList = AttributeList;
+
+		result = CreateProcessAsUserA(hToken, const_cast<LPSTR>(filePath->data()), lpstr,
+			0, 0, 0, EXTENDED_STARTUPINFO_PRESENT | CREATE_SUSPENDED, 0,
+			(LPSTR)CurrentDirectory.data(), (LPSTARTUPINFOA)&si, &pi);
+
+		DeleteProcThreadAttributeList(AttributeList);
+		delete[] temp;
+	}
 
 	bool isOpened = result;
 	if (isOpened)
@@ -200,7 +214,5 @@ bool OpenGenshinProcess(HANDLE* phProcess, HANDLE* phThread)
 		LOG_ERROR("If you have problem with GenshinImpact.exe path. You can change it manually in cfg.ini.");
 	}
 
-	DeleteProcThreadAttributeList(AttributeList);
-	delete[] temp;
 	return isOpened;
 }
