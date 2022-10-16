@@ -154,7 +154,6 @@ namespace cheat::feature::esp::render
 		// And for some reason game object extends
 		if ((min.x == 0 || min.y == 0 || min.z == 0))
 			return GetEntityMinBounds(entity, 1);
-
 		return bounds;
 		
 		SAFE_ERROR();
@@ -168,11 +167,64 @@ namespace cheat::feature::esp::render
 	{
 		if (s_Camera == nullptr)
 			return {};
+		auto gameObject = entity->gameObject();
+		app::Bounds bounds;
+		app::Vector3 min, max;
+		//m0nkrel : Fixing abnormal size of completed elemental monument (Thanks to Taiga)
+		if(game::filters::puzzle::ElementalMonument.IsValid(entity))
+		{
+			auto Transform = app::GameObject_GetComponentByName(gameObject, string_to_il2cppi("Transform"), nullptr);
+			auto child1 = app::Transform_FindChild(reinterpret_cast<app::Transform*>(Transform), string_to_il2cppi("hibox"), nullptr);
+			auto child2 = app::Transform_FindChild(reinterpret_cast<app::Transform*>(Transform), string_to_il2cppi("AkTriggerCollisionEnter"), nullptr);
 
-		app::Bounds bounds = GetObjectBounds(entity);
-
-		auto min = bounds.m_Center - bounds.m_Extents;
-		auto max = bounds.m_Center + bounds.m_Extents;
+			auto pre_status1 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child1), nullptr);
+			auto pre_status2 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child2), nullptr);
+			if (app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status2), nullptr))
+			{
+				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), false, nullptr);
+				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status2), false, nullptr);
+			}
+			app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), true, nullptr);
+			bounds = GetObjectBounds(entity);
+		}
+		//m0nkrel :  Fixing abnormal size of gliding avatars. 
+		//Hardcoded bounds center and extents because they floating behind avatar
+		else if (entity->isAvatar())
+		{
+			bounds = GetObjectBounds(entity);
+			if (bounds.m_Extents.x > 1.f || bounds.m_Extents.y > 1.f || bounds.m_Extents.z > 0.8f)
+			{
+				bounds.m_Extents = { 1.f, 1.f, 0.8f };
+			}
+			auto pos = entity->relativePosition();
+			bounds.m_Center = { pos.x + 0.12f,pos.y + 1.f, pos.z + 0.12f };
+			min = bounds.m_Center - bounds.m_Extents;
+			max = bounds.m_Center + bounds.m_Extents;
+		}
+		//m0nkrel : Fixing abnormal size of blocked chests.
+		else if (game::filters::chest::SFrozen.IsValid(entity) ||
+			game::filters::chest::SInLock.IsValid(entity) ||
+			game::filters::chest::SBramble.IsValid(entity))
+		{
+			bounds = GetObjectBounds(entity);
+			min = bounds.m_Center - bounds.m_Extents/2;
+			max = bounds.m_Center + bounds.m_Extents/2;
+		}
+		else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
+		{
+			bounds = GetObjectBounds(entity);
+			bounds.m_Extents = bounds.m_Extents - app::Vector3{4.5f, 4.5f, 4.5f };
+			auto pos = entity->relativePosition();
+			bounds.m_Center = { pos.x,pos.y + 1.f, pos.z };
+			min = bounds.m_Center - bounds.m_Extents;
+			max = bounds.m_Center + bounds.m_Extents;
+		}
+		else
+		{
+			bounds = GetObjectBounds(entity);
+			min = bounds.m_Center - bounds.m_Extents;
+			max = bounds.m_Center + bounds.m_Extents;
+		}
 
 		BoxScreen box;
 		app::Vector3 temp;
