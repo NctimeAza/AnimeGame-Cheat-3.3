@@ -449,6 +449,51 @@ namespace cheat::feature
 #endif
 			}
 			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
+			ImGui::Checkbox("", &ADll); ImGui::SameLine();
+			ImGui::InputText("Additional Dll", &DllPath); ImGui::SameLine(); HelpMarker("Inject an additional dll alongside the akebi dll.");
+			if (ImGui::Button("Refresh\n"))
+			{
+				ini.SetUnicode();
+#ifdef _DEBUG
+				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+				std::string InjectorPath = ini.GetValue("Location", "Injector");
+				ini.Reset();
+				ini.LoadFile((InjectorPath + "\\cfg.ini").c_str());
+				if (ini.GetValue("Inject", "ADll"))
+					ADll = ini.GetBoolValue("Inject", "ADll");
+				if (ini.GetValue("Inject", "DllPath"))
+					DllPath = ini.GetValue("Inject", "DllPath");
+				ini.Reset();
+#else
+				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				if (ini.GetValue("Inject", "ADll"))
+					ADll = ini.GetBoolValue("Inject", "ADll");
+				if (ini.GetValue("Inject", "DllPath"))
+					DllPath = ini.GetValue("Inject", "DllPath");
+				ini.Reset();
+#endif
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Apply\n"))
+			{
+				ini.SetUnicode();
+#ifdef _DEBUG
+				ini.LoadFile((std::filesystem::temp_directory_path().string() + "InjectorPath.ini").c_str());
+				std::string InjectorPath = ini.GetValue("Location", "Injector");
+				ini.Reset();
+				ini.LoadFile((InjectorPath + "\\cfg.ini").c_str());
+				ini.SetBoolValue("Inject", "ADll", ADll);
+				ini.SetValue("Inject", "DllPath", DllPath.c_str());
+				ini.SaveFile((InjectorPath + "\\cfg.ini").c_str());
+				ini.Reset();
+#else
+				ini.LoadFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				ini.SetBoolValue("Inject", "ADll", ADll);
+				ini.SetValue("Inject", "DllPath", DllPath.c_str());
+				ini.SaveFile((util::GetCurrentPath() / "cfg.ini").string().c_str());
+				ini.Reset();
+#endif
+			}
 			ConfigWidget(f_HotkeysEnabled, "Enable hotkeys.");
 		}
 		ImGui::EndGroupPanel();
