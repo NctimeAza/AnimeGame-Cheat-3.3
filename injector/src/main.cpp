@@ -18,6 +18,9 @@ const std::string ChinaGenshinProcName = "YuanShen.exe";
 std::string ae_Name;
 std::string ae_EncKey;
 std::string ae_Region;
+std::string DllPath;
+bool ADll;
+bool IgnoreInstance = false;
 
 static CSimpleIni ini;
 
@@ -30,8 +33,23 @@ int main(int argc, char* argv[])
 	auto path = std::filesystem::path(argv[0]).parent_path();
 	current_path(path);
 
-	WaitForCloseProcess(GlobalGenshinProcName);
-	WaitForCloseProcess(ChinaGenshinProcName);
+	for (int count{ 0 }; count < argc; ++count)
+	{
+		if (std::string_view(argv[count]) == "-account")
+			ae_Name = argv[++count];
+		if (std::string_view(argv[count]) == "-key")
+			ae_EncKey = argv[++count];
+		if (std::string_view(argv[count]) == "-region")
+			ae_Region = argv[++count];
+		if (std::string_view(argv[count]) == "-i")
+			IgnoreInstance = true;
+	}
+
+	if (!IgnoreInstance)
+	{
+		WaitForCloseProcess(GlobalGenshinProcName);
+		WaitForCloseProcess(ChinaGenshinProcName);
+	}
 
 	Sleep(1000); // Wait for unloading all dlls.
 
@@ -50,21 +68,6 @@ int main(int argc, char* argv[])
 	ini.SaveFile("cfg.ini");
 	ini.Reset();
 
-	for (int count{ 0 }; count < argc; ++count)
-	{
-		if (std::string_view(argv[count]) == "-account")
-		{
-			ae_Name = argv[++count];
-		}
-		if (std::string_view(argv[count]) == "-key")
-		{
-			ae_EncKey = argv[++count];
-		}
-		if (std::string_view(argv[count]) == "-region")
-		{
-			ae_Region = argv[++count];
-		}
-	}
 	if (!ae_Name.empty() && !ae_EncKey.empty())
 	{
 		ini.SetUnicode();
@@ -107,7 +110,7 @@ int main(int argc, char* argv[])
 		Sleep(5000);
 	}
 
-	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
+	std::string filename = "CLibrary.dll";
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
 #ifdef _DEBUG
@@ -129,6 +132,8 @@ int main(int argc, char* argv[])
 	InjectDLL(hProcess, currentDllPath.string());
 #endif
 
+	if (ADll && !DllPath.empty())
+		InjectDLL(hProcess, DllPath);
 	Sleep(2000);
 	ResumeThread(hThread);
 
@@ -148,6 +153,13 @@ bool OpenGenshinProcess(HANDLE* phProcess, HANDLE* phThread)
 	auto filePath = util::GetOrSelectPath(ini, "Inject", "GenshinPath", "genshin path", "Executable\0GenshinImpact.exe;YuanShen.exe\0");
 	auto commandline = ini.GetValue("Inject", "GenshinCommandLine");
 	auto runAsIs = ini.GetBoolValue("System", "RunAsIs", false);
+	if (ini.GetBoolValue("Inject", "ADll"))
+		ADll = ini.GetBoolValue("Inject", "ADll");
+	if (ini.GetValue("Inject", "DllPath"))
+	{
+		DllPath = ini.GetValue("Inject", "DllPath");
+		std::replace(DllPath.begin(), DllPath.end(), '\\', '/');
+	}
 
 	if (!filePath)
 		return false;

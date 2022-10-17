@@ -54,6 +54,8 @@ namespace cheat::feature
 		std::string cma;
 		std::string ae_Name;
 		std::string ae_EncKey;
+		std::string DllPath;
+		bool ADll;
 
 		void OnExitKeyPressed();
 		Settings();
