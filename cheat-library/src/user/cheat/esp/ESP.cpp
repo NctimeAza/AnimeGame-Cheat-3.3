@@ -33,6 +33,7 @@ namespace cheat::feature
 		NF(f_DrawDistance, "Draw Distance", "ESP", false),
 		NF(f_DrawName, "Draw Name", "ESP", false),	
 		NF(f_DrawHealth, "Draw Health", "ESP", false),
+		NF(f_HideCompleted, "Hide completed puzzles", "ESP", false),
 
 		NF(f_FontSize, "Font Size", "ESP", 12.0f),
 		NF(f_FontOutline, "Font outline", "ESP", true),
@@ -91,6 +92,8 @@ namespace cheat::feature
 			ConfigWidget(f_DrawDistance, "Draw distance of object.");
 			ImGui::Spacing();
 			ConfigWidget(f_DrawHealth, "Draw health of object.");
+			ImGui::Spacing();
+			ConfigWidget(f_HideCompleted, "Hide completed puzzles (Elemental monuments, Bloatty Floatty, Electro Seelie)");
 
 			ImGui::Spacing();
 			ConfigWidget(f_FontSize, 1, 1, 100, "Font size of name or distance.");
@@ -149,6 +152,58 @@ namespace cheat::feature
 		static ESP instance;
 		return instance;
 	}
+
+	bool ESP::CheckPuzzleFinished(game::Entity* entity)
+	{
+		if (game::filters::puzzle::ElementalMonument.IsValid(entity))
+		{
+			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 2, nullptr);
+			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+			auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
+
+			return status;//if monument finished - returns true
+		}
+		else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
+		{
+			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 1, nullptr);
+			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+			auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
+
+			return status;//if seelie finished - returns true
+		}
+		else if (game::filters::puzzle::BloattyFloatty.IsValid(entity))
+		{
+			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 0, nullptr);
+			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+			//now we take childs from 1st child
+			auto Transform1 = app::GameObject_GetComponentByName(pre_status, string_to_il2cppi("Transform"), nullptr);
+			auto child1 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 1, nullptr);
+			auto child2 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 2, nullptr);
+			auto child3 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 3, nullptr);
+
+			auto pre_status1 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child1), nullptr);
+			auto pre_status2 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child2), nullptr);
+			auto pre_status3 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child3), nullptr);
+
+			auto status1 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status1), nullptr);
+			auto status2 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status2), nullptr);
+			auto status3 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status3), nullptr);
+
+			if (status1 || status2 || status3)//if even one of them active - plant isn't finished
+				return false;
+			else
+				return true;
+		}
+		else
+			return false;
+	}
+
 
     bool ESP::isBuriedChest(game::Entity* entity)
     {
@@ -438,6 +493,18 @@ namespace cheat::feature
 					auto& entry = field.value();
 					if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filter))
 						continue;
+					if (entry.m_Name == "Elemental Monument" || "Bloatty Floatty" || "Electro Seelie")
+					{
+						if (f_HideCompleted)
+						{
+							const bool puzzleFinished = ESP::CheckPuzzleFinished(entity);
+							if (puzzleFinished)
+								break;
+							else
+								esp::render::DrawEntity(entry.m_Name, entity, entry.m_Color, entry.m_ContrastColor);
+							break;
+						}
+					}
                     if (entry.m_Name == "Buried Chest")
 					{
                         if(isBuriedChest(entity))

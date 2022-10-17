@@ -168,9 +168,10 @@ namespace cheat::feature::esp::render
 		if (s_Camera == nullptr)
 			return {};
 		auto gameObject = entity->gameObject();
+		bool completed = false;
 		app::Bounds bounds;
 		app::Vector3 min, max;
-		//m0nkrel : Fixing abnormal size of completed elemental monument (Thanks to Taiga)
+		//m0nkrel: Fixing abnormal size of completed elemental monument(Thanks to Taiga)
 		if(game::filters::puzzle::ElementalMonument.IsValid(entity))
 		{
 			auto Transform = app::GameObject_GetComponentByName(gameObject, string_to_il2cppi("Transform"), nullptr);
@@ -183,9 +184,15 @@ namespace cheat::feature::esp::render
 			{
 				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), false, nullptr);
 				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status2), false, nullptr);
+				completed = true;
 			}
-			app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), true, nullptr);
 			bounds = GetObjectBounds(entity);
+			app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), true, nullptr);
+			if (completed)//for "hide completed" function
+				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status2), true, nullptr);
+			
+			min = bounds.m_Center - bounds.m_Extents;
+			max = bounds.m_Center + bounds.m_Extents;
 		}
 		//m0nkrel :  Fixing abnormal size of gliding avatars. 
 		//Hardcoded bounds center and extents because they floating behind avatar

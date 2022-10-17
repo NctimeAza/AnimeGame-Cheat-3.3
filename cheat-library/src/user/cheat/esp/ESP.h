@@ -36,7 +36,7 @@ namespace cheat::feature
 		config::Field<bool> f_DrawDistance;
 		config::Field<bool> f_DrawName;
 		config::Field<bool> f_DrawHealth;
-		//config::Field<bool> f_HideCompleted;
+		config::Field<bool> f_HideCompleted;
 		config::Field<float> f_ArrowRadius;
 		config::Field<float> f_OutlineThickness;
 		config::Field<float> f_TracerSize;
@@ -83,6 +83,7 @@ namespace cheat::feature
 
 		void GetNpcName(std::string& name);
 		bool isBuriedChest(game::Entity* entity);
+		bool CheckPuzzleFinished(game::Entity* entity);
 
 		void OnKeyUp(short key, bool& cancelled);
 
