@@ -81,8 +81,8 @@ namespace cheat::game::filters
 		SimpleFilter BouncyMushroom = { EntityType__Enum_1::Gadget, "JumpMushroom" };
 		SimpleFilter ClusterleafOfCultivation = { EntityType__Enum_1::Gadget, "RaioFlower" };
 		SimpleFilter DendroRock = { EntityType__Enum_1::Gadget, "GrassSealStone" };
-		SimpleFilter DendroPile = { EntityType__Enum_1::Gadget, "XuMiPlantinshitou" };
-		SimpleFilter SandPile = { EntityType__Enum_1::Gadget, "SandPile" };
+		SimpleFilter DendroPile = { EntityType__Enum_1::Gadget, "XuMiRisingShitou" };
+		SimpleFilter SandPile = { EntityType__Enum_1::Gadget, "Sandpile" };
 	}
 
 	namespace living
@@ -327,7 +327,7 @@ namespace cheat::game::filters
 		SimpleFilter StormBarrier = { EntityType__Enum_1::Field, "_WindField_PushField" };
 		SimpleFilter SwordHilt = { EntityType__Enum_1::Field, "_WastedSword_" };
 		SimpleFilter Temari = { EntityType__Enum_1::Field, "_Temari" };
-		SimpleFilter TorchPuzzle = { EntityType__Enum_1::Gadget, { "_ImmortalFire", "DesertImmortalFire_" } };
+		SimpleFilter TorchPuzzle = { EntityType__Enum_1::Gadget, { "_ImmortalFire", "DesertImmortalFire_" , "InivisbleImmortalFire_"}};
 		SimpleFilter UniqueRocks = { EntityType__Enum_1::Gadget, "_Chalcedony" };
 		SimpleFilter WarmingSeelie = { EntityType__Enum_1::Platform, "_FireSeelie" };
 		SimpleFilter WindmillMechanism = { EntityType__Enum_1::Gear, "Gear_Windmill" };

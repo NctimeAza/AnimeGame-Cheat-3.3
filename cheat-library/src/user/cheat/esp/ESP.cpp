@@ -153,7 +153,7 @@ namespace cheat::feature
 		return instance;
 	}
 
-	bool ESP::CheckCondition(game::Entity* entity)
+	bool ESP::CheckPuzzleFinished(game::Entity* entity)
 	{
 		if (game::filters::puzzle::ElementalMonument.IsValid(entity))
 		{
@@ -497,8 +497,8 @@ namespace cheat::feature
 					{
 						if (f_HideCompleted)
 						{
-							bool cond = ESP::CheckCondition(entity);
-							if (cond) //check if the object completed
+							const bool puzzleFinished = ESP::CheckPuzzleFinished(entity);
+							if (puzzleFinished)
 								break;
 							else
 								esp::render::DrawEntity(entry.m_Name, entity, entry.m_Color, entry.m_ContrastColor);
