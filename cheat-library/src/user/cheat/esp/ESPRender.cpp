@@ -168,70 +168,44 @@ namespace cheat::feature::esp::render
 		if (s_Camera == nullptr)
 			return {};
 		auto gameObject = entity->gameObject();
-		bool completed = false;
-		app::Bounds bounds;
+		app::Bounds bounds = GetObjectBounds(entity); //copy
 		app::Vector3 min, max;
+
 		//m0nkrel: Fixing abnormal size of completed elemental monument(Thanks to Taiga)
 		if(game::filters::puzzle::ElementalMonument.IsValid(entity))
 		{
-			auto Transform = app::GameObject_GetComponentByName(gameObject, string_to_il2cppi("Transform"), nullptr);
-			auto child1 = app::Transform_FindChild(reinterpret_cast<app::Transform*>(Transform), string_to_il2cppi("hibox"), nullptr);
-			auto child2 = app::Transform_FindChild(reinterpret_cast<app::Transform*>(Transform), string_to_il2cppi("AkTriggerCollisionEnter"), nullptr);
-
-			auto pre_status1 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child1), nullptr);
-			auto pre_status2 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child2), nullptr);
-			if (app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status2), nullptr))
-			{
-				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), false, nullptr);
-				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status2), false, nullptr);
-				completed = true;
-			}
-			bounds = GetObjectBounds(entity);
-			app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status1), true, nullptr);
-			if (completed)//for "hide completed" function
-				app::GameObject_set_active(reinterpret_cast<app::GameObject*>(pre_status2), true, nullptr);
-			
-			min = bounds.m_Center - bounds.m_Extents;
-			max = bounds.m_Center + bounds.m_Extents;
+			if (bounds.m_Extents.x > 0.65f || bounds.m_Extents.y > 0.8f || bounds.m_Extents.z > 0.65f)
+				bounds.m_Extents = { 0.65f, 0.8f, 0.65f };
+			auto pos = entity->relativePosition();
+			bounds.m_Center = { pos.x, pos.y + 1.f, pos.z };
 		}
 		//m0nkrel :  Fixing abnormal size of gliding avatars. 
 		//Hardcoded bounds center and extents because they floating behind avatar
 		else if (entity->isAvatar())
 		{
-			bounds = GetObjectBounds(entity);
 			if (bounds.m_Extents.x > 1.f || bounds.m_Extents.y > 1.f || bounds.m_Extents.z > 0.8f)
 			{
 				bounds.m_Extents = { 1.f, 1.f, 0.8f };
 			}
 			auto pos = entity->relativePosition();
 			bounds.m_Center = { pos.x + 0.12f,pos.y + 1.f, pos.z + 0.12f };
-			min = bounds.m_Center - bounds.m_Extents;
-			max = bounds.m_Center + bounds.m_Extents;
 		}
 		//m0nkrel : Fixing abnormal size of blocked chests.
 		else if (game::filters::chest::SFrozen.IsValid(entity) ||
-			game::filters::chest::SInLock.IsValid(entity) ||
-			game::filters::chest::SBramble.IsValid(entity))
+				 game::filters::chest::SInLock.IsValid(entity) ||
+				 game::filters::chest::SBramble.IsValid(entity))
 		{
-			bounds = GetObjectBounds(entity);
-			min = bounds.m_Center - bounds.m_Extents/2;
-			max = bounds.m_Center + bounds.m_Extents/2;
+			bounds.m_Extents = bounds.m_Extents/2;
 		}
 		else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
 		{
-			bounds = GetObjectBounds(entity);
 			bounds.m_Extents = bounds.m_Extents - app::Vector3{4.5f, 4.5f, 4.5f };
 			auto pos = entity->relativePosition();
 			bounds.m_Center = { pos.x,pos.y + 1.f, pos.z };
-			min = bounds.m_Center - bounds.m_Extents;
-			max = bounds.m_Center + bounds.m_Extents;
 		}
-		else
-		{
-			bounds = GetObjectBounds(entity);
-			min = bounds.m_Center - bounds.m_Extents;
-			max = bounds.m_Center + bounds.m_Extents;
-		}
+
+		min = bounds.m_Center - bounds.m_Extents;
+		max = bounds.m_Center + bounds.m_Extents;
 
 		BoxScreen box;
 		app::Vector3 temp;

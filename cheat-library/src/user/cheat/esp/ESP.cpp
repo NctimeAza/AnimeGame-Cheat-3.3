@@ -493,7 +493,7 @@ namespace cheat::feature
 					auto& entry = field.value();
 					if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filter))
 						continue;
-					if (entry.m_Name == "Elemental Monument" || "Bloatty Floatty" || "Electro Seelie")
+					if (entry.m_Name == "Elemental Monument" || entry.m_Name == "Bloatty Floatty" || entry.m_Name == "Electro Seelie")
 					{
 						if (f_HideCompleted)
 						{
@@ -513,7 +513,7 @@ namespace cheat::feature
                         }
                         break;
                     }
-					if (entry.m_Name == "Npc" || "AvatarOwn" || "AvatarTeammate")
+					if (entry.m_Name == "Npc" || entry.m_Name == "AvatarOwn" || entry.m_Name == "AvatarTeammate")
 					{
                         if (isBuriedChest(entity))
                             continue;
