@@ -25,7 +25,7 @@ namespace cheat::feature
 	FreeCamera::FreeCamera() : Feature(),
 		NF(f_Enabled, "Free Camera", "Visuals::FreeCamera", false),
 		NF(f_FreezeAnimation, "Freeze Character Animation", "Visuals::FreeCamera", false),
-		NF(f_SetAvatarInvisible, "Make Avatar invisible", "Visuals::FreeCamera", false),
+		NF(f_SetAvatarInvisible, "Make Character invisible", "Visuals::FreeCamera", false),
 		NF(f_BlockInput, "Block Input", "Visuals::FreeCamera", false),
 		NF(f_DamageOverlay, "Damage Overlay", "Visuals::FreeCamera", false),
 		NF(f_HpOverlay, "Enemy HP Overlay", "Visuals::FreeCamera", false),
@@ -63,7 +63,7 @@ namespace cheat::feature
 	{
 		ConfigWidget("Enable", f_Enabled);
 		ConfigWidget("Freeze Character Animation", f_FreezeAnimation, "Freezes the active character's animation.");
-		ConfigWidget("Make Avatar invisible", f_SetAvatarInvisible, "Hide Avatar machine effects.");
+		ConfigWidget("Make Character invisible", f_SetAvatarInvisible, "Hide Character machine effects.");
 		ConfigWidget("Block User Input", f_BlockInput, "If enabled, any input will be blocked.");
 		if (f_Enabled)
 		{
