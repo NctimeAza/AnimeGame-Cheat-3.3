@@ -19,6 +19,3 @@
 [submodule "cheat-base/vendor/WinReg"]
 	path = cheat-base/vendor/WinReg
 	url = https://github.com/GiovanniDicanio/WinReg.git
-[submodule "cheat-base/vendor/easy-encryption"]
-	path = cheat-base/vendor/easy-encryption
-	url = https://github.com/philipperemy/easy-encryption.git

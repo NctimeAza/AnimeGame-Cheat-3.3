@@ -10,8 +10,8 @@
 
 #include "shlwapi.h"
 #pragma comment(lib, "shlwapi.lib")
-#include <encrypt.h>
 #include <WinReg.hpp>
+#include <vector>
 
 static CSimpleIni ini;
 
@@ -451,7 +451,7 @@ namespace cheat::feature
 			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
 			ImGui::Checkbox("", &ADll); ImGui::SameLine();
 			ImGui::InputText("Additional Dll", &DllPath); ImGui::SameLine(); HelpMarker("Inject an additional dll alongside the akebi dll.");
-			if (ImGui::Button("Refresh\n"))
+			if (ImGui::Button("Refresh##2"))
 			{
 				ini.SetUnicode();
 #ifdef _DEBUG
@@ -474,7 +474,7 @@ namespace cheat::feature
 #endif
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Apply\n"))
+			if (ImGui::Button("Apply##2"))
 			{
 				ini.SetUnicode();
 #ifdef _DEBUG
@@ -623,14 +623,13 @@ namespace cheat::feature
 		ImGui::BeginGroupPanel("Account Switcher");
 		{
 			ImGui::InputText("Account Name", &ae_Name);
-			ImGui::InputText("Encryption Key", &ae_EncKey);
 			if (ImGui::Button("Export"))
 			{
-				if (ae_Name.empty() || ae_EncKey.empty())
+				if (ae_Name.empty())
 				{
 					ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Please fill both boxes" });
 				}
-				else if (!ae_Name.empty() && !ae_EncKey.empty())
+				else if (!ae_Name.empty())
 				{
 					ini.SetUnicode();
 #ifdef _DEBUG
@@ -638,9 +637,8 @@ namespace cheat::feature
 					std::string InjectorPath = ini.GetValue("Location", "Injector");
 					ini.Reset();
 					ini.LoadFile((InjectorPath + "\\accounts.ini").c_str());
-					vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
-					std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
-					ini.SetValue("Accounts", ae_Name.c_str(), encrypt(RegisteryValueString, ae_EncKey).c_str());
+					std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					ini.SetValue("Accounts", ae_Name.c_str(), std::string (RegisteryValue.begin(), RegisteryValue.end()).c_str());
 					ini.SaveFile((InjectorPath + "\\accounts.ini").c_str());
 					ini.Reset();
 					ini.SetUnicode();
@@ -649,15 +647,13 @@ namespace cheat::feature
 					{
 						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
 						ae_Name.clear();
-						ae_EncKey.clear();
 				    }
 					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
 						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
 #else
 					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
-					vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
-					std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
-					ini.SetValue("Accounts", ae_Name.c_str(), encrypt(RegisteryValueString, ae_EncKey).c_str());
+					std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					ini.SetValue("Accounts", ae_Name.c_str(), std::string(RegisteryValue.begin(), RegisteryValue.end()).c_str());
 					ini.SaveFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
 					ini.Reset();
 					ini.SetUnicode();
@@ -666,7 +662,6 @@ namespace cheat::feature
 					{
 						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
 						ae_Name.clear();
-						ae_EncKey.clear();
 					}
 					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
 						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
@@ -676,8 +671,8 @@ namespace cheat::feature
 			}
 			ImGui::SameLine(); HelpMarker(
 				"Quickly switch accounts on launch\n"
-				"to use this, first export the account then add the following arguemnets to a shortcut or a command line\n"
-				"-account \"Account Name\" -key \"Encryption Key\".\n"
+				"to use this, first export the account then add the following arguemnet to a shortcut or a command line\n"
+				"-account \"Account Name\".\n"
 				"You can also switch the region with -region \"Region Name\"\n"
 				"Availabe regions are \"usa\", \"eu\", \"asia\", \"thm\".");
 		}
