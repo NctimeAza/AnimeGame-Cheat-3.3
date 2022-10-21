@@ -10,7 +10,6 @@
 #include "util.h"
 
 #include <WinReg.hpp>
-#include <encrypt.h>
 #include <regex>
 
 const std::string GlobalGenshinProcName = "GenshinImpact.exe";
@@ -95,7 +94,7 @@ int main(int argc, char* argv[])
 			regionstring = "os_cht";
 		if (!regionstring.empty())
 		{
-			vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"GENERAL_DATA_h2389025596");
+			std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"GENERAL_DATA_h2389025596");
 			std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
 			RegisteryValueString = std::regex_replace(RegisteryValueString, std::regex("os_(asia|euro|usa|cht)"), regionstring);
 			winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.SetBinaryValue(L"GENERAL_DATA_h2389025596", std::vector<BYTE>(RegisteryValueString.begin(), RegisteryValueString.end()));
