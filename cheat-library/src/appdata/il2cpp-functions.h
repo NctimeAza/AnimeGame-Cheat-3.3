@@ -372,6 +372,8 @@ DO_APP_FUNC(0x05B56F60, float, Canvas_get_scaleFactor, (/*Canvas**/void* __this,
 
 DO_APP_FUNC(0x01241D10, void, LevelTimeManager_SetInternalTimeOfDay, (/*LevelTimeManager**/void* __this, float inHours, bool force, bool refreshEnviroTime, MethodInfo* method));
 
+DO_APP_FUNC(0x02912560, void, Miscs_SetUILocalAvatarVisible, (bool visible, MethodInfo* method));
+
 // Open team immediately
 // F3 0F 10 83 ?? ?? ?? ?? 0F 29 74 24 30 F3 0F 10 B3 ?? ?? ?? ?? 
 // f3 0f 10 83 ? ? ? ? 0f 29 74 24 ? f3 0f 10 b3 ? ? ? ? 0f 2f c6 76 ? e8 ? ? ? ? 48 8b 8b ? ? ? ? f3 0f 58 c6 f3 0f 11 83 ? ? ? ? 48 85 c9
