@@ -53,7 +53,6 @@ namespace cheat::feature
 		void ApplyTheme(std::string name);
 		std::string cma;
 		std::string ae_Name;
-		std::string ae_EncKey;
 		std::string DllPath;
 		bool ADll;
 

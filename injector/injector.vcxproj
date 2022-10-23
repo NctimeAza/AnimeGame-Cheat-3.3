@@ -106,7 +106,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SupportJustMyCode>false</SupportJustMyCode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\easy-encryption;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -136,7 +136,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\easy-encryption;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -163,7 +163,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\easy-encryption;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include/;$(SolutionDir)cheat-base/src;$(SolutionDir)cheat-base/vendor/simpleIni/;$(SolutionDir)cheat-base\vendor\WinReg\WinReg</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
