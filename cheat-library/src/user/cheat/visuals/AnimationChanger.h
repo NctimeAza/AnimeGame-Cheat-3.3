@@ -15,6 +15,8 @@ namespace cheat::feature
 		config::Field<int> f_Delay;
 		config::Field<bool> f_Debug;
 
+		bool onEntityAppear = false;
+
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;
 		virtual bool NeedStatusDraw() const override;

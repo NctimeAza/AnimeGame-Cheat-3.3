@@ -20,6 +20,7 @@
 #include <cheat/player/NoClip.h>
 #include <cheat/player/RapidFire.h>
 #include <cheat/player/AutoRun.h>
+#include <cheat/player/FallControl.h>
 
 #include <cheat/world/AutoLoot.h>
 #include <cheat/world/DialogSkip.h>
@@ -62,7 +63,6 @@
 #include <cheat/visuals/FreeCamera.h>
 #include <cheat/visuals/AnimationChanger.h>
 #include <cheat/visuals/EmotionChanger.h>
-#include <cheat/player/FallControl.h>
 
 #include "GenshinCM.h"
 

@@ -1,16 +1,14 @@
 #include "pch-il2cpp.h"
 #include "EmotionChanger.h"
+#include "AnimationChanger.h"
 
 #include <helpers.h>
 #include <cheat/events.h>
-#include <misc/cpp/imgui_stdlib.h>
 #include <cheat/game/EntityManager.h>
 
 namespace cheat::feature
 {
     // Most of this is copy from AnimationChanger.cpp, plagiarism go brrrrr
-    static bool onEntityAppear = false;
-    static void MoleMole_PlayerModule_EntityAppear_Hook(app::MoleMole_PlayerModule* __this, app::Proto_SceneEntityInfo* entity, app::VisionType__Enum type, uint32_t infoParam, MethodInfo* method);
     std::vector<std::string> phonemes;
     std::vector<std::string> emotions;
 
@@ -21,7 +19,6 @@ namespace cheat::feature
         NF(f_ApplyKey, "Apply Animation", "Visuals::EmotionChanger", Hotkey('Y')),
         NF(f_ResetKey, "Reset Animation", "Visuals::EmotionChanger", Hotkey('R'))
     {
-        HookManager::install(app::MoleMole_PlayerModule_EntityAppear, MoleMole_PlayerModule_EntityAppear_Hook);
         events::GameUpdateEvent += MY_METHOD_HANDLER(EmotionChanger::OnGameUpdate);
     }
 
@@ -88,14 +85,10 @@ namespace cheat::feature
         return instance;
     }
 
-    static void MoleMole_PlayerModule_EntityAppear_Hook(app::MoleMole_PlayerModule* __this, app::Proto_SceneEntityInfo* entity, app::VisionType__Enum type, uint32_t infoParam, MethodInfo* method)
+    void EmotionChanger::OnGameUpdate()
     {
-        CALL_ORIGIN(MoleMole_PlayerModule_EntityAppear_Hook, __this, entity, type, infoParam, method);
-        onEntityAppear = false;
-    }
+        auto& animationChanger = AnimationChanger::GetInstance();
 
-	void EmotionChanger::OnGameUpdate()
-	{
         if (!f_Enabled)
             return;
 
@@ -140,19 +133,19 @@ namespace cheat::feature
             emotions.push_back(il2cppi_to_string(emotionsArray->vector[i]->fields.name).c_str());
         }
 
-        if (!onEntityAppear && isFull)
+        if (!animationChanger.onEntityAppear && isFull)
         {
             emotions.clear();
             phonemes.clear();
             isFull = false;
-            onEntityAppear = true;
+            animationChanger.onEntityAppear = true;
         }
 
         if (f_ApplyKey.value().IsPressed())
         {
             app::EmoSync_SetPhoneme(reinterpret_cast<app::EmoSync*>(emoComponent), string_to_il2cppi(f_Phonemes.value()), 0.0F, nullptr);
             app::EmoSync_SetEmotion(reinterpret_cast<app::EmoSync*>(emoComponent), string_to_il2cppi(f_Emotions.value()), 0.0F, nullptr);
-            app::EmoSync_EmoFinish(reinterpret_cast<app::EmoSync*>(emoComponent),nullptr);
+            app::EmoSync_EmoFinish(reinterpret_cast<app::EmoSync*>(emoComponent), nullptr);
             app::EmoSync_PhoFinish(reinterpret_cast<app::EmoSync*>(emoComponent), nullptr);
         }
 
@@ -163,5 +156,5 @@ namespace cheat::feature
             app::EmoSync_EmoFinish(reinterpret_cast<app::EmoSync*>(emoComponent), nullptr);
             app::EmoSync_PhoFinish(reinterpret_cast<app::EmoSync*>(emoComponent), nullptr);
         }
-	}
+    }
 }

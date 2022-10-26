@@ -273,6 +273,9 @@
     <ClInclude Include="src\user\cheat\misc\BlockWindSeed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\visuals\EmotionChanger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />
@@ -502,6 +505,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\misc\BlockWindSeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\cheat\visuals\EmotionChanger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
