@@ -20,6 +20,7 @@
 #include <cheat/player/NoClip.h>
 #include <cheat/player/RapidFire.h>
 #include <cheat/player/AutoRun.h>
+#include <cheat/player/FallControl.h>
 
 #include <cheat/world/AutoLoot.h>
 #include <cheat/world/DialogSkip.h>
@@ -61,7 +62,7 @@
 #include <cheat/visuals/TextureChanger.h>
 #include <cheat/visuals/FreeCamera.h>
 #include <cheat/visuals/AnimationChanger.h>
-#include <cheat/player/FallControl.h>
+#include <cheat/visuals/EmotionChanger.h>
 
 #include "GenshinCM.h"
 
@@ -136,7 +137,8 @@ namespace cheat
 			FEAT_INST(EnablePeeking),
 			FEAT_INST(TextureChanger),
 			FEAT_INST(FreeCamera),
-			FEAT_INST(AnimationChanger)
+			FEAT_INST(AnimationChanger),
+			FEAT_INST(EmotionChanger)
 			
 			});
 #undef FEAT_INST

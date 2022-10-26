@@ -355,6 +355,13 @@ DO_APP_FUNC(0x05A80510, int32_t, Camera_get_pixelHeight, (Camera* __this, Method
 DO_APP_FUNC(0x05A322F0, int32_t, Screen_get_width, (MethodInfo* method));
 DO_APP_FUNC(0x05A32280, int32_t, Screen_get_height, (MethodInfo* method));
 
+DO_APP_FUNC(0x04CCF9E0, void, EmoSync_SetEmotion, (EmoSync* __this, String* emotionName, float blendTime, MethodInfo* method));
+DO_APP_FUNC(0x04CCFE40, void, EmoSync_SetPhoneme, (EmoSync* __this, String* phonemeName, float blendTime, MethodInfo* method));
+DO_APP_FUNC(0x04CCF5F0, void, EmoSync_ResetPhoneme, (EmoSync* __this, bool playPost, MethodInfo* method));
+DO_APP_FUNC(0x04CCF4B0, void, EmoSync_ResetEmotion, (EmoSync* __this, bool playPost, MethodInfo* method));
+DO_APP_FUNC(0x04CCE610, void, EmoSync_EmoFinish, (EmoSync* __this, MethodInfo* method));
+DO_APP_FUNC(0x04CCEE60, void, EmoSync_PhoFinish, (EmoSync* __this, MethodInfo* method));
+
 DO_APP_FUNC(0x05AB3F30, void, Animator_Play, (Animator* __this, String* stateName, int32_t layer, float normalizedTime, MethodInfo* method));
 DO_APP_FUNC(0x05AB40B0, void, Animator_Rebind, (Animator* __this, MethodInfo* method));
 DO_APP_FUNC(0x05AB4610, float, Animator_get_speed, (Animator* __this, MethodInfo* method));

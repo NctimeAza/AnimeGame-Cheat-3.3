@@ -3,12 +3,10 @@
 
 #include <helpers.h>
 #include <cheat/events.h>
-#include <misc/cpp/imgui_stdlib.h>
 #include <cheat/game/EntityManager.h>
 
 namespace cheat::feature
 {
-    static bool onEntityAppear = false;
     static void MoleMole_PlayerModule_EntityAppear_Hook(app::MoleMole_PlayerModule* __this, app::Proto_SceneEntityInfo* entity, app::VisionType__Enum type, uint32_t infoParam, MethodInfo* method);
     std::vector<std::string> animations;
 
@@ -79,8 +77,9 @@ namespace cheat::feature
     // Taiga#5555: Called when you switch characters. Feel free to get rid of this hook if you find a better function.
     static void MoleMole_PlayerModule_EntityAppear_Hook(app::MoleMole_PlayerModule* __this, app::Proto_SceneEntityInfo* entity, app::VisionType__Enum type, uint32_t infoParam, MethodInfo* method)
     {
+        auto& animationChanger = AnimationChanger::GetInstance();
         CALL_ORIGIN(MoleMole_PlayerModule_EntityAppear_Hook, __this, entity, type, infoParam, method);
-        onEntityAppear = false;
+        animationChanger.onEntityAppear = false;
     }
 
     // Feel free to refactor.

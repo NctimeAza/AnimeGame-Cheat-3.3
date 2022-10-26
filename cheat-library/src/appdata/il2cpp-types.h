@@ -12398,6 +12398,78 @@ namespace app {
         struct AnimatorController__Fields fields;
     };
 
+    enum class ElementManager_Type__Enum : int32_t {
+        NONE = -1,
+        CLIP = 0x00000000,
+        FRAME = 0x00000001,
+    };
+
+    struct EmoMgrUser__Fields {
+        struct MonoBehaviour__Fields _;
+        ElementManager_Type__Enum _type;
+        struct BaseEmoAnimation* _emoAnim;
+        struct EmoStateManager* _emoState;
+        bool _isTickable;
+    };
+
+    struct __declspec(align(8)) BaseShape__Fields {
+        struct String* name;
+        struct List_1_System_String_* elements;
+    };
+
+    struct BaseShape {
+        struct BaseShape__Class* klass;
+        MonitorData* monitor;
+        struct BaseShape__Fields fields;
+    };
+
+    struct BaseShape__Array {
+        struct BaseShape__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        struct BaseShape* vector[32];
+    };
+
+    struct __declspec(align(8)) List_1_miHoYoEmotion_BaseShape___Fields {
+        struct BaseShape__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_miHoYoEmotion_BaseShape_ {
+        struct List_1_miHoYoEmotion_BaseShape___Class* klass;
+        MonitorData* monitor;
+        struct List_1_miHoYoEmotion_BaseShape___Fields fields;
+    };
+
+    struct EmoSync__Fields {
+        struct EmoMgrUser__Fields _;
+        bool isManekin;
+        struct String* defaultEmotion;
+        struct String* resetEmotion;
+        struct String* resetPhoneme;
+        struct EmotionSetData* _setData;
+        struct List_1_miHoYoEmotion_BaseShape_* phonemes;
+        struct List_1_miHoYoEmotion_BaseShape_* emotions;
+        struct Dictionary_2_System_String_miHoYoEmotion_BaseShape_* _phonemeCache;
+        struct Dictionary_2_System_String_miHoYoEmotion_BaseShape_* _emotionCahce;
+        struct String* _curEmotion;
+        struct String* _preEmotion;
+        struct String* _lastEmotion;
+        struct String* _curPhoneme;
+        struct String* _prePhoneme;
+        struct EmoSync_EmoParamCache* _emoParamCache;
+        bool _emotionFromTemplate;
+    };
+
+    struct EmoSync {
+        struct EmoSync__Class* klass;
+        MonitorData* monitor;
+        struct EmoSync__Fields fields;
+    };
+
     enum class Proto_ProtEntityType__Enum : int32_t {
         ProtEntityNone = 0x00000000,
         ProtEntityAvatar = 0x00000001,

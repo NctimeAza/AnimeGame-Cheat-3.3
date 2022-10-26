@@ -4,28 +4,23 @@
 
 namespace cheat::feature
 {
-
-	class AnimationChanger : public Feature
+	class EmotionChanger : public Feature
 	{
 	public:
 		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<std::string> f_Animation;
+		config::Field<std::string> f_Phonemes;
+		config::Field<std::string> f_Emotions;
 		config::Field<Hotkey> f_ApplyKey;
 		config::Field<Hotkey> f_ResetKey;
-		config::Field<int> f_Delay;
-		config::Field<bool> f_Debug;
-
-		bool onEntityAppear = false;
 
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;
 		virtual bool NeedStatusDraw() const override;
 		void DrawStatus() override;
-		static AnimationChanger& GetInstance();
+		static EmotionChanger& GetInstance();
 		void OnGameUpdate();
 
 	private:
-		AnimationChanger();
+		EmotionChanger();
 	};
 }
-
