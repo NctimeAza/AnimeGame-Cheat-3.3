@@ -173,8 +173,6 @@ namespace cheat::feature
     // Changes position of monster, if mob vacuum enabled.
     void MobVacuum::OnGameUpdate()
     {
-        static auto positions = new std::map<uint32_t, app::Vector3>();
-
         if (!f_Enabled)
             return;
 
@@ -190,7 +188,6 @@ namespace cheat::feature
             return;
 
         auto& manager = game::EntityManager::instance();
-        auto newPositions = new std::map<uint32_t, app::Vector3>();
         for (const auto& entity : manager.entities())
         {
             if (!IsEntityForVac(entity))
@@ -205,25 +202,15 @@ namespace cheat::feature
             }
 
             uint32_t entityId = entity->runtimeID();
-            app::Vector3 entityRelPos = positions->count(entityId) ? (*positions)[entityId] : entity->relativePosition();
-            app::Vector3 newPosition = {};
-            if (app::Vector3_Distance(entityRelPos, targetPos, nullptr) < 0.1)
-            {
-                newPosition = targetPos;
-            }
-            else
+            app::Vector3 entityRelPos = entity->relativePosition();
+            if (app::Vector3_Distance(entityRelPos, targetPos, nullptr) > 0.1)
             {
                 app::Vector3 dir = GetVectorDirection(entityRelPos, targetPos);
                 float deltaTime = app::Time_get_deltaTime(nullptr);
-                newPosition = entityRelPos + dir * f_Speed * deltaTime;
+                app::Vector3 newPosition = entityRelPos + dir * f_Speed * deltaTime;
+                entity->setRelativePosition(newPosition);
             }
-
-            (*newPositions)[entityId] = newPosition;
-            entity->setRelativePosition(newPosition);
         }
-
-        delete positions;
-        positions = newPositions;
     }
 
     // Mob vacuum sync packet replace.
