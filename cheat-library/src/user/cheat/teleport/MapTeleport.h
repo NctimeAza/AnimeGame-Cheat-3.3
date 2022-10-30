@@ -15,6 +15,7 @@ namespace cheat::feature
 		config::Field<bool> f_DetectHeight;
 		config::Field<float> f_DefaultHeight;
 		config::Field<Hotkey> f_Key;
+		config::Field<bool> f_UseTransPosition;
 
 		static MapTeleport& GetInstance();
 
