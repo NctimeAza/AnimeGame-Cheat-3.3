@@ -4158,6 +4158,13 @@ namespace app {
         DGAHPCMJBNI = 0x00000013,
     };
 
+    enum class MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum : int32_t {
+        Default = 0x00000000,
+        Appear = 0x00000001,
+        Revive = 0x00000002,
+        Reuse = 0x00000003,
+    };
+
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
         struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
@@ -4165,7 +4172,7 @@ namespace app {
         struct Config_EntityExcelConfig* excelConfig;
         uint32_t _runtimeID_k__BackingField;
         uint32_t _preRuntimeID_k__BackingField;
-        uint32_t _configID_k__BackingField;
+        uint32_t _configID_k__BackingField; //0x30
         uint32_t _questID_k__BackingField;
         uint32_t _switchToQuestID_k__BackingField;
         struct SimpleSafeUInt32 campID;
@@ -4187,7 +4194,9 @@ namespace app {
         struct EntityQueryIndex* _queryIndex;
         struct AbilityComponentProxy* _abilityProxy;
         struct TokenManager* _tokenMgr;
-        VisionType__Enum _NLFDIGCIFIA_k__BackingField;
+        VisionType__Enum _disappearVisionType_k__BackingField;
+        bool _createDuringReconnectingSceneInitFinish_k__BackingField;
+        MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum reason; //new
         bool _MMIHONCELFL_k__BackingField;
         bool PLEPGEFAIND;
         bool _GDKDNDAGBFB_k__BackingField;
@@ -4212,6 +4221,7 @@ namespace app {
         struct Action_1_BaseEntity_* onSetAliveFalseCallback;
         bool _isActive;
         struct Action_1_BaseEntity_* preAnimatorInitUpdateCallback;
+        struct Action* gameObjectReUseCallback;
         bool _needSetActiveOnEntityReady;
         bool _setActiveOnEntityReady;
         struct Action_2_BaseEntity_Boolean_* onSetActiveCallback;
@@ -4229,7 +4239,7 @@ namespace app {
         struct FixedStack_1_System_Single_* _timeScaleStack;
         struct LCAbilityState* _lcAblityState;
         uint32_t _nextComponentID;
-        EntityType__Enum_1 entityType;
+        EntityType__Enum_1 entityType;//i've gone completely mental
         bool _isAuthority;
         uint32_t authorityPeerId;
         bool OMMGADFPHPB;
@@ -4251,13 +4261,30 @@ namespace app {
         bool LOMGNEIMJKI;
         TickState__Enum _currentAnimatorTickState;
         struct EntityTickBalanceProxy* _tickBalanceProxy;
-        bool isKinematicRigidbody;
+        bool IIFCMNHLCHL;
+        bool GMOADGIJANE;
+        bool NNHFNNPGBCI;
+        bool ELMNLBONMPL;
+        bool MCOBNCAHKCM;
         bool _bIgnoreIntervalTick_k__BackingField;
         bool _AFKDABPOMLB_k__BackingField;
         float __fullTickSqrMag_k__BackingField;
+        float /*System.Single*/ OBPHJIPHPED;
         int32_t _greaterToDisableInterval_k__BackingField;
         struct Func_1_Single_* _getBalanceTickDeltaTimeHandler;
         struct Func_1_Boolean_* _getRequestPauseHandler;
+        uint32_t HAKCFBBJAJK;
+        void* /*NILJEBJDOIO*/ CHPKLGPMNKN;
+        void* /*NILJEBJDOIO*/ IJEDOKHOMCE;
+        float /*System.Single*/ OHCHKCMMDGJ;
+        float /*System.Single*/ ENBPDIANENI;
+        float /*System.Single*/ JFLFNLHBDGH;
+        float /*System.Single*/ BBPGFCOFEDM;
+        float /*System.Single*/ KIBDFIKEGMA;
+        float /*System.Single*/ CJGNHFLEMDL;
+        struct String* OHJKOCABFBN;
+        float /*System.Single*/ FEGPPAEJMOM;
+        float /*System.Single*/ JDCOMPOELCJ;
         uint64_t animatorConfigPath;
         struct Config_ConfigAnimator* _animatorConfig;
         struct AnimatorOverrideController* _animatorOverrideController;
@@ -5241,6 +5268,10 @@ namespace app {
         bool _isPlayerTransStart;
         uint32_t _enterReaon;
         struct Coroutine* _delayTransmitInCSCoroutine;
+        uint32_t IAGMLKLMLNP;
+        struct ILuaActor* FIGHCFNCEID;
+        struct Action_1_ILuaActor_* CDCCHDNMBOD;
+        struct Action_1_ILuaActor_* ADIHDGEDMDD;
     };
 
     struct MoleMole_LoadingManager {
@@ -6297,6 +6328,12 @@ namespace app {
     };
 
     struct __declspec(align(8)) MoleMole_MapModule__Fields {
+        float /*public const float*/ IPJBCHGEBAF;
+        float /*public const float*/ AEJHABEPNLH;
+        float /*public const float*/ NLIBJEDBIHG;
+        float /*public const float*/ HAPIAOJAFBC;
+        float /*public const float*/ KFCKMLKCAKM;
+        struct String* /*private const string*/ BLABAKGDCII;
         struct Dictionary_2_System_UInt32_Dictionary_2_System_UInt32_MoleMole_MapModule_MoleMole_MapModule_ScenePointData_* _scenePointDics;
         struct Vector3 _bigworldPos;
         struct String* _activityLimitRegion;
@@ -6326,6 +6363,7 @@ namespace app {
         uint32_t _homeworldRegionSceneId_k__BackingField;
         uint32_t _ODLFKOAMDDB_k__BackingField;
         struct List_1_System_String_* HAEOLGFHPEN;
+        void* /*private List<string>*/ LPEPLJMMALJ;
         struct Dictionary_2_System_UInt32_Dictionary_2_System_UInt32_MoleMole_MapModule_MoleMole_MapModule_CityData_* _cityDataDic;
         struct Dictionary_2_System_UInt32_Dictionary_2_System_UInt32_MoleMole_MapModule_MoleMole_MapModule_WorldAreaData_* _worldAreaDataDic;
         struct Dictionary_2_System_UInt32_System_UInt32_* _areaId2ExplorePointDic;
@@ -6335,6 +6373,7 @@ namespace app {
         struct Dictionary_2_System_UInt32_List_1_System_UInt32_* _dungeonToEntrytDic;
         struct Dictionary_2_System_UInt32_List_1_System_UInt32_* _dungeonToDateDic;
         uint32_t _dungeonCloseTime;
+        void* /*private static Action<OLBKDDMDDOO>*/ GBINNDGFHHB;
         struct Dictionary_2_System_String_MoleMole_BaseEntity_* _forceFieldDic;
         bool _playerAudioOnEnterDungeonSuccess;
         void* _KNNFAGHICKN_k__BackingField;
@@ -6343,6 +6382,7 @@ namespace app {
         struct Dictionary_2_System_UInt32_System_Boolean_* _sceneUnlockDic;
         struct Dictionary_2_System_UInt32_List_1_System_UInt32_* KGKDFINOOHM;
         struct List_1_MoleMole_MapModule_MoleMole_MapModule_ScannerInfo_* _scannerInfoList;
+        void* /*private Dictionary<uint, uint>*/ GOKLHEPNIPF;
         struct List_1_MoleMole_MapAreaMistData_* _mistDataList;
         struct List_1_MoleMole_MapAreaMistData_* _openMistDataList;
         struct List_1_MoleMole_MapAreaMistData_* _newOpenMistDataList;
@@ -7181,64 +7221,84 @@ namespace app {
         struct SafeFloat criticalBase;
         struct SafeFloat antiCriticalBase;
         struct SafeFloat physicalSubHurtBase;
-        struct SafeFloat DINKMJIPOLP;
-        struct SafeFloat MJKLPKAJEDM;
-        struct SafeFloat PCBONKLDPJF;
-        struct SafeFloat OBOEJOAONGI;
-        struct SafeFloat NBPJLMPIFCF;
-        struct SafeFloat BIBLDMDFDGD;
-        struct SafeFloat IHADIBIDKNO;
-        struct SafeFloat ADNOICOFEIC;
-        struct SafeFloat JKDDCOABCFN;
-        struct SafeFloat CPFPHOBMOBG;
-        struct SafeFloat DPPPMMFPFMC;
-        struct SafeFloat HHALBNCGCCD;
-        struct SafeFloat OMAHJDLFDPM;
-        struct SafeFloat HCLCJEEBJAM;
-        struct SafeFloat AJCMAMAEIFP;
-        struct SafeFloat FBBOHFOHBBO;
-        struct SafeFloat BFBJDMHDIIK;
-        struct SafeFloat GFHGKKFMDDC;
-        struct SafeFloat DOCHDFGHAIA;
-        struct SafeFloat AOLBAEIPBFN;
-        struct SafeFloat OLJDCHBEFDD;
-        struct SafeFloat KDKHNMABBAN;
-        struct SafeFloat FCFGDCFFLAO;
-        struct SafeFloat DINJIOFFNJJ;
-        struct SafeFloat NIGHFMLFBBF;
-        struct SafeFloat DNJNHPGCLED;
-        struct SafeFloat PBHALEAGKEM;
-        struct SafeFloat GIDIDIDOIOA;
-        struct SafeFloat KIHOJPKOAHD;
-        struct SafeFloat ICAKJDDKOAL;
-        struct SafeFloat JAFHILOEMCN;
-        struct SafeFloat AHBOANIHINP;
-        struct SafeFloat HNCEJBPDDJC;
-        struct SafeFloat KOINAOOJFKD;
-        struct SafeFloat AOKGLHMFCNP;
-        struct SafeFloat PGEDHNCFCAF;
-        struct SafeFloat EKCCCIAFICJ;
-        struct SafeFloat EDNKKBHNKJI;
-        struct SafeFloat EMKCJHIBEFG;
-        struct SafeFloat LIJEOKJMEGM;
-        struct SafeFloat BBPIBANIFPO;
-        struct SafeFloat ILFBCLMNJIP;
-        struct SafeFloat DBAOFMEPGHA;
-        struct SafeFloat ICMJJGBFGHN;
-        struct SafeFloat IMLHNJINAPD;
-        struct SafeFloat AKCMACBKNFB;
-        struct SafeFloat GPPNGOJICNB;
-        struct SafeFloat MJLLGIMKHKP;
-        struct SafeFloat EOHEBGCFGBJ;
-        struct SafeFloat KCDHGKBKGJO;
-        struct SafeFloat HJEOHAHBJMB;
-        struct SafeFloat PHPNIKDGAFF;
-        struct SafeFloat ILAIIGOIKDD;
-        struct SafeFloat NEOOGAIOOOI;
-        struct SafeFloat MFPKIEIECHD;
-        struct SafeFloat GDGNBKHCFCG;
-        struct SafeFloat AKKJPNOGPAG;
-        struct SafeFloat AKEPNPJOOPI;
+        struct SafeFloat GLLHLKAONCK;
+        struct SafeFloat AMMLOFAEBPF;
+        struct SafeFloat NMOEINCFOIL;
+        struct SafeFloat MDJFMKMEIIN;
+        struct SafeFloat BHLONKDLCLC;
+        struct SafeFloat NJPBPIJDNBD;
+        struct SafeFloat GDEJAPKOKFN;
+        struct SafeFloat BEMFDLDEKAF;
+        struct SafeFloat GNFEHPLABAM;
+        struct SafeFloat AGJJLGONEPJ;
+        struct SafeFloat ALHFLGABIBG;
+        struct SafeFloat NAFKFNENFAE;
+        struct SafeFloat GMLBLPOKMPM;
+        struct SafeFloat MHDHODBFKOJ;
+        struct SafeFloat DFAMAMIOLDF;
+        struct SafeFloat HIJAAGIAPBJ;
+        struct SafeFloat BGGDHGGOIIB;
+        struct SafeFloat IGPLDEFLKAP;
+        struct SafeFloat LGJFLMNLEBJ;
+        struct SafeFloat ECKCEIIANJI;
+        struct SafeFloat EILLOLJEPBP;
+        struct SafeFloat FDICILELCAM;
+        struct SafeFloat KGKBEKECCKL;
+        struct SafeFloat OEHJIEGCDCD;
+        struct SafeFloat GLKLDAGLMLD;
+        struct SafeFloat OPMENIDKNGK;
+        struct SafeFloat LNCCLOMPFHJ;
+        struct SafeFloat LJGDKDNPCFL;
+        struct SafeFloat LAHCEIHKHEH;
+        struct SafeFloat FENPPKOPDBD;
+        struct SafeFloat JPCAGGFKDFA;
+        struct SafeFloat JOOMCGNILPB;
+        struct SafeFloat ECIBKJPMIJP;
+        struct SafeFloat KIFAFBPPIDJ;
+        struct SafeFloat BFFIGNMHPJC;
+        struct SafeFloat JJHFKGEPMKO;
+        struct SafeFloat HKKDJJOFCIM;
+        struct SafeFloat KJFMGICOGEE;
+        struct SafeFloat HOFOFLJJPGB;
+        struct SafeFloat CLIKAEMOJLA;
+        struct SafeFloat HOEBPCCODAJ;
+        struct SafeFloat PEKFECEPDEL;
+        struct SafeFloat GPKMLFEGPHE;
+        struct SafeFloat GFAEBLKAJNB;
+        struct SafeFloat HJADDAMBMJA;
+        struct SafeFloat BLIFPELOGIN;
+        struct SafeFloat BKIPGJPBPMK;
+        struct SafeFloat DFCCKCEIEGB;
+        struct SafeFloat IGAMOIDDIFE;
+        struct SafeFloat EOBHDMLFNGI;
+        struct SafeFloat MIFGEHHLABD;
+        struct SafeFloat LKJMENMPGBO;
+        struct SafeFloat FGICMKCHLFG;
+        struct SafeFloat KHEHPPLEGCF;
+        struct SafeFloat GHCNGBFPABP;
+        struct SafeFloat OFAGIKILIEB;
+        struct SafeFloat BPJGHCMEAJA;
+        struct SafeFloat HHLNPMMOEDH;
+        struct SafeFloat DAJCINDIGAN;
+        struct SafeFloat KBDMLOCNCMH;
+        struct SafeFloat DIFHLDCEOIH;
+        struct SafeFloat NCOFCJBGPJC;
+        struct SafeFloat IPCJMLNCPKM;
+        struct SafeFloat OCIBHGOMJFF;
+        struct SafeFloat POMOHEHHMGH;
+        struct SafeFloat DKOJCAPOFBK;
+        struct SafeFloat EHHLLDIIILD;
+        struct SafeFloat BOLFGJOHOIA;
+        struct SafeFloat KPDAAOIPIOL;
+        struct SafeFloat ILDKJPKJEIA;
+        struct SafeFloat JLGMEOHCIHH;
+        struct SafeFloat APEFFAPLJHB;
+        struct SafeFloat MOPNGNANEGC;
+        struct SafeFloat AKNEEOAAKMN;
+        struct SafeFloat JLKKEADCBJD;
+        struct SafeFloat IAPMABEMEMG;
+        struct SafeFloat HCBNKNMHPLF;
+        struct SafeFloat HCEFAFCDMPC;
         ElementType__Enum elemType;
         struct SafeFloat weight;
         struct SafeFloat endure;
@@ -7971,6 +8031,8 @@ namespace app {
         struct BaseEntity* _entity;
         bool _isToBeRemoved;
         bool _enabled;
+        bool _dynamicAdd;
+        bool _dynamicRemove;
         bool hasTick;
         bool hasLateTick;
         bool _selfHasTick;
@@ -7998,11 +8060,14 @@ namespace app {
         struct Action_1_Single_* _latePreTickMethodForEntityTickManager;
         struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager;
         bool needRetarget;
+        bool isCleared;
         bool isInited;
         bool isPreInited;
+        bool isPreInitedPost;
         bool hasCallEntityReady;
         bool _isDestroied;
         bool _listenEventValid_k__BackingField;
+        void* /*private static IList<BaseComponentPlugin>*/ EMPTY_PLUGINLIST;
         struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap;
         struct List_1_MoleMole_BaseComponentPlugin_* _pluginList;
         struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins;
@@ -8306,6 +8371,15 @@ namespace app {
     struct VCHumanoidMove__Fields {
         struct VCBaseMove__Fields _;
         Config_BodyType__Enum moveModelType;
+        float AVATAR_DEFAULT_HEIGHT;
+        float AVATAR_RADIUS_HEIGHT_RATIO;
+        float AVATAR_MOVE_COLLIDER_UP_BOTTOM_HEIGHT_RATIO;
+        float AVATAR_MOVE_COLLIDER_DOWN_BOTTOM_HEIGHT_RATIO;
+        float AVATAR_KNEE_HEIGHT_RATIO;
+        float AVATAR_WAIST_HEIGHT_RATIO;
+        float DYNAMIC_BARRIER_HEIGHT_RATIO;
+        float AVATAR_FOOT_POSITION_OFFSET;
+        float WATERFALL_DROP_ANGLE;
         float minClimbSlope;
         float maxClimbSlope;
         float maxMoveSlope;
@@ -8370,6 +8444,7 @@ namespace app {
         struct HumanoidMoveEffectPlugin* _effectPlugin;
         struct VCLevel* vcLevel;
         struct LevelMoveScenePropPlugin* _scenePropPlugin;
+        float DEFAULT_BLINK_DIST;
         struct VCAvatarPerform* vcPerform;
         float orthogonalVelocityRatio;
         struct VCHumanoidMoveData* _humanoidMoveData;
@@ -8385,9 +8460,11 @@ namespace app {
         bool isJamedOverMonster;
         float overrideMoveSpeedRatio;
         struct Vector3 lastLandVel;
+        bool climbFixed;
         bool enableLandExternal;
         int32_t _lastAnimatorStateShortNameHash;
         bool _needFaceToAnimParamEver;
+        float FIX_DIR_4_MOVE_SPEED;
         float stayInAirCountToTrampoline;
         struct LCAbilityState* lcAblityState;
         struct VCAvatarEquipController* _equipController;
@@ -8395,10 +8472,23 @@ namespace app {
         int32_t repeatlySetPosFrameCount;
         struct Collider__Array* tempCollider;
         uint64_t disableChangeAvatarTime;
+        float SAFE_APPEAR_XZ_DISTANCE;
+        float SAFE_APPEAR_XZ_RAY_DISTANCE;
+        float SAFE_APPEAR_Y_RAY_DISTANCE;
+        float SAFE_APPEAR_ALLOW_SLOPE_ANGLE;
+        int32_t _safeAppearPositionCheckLayer;
+        struct RaycastHit safeAppearPositionCheckHitResult;
+        float _checkAvatarHeight;
+        void* /*System.Collections.Generic.List`1*/ _avatars;
+        struct Vector3__Array* _avatarPositions;
+        struct Int32__Array* _avatarIndex;
+        int32_t _activeAvatarNumber;
+        int32_t _curCheckDynamicBarrierFixedFrameOverall;
         int32_t _lastCheckDynamicBarrierFrame;
         struct HashSet_1_System_UInt32_* _ignoreCollisionEntities;
         struct HashSet_1_System_UInt32_* _nearbyDynamicBarriers;
         struct Vector3 _lastCheckDynamicBarrierPostion;
+        float DYNAMIC_BARRIER_NEARBY_RANGE;
     };
 
     struct VCHumanoidMove {
@@ -9018,6 +9108,7 @@ namespace app {
         struct List_1_MoleMole_BaseContextComponent_* _baseComponentList;
         struct List_1_MoleMole_BaseContextComponent_* _tickComponentList;
         struct List_1_MoleMole_BaseContextComponent_* _lateTickComponentList;
+        struct List_1_MoleMole_BaseContextComponent_* _handleAnyNotifyComponentList;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentNotifyRegister;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentPacketRegister;
         struct Dictionary_2_System_Int32_List_1_MoleMole_BaseContextComponent_* _baseComponentActionEventRegister;
@@ -9045,6 +9136,7 @@ namespace app {
         struct Dictionary_2_System_Int32_UniRx_Tuple_3_* _storedJoypadIconStateIns;
         struct Dictionary_2_System_String_HHOMOPLIOLJ_* _name2JoypadController;
         int32_t _pcCursorMode;
+        bool _doJoypadLostFocusBeforeClearView;
         bool _updateJoypadUIModule;
         bool _contextClosed;
         struct List_1_MoleMole_BaseContext_JoypadUIModulesList_* _joypadUIModules;
@@ -9089,6 +9181,7 @@ namespace app {
         struct Rect _markContainerViewport;
         struct MoleMole_InfoTextDialogContext* _infoTextDialog;
         int32_t _markLayer;
+        float /*System.Single*/ MLEAIBJIHDH;
         uint32_t _markId;
         struct GeneralMarkData* _trackingMark;
         MoleMole_Config_MarkType__Enum _markType;
@@ -9100,6 +9193,7 @@ namespace app {
         MoleMole_Config_MarkIconType__Enum _customMarktype;
         bool EILBFDJFEFC;
         bool LJFOLIOPPAM;
+        float /*System.Single*/ JJLJHDKIDNF;
         bool OBMFEPDBFPB;
         uint32_t _customMarkTrackMonsterID;
         uint32_t _customMarkTrackQuestID;
@@ -9110,6 +9204,8 @@ namespace app {
         struct MoleMole_ZoomAudioComponent* _zoomAudioComp;
         struct Dictionary_2_MoleMole_MonoMapMark_UnityEngine_GameObject_* trackingIndictor;
         struct Coroutine* GEAEMOFMCKM;
+        void* /*System.Collections.Generic.List`1*/ EKEKAIMJGNC;
+        void* /*System.Collections.Generic.List`1*/ IBIFLJKHDHL;
         bool _FDMGGBLMOGI_k__BackingField;
         bool EFMEIJLJOLD;
         float BJKOGCAPLDL;
@@ -9126,11 +9222,17 @@ namespace app {
         struct GameObject* _playerIndicator;
         struct Vector2 _newPos;
         struct Dictionary_2_System_UInt32_UnityEngine_GameObject_* _questAreaMarkDic;
+        struct String* DMGPIJJECMG;
         struct GameObject* _lockBlueObj;
         bool _canTrans;
         uint32_t _unlockAreaID;
+        struct String* FICEOEDJIPK;
         struct GameObject* _lockRedObj;
         bool _showDisableLimitRegion;
+        int32_t AAMNHIMHLIK;
+        int32_t KKCMIIEBDPK;
+        int32_t FHCAOJMCFKM;
+        int32_t ILECPCMHAOJ;
         struct PointerEventData* _cursorPointer;
         struct List_1_UnityEngine_EventSystems_RaycastResult_* _raycastResults;
         struct GameObject* _currOverGameObject;
@@ -9143,9 +9245,18 @@ namespace app {
         struct List_1_MoleMole_Config_MapTagDataConfig_* _mapTagConfig;
         uint32_t _sceneToLoad;
         int32_t _currSelectIndex;
+        int32_t EPNCFIJDMKN;
+        bool OGCCFNHBALD;
+        bool CICFMHDGHCP;
+        bool IANBKICIBAN;
+        bool HJKNBDMJHCM;
+        bool JAEPKDIIEGF;
+        bool ADMLIDCNHHH;
+        bool LMCHKHNDKLA;
         struct MonoMapMark* _selectedDungeonMark;
         uint32_t BOSS_DUNGEON_ENTRY_ID;
         MoleMole_InLevelMapPageContext_MoleMole_InLevelMapPageContext_MarkTipsContentType__Enum _markTipsContentType;
+        struct UInt32__Array* MDFOBDBPNBG;
         struct List_1_MoleMole_BagItem_* _reward;
         struct List_1_MoleMole_Config_IdCountStrConfig_* _rewardPreviewList;
         float KIOCGLBCMIN;
@@ -9156,6 +9267,7 @@ namespace app {
         struct MoleMole_ItemTipsDialogHelper _itemTipsHelper;
         struct Coroutine* _updateFarmFieldCoroutine;
         struct GameObject* _newMaxLevelGO;
+        struct String* FEJIGHDEAKO;
         bool DPNAFBKGENN;
         bool BOBCGLGMNIP;
         struct MoleMole_RewardPreviewComponent* _moonfinTrialRewardPreviewComponent;
@@ -9185,6 +9297,7 @@ namespace app {
 
     struct TalkDialogContext__Fields {
         struct BaseDialogContext__Fields _;
+        int32_t BBBJNHFAGEC;
         bool _inCoopSelect;
         bool _inCoopTemperamentSelect;
         bool _coopSelectShow;
@@ -9196,15 +9309,12 @@ namespace app {
         struct Config_ConfigDialogScheme* _currDialog;
         float _protectTime;
         bool _autoClick;
-        struct String* CountDownProgressPrefab;
-        uint32_t _handle;
-        struct GameObject* _countDownGo;
-        struct MonoTalkCountDownProgress* _countDownScript;
-        struct List_1_SelectItemParam_* _selectParamList;
-        struct Action* _updateGrpSelectBottom;
-        struct List_1_System_UInt32_* _selectDialogIdList;
+        void* /*private List<EFHJDLFFCPO>*/ EIGCPCDAOHO;
+        void* /*private Action*/ JEGCFOEACOA;
+        void* /*private List<uint>*/ KGMFJCLBCEP;
         bool OBDPLKKDFBN;
         bool GGFOHLGGCHI;
+        void* /*GAAFMMJFHNJ*/ FOAKHOBIOOE;
         struct Action* _onFreeClick;
         float _interactableTime;
         float _autoTalkInteractableTime;
@@ -9644,7 +9754,9 @@ namespace app {
         struct Action_3_BaseEntity_Config_MultiplyGlobalValue_ActorAbility_* _multiplyGlobalValueHandlerClosureDelegate;
         struct Action_4_BaseEntity_Config_MultiplyGlobalValue_ActorAbility_Single_* MEEAPCINNBE;
         struct Action_4_BaseEntity_String_Single_CPKJHKOJDIF_* LLAIOCNHNPM;
+        void* /*private static HashSet<uint>)*/ JICNGMNPOIA;
         struct List_1_MonoEffectProxyHandle_* _effectProxyListCache;
+        struct String* /*private const string*/ PJCEMMAGJHC;
         struct List_1_MonoEffectProxyHandle_* _effectProxyListCacheForChangFollowDampTime;
         struct List_1_UnityEngine_Vector3_* _pushedPosList;
         struct LCAbility* _owner;
@@ -9669,6 +9781,7 @@ namespace app {
         struct LCAbilityState* lcAbilityState;
         struct TokenManager* _tokenMgr;
         struct Func_3_Single_Object_Boolean_* _hanlderModifierThinkTimerUp;
+        void* /*private static List<FCHEFPKNGIA>*/ PPAOEPNAGAE;
         struct List_1_System_Nullable_1__3* _modifierThinkTimers;
         struct HashSet_1_TimerReceiver_* _modifierThinkTimersAffectedByTimeScale;
         struct HashSet_1_TimerReceiver_* _modifierThinkTimersAffectedByAlive;
@@ -9690,8 +9803,12 @@ namespace app {
         struct Dictionary_2_System_Int32_List_1_BaseAbilityMixin_* _listenEventMixins;
         struct List_1_BaseAbilityMixin_* _addListenEventMixins;
         struct List_1_BaseAbilityMixin_* _removeListenEventMixins;
-        int32_t CGNCPHPNGDB;
+        int32_t NAMAMKHJLIJ;
+        int32_t FNMKKFBAONI;
         bool IsImmuneDebuff;
+        void* /*public static List<string>*/ PAOOBPMFOMC;
+        void* /*public static List<int>*/ PNPNHNLOGJK;
+        void* /*private static List<CMJPIBHNCGH>*/ MNFPAKAJAOL;
         bool _isDuringInitAbility_k__BackingField;
         bool _isDuringChangeAbility_k__BackingField;
         struct Action_1_EvtEntityReadyPost_* _handleServerBuffChangedOnEntityReady;
@@ -10409,7 +10526,10 @@ namespace app {
         struct String* elementDecrateGroup;
         bool IEGOGMPMOAO;
         bool DNHFGAMIIJP;
+        int32_t /*public const int*/ FPEMAOPNFNG;
+        int32_t /*public const int*/ GNLLGOFJPOH;
         struct List_1_System_ValueTuple_3__5* CJNBCHLAKHE;
+        void* /*public static List<string>*/ EMMFOKKCAIG;
         struct Func_2_MoleMole_ActorModifier_Boolean_* HGAAHMCALBE;
         struct Action_3_MoleMole_Config_ElementReactionType_MoleMole_BaseEntity_Nullable_1_UnityEngine_Vector3_* GGOGFKDBFHJ;
         struct Action_3_MoleMole_Config_ElementReactionType_MoleMole_BaseEntity_Nullable_1_UnityEngine_Vector3_* MIIBJEAOIJI;
@@ -11002,6 +11122,9 @@ namespace app {
         struct EntityTimer* _targetFixTimer;
         struct Config_AvatarSkillDepotExcelConfig* _skillDepotConfig;
         bool toDoChargeSkill;
+        float JHJKKHBHEME;
+        int32_t FNLFMAKEJBE;
+        int32_t ANDNNGPPOAF;
         struct LCAvatarCombat_SkillInfo__Array* _currSkills;
         struct Dictionary_2_System_UInt32_SafeFloat_* _equipAffixCD;
         int32_t _attackModeTriggerID;
@@ -11009,6 +11132,11 @@ namespace app {
         struct List_1_System_ValueTuple_2__3* _affixToAdd;
         struct BaseShape2d* _curLockTargetShape;
         struct SimpleSafeFloat__Array* _curLockTargetWeightParams;
+        void* /*OverrideTargetingParams*/ JODMDGFHDFN;
+        float /*System.Single*/ MALEJDHJGJE;
+        float /*System.Single*/ JOLNMHKKDJK;
+        float /*System.Single*/ EBFLEFDIFCG;
+        float /*System.Single*/ EBHKGFEHELC;
         void* _lockTargetOverrideParams;
         struct List_1_LCAvatarCombat_LCAvatarCombat_HitBucketItem_* meleeBuckets;
         struct List_1_LCAvatarCombat_LCAvatarCombat_HitBucketItem_* rangedBuckets;
@@ -12202,12 +12330,14 @@ namespace app {
         struct Action_4_Int32_UnityEngine_AnimatorStateInfo_UnityEngine_AnimatorStateInfo_MoleMole_AnimatorStateChangeExtra_* onAnimatorStateTransitionFinish;
         struct Dictionary_2_System_Int32_Dictionary_2_System_Int32_List_1_System_Int32_* _activeAnimatorEventPatterns;
         struct Dictionary_2_System_Int32_System_Int32_* _filterOldPattern2newPattern;
+        void* /*private CBHEIDPFLMA*/ ADPHICHHJCD;
         struct Action_2_Int32_Single_* processNormalizedTimeActions;
         struct Queue_1_MoleMole_CompensateDiffInfo_* authorityEventQueue;
         struct Queue_1_MoleMole_CompensateDiffInfo_* remoteEventQueue;
         struct MoleMole_VCMoveData* _moveData;
         struct MoleMole_VCSyncAnimator* _vcSyncAnimator;
-        int32_t MAX_ALLOW_COMPENSATE_TIME;
+        int32_t ABAEBEEDIEO;
+        int32_t ONGLPKIBPIL;
         struct List_1_System_Int32_* _layerIndexes;
         struct Dictionary_2_System_Int32_MoleMole_VCAnimatorEvent_MoleMole_VCAnimatorEvent_AnimatorLayerItem_* _layerItems;
     };
