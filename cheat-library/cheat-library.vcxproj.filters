@@ -3598,5 +3598,11 @@
     <Image Include="res\icons\DendroHypostasis.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\ShokiNoKami.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\ShokiNoKami.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

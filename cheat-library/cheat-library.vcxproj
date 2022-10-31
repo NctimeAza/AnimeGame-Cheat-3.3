@@ -707,6 +707,7 @@
     <Image Include="res\iconsHD\ShikanoinHeizou.png" />
     <Image Include="res\iconsHD\Shogun.png" />
     <Image Include="res\iconsHD\ShogunateInfantry.png" />
+    <Image Include="res\iconsHD\ShokiNoKami.png" />
     <Image Include="res\iconsHD\ShrineOfDepth.png" />
     <Image Include="res\iconsHD\Shroomboar.png" />
     <Image Include="res\iconsHD\Signora.png" />
@@ -1170,6 +1171,7 @@
     <Image Include="res\icons\ShaggySumpterBeast.png" />
     <Image Include="res\icons\Shogun.png" />
     <Image Include="res\icons\ShogunateInfantry.png" />
+    <Image Include="res\icons\ShokiNoKami.png" />
     <Image Include="res\icons\ShrineOfDepth.png" />
     <Image Include="res\icons\Shroomboar.png" />
     <Image Include="res\icons\Signora.png" />

@@ -1034,6 +1034,8 @@ HDSHOGUN                PNG                     "iconsHD\\Shogun.png"
 
 HDSHOGUNATEINFANTRY     PNG                     "iconsHD\\ShogunateInfantry.png"
 
+HDSHOKINOKAMI           PNG                     "iconsHD\\ShokiNoKami.png"
+
 HDSHRINEOFDEPTH         PNG                     "iconsHD\\Mondstadt.png"
 
 HDSHROOMBOAR            PNG                     "iconsHD\\Shroomboar.png"
@@ -1979,6 +1981,8 @@ SHAGGYSUMPTERBEAST      PNG                     "icons\\ShaggySumpterBeast.png"
 SHOGUN                  PNG                     "icons\\Shogun.png"
 
 SHOGUNATEINFANTRY       PNG                     "icons\\ShogunateInfantry.png"
+
+SHOKINOKAMI             PNG                     "icons\\ShokiNoKami.png"
 
 SHRINEOFDEPTH           PNG                     "icons\\ShrineOfDepth.png"
 
