@@ -55,6 +55,44 @@ namespace cheat::game
 		return result;
 	}
 
+	app::Vector3 GetWaypointPosition(uint32_t targetSceneId, uint32_t targetWaypointId)
+	{
+		app::Vector3 result{};
+
+		auto mapModule = GET_SINGLETON(MoleMole_MapModule);
+		if (mapModule == nullptr)
+			return result;
+
+		if(targetSceneId == 0)
+		{
+			auto mapManager = GET_SINGLETON(MoleMole_MapManager);
+			if (mapManager == nullptr)
+				targetSceneId = GetCurrentPlayerSceneID();
+			else
+				targetSceneId = mapManager->fields.mapSceneID;
+		}
+
+		auto waypointGroups = TO_UNI_DICT(mapModule->fields._scenePointDics, uint32_t, UniDict<uint32_t COMMA app::MapModule_ScenePointData>*);
+		for (const auto& [sceneId, waypoints] : waypointGroups->pairs())
+		{
+			if (sceneId != targetSceneId)
+				continue;
+
+			for (const auto& [waypointId, waypoint] : waypoints->pairs())
+			{
+				if(waypointId != targetWaypointId)
+					continue;
+				if (waypoint.config == nullptr)
+					return result;
+				result = waypoint.config->fields._tranPos;
+				if (result.x == 0 || result.y == 0 || result.z == 0)
+					result = waypoint.config->fields._pos;
+			}
+		}
+
+		return result;
+	}
+
 	bool IsWaypointTeleportable(app::ConfigScenePoint* waypointConfig)
 	{
 		if (!waypointConfig)

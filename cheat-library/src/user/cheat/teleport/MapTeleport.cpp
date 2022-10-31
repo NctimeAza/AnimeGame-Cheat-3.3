@@ -12,6 +12,7 @@ namespace cheat::feature
 	MapTeleport::MapTeleport() : Feature(),
 		NF(f_Enabled, "Map teleport", "MapTeleport", false),
 		NF(f_DetectHeight, "Auto height detect", "MapTeleport", true),
+		NF(f_UseTransPosition, "Use transport position", "MapTeleport", false),
 		NF(f_DefaultHeight, "Default teleport height", "MapTeleport", 300.0f),
 		NF(f_Key, "Teleport key", "MapTeleport", Hotkey('T'))
 	{
@@ -49,6 +50,9 @@ namespace cheat::feature
 			"Teleport might glitch if teleporting to an extremely high location. \n" \
 			"Adjust Override Height accordingly to help avoid."
 		);
+
+		ImGui::SameLine();
+		ConfigWidget("Use transport position", f_UseTransPosition, "Use system default transport position instead of mark absolute position when teleport to building and transport mark.");
 
 		if (!f_Enabled)
 			ImGui::BeginDisabled();
@@ -173,8 +177,27 @@ namespace cheat::feature
 		MapTeleport& mapTeleport = GetInstance();
 		if (!mapTeleport.f_Enabled || !mapTeleport.f_Key.value().IsPressed())
 			return CALL_ORIGIN(InLevelMapPageContext_OnMarkClicked_Hook, __this, mark, method);
+		if (mark->fields._markType == app::MoleMole_Config_MarkType__Enum::TransPoint || mark->fields._markType == app::MoleMole_Config_MarkType__Enum::ScenePoint)
+		{
+			auto mapManager = GET_SINGLETON(MoleMole_MapManager);
+			auto scenceId = 0;
 
-		mapTeleport.TeleportTo(mark->fields._levelMapPos);
+			if (mapManager != nullptr)
+				scenceId = mapManager->fields.mapSceneID;
+			auto waypoint = game::GetWaypointPosition(scenceId, mark->fields._identifier);
+			auto worldPosition = app::Miscs_GenWorldPos(mark->fields._levelMapPos, nullptr);
+			if(!mapTeleport.f_UseTransPosition)
+			{
+				waypoint.x = worldPosition.x;
+				waypoint.z = worldPosition.z;
+			}
+			waypoint.y += 5;
+			mapTeleport.TeleportTo(waypoint, false, scenceId);
+		}
+		else
+		{ 
+			mapTeleport.TeleportTo(mark->fields._levelMapPos);
+		}
 	}
 
 	// Checking is teleport is far (>60m), if it isn't we clear stage.

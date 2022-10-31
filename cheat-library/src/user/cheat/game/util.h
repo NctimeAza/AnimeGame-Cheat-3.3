@@ -20,6 +20,7 @@ namespace cheat::game
 
 	WaypointInfo FindNearestWaypoint(app::Vector3& position, uint32_t targetId = 0);
 	static std::vector<WaypointInfo> GetUnlockedWaypoints(uint32_t targetId = 0);
+	app::Vector3 GetWaypointPosition(uint32_t targetSceneId, uint32_t targetWaypointId);
 	bool IsWaypointTeleportable(app::ConfigScenePoint* waypointConfig);
 	uint32_t GetCurrentMapSceneID();
 	uint32_t GetCurrentPlayerSceneID();
