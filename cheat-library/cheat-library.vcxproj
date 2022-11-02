@@ -254,6 +254,7 @@
     <Image Include="res\iconsHD\Aranara.png" />
     <Image Include="res\iconsHD\AratakiItto.png" />
     <Image Include="res\iconsHD\AthelWood.png" />
+    <Image Include="res\iconsHD\AThousandFloatingDreams.png" />
     <Image Include="res\iconsHD\Azhdaha.png" />
     <Image Include="res\iconsHD\Barbara.png" />
     <Image Include="res\iconsHD\BeginnersProtector.png" />
@@ -500,8 +501,10 @@
     <Image Include="res\iconsHD\KalpalataLotus.png" />
     <Image Include="res\iconsHD\KamisatoAyaka.png" />
     <Image Include="res\iconsHD\KamisatoAyato.png" />
+    <Image Include="res\iconsHD\KarmaphalaWood.png" />
     <Image Include="res\iconsHD\KatsuragikiriNagamasa.png" />
     <Image Include="res\iconsHD\Keqing.png" />
+    <Image Include="res\iconsHD\KeyofKhajNisut.png" />
     <Image Include="res\iconsHD\KeySigil.png" />
     <Image Include="res\iconsHD\KeySigilI.png" />
     <Image Include="res\iconsHD\KeySigilII.png" />
@@ -542,9 +545,11 @@
     <Image Include="res\iconsHD\MagicalCrystalChunk.png" />
     <Image Include="res\iconsHD\MagicGuide.png" />
     <Image Include="res\iconsHD\MaguuKenki.png" />
+    <Image Include="res\iconsHD\MakhairaAquamarine.png" />
     <Image Include="res\iconsHD\MapleWood.png" />
     <Image Include="res\iconsHD\MappaMare.png" />
     <Image Include="res\iconsHD\MarrowLizard.png" />
+    <Image Include="res\iconsHD\MaskedWeasel.png" />
     <Image Include="res\iconsHD\Matsutake.png" />
     <Image Include="res\iconsHD\Medaka.png" />
     <Image Include="res\iconsHD\MelodicBloom.png" />
@@ -554,6 +559,7 @@
     <Image Include="res\iconsHD\Millelith.png" />
     <Image Include="res\iconsHD\MiniPuzzle.png" />
     <Image Include="res\iconsHD\Mint.png" />
+    <Image Include="res\iconsHD\MissiveWindspear.png" />
     <Image Include="res\iconsHD\MistBubble.png" />
     <Image Include="res\iconsHD\MistFlowerCorolla.png" />
     <Image Include="res\iconsHD\MistsplitterReforged.png" />
@@ -568,6 +574,7 @@
     <Image Include="res\iconsHD\MudFrog.png" />
     <Image Include="res\iconsHD\Mushroom.png" />
     <Image Include="res\iconsHD\MysteriousCarvings.png" />
+    <Image Include="res\iconsHD\Nahida.png" />
     <Image Include="res\iconsHD\NakuWeed.png" />
     <Image Include="res\iconsHD\NilotpalaLotus.png" />
     <Image Include="res\iconsHD\Nilou.png" />
@@ -625,6 +632,7 @@
     <Image Include="res\iconsHD\Qingxin.png" />
     <Image Include="res\iconsHD\Qiqi.png" />
     <Image Include="res\iconsHD\QuestInteract.png" />
+    <Image Include="res\iconsHD\QuicksandUnagi.png" />
     <Image Include="res\iconsHD\RadiantSpincrystal.png" />
     <Image Include="res\iconsHD\Radish.png" />
     <Image Include="res\iconsHD\RaidenShogun.png" />
@@ -707,7 +715,7 @@
     <Image Include="res\iconsHD\ShikanoinHeizou.png" />
     <Image Include="res\iconsHD\Shogun.png" />
     <Image Include="res\iconsHD\ShogunateInfantry.png" />
-    <Image Include="res\iconsHD\ShokiNoKami.png" />
+    <Image Include="res\iconsHD\ShoukiNoKami.png" />
     <Image Include="res\iconsHD\ShrineOfDepth.png" />
     <Image Include="res\iconsHD\Shroomboar.png" />
     <Image Include="res\iconsHD\Signora.png" />
@@ -738,6 +746,7 @@
     <Image Include="res\iconsHD\Spincrocodile.png" />
     <Image Include="res\iconsHD\Squirrel.png" />
     <Image Include="res\iconsHD\StaffofHoma.png" />
+    <Image Include="res\iconsHD\StaffoftheScarletSands.png" />
     <Image Include="res\iconsHD\Starconch.png" />
     <Image Include="res\iconsHD\StarlightCoalescence.png" />
     <Image Include="res\iconsHD\Starshroom.png" />
@@ -808,6 +817,7 @@
     <Image Include="res\iconsHD\Viparyas.png" />
     <Image Include="res\iconsHD\VortexVanquisher.png" />
     <Image Include="res\iconsHD\Vulture.png" />
+    <Image Include="res\iconsHD\WanderingEvenstar.png" />
     <Image Include="res\iconsHD\WarmingSeelie.png" />
     <Image Include="res\iconsHD\WasterGreatsword.png" />
     <Image Include="res\iconsHD\WavebreakersFin.png" />
@@ -836,6 +846,7 @@
     <Image Include="res\iconsHD\Xiao.png" />
     <Image Include="res\iconsHD\Xingqiu.png" />
     <Image Include="res\iconsHD\Xinyan.png" />
+    <Image Include="res\iconsHD\XiphosMoonlight.png" />
     <Image Include="res\iconsHD\YaeMiko.png" />
     <Image Include="res\iconsHD\Yanfei.png" />
     <Image Include="res\iconsHD\Yelan.png" />
@@ -1027,6 +1038,7 @@
     <Image Include="res\icons\JueyunChili.png" />
     <Image Include="res\icons\Kairagi.png" />
     <Image Include="res\icons\KalpalataLotus.png" />
+    <Image Include="res\icons\KarmaphalaWood.png" />
     <Image Include="res\icons\KeySigil.png" />
     <Image Include="res\icons\KeySigilI.png" />
     <Image Include="res\icons\KeySigilII.png" />
@@ -1057,6 +1069,7 @@
     <Image Include="res\icons\MaguuKenki.png" />
     <Image Include="res\icons\MapleWood.png" />
     <Image Include="res\icons\MarrowLizard.png" />
+    <Image Include="res\icons\MaskedWeasel.png" />
     <Image Include="res\icons\Matsutake.png" />
     <Image Include="res\icons\Medaka.png" />
     <Image Include="res\icons\MelodicBloom.png" />
@@ -1114,6 +1127,7 @@
     <Image Include="res\icons\PyroRegisvine.png" />
     <Image Include="res\icons\Qingxin.png" />
     <Image Include="res\icons\QuestInteract.png" />
+    <Image Include="res\icons\QuicksandUnagi.png" />
     <Image Include="res\icons\RadiantSpincrystal.png" />
     <Image Include="res\icons\Radish.png" />
     <Image Include="res\icons\RaimeiAngelfish.png" />
@@ -1171,7 +1185,7 @@
     <Image Include="res\icons\ShaggySumpterBeast.png" />
     <Image Include="res\icons\Shogun.png" />
     <Image Include="res\icons\ShogunateInfantry.png" />
-    <Image Include="res\icons\ShokiNoKami.png" />
+    <Image Include="res\icons\ShoukiNoKami.png" />
     <Image Include="res\icons\ShrineOfDepth.png" />
     <Image Include="res\icons\Shroomboar.png" />
     <Image Include="res\icons\Signora.png" />

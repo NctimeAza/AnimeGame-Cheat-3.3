@@ -1,12 +1,12 @@
 {
-  "game_version": "3.1",
+  "game_version": "OSRELWin3.2.0",
   "modules": {
     "UnityPlayer.dll": {
-      "checksum": 1430670827047042129,
+      "checksum": 10384420361751589648,
       "timestamp": 0
     },
     "UserAssembly.dll": {
-      "checksum": 16839191498931948655,
+      "checksum": 9561536464145511908,
       "timestamp": 0
     }
   }

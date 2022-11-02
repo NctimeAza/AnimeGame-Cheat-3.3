@@ -239,7 +239,7 @@ namespace cheat::game::filters
 		SimpleFilter Scorpion = { EntityType__Enum_1::Monster, "Scorpion_" };
 		SimpleFilter Vulture = { EntityType__Enum_1::Monster, "Vulture_" };
 		SimpleFilter DendroHypostasis = { EntityType__Enum_1::Monster, "Effigy_Grass" };
-		SimpleFilter ShokiNoKami = { EntityType__Enum_1::Monster, "Monster_Nada" };
+		SimpleFilter ShoukiNoKami = { EntityType__Enum_1::Monster, "Monster_Nada" };
 	}
 
 	namespace plant
@@ -517,7 +517,7 @@ namespace cheat::game::filters
 			monster::Shogun,
 			monster::Andrius,
 			monster::Tartaglia,
-			monster::ShokiNoKami,
+			monster::ShoukiNoKami,
 			// Mondstadt
 			monster::CryoRegisvine,
 			monster::ElectroHypostasis,

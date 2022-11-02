@@ -1103,7 +1103,7 @@
                     "y_pos": 130.99272661023588
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/8de3558f991ac422463712dd095278b3_109842752079072307.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/8de3558f991ac422463712dd095278b3_109842752079072307.png"
         },
         "24": {
             "name": "Abyss Mage",
@@ -2083,7 +2083,7 @@
                     "y_pos": -424.50000381469727
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/5f0745a1c1812d249a90601c8de54552_2767759384451412130.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/5f0745a1c1812d249a90601c8de54552_2767759384451412130.png"
         },
         "70": {
             "name": "Elemental Monument",
@@ -2165,7 +2165,7 @@
                     "y_pos": -129.25
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/f381e3a85279e3c1815874f324355c4e_7651994827911834755.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/f381e3a85279e3c1815874f324355c4e_7651994827911834755.png"
         },
         "72": {
             "name": "Large Rock Pile",
@@ -2339,7 +2339,7 @@
                     "y_pos": -429.75
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/8318e95c402c3f8120c236d569b7c30d_4122189942380617256.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/8318e95c402c3f8120c236d569b7c30d_4122189942380617256.png"
         },
         "79": {
             "name": "Enemies (First-Time Victory)",
@@ -2443,11 +2443,6 @@
                     "id": 25756,
                     "x_pos": -399.8500061035156,
                     "y_pos": -421.900446490705
-                },
-                {
-                    "id": 25757,
-                    "x_pos": 210.5,
-                    "y_pos": -369.6548765014991
                 },
                 {
                     "id": 25762,
@@ -4270,11 +4265,6 @@
                     "y_pos": 235.42857364996826
                 },
                 {
-                    "id": 25871,
-                    "x_pos": -139.53417518424385,
-                    "y_pos": -404.14285284555854
-                },
-                {
                     "id": 25872,
                     "x_pos": 288.5357304953477,
                     "y_pos": -133.6428679588514
@@ -5380,7 +5370,7 @@
                     "y_pos": 154.5
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/67f677c001b0f43c749f493a1e66ffbb_4133034866915659827.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/67f677c001b0f43c749f493a1e66ffbb_4133034866915659827.png"
         }
     },
     "categories": [
@@ -5692,7 +5682,8 @@
                 390,
                 391,
                 432,
-                433
+                433,
+                452
             ]
         },
         {
@@ -5748,6 +5739,7 @@
                 220,
                 412,
                 417,
+                441,
                 449,
                 450
             ]
@@ -5894,7 +5886,8 @@
                 394,
                 436,
                 442,
-                443
+                443,
+                451
             ]
         },
         {

@@ -239,7 +239,7 @@ namespace cheat::game::filters
 		extern SimpleFilter Scorpion;
 		extern SimpleFilter Vulture;
 		extern SimpleFilter DendroHypostasis;
-		extern SimpleFilter ShokiNoKami;
+		extern SimpleFilter ShoukiNoKami;
 	}
 
 	namespace plant
