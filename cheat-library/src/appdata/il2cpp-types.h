@@ -8005,8 +8005,6 @@ namespace app {
         struct BaseEntity* _entity;
         bool _isToBeRemoved;
         bool _enabled;
-        bool _dynamicAdd;
-        bool _dynamicRemove;
         bool hasTick;
         bool hasLateTick;
         bool _selfHasTick;
@@ -8034,13 +8032,13 @@ namespace app {
         struct Action_1_Single_* _latePreTickMethodForEntityTickManager;
         struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager;
         bool needRetarget;
-        bool isCleared;
+        //bool isCleared;
         bool isInited;
         bool isPreInited;
-        bool isPreInitedPost;
         bool hasCallEntityReady;
         bool _isDestroied;
         bool _listenEventValid_k__BackingField;
+        struct IList_1_MoleMole_BaseComponentPlugin_* EMPTY_PLUGINLIST;
         struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap;
         struct List_1_MoleMole_BaseComponentPlugin_* _pluginList;
         struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins;
