@@ -7997,62 +7997,58 @@ namespace app {
     };
 
     struct __declspec(align(8)) BaseComponent__Fields {
-        uint32_t componentRuntimeID;
-        uint32_t entityRuntimeID;
-        bool preTick;
-        int32_t order;
-        struct ComponentManager* _componentManager;
-        struct BaseEntity* _entity;
-        bool _isToBeRemoved;
-        bool _enabled;
-        bool _dynamicAdd;
-        bool _dynamicRemove;
-        bool hasTick;
-        bool hasLateTick;
-        bool _selfHasTick;
-        bool _selfHasLateTick;
-        bool _managerTick;
-        bool _managerLateTick;
-        struct List_1_System_Int32_* onEventIDs;
-        struct List_1_System_Int32_* listenEventIDs;
-        struct Int32__Array* _selfOnEventIDsCache;
-        bool _isSelfOnEventIDsCached;
-        struct Int32__Array* _selfListenEventIDsCache;
-        bool _isSelfListenEventIDsCached;
-        struct Action* preInitCallback;
-        struct Action* initCallback;
-        bool _canTickIfDisable;
-        bool canTickIfDie;
-        bool canHandleEventIfDie;
-        bool _hasEnabledInited;
-        int32_t _tickIntervalRatio;
-        int32_t _lastTickInterval;
-        struct Action_1_Single_* _tickMethodForEntityTickManager;
-        struct Nullable_1_Boolean_ _isTickableForEntityTickManager;
-        struct Action_1_Single_* _lateTickMethodForEntityTickManager;
-        struct Nullable_1_Boolean_ _isLateTickableForEntityTickManager;
-        struct Action_1_Single_* _latePreTickMethodForEntityTickManager;
-        struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager;
-        bool needRetarget;
-        bool isCleared;
-        bool isInited;
-        bool isPreInited;
-        bool isPreInitedPost;
-        bool hasCallEntityReady;
-        bool _isDestroied;
-        bool _listenEventValid_k__BackingField;
-        struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap;
-        struct List_1_MoleMole_BaseComponentPlugin_* _pluginList;
-        struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins;
-        struct List_1_MoleMole_BaseComponentPlugin_* _lateTickPlugins;
-        struct Dictionary_2_System_Type_System_Int32_* _disableNoTickPlugins;
-        struct Dictionary_2_System_Type_System_Int32_* _disableNoLateTickPlugins;
-        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _onEventPluginMap;
-        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _onEventPluginsMap;
-        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _listenEventPluginMap;
-        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _listenEventPluginsMap;
-        bool _bIgnoreIntervalTick_k__BackingField;
-        int32_t _greaterToDisableInterval_k__BackingField;
+        uint32_t componentRuntimeID; // 0x10
+        uint32_t entityRuntimeID; // 0x14
+        bool preTick; // 0x18
+        int32_t order; // 0x1C
+        struct ComponentManager* _componentManager; // 0x20
+        struct BaseEntity* _entity; // 0x28
+        bool _isToBeRemoved; // 0x30
+        bool _enabled; // 0x31
+        bool hasTick; // 0x32
+        bool hasLateTick; // 0x33
+        bool _selfHasTick; // 0x34
+        bool _selfHasLateTick; // 0x35
+        bool _managerTick; // 0x36
+        bool _managerLateTick; // 0x37
+        struct List_1_System_Int32_* onEventIDs; // 0x38
+        struct List_1_System_Int32_* listenEventIDs; // 0x40
+        struct Int32__Array* _selfOnEventIDsCache; // 0x48
+        bool _isSelfOnEventIDsCached; // 0x50
+        struct Int32__Array* _selfListenEventIDsCache; // 0x58
+        bool _isSelfListenEventIDsCached; // 0x60
+        struct Action* preInitCallback; // 0x68
+        struct Action* initCallback; // 0x70
+        bool _canTickIfDisable; // 0x78
+        bool canTickIfDie; // 0x79
+        bool canHandleEventIfDie; // 0x7A
+        bool _hasEnabledInited; // 0x7B
+        int32_t _tickIntervalRatio; // 0x7C
+        int32_t _lastTickInterval; // 0x80
+        struct Action_1_Single_* _tickMethodForEntityTickManager; // 0x88
+        struct Nullable_1_Boolean_ _isTickableForEntityTickManager; // 0x90
+        struct Action_1_Single_* _lateTickMethodForEntityTickManager; // 0x98
+        struct Nullable_1_Boolean_ _isLateTickableForEntityTickManager; // 0xA0
+        struct Action_1_Single_* _latePreTickMethodForEntityTickManager; // 0xA8
+        struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager; // 0xB0
+        bool needRetarget; // 0xB2
+        bool isInited; // 0xB3
+        bool isPreInited; // 0xB4
+        bool hasCallEntityReady; // 0xB5
+        bool _isDestroied; // 0xB6
+        bool _listenEventValid_k__BackingField; // 0xB7
+        struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap; // 0xB8
+        struct List_1_MoleMole_BaseComponentPlugin_* _pluginList; // 0xC0
+        struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins; // 0xC8
+        struct List_1_MoleMole_BaseComponentPlugin_* _lateTickPlugins; // 0xD0
+        struct Dictionary_2_System_Type_System_Int32_* _disableNoTickPlugins; // 0xD8
+        struct Dictionary_2_System_Type_System_Int32_* _disableNoLateTickPlugins; // 0xE0
+        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _onEventPluginMap; // 0xE8
+        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _onEventPluginsMap; // 0xF0
+        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _listenEventPluginMap; // 0xF8
+        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _listenEventPluginsMap; // 0x100
+        bool _bIgnoreIntervalTick_k__BackingField; // 0x108
+        int32_t _greaterToDisableInterval_k__BackingField; // 0x10C
     };
 
     struct VCBase__Fields {
