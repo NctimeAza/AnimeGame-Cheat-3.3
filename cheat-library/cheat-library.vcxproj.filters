@@ -3598,5 +3598,53 @@
     <Image Include="res\icons\DendroHypostasis.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\ShoukiNoKami.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\ShoukiNoKami.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Nahida.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\WanderingEvenstar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\StaffoftheScarletSands.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\MissiveWindspear.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\MakhairaAquamarine.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\KeyofKhajNisut.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\XiphosMoonlight.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\AThousandFloatingDreams.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\KarmaphalaWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\MaskedWeasel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\QuicksandUnagi.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\MaskedWeasel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\QuicksandUnagi.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\KarmaphalaWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

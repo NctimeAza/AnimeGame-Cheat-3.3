@@ -731,7 +731,7 @@
                     "y_pos": -333.5
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/8de3558f991ac422463712dd095278b3_109842752079072307.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/8de3558f991ac422463712dd095278b3_109842752079072307.png"
         },
         "24": {
             "name": "Abyss Mage",
@@ -2570,7 +2570,7 @@
                     "y_pos": -280.4465237430459
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/5f0745a1c1812d249a90601c8de54552_2767759384451412130.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/5f0745a1c1812d249a90601c8de54552_2767759384451412130.png"
         },
         "70": {
             "name": "Elemental Monument",
@@ -2632,7 +2632,7 @@
                     "y_pos": 39
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/f381e3a85279e3c1815874f324355c4e_7651994827911834755.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/f381e3a85279e3c1815874f324355c4e_7651994827911834755.png"
         },
         "72": {
             "name": "Large Rock Pile",
@@ -2776,17 +2776,12 @@
                     "y_pos": 416.25
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/8318e95c402c3f8120c236d569b7c30d_4122189942380617256.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220930/8318e95c402c3f8120c236d569b7c30d_4122189942380617256.png"
         },
         "82": {
             "name": "Loach Pearl",
             "clear_name": "LoachPearl",
             "points": [
-                {
-                    "id": 22566,
-                    "x_pos": -466,
-                    "y_pos": -269
-                },
                 {
                     "id": 23183,
                     "x_pos": 27.634552927438335,
@@ -3025,7 +3020,7 @@
                     "y_pos": -582
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220828/00695c6df8cd78f1947eb317280fa8d3_3626194140678419452.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20220928/00695c6df8cd78f1947eb317280fa8d3_3626194140678419452.png"
         },
         "130": {
             "name": "Cooking Ingredient",
@@ -5510,11 +5505,6 @@
             "clear_name": "AmethystLump",
             "points": [
                 {
-                    "id": 22126,
-                    "x_pos": -416.5000305175781,
-                    "y_pos": -364.7276792176526
-                },
-                {
                     "id": 22127,
                     "x_pos": -405.5000305175781,
                     "y_pos": -373.2341107130844
@@ -5530,29 +5520,14 @@
                     "y_pos": -404.75794507850765
                 },
                 {
-                    "id": 22130,
-                    "x_pos": -443.5000305175781,
-                    "y_pos": -398.75340519937936
-                },
-                {
                     "id": 22131,
                     "x_pos": -435.0000305175781,
                     "y_pos": -396.7518919063366
                 },
                 {
-                    "id": 22132,
-                    "x_pos": -296.7000427246094,
-                    "y_pos": -413.56460662196264
-                },
-                {
                     "id": 22133,
                     "x_pos": -300.2000427246094,
                     "y_pos": -406.5593100963131
-                },
-                {
-                    "id": 22134,
-                    "x_pos": -301.7000427246094,
-                    "y_pos": -400.05439189392405
                 },
                 {
                     "id": 22135,
@@ -6946,18 +6921,6 @@
                 }
             ],
             "icon": "https://act.hoyoverse.com/map_manage/20220928/503ba3861998de072e10d086b214d252_2150181738238989287.png"
-        },
-        "292": {
-            "name": "Golden Loach",
-            "clear_name": "GoldenLoach",
-            "points": [
-                {
-                    "id": 21794,
-                    "x_pos": -464,
-                    "y_pos": -267
-                }
-            ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20211021/9365968ae710394131f2ba33ae9103cd_6357176062164449470.png"
         },
         "296": {
             "name": "Blue Horned Lizard",
@@ -8947,7 +8910,8 @@
                 390,
                 391,
                 432,
-                433
+                433,
+                452
             ]
         },
         {
@@ -9003,6 +8967,7 @@
                 220,
                 412,
                 417,
+                441,
                 449,
                 450
             ]
@@ -9149,7 +9114,8 @@
                 394,
                 436,
                 442,
-                443
+                443,
+                451
             ]
         },
         {

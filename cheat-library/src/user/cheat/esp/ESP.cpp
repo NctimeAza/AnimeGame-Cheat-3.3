@@ -781,7 +781,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, Dvalin);
 		ADD_FILTER_FIELD(monster, Signora);
 		ADD_FILTER_FIELD(monster, Shogun);
-		ADD_FILTER_FIELD(monster, ShokiNoKami);
+		ADD_FILTER_FIELD(monster, ShoukiNoKami);
 		ADD_FILTER_FIELD(monster, Tartaglia);
 		// Bosses. Arranged by "type" then alphabetical.
 		// Regisvines.

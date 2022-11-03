@@ -142,6 +142,8 @@ HDARTIFACT              PNG                     "iconsHD\\Artifact.png"
 
 HDATHELWOOD             PNG                     "iconsHD\\AthelWood.png"
 
+HDATHOUSANDFLOATINGDREAMS PNG                   "iconsHD\\AThousandFloatingDreams.png"
+
 HDAZHDAHA               PNG                     "iconsHD\\Azhdaha.png"
 
 HDBAKEDANUKI            PNG                     "iconsHD\\BakeDanuki.png"
@@ -606,9 +608,13 @@ HDKAMISATOAYAKA         PNG                     "iconsHD\\KamisatoAyaka.png"
 
 HDKAMISATOAYATO         PNG                     "iconsHD\\KamisatoAyato.png"
 
+HDKARMAPHALAWOOD        PNG                     "iconsHD\\KarmaphalaWood.png"
+
 HDKATSURAGIKIRINAGAMASA PNG                     "iconsHD\\KatsuragikiriNagamasa.png"
 
 HDKEQING                PNG                     "iconsHD\\Keqing.png"
+
+HDKEYOFKHAJNISUT        PNG                     "iconsHD\\KeyofKhajNisut.png"
 
 HDKEYSIGIL              PNG                     "iconsHD\\KeySigil.png"
 
@@ -690,11 +696,15 @@ HDMAGICGUIDE            PNG                     "iconsHD\\MagicGuide.png"
 
 HDMAGUUKENKI            PNG                     "iconsHD\\MaguuKenki.png"
 
+HDMAKHAIRAAQUAMARINE    PNG                     "iconsHD\\MakhairaAquamarine.png"
+
 HDMAPLEWOOD             PNG                     "iconsHD\\MapleWood.png"
 
 HDMAPPAMARE             PNG                     "iconsHD\\MappaMare.png"
 
 HDMARROWLIZARD          PNG                     "iconsHD\\MarrowLizard.png"
+
+HDMASKEDWEASEL          PNG                     "iconsHD\\MaskedWeasel.png"
 
 HDMATSUTAKE             PNG                     "iconsHD\\Matsutake.png"
 
@@ -713,6 +723,8 @@ HDMILLELITH             PNG                     "iconsHD\\Millelith.png"
 HDMINIPUZZLE            PNG                     "iconsHD\\MiniPuzzle.png"
 
 HDMINT                  PNG                     "iconsHD\\Mint.png"
+
+HDMISSIVEWINDSPEAR      PNG                     "iconsHD\\MissiveWindspear.png"
 
 HDMISTBUBBLE            PNG                     "iconsHD\\MistBubble.png"
 
@@ -741,6 +753,8 @@ HDMUDFROG               PNG                     "iconsHD\\MudFrog.png"
 HDMUSHROOM              PNG                     "iconsHD\\Mushroom.png"
 
 HDMYSTERIOUSCARVINGS    PNG                     "iconsHD\\MysteriousCarvings.png"
+
+HDNAHIDA                PNG                     "iconsHD\\Nahida.png"
 
 HDNAKUWEED              PNG                     "iconsHD\\NakuWeed.png"
 
@@ -870,6 +884,8 @@ HDQIQI                  PNG                     "iconsHD\\Qiqi.png"
 
 HDQUESTINTERACT         PNG                     "iconsHD\\QuestInteract.png"
 
+HDQUICKSANDUNAGI        PNG                     "iconsHD\\QuicksandUnagi.png"
+
 HDRADIANTSPINCRYSTAL    PNG                     "iconsHD\\RadiantSpincrystal.png"
 
 HDRADISH                PNG                     "iconsHD\\Radish.png"
@@ -898,9 +914,9 @@ HDREDHORNEDLIZARD       PNG                     "iconsHD\\RedHornedLizard.png"
 
 HDREDHORNSTONETHRESHER  PNG                     "iconsHD\\RedhornStonethresher.png"
 
-HDREDTAILEDWEASEL       PNG                     "iconsHD\\RedTailedWeasel.png"
-
 HDREDTAILEDLIZARD       PNG                     "iconsHD\\RedTailedLizard.png"
+
+HDREDTAILEDWEASEL       PNG                     "iconsHD\\RedTailedWeasel.png"
 
 HDRELAYSTONE            PNG                     "iconsHD\\RelayStone.png"
 
@@ -1034,6 +1050,8 @@ HDSHOGUN                PNG                     "iconsHD\\Shogun.png"
 
 HDSHOGUNATEINFANTRY     PNG                     "iconsHD\\ShogunateInfantry.png"
 
+HDSHOUKINOKAMI          PNG                     "iconsHD\\ShoukiNoKami.png"
+
 HDSHRINEOFDEPTH         PNG                     "iconsHD\\Mondstadt.png"
 
 HDSHROOMBOAR            PNG                     "iconsHD\\Shroomboar.png"
@@ -1093,6 +1111,8 @@ HDSPINCROCODILE         PNG                     "iconsHD\\Spincrocodile.png"
 HDSQUIRREL              PNG                     "iconsHD\\Squirrel.png"
 
 HDSTAFFOFHOMA           PNG                     "iconsHD\\StaffofHoma.png"
+
+HDSTAFFOFTHESCARLETSANDS PNG                    "iconsHD\\StaffoftheScarletSands.png"
 
 HDSTARCONCH             PNG                     "iconsHD\\Starconch.png"
 
@@ -1232,6 +1252,8 @@ HDVORTEXVANQUISHER      PNG                     "iconsHD\\VortexVanquisher.png"
 
 HDVULTURE               PNG                     "iconsHD\\Vulture.png"
 
+HDWANDERINGEVENSTAR     PNG                     "iconsHD\\WanderingEvenstar.png"
+
 HDWARMINGSEELIE         PNG                     "iconsHD\\WarmingSeelie.png"
 
 HDWASTERGREATSWORD      PNG                     "iconsHD\\WasterGreatsword.png"
@@ -1287,6 +1309,8 @@ HDXIAO                  PNG                     "iconsHD\\Xiao.png"
 HDXINGQIU               PNG                     "iconsHD\\Xingqiu.png"
 
 HDXINYAN                PNG                     "iconsHD\\Xinyan.png"
+
+HDXIPHOSMOONLIGHT       PNG                     "iconsHD\\XiphosMoonlight.png"
 
 HDYAEMIKO               PNG                     "iconsHD\\YaeMiko.png"
 
@@ -1676,6 +1700,8 @@ KAIRAGI                 PNG                     "icons\\Kairagi.png"
 
 KALPALATALOTUS          PNG                     "icons\\KalpalataLotus.png"
 
+KARMAPHALAWOOD          PNG                     "icons\\KarmaphalaWood.png"
+
 KEYSIGIL                PNG                     "icons\\KeySigil.png"
 
 KEYSIGILI               PNG                     "icons\\KeySigilI.png"
@@ -1735,6 +1761,8 @@ MAGUUKENKI              PNG                     "icons\\MaguuKenki.png"
 MAPLEWOOD               PNG                     "icons\\MapleWood.png"
 
 MARROWLIZARD            PNG                     "icons\\MarrowLizard.png"
+
+MASKEDWEASEL            PNG                     "icons\\MaskedWeasel.png"
 
 MATSUTAKE               PNG                     "icons\\Matsutake.png"
 
@@ -1864,6 +1892,8 @@ QINGXIN                 PNG                     "icons\\Qingxin.png"
 
 QUESTINTERACT           PNG                     "icons\\QuestInteract.png"
 
+QUICKSANDUNAGI          PNG                     "icons\\QuicksandUnagi.png"
+
 RADIANTSPINCRYSTAL      PNG                     "icons\\RadiantSpincrystal.png"
 
 RADISH                  PNG                     "icons\\Radish.png"
@@ -1983,6 +2013,8 @@ SHOGUNATEINFANTRY       PNG                     "icons\\ShogunateInfantry.png"
 SHRINEOFDEPTH           PNG                     "icons\\ShrineOfDepth.png"
 
 SHROOMBOAR              PNG                     "icons\\Shroomboar.png"
+
+SHOUKINOKAMI            PNG                     "icons\\ShoukiNoKami.png"
 
 SIGNORA                 PNG                     "icons\\Signora.png"
 
