@@ -236,8 +236,8 @@ DO_APP_FUNC(0x095698F0, int32_t, Text_get_fontSize, (Text* __this, MethodInfo* m
 DO_APP_FUNC(0x0956A170, void, Text_set_fontSize, (Text* __this, int32_t value, MethodInfo* method));
 
 DO_APP_FUNC(0x050FD260, float, Miscs_CalcCurrentGroundWaterHeight, (float x, float z, MethodInfo* method));
-DO_APP_FUNC(0x050FCAA0, float, Miscs_CalcCurrentGroundHeight, (float x, float z, MethodInfo* method));
-DO_APP_FUNC(0x05129AD0, float, Miscs_CalcCurrentGroundHeight_1, (float x, float z, float rayStartHeight, float rayDetectLength, int32_t layer, MethodInfo* method));
+DO_APP_FUNC(0x050FC9A0, float, Miscs_CalcCurrentGroundHeight, (float x, float z, MethodInfo* method));
+DO_APP_FUNC(0x050FCAA0, float, Miscs_CalcCurrentGroundHeight_1, (float x, float z, float rayStartHeight, float rayDetectLength, int32_t layer, MethodInfo* method));
 DO_APP_FUNC(0x050FCE40, Vector3, Miscs_CalcCurrentGroundNorm, (Vector3 pos, MethodInfo* method));
 DO_APP_FUNC(0x05106730, Vector3, Miscs_GenWorldPos, (Vector2 levelMapPos, MethodInfo* method));
 DO_APP_FUNC(0x05106290, Vector2, Miscs_GenLevelPos_1, (Vector3 worldPos, MethodInfo* method));
