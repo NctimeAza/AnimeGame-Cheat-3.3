@@ -166,7 +166,7 @@ namespace cheat::feature
         {
             m_BattleFinishTimestamp = 0;
 
-            app::MoleMole_FishingModule_RequestFishBattleEnd(m_LastCastData.fishingModule, app::FishBattleResult__Enum::Succ, f_DelayBeforeCatch == 4.0f,
+            app::MoleMole_FishingModule_RequestFishBattleEnd(m_LastCastData.fishingModule, app::FishBattleResult__Enum::Succ, f_DelayBeforeCatch == 4,
                 static_cast<float>(f_DelayBeforeCatch / 1000), nullptr);
         }
 

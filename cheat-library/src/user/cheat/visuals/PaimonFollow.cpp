@@ -71,8 +71,8 @@ namespace cheat::feature
         }
         else
         {
-            GameObject::Paimon == nullptr;
-            GameObject::ProfileLayer == nullptr;
+            GameObject::Paimon = nullptr;
+            GameObject::ProfileLayer = nullptr;
         }
     }
 }

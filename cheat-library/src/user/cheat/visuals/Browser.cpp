@@ -80,7 +80,9 @@ namespace cheat::feature
 
             if (planeObject != nullptr) {
                 if (BrowserComponents == nullptr) {
-                    std::string custom_url = f_URL.length() < 2 || f_URL.c_str() == "" ? "https://www.google.com/" : f_URL.c_str();
+                    std::string custom_url = f_URL;
+                    if (f_URL.empty() || f_URL.length() < 2)
+                        std::string custom_url = "https://www.google.com/";
 
                     BrowserComponents = app::GameObject_AddComponentInternal(planeObject, string_to_il2cppi("Browser"), nullptr);
                     reinterpret_cast<app::Browser*>(BrowserComponents)->fields._url = string_to_il2cppi(custom_url);

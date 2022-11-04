@@ -180,7 +180,7 @@ namespace cheat::feature
 		if (mark->fields._markType == app::MoleMole_Config_MarkType__Enum::TransPoint || mark->fields._markType == app::MoleMole_Config_MarkType__Enum::ScenePoint)
 		{
 			auto mapManager = GET_SINGLETON(MoleMole_MapManager);
-			auto scenceId = 0;
+			uint32_t scenceId = 0;
 
 			if (mapManager != nullptr)
 				scenceId = mapManager->fields.mapSceneID;

@@ -43,7 +43,7 @@ namespace cheat::feature
 	float FakeTime::ConversionTime() {
 
 		float time = float(f_TimeHour);
-		float timemin = f_TimeMinute / 60;
+		float timemin = float(f_TimeMinute) / 60;
 		return time + timemin;
 	}
 	void FakeTime::OnGameUpdate()

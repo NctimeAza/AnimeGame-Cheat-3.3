@@ -195,7 +195,7 @@ namespace cheat::feature
 		{
 			auto maxHP = app::MoleMole_SafeFloat_get_Value(combat->fields._combatProperty_k__BackingField->fields.maxHP, nullptr);
 			// should works. :p
-			crashEvt->fields.maxHp = maxHP / f_PercentDamageTimes / 0.4f + 5.0f;
+			crashEvt->fields.maxHp = maxHP / float(f_PercentDamageTimes) / 0.4f + 5.0f;
 			crashEvt->fields.velChange = 10000000;
 		}
 		crashEvt->fields.hitPos = monster->absolutePosition();

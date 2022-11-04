@@ -50,6 +50,7 @@ class IEvent
         using TMyEventHandlerPtr = typename TypeHelper<TParams...>::TEventHandlerPtr;
 
         IEvent() {}
+        virtual ~IEvent() = default;
 
         virtual bool isHandlerAdded( const TMyEventHandlerPtr& eventHandler ) const = 0;
         virtual bool addHandler( TMyEventHandlerPtr eventHandler ) = 0;
@@ -83,9 +84,9 @@ class HandlerRunner
     public:
 
         HandlerRunner( TMyEventCore& eventCore ) :
-            m_eventCore( eventCore ),
             currentIt(),
-            wasRemoving( false )
+            wasRemoving( false ),
+            m_eventCore( eventCore )
         {
         }
 

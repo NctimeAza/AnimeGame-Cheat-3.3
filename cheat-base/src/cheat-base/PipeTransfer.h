@@ -9,6 +9,7 @@ class PipeTransfer;
 class PipeSerializedObject
 {
 public:
+	virtual ~PipeSerializedObject() = default;
 	virtual void Write(PipeTransfer* transfer) = 0;
 	virtual void Read(PipeTransfer* transfer) = 0;
 };

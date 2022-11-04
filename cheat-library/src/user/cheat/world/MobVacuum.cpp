@@ -201,7 +201,6 @@ namespace cheat::feature
                 continue;
             }
 
-            uint32_t entityId = entity->runtimeID();
             app::Vector3 entityRelPos = entity->relativePosition();
             if (app::Vector3_Distance(entityRelPos, targetPos, nullptr) > 0.1)
             {

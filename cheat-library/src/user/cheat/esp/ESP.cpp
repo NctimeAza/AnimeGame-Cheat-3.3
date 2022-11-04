@@ -231,9 +231,9 @@ namespace cheat::feature
 		{
 			//cause name is like "Avatar_Catalyst_Boy_Heizo(Clone)" - We'll get name between 3rd underscore and 1st bracket
 			int  j = 0;		// j is the number of spaces before the name starts
-			int pos1 = 0;
-			int pos2 = 0;
-			for (int i = 0; i < name.length(); i++)
+			size_t pos1 = 0;
+			size_t pos2 = 0;
+			for (size_t i = 0; i < name.length(); i++)
 			{
 				if (name[i] == '_')
 				{
@@ -255,10 +255,10 @@ namespace cheat::feature
 		else if (name.find("Animal") != std::string::npos)
 		{
 			int count = 0;
-			int  j = 0;
-			int pos1 = 0;
-			int pos2 = 0;
-			for (int i = 0; i < name.length(); i++)
+			int j = 0;
+			size_t pos1 = 0;
+			size_t pos2 = 0;
+			for (size_t i = 0; i < name.length(); i++)
 			{
 				if (name[i] == '_')
 				{
@@ -273,7 +273,7 @@ namespace cheat::feature
 				j = 0;		// j is the number of spaces before the name starts
 				pos1 = 0;
 				pos2 = 0;
-				for (int i = 0; i < name.length(); i++)
+				for (size_t i = 0; i < name.length(); i++)
 				{
 					if (name[i] == '_')
 					{
@@ -297,7 +297,7 @@ namespace cheat::feature
 				j = 0;		// j is the number of spaces before the name starts
 				pos1 = 0;
 				pos2 = 0;
-				for (int i = 0; i < name.length(); i++)
+				for (size_t i = 0; i < name.length(); i++)
 				{
 					if (name[i] == '_')
 					{
@@ -323,9 +323,9 @@ namespace cheat::feature
 		else if (name.find("Monster") != std::string::npos)
 		{
 			int  j = 0;     //number of underscores in the name
-			int pos1 = 0;	//position of the first underscore in the name
-			int pos2 = 0;   //position of the second underscore in the name
-			for (int i = 0; i < name.length(); i++)
+			size_t pos1 = 0;	//position of the first underscore in the name
+			size_t pos2 = 0;   //position of the second underscore in the name
+			for (size_t i = 0; i < name.length(); i++)
 			{
 				if (name[i] == '_')
 				{
@@ -356,9 +356,9 @@ namespace cheat::feature
 		else
 		{
 			int  j = 0;     //number of underscores in the name
-			int pos1 = 0;	//position of the first underscore in the name
-			int pos2 = 0;   //position of the second underscore in the name
-			for (int i = 0; i < name.length(); i++)
+			size_t pos1 = 0;	//position of the first underscore in the name
+			size_t pos2 = 0;   //position of the second underscore in the name
+			for (size_t i = 0; i < name.length(); i++)
 			{
 				if (name[i] == '_')
 				{
@@ -612,7 +612,7 @@ namespace cheat::feature
 		if (ImGui::BeginPopup("picker"))
 		{
 			picker_active_window = g.CurrentWindow;
-			ImGuiColorEditFlags picker_flags_to_forward = ImGuiColorEditFlags_DataTypeMask_ | ImGuiColorEditFlags_PickerMask_ | ImGuiColorEditFlags_InputMask_ | ImGuiColorEditFlags_HDR | ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_AlphaBar;
+			//ImGuiColorEditFlags picker_flags_to_forward = ImGuiColorEditFlags_DataTypeMask_ | ImGuiColorEditFlags_PickerMask_ | ImGuiColorEditFlags_InputMask_ | ImGuiColorEditFlags_HDR | ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_AlphaBar;
 			ImGuiColorEditFlags picker_flags = ImGuiColorEditFlags_DisplayMask_ | ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_AlphaPreviewHalf;
 			ImGui::SetNextItemWidth(ImGui::GetFrameHeight() * 12.0f); // Use 256 + bar sizes?
 			color_changed |= ImGui::ColorPicker4("##picker", reinterpret_cast<float*>(&field.value().m_Color), picker_flags, &g.ColorPickerRef.x);

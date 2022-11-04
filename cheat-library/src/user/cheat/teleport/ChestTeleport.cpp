@@ -125,7 +125,7 @@ namespace cheat::feature
 		if (!entity->isChest())
 			return false;
 
-		auto chest = reinterpret_cast<game::Chest*>(entity);
+		auto chest = dynamic_cast<game::Chest*>(entity);
 		auto filterResult = FilterChest(chest);
 		return filterResult == ChestTeleport::FilterStatus::Valid ||
 			(filterResult == ChestTeleport::FilterStatus::Unknown && f_FilterUnknown);
@@ -202,7 +202,7 @@ namespace cheat::feature
 	void ChestTeleport::DrawInfo()
 	{
 		auto entity = game::FindNearestEntity(*this);
-		auto chest = reinterpret_cast<game::Chest*>(entity);
+		auto chest = dynamic_cast<game::Chest*>(entity);
 
 		DrawEntityInfo(entity);
 		if (entity == nullptr)
@@ -221,10 +221,10 @@ namespace cheat::feature
 		auto entities = manager.entities(*this);
 
 		ImGui::BeginTable("ChestsTable", 2);
-		for (auto& entity : entities)
+		for (auto entity : entities)
 		{
 			ImGui::PushID(entity);
-			auto chest = reinterpret_cast<game::Chest*>(entity);
+			auto chest = dynamic_cast<game::Chest*>(entity);
 
 			ImGui::TableNextColumn();
 			if (chest->itemType() == game::Chest::ItemType::Chest)
@@ -259,7 +259,7 @@ namespace cheat::feature
 		if (!entity->isChest())
 			return false;
 
-		auto chest = reinterpret_cast<game::Chest*>(entity);
+		auto chest = dynamic_cast<game::Chest*>(entity);
 		auto& chestTp = ChestTeleport::GetInstance();
 		return chestTp.FilterChest(chest) == ChestTeleport::FilterStatus::Unknown;
 	}

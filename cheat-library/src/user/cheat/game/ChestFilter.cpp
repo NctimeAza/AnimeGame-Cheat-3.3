@@ -18,7 +18,7 @@ namespace cheat::game
 		if (!entity->isChest())
 			return false;
 
-		game::Chest* chest = reinterpret_cast<game::Chest*>(entity);
+		game::Chest* chest = dynamic_cast<game::Chest*>(entity);
 		
 		return 
 			(!m_ItemType || chest->itemType() == *m_ItemType) && 

@@ -224,7 +224,6 @@ namespace cheat::feature
 			return false;
 
 		auto& manager = game::EntityManager::instance();
-		auto patterID = manager.avatar()->combat()->monitor;
 		auto avatarID = manager.avatar()->raw()->fields._configID_k__BackingField;
 		auto attackerID = attacker.raw()->fields._configID_k__BackingField;
 		// LOG_DEBUG("configID = %d", attackerID);
@@ -352,7 +351,7 @@ namespace cheat::feature
 		auto attacker = game::Entity(__this->fields._._._entity);
 		RapidFire& rapidFire = RapidFire::GetInstance();
 		bool isAttackAnimation = std::any_of(std::begin(attackTags), std::end(attackTags),
-			[&](uint32_t tag) { return processStateInfo.m_Tag == tag; });
+			[&](int32_t tag) { return processStateInfo.m_Tag == tag; });
 		bool isAttacking = IsAttackByAvatar(attacker) && isAttackAnimation;
 
 		if (rapidFire.f_MultiAnimation && isAttacking)

@@ -26,7 +26,7 @@ PipeMessage* PipeIO::ReceiveMessage()
 						m_Pipe->ReadObject(*data);			        		  \
 						data->SetMessage(header);                             \
 						CallHandlers(*data);					    		  \
-						return reinterpret_cast<PipeMessage*>(data);          \
+						return dynamic_cast<PipeMessage*>(data);          \
 					}													  
 
 	switch (messageID)

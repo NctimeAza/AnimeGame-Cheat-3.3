@@ -15,6 +15,7 @@ namespace cheat
 	class CheatManagerBase
 	{
 	public:
+		virtual ~CheatManagerBase() = default;
 		
 		static bool IsMenuShowed();
 

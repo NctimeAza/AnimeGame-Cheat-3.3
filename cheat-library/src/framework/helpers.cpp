@@ -26,7 +26,7 @@ uintptr_t il2cpp_get_mono_base_address()
     if (result == FALSE)
         return NULL;
 
-    for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
+    for (size_t i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
     {
         if (hModules[i] == NULL)
             continue;

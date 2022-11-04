@@ -17,25 +17,25 @@ namespace cheat::feature
 	float g_default_range = 3.0f;
 
     AutoLoot::AutoLoot() : Feature(),
-        NF(f_AutoPickup,     "Auto-pickup drops",               "AutoLoot", false),
-        NF(f_AutoDisablePickupWhenAddItemExceedLimit,     "Auto disable pickup when full",   "AutoLoot", true),
-		NF(f_AutoTreasure,   "Auto-open treasures",             "AutoLoot", false),
-		NF(f_UseCustomRange, "Use custom pickup range",         "AutoLoot", false),
-		NF(f_PickupFilter,	 "Pickup filter",					"AutoLoot", false),
-		NF(f_PickupFilter_Animals,	 "Animals filter",			"AutoLoot", true),
-		NF(f_PickupFilter_DropItems, "Drop items filter",		"AutoLoot", true),
-		NF(f_PickupFilter_Resources, "Resources filter",		"AutoLoot", true),
-		NF(f_PickupFilter_Oculus, "Oculus filter",				"AutoLoot", true),
-		NF(f_Chest,			 "Chests",							"AutoLoot", false),
-		NF(f_Leyline,		 "Leylines",						"AutoLoot", false),
-		NF(f_Investigate,	 "Search points",					"AutoLoot", false),
-		NF(f_QuestInteract,  "Quest interacts",					"AutoLoot", false),
-        NF(f_Others,		 "Other treasures",					"AutoLoot", false),
-		NF(f_DelayTime,		 "Delay time (in ms)",				"AutoLoot", 200),
-		NF(f_UseDelayTimeFluctuation, "Use delay fluctuation", "AutoLoot", false),
-		NF(f_DelayTimeFluctuation,		 "Delay fluctuation +(in ms)",				"AutoLoot", 200),
-        NF(f_CustomRange,    "Pickup Range",                    "AutoLoot", 5.0f),
-		toBeLootedItems(), nextLootTime(0)
+        NF(f_AutoPickup, "Auto-pickup drops", "AutoLoot", false),
+        NF(f_AutoDisablePickupWhenAddItemExceedLimit, "Auto disable pickup when full", "AutoLoot", true),
+        NF(f_AutoTreasure, "Auto-open treasures", "AutoLoot", false),
+        NF(f_UseCustomRange, "Use custom pickup range", "AutoLoot", false),
+        NF(f_UseDelayTimeFluctuation, "Use delay fluctuation", "AutoLoot", false),
+        NF(f_PickupFilter, "Pickup filter", "AutoLoot", false),
+        NF(f_DelayTime, "Delay time (in ms)", "AutoLoot", 200),
+        NF(f_DelayTimeFluctuation, "Delay fluctuation +(in ms)", "AutoLoot", 200),
+        NF(f_CustomRange, "Pickup Range", "AutoLoot", 5.0f),
+        NF(f_Chest, "Chests", "AutoLoot", false),
+        NF(f_Leyline, "Leylines", "AutoLoot", false),
+        NF(f_Investigate, "Search points", "AutoLoot", false),
+        NF(f_QuestInteract, "Quest interacts", "AutoLoot", false),
+        NF(f_Others, "Other treasures", "AutoLoot", false),
+        NF(f_PickupFilter_Animals, "Animals filter", "AutoLoot", true),
+        NF(f_PickupFilter_DropItems, "Drop items filter", "AutoLoot", true),
+        NF(f_PickupFilter_Resources, "Resources filter", "AutoLoot", true),
+        NF(f_PickupFilter_Oculus, "Oculus filter", "AutoLoot", true),
+        toBeLootedItems(), nextLootTime(0)
     {
 		// Auto loot
 		HookManager::install(app::MoleMole_LCSelectPickup_AddInteeBtnByID, LCSelectPickup_AddInteeBtnByID_Hook);
@@ -196,13 +196,13 @@ namespace cheat::feature
 		if (f_AutoTreasure) 
 		{
 			auto& manager = game::EntityManager::instance();
-			for (auto& entity : manager.entities(game::filters::combined::Chests)) 
+			for (auto entity : manager.entities(game::filters::combined::Chests)) 
 			{
 				float range = f_UseCustomRange ? f_CustomRange : g_default_range;
 				if (manager.avatar()->distance(entity) >= range)
 					continue;
 
-				auto chest = reinterpret_cast<game::Chest*>(entity);
+				auto chest = dynamic_cast<game::Chest*>(entity);
 				auto chestType = chest->itemType();
 
 				if (!f_Investigate && chestType == game::Chest::ItemType::Investigate)
@@ -310,7 +310,7 @@ namespace cheat::feature
 
 	void AutoLoot::clear_toBeLootedItems()
 	{
-		for (int i = 0; i < toBeLootedItems.size(); ++i)
+		for (uint32_t i = 0; i < toBeLootedItems.size(); ++i)
 		{
 			toBeLootedItems.pop();
 		}

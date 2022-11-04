@@ -20,9 +20,9 @@ namespace cheat::game
 	
 	private:
 
+		std::optional<game::Chest::ItemType> m_ItemType;
 		std::optional<game::Chest::ChestRarity> m_Rarity;
 		std::optional<game::Chest::ChestState> m_State;
-		std::optional<game::Chest::ItemType> m_ItemType;
 
 	};
 }

@@ -19,7 +19,8 @@ namespace cheat::feature
 	app::Component_1* mainCam_Camera;
 	app::Vector3 targetPosition;
 	app::Vector3 smoothPosition;
-	float smoothFOV, focalLength = 0;
+	float smoothFOV = 0;
+	double focalLength = 0;
 	bool isEnabled = false;
 
 	FreeCamera::FreeCamera() : Feature(),

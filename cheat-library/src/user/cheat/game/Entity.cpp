@@ -7,7 +7,7 @@
 namespace cheat::game
 {
 
-	Entity::Entity(app::BaseEntity* rawEntity) : m_RawEntity(rawEntity), m_Name({}), m_HasName(false)
+	Entity::Entity(app::BaseEntity* rawEntity) : m_RawEntity(rawEntity), m_HasName(false), m_Name({})
 	{
 	}
 

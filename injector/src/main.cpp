@@ -160,7 +160,7 @@ bool OpenGenshinProcess(HANDLE* phProcess, HANDLE* phThread)
 		return false;
 
 	std::string CurrentDirectory = filePath.value();
-	int pos = CurrentDirectory.rfind("\\", CurrentDirectory.length());
+	size_t pos = CurrentDirectory.rfind("\\", CurrentDirectory.length());
 	CurrentDirectory = CurrentDirectory.substr(0, pos);
 
 	LPSTR lpstr = commandline == nullptr ? nullptr : const_cast<LPSTR>(commandline);

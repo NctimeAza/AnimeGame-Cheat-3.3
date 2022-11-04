@@ -55,7 +55,9 @@ namespace cheat::feature
 
 		case ModifyType::Modified:
 		{
-			auto data_size = modify_data->head.size() + modify_data->content.size() + 12;
+			const uint32_t data_size = static_cast<uint32_t>(
+				modify_data->head.size() + modify_data->content.size() + 12
+			);
 			char* data = new char[data_size];
 
 			auto head_size = static_cast<uint16_t>(modify_data->head.size());
@@ -73,7 +75,7 @@ namespace cheat::feature
 			char* ptr_message_content = ptr_head_content + modify_data->head.size();
 			memcpy_s(ptr_message_content, message_size, modify_data->content.data(), message_size);
 			
-			util::WriteMapped(ptr_message_content, message_size, static_cast<uint16_t>(0x89AB));
+			util::WriteMapped(ptr_message_content, static_cast<int>(message_size), static_cast<uint16_t>(0x89AB));
 
 			EncryptXor(data, data_size);
 
@@ -153,7 +155,7 @@ namespace cheat::feature
 			return false;
 		}
 
-		uint16_t magicEnd = util::ReadMapped<uint16_t>(data, length - 2);
+		uint16_t magicEnd = util::ReadMapped<uint16_t>(data, static_cast<int>(length) - 2);
 		if (magicEnd != 0x89AB)
 		{
 			LOG_ERROR("End magic value for packet is not valid.");

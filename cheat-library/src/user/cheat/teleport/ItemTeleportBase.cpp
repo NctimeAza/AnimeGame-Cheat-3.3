@@ -21,7 +21,7 @@ namespace cheat::feature
     void ItemTeleportBase::DrawMain()
     {
 		auto desc = util::string_format("When key pressed, will teleport to nearest %s if exists.", name.c_str());
-		ConfigWidget(f_Key, desc.c_str());
+		ConfigWidget(f_Key, true, desc.c_str());
 
 		DrawFilterOptions();
 

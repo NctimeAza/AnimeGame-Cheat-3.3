@@ -10,10 +10,10 @@ namespace cheat::feature
 {
 	VacuumLoot::VacuumLoot() : Feature(),
 		NF(f_Enabled, "Vacuum Loot", "VacuumLoot", false),
-		NF(f_DelayTime, "Delay time (in ms)", "VacuumLoot", 1000),
 		NF(f_Distance, "Distance", "VacuumLoot", 1.5f),
-		NF(f_MobDropRadius, "Mob Drop Radius", "VacuumLoot", 20.0f),
 		NF(f_Radius, "Radius", "VacuumLoot", 20.0f),
+		NF(f_MobDropRadius, "Mob Drop Radius", "VacuumLoot", 20.0f),
+		NF(f_DelayTime, "Delay time (in ms)", "VacuumLoot", 1000),
 		nextTime(0)
 	{
 		InstallFilters();
@@ -164,8 +164,8 @@ namespace cheat::feature
 			m_Sections[section] = {};
 
 		auto& filters = m_Sections[section];
-		bool newItem(filter);
-		filters.push_back({ config::CreateField<bool>(name,name,fmt::format("VacuumLoot::Filters::{}", section),false, newItem) , filter });
+		bool newItem = filter != nullptr;
+		filters.push_back({ config::CreateField<bool>(name,name,fmt::format("VacuumLoot::Filters::{}", section), false, newItem) , filter });
 	}
 
 #define ADD_FILTER_FIELD(section, name) AddFilter(util::MakeCapital(#section), util::SplitWords(#name), &game::filters::##section##::##name##)

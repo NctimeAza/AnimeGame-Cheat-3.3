@@ -14,7 +14,7 @@ namespace cheat::feature
         app::Component_1* Profirency = nullptr;
     }
 
-    static std::map<AutoCook::CookQuality, int> qualities{ {AutoCook::CookQuality::Suspicious, 1}, {AutoCook::CookQuality::Normal, 2}, {AutoCook::CookQuality::Delicious, 3} };
+    static std::map<AutoCook::CookQuality, uint32_t> qualities{ {AutoCook::CookQuality::Suspicious, 1u}, {AutoCook::CookQuality::Normal, 2u}, {AutoCook::CookQuality::Delicious, 3u} };
 
     static void PlayerModule_RequestPlayerCook(app::MoleMole_PlayerModule* __this, uint32_t recipeId, uint32_t avatarId, uint32_t qteQuality, uint32_t count, MethodInfo* method);
     static void PlayerModule_OnPlayerCookRsp(app::MoleMole_PlayerModule* __this, app::PlayerCookRsp* rsp, MethodInfo* method);
@@ -97,9 +97,9 @@ namespace cheat::feature
             qteQuality = qualities.find(autoCook.f_QualityField.value())->second;
 
             if (!autoCook.f_FastProficiency && autoCook.f_Enabled) {
-                count = autoCook.f_CountField;
+                count = static_cast<uint32_t>(autoCook.f_CountField);
                 if (autoCook.f_CountField > autoCook.CookFoodMaxNum)
-                    count = autoCook.CookFoodMaxNum;
+                    count = static_cast<uint32_t>(autoCook.CookFoodMaxNum);
 
                 return CALL_ORIGIN(PlayerModule_RequestPlayerCook, __this, recipeId, avatarId, qteQuality, count, method);
             }
@@ -116,7 +116,7 @@ namespace cheat::feature
                     auto Text_str = app::Text_get_text(reinterpret_cast<app::Text*>(TextComponent), nullptr);
                     auto ProficiencyStr = il2cppi_to_string(Text_str).erase(0, il2cppi_to_string(Text_str).find_first_of(" ."));
                     std::vector<std::string> FinalProficiency = split(ProficiencyStr, '/');
-                    autoCook.CookCount = atoi(FinalProficiency[1].c_str()) - atoi(FinalProficiency[0].c_str());
+                    autoCook.CookCount = std::stoi(FinalProficiency[1]) - std::stoi(FinalProficiency[0]);
                 }
 
                 if (autoCook.CookCount == 0)
@@ -144,7 +144,7 @@ namespace cheat::feature
                 autoCook.f_QualityField.value() = AutoCook::CookQuality::Normal;
 
             rsp->fields.qteQuality_ = qualities.find(autoCook.f_QualityField.value())->second;
-            rsp->fields.cookCount_ = autoCook.f_CountField;
+            rsp->fields.cookCount_ = static_cast<uint32_t>(autoCook.f_CountField);
             if (autoCook.f_FastProficiency)
                 rsp->fields.cookCount_ = 1;
             // if (rsp->fields.recipeData_ != nullptr)

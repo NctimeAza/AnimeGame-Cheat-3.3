@@ -114,7 +114,7 @@ namespace cheat::feature
             LOG_DEBUG(il2cppi_to_string(app::Extension_GetCurrentStateName(avatar->animator(), 0, reinterpret_cast<app::AnimatorController*>(acComponent), nullptr)).c_str());
 
         static bool isFull = false;
-        for (int i = 0; i < stateNamesArray->max_length && !isFull; i++)
+        for (uint32_t i = 0; i < stateNamesArray->max_length && !isFull; i++)
         {
             if (animations.size() == stateNamesArray->max_length)
             {
