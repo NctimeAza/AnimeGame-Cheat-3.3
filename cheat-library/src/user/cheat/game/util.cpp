@@ -32,7 +32,7 @@ namespace cheat::game
 				uint16_t areaId = app::MoleMole_SimpleSafeUInt16_get_Value(config.areaIdRawNum, nullptr);
 				bool isAreaUnlocked = app::MoleMole_MapModule_IsAreaUnlock(mapModule, sceneId, areaId, nullptr);
 
-				if (waypoint.isUnlocked && isAreaUnlocked && !config._unlocked && !waypoint.isGroupLimit && !waypoint.isModelHidden /*&& IsWaypointTeleportable(waypoint.config)*/)
+				if (waypoint.isUnlocked && isAreaUnlocked && !config._unlocked && !waypoint.isGroupLimit && !waypoint.isModelHidden && IsWaypointTeleportable(waypoint.config))
 					result.push_back(WaypointInfo{ sceneId, waypointId, waypoint.config->fields._tranPos, (app::MapModule_ScenePointData*)&waypoint });
 			}
 		}
