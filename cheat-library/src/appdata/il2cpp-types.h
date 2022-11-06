@@ -6199,6 +6199,7 @@ namespace app {
         struct ConfigScenePoint__StaticFields* static_fields;
         const Il2CppRGCTXData* rgctx_data;
         Il2CppClass_1 _1;
+        char unknown[24];
         struct ConfigScenePoint__VTable vtable;
     };
 
@@ -12913,6 +12914,136 @@ namespace app {
         MonitorData* monitor;
         struct MiHoYoLodLoader__Fields fields;
     };
+
+	struct MoleMole_ItemParam
+	{
+		uint32_t item_id;
+		uint64_t guid;
+		uint32_t cur_count;
+		uint32_t expire_time;
+		int32_t itemType;
+		int32_t lockState;
+		struct Proto_Weapon* weapon;
+		struct Proto_Reliquary* reliquary;
+		struct Proto_Material* material;
+		struct Proto_Furniture* furniture;
+	};
+
+	struct __declspec(align(8)) MoleMole_BagItem__Fields
+	{
+		struct MoleMole_ItemParam _itemParam;
+		bool KDKCPMCGMPP;
+		bool JFFGFOCDKKN;
+	};
+
+	struct MoleMole_BagItem
+	{
+		struct MoleMole_BagItem__Class* klass;
+		MonitorData* monitor;
+		struct MoleMole_BagItem__Fields fields;
+	};
+
+	struct __declspec(align(8)) MoleMole_BagItemSlot__Fields
+	{
+		int32_t typeIndex;
+		struct MoleMole_BagItem* _item;
+	};
+
+	struct MoleMole_BagItemSlot
+	{
+		struct MoleMole_BagItemSlot__Class* klass;
+		MonitorData* monitor;
+		struct MoleMole_BagItemSlot__Fields fields;
+	};
+
+	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_
+	{
+		uint32_t runtimeID;
+		struct MoleMole_AvatarEntity* _entityRef;
+	};
+
+	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Boxed
+	{
+		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Class* klass;
+		MonitorData* monitor;
+		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ fields;
+	};
+
+	struct MonoActionBtn__Fields
+	{
+		struct MonoSpriteProxy__Fields _;
+		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ avatarHandle;
+		struct Button* _button;
+		bool _isPointerHold;
+		float _holdTime;
+		float _totalHoldTime;
+		bool _buttonClickTrigger;
+		bool _buttonUpTrigger;
+		bool resetButtonOnDisable;
+		struct Action* onPressDownCallback;
+		struct Action* onPressUpCallback;
+	};
+
+	struct MonoQuickUseButton__Fields
+	{
+		struct MonoActionBtn__Fields _;
+		struct Image_1* _icon;
+		struct CanvasGroup* _iconCanvasGroup;
+		struct Image_1* _disableIcon;
+		struct Material* _foodWorstMat;
+		struct Material* _defaultMat;
+		struct GameObject* _numGrp;
+		struct CanvasGroup* _numCanvasGroup;
+		struct SimpleText* _numText;
+		struct Color _numNormalColor;
+		struct Color _numNotEnoughColor;
+		struct GameObject* _cdGrp;
+		struct SimpleText* _cdText;
+		struct SmoothMask* _cdMask;
+		struct Image_1* _buffIcon;
+		struct GameObject* _foodBestImg;
+		struct MonoPrefabPlugin* _prefabPlugin;
+		struct MonoUIEffect* _hintEffect;
+		float effectCD;
+		struct GameObject* _returnGrp;
+		struct GameObject* _maxHaloGrp;
+		struct Image_1* _progressFullHalo;
+		struct Image_1* _progressFullHaloBlur;
+		struct GameObject* _progressGrp;
+		struct GameObject* _energyEffectGrp;
+		struct MonoUIEffect* _addEffect;
+		struct MonoUIEffect* _maxEffect;
+		struct SmoothMask* _progressMask;
+		struct Image_1* _progressImage;
+		struct Animator* _energyBarAnimator;
+		struct SmoothMask* _energyBarMask;
+		struct GameObject* _activityEffctGrp;
+		struct MonoUIEffect* _addActivityEffect;
+		struct MonoUIEffect* _maxAddActivityEffect;
+		struct MoleMole_LCWidget* _lcWidget;
+		struct MoleMole_WidgetSystemManager* _widgetSystemManager;
+		int32_t _currentActionPanelState;
+		int32_t _nextActionPanelState;
+		struct MoleMole_ISelfRecordState__Array* _uiStateArray;
+		struct ParticleSystem* CCLNLFNIDOM;
+		struct GameObject* CIGIKEIABOK;
+		struct GameObject* DJANGJCDJJA;
+		struct ParticleSystem__Array* _cdEndEffect;
+		bool _energyFull;
+		float lastCd;
+		bool _lastCdState;
+		bool _currentCdState;
+		bool _inCD_k__BackingField;
+		struct String__Array* cdTextStr;
+	};
+
+	struct MonoQuickUseButton
+	{
+		struct MonoQuickUseButton__Class* klass;
+		MonitorData* monitor;
+		struct MonoQuickUseButton__Fields fields;
+	};
+
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)
 }
