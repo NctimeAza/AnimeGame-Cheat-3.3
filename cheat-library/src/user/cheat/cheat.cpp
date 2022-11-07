@@ -126,14 +126,15 @@ namespace cheat
 
 			FEAT_INST(CustomWeather),
 
-			FEAT_INST(NoFog),
 			FEAT_INST(FPSUnlock),
 			FEAT_INST(ChestIndicator),
+			FEAT_INST(NoFog),
+			FEAT_INST(HideUI),
+			FEAT_INST(EnablePeeking),
+			
 			FEAT_INST(ProfileChanger),
 			FEAT_INST(PaimonFollow),
-			FEAT_INST(HideUI),
 			FEAT_INST(Browser),
-			FEAT_INST(EnablePeeking),
 			FEAT_INST(CameraZoom),
 			FEAT_INST(TextureChanger),
 			FEAT_INST(FreeCamera),
