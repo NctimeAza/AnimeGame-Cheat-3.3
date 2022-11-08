@@ -7185,117 +7185,117 @@ namespace app {
     };
 
     struct __declspec(align(8)) CombatProperty__Fields {
-    struct SafeFloat maxHP; // 0x10
-    struct SafeFloat HP; // 0x20
-    struct SafeFloat elemEnergy; // 0x30
-    struct SafeFloat maxElemEnergy; // 0x40
-    struct SafeFloat attackBase; // 0x50
-    struct SafeFloat attackPermanent; // 0x60
-    struct SafeFloat defenseBase; // 0x70
-    struct SafeFloat defensePermanent; // 0x80
-    struct SafeFloat addHurtBase; // 0x90
-    struct SafeFloat subHurtBase; // 0xA0
-    struct SafeFloat criticalHurtBase; // 0xB0
-    struct SafeFloat criticalBase; // 0xC0
-    struct SafeFloat antiCriticalBase; // 0xD0
-    struct SafeFloat physicalSubHurtBase; // 0xE0
-    struct SafeFloat GLLHLKAONCK; // 0xF0
-    struct SafeFloat AMMLOFAEBPF; // 0x100
-    struct SafeFloat NMOEINCFOIL; // 0x110
-    struct SafeFloat MDJFMKMEIIN; // 0x120
-    struct SafeFloat BHLONKDLCLC; // 0x130
-    struct SafeFloat NJPBPIJDNBD; // 0x140
-    struct SafeFloat GDEJAPKOKFN; // 0x150
-    struct SafeFloat BEMFDLDEKAF; // 0x160
-    struct SafeFloat GNFEHPLABAM; // 0x170
-    struct SafeFloat AGJJLGONEPJ; // 0x180
-    struct SafeFloat ALHFLGABIBG; // 0x190
-    struct SafeFloat NAFKFNENFAE; // 0x1A0
-    struct SafeFloat GMLBLPOKMPM; // 0x1B0
-    struct SafeFloat MHDHODBFKOJ; // 0x1C0
-    struct SafeFloat DFAMAMIOLDF; // 0x1D0
-    struct SafeFloat HIJAAGIAPBJ; // 0x1E0
-    struct SafeFloat BGGDHGGOIIB; // 0x1F0
-    struct SafeFloat IGPLDEFLKAP; // 0x200
-    struct SafeFloat LGJFLMNLEBJ; // 0x210
-    struct SafeFloat ECKCEIIANJI; // 0x220
-    struct SafeFloat EILLOLJEPBP; // 0x230
-    struct SafeFloat FDICILELCAM; // 0x240
-    struct SafeFloat KGKBEKECCKL; // 0x250
-    struct SafeFloat OEHJIEGCDCD; // 0x260
-    struct SafeFloat GLKLDAGLMLD; // 0x270
-    struct SafeFloat OPMENIDKNGK; // 0x280
-    struct SafeFloat LNCCLOMPFHJ; // 0x290
-    struct SafeFloat LJGDKDNPCFL; // 0x2A0
-    struct SafeFloat LAHCEIHKHEH; // 0x2B0
-    struct SafeFloat FENPPKOPDBD; // 0x2C0
-    struct SafeFloat JPCAGGFKDFA; // 0x2D0
-    struct SafeFloat JOOMCGNILPB; // 0x2E0
-    struct SafeFloat ECIBKJPMIJP; // 0x2F0
-    struct SafeFloat KIFAFBPPIDJ; // 0x300
-    struct SafeFloat BFFIGNMHPJC; // 0x310
-    struct SafeFloat JJHFKGEPMKO; // 0x320
-    struct SafeFloat HKKDJJOFCIM; // 0x330
-    struct SafeFloat KJFMGICOGEE; // 0x340
-    struct SafeFloat HOFOFLJJPGB; // 0x350
-    struct SafeFloat CLIKAEMOJLA; // 0x360
-    struct SafeFloat HOEBPCCODAJ; // 0x370
-    struct SafeFloat PEKFECEPDEL; // 0x380
-    struct SafeFloat GPKMLFEGPHE; // 0x390
-    struct SafeFloat GFAEBLKAJNB; // 0x3A0
-    struct SafeFloat HJADDAMBMJA; // 0x3B0
-    struct SafeFloat BLIFPELOGIN; // 0x3C0
-    struct SafeFloat BKIPGJPBPMK; // 0x3D0
-    struct SafeFloat DFCCKCEIEGB; // 0x3E0
-    struct SafeFloat IGAMOIDDIFE; // 0x3F0
-    struct SafeFloat EOBHDMLFNGI; // 0x400
-    struct SafeFloat MIFGEHHLABD; // 0x410
-    struct SafeFloat LKJMENMPGBO; // 0x420
-    struct SafeFloat FGICMKCHLFG; // 0x430
-    struct SafeFloat KHEHPPLEGCF; // 0x440
-    struct SafeFloat GHCNGBFPABP; // 0x450
-    struct SafeFloat OFAGIKILIEB; // 0x460
-    struct SafeFloat BPJGHCMEAJA; // 0x470
-    struct SafeFloat HHLNPMMOEDH; // 0x480
-    struct SafeFloat DAJCINDIGAN; // 0x490
-    struct SafeFloat KBDMLOCNCMH; // 0x4A0
-    struct SafeFloat DIFHLDCEOIH; // 0x4B0
-    struct SafeFloat NCOFCJBGPJC; // 0x4C0
-    struct SafeFloat IPCJMLNCPKM; // 0x4D0
-    struct SafeFloat OCIBHGOMJFF; // 0x4E0
-    struct SafeFloat POMOHEHHMGH; // 0x4F0
-    struct SafeFloat DKOJCAPOFBK; // 0x500
-    struct SafeFloat EHHLLDIIILD; // 0x510
-    struct SafeFloat BOLFGJOHOIA; // 0x520
-    struct SafeFloat KPDAAOIPIOL; // 0x530
-    struct SafeFloat ILDKJPKJEIA; // 0x540
-    struct SafeFloat JLGMEOHCIHH; // 0x550
-    struct SafeFloat APEFFAPLJHB; // 0x560
-    struct SafeFloat MOPNGNANEGC; // 0x570
-    struct SafeFloat AKNEEOAAKMN; // 0x580
-    struct SafeFloat JLKKEADCBJD; // 0x590
-    struct SafeFloat IAPMABEMEMG; // 0x5A0
-    struct SafeFloat HCBNKNMHPLF; // 0x5B0
-    struct SafeFloat HCEFAFCDMPC; // 0x5C0
-    ElementType__Enum elemType; // 0x5D0
-    struct SafeFloat weight; // 0x5D8
-    struct SafeFloat endure; // 0x5E8
-    struct SafeFloat endureShake; // 0x5F8
-    struct SafeFloat gaugeLength; // 0x608
-    struct SafeFloat waneSpeed; // 0x618
-    struct SafeFloat recoverTime; // 0x628
-    struct SafeFloat endurance; // 0x638
-    struct FixedBoolStack* denyLockOn; // 0x648
-    struct FixedBoolStack* isInvincible; // 0x650
-    struct FixedBoolStack* islockHP; // 0x658
-    struct FixedBoolStack* isNoheal; // 0x660
-    struct FixedBoolStack* isGhostToAllied; // 0x668
-    struct FixedBoolStack* isGhostToEnemy; // 0x670
-    struct FixedBoolStack* canTriggerBullet; // 0x678
-    struct FixedBoolStack* denyElementStick; // 0x680
-    struct LCAbilityState* _ability; // 0x688
-    bool useAbilityProperty; // 0x690
-    //void* ANJJMGPDHKO; // 0x698 not rly important lol
+        struct SafeFloat maxHP; // 0x10
+        struct SafeFloat HP; // 0x20
+        struct SafeFloat elemEnergy; // 0x30
+        struct SafeFloat maxElemEnergy; // 0x40
+        struct SafeFloat attackBase; // 0x50
+        struct SafeFloat attackPermanent; // 0x60
+        struct SafeFloat defenseBase; // 0x70
+        struct SafeFloat defensePermanent; // 0x80
+        struct SafeFloat addHurtBase; // 0x90
+        struct SafeFloat subHurtBase; // 0xA0
+        struct SafeFloat criticalHurtBase; // 0xB0
+        struct SafeFloat criticalBase; // 0xC0
+        struct SafeFloat antiCriticalBase; // 0xD0
+        struct SafeFloat physicalSubHurtBase; // 0xE0
+        struct SafeFloat GLLHLKAONCK; // 0xF0
+        struct SafeFloat AMMLOFAEBPF; // 0x100
+        struct SafeFloat NMOEINCFOIL; // 0x110
+        struct SafeFloat MDJFMKMEIIN; // 0x120
+        struct SafeFloat BHLONKDLCLC; // 0x130
+        struct SafeFloat NJPBPIJDNBD; // 0x140
+        struct SafeFloat GDEJAPKOKFN; // 0x150
+        struct SafeFloat BEMFDLDEKAF; // 0x160
+        struct SafeFloat GNFEHPLABAM; // 0x170
+        struct SafeFloat AGJJLGONEPJ; // 0x180
+        struct SafeFloat ALHFLGABIBG; // 0x190
+        struct SafeFloat NAFKFNENFAE; // 0x1A0
+        struct SafeFloat GMLBLPOKMPM; // 0x1B0
+        struct SafeFloat MHDHODBFKOJ; // 0x1C0
+        struct SafeFloat DFAMAMIOLDF; // 0x1D0
+        struct SafeFloat HIJAAGIAPBJ; // 0x1E0
+        struct SafeFloat BGGDHGGOIIB; // 0x1F0
+        struct SafeFloat IGPLDEFLKAP; // 0x200
+        struct SafeFloat LGJFLMNLEBJ; // 0x210
+        struct SafeFloat ECKCEIIANJI; // 0x220
+        struct SafeFloat EILLOLJEPBP; // 0x230
+        struct SafeFloat FDICILELCAM; // 0x240
+        struct SafeFloat KGKBEKECCKL; // 0x250
+        struct SafeFloat OEHJIEGCDCD; // 0x260
+        struct SafeFloat GLKLDAGLMLD; // 0x270
+        struct SafeFloat OPMENIDKNGK; // 0x280
+        struct SafeFloat LNCCLOMPFHJ; // 0x290
+        struct SafeFloat LJGDKDNPCFL; // 0x2A0
+        struct SafeFloat LAHCEIHKHEH; // 0x2B0
+        struct SafeFloat FENPPKOPDBD; // 0x2C0
+        struct SafeFloat JPCAGGFKDFA; // 0x2D0
+        struct SafeFloat JOOMCGNILPB; // 0x2E0
+        struct SafeFloat ECIBKJPMIJP; // 0x2F0
+        struct SafeFloat KIFAFBPPIDJ; // 0x300
+        struct SafeFloat BFFIGNMHPJC; // 0x310
+        struct SafeFloat JJHFKGEPMKO; // 0x320
+        struct SafeFloat HKKDJJOFCIM; // 0x330
+        struct SafeFloat KJFMGICOGEE; // 0x340
+        struct SafeFloat HOFOFLJJPGB; // 0x350
+        struct SafeFloat CLIKAEMOJLA; // 0x360
+        struct SafeFloat HOEBPCCODAJ; // 0x370
+        struct SafeFloat PEKFECEPDEL; // 0x380
+        struct SafeFloat GPKMLFEGPHE; // 0x390
+        struct SafeFloat GFAEBLKAJNB; // 0x3A0
+        struct SafeFloat HJADDAMBMJA; // 0x3B0
+        struct SafeFloat BLIFPELOGIN; // 0x3C0
+        struct SafeFloat BKIPGJPBPMK; // 0x3D0
+        struct SafeFloat DFCCKCEIEGB; // 0x3E0
+        struct SafeFloat IGAMOIDDIFE; // 0x3F0
+        struct SafeFloat EOBHDMLFNGI; // 0x400
+        struct SafeFloat MIFGEHHLABD; // 0x410
+        struct SafeFloat LKJMENMPGBO; // 0x420
+        struct SafeFloat FGICMKCHLFG; // 0x430
+        struct SafeFloat KHEHPPLEGCF; // 0x440
+        struct SafeFloat GHCNGBFPABP; // 0x450
+        struct SafeFloat OFAGIKILIEB; // 0x460
+        struct SafeFloat BPJGHCMEAJA; // 0x470
+        struct SafeFloat HHLNPMMOEDH; // 0x480
+        struct SafeFloat DAJCINDIGAN; // 0x490
+        struct SafeFloat KBDMLOCNCMH; // 0x4A0
+        struct SafeFloat DIFHLDCEOIH; // 0x4B0
+        struct SafeFloat NCOFCJBGPJC; // 0x4C0
+        struct SafeFloat IPCJMLNCPKM; // 0x4D0
+        struct SafeFloat OCIBHGOMJFF; // 0x4E0
+        struct SafeFloat POMOHEHHMGH; // 0x4F0
+        struct SafeFloat DKOJCAPOFBK; // 0x500
+        struct SafeFloat EHHLLDIIILD; // 0x510
+        struct SafeFloat BOLFGJOHOIA; // 0x520
+        struct SafeFloat KPDAAOIPIOL; // 0x530
+        struct SafeFloat ILDKJPKJEIA; // 0x540
+        struct SafeFloat JLGMEOHCIHH; // 0x550
+        struct SafeFloat APEFFAPLJHB; // 0x560
+        struct SafeFloat MOPNGNANEGC; // 0x570
+        struct SafeFloat AKNEEOAAKMN; // 0x580
+        struct SafeFloat JLKKEADCBJD; // 0x590
+        struct SafeFloat IAPMABEMEMG; // 0x5A0
+        struct SafeFloat HCBNKNMHPLF; // 0x5B0
+        struct SafeFloat HCEFAFCDMPC; // 0x5C0
+        ElementType__Enum elemType; // 0x5D0
+        struct SafeFloat weight; // 0x5D8
+        struct SafeFloat endure; // 0x5E8
+        struct SafeFloat endureShake; // 0x5F8
+        struct SafeFloat gaugeLength; // 0x608
+        struct SafeFloat waneSpeed; // 0x618
+        struct SafeFloat recoverTime; // 0x628
+        struct SafeFloat endurance; // 0x638
+        struct FixedBoolStack* denyLockOn; // 0x648
+        struct FixedBoolStack* isInvincible; // 0x650
+        struct FixedBoolStack* islockHP; // 0x658
+        struct FixedBoolStack* isNoheal; // 0x660
+        struct FixedBoolStack* isGhostToAllied; // 0x668
+        struct FixedBoolStack* isGhostToEnemy; // 0x670
+        struct FixedBoolStack* canTriggerBullet; // 0x678
+        struct FixedBoolStack* denyElementStick; // 0x680
+        struct LCAbilityState* _ability; // 0x688
+        bool useAbilityProperty; // 0x690
+        //void* ANJJMGPDHKO; // 0x698 not rly important lol
     };
 
     struct CombatProperty {
@@ -10785,10 +10785,10 @@ namespace app {
 
     struct GadgetInteractRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        uint32_t gadgetEntityId_;
-        InteractType__Enum interactType_;
-        InterOpType__Enum opType_;
         int32_t retcode_;
+        InterOpType__Enum opType_;
+        InteractType__Enum interactType_;
+        uint32_t gadgetEntityId_;
         uint32_t gadgetId_;
     };
 
@@ -11491,11 +11491,11 @@ namespace app {
     struct PlayerCookRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
-        uint32_t cookCount_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
         int32_t retcode_;
-        uint32_t qteQuality_;
+        uint32_t cookCount_; // need debug
+        uint32_t qteQuality_; // need debug
         struct CookRecipeData_1* recipeData_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
     };
 
     struct PlayerCookRsp {
@@ -11590,8 +11590,8 @@ namespace app {
 
     struct CookRecipeData_1__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        uint32_t recipeId_;
         uint32_t proficiency_;
+        uint32_t recipeId_;
     };
 
     struct CookRecipeData_1 {
@@ -12919,134 +12919,134 @@ namespace app {
         struct MiHoYoLodLoader__Fields fields;
     };
 
-	struct MoleMole_ItemParam
-	{
-		uint32_t item_id;
-		uint64_t guid;
-		uint32_t cur_count;
-		uint32_t expire_time;
-		int32_t itemType;
-		int32_t lockState;
-		struct Proto_Weapon* weapon;
-		struct Proto_Reliquary* reliquary;
-		struct Proto_Material* material;
-		struct Proto_Furniture* furniture;
-	};
+    struct MoleMole_ItemParam
+    {
+        uint32_t item_id;
+        uint64_t guid;
+        uint32_t cur_count;
+        uint32_t expire_time;
+        int32_t itemType;
+        int32_t lockState;
+        struct Proto_Weapon* weapon;
+        struct Proto_Reliquary* reliquary;
+        struct Proto_Material* material;
+        struct Proto_Furniture* furniture;
+    };
 
-	struct __declspec(align(8)) MoleMole_BagItem__Fields
-	{
-		struct MoleMole_ItemParam _itemParam;
-		bool KDKCPMCGMPP;
-		bool JFFGFOCDKKN;
-	};
+    struct __declspec(align(8)) MoleMole_BagItem__Fields
+    {
+        struct MoleMole_ItemParam _itemParam;
+        bool KDKCPMCGMPP;
+        bool JFFGFOCDKKN;
+    };
 
-	struct MoleMole_BagItem
-	{
-		struct MoleMole_BagItem__Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_BagItem__Fields fields;
-	};
+    struct MoleMole_BagItem
+    {
+        struct MoleMole_BagItem__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_BagItem__Fields fields;
+    };
 
-	struct __declspec(align(8)) MoleMole_BagItemSlot__Fields
-	{
-		int32_t typeIndex;
-		struct MoleMole_BagItem* _item;
-	};
+    struct __declspec(align(8)) MoleMole_BagItemSlot__Fields
+    {
+        int32_t typeIndex;
+        struct MoleMole_BagItem* _item;
+    };
 
-	struct MoleMole_BagItemSlot
-	{
-		struct MoleMole_BagItemSlot__Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_BagItemSlot__Fields fields;
-	};
+    struct MoleMole_BagItemSlot
+    {
+        struct MoleMole_BagItemSlot__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_BagItemSlot__Fields fields;
+    };
 
-	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_
-	{
-		uint32_t runtimeID;
-		struct MoleMole_AvatarEntity* _entityRef;
-	};
+    struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_
+    {
+        uint32_t runtimeID;
+        struct MoleMole_AvatarEntity* _entityRef;
+    };
 
-	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Boxed
-	{
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ fields;
-	};
+    struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Boxed
+    {
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ fields;
+    };
 
-	struct MonoActionBtn__Fields
-	{
-		struct MonoSpriteProxy__Fields _;
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ avatarHandle;
-		struct Button* _button;
-		bool _isPointerHold;
-		float _holdTime;
-		float _totalHoldTime;
-		bool _buttonClickTrigger;
-		bool _buttonUpTrigger;
-		bool resetButtonOnDisable;
-		struct Action* onPressDownCallback;
-		struct Action* onPressUpCallback;
-	};
+    struct MonoActionBtn__Fields
+    {
+        struct MonoSpriteProxy__Fields _;
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ avatarHandle;
+        struct Button* _button;
+        bool _isPointerHold;
+        float _holdTime;
+        float _totalHoldTime;
+        bool _buttonClickTrigger;
+        bool _buttonUpTrigger;
+        bool resetButtonOnDisable;
+        struct Action* onPressDownCallback;
+        struct Action* onPressUpCallback;
+    };
 
-	struct MonoQuickUseButton__Fields
-	{
-		struct MonoActionBtn__Fields _;
-		struct Image_1* _icon;
-		struct CanvasGroup* _iconCanvasGroup;
-		struct Image_1* _disableIcon;
-		struct Material* _foodWorstMat;
-		struct Material* _defaultMat;
-		struct GameObject* _numGrp;
-		struct CanvasGroup* _numCanvasGroup;
-		struct SimpleText* _numText;
-		struct Color _numNormalColor;
-		struct Color _numNotEnoughColor;
-		struct GameObject* _cdGrp;
-		struct SimpleText* _cdText;
-		struct SmoothMask* _cdMask;
-		struct Image_1* _buffIcon;
-		struct GameObject* _foodBestImg;
-		struct MonoPrefabPlugin* _prefabPlugin;
-		struct MonoUIEffect* _hintEffect;
-		float effectCD;
-		struct GameObject* _returnGrp;
-		struct GameObject* _maxHaloGrp;
-		struct Image_1* _progressFullHalo;
-		struct Image_1* _progressFullHaloBlur;
-		struct GameObject* _progressGrp;
-		struct GameObject* _energyEffectGrp;
-		struct MonoUIEffect* _addEffect;
-		struct MonoUIEffect* _maxEffect;
-		struct SmoothMask* _progressMask;
-		struct Image_1* _progressImage;
-		struct Animator* _energyBarAnimator;
-		struct SmoothMask* _energyBarMask;
-		struct GameObject* _activityEffctGrp;
-		struct MonoUIEffect* _addActivityEffect;
-		struct MonoUIEffect* _maxAddActivityEffect;
-		struct MoleMole_LCWidget* _lcWidget;
-		struct MoleMole_WidgetSystemManager* _widgetSystemManager;
-		int32_t _currentActionPanelState;
-		int32_t _nextActionPanelState;
-		struct MoleMole_ISelfRecordState__Array* _uiStateArray;
-		struct ParticleSystem* CCLNLFNIDOM;
-		struct GameObject* CIGIKEIABOK;
-		struct GameObject* DJANGJCDJJA;
-		struct ParticleSystem__Array* _cdEndEffect;
-		bool _energyFull;
-		float lastCd;
-		bool _lastCdState;
-		bool _currentCdState;
-		bool _inCD_k__BackingField;
-		struct String__Array* cdTextStr;
-	};
+    struct MonoQuickUseButton__Fields
+    {
+        struct MonoActionBtn__Fields _;
+        struct Image_1* _icon;
+        struct CanvasGroup* _iconCanvasGroup;
+        struct Image_1* _disableIcon;
+        struct Material* _foodWorstMat;
+        struct Material* _defaultMat;
+        struct GameObject* _numGrp;
+        struct CanvasGroup* _numCanvasGroup;
+        struct SimpleText* _numText;
+        struct Color _numNormalColor;
+        struct Color _numNotEnoughColor;
+        struct GameObject* _cdGrp;
+        struct SimpleText* _cdText;
+        struct SmoothMask* _cdMask;
+        struct Image_1* _buffIcon;
+        struct GameObject* _foodBestImg;
+        struct MonoPrefabPlugin* _prefabPlugin;
+        struct MonoUIEffect* _hintEffect;
+        float effectCD;
+        struct GameObject* _returnGrp;
+        struct GameObject* _maxHaloGrp;
+        struct Image_1* _progressFullHalo;
+        struct Image_1* _progressFullHaloBlur;
+        struct GameObject* _progressGrp;
+        struct GameObject* _energyEffectGrp;
+        struct MonoUIEffect* _addEffect;
+        struct MonoUIEffect* _maxEffect;
+        struct SmoothMask* _progressMask;
+        struct Image_1* _progressImage;
+        struct Animator* _energyBarAnimator;
+        struct SmoothMask* _energyBarMask;
+        struct GameObject* _activityEffctGrp;
+        struct MonoUIEffect* _addActivityEffect;
+        struct MonoUIEffect* _maxAddActivityEffect;
+        struct MoleMole_LCWidget* _lcWidget;
+        struct MoleMole_WidgetSystemManager* _widgetSystemManager;
+        int32_t _currentActionPanelState;
+        int32_t _nextActionPanelState;
+        struct MoleMole_ISelfRecordState__Array* _uiStateArray;
+        struct ParticleSystem* CCLNLFNIDOM;
+        struct GameObject* CIGIKEIABOK;
+        struct GameObject* DJANGJCDJJA;
+        struct ParticleSystem__Array* _cdEndEffect;
+        bool _energyFull;
+        float lastCd;
+        bool _lastCdState;
+        bool _currentCdState;
+        bool _inCD_k__BackingField;
+        struct String__Array* cdTextStr;
+    };
 
-	struct MonoQuickUseButton
-	{
-		struct MonoQuickUseButton__Class* klass;
-		MonitorData* monitor;
-		struct MonoQuickUseButton__Fields fields;
-	};
+    struct MonoQuickUseButton
+    {
+        struct MonoQuickUseButton__Class* klass;
+        MonitorData* monitor;
+        struct MonoQuickUseButton__Fields fields;
+    };
 
     struct __declspec(align(8)) AsymmetricAlgorithm__Fields {
         int32_t KeySizeValue;
