@@ -22,16 +22,16 @@ namespace cheat::feature
         NFEX(f_Enabled, "Disable Protection", "m_DisableMhyProt", "General", true, false),
 		m_CorrectSignatures({})
     {
-		HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
-		HookManager::install(app::CrashReporter, CrashReporter_Hook);
+		//HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
+		//HookManager::install(app::CrashReporter, CrashReporter_Hook);
     }
 
 	void ProtectionBypass::Init()
 	{
-		for (int i = 0; i < 4; i++) {
-			LOG_TRACE("Emulating call of RecordUserData with type %d", i);
-			app::Application_RecordUserData(i, nullptr);
-		}
+		//for (int i = 0; i < 4; i++) {
+		//	LOG_TRACE("Emulating call of RecordUserData with type %d", i);
+		//	app::Application_RecordUserData(i, nullptr);
+		//}
 
 		// if (m_Enabled) {
 			LOG_TRACE("Trying to close mhyprot handle.");

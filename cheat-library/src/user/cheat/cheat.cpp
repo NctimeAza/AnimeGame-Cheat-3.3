@@ -13,6 +13,7 @@
 #include <cheat/misc/About.h>
 #include <cheat/misc/sniffer/PacketSniffer.h>
 #include <cheat/misc/BlockWindSeed.h>
+#include <cheat/misc/RSAHook.h>
 
 #include <cheat/player/GodMode.h>
 #include <cheat/player/InfiniteStamina.h>
@@ -88,7 +89,7 @@ namespace cheat
 			FEAT_INST(About),
 			FEAT_INST(PacketSniffer),
 			FEAT_INST(BlockWindSeed),
-
+			FEAT_INST(RSAHook),
 			FEAT_INST(GodMode),
 			FEAT_INST(InfiniteStamina),
 			FEAT_INST(NoCD),
@@ -101,7 +102,7 @@ namespace cheat
 			FEAT_INST(AutoTreeFarm),
 			FEAT_INST(AutoDestroy),
 			FEAT_INST(AutoSeelie),
-			FEAT_INST(OpenTeamImmediately),
+			//FEAT_INST(OpenTeamImmediately),
 			FEAT_INST(VacuumLoot),
 			FEAT_INST(DialogSkip),
 			FEAT_INST(DumbEnemies),

@@ -4167,109 +4167,113 @@ namespace app {
 
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
-        struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic; //0x10
-        struct Config_ConfigEntity* jsonConfig; //0x18
-        struct Config_EntityExcelConfig* excelConfig; //0x20
-        uint32_t _runtimeID_k__BackingField; //0x28
-        uint32_t _preRuntimeID_k__BackingField; //0x2c
-        uint32_t _configID_k__BackingField; //0x30
-        uint32_t _questID_k__BackingField; //0x34
-        uint32_t _switchToQuestID_k__BackingField; //0x38
-        struct SimpleSafeUInt32 campID; //0x3c
-        bool isDestroied; //0x40
-        bool _isToBeRemoved; //0x41
-        bool isInCutscene; //0x42
-        bool isDontDestroyGameObject; //0x43
-        struct String* alias; //0x48
-        int32_t order; //0x50
-        bool isForceClientSynced; //0x54
-        int32_t HHCOJOALGNJ; //0x58
-        bool IJMFPLJHCPJ; //0x5c
-        struct ComponentManager* _logicComponentManager; //0x60
-        struct ComponentManager* _visualComponentManager; //0x68
-        bool _isInited; //0x70
-        struct Action_1_EvtEntityTimeScaleChange_* _onLevelTimeScaleChange; //0x78
-        struct Action* _syncAnimatorSpeed; //0x80
-        struct Action* _onTimeScaleChangedByAbility; //0x88
-        struct EntityQueryIndex* _queryIndex; //0x90
-        struct AbilityComponentProxy* _abilityProxy; //0x98
-        struct TokenManager* _tokenMgr; //0xa0
-        VisionType__Enum _disappearVisionType_k__BackingField; //0xa8
-        bool _MMIHONCELFL_k__BackingField; //0xac
-        bool PLEPGEFAIND; //0xad
-        bool _GDKDNDAGBFB_k__BackingField; //0xae
-        bool PBKECDHGBIN; //0xaf
-        float OACIBKKCGCO; //0xb0
-        bool HBECPLJFPOI; //0xb4
-        struct Action_1_BaseEntity_* onComponentInitPostCallback; //0xb8
-        struct Action_1_BaseEntity_* onEntityReadyPreCallback; //0xc0
-        struct Action_1_BaseEntity_* onEntityReadyBeforePostCallback; //0xc8
-        bool _IsTickable; //0xd0
-        bool _forceTickVisualComMgrIfDisable_k__BackingField; // 0xd1
-        bool _logicHasAnyTickComponent_k__BackingField; // 0xd2
-        bool _visualHasAnyTickComponent_k__BackingField; // 0xd3
-        bool _logicHasAnyLateTickComponent_k__BackingField; // 0xd4
-        bool _visualHasAnyLateTickComponent_k__BackingField; // 0xd5
-        bool isLightInitializationEntity; //0xd6
-        bool _canBeDestroied_k__BackingField; //0xd7
-        bool _isDestroying; //0xd8
-        struct Action_1_BaseEntity_* onEntityRemovedCallback; //0xe0
-        struct Action_1_BaseEntity_* onDestroyCallback; //0xe8
-        bool _isAlive; //0xf0
-        struct Action_1_BaseEntity_* onSetAliveFalseCallback; //0xf8
-        bool _isActive; //0x100
-        struct Action_1_BaseEntity_* preAnimatorInitUpdateCallback; //0x108
-        bool _needSetActiveOnEntityReady; //0x110
-        bool _setActiveOnEntityReady; //0x111
-        struct Action_2_BaseEntity_Boolean_* onSetActiveCallback; //0x118
-        bool _withGameObjWhenSetActive; //0x120
-        bool _isLightActive; //0x121
-        bool _playDefault; //0x122
-        bool _deepIfInactive; //0x123
-        bool _forceSkipAnimatorUpdate; //0x124
-        bool _hasActiveInited; //0x125
-        bool _duringSetComponentsEnabledOnSetActive_k__BackingField; //0x12c
-        float _lastTimeScale; //0x128
-        float _timeScale; //0x12c
-        float GALBNKDJLPA; //0x130
-        bool ignoreLevelTimeScale; //0x134
-        struct FixedStack_1_System_Single_* _timeScaleStack; //0x138
-        struct LCAbilityState* _lcAblityState; //0x140
-    	uint32_t _nextComponentID; //0x148
-        EntityType__Enum_1 entityType;//i've gone completely mental 0x14c
-        bool _isAuthority; //0x150
-        uint32_t authorityPeerId; //0x154
-        bool OMMGADFPHPB; //0x158
-        bool OBBDCKGMCMI; //0x159
-        struct HashList_1_BaseComponent_* _componentsForEntityTickManager; //0x160
-        float _lastTickTime_k__BackingField; //0x168
-        struct List_1_BaseEntity_BaseEntity_ComponentInitNotifyData_* _notifyListOnComponentInit; //0x170
-        struct Dictionary_2_System_String_DynamicCollisionInfo_* _collisionTagDic; //0x178
-        bool _needSafeEntityInit; //0x180
-        struct List_1_EntitySafeCmd_* _entitySafeCmds; //0x188
-        struct Vector3 _sharedPosition; //0x190
-        struct Vector3 _sharedForward; //0x19c
-        struct MEventDispatcher* _eventDispatcher; //0x1a8
-        struct Func_1_Boolean_* onShouldNoPause; //0x1c0
-        struct Action_3_UnityEngine_TickState_Boolean_Boolean_* onAnimatorTickStateChange; //0x1b8
-        struct HashList_1_IRenderable_* _extraRenderers; //0x1c0
-        struct HashSet_1_IRequestOwnerEntityNoPauseTask_* _noPauseTaskRequests; //0x1c8
-        bool MJOFOGPHHLG; //0x1d0
-        bool LOMGNEIMJKI; //0x1d1
-        TickState__Enum _currentAnimatorTickState; //0x1d4
-        struct EntityTickBalanceProxy* _tickBalanceProxy; //0x1d8
-        bool IIFCMNHLCHL; //0x1e0
-        bool _bIgnoreIntervalTick_k__BackingField; //0x1e1
-        bool _AFKDABPOMLB_k__BackingField; //0x1e2
-        float __fullTickSqrMag_k__BackingField; //0x1e4
-        int32_t _greaterToDisableInterval_k__BackingField; //0x1e8
-        struct Func_1_Single_* _getBalanceTickDeltaTimeHandler; //0x1f0
-        struct Func_1_Boolean_* _getRequestPauseHandler; //0x1f8
-        uint64_t animatorConfigPath; //0x200
-        struct Config_ConfigAnimator* _animatorConfig; //0x208
-        struct AnimatorOverrideController* _animatorOverrideController; //0x210
-        int32_t _lastSetOverrideAnimeFrame; //0x218
-        struct AnimatorOverrideController* _originAnimatorController; //0x220
+        struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
+        struct Config_ConfigEntity* jsonConfig;
+        struct Config_EntityExcelConfig* excelConfig;
+        uint32_t _runtimeID_k__BackingField;
+        uint32_t _preRuntimeID_k__BackingField;
+        uint32_t _configID_k__BackingField;
+        uint32_t _questID_k__BackingField;
+        uint32_t _switchToQuestID_k__BackingField;
+        struct SimpleSafeUInt32 campID;
+        bool isDestroied;
+        bool _isToBeRemoved;
+        bool isInCutscene;
+        bool isDontDestroyGameObject;
+        struct String* alias;
+        int32_t order;
+        bool isForceClientSynced;
+        int32_t HHCOJOALGNJ;
+        bool IJMFPLJHCPJ;
+        struct ComponentManager* _logicComponentManager;
+        struct ComponentManager* _visualComponentManager;
+        bool _isInited;
+        bool FECILNEAGPK;
+        struct Action_1_EvtEntityTimeScaleChange_* _onLevelTimeScaleChange;
+        struct Action* _syncAnimatorSpeed;
+        struct Action* _onTimeScaleChangedByAbility;
+        struct EntityQueryIndex* _queryIndex;
+        struct AbilityComponentProxy* _abilityProxy;
+        struct TokenManager* _tokenMgr;
+        VisionType__Enum _disappearVisionType_k__BackingField;
+        bool _MMIHONCELFL_k__BackingField;
+        MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum GDPCPCNFNGN;
+        bool CELCEPAEEOI;
+        bool NAPKKPCLEJL;
+        bool _GDKDNDAGBFB_k__BackingField;
+        bool PBKECDHGBIN;
+        float OACIBKKCGCO;
+        bool HBECPLJFPOI;
+        struct Action_1_BaseEntity_* onComponentInitPostCallback;
+        struct Action_1_BaseEntity_* onEntityReadyPreCallback;
+        struct Action_1_BaseEntity_* onEntityReadyBeforePostCallback;
+        bool _IsTickable;
+        bool _forceTickVisualComMgrIfDisable_k__BackingField;
+        bool _logicHasAnyTickComponent_k__BackingField;
+        bool _visualHasAnyTickComponent_k__BackingField;
+        bool _logicHasAnyLateTickComponent_k__BackingField;
+        bool _visualHasAnyLateTickComponent_k__BackingField;
+        bool isLightInitializationEntity;
+        bool _canBeDestroied_k__BackingField;
+        bool _isDestroying;
+        struct Action_1_BaseEntity_* onEntityRemovedCallback;
+        struct Action_1_BaseEntity_* onDestroyCallback;
+        bool _isAlive;
+        struct Action_1_BaseEntity_* onSetAliveFalseCallback;
+        bool _isActive;
+        struct Action_1_BaseEntity_* preAnimatorInitUpdateCallback;
+        struct Action* KCJIPIAHCGM;
+        bool _needSetActiveOnEntityReady;
+        bool _setActiveOnEntityReady;
+        struct Action_2_BaseEntity_Boolean_* onSetActiveCallback;
+        bool _withGameObjWhenSetActive;
+        bool _isLightActive;
+        bool _playDefault;
+        bool _deepIfInactive;
+        bool _forceSkipAnimatorUpdate;
+        bool _hasActiveInited;
+        bool _duringSetComponentsEnabledOnSetActive_k__BackingField;
+        float _lastTimeScale;
+        float _timeScale;
+        float GALBNKDJLPA;
+        bool ignoreLevelTimeScale;
+        struct FixedStack_1_System_Single_* _timeScaleStack;
+        struct LCAbilityState* _lcAblityState;
+        uint32_t _nextComponentID;
+        EntityType__Enum_1 entityType;//i've gone completely mental
+        bool _isAuthority;
+        uint32_t authorityPeerId;
+        bool OMMGADFPHPB;
+        bool OBBDCKGMCMI;
+        struct HashList_1_BaseComponent_* _componentsForEntityTickManager;
+        float _lastTickTime_k__BackingField;
+        struct List_1_BaseEntity_BaseEntity_ComponentInitNotifyData_* _notifyListOnComponentInit;
+        struct Dictionary_2_System_String_DynamicCollisionInfo_* _collisionTagDic;
+        bool _needSafeEntityInit;
+        struct List_1_EntitySafeCmd_* _entitySafeCmds;
+        struct Vector3 _sharedPosition;
+        struct Vector3 _sharedForward;
+        struct MEventDispatcher* _eventDispatcher;
+        struct Func_1_Boolean_* onShouldNoPause;
+        struct Action_3_UnityEngine_TickState_Boolean_Boolean_* onAnimatorTickStateChange;
+        struct HashList_1_IRenderable_* _extraRenderers;
+        struct HashSet_1_IRequestOwnerEntityNoPauseTask_* _noPauseTaskRequests;
+        bool MJOFOGPHHLG;
+        bool LOMGNEIMJKI;
+        TickState__Enum _currentAnimatorTickState;
+        struct EntityTickBalanceProxy* _tickBalanceProxy;
+        bool IIFCMNHLCHL;
+        bool _bIgnoreIntervalTick_k__BackingField;
+        bool _AFKDABPOMLB_k__BackingField;
+        float __fullTickSqrMag_k__BackingField;
+        int32_t _greaterToDisableInterval_k__BackingField;
+        struct Func_1_Single_* _getBalanceTickDeltaTimeHandler;
+        struct Func_1_Boolean_* _getRequestPauseHandler;
+        uint64_t animatorConfigPath;
+        struct Config_ConfigAnimator* _animatorConfig;
+        struct AnimatorOverrideController* _animatorOverrideController;
+        int32_t _lastSetOverrideAnimeFrame;
+        struct AnimatorOverrideController* _originAnimatorController;
         struct Dictionary_2_System_String_BaseEntity_BaseEntity_AnimeLoadInfo_* _curLoadedAnime;
         struct RecycledLinkedList_1_BaseEntity_BaseEntity_AnimeLoadInfo_* _needFlushResetAnimes;
         int32_t _curForceCacheFreeStyleId;
@@ -13044,6 +13048,26 @@ namespace app {
 		struct MonoQuickUseButton__Fields fields;
 	};
 
+    struct __declspec(align(8)) AsymmetricAlgorithm__Fields {
+        int32_t KeySizeValue;
+        struct KeySizes__Array* LegalKeySizesValue;
+    };
+
+    struct AsymmetricAlgorithm {
+        struct AsymmetricAlgorithm__Class* klass;
+        MonitorData* monitor;
+        struct AsymmetricAlgorithm__Fields fields;
+    };
+
+    struct RSA__Fields {
+        struct AsymmetricAlgorithm__Fields _;
+    };
+
+    struct RSA {
+        struct RSA__Class* klass;
+        MonitorData* monitor;
+        struct RSA__Fields fields;
+    };
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)
 }
