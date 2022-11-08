@@ -16,7 +16,8 @@ namespace cheat::feature
 		{
 			None,
 			Rectangle,
-			Box
+			Box,
+			CornerBox
 		};
 
 		enum class DrawTracerMode
@@ -29,6 +30,7 @@ namespace cheat::feature
 		config::Field<config::Toggle<Hotkey>> f_Enabled;
     
 		config::Field<config::Enum<DrawMode>> f_DrawBoxMode;
+		config::Field<float> f_CorneredBoxSize;
 		config::Field<config::Enum<DrawTracerMode>> f_DrawTracerMode;
 		config::Field<bool> f_Fill;
 		config::Field<float> f_FillTransparency;
