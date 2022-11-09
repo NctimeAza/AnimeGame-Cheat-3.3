@@ -113,7 +113,7 @@
 #define il2cpp_object_get_size_ptr 0x0
 #define il2cpp_object_get_virtual_method_ptr 0x0
 #define il2cpp_object_new_ptr 0x286c150
-#define il2cpp_value_box_ptr 0x0
+#define il2cpp_value_box_ptr 0x286c530
 #define il2cpp_monitor_enter_ptr 0x0
 #define il2cpp_monitor_try_enter_ptr 0x0
 #define il2cpp_monitor_exit_ptr 0x0
@@ -135,7 +135,7 @@
 #define il2cpp_string_intern_ptr 0x286c340
 #define il2cpp_string_is_interned_ptr 0x286c350
 #define il2cpp_thread_current_ptr 0x0
-#define il2cpp_thread_attach_ptr 0x0
+#define il2cpp_thread_attach_ptr 0x286c3a0
 #define il2cpp_thread_detach_ptr 0x0
 #define il2cpp_enable_object_type_mutex_ptr 0x0
 #define il2cpp_type_get_object_ptr 0x0

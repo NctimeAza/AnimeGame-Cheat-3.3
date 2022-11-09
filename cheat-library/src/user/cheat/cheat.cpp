@@ -102,7 +102,7 @@ namespace cheat
 			FEAT_INST(AutoTreeFarm),
 			FEAT_INST(AutoDestroy),
 			FEAT_INST(AutoSeelie),
-			//FEAT_INST(OpenTeamImmediately),
+			FEAT_INST(OpenTeamImmediately),
 			FEAT_INST(VacuumLoot),
 			FEAT_INST(DialogSkip),
 			FEAT_INST(DumbEnemies),
