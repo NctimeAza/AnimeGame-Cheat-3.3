@@ -166,8 +166,8 @@ void cheat::GenshinCM::DrawAccountsList(const std::string& profileName)
 		ImGui::TableSetupScrollFreeze(0, 1);
 		ImGui::TableHeadersRow();
 
-		// Perform copying due to we can change values
-		const auto& userIDs = f_AccConfig.value().profiles2id[profileName];
+		// Make a copy. Elements will be removed from the original inside the for-loop body.
+		const auto userIDs = f_AccConfig.value().profiles2id[profileName];
 		for (const auto userID : userIDs)
 		{
 			ImGui::TableNextRow();

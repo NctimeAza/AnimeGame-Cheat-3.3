@@ -19,7 +19,7 @@ public:
 
     virtual ~SafeQueue() { }
 
-    unsigned long long size() const {
+    size_t size() const {
         std::lock_guard<std::mutex> lock(mutex_);
         return queue_.size();
     }
