@@ -588,6 +588,43 @@ namespace cheat::feature::esp::render
 			draw->AddText(font, fontSize, healthPosition, color, text.c_str());
 	}
 
+	static Rect DrawCorneredBox(game::Entity* entity, const ImColor& color)
+	{
+		auto box = GetEntityScreenBox(entity);
+		if (!box)
+			return {};
+
+		auto entityRect = GetEntityScreenRect(*box);
+		if (entityRect.empty())
+			return {};
+
+		auto& esp = ESP::GetInstance();
+		auto draw = ImGui::GetBackgroundDrawList();
+
+		ImVec2 leftTop = { entityRect.xMin, entityRect.yMax };
+		ImVec2 leftBot = { entityRect.xMin, entityRect.yMin };
+		ImVec2 rightTop = { entityRect.xMax, entityRect.yMax };
+		ImVec2 rightBot = { entityRect.xMax, entityRect.yMin };
+
+		//left top
+		draw->AddLine(leftTop, leftTop + ImVec2((rightTop.x - leftTop.x) / esp.f_CorneredBoxSize, 0), color);
+		draw->AddLine(leftTop, leftTop + ImVec2(0, -(leftTop.y - leftBot.y) / esp.f_CorneredBoxSize), color);
+
+		//left bot
+		draw->AddLine(leftBot, leftBot + ImVec2((rightBot.x - leftBot.x) / esp.f_CorneredBoxSize, 0), color);
+		draw->AddLine(leftBot, leftBot + ImVec2(0, (rightTop.y - rightBot.y) / esp.f_CorneredBoxSize), color);
+
+		//right top
+		draw->AddLine(rightTop, rightTop + ImVec2((leftTop.x - rightTop.x) / esp.f_CorneredBoxSize, 0), color);
+		draw->AddLine(rightTop, rightTop + ImVec2(0, -(rightTop.y - rightBot.y) / esp.f_CorneredBoxSize), color);
+
+		//right bot
+		draw->AddLine(rightBot, rightBot + ImVec2(0, (rightTop.y - rightBot.y) / esp.f_CorneredBoxSize), color);
+		draw->AddLine(rightBot, rightBot + ImVec2((leftBot.x - rightBot.x) / esp.f_CorneredBoxSize, 0), color);
+
+		return entityRect;
+	}
+
 	bool DrawEntity(const std::string& name, game::Entity* entity, const ImColor& color, const ImColor& contrastColor)
 	{
 		SAFE_BEGIN();
@@ -602,6 +639,8 @@ namespace cheat::feature::esp::render
 		case ESP::DrawMode::Rectangle:
 			rect = DrawRect(entity, esp.f_GlobalRectColor ? esp.f_GlobalRectColor : color);
 			break;
+		case ESP::DrawMode::CornerBox:
+			rect = DrawCorneredBox(entity, esp.f_GlobalBoxColor ? esp.f_GlobalBoxColor : color);
 		default:
 			rect = {};
 			break;

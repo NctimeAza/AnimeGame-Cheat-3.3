@@ -22,6 +22,7 @@ namespace cheat::feature
 		NF(f_Enabled, "ESP", "ESP", false),
 
 		NF(f_DrawBoxMode, "Draw Mode", "ESP", DrawMode::Box),
+		NF(f_CorneredBoxSize, "Cornered Box Size", "ESP", 3.5f),
 		NF(f_DrawTracerMode, "Tracer Mode", "ESP", DrawTracerMode::Line),
 		NF(f_Fill, "Fill Box/Rectangle/Arrows", "ESP", false),
 		NF(f_FillTransparency, "Fill Transparency", "ESP", 0.5f),
@@ -71,6 +72,10 @@ namespace cheat::feature
 
 			ConfigWidget(f_DrawBoxMode, "Select the mode of box drawing.");
 			ConfigWidget(f_DrawTracerMode, "Select the mode of tracer drawing.");
+			
+			if (f_DrawBoxMode.value() == ESP::DrawMode::CornerBox) {
+				ConfigWidget(f_CorneredBoxSize, 0.5f, 1.f, 50.f, "Size of cornered box");
+			}
 
 			ConfigWidget(f_Fill);
 			ConfigWidget(f_FillTransparency, 0.01f, 0.0f, 1.0f, "Transparency of filled part.");

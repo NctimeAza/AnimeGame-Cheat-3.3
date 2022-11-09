@@ -6,13 +6,16 @@
 
 namespace cheat::feature
 {
-    static void SCameraModuleInitialize_SetWarningLocateRatio_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method);
+    static void SCameraModuleInitialize_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method);
 
     CameraZoom::CameraZoom() : Feature(),
         NF(f_Enabled, "Camera Zoom", "Visuals::CameraZoom", false),
-        NF(f_Zoom, "Zoom", "Visuals::CameraZoom", 200)
+        NF(f_FixedZoom, "Fixed Zoom", "Visuals::CameraZoom", 0.0f),
+        NF(f_MaxZoom, "Max Zoom", "Visuals::CameraZoom", 2.0f),
+        NF(f_MinZoom, "Min Zoom", "Visuals::CameraZoom", 0.75f),
+        NF(f_ZoomSpeed, "Zoom Speed", "Visuals::CameraZoom", 1.0f)
     {
-        HookManager::install(app::MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, SCameraModuleInitialize_SetWarningLocateRatio_Hook);
+        HookManager::install(app::MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, SCameraModuleInitialize_Hook);
     }
 
     const FeatureGUIInfo& CameraZoom::GetGUIInfo() const
@@ -23,12 +26,19 @@ namespace cheat::feature
 
     void CameraZoom::DrawMain()
     {
-        ConfigWidget("", f_Enabled); ImGui::SameLine();
-        ConfigWidget("Camera Zoom", f_Zoom, 0.01f, 1.0f, 500.0f, "Custom camera zooming.\n"
-            "Specified value is multiplier for default zoom distance.\n"
-			"For example:\n"
-            "\t2.0 = 2.0 * defaultZoom"
-        );
+        ImGui::BeginGroupPanel("Camera Zoom");
+        {
+            ConfigWidget(f_Enabled, "Enables custom camera zoom settings.");
+            if (f_Enabled)
+            {
+                ConfigWidget("Fixed Zoom", f_FixedZoom, 0.01f, 0.0f, 100.0f, "Set a fixed additional zoom value to the camera.");
+                ConfigWidget("Max Zoom", f_MaxZoom, 0.01f, 0.1f, 100.0f, "Set the camera's maximum zoom radius ratio.");
+                ConfigWidget("Min Zoom", f_MinZoom, 0.01f, 0.1f, 1.0f, "Set the camera's minimum zoom radius ratio.");
+                ConfigWidget("Zoom Speed", f_ZoomSpeed, 0.01f, 0.75f, 1.5f, "Set the camera's zoom speed multiplier.\n"
+                    "Note: Sensitive and can be buggy. Best left at 1.");
+            }
+        }
+        ImGui::EndGroupPanel();
     }
 
     bool CameraZoom::NeedStatusDraw() const
@@ -38,7 +48,7 @@ namespace cheat::feature
 
     void CameraZoom::DrawStatus()
     {
-        ImGui::Text("Camera zoom [%.1fx]", f_Zoom.value());
+        ImGui::Text("Camera Zoom [+%.2f | %.2fx]", f_FixedZoom.value(), f_MaxZoom.value());
     }
 
     CameraZoom& CameraZoom::GetInstance()
@@ -47,18 +57,26 @@ namespace cheat::feature
         return instance;
     } 
 
-    void SCameraModuleInitialize_SetWarningLocateRatio_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method)
+    void SCameraModuleInitialize_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method)
     {
         CameraZoom& cameraZoom = CameraZoom::GetInstance();
         if (cameraZoom.f_Enabled)
         {
-            data->currentWarningLocateRatio= static_cast<double>(cameraZoom.f_Zoom);
-            //data->isRadiusSqueezing;
+            data->additionalRadius = cameraZoom.f_FixedZoom;
+            // counteract in-combat zoom-out effect
+            data->_maxRadiusExtraRatio = data->isInCombat && cameraZoom.f_MaxZoom > 1
+                ? 1 + (0.75 * log(cameraZoom.f_MaxZoom)) : cameraZoom.f_MaxZoom;
+            data->_minCameraRadius = cameraZoom.f_MinZoom;
+            data->zoomVelocity *= cameraZoom.f_ZoomSpeed;   
         }
         else
-            data->currentWarningLocateRatio = 1.0;
+        {
+            data->additionalRadius = 0;
+            data->_maxRadiusExtraRatio = 1;
+            data->_minCameraRadius = 1;
+        }
         
-        CALL_ORIGIN(SCameraModuleInitialize_SetWarningLocateRatio_Hook, __this, deltaTime, data, method);
+        CALL_ORIGIN(SCameraModuleInitialize_Hook, __this, deltaTime, data, method);
     }
 }
 

@@ -174,7 +174,8 @@ namespace cheat::feature
 			"UNIQUE_Monster_",
 			"Monster_Shougun",
             "UNIQUE_Life_Point_Search",
-            "UNIQUE_DynamicAbility_DeathZone_LoseHp"
+            "UNIQUE_DynamicAbility_DeathZone_LoseHp",
+            "Monster_Nada_Stage02_Doom_Damage"
 		};
         
         std::string modifierName = il2cppi_to_string(actorModifier->fields._config->fields._modifierName);
