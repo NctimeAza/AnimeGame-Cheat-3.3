@@ -215,7 +215,7 @@ namespace cheat::feature
 		auto avatarID = manager.avatar()->runtimeID();
 		auto attackerID = attacker.runtimeID();
 
-		return (attackerID == avatarID || attacker.type() == app::EntityType__Enum_1::Bullet) || IsAvatarOwner(attacker);
+		return attackerID == avatarID || IsAvatarOwner(attacker) || attacker.type() == app::EntityType__Enum_1::Bullet;
 	}
 
 	bool IsConfigByAvatar(game::Entity& attacker)
@@ -224,7 +224,6 @@ namespace cheat::feature
 			return false;
 
 		auto& manager = game::EntityManager::instance();
-		auto patterID = manager.avatar()->combat()->monitor;
 		auto avatarID = manager.avatar()->raw()->fields._configID_k__BackingField;
 		auto attackerID = attacker.raw()->fields._configID_k__BackingField;
 		// LOG_DEBUG("configID = %d", attackerID);
