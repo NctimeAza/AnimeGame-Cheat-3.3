@@ -8346,40 +8346,39 @@ namespace app {
     struct VCHumanoidMove__Fields {
         struct VCBaseMove__Fields _;
         Config_BodyType__Enum moveModelType;
-        float minClimbSlope;
-        float maxClimbSlope;
-        float maxMoveSlope;
-        float minSlipSlope;
-        float upstairTanConst;
-        float slipDropThreshold;
-        float maxSlipSpeed;
-        float slipAcceleration;
-        float slipRapidDecelerationSlope;
-        float slipRapidDecelerationRatio;
-        float slipHaltSlope;
-        float waterfallExtraDownAngle;
-        float dropCliffAngleThreshold;
-        float dropLandLightMaxSpeed;
-        float dropLandMiddleMaxSpeed;
-        float yawSpeedRatio;
-        float swimYawSpeedRatio;
-        float swimDashYawSpeedRatio;
-        float startSwimHeightRatio;
-        float stopSwimHeightRatio;
-        float SwimHeightRatio;
-        float airToSwimHeightRatio;
-        float swimEnableSprintHeightRatio;
-        float climbCloseToGroundDist;
-        float hipOffsetFromIK;
-        float allowMoveNoDropHeightRatio;
-        float _avatarHeight_k__BackingField;
-        float avatarModelHeight;
-        float avatarModelClimbHeight;
-        float avatarWaitToheadHeight;
-        float _avatarShoesHeight_k__BackingField;
-        float _avatarRadius_k__BackingField;
-        float _avatarHeadExtraHeight_k__BackingField;
-        float moveSphereCastRadius;
+        float minClimbSlope; // 0x204
+        float maxClimbSlope; // 0x208
+        float maxMoveSlope; // 0x20C
+        float minSlipSlope; // 0x210
+        float slipDropThreshold; // 0x218
+        float maxSlipSpeed; // 0x21C
+        float slipAcceleration; // 0x220
+        float slipRapidDecelerationSlope; // 0x224
+        float slipRapidDecelerationRatio; // 0x228
+        float slipHaltSlope; // 0x22C
+        float waterfallExtraDownAngle; // 0x230
+        float dropCliffAngleThreshold; // 0x234
+        float dropLandLightMaxSpeed; // 0x238
+        float dropLandMiddleMaxSpeed; // 0x23C
+        float yawSpeedRatio; // 0x240
+        float swimYawSpeedRatio; // 0x244
+        float swimDashYawSpeedRatio; // 0x248
+        float startSwimHeightRatio; // 0x24C
+        float stopSwimHeightRatio; // 0x250
+        float SwimHeightRatio; // 0x254
+        float airToSwimHeightRatio; // 0x258
+        float swimEnableSprintHeightRatio; // 0x25C
+        float climbCloseToGroundDist; // 0x260
+        float hipOffsetFromIK; // 0x264
+        float allowMoveNoDropHeightRatio; // 0x268
+        float _avatarHeight_k__BackingField; // 0x26C
+        struct KPOMBBFHBFC* avatarModelHeight; // 0x270
+        struct KPOMBBFHBFC* avatarModelClimbHeight; // 0x280
+        struct KPOMBBFHBFC* avatarWaitToheadHeight; // 0x290
+        float _avatarShoesHeight_k__BackingField; // 0x2A0
+        float _avatarRadius_k__BackingField; // 0x2A4
+        float _avatarHeadExtraHeight_k__BackingField; // 0x2A8
+        float moveSphereCastRadius; // 0x2AC
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyHard;
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyMiddle;
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyLight;
@@ -8404,6 +8403,18 @@ namespace app {
         struct Vector3 _center;
         int32_t _rotationFrame;
         bool applyGravityExternal;
+        bool enableHitAirRetreatInAir; // 0x419
+        bool _enableLeanLayer; // 0x41A
+        struct NGCDLPPHCBG* _moveControlType; // 0x41C
+        bool useStrafeStamina; // 0x420
+        float _strafeSpeed; // 0x424
+        float _strafeDropSpeed; // 0x428
+        float _strafeAngularSpeed; // 0x42C
+        bool _strafeUseRootMotion; // 0x430
+        bool _strafeUseGravity; // 0x431
+        bool _strafeRotateToTarget; // 0x432
+        struct Vector3 remoteStrafeTargetPos; // 0x434
+        struct Vector3 remoteStrafeTargetDir; // 0x440
         struct VCHumanoidMoveConfig* _moveConfig;
         struct RuntimeAnimatorController* _cacheRuntimeAnimatorCtrl;
         struct HumanoidMoveFSM* _humanoidMoveFSM;
@@ -8429,6 +8440,8 @@ namespace app {
         int32_t _lastAnimatorStateShortNameHash;
         bool _needFaceToAnimParamEver;
         float stayInAirCountToTrampoline;
+        float maxStrafeStamina; // 0x504
+        float _strafeStamina; // 0x508
         struct LCAbilityState* lcAblityState;
         struct VCAvatarEquipController* _equipController;
         struct Vector3 repeatlySetPos;

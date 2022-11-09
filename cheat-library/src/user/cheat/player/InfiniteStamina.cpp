@@ -12,7 +12,7 @@ namespace cheat::feature
         NF(f_PacketReplacement, "Move sync packet replacement", "InfiniteStamina", false)
     {
 		HookManager::install(app::MoleMole_DataItem_HandleNormalProp, DataItem_HandleNormalProp_Hook);
-
+		HookManager::install(app::VCHumanoidMove_MNKKEGMDFFO, VCHumanoidMove_MNKKEGMDFFO_Hook);
 		events::MoveSyncEvent += MY_METHOD_HANDLER(InfiniteStamina::OnMoveSync);
     }
 
@@ -126,5 +126,16 @@ namespace cheat::feature
 		if (isValid)
 			CALL_ORIGIN(DataItem_HandleNormalProp_Hook, __this, type, value, state, method);
 	}
+
+	// Infinite Stamina for Wanderer alone.
+	void InfiniteStamina::VCHumanoidMove_MNKKEGMDFFO_Hook(app::VCHumanoidMove* __this, float JJJEOEHLNGP, MethodInfo* method)
+    {
+		auto& infiniteStamina = GetInstance();
+
+		if (infiniteStamina.f_Enabled || infiniteStamina.f_PacketReplacement)
+			JJJEOEHLNGP = 0.f;
+
+		CALL_ORIGIN(VCHumanoidMove_MNKKEGMDFFO_Hook, __this, JJJEOEHLNGP, method);
+    }
 }
 

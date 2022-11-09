@@ -37,6 +37,8 @@ DO_APP_FUNC(0x4809BD0, bool, MoleMole_LoadingManager_NeedTransByServer, (MoleMol
 // Unlimited stamina
 DO_APP_FUNC(0x4961DB0, void, MoleMole_LevelSyncCombatPlugin_RequestSceneEntityMoveReq, (LevelSyncCombatPlugin* __this, uint32_t entityId, MotionInfo* syncInfo, bool isReliable, uint32_t HAOCOEMOMBG, MethodInfo* method));
 DO_APP_FUNC(0x39F2570, void, MoleMole_DataItem_HandleNormalProp, (DataItem* __this, uint32_t type, int64_t value, DataPropOp__Enum state, MethodInfo* method));
+// Wanderer E Stamina
+DO_APP_FUNC(0x31711D0, void, VCHumanoidMove_MNKKEGMDFFO, (VCHumanoidMove* __this, float JJJEOEHLNGP, MethodInfo* method));
 
 
 // God mode
