@@ -171,7 +171,7 @@ namespace cheat::feature
 
 	void CustomTeleports::OnTeleportKeyPressed(bool next)
 	{
-		if (!f_Enabled || selectedIndex)
+		if (!f_Enabled || !selectedIndex)
 			return;
 
 		app::Vector3 position;
