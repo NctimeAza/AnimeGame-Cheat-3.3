@@ -16,8 +16,8 @@ namespace cheat::feature
 		config::Field<bool> f_UseCustomKeys;
 		config::Field<Hotkey> f_ForwardKey;
 		config::Field<Hotkey> f_LeftKey;
-		config::Field<Hotkey> f_RightKey;
 		config::Field<Hotkey> f_BackKey;
+		config::Field<Hotkey> f_RightKey;
 		config::Field<Hotkey> f_AscendKey;
 		config::Field<Hotkey> f_DescendKey;
 		config::Field<Hotkey> f_AltSpeedKey;

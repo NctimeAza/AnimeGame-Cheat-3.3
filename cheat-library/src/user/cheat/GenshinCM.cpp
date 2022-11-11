@@ -95,7 +95,6 @@ void cheat::GenshinCM::DrawProfileEntryActivities(const std::string& profileName
 	if (m_CurrentAccount.userID == 0)
 		ImGui::BeginDisabled();
 
-	auto& profiles = f_AccConfig.value().id2Profiles;
 	bool isAccountAttached = IsAccountAttached(m_CurrentAccount.userID, profileName);
 	if (ImGui::SmallButton(isAccountAttached ? "-" : "+"))
 	{
@@ -167,14 +166,14 @@ void cheat::GenshinCM::DrawAccountsList(const std::string& profileName)
 		ImGui::TableSetupScrollFreeze(0, 1);
 		ImGui::TableHeadersRow();
 
-		// Perform copying due to we can change values
-		auto userIDs = f_AccConfig.value().profiles2id[profileName];
-		for (auto& userID : userIDs)
+		// Make a copy. Elements will be removed from the original inside the for-loop body.
+		const auto userIDs = f_AccConfig.value().profiles2id[profileName];
+		for (const auto userID : userIDs)
 		{
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 
-			ImGui::PushID(userID);
+			ImGui::PushID(static_cast<int>(userID));
 
 			std::string name = GetAccountDisplayName(userID);
 			ImColor nameColor = m_CurrentAccount.userID == userID ? ACTIVE_COLOR : ImColor(ImGui::GetColorU32(ImGuiCol_Text));

@@ -97,7 +97,7 @@ static HRESULT __stdcall Present_Hook(IDXGISwapChain3* pChain, const UINT SyncIn
 			const auto RTVDescriptorSize = DirectX12Interface::Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 			D3D12_CPU_DESCRIPTOR_HANDLE RTVHandle = DirectX12Interface::DescriptorHeapBackBuffers->GetCPUDescriptorHandleForHeapStart();
 
-			for (size_t i = 0; i < DirectX12Interface::BuffersCounts; i++) {
+			for (uint32_t i = 0; i < DirectX12Interface::BuffersCounts; i++) {
 				ID3D12Resource* pBackBuffer = nullptr;
 				DirectX12Interface::FrameContext[i].DescriptorHandle = RTVHandle;
 				pChain->GetBuffer(i, IID_PPV_ARGS(&pBackBuffer));

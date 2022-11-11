@@ -7,6 +7,7 @@ namespace cheat::game
 	public:
 
 		Entity(app::BaseEntity* rawEntity);
+		virtual ~Entity() = default;
 
 		std::string& name();
 

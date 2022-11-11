@@ -21,8 +21,8 @@ namespace cheat::feature
 		config::Field<int> f_CountField;
 		config::Field<config::Enum<CookQuality>> f_QualityField;
 
-		int CookFoodMaxNum; // Maximum quantity at a time
-		int CookCount;
+		int CookFoodMaxNum = 0; // Maximum quantity at a time
+		int CookCount = 0;
 
 		static AutoCook& GetInstance();
 

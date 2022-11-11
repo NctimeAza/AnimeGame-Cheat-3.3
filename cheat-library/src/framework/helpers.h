@@ -74,7 +74,7 @@ struct UniArray {
     const_iterator begin() const { return &vector[0]; }
     iterator end() { return &vector[length()]; }
     const_iterator end() const { return &vector[length()]; }
-    ElementT* operator[](int i) { return &vector[i]; }
+    ElementT* operator[](uint32_t i) { return &vector[i]; }
 
     std::vector<ElementT> vec()
     {
@@ -91,7 +91,7 @@ struct UniList
     void* klass;
     void* monitor;
     UniArray<T>* store;
-    int32_t size;
+    uint32_t size;
     int32_t version;
 
     typedef T* iterator;

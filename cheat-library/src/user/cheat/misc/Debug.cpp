@@ -256,7 +256,7 @@ namespace cheat::feature
         }
     }
 
-    void DrawEntityActionButtons(game::Entity* entity, bool& csvFriendly)
+    void DrawEntityActionButtons(game::Entity* entity)
     {
         auto& manager = game::EntityManager::instance();
 
@@ -385,10 +385,8 @@ namespace cheat::feature
             BanishEntities(entity);
     }
 
-    void DrawEntityGroupActionButtons(std::vector<game::Entity*> entities, bool& csvFriendly, bool& includeHeaders)
+    void DrawEntityGroupActionButtons(std::vector<game::Entity*> entities)
     {
-        auto& manager = game::EntityManager::instance();
-
         if (ImGui::Button("Teleport: Closest"))
             TeleportByCondition(entities, Debug::TeleportCondition::Closest);
 
@@ -424,7 +422,7 @@ namespace cheat::feature
     void DrawEntitiesTable(std::vector<game::Entity*> entities)
     {
         auto& manager = game::EntityManager::instance();
-        auto clipSize = min(entities.size(), 15) + 1; // Number of rows in table as initial view. Past this is scrollbar territory.
+        const float clipSize = static_cast<float>(min(entities.size(), 15) + 1); // Number of rows in table as initial view. Past this is scrollbar territory.
 
         static ImGuiTableFlags flags =
             ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable // | ImGuiTableFlags_Sortable | ImGuiTableFlags_SortMulti
@@ -455,7 +453,7 @@ namespace cheat::feature
                     ImGui::TableNextRow();
                     ImGui::TableNextColumn();
 
-                    DrawEntityActionButtons(entity, csvFriendly);
+                    DrawEntityActionButtons(entity);
                     ImGui::TableNextColumn();
 
                     ImGui::Text("0x%p", entity);
@@ -518,9 +516,6 @@ namespace cheat::feature
         std::sort(sortedEntries.begin(), sortedEntries.end(), [](auto a1, auto a2) {
             return a1.second < a2.second;
             });
-
-        ImGuiContext& g = *GImGui;
-        ImGuiIO& io = g.IO;
 
         ImGui::Text("Entity Count %d", entities.size());
 
@@ -585,8 +580,6 @@ namespace cheat::feature
                 ImGui::Checkbox("Show Only Oculi", &checkOnlyShells);
                 ImGui::SameLine();
 
-                bool sortConditionChanged = ComboEnum("Sort Mode", &sortCondition);
-
                 if (entities.size() > 0) {
                     if (groupByType) {
                         if (ImGui::BeginTabBar("EntityListTabBar", tab_bar_flags))
@@ -631,7 +624,7 @@ namespace cheat::feature
                                 if (ImGui::BeginTabItem(typeName.data()))
                                 {
                                     auto sortedEntities = SortEntities(validEntities, sortCondition);
-                                    DrawEntityGroupActionButtons(sortedEntities, csvFriendly, includeHeaders);
+                                    DrawEntityGroupActionButtons(sortedEntities);
                                     DrawEntitiesTable(sortedEntities);
                                     ImGui::EndTabItem();
                                 }
@@ -666,7 +659,7 @@ namespace cheat::feature
                         }
 
                         auto sortedEntities = SortEntities(validEntities, sortCondition);
-                        DrawEntityGroupActionButtons(sortedEntities, csvFriendly, includeHeaders);
+                        DrawEntityGroupActionButtons(sortedEntities);
                         DrawEntitiesTable(sortedEntities);
                         ImGui::TreePop();
                     }
@@ -851,10 +844,11 @@ namespace cheat::feature
         if (mapManager == nullptr)
             return;
 
-        int temp = mapManager->fields.playerSceneID;
+        int temp;
+        temp = static_cast<int>(mapManager->fields.playerSceneID);
         ImGui::InputInt("Player scene id", &temp);
 
-        temp = mapManager->fields.mapSceneID;
+        temp = static_cast<int>(mapManager->fields.mapSceneID);
         ImGui::InputInt("Map scene id", &temp);
     }
 
@@ -995,7 +989,7 @@ namespace cheat::feature
         }
     }
 
-    class ItemFilter : game::IEntityFilter
+    class ItemFilter : public game::IEntityFilter
     {
     public:
         ItemFilter() : ItemFilter(app::EntityType__Enum_1::None, "")
@@ -1135,7 +1129,7 @@ namespace cheat::feature
             bool unexplored = true;
             for (auto& [_, filter] : simpleFilters)
             {
-                if (executor.ApplyFilter(entity, reinterpret_cast<game::IEntityFilter*>(&filter)))
+                if (executor.ApplyFilter(entity, static_cast<game::IEntityFilter*>(&filter)))
                 {
                     unexplored = false;
                     break;
@@ -1144,7 +1138,7 @@ namespace cheat::feature
 
             for (auto& filter : removedItems)
             {
-                if (executor.ApplyFilter(entity, reinterpret_cast<game::IEntityFilter*>(&filter)))
+                if (executor.ApplyFilter(entity, static_cast<game::IEntityFilter*>(&filter)))
                 {
                     unexplored = false;
                     break;

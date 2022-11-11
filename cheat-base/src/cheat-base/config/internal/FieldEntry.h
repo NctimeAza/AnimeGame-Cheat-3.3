@@ -9,7 +9,15 @@ namespace config::internal
 	{
 	public:
 		FieldEntry(const std::string& friendlyName, const std::string& name, const std::string& sectionName, bool multiProfile = false)
-			: m_FriendName(friendlyName), m_Name(name), m_Section(sectionName), m_MultiProfile(multiProfile), m_Container(nullptr) {}
+			: m_Name(name),
+			  m_FriendName(friendlyName),
+			  m_Section(sectionName),
+			  m_MultiProfile(multiProfile),
+			  m_Container(nullptr)
+		{
+		}
+
+		virtual ~FieldEntry() = default;
 
 		TEvent<FieldEntry*> ChangedEvent;
 		TEvent<FieldEntry*, const std::string&, bool> MovedEvent;
@@ -52,7 +60,6 @@ namespace config::internal
 		inline void Reposition(const std::string& newSection, bool shared = false)
 		{
 			std::string oldSection = m_Section;
-			bool oldMultiProfile = m_MultiProfile;
 
 			m_Section = newSection;
 			m_MultiProfile = shared;

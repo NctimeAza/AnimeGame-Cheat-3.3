@@ -253,7 +253,6 @@ namespace cheat::feature
 		const ImGuiStyle& style = ImGui::GetStyle();
 
 		// Image Box
-		const auto image_sz = 50.f;
 		ImVec2 box_sz = ImVec2(50, 50);
 		ImVec2 pos_min = ImGui::GetCursorScreenPos();
 		ImVec2 pos_max = pos_min + box_sz;
@@ -955,7 +954,8 @@ namespace cheat::feature
 			if (!label.filter->IsValid(entity))
 				continue;
 
-			auto nearestPoint = FindNearestPoint(label, entity->levelPosition(), f_GatheredItemsDetectRange, sceneID);
+			// Something's not right here with sceneID
+			auto nearestPoint = FindNearestPoint(label, entity->levelPosition(), f_GatheredItemsDetectRange/*, sceneID*/);
 			if (nearestPoint == nullptr)
 			{
 				LOG_INFO("Failed to find uncompleted point for this object.");
@@ -1331,11 +1331,11 @@ namespace cheat::feature
 
         for (auto& pointJsonData : data["points"])
         {
-			PointData data = ParsePointData(pointJsonData);
-			data.labelID = labelID;
-			data.sceneID = sceneID;
+			PointData pdata = ParsePointData(pointJsonData);
+			pdata.labelID = labelID;
+			pdata.sceneID = sceneID;
 
-			labelEntry.points[data.id] = data;
+			labelEntry.points[pdata.id] = pdata;
         }
 
         sceneData.nameToLabel[labelEntry.clearName] = &labelEntry;
@@ -1370,7 +1370,7 @@ namespace cheat::feature
 	{
 		for (auto& [labelID, labelData] : data["labels"].items())
 		{
-			LoadLabelData(labelData, sceneID, std::stoi(labelID));
+			LoadLabelData(labelData, sceneID, std::stoul(labelID));
 		}
 
         for (auto& categorie : data["categories"])
@@ -1394,9 +1394,9 @@ namespace cheat::feature
 		auto& materials = m_MaterialData[type].materials;
 		for (auto& [filterID, filterData] : data[type].items())
 		{
-			auto& materialEntry = materials[std::stoi(filterID)];
+			auto& materialEntry = materials[std::stoul(filterID)];
 
-			materialEntry.id = std::stoi(filterID);
+			materialEntry.id = std::stoul(filterID);
 			materialEntry.name = filterData["name"];
 			materialEntry.clearName = filterData["clear_name"];
 			materialEntry.filter = filterData["materials"].get<std::vector<uint32_t>>();
@@ -1410,7 +1410,7 @@ namespace cheat::feature
 			categories.push_back({});
 			auto& newCategory = categories.back();
 
-			newCategory.id = std::stoi(category["id"].get<std::string>());
+			newCategory.id = std::stoul(category["id"].get<std::string>());
 			newCategory.name = category["name"];
 			auto& children = newCategory.children;
 			for (auto& child : category["children"])
@@ -1534,8 +1534,8 @@ namespace cheat::feature
 		screenPosition.y = (levelPosition.y - s_MapViewRect.m_YMin) / s_MapViewRect.m_Height;
 
 		// Scaling to screen position
-		screenPosition.x = screenPosition.x * app::Screen_get_width(nullptr);
-		screenPosition.y = (1.0f - screenPosition.y) * app::Screen_get_height(nullptr);
+		screenPosition.x = screenPosition.x * static_cast<float>(app::Screen_get_width(nullptr));
+		screenPosition.y = (1.0f - screenPosition.y) * static_cast<float>(app::Screen_get_height(nullptr));
 
 		return screenPosition;
 	}
@@ -1697,7 +1697,7 @@ namespace cheat::feature
 	static void RenderPointCircle(const ImVec2& position, ImTextureID textureID, float transparency, float radius, bool isCustom = false)
 	{
 		auto& settings = feature::Settings::GetInstance();
-		radius *= settings.f_FontSize / 16.0f;
+		radius *= static_cast<float>(settings.f_FontSize) / 16.0f;
 
 		ImVec2 imageStartPos = position - radius;
 		ImVec2 imageEndPos = position + radius;
@@ -1826,7 +1826,7 @@ namespace cheat::feature
 
 		auto mapPos = app::Transform_get_position(reinterpret_cast<app::Transform*>(back), nullptr);
 		auto center = app::Camera_WorldToScreenPoint(uiManager->fields._uiCamera, mapPos, nullptr);
-		center.y = app::Screen_get_height(nullptr) - center.y;
+		center.y = static_cast<float>(app::Screen_get_height(nullptr)) - center.y;
 	 
 		if (mapRect.m_Width == 0)
 			mapRect = app::RectTransform_get_rect(back, nullptr);

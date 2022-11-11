@@ -76,7 +76,7 @@ namespace nlohmann
 				return;
 			}
 
-			toggle.enabled = j["toggled"].get<uint32_t>();
+			toggle.enabled = j["toggled"].get<uint32_t>() != 0;
 			config::converters::FromJson(toggle.value, j.contains("value") ? j["value"] : j["hotkey"]); // Support previously version
 		}
 	};

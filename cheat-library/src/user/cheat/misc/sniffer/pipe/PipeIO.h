@@ -86,6 +86,7 @@ public:
 
 protected:
 	PipeIO() : m_Pipe(nullptr) {};
+	virtual ~PipeIO() = default;
 	PipeTransfer* m_Pipe;
 
 private:

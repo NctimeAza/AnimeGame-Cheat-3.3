@@ -23,7 +23,7 @@ namespace cheat::feature
 		config::Field<float> f_AnimationState;
 		config::Field<config::Toggle<Hotkey>> f_AttackSpeed;
 		config::Field<float> f_SpeedMultiplier;
-		uint32_t animationCounter;
+		int animationCounter;
 
 		static RapidFire& GetInstance();
 

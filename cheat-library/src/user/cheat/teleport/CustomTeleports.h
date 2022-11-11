@@ -53,15 +53,15 @@ namespace cheat::feature
         std::filesystem::path dir;
 
     private:
-        std::set<unsigned int> checkedIndices;
-        std::set<unsigned int> searchIndices;
+        std::set<uint64_t> checkedIndices;
+        std::set<uint64_t> searchIndices;
         bool selectedByClick = false;
-        int selectedIndex = -1;
+        std::optional<size_t> selectedIndex;
         std::string selectedName;
         std::string selectedIndexName;
         SafeValue<int64_t> nextTime;
         CustomTeleports();
-        void TeleportTo(app::Vector3 position, bool interpolate);
+        void TeleportTo(app::Vector3 position, bool shouldInterpolate);
         void OnTeleportKeyPressed(bool next);
         void OnPrevious();
         void OnNext();

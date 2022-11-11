@@ -107,7 +107,7 @@ namespace cheat::feature
         auto emotionsArray = reinterpret_cast<app::EmoSync*>(emoComponent)->fields.emotions->fields._items;
 
         static bool isFull = false;
-        for (int i = 0; i < phonemesArray->max_length && !isFull; i++)
+        for (size_t i = 0; i < phonemesArray->max_length && !isFull; i++)
         {
             if (phonemes.size() == phonemesArray->max_length)
             {
@@ -120,7 +120,7 @@ namespace cheat::feature
             phonemes.push_back(il2cppi_to_string(phonemesArray->vector[i]->fields.name).c_str());
         }
 
-        for (int i = 0; i < emotionsArray->max_length && !isFull; i++)
+        for (size_t i = 0; i < emotionsArray->max_length && !isFull; i++)
         {
             if (emotions.size() == emotionsArray->max_length)
             {

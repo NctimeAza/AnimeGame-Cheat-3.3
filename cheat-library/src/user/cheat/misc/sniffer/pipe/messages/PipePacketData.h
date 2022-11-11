@@ -14,7 +14,7 @@ public:
 	bool manipulationEnabled;
 
 	NetIODirection direction;
-	int16_t messageID;
+	uint16_t messageID;
 	std::vector<byte> head;
 	std::vector<byte> content;
 

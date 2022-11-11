@@ -9,6 +9,7 @@ class PatternScanner
 {
 public:
 	PatternScanner();
+	virtual ~PatternScanner() = default;
 
 	uintptr_t Search(const std::string& name);
 	virtual uintptr_t Search(const std::string& moduleName, const std::string& name);

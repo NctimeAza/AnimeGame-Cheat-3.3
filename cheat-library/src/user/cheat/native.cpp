@@ -143,7 +143,6 @@ bool util::CloseHandleByName(const wchar_t* name)
     ULONG handleInfoSize = 0x10000;
     PSYSTEM_HANDLE_INFORMATION handleInfo = (PSYSTEM_HANDLE_INFORMATION)malloc(handleInfoSize);
     
-    ULONG pid = 0;
     HANDLE processHandle = GetCurrentProcess();
     ULONG i;
 

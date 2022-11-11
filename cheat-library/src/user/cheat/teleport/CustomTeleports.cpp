@@ -18,12 +18,12 @@ namespace cheat::feature
 {
 	CustomTeleports::CustomTeleports() : Feature(),
 		NF(f_Enabled,		"Custom Teleport",		"CustomTeleports",	false),
+		NF(f_Interpolate,	"Interpolate Teleport",	"CustomTeleports",	false),
+		NF(f_Auto,			"Auto Teleport",		"CustomTeleports",	false),
+		NF(f_Speed,			"Interpolation Speed",	"CustomTeleports",	10.0f),
 		NF(f_Next,			"Teleport Next",		"CustomTeleports",	Hotkey(VK_OEM_6)),
 		NF(f_Previous,		"Teleport Previous",	"CustomTeleports",	Hotkey(VK_OEM_4)),
-		NF(f_Auto,			"Auto Teleport",		"CustomTeleports",	false),
 		NF(f_DelayTime,		"Delay time (in s)",	"CustomTeleports",	20),
-		NF(f_Interpolate,	"Interpolate Teleport",	"CustomTeleports",	false),
-		NF(f_Speed,			"Interpolation Speed",	"CustomTeleports",	10.0f),
 		dir(util::GetCurrentPath() /= "teleports"),
 		nextTime(0)
 	{
@@ -129,10 +129,11 @@ namespace cheat::feature
 
 	float PositionDistance(app::Vector3 a, app::Vector3 b)
 	{
-		return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2) + pow(a.z - b.z, 2));
+		const double distance = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2) + pow(a.z - b.z, 2));
+		return static_cast<float>(distance);
 	}
 
-	void CustomTeleports::TeleportTo(app::Vector3 position, bool interpolate)
+	void CustomTeleports::TeleportTo(app::Vector3 position, bool shouldInterpolate)
 	{
 		auto &manager = game::EntityManager::instance();
 		auto avatar = manager.avatar();
@@ -141,7 +142,7 @@ namespace cheat::feature
 			LOG_ERROR("Avatar has no move component, Is scene loaded?");
 			return;
 		}
-		if (interpolate)
+		if (shouldInterpolate)
 		{
 			float speed = this->f_Speed;
 			auto avatarPos = manager.avatar()->absolutePosition();
@@ -170,26 +171,25 @@ namespace cheat::feature
 
 	void CustomTeleports::OnTeleportKeyPressed(bool next)
 	{
-		if (!f_Enabled || selectedIndex < 0)
+		if (!f_Enabled || !selectedIndex)
 			return;
 
-		auto &mapTeleport = MapTeleport::GetInstance();
 		app::Vector3 position;
 
 		if (selectedByClick)
 		{
-			position = Teleports.at(selectedIndex).position;
+			position = Teleports.at(*selectedIndex).position;
 			selectedByClick = false;
 		}
 		else
 		{
 			std::vector list(checkedIndices.begin(), checkedIndices.end());
-			if (next ?  selectedIndex == list.back() : selectedIndex == list.front())
+			if (next ? selectedIndex == list.back() : selectedIndex == list.front())
 				return;
 
-			auto index = std::distance(list.begin(), std::find(list.begin(), list.end(), selectedIndex));
+			auto index = std::distance(list.begin(), std::find(list.begin(), list.end(), *selectedIndex));
 			selectedIndex = list.at(index + (next ? 1 : -1));
-			position = Teleports.at(selectedIndex).position;
+			position = Teleports.at(*selectedIndex).position;
 		}
 		TeleportTo(position, this->f_Interpolate);
 		UpdateIndexName();
@@ -243,7 +243,7 @@ namespace cheat::feature
 	void CustomTeleports::UpdateIndexName()
 	{
 		// abbreviate teleport names that are too long
-		std::string name(selectedIndex == -1 || checkedIndices.empty() ? "" : Teleports.at(selectedIndex).name);
+		std::string name(!selectedIndex || checkedIndices.empty() ? "" : Teleports.at(*selectedIndex).name);
 		if (name.length() > 15)
 		{
 			std::string shortened;
@@ -268,7 +268,7 @@ namespace cheat::feature
 		ImGui::InputText("Description", &descriptionBuffer_);
 		if (ImGui::Button("Add Teleport"))
 		{
-			selectedIndex = -1;
+			selectedIndex = std::nullopt;
 			UpdateIndexName();
 			SerializeTeleport(Teleport_(nameBuffer_, app::ActorUtils_GetAvatarPos(nullptr), descriptionBuffer_));
 			nameBuffer_ = "";
@@ -278,7 +278,7 @@ namespace cheat::feature
 
 		if (ImGui::Button("Reload"))
 		{
-			selectedIndex = -1;
+			selectedIndex = std::nullopt;
 			UpdateIndexName();
 			checkedIndices.clear();
 			ReloadTeleports();
@@ -297,7 +297,7 @@ namespace cheat::feature
 			if (!JSONBuffer_.empty()) {
 				auto t = SerializeFromJson(JSONBuffer_, false);
 				if (t.has_value()) {
-					selectedIndex = -1;
+					selectedIndex = std::nullopt;
 					UpdateIndexName();
 					SerializeTeleport(t.value());
 				}
@@ -335,10 +335,12 @@ namespace cheat::feature
 					LOG_INFO("No teleports selected");
 					return;
 				}
+
 				std::vector<std::string> teleportNames;
 				for (auto &Teleport : Teleports)
 					teleportNames.push_back(Teleport.name);
-				for (auto &index : checkedIndices)
+
+				for (const auto index : checkedIndices)
 				{
 					std::filesystem::remove(dir / (teleportNames[index] + ".json"));
 					LOG_INFO("Deleted teleport %s", teleportNames[index].c_str());
@@ -365,9 +367,9 @@ namespace cheat::feature
 				{
 					if (allChecked)
 					{
-						selectedIndex = -1;
+						selectedIndex = std::nullopt;
 						if (!searchIndices.empty())
-							for (const auto &i : searchIndices)
+							for (const auto i : searchIndices)
 								checkedIndices.erase(i);
 						else
 							checkedIndices.clear();
@@ -375,24 +377,24 @@ namespace cheat::feature
 					else if (!searchIndices.empty())
 						checkedIndices.insert(searchIndices.begin(), searchIndices.end());
 					else
-						for (int i = 0; i < Teleports.size(); i++)
+						for (size_t i = 0; i < Teleports.size(); i++)
 							checkedIndices.insert(i);
 					UpdateIndexName();
 				}
 			}
 			ImGui::SameLine();
 			ImGui::InputText("Search", &searchBuffer_);
-			unsigned int index = 0;
+			uint64_t index = 0;
 			searchIndices.clear();
 
-			unsigned int maxNameLength = 0;
+			size_t maxNameLength = 0;
 			for (auto &Teleport : Teleports)
 				if (Teleport.name.length() > maxNameLength)
 					maxNameLength = Teleport.name.length();
 			ImGui::BeginTable("Teleports", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable | ImGuiTableFlags_NoSavedSettings);
 			ImGui::TableSetupColumn("#", ImGuiTableColumnFlags_WidthFixed, 20);
 			ImGui::TableSetupColumn("Commands", ImGuiTableColumnFlags_WidthFixed, 130);
-			ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed, maxNameLength * 8 + 10);
+			ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed, static_cast<float>(maxNameLength) * 8 + 10);
 			ImGui::TableSetupColumn("Position");
 			ImGui::TableHeadersRow();
 
@@ -403,9 +405,9 @@ namespace cheat::feature
 				{
 					if (!searchBuffer_.empty())
 						searchIndices.insert(index);
-					bool checked = std::any_of(checkedIndices.begin(), checkedIndices.end(), [&index](const auto &i)
+					bool checked = std::any_of(checkedIndices.begin(), checkedIndices.end(), [&index](const auto i)
 											   { return i == index; });
-					bool selected = index == selectedIndex;
+					bool isSelected = index == selectedIndex;
 					std::string stringIndex = std::to_string(index);
 
 					ImGui::TableNextRow();
@@ -417,8 +419,8 @@ namespace cheat::feature
 					{
 						if (checked)
 						{
-							if (selected)
-								selectedIndex = -1;
+							if (isSelected)
+								selectedIndex = std::nullopt;
 							checkedIndices.erase(index);
 						}
 						else
@@ -450,7 +452,7 @@ namespace cheat::feature
 					}
 					ImGui::TableNextColumn();
 
-					ImGui::PushStyleColor(ImGuiCol_Text, selected ? ImGui::GetColorU32(ImGuiCol_CheckMark) : ImGui::GetColorU32(ImGuiCol_Text));
+					ImGui::PushStyleColor(ImGuiCol_Text, isSelected ? ImGui::GetColorU32(ImGuiCol_CheckMark) : ImGui::GetColorU32(ImGuiCol_Text));
 					ImGui::Text("%s", name.c_str());
 					ImGui::PopStyleColor();
 					if (ImGui::IsItemHovered())
@@ -469,8 +471,8 @@ namespace cheat::feature
 			ImGui::TreePop();
 		}
 
-		if (selectedIndex != -1)
-			ImGui::Text("Selected: [%d] %s", selectedIndex, Teleports[selectedIndex].name.c_str());
+		if (selectedIndex)
+			ImGui::Text("Selected: [%llu] %s", *selectedIndex, Teleports[*selectedIndex].name.c_str());
 	}
 
 	bool CustomTeleports::NeedStatusDraw() const

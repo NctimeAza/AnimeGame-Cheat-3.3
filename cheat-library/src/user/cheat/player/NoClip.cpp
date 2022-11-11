@@ -73,13 +73,13 @@ namespace cheat::feature
 		ConfigWidget("Use Custom Keys", f_UseCustomKeys, "Enable the Use of Custom HotKeys");
 
 		if (f_UseCustomKeys) {
-			ConfigWidget("Forward HotKey", f_ForwardKey, "Set Forward Key");
-			ConfigWidget("Left HotKey", f_LeftKey, "Set Left Key");
-			ConfigWidget("Back HotKey", f_BackKey, "Set Back Key");
-			ConfigWidget("Right HotKey", f_RightKey, "Set Right Key");
-			ConfigWidget("Ascend HotKey", f_AscendKey, "Set Ascend Key");
-			ConfigWidget("Descend HotKey", f_DescendKey, "Set Descend Key");
-			ConfigWidget("Alt Speed Key", f_AltSpeedKey, "Set AltSpeed HotKey");
+			ConfigWidget("Forward HotKey", f_ForwardKey, true, "Set Forward Key");
+			ConfigWidget("Left HotKey", f_LeftKey, true, "Set Left Key");
+			ConfigWidget("Back HotKey", f_BackKey, true, "Set Back Key");
+			ConfigWidget("Right HotKey", f_RightKey, true, "Set Right Key");
+			ConfigWidget("Ascend HotKey", f_AscendKey, true, "Set Ascend Key");
+			ConfigWidget("Descend HotKey", f_DescendKey, true, "Set Descend Key");
+			ConfigWidget("Alt Speed Key", f_AltSpeedKey, true, "Set AltSpeed HotKey");
 		}
 	}
 

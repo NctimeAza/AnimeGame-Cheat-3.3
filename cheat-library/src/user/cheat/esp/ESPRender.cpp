@@ -88,7 +88,7 @@ namespace cheat::feature::esp::render
 			screenPos.y *= s_ResolutionScale.y;
 		}
 
-		screenPos.y = app::Screen_get_height(nullptr) - screenPos.y;
+		screenPos.y = static_cast<float>(app::Screen_get_height(nullptr)) - screenPos.y;
 		return screenPos;
 	}
 
@@ -167,7 +167,6 @@ namespace cheat::feature::esp::render
 	{
 		if (s_Camera == nullptr)
 			return {};
-		auto gameObject = entity->gameObject();
 		app::Bounds bounds = GetObjectBounds(entity); //copy
 		app::Vector3 min, max;
 
@@ -249,7 +248,7 @@ namespace cheat::feature::esp::render
 
 		}
 
-		auto screenHeight = app::Screen_get_height(nullptr);
+		auto screenHeight = static_cast<float>(app::Screen_get_height(nullptr));
 
 #define FIX_Y(field) boxScreen.##field##.y = screenHeight - boxScreen.##field##.y
 
@@ -296,7 +295,7 @@ namespace cheat::feature::esp::render
 			boxRect.yMax *= s_ResolutionScale.y;
 		}
 
-		auto screenHeight = app::Screen_get_height(nullptr);
+		float screenHeight = static_cast<float>(app::Screen_get_height(nullptr));
 		boxRect.yMin = screenHeight - boxRect.yMin;
 		boxRect.yMax = screenHeight - boxRect.yMax;
 		return boxRect;
@@ -502,6 +501,7 @@ namespace cheat::feature::esp::render
 	{
 		auto& esp = ESP::GetInstance();
 		auto& manager = game::EntityManager::instance();
+		const float fontSize = static_cast<float>(esp.f_FontSize);
 
 		std::string text;
 		if (esp.f_DrawName && esp.f_DrawDistance)
@@ -513,7 +513,7 @@ namespace cheat::feature::esp::render
 	
 		ImVec2 namePosition;
 		if (!boxRect.empty())
-			namePosition = { boxRect.xMin, boxRect.yMin - esp.f_FontSize };
+			namePosition = { boxRect.xMin, boxRect.yMin - fontSize };
 		else
 		{
 			auto screenPos = GetEntityScreenPos(entity);
@@ -524,19 +524,19 @@ namespace cheat::feature::esp::render
 			// Might need to be aware of performance hit but there shouldn't be any.
 			ImGuiContext& g = *GImGui;
 			ImFont* font = g.Font;
-			auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
+			auto textSize = font->CalcTextSizeA(fontSize, FLT_MAX, FLT_MAX, text.c_str());
 			namePosition.x -= (textSize.x / 2.0f);
-			namePosition.y -= esp.f_FontSize;
+			namePosition.y -= fontSize;
 		}
 
 
 		auto draw = ImGui::GetBackgroundDrawList();
-		auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
+		auto font = renderer::GetFontBySize(fontSize);
 		// Outline
 		if (esp.f_FontOutline)
-			DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), namePosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
+			DrawTextWithOutline(draw, font, fontSize, namePosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
 		else
-			draw->AddText(font, static_cast<float>(esp.f_FontSize), namePosition, color, text.c_str());
+			draw->AddText(font, fontSize, namePosition, color, text.c_str());
 	}
 
 	static void DrawHealth(const Rect& boxRect, game::Entity* entity, const ImColor& color, const ImColor& contrastColor)
@@ -545,7 +545,7 @@ namespace cheat::feature::esp::render
 			return;
 
 		auto& esp = ESP::GetInstance();
-		auto& manager = game::EntityManager::instance();
+		const float fontSize = static_cast<float>(esp.f_FontSize);
 		auto baseCombat = entity->combat();
 		if (baseCombat == nullptr)
 			return;
@@ -561,7 +561,7 @@ namespace cheat::feature::esp::render
 
 		ImVec2 healthPosition;
 		if (!boxRect.empty()) {
-			healthPosition = { boxRect.xMin, boxRect.yMin - esp.f_FontSize };
+			healthPosition = { boxRect.xMin, boxRect.yMin - fontSize };
 		}
 		else
 		{
@@ -573,19 +573,19 @@ namespace cheat::feature::esp::render
 			// Might need to be aware of performance hit but there shouldn't be any.
 			ImGuiContext& g = *GImGui;
 			ImFont* font = g.Font;
-			auto textSize = font->CalcTextSizeA(static_cast<float>(esp.f_FontSize), FLT_MAX, FLT_MAX, text.c_str());
+			auto textSize = font->CalcTextSizeA(fontSize, FLT_MAX, FLT_MAX, text.c_str());
 			healthPosition.x -= (textSize.x / 2.0f);
-			healthPosition.y -= esp.f_FontSize;
+			healthPosition.y -= fontSize;
 		}
 
-		healthPosition.y += esp.f_FontSize;
+		healthPosition.y += fontSize;
 		auto draw = ImGui::GetBackgroundDrawList();
-		auto font = renderer::GetFontBySize(static_cast<float>(esp.f_FontSize));
+		auto font = renderer::GetFontBySize(fontSize);
 		// Outline
 		if (esp.f_FontOutline)
-			DrawTextWithOutline(draw, font, static_cast<float>(esp.f_FontSize), healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
+			DrawTextWithOutline(draw, font, fontSize, healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
 		else
-			draw->AddText(font, static_cast<float>(esp.f_FontSize), healthPosition, color, text.c_str());
+			draw->AddText(font, fontSize, healthPosition, color, text.c_str());
 	}
 
 	static Rect DrawCorneredBox(game::Entity* entity, const ImColor& color)

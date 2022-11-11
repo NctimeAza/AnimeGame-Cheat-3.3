@@ -14,9 +14,6 @@ namespace cheat
 	class Feature
 	{
 	public:
-		Feature(Feature const&) = delete;
-		void operator=(Feature const&) = delete;
-
 		// GUI handlers
 		virtual const FeatureGUIInfo& GetGUIInfo() const = 0;
 		
@@ -29,9 +26,9 @@ namespace cheat
 		virtual void DrawInfo() { };
 
 		virtual void DrawExternal() { };
-	
+
 	protected:
-		Feature() { };
+		virtual ~Feature() = default;
 	};
 }
 
