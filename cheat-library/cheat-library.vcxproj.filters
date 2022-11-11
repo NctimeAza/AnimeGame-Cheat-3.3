@@ -3646,5 +3646,11 @@
     <Image Include="res\icons\KarmaphalaWood.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\anim\akebi_bounce.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="anim\akebi_bounce.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

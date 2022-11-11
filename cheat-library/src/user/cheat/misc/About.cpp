@@ -14,6 +14,16 @@ namespace cheat::feature
 
     void About::DrawMain()
     {
+        std::optional<ImageLoader::GIFData*> gif = ImageLoader::GetGif("ANIM_AKEBIBOUNCE");
+        if (gif)
+        {
+            if (gif.value()->is_next_frame())
+            {
+                ImGui::Image((void*)gif.value()->textureIDs[gif.value()->next_frame()], ImVec2(230, 230));
+            }
+        }
+        
+
         ImGui::TextColored(ImColor(28, 202, 214, 255), "Akebi github:");
         TextURL("Github link", "https://github.com/Papaya-Group/Akebi-GC", true, false);
 

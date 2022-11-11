@@ -231,11 +231,13 @@
     <None Include="res\signatures.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="anim\akebi_bounce.gif" />
     <Image Include="iconsHD\Brightwood.png" />
     <Image Include="iconsHD\Cave.png" />
     <Image Include="icons\Anemoculus.png" />
     <Image Include="icons\Brightwood.png" />
     <Image Include="icons\Cave.png" />
+    <Image Include="res\anim\akebi_bounce.gif" />
     <Image Include="res\iconsHD\AbidingAngelfish.png" />
     <Image Include="res\iconsHD\AdhigamaWood.png" />
     <Image Include="res\iconsHD\AeonblightDrake.png" />
