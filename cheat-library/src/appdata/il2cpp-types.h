@@ -12638,6 +12638,28 @@ namespace app {
         struct Proto_AbilitySyncStateInfo__Fields fields;
     };
 
+    enum class Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum : int32_t {
+        ITEM_EXCEED_LIMIT_MSG_TYPE_DEFAULT = 0x00000000,
+        ITEM_EXCEED_LIMIT_MSG_TYPE_TEXT = 0x00000001,
+        ITEM_EXCEED_LIMIT_MSG_TYPE_DIALOG = 0x00000002,
+        ITEM_EXCEED_LIMIT_MSG_TYPE_DIALOG_NONBLOCK = 0x00000003,
+    };
+
+    struct Proto_CheckAddItemExceedLimitNotify__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        bool is_drop_;
+        enum Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum msgType_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemTypeList_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemList_;
+        uint32_t reason_;
+    };
+
+    struct Proto_CheckAddItemExceedLimitNotify {
+        void* klass;
+        MonitorData* monitor;
+        struct Proto_CheckAddItemExceedLimitNotify__Fields fields;
+    };
+
     struct __declspec(align(8)) MoleMole_DataItem__Fields {
         uint32_t _entityId_k__BackingField;
         struct Dictionary_2_MoleMole_SafeUInt32_MoleMole_SafeDouble_* _cacheNormalPropValueDic;

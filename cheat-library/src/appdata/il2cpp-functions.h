@@ -68,7 +68,7 @@ DO_APP_FUNC(0x048AC920, bool, MoleMole_LCSelectPickup_IsOutPosition, (void* __th
 DO_APP_FUNC(0x02A26370, void, MoleMole_ItemModule_PickItem, (MoleMole_ItemModule* __this, uint32_t entityID, MethodInfo* method));
 DO_APP_FUNC(0x0376EC00, void, MoleMole_LevelSceneElementViewPlugin_Tick, (LevelSceneElementViewPlugin* __this, float inDeltaTime, MethodInfo* method));
 // Bag item exceeded
-DO_APP_FUNC(0x02A20EB0, void, MoleMole_ItemModule_OnCheckAddItemExceedLimitNotify, (/*MoleMole_ItemModule* */ void* __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method));
+DO_APP_FUNC(0x02A20EB0, void, MoleMole_ItemModule_OnCheckAddItemExceedLimitNotify, (/*MoleMole_ItemModule* */ void* __this, Proto_CheckAddItemExceedLimitNotify* notify, MethodInfo* method));
 
 
 // Dialog skipping

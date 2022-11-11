@@ -9,7 +9,7 @@
 
 namespace cheat::feature 
 {
-	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void* __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method);
+	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void* __this, app::Proto_CheckAddItemExceedLimitNotify* notify, MethodInfo* method);
 	static void LCSelectPickup_AddInteeBtnByID_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
 	static bool LCSelectPickup_IsInPosition_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
 	static bool LCSelectPickup_IsOutPosition_Hook(void* __this, app::BaseEntity* entity, MethodInfo* method);
@@ -68,8 +68,7 @@ namespace cheat::feature
 				ImGui::SameLine();
 				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
 				ImGui::Indent();
-				ConfigWidget("Auto disable when bag is full", f_AutoDisablePickupWhenAddItemExceedLimit, "Automatically disables auto pickup when bag is full.\n" \
-					"Note: This includes when seed gadget is full.");
+				ConfigWidget("Auto disable when bag is full", f_AutoDisablePickupWhenAddItemExceedLimit, "Automatically disables auto pickup when bag is full.");
 				ImGui::SameLine();
 				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
 			}
@@ -316,10 +315,12 @@ namespace cheat::feature
 		}
 	}
 
-	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void*  __this, /*Proto_CheckAddItemExceedLimitNotify* */ void* notify, MethodInfo* method)
+	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void*  __this, app::Proto_CheckAddItemExceedLimitNotify* notify, MethodInfo* method)
 	{
 		AutoLoot& autoLoot = AutoLoot::GetInstance();
-		if (autoLoot.f_AutoPickup && autoLoot.f_AutoDisablePickupWhenAddItemExceedLimit)
+		if (autoLoot.f_AutoPickup && autoLoot.f_AutoDisablePickupWhenAddItemExceedLimit &&
+			// notify->fields.reason_ != 1103 // ACTION_REASON_HOME_PLANT_BOX_GATHER = 0x44F, alternative to only exclude seed box gather if below condition has problems
+			notify->fields.msgType_ != app::Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum::ITEM_EXCEED_LIMIT_MSG_TYPE_TEXT) // exclude if prompt is only text
 		{
 			// Temporary toggles autoloot off, not saved to config
 			autoLoot.f_AutoPickup.value().enabled = false;
