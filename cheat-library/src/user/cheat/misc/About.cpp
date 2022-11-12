@@ -14,12 +14,12 @@ namespace cheat::feature
 
     void About::DrawMain()
     {
-        std::optional<ImageLoader::GIFData*> gif = ImageLoader::GetGif("ANIM_AKEBIBOUNCE");
+        std::optional<ImageLoader::GIFData*> gif = ImageLoader::GetGIF("ANIM_AKEBIBOUNCE");
         if (gif)
         {
             if (gif.value()->is_next_frame())
             {
-                ImGui::Image((void*)gif.value()->textureIDs[gif.value()->next_frame()], ImVec2(230, 230));
+                ImGui::Image((void*)gif.value()->get_next_frame(), ImVec2(230, 230));
             }
         }
         

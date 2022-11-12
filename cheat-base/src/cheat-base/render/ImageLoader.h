@@ -26,7 +26,7 @@ public:
 		std::chrono::system_clock::time_point current_time = std::chrono::system_clock::now();
 		std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();
 
-		uint32_t next_frame() 
+		uint32_t get_next_frame_index() 
 		{ 
 			current_frame = (++current_frame) % textureIDs.size();
 			return current_frame;
@@ -43,10 +43,15 @@ public:
 			}
 			return false;
 		}
+
+		ImTextureID get_next_frame()
+		{
+			return textureIDs[get_next_frame_index()];
+		}
 	};
 
 	static std::optional<ImageData> GetImage(const std::string& imageName, const char* imageType = "PNG");
-	static std::optional<GIFData*> GetGif(const std::string& imageName, const char* imageType = "GIF");
+	static std::optional<GIFData*> GetGIF(const std::string& imageName);
 
 private:
 	inline static std::map<std::string, ImageData> s_Textures {};
