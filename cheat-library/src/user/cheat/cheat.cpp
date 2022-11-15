@@ -49,6 +49,7 @@
 #include <cheat/world/AutoChallenge.h>
 #include <cheat/world/CustomWeather.h>
 #include <cheat/world/OpenTeamImmediately.h>
+#include <cheat/world/SkipEnhanceAnimation.h>
 
 #include <cheat/visuals/NoFog.h>
 #include <cheat/visuals/FPSUnlock.h>
@@ -102,6 +103,7 @@ namespace cheat
 			FEAT_INST(AutoDestroy),
 			FEAT_INST(AutoSeelie),
 			FEAT_INST(OpenTeamImmediately),
+			FEAT_INST(SkipEnhanceAnimation),
 			FEAT_INST(VacuumLoot),
 			FEAT_INST(DialogSkip),
 			FEAT_INST(DumbEnemies),

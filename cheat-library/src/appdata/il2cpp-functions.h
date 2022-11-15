@@ -379,6 +379,7 @@ DO_APP_FUNC(0x0276F3D0, Vector3, Quaternion_get_eulerAngles, (Quaternion__Boxed*
 DO_APP_FUNC(0x0955F950, Rect, RectTransform_get_rect, (RectTransform* __this, MethodInfo* method));
 DO_APP_FUNC(0x0966F090, float, Canvas_get_scaleFactor, (/*Canvas**/void* __this, MethodInfo* method));
 
+DO_APP_FUNC(0x072B1BE0, void, Action_Invoke, (/*Action*/ void* __this, MethodInfo* method));
 
 DO_APP_FUNC(0x03B61DC0, void, LevelTimeManager_SetInternalTimeOfDay, (/*LevelTimeManager**/void* __this, float inHours, bool force, bool refreshEnviroTime, MethodInfo* method));
 
@@ -393,6 +394,11 @@ DO_APP_FUNC(0x02BE61A0, bool, MoleMole_InLevelMainPageContext_DoTeamCountDown_c_
 DO_APP_FUNC(0x04F9A2A0, void, MoleMole_InLevelPlayerProfilePageContext_SetupView, (/*MoleMole_InLevelPlayerProfilePageContext*/void* __this, MethodInfo* method));
 DO_APP_FUNC(0x04F937F0, void, MoleMole_InLevelPlayerProfilePageContext_ClearView, (/*MoleMole_InLevelPlayerProfilePageContext*/void* __this, MethodInfo* method));
 
+// Skip enhance animation
+DO_APP_FUNC(0x02DE9770, void, MoleMole_EquipLevelUpDialogContext_SetupView, (/*MoleMole_EquipLevelUpDialogContext*/ void* __this, MethodInfo* method));
+DO_APP_FUNC(0x02DE90D0, void, MoleMole_EquipLevelUpDialogContext_ShowReturnedMaterialAndCloseDialog, (/*MoleMole_EquipLevelUpDialogContext*/ void* __this, MethodInfo* method));
+DO_APP_FUNC(0x05D4EC80, void, MoleMole_EquipOverviewPageContext_PlayExpAddAnimation, (/*MoleMole_EquipOverviewPageContext*/ void* __this, float startPer, float endPer, /*Action*/ void* callback, MethodInfo* method));
+DO_APP_FUNC(0x05D44620, void, MoleMole_EquipOverviewPageContext_PlayLevelUpSuccessShow, (/*MoleMole_EquipOverviewPageContext*/ void* __this, /*Action*/ void* refreshViewAction, MethodInfo* method));
 
 // Singletons
 DO_APP_FUNC(0x020A1910, void*, Singleton_GetInstance, (MethodInfo* method));
