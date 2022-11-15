@@ -71,7 +71,6 @@ namespace cheat::feature
             width = app::Screen_get_width(nullptr);
             height = app::Screen_get_height(nullptr);
             timer++;
-            std::cout << timer << std::endl;
             if (timer > 2100)
                show = false;
         }
