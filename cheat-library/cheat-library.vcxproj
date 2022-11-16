@@ -60,7 +60,6 @@
     <ClInclude Include="src\user\cheat\esp\ESPRender.h" />
     <ClInclude Include="src\user\cheat\esp\ESPItem.h" />
     <ClInclude Include="res\resource.h" />
-    <ClInclude Include="src\appdata\il2cpp-api-functions-ptr.h" />
     <ClInclude Include="src\appdata\il2cpp-api-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-metadata-version.h" />
