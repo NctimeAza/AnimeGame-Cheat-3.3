@@ -64,6 +64,8 @@ int main(int argc, char* argv[])
 	ini.SaveFile("cfg.ini");
 	ini.Reset();
 
+	bool isGlobal = GetModuleHandleA(GlobalGenshinProcName.c_str());
+	std::wstring regPath = isGlobal ? L"Software\\miHoYo\\Genshin Impact" : L"Software\\miHoYo\\原神";
 	if (!ae_Name.empty())
 	{
 		ini.SetUnicode();
@@ -71,7 +73,7 @@ int main(int argc, char* argv[])
 		if (ini.KeyExists("Accounts", ae_Name.c_str()))
 		{
 			std::string DcString = ini.GetValue("Accounts", ae_Name.c_str());
-			winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.SetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810", std::vector<BYTE>(DcString.begin(), DcString.end()));
+			winreg::RegKey{ HKEY_CURRENT_USER,  regPath }.SetBinaryValue(isGlobal ? L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810" : L"MIHOYOSDK_ADL_PROD_CN_h3123967166", std::vector<BYTE>(DcString.begin(), DcString.end()));
 			LOG_DEBUG(std::string("Switched account to " + ae_Name).c_str());
 		}
 		else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
@@ -94,10 +96,10 @@ int main(int argc, char* argv[])
 			regionstring = "os_cht";
 		if (!regionstring.empty())
 		{
-			std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"GENERAL_DATA_h2389025596");
+			std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, regPath }.GetBinaryValue(L"GENERAL_DATA_h2389025596");
 			std::string RegisteryValueString(RegisteryValue.begin(), RegisteryValue.end());
 			RegisteryValueString = std::regex_replace(RegisteryValueString, std::regex("os_(asia|euro|usa|cht)"), regionstring);
-			winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.SetBinaryValue(L"GENERAL_DATA_h2389025596", std::vector<BYTE>(RegisteryValueString.begin(), RegisteryValueString.end()));
+			winreg::RegKey{ HKEY_CURRENT_USER, regPath }.SetBinaryValue(L"GENERAL_DATA_h2389025596", std::vector<BYTE>(RegisteryValueString.begin(), RegisteryValueString.end()));
 			LOG_DEBUG(std::string("Switched region to " + ae_Region).c_str());
 		}
 		else if (regionstring.empty())

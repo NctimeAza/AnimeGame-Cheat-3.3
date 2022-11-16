@@ -35,13 +35,6 @@ namespace app
 #undef DO_TYPEDEF
 #undef DO_SINGLETONEDEF
 
-enum class LGameVersion
-{
-	NONE,
-	GLOBAL,
-	CHINA
-};
-
 #define SELECT_VERSION(VERSION_VAR, OS_OFFSET, CN_OFFSET) (VERSION_VAR == LGameVersion::GLOBAL ? OS_OFFSET : CN_OFFSET)
 
 void init_static_offsets(LGameVersion gameVersion)
@@ -225,20 +218,20 @@ LGameVersion UserSelectGameVersion()
 // IL2CPP application initializer
 void init_il2cpp()
 {
-	auto gameVersion = GetGameVersion();
-	if (gameVersion == LGameVersion::NONE)
+	_gameVersion = GetGameVersion();
+	if (_gameVersion == LGameVersion::NONE)
 	{
-		LOG_ERROR("Failed to detect any game version. If you sure that cheat has updated for current game version, and you download correct one.");
-		system("timeout 10");
+		LOG_ERROR("Failed to detect any game version. If you sure that cheat has updated for current game version, and you downloaded the correct one.");
+		//system("timeout 10");
 
-		gameVersion = UserSelectGameVersion();
-		if (gameVersion == LGameVersion::NONE)
+		_gameVersion = UserSelectGameVersion();
+		if (_gameVersion == LGameVersion::NONE)
 			return;
 	}
 
 #ifdef _PATTERN_SCANNER
 	init_scanned_offsets(gameVersion);
 #else
-	init_static_offsets(gameVersion);
+	init_static_offsets(_gameVersion);
 #endif
 }

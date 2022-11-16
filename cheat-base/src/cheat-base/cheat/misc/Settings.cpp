@@ -13,6 +13,8 @@
 #include <WinReg.hpp>
 #include <vector>
 
+#include <framework/il2cpp-init.h>
+
 static CSimpleIni ini;
 
 namespace cheat::feature
@@ -637,7 +639,7 @@ namespace cheat::feature
 					std::string InjectorPath = ini.GetValue("Location", "Injector");
 					ini.Reset();
 					ini.LoadFile((InjectorPath + "\\accounts.ini").c_str());
-					std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					std::vector<BYTE> RegisteryValue = _gameVersion == LGameVersion::GLOBAL ? winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810") : winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\原神" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_CN_h3123967166");
 					ini.SetValue("Accounts", ae_Name.c_str(), std::string (RegisteryValue.begin(), RegisteryValue.end()).c_str());
 					ini.SaveFile((InjectorPath + "\\accounts.ini").c_str());
 					ini.Reset();
@@ -652,7 +654,7 @@ namespace cheat::feature
 						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
 #else
 					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
-					std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
+					std::vector<BYTE> RegisteryValue = _gameVersion == LGameVersion::GLOBAL ? winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810") : winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\原神" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_CN_h3123967166");
 					ini.SetValue("Accounts", ae_Name.c_str(), std::string(RegisteryValue.begin(), RegisteryValue.end()).c_str());
 					ini.SaveFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
 					ini.Reset();
