@@ -61,7 +61,6 @@
     <ClInclude Include="src\user\cheat\esp\ESPRender.h" />
     <ClInclude Include="src\user\cheat\esp\ESPItem.h" />
     <ClInclude Include="res\resource.h" />
-    <ClInclude Include="src\appdata\il2cpp-api-functions-ptr.h" />
     <ClInclude Include="src\appdata\il2cpp-api-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-metadata-version.h" />
@@ -233,11 +232,13 @@
     <None Include="res\signatures.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="anim\akebi_bounce.gif" />
     <Image Include="iconsHD\Brightwood.png" />
     <Image Include="iconsHD\Cave.png" />
     <Image Include="icons\Anemoculus.png" />
     <Image Include="icons\Brightwood.png" />
     <Image Include="icons\Cave.png" />
+    <Image Include="res\anim\akebi_bounce.gif" />
     <Image Include="res\iconsHD\AbidingAngelfish.png" />
     <Image Include="res\iconsHD\AdhigamaWood.png" />
     <Image Include="res\iconsHD\AeonblightDrake.png" />
@@ -1363,6 +1364,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -1402,6 +1404,7 @@ powershell -nop -c "&amp;{sleep 30}"</Command>
       <ExceptionHandling>Async</ExceptionHandling>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

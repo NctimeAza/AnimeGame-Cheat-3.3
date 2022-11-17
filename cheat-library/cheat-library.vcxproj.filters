@@ -18,9 +18,6 @@
     <ClInclude Include="src\appdata\il2cpp-api-functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\appdata\il2cpp-api-functions-ptr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\appdata\il2cpp-functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3650,6 +3647,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icons\KarmaphalaWood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\anim\akebi_bounce.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="anim\akebi_bounce.gif">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
