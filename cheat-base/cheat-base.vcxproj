@@ -124,7 +124,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\WinReg\WinReg;$(SolutionDir)cheat-library\src\</AdditionalIncludeDirectories>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\WinReg\WinReg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework\;$(ProjectDir)src\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\fmt\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\magic_enum\include\;$(ProjectDir)vendor\simpleIni\;$(ProjectDir)vendor\json\single_include\;$(ProjectDir)vendor\imgui-notify-v2\;$(ProjectDir)vendor\stb\;$(ProjectDir)vendor\WinReg\WinReg;$(SolutionDir)cheat-library\src\</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>false</OmitFramePointers>

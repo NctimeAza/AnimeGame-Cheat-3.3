@@ -64,6 +64,7 @@
 #include <cheat/visuals/FreeCamera.h>
 #include <cheat/visuals/AnimationChanger.h>
 #include <cheat/visuals/EmotionChanger.h>
+#include <cheat/visuals/ShowSkillCD.h>
 
 #include "GenshinCM.h"
 
@@ -130,6 +131,7 @@ namespace cheat
 
 			FEAT_INST(FPSUnlock),
 			FEAT_INST(ChestIndicator),
+			FEAT_INST(ShowSkillCD),
 			FEAT_INST(NoFog),
 			FEAT_INST(HideUI),
 			FEAT_INST(EnablePeeking),
@@ -147,6 +149,7 @@ namespace cheat
 #undef FEAT_INST
 
 		manager.SetModuleOrder({
+			"About",
 			"Player",
 			"World",
 			"Teleport",
@@ -154,7 +157,6 @@ namespace cheat
 			"Visuals",
 			"Hotkeys",
 			"Settings",
-			"About",
 			"Debug"
 			});
 
