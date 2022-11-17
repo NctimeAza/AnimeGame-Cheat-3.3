@@ -12,7 +12,7 @@ enum class LGameVersion
 	CHINA
 };
 
-static LGameVersion _gameVersion;
+extern LGameVersion _gameVersion;
 
 // IL2CPP application initializer
 void init_il2cpp();

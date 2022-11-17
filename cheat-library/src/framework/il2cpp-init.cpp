@@ -37,6 +37,8 @@ namespace app
 
 #define SELECT_VERSION(VERSION_VAR, OS_OFFSET, CN_OFFSET) (VERSION_VAR == LGameVersion::GLOBAL ? OS_OFFSET : CN_OFFSET)
 
+LGameVersion _gameVersion;
+
 void init_static_offsets(LGameVersion gameVersion)
 {
 	if (gameVersion == LGameVersion::NONE)
