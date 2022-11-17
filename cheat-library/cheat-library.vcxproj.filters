@@ -273,6 +273,9 @@
     <ClInclude Include="src\user\cheat\visuals\EmotionChanger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\world\SkipEnhanceAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\user\cheat\visuals\ShowSkillCD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -508,6 +511,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\visuals\EmotionChanger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\cheat\world\SkipEnhanceAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\visuals\ShowSkillCD.cpp">
