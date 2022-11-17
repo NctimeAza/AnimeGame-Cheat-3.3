@@ -10,7 +10,7 @@
 #include <imgui_internal.h>
 
 #include <cheat-base/render/ImageLoader.cpp>
-#include <../../cheat-library/src/user/cheat/misc/About.h>
+#include <user/cheat/misc/About.h>
 namespace cheat
 {
 	
@@ -408,7 +408,7 @@ namespace cheat
 		{
 			auto image = ImageLoader::GetImage(about.lang);
 			if (image)
-				ImGui::Image(image->textureID, ImVec2(about.width * 0.95f, about.height * 0.33f));
+				ImGui::Image(image->textureID, ImVec2(about.width * 0.95f, about.height * 0.17f));
 			ImGui::End();
 		}
 	}

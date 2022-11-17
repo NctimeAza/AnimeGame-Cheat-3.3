@@ -1,8 +1,6 @@
 #include "pch-il2cpp.h"
 #include "About.h"
 
-#include <helpers.h>
-#include <cheat/game/EntityManager.h>
 #include <cheat/events.h>
 #include <regex>
 
@@ -71,7 +69,7 @@ namespace cheat::feature
             width = app::Screen_get_width(nullptr);
             height = app::Screen_get_height(nullptr);
             timer++;
-            if (timer > 2100)
+            if (timer > 3100)
                show = false;
         }
     }
