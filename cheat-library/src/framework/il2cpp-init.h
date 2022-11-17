@@ -4,5 +4,15 @@
 #pragma once
 
 #include <string>
+
+enum class LGameVersion
+{
+	NONE,
+	GLOBAL,
+	CHINA
+};
+
+extern LGameVersion _gameVersion;
+
 // IL2CPP application initializer
 void init_il2cpp();
