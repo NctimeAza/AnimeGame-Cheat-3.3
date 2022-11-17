@@ -145,6 +145,7 @@ namespace cheat
 #undef FEAT_INST
 
 		manager.SetModuleOrder({
+			"About",
 			"Player",
 			"World",
 			"Teleport",
@@ -152,7 +153,6 @@ namespace cheat
 			"Visuals",
 			"Hotkeys",
 			"Settings",
-			"About",
 			"Debug"
 			});
 
