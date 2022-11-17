@@ -150,6 +150,17 @@ DO_APP_FUNC(0x03C7DDE0, 0x03CC23E0, void, MoleMole_SCameraModuleInitialize_SetWa
 DO_APP_FUNC(0x034011E0, 0x03425C10, void, MoleMole_VCBaseSetDitherValue_set_ManagerDitherAlphaValue, (MoleMole_VCBaseSetDitherValue* __this, float value, MethodInfo* method));
 DO_APP_FUNC(0x030D1070, 0x030E93B0, void, MoleMole_PlayerModule_EntityAppear, (MoleMole_PlayerModule* __this, Proto_SceneEntityInfo* entity, VisionType__Enum type, uint32_t infoParam, MethodInfo* method));
 
+// Show Skill CDs
+DO_APP_FUNC(0x02BFF5D0, 0x02C050C0, void, MoleMole_LCAvatarCombat_SetSkillIndex, (LCAvatarCombat* __this, LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, int32_t index, int32_t priority, MethodInfo* method));
+DO_APP_FUNC(0x02BF9B60, 0x02BFF510, void, MoleMole_LCAvatarCombat_CheckCDTimer, (LCAvatarCombat* __this, LCAvatarCombat_LCAvatarCombat_SkillInfo* info, MethodInfo* method));
+DO_APP_FUNC(0x02BFC110, 0x02C01B30, int32_t, MoleMole_LCAvatarCombat_GetSkillMaxChargesCount, (LCAvatarCombat* __this, uint32_t skillID, MethodInfo* method));
+DO_APP_FUNC(0x02BFBB50, 0x02C01550, int32_t, MoleMole_LCAvatarCombat_GetSkillCurrentChargesCount, (LCAvatarCombat* __this, uint32_t skillID, MethodInfo* method));
+DO_APP_FUNC(0x02C00580, 0x02C060A0, float, MoleMole_LCAvatarCombat_GetCurrentSkillCD, (LCAvatarCombat* __this, uint32_t skillID, MethodInfo* method));
+
+DO_APP_FUNC(0x04574440, 0x045DAB20, void, MonoTeamBtn_Update, (MonoTeamBtn* __this, MethodInfo* method));
+DO_APP_FUNC(0x04574AD0, 0x045DB1C0, void, MonoTeamBtn_set_showPCKey, (MonoTeamBtn* __this, bool value, MethodInfo* method));
+DO_APP_FUNC(0x045746A0, 0x045DAD80, void, MonoTeamBtn_set_PCKey, (MonoTeamBtn* __this, String* value, MethodInfo* method));
+
 // Chest Indicator | RyujinZX#6666
 DO_APP_FUNC(0x05036F20, 0x050C6EF0, bool, MoleMole_LCIndicatorPlugin_DoCheck, (LCIndicatorPlugin* __this, MethodInfo* method));
 DO_APP_FUNC(0x05036230, 0x050C61D0, void, MoleMole_LCIndicatorPlugin_ShowIcon, (LCIndicatorPlugin* __this, MethodInfo* method));
