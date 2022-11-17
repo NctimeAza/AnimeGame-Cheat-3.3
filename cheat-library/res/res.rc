@@ -2182,6 +2182,19 @@ ZAYTUNPEACH             PNG                     "icons\\ZaytunPeach.png"
 
 ANIM_AKEBIBOUNCE        GIF                     "anim\\akebi_bounce.gif"
 
+#pragma region "Warning"
+ArabicW                 PNG                     "warnings\\AR.png"
+ZHCN                    PNG                     "warnings\\ZHCN.png"
+ZHTW                    PNG                     "warnings\\ZHTW.png"
+FilipinoW               PNG                     "warnings\\PH.png"
+JapaneseW               PNG                     "warnings\\JA.png"
+MalayW                  PNG                     "warnings\\MY.png"
+PortugueseW             PNG                     "warnings\\PT.png"
+RussianW                PNG                     "warnings\\RU.png"
+VietnameseW             PNG                     "warnings\\VN.png"
+EnglishW                PNG                     "warnings\\EN.png"
+#pragma endregion
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

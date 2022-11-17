@@ -12,6 +12,13 @@ namespace cheat::feature
 
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;
+		void OnGameUpdate();
+		bool show = true;
+		int width;
+		int height;
+		std::string lang;
+	private:
+		About();
 	};
 }
 
