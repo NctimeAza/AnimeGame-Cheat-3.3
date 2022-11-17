@@ -8,18 +8,16 @@
 // Application-specific types
 #include "il2cpp-types.h"
 
-// IL2CPP API function pointers
-#include "il2cpp-api-functions-ptr.h"
-
 // IL2CPP APIs
-#define DO_API(r, n, p) extern r (*n) p
+#define DO_API(OS_OFFSET, CN_OFFSET, RETURN_T, NAME, PARAMS) extern RETURN_T (*NAME) PARAMS
 #include "il2cpp-api-functions.h"
 #undef DO_API
 
 // Application-specific functions
-#define DO_APP_FUNC(a, r, n, p) extern r (*n) p
-#define DO_APP_FUNC_METHODINFO(a, n) extern struct MethodInfo ** n
-namespace app {
+#define DO_APP_FUNC(OS_OFFSET, CN_OFFSET, RETURN_T, NAME, PARAMS) extern RETURN_T (*NAME) PARAMS
+#define DO_APP_FUNC_METHODINFO(OS_OFFSET, CN_OFFSET, NAME) extern struct MethodInfo ** NAME
+namespace app 
+{
 	#include "il2cpp-functions.h"
 	#include "il2cpp-unityplayer-functions.h"
 }
@@ -27,9 +25,10 @@ namespace app {
 #undef DO_APP_FUNC_METHODINFO
 
 // TypeInfo pointers
-#define DO_TYPEDEF(a, n) extern n ## __Class** n ## __TypeInfo
-#define DO_SINGLETONEDEF(a, n) extern Singleton_1__Class** n ## __TypeInfo
-namespace app {
+#define DO_TYPEDEF(OS_OFFSET, CN_OFFSET, NAME) extern NAME ## __Class** NAME ## __TypeInfo
+#define DO_SINGLETONEDEF(OS_OFFSET, CN_OFFSET, NAME) extern Singleton_1__Class** NAME ## __TypeInfo
+namespace app 
+{
 	#include "il2cpp-types-ptr.h"
 }
 #undef DO_TYPEDEF

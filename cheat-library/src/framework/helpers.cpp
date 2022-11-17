@@ -49,11 +49,13 @@ uintptr_t il2cppi_get_unity_address() {
 // Helper function to open a new console window and redirect stdout there
 void il2cppi_new_console() {
     AllocConsole();
+    freopen_s((FILE**)stdin, "CONIN$", "r", stdin);
     freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
     freopen_s((FILE**)stderr, "CONOUT$", "w", stderr);
 }
 
 void il2cppi_close_console() {
+    fclose(stdin);
     fclose(stdout);
     fclose(stderr);
     FreeConsole();

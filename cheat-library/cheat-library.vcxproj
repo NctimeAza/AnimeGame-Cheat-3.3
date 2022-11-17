@@ -60,7 +60,6 @@
     <ClInclude Include="src\user\cheat\esp\ESPRender.h" />
     <ClInclude Include="src\user\cheat\esp\ESPItem.h" />
     <ClInclude Include="res\resource.h" />
-    <ClInclude Include="src\appdata\il2cpp-api-functions-ptr.h" />
     <ClInclude Include="src\appdata\il2cpp-api-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-functions.h" />
     <ClInclude Include="src\appdata\il2cpp-metadata-version.h" />
@@ -1361,6 +1360,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -1400,6 +1400,7 @@ powershell -nop -c "&amp;{sleep 30}"</Command>
       <ExceptionHandling>Async</ExceptionHandling>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
