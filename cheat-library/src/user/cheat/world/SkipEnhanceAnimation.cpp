@@ -30,7 +30,7 @@ namespace cheat::feature
 		if (f_Enabled)
 		{
 			ImGui::Indent();
-			ConfigWidget("Show Level Up Screen", f_ShowLevelUp, "Does not skip final Level Up screen");
+			ConfigWidget("Show Level Up Screen", f_ShowLevelUp, "Keep showing the level up screens with information on what was upgraded");
 			ImGui::Unindent();
 		}
 	}
