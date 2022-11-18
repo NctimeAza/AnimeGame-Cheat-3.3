@@ -15,8 +15,8 @@ namespace cheat::feature
 			Suspicious,
 		};
 
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_FastProficiency;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_FastProficiency;
 
 		config::Field<int> f_CountField;
 		config::Field<config::Enum<CookQuality>> f_QualityField;

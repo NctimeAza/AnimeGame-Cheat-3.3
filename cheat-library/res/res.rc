@@ -52,6 +52,8 @@ END
 
 IMGUI_FONT              RCDATA                  "Ruda-Bold.ttf"
 
+R_LANGUAGES             RCDATA                  "languages.json"
+
 IMGUI_FONT_BOLD         RCDATA                  "Ruda-ExtraBold.ttf"
 
 SIGNATURES              RCDATA                  "signatures.json"

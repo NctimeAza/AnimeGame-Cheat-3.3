@@ -9,46 +9,42 @@ namespace cheat::feature
     static void SCameraModuleInitialize_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method);
 
     CameraZoom::CameraZoom() : Feature(),
-        NF(f_Enabled, "Camera Zoom", "Visuals::CameraZoom", false),
-        NF(f_FixedZoom, "Fixed Zoom", "Visuals::CameraZoom", 0.0f),
-        NF(f_MaxZoom, "Max Zoom", "Visuals::CameraZoom", 2.0f),
-        NF(f_MinZoom, "Min Zoom", "Visuals::CameraZoom", 0.75f),
-        NF(f_ZoomSpeed, "Zoom Speed", "Visuals::CameraZoom", 1.0f)
+        NFP(f_Enabled, "Visuals::CameraZoom", "Camera Zoom", false),
+        NF(f_FixedZoom,"Visuals::CameraZoom", 0.0f),
+        NF(f_MaxZoom, "Visuals::CameraZoom", 2.0f),
+        NF(f_MinZoom, "Visuals::CameraZoom", 0.75f),
+        NF(f_ZoomSpeed, "Visuals::CameraZoom", 1.0f)
     {
         HookManager::install(app::MoleMole_SCameraModuleInitialize_SetWarningLocateRatio, SCameraModuleInitialize_Hook);
     }
 
     const FeatureGUIInfo& CameraZoom::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "CameraZoom", "Visuals", false };
+        TRANSLATED_GROUP_INFO("Camera Zoom", "Visuals");
         return info;
     }
 
     void CameraZoom::DrawMain()
     {
-        ImGui::BeginGroupPanel("Camera Zoom");
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables custom camera zoom settings."));
+        if (f_Enabled->enabled())
         {
-            ConfigWidget(f_Enabled, "Enables custom camera zoom settings.");
-            if (f_Enabled)
-            {
-                ConfigWidget("Fixed Zoom", f_FixedZoom, 0.01f, 0.0f, 100.0f, "Set a fixed additional zoom value to the camera.");
-                ConfigWidget("Max Zoom", f_MaxZoom, 0.01f, 0.1f, 100.0f, "Set the camera's maximum zoom radius ratio.");
-                ConfigWidget("Min Zoom", f_MinZoom, 0.01f, 0.1f, 1.0f, "Set the camera's minimum zoom radius ratio.");
-                ConfigWidget("Zoom Speed", f_ZoomSpeed, 0.01f, 0.75f, 1.5f, "Set the camera's zoom speed multiplier.\n"
-                    "Note: Sensitive and can be buggy. Best left at 1.");
-            }
+            ConfigWidget(_TR("Fixed Zoom"), f_FixedZoom, 0.01f, 0.0f, 100.0f, _TR("Set a fixed additional zoom value to the camera."));
+            ConfigWidget(_TR("Max Zoom"), f_MaxZoom, 0.01f, 0.1f, 100.0f, _TR("Set the camera's maximum zoom radius ratio."));
+            ConfigWidget(_TR("Min Zoom"), f_MinZoom, 0.01f, 0.1f, 1.0f, _TR("Set the camera's minimum zoom radius ratio."));
+            ConfigWidget(_TR("Zoom Speed"), f_ZoomSpeed, 0.01f, 0.75f, 1.5f, _TR("Set the camera's zoom speed multiplier.\n"
+                "Note: Sensitive and can be buggy. Best left at 1."));
         }
-        ImGui::EndGroupPanel();
     }
 
     bool CameraZoom::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void CameraZoom::DrawStatus()
     {
-        ImGui::Text("Camera Zoom [+%.2f | %.2fx]", f_FixedZoom.value(), f_MaxZoom.value());
+        ImGui::Text("%s [+%.2f | %.2fx]", _TR("Camera Zoom"), f_FixedZoom.value(), f_MaxZoom.value());
     }
 
     CameraZoom& CameraZoom::GetInstance()
@@ -60,7 +56,7 @@ namespace cheat::feature
     void SCameraModuleInitialize_Hook(app::SCameraModuleInitialize* __this, double deltaTime, app::CameraShareData* data, MethodInfo* method)
     {
         CameraZoom& cameraZoom = CameraZoom::GetInstance();
-        if (cameraZoom.f_Enabled)
+        if (cameraZoom.f_Enabled->enabled())
         {
             data->additionalRadius = cameraZoom.f_FixedZoom;
             // counteract in-combat zoom-out effect

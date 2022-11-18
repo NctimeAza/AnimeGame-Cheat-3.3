@@ -19,34 +19,34 @@ namespace cheat::feature
 {
 
 	ESP::ESP() : Feature(),
-		NF(f_Enabled, "ESP", "ESP", false),
+		NFP(f_Enabled, "ESP", "ESP", false),
 
-		NF(f_DrawBoxMode, "Draw Mode", "ESP", DrawMode::Box),
-		NF(f_CorneredBoxSize, "Cornered Box Size", "ESP", 3.5f),
-		NF(f_DrawTracerMode, "Tracer Mode", "ESP", DrawTracerMode::Line),
-		NF(f_Fill, "Fill Box/Rectangle/Arrows", "ESP", false),
-		NF(f_FillTransparency, "Fill Transparency", "ESP", 0.5f),
+		NF(f_DrawBoxMode, "ESP", DrawMode::Box),
+		NF(f_CorneredBoxSize, "ESP", 3.5f),
+		NF(f_DrawTracerMode, "ESP", DrawTracerMode::Line),
+		NF(f_Fill, "ESP", false),
+		NF(f_FillTransparency, "ESP", 0.5f),
 
-		NF(f_ArrowRadius, "Arrow Radius", "ESP", 100.0f),
-		NF(f_OutlineThickness, "Outline Thickness", "ESP", 1.0f),
-		NF(f_TracerSize, "Tracer Size", "ESP", 1.0f),
-		NF(f_MiddleScreenTracer, "Middle Screen Tracer", "ESP", false),
-		NF(f_DrawDistance, "Draw Distance", "ESP", false),
-		NF(f_DrawName, "Draw Name", "ESP", false),	
-		NF(f_DrawHealth, "Draw Health", "ESP", false),
-		NF(f_HideCompleted, "Hide completed puzzles", "ESP", false),
+		NF(f_ArrowRadius, "ESP", 100.0f),
+		NF(f_OutlineThickness, "ESP", 1.0f),
+		NF(f_TracerSize, "ESP", 1.0f),
+		NF(f_MiddleScreenTracer, "ESP", false),
+		NF(f_DrawDistance, "ESP", false),
+		NF(f_DrawName, "ESP", false),	
+		NF(f_DrawHealth, "ESP", false),
+		NF(f_HideCompleted, "ESP", false),
 
-		NF(f_FontSize, "Font Size", "ESP", 12.0f),
-		NF(f_FontOutline, "Font outline", "ESP", true),
-		NF(f_FontOutlineSize, "Font outline size", "ESP", 1.0f),
+		NF(f_FontSize, "ESP", 12.0f),
+		NF(f_FontOutline, "ESP", true),
+		NF(f_FontOutlineSize, "ESP", 1.0f),
 
-		NF(f_GlobalFontColor, "Font Color", "ESP", ImColor(255, 255, 255)),
-		NF(f_GlobalBoxColor, "Box Color", "ESP", ImColor(255, 255, 255)),
-		NF(f_GlobalLineColor, "Tracer Color", "ESP", ImColor(255, 255, 255)),
-		NF(f_GlobalRectColor, "Rect Color", "ESP", ImColor(255, 255, 255)),
+		NF(f_GlobalFontColor, "ESP", ImColor(255, 255, 255)),
+		NF(f_GlobalBoxColor, "ESP", ImColor(255, 255, 255)),
+		NF(f_GlobalLineColor, "ESP", ImColor(255, 255, 255)),
+		NF(f_GlobalRectColor, "ESP", ImColor(255, 255, 255)),
 
-		NF(f_MinSize, "Min. Entity Size", "ESP", 0.5f),
-		NF(f_Range, "Range", "ESP", 100.0f),
+		NF(f_MinSize, "ESP", 0.5f),
+		NF(f_Range, "ESP", 100.0f),
 		m_Search({})
 	{
 		InstallFilters();
@@ -59,72 +59,72 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& ESP::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "ESP", false };
+		TRANSLATED_MODULE_INFO("ESP");
 		return info;
 	}
 
 	void ESP::DrawMain()
 	{
-		if (ImGui::BeginGroupPanel("General", true))
+		if (ImGui::BeginGroupPanel(_TR("General"), true))
 		{
-			ConfigWidget("ESP Enabled", f_Enabled, "Show filtered object through obstacles.");
-			ConfigWidget("Range (m)", f_Range, 1.0f, 1.0f, 200.0f);
+			ConfigWidget(_TR("ESP Enabled"), f_Enabled, _TR("Show filtered object through obstacles."));
+			ConfigWidget(_TR("Range (m)"), f_Range, 1.0f, 1.0f, 200.0f);
 
-			ConfigWidget(f_DrawBoxMode, "Select the mode of box drawing.");
-			ConfigWidget(f_DrawTracerMode, "Select the mode of tracer drawing.");
+			ConfigWidget(_TR("Draw Mode"), f_DrawBoxMode, _TR("Select the mode of box drawing."));
+			ConfigWidget(_TR("Tracer Mode"), f_DrawTracerMode, _TR("Select the mode of tracer drawing."));
 			
 			if (f_DrawBoxMode.value() == ESP::DrawMode::CornerBox) {
-				ConfigWidget(f_CorneredBoxSize, 0.5f, 1.f, 50.f, "Size of cornered box");
+				ConfigWidget(_TR("Cornered Box Size"), f_CorneredBoxSize, 0.5f, 1.f, 50.f, _TR("Size of cornered box"));
 			}
 
-			ConfigWidget(f_Fill);
-			ConfigWidget(f_FillTransparency, 0.01f, 0.0f, 1.0f, "Transparency of filled part.");
-			ConfigWidget(f_MiddleScreenTracer, "Draw tracer from middle part of the screen.");
+			ConfigWidget(_TR("Fill Box/Rectangle/Arrows"), f_Fill);
+			ConfigWidget(_TR("Fill Transparency"), f_FillTransparency, 0.01f, 0.0f, 1.0f, _TR("Transparency of filled part."));
+			ConfigWidget(_TR("Middle Screen Tracer"), f_MiddleScreenTracer, _TR("Draw tracer from middle part of the screen."));
 
 			if (f_DrawTracerMode.value() == DrawTracerMode::OffscreenArrows)
 			{
-				if (ImGui::BeginGroupPanel("Arrow tracer options", true))
+				if (ImGui::BeginGroupPanel(_TR("Arrow tracer options"), true))
 				{
-					ConfigWidget(f_TracerSize, 0.005f, 0.1f, 10.0f, "Size of tracer.");
-					ConfigWidget(f_ArrowRadius, 0.5f, 50.0f, 300.0f, "Radius of arrow.");
-					ConfigWidget(f_OutlineThickness, 0.005f, 0.0f, 10.0f, "Outline thickness of arrow.");
+					ConfigWidget(_TR("Tracer Size"), f_TracerSize, 0.005f, 0.1f, 10.0f, _TR("Size of tracer."));
+					ConfigWidget(_TR("Arrow Radius"), f_ArrowRadius, 0.5f, 50.0f, 300.0f, _TR("Radius of arrow."));
+					ConfigWidget(_TR("Outline Thickness"), f_OutlineThickness, 0.005f, 0.0f, 10.0f, _TR("Outline thickness of arrow."));
 				}
 				ImGui::EndGroupPanel();
 			}
 
 			ImGui::Spacing();
-			ConfigWidget(f_DrawName, "Draw name of object.");
-			ConfigWidget(f_DrawDistance, "Draw distance of object.");
+			ConfigWidget(_TR("Draw Name"), f_DrawName, _TR("Draw name of object."));
+			ConfigWidget(_TR("Draw Distance"), f_DrawDistance, _TR("Draw distance of object."));
 			ImGui::Spacing();
-			ConfigWidget(f_DrawHealth, "Draw health of object.");
+			ConfigWidget(_TR("Draw Health"), f_DrawHealth, _TR("Draw health of object."));
 			ImGui::Spacing();
-			ConfigWidget(f_HideCompleted, "Hide completed puzzles (Elemental monuments, Bloatty Floatty, Electro Seelie)");
+			ConfigWidget(_TR("Hide completed puzzles"), f_HideCompleted, _TR("Hide completed puzzles (Elemental monuments, Bloatty Floatty, Electro Seelie)"));
 
 			ImGui::Spacing();
-			ConfigWidget(f_FontSize, 1, 1, 100, "Font size of name or distance.");
-			ConfigWidget("## Font outline enabled", f_FontOutline); ImGui::SameLine();
-			ConfigWidget("Font outline", f_FontOutlineSize, 0.001f, 0.0f, 10.0f);
+			ConfigWidget(_TR("Font Size"), f_FontSize, 1, 1, 100, _TR("Font size of name or distance."));
+			ConfigWidget(_TR("## Font outline enabled"), f_FontOutline); ImGui::SameLine();
+			ConfigWidget(_TR("Font outline"), f_FontOutlineSize, 0.001f, 0.0f, 10.0f);
 
 			ImGui::Spacing();
-			if (ImGui::BeginGroupPanel("Global colors", true))
+			if (ImGui::BeginGroupPanel(_TR("Global colors"), true))
 			{
-				if (ConfigWidget(f_GlobalFontColor, "Color of line, name, or distance text font."))
+				if (ConfigWidget(_TR("Font Color"), f_GlobalFontColor, _TR("Color of line, name, or distance text font.")))
 					m_FontContrastColor = ImGui::CalcContrastColor(f_GlobalFontColor);
 
-				ConfigWidget(f_GlobalBoxColor, "Color of box font.");
-				ConfigWidget(f_GlobalLineColor, "Color of line font.");
-				ConfigWidget(f_GlobalRectColor, "Color of rectangle font.");
+				ConfigWidget(_TR("Box Color"), f_GlobalBoxColor, _TR("Color of box font."));
+				ConfigWidget(_TR("Tracer Color"), f_GlobalLineColor, _TR("Color of line font."));
+				ConfigWidget(_TR("Rect Color"), f_GlobalRectColor, _TR("Color of rectangle font."));
 			}
 			ImGui::EndGroupPanel();
 
-			ConfigWidget(f_MinSize, 0.05f, 0.1f, 200.0f, "Minimum entity size as measured in-world.\n" \
+			ConfigWidget(_TR("Min. Entity Size"), f_MinSize, 0.05f, 0.1f, 200.0f, _TR("Minimum entity size as measured in-world.\n" \
 				"Some entities have either extremely small or no bounds at all.\n" \
-				"This parameter helps filter out entities that don't meet this condition.");
+				"This parameter helps filter out entities that don't meet this condition."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::Text("How to use item filters:\n\tLMB - Toggle visibility\n\tRMB - Open color picker");
-		ImGui::InputText("Search Filters", &m_Search);
+		ImGui::Text(_TR("How to use item filters:\n\tLMB - Toggle visibility\n\tRMB - Open color picker"));
+		ImGui::InputText(_TR("Search Filters"), &m_Search);
 
 		for (auto& [section, filters] : m_Sections)
 		{
@@ -136,14 +136,15 @@ namespace cheat::feature
 
 	bool ESP::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void ESP::DrawStatus()
 	{
-		ImGui::Text("ESP [%.01fm|%s|%s%s%s%s%s]",
+		ImGui::Text("%s [%.01fm|%s|%s%s%s%s%s]",
+			_TR("ESP"),
 			f_Range.value(),
-			f_DrawBoxMode.value() == DrawMode::Box ? "Box" : f_DrawBoxMode.value() == DrawMode::Rectangle ? "Rect" : "None",
+			f_DrawBoxMode.value() == DrawMode::Box ? _TR("Box") : f_DrawBoxMode.value() == DrawMode::Rectangle ? _TR("Rect") : _TR("None"),
 			f_Fill ? "F" : "",
 			f_DrawTracerMode.value() == DrawTracerMode::Line ? "L" : f_DrawTracerMode.value() == DrawTracerMode::OffscreenArrows ? "A" : "",
 			f_DrawName ? "N" : "",
@@ -391,7 +392,7 @@ namespace cheat::feature
 
 		auto& filters = m_Sections[section];
 		esp::ESPItem newItem(name, ImColor(120, 120, 120, 255), {}, name);
-		filters.push_back({ config::CreateField<esp::ESPItem>(name, name, fmt::format("ESP::Filters::{}", section), false, newItem), filter });
+		filters.push_back({ config::CreateField<esp::ESPItem>(name, fmt::format("ESP::Filters::{}", section), false, newItem), filter });
 	}
 
 	void ESP::DrawSection(const std::string& section, const Filters& filters)
@@ -479,7 +480,7 @@ namespace cheat::feature
 	void ESP::DrawExternal()
 	{
 		auto& esp = ESP::GetInstance();
-		if (!esp.f_Enabled)
+		if (!esp.f_Enabled->enabled())
 			return;
 
 		esp::render::PrepareFrame();

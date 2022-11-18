@@ -10,10 +10,10 @@
 namespace cheat::feature
 {
     AutoFish::AutoFish() : Feature(),
-        NFEX(f_Enabled, "Auto Fish", "m_AutoFish", "AutoFish", false, false),
-        NF(f_DelayBeforeCatch, "Delay before catch", "AutoFish", 2000),
-        NF(f_AutoRecastRod, "Recast rod", "AutoFish", true),
-        NF(f_DelayBeforeRecast, "Delay before recast", "AutoFish", 500)
+        NFP(f_Enabled, "AutoFish", "Auto Fish", false),
+        NF(f_DelayBeforeCatch, "AutoFish", 2000),
+        NF(f_AutoRecastRod, "AutoFish", true),
+        NF(f_DelayBeforeRecast, "AutoFish", 500)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(AutoFish::OnGameUpdate);
 
@@ -27,29 +27,29 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoFish::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Fishing", "World", true };
+        TRANSLATED_GROUP_INFO("Auto Fish", "World");
         return info;
     }
 
     void AutoFish::DrawMain()
     {
-        ConfigWidget("Enabled", f_Enabled, "Automatically catch fish.");
-        ConfigWidget("Catch Delay (ms)", f_DelayBeforeCatch, 100, 500, 4000, "Fish will be caught after this delay (in ms).");
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Automatically catch fish."));
+        ConfigWidget(_TR("Catch Delay (ms)"), f_DelayBeforeCatch, 100, 500, 4000, _TR("Fish will be caught after this delay (in ms)."));
 
         ImGui::Spacing();
 
-        ConfigWidget(f_AutoRecastRod, "If enabled, rod will recasted. Without visualization.");
-        ConfigWidget("Recast Delay (ms)", f_DelayBeforeRecast, 10, 100, 4000, "Rod will be recast after this delay (in ms).");
+        ConfigWidget(_TR("Recast rod"), f_AutoRecastRod, _TR("If enabled, rod will recasted. Without visualization."));
+        ConfigWidget(_TR("Recast Delay (ms)"), f_DelayBeforeRecast, 10, 100, 4000, _TR("Rod will be recast after this delay (in ms)."));
     }
 
     bool AutoFish::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void AutoFish::DrawStatus()
     {
-        ImGui::Text("Auto Fish");
+        ImGui::Text(_TR("Auto Fish"));
     }
 
     AutoFish& AutoFish::GetInstance()
@@ -63,7 +63,7 @@ namespace cheat::feature
         CALL_ORIGIN(FishingModule_onFishChosenNotify_Hook, __this, notify, method);
 
         auto& autoFish = GetInstance();
-        if (!autoFish.f_Enabled)
+        if (!autoFish.f_Enabled->enabled())
             return;
 
         app::MoleMole_FishingModule_RequestFishBite(__this, nullptr);
@@ -72,7 +72,7 @@ namespace cheat::feature
     void AutoFish::FishingModule_OnFishBiteRsp_Hook(void* __this, app::FishBiteRsp* rsp, MethodInfo* method)
     {
         auto& autoFish = GetInstance();
-        if (!autoFish.f_Enabled)
+        if (!autoFish.f_Enabled->enabled())
         {
             CALL_ORIGIN(FishingModule_OnFishBiteRsp_Hook, __this, rsp, method);
             return;
@@ -84,7 +84,7 @@ namespace cheat::feature
     void AutoFish::FishingModule_OnFishBattleBeginRsp_Hook(void* __this, app::FishBattleBeginRsp* rsp, MethodInfo* method)
     {
         auto& autoFish = GetInstance();
-        if (!autoFish.f_Enabled)
+        if (!autoFish.f_Enabled->enabled())
         {
             CALL_ORIGIN(FishingModule_OnFishBattleBeginRsp_Hook, __this, rsp, method);
             return;
@@ -108,7 +108,7 @@ namespace cheat::feature
             return;
         }
 
-        if (!autoFish.f_Enabled)
+        if (!autoFish.f_Enabled->enabled())
             return;
 
         if (rsp->fields.retcode_ != 0)

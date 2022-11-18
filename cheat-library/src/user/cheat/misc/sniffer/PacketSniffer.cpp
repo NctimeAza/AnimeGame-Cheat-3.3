@@ -11,9 +11,9 @@
 namespace cheat::feature 
 {
 	PacketSniffer::PacketSniffer() : Feature(),
-		NF(f_CaptureEnabled, "Capturing", "PacketSniffer", false),
-		NF(f_ManipulationEnabled, "Manipulation", "PacketSniffer", false),
-		NF(f_PipeName, "Pipe name", "PacketSniffer", "genshin_packet_pipe")
+		NF(f_CaptureEnabled, "PacketSniffer", false),
+		NF(f_ManipulationEnabled, "PacketSniffer", false),
+		NF(f_PipeName, "PacketSniffer", "genshin_packet_pipe")
 
 	{
 		client.Connect(f_PipeName.value());
@@ -24,16 +24,16 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& PacketSniffer::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Packet Sniffer", "Settings", true };
+		TRANSLATED_GROUP_INFO("Packet Sniffer", "Settings");
 		return info;
 	}
 
 	void PacketSniffer::DrawMain()
 	{
-		ImGui::Text("Dev: for working needs server for named pipe with specified name.\nCheck 'packet-handler' project like example.");
-		ConfigWidget(f_PipeName, "Pipe name for connecting. Changes will apply after next game launch.");
-		ConfigWidget(f_CaptureEnabled, "Enable capturing of packet info and sending to pipe, if it exists.");
-		ConfigWidget(f_ManipulationEnabled, "Enable blocking and modifying packets by sniffer, can cause network lags.");
+		ImGui::Text(_TR("Dev: for working needs server for named pipe with specified name.\nCheck 'packet-handler' project like example."));
+		ConfigWidget(_TR("Capturing"), f_PipeName, _TR("Pipe name for connecting. Changes will apply after next game launch."));
+		ConfigWidget(_TR("Manipulation"), f_CaptureEnabled, _TR("Enable capturing of packet info and sending to pipe, if it exists."));
+		ConfigWidget(_TR("Pipe name"), f_ManipulationEnabled, _TR("Enable blocking and modifying packets by sniffer, can cause network lags."));
 	}
 	
 	PacketSniffer& PacketSniffer::GetInstance()

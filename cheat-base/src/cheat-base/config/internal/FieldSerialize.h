@@ -21,8 +21,8 @@ namespace config::internal
 	class FieldSerialize : public FieldEntry
 	{
 	public:
-		FieldSerialize(const std::string& friendlyName, const std::string& name, const std::string& sectionName, const T& defaultValue, bool multiProfile = false) :
-			FieldEntry(friendlyName, name, sectionName, multiProfile), m_Value(defaultValue), m_DefaultValue(defaultValue) { }
+		FieldSerialize(const std::string& name, const std::string& sectionName, const T& defaultValue, bool multiProfile = false) :
+			FieldEntry(name, sectionName, multiProfile), m_Value(defaultValue), m_DefaultValue(defaultValue) { }
 
 		nlohmann::json ToJson() override
 		{
@@ -31,7 +31,6 @@ namespace config::internal
 				if (m_Value == m_DefaultValue)
 					return {};
 			}
-
 
 			return converters::ToJson(m_Value);
 		}

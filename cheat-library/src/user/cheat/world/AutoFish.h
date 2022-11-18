@@ -8,7 +8,7 @@ namespace cheat::feature
 	class AutoFish : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<int> f_DelayBeforeCatch;
 		config::Field<bool> f_AutoRecastRod;
 		config::Field<int> f_DelayBeforeRecast;

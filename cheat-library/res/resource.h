@@ -3,6 +3,8 @@
 // Used by res.rc
 //
 #define AssemblyChecksum                4
+#define IMGUI_FONT                      201
+#define R_LANGUAGES                     301
 #define IDR_RCDATA1                     101
 #define IDR_RCDATA2                     102
 #define IDB_PNG1                        105

@@ -25,8 +25,8 @@ bool cheat::GenshinCM::CursorGetVisibility()
 }
 
 cheat::GenshinCM::GenshinCM() :
-	NFEX(f_AccConfig, "Account Config", "data", "General::Multi-Account", internal::AccountConfig(), true),
-	NFS(f_ShowType,   "Name show type",         "General::Multi-Account", ShowType::Pseudo)
+	NFS(f_AccConfig, "General::Multi-Account", internal::AccountConfig()),
+	NFS(f_ShowType, "General::Multi-Account", ShowType::Pseudo)
 {
 	events::AccountChangedEvent += MY_METHOD_HANDLER(cheat::GenshinCM::OnAccountChanged);
 }
@@ -105,19 +105,19 @@ void cheat::GenshinCM::DrawProfileEntryActivities(const std::string& profileName
 	}
 
 	if (ImGui::IsItemHovered())
-		ImGui::SetTooltip(isAccountAttached ? "Dettach" : "Attach");
+		ImGui::SetTooltip(isAccountAttached ? _TR("Dettach") : _TR("Attach"));
 
 	if (m_CurrentAccount.userID == 0)
 		ImGui::EndDisabled();
 
 	ImGui::SameLine();
 
-	if (ImGui::SmallButton("Acl"))
-		ImGui::OpenPopup("Account list");
+	if (ImGui::SmallButton(_TR("Acl")))
+		ImGui::OpenPopup(_TR("Account list"));
 	if (ImGui::IsItemHovered())
-		ImGui::SetTooltip("Account list");
+		ImGui::SetTooltip(_TR("Account list"));
 
-	if (ImGui::BeginPopup("Account list", ImGuiWindowFlags_AlwaysAutoResize))
+	if (ImGui::BeginPopup(_TR("Account list"), ImGuiWindowFlags_AlwaysAutoResize))
 	{
 		DrawAccountsList(profileName);
 		ImGui::EndPopup();
@@ -133,7 +133,7 @@ void cheat::GenshinCM::DrawProfileEntry(const std::string& profileName)
 	auto accountCount = profileIds.count(profileName) > 0 ? profileIds[profileName].size() : 0;
 	if (accountCount == 0)
 	{
-		ImGui::Text("No accounts.");
+		ImGui::Text(_TR("No accounts."));
 		return;
 	}
 
@@ -144,7 +144,7 @@ void cheat::GenshinCM::DrawProfileEntry(const std::string& profileName)
 void cheat::GenshinCM::DrawProfileTableHeader()
 {
 	CheatManagerBase::DrawProfileTableHeader();
-	ImGui::TableSetupColumn("Accounts");
+	ImGui::TableSetupColumn(_TR("Accounts"));
 }
 
 int cheat::GenshinCM::GetProfileTableColumnCount()
@@ -161,8 +161,8 @@ void cheat::GenshinCM::DrawAccountsList(const std::string& profileName)
 	if (ImGui::BeginTable("Accounts", 2, flags,
 		ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * 10), 0.0f))
 	{
-		ImGui::TableSetupColumn("Name");
-		ImGui::TableSetupColumn("Actions");
+		ImGui::TableSetupColumn(_TR("Name"));
+		ImGui::TableSetupColumn(_TR("Actions"));
 		ImGui::TableSetupScrollFreeze(0, 1);
 		ImGui::TableHeadersRow();
 
@@ -181,7 +181,7 @@ void cheat::GenshinCM::DrawAccountsList(const std::string& profileName)
 
 			ImGui::TableNextColumn();
 
-			if (ImGui::Button("Remove"))
+			if (ImGui::Button(_TR("Remove")))
 				DetachAccount(userID, profileName);
 
 			ImGui::SameLine();
@@ -219,7 +219,7 @@ void cheat::GenshinCM::DrawProfileLine()
 	ImColor textColor = accountAttached ? ACTIVE_COLOR : ImColor(ImGui::GetColorU32(ImGuiCol_Text));
 	ImGui::TextColored(textColor, name.c_str()); ImGui::SameLine();
 
-	if (ImGui::Button(accountAttached ? "Deattach" : "Attach", ImVec2(buttonWidth, 0.0f)))
+	if (ImGui::Button(accountAttached ? _TR("Deattach") : _TR("Attach"), ImVec2(buttonWidth, 0.0f)))
 	{
 		if (accountAttached)
 			DetachAccount(m_CurrentAccount.userID, currentProfile);
@@ -230,11 +230,11 @@ void cheat::GenshinCM::DrawProfileLine()
 
 void cheat::GenshinCM::DrawProfileConfiguration()
 {
-	ConfigWidget(f_ShowType, "Set accounts' name showing type.");
+	ConfigWidget("Show type", f_ShowType, _TR("Set accounts' name showing type."));
 	auto& pseudos = f_AccConfig.value().pseudos;
 	if (pseudos.count(m_CurrentAccount.userID) > 0)
 	{
-		ImGui::Text("Pseudo: %s", pseudos[m_CurrentAccount.userID].c_str()); ImGui::SameLine();
+		ImGui::Text(_TR("Pseudo: %s"), pseudos[m_CurrentAccount.userID].c_str()); ImGui::SameLine();
 		DrawPseudoRename(m_CurrentAccount.userID);
 	}
 	
@@ -245,7 +245,7 @@ void cheat::GenshinCM::DrawProfileConfiguration()
 void cheat::GenshinCM::DrawPseudoRename(uint32_t userID)
 {
 	auto& pseudo = f_AccConfig.value().pseudos[userID];
-	if (ImGui::Button("Rename (Pseudo)"))
+	if (ImGui::Button(_TR("Rename (Pseudo)")))
 		ImGui::OpenRenamePopup(pseudo);
 
 	if (ImGui::DrawRenamePopup(pseudo))
@@ -272,7 +272,7 @@ void cheat::GenshinCM::OnAccountChanged(uint32_t userID)
 
 	auto& settings = feature::Settings::GetInstance();
 
-	ImGuiToast toast(ImGuiToastType_Info, settings.f_NotificationsDelay.value(), "Account was updated.\nConfig profile was changed.");
-	toast.set_title("Config multi-account");
+	ImGuiToast toast(ImGuiToastType_Info, settings.f_NotificationsDelay.value(), _TR("Account was updated.\nConfig profile was changed."));
+	toast.set_title(_TR("Config multi-account"));
 	ImGui::InsertNotification(toast);
 }

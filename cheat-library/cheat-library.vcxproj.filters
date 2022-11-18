@@ -524,6 +524,7 @@
     <None Include="res\assembly_checksum.json" />
     <None Include="res\map_golden_apple_archipelago.json" />
     <None Include="res\ascension_materials.json" />
+    <None Include="res\languages.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icons\Anemoculus.png">

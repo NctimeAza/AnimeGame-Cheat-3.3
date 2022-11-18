@@ -11,30 +11,30 @@ namespace cheat::feature
 {
 
     FreezeEnemies::FreezeEnemies() : Feature(),
-        NF(f_Enabled, "Freeze Enemies", "FreezeEnemies", false)
+        NFP(f_Enabled, "FreezeEnemies", "Freeze Enemies", false)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(FreezeEnemies::OnGameUpdate);
     }
 
     const FeatureGUIInfo& FreezeEnemies::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "World", false };
+        TRANSLATED_MODULE_INFO("World");
         return info;
     }
 
     void FreezeEnemies::DrawMain()
     {
-        ConfigWidget(f_Enabled, "Freezes all enemies' animation speed.");
+        ConfigWidget(_TR("Freeze Enemies"), f_Enabled, _TR("Freezes all enemies' animation speed."));
     }
 
     bool FreezeEnemies::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void FreezeEnemies::DrawStatus()
     {
-        ImGui::Text("Freeze Enemies");
+        ImGui::Text(_TR("Freeze Enemies"));
     }
 
     FreezeEnemies& FreezeEnemies::GetInstance()
@@ -56,7 +56,7 @@ namespace cheat::feature
             if (animator == nullptr && rigidBody == nullptr)
                 return;
 
-            if (f_Enabled)
+            if (f_Enabled->enabled())
             {
                 //auto constraints = app::Rigidbody_get_constraints(rigidBody, nullptr);
                 //LOG_DEBUG("%s", magic_enum::enum_name(constraints).data());

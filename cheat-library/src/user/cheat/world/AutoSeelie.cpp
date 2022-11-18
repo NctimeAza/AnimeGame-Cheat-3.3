@@ -10,29 +10,29 @@
 namespace cheat::feature
 {
 	AutoSeelie::AutoSeelie() : Feature(),
-		NF(f_Enabled, "Auto seelie", "Auto Seelie", false),
-		NF(f_ElectroSeelie, "Auto Electro seelie", "Auto Seelie", false),
+		NFP(f_Enabled, "Auto Seelie", "Auto Seelie", false),
+		NF(f_ElectroSeelie, "Auto Seelie", false),
 		nextTime(0)
 	{
 		events::GameUpdateEvent += MY_METHOD_HANDLER(AutoSeelie::OnGameUpdate);
 	}
 	const FeatureGUIInfo& AutoSeelie::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "World", true };
+		TRANSLATED_GROUP_INFO("Auto Sellie", "World");
 		return info;
 	}
 
 	void AutoSeelie::DrawMain()
 	{
-		ConfigWidget("Auto seelie", f_Enabled, "Auto follow seelie to its home");
+		ConfigWidget(_TR("Auto Seelie"), f_Enabled, _TR("Auto follow seelie to its home"));
 
 		if (f_Enabled)
 		{
 			ImGui::Indent();
-			ConfigWidget("Auto Electro seelie", f_ElectroSeelie, "Since you don't need to manually start electroseelie, \n"
-				"they start moving automatically with this option within 100m radius.");
+			ConfigWidget(_TR("Auto Electro seelie"), f_ElectroSeelie, _TR("Since you don't need to manually start electroseelie, \n"
+				"they start moving automatically with this option within 100m radius."));
 			ImGui::SameLine();
-			ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+			ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 			ImGui::Unindent();
 		}
 
@@ -40,12 +40,12 @@ namespace cheat::feature
 
 	bool AutoSeelie::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void AutoSeelie::DrawStatus()
 	{
-		ImGui::Text("AutoSeelie %s", f_ElectroSeelie ? "+ Electro" : "");
+		ImGui::Text("%s %s", _TR("Auto Seelie"), f_ElectroSeelie ? "+ Electro" : "");
 	}
 
 	AutoSeelie& AutoSeelie::GetInstance()
@@ -91,7 +91,7 @@ namespace cheat::feature
 
 	void AutoSeelie::OnGameUpdate()
 	{
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			return;
 
 		auto currentTime = util::GetCurrentTimeMillisec();

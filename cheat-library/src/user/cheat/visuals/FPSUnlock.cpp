@@ -7,30 +7,30 @@
 namespace cheat::feature
 {
     FPSUnlock::FPSUnlock() : Feature(),
-		NF(f_Enabled, "Fps unlock", "Visuals::FPSUnlocker", false),
-        NF(f_Fps, "FPS", "Visuals::FPSUnlocker", 240),
-        NF(f_Limit, "Limit", "Visuals::FPSUnlocker", false),
-        NF(f_FpsLimit, "FPS Limit", "Visuals::FPSUnlocker", 30)
+		NF(f_Enabled, "Visuals::FPSUnlocker", false),
+        NF(f_Fps, "Visuals::FPSUnlocker", 240),
+        NF(f_Limit, "Visuals::FPSUnlocker", false),
+        NF(f_FpsLimit, "Visuals::FPSUnlocker", 30)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(FPSUnlock::OnGameUpdate);
     }
 
     const FeatureGUIInfo& FPSUnlock::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "FPSUnlock", "Visuals", false };
+        TRANSLATED_GROUP_INFO("FPS Unlock", "Visuals");
         return info;
     }
 
     void FPSUnlock::DrawMain()
     {
-        ConfigWidget("", f_Enabled); ImGui::SameLine();
-        ConfigWidget(f_Fps, 1, 30, 360, "Unlocks higher framerate.");
+        ConfigWidget("## Enabled", f_Enabled); ImGui::SameLine();
+        ConfigWidget(_TR("FPS"), f_Fps, 1, 30, 360, _TR("Unlocks higher framerate."));
         if (f_Enabled)
         {
             ImGui::Indent();
-            ConfigWidget("##2", f_Limit);
+            ConfigWidget(_TR("##2"), f_Limit);
             ImGui::SameLine();
-            ConfigWidget(f_FpsLimit, 1, 5, 360, "Limit framerate while the game window isn't focused.\nThis won't work if the cheat menu is open or if you're in a loading screen.");
+            ConfigWidget(_TR("FPS Limit"), f_FpsLimit, 1, 5, 360, _TR("Limit framerate while the game window isn't focused.\nThis won't work if the cheat menu is open or if you're in a loading screen."));
             ImGui::Unindent();
         }
     }
@@ -42,7 +42,7 @@ namespace cheat::feature
 
     void FPSUnlock::DrawStatus()
     {
-        ImGui::Text("FPSUnlock [%d]", f_Fps.value());
+        ImGui::Text("%s [%d]", _TR("FPS Unlock"), f_Fps.value());
     }
 
     FPSUnlock& FPSUnlock::GetInstance()

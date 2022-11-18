@@ -17,13 +17,13 @@
 namespace cheat::feature
 {
 	CustomTeleports::CustomTeleports() : Feature(),
-		NF(f_Enabled,		"Custom Teleport",		"CustomTeleports",	false),
-		NF(f_Interpolate,	"Interpolate Teleport",	"CustomTeleports",	false),
-		NF(f_Auto,			"Auto Teleport",		"CustomTeleports",	false),
-		NF(f_Speed,			"Interpolation Speed",	"CustomTeleports",	10.0f),
-		NF(f_Next,			"Teleport Next",		"CustomTeleports",	Hotkey(VK_OEM_6)),
-		NF(f_Previous,		"Teleport Previous",	"CustomTeleports",	Hotkey(VK_OEM_4)),
-		NF(f_DelayTime,		"Delay time (in s)",	"CustomTeleports",	20),
+		NFP(f_Enabled, "CustomTeleports", "Custom Teleports", false),
+		NFP(f_Interpolate, "CustomTeleports", "Interpolate", false),
+		NFP(f_Auto, "CustomTeleports", "Auto", false),
+		NF(f_Speed, "CustomTeleports", 10.0f),
+		NF(f_Next, "CustomTeleports", Hotkey(VK_OEM_6)),
+		NF(f_Previous, "CustomTeleports", Hotkey(VK_OEM_4)),
+		NF(f_DelayTime, "CustomTeleports", 20),
 		dir(util::GetCurrentPath() /= "teleports"),
 		nextTime(0)
 	{
@@ -34,7 +34,7 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& CustomTeleports::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Custom Teleports", "Teleport", true };
+		TRANSLATED_GROUP_INFO("Custom Teleports", "Teleport");
 		return info;
 	}
 
@@ -144,7 +144,7 @@ namespace cheat::feature
 		}
 		if (shouldInterpolate)
 		{
-			float speed = this->f_Speed;
+			float speed = f_Speed;
 			auto avatarPos = manager.avatar()->absolutePosition();
 			auto endPos = position;
 			std::thread interpolate([avatarPos, endPos, &manager, speed]()
@@ -171,7 +171,7 @@ namespace cheat::feature
 
 	void CustomTeleports::OnTeleportKeyPressed(bool next)
 	{
-		if (!f_Enabled || !selectedIndex)
+		if (!f_Enabled->enabled() || !selectedIndex)
 			return;
 
 		app::Vector3 position;
@@ -191,24 +191,24 @@ namespace cheat::feature
 			selectedIndex = list.at(index + (next ? 1 : -1));
 			position = Teleports.at(*selectedIndex).position;
 		}
-		TeleportTo(position, this->f_Interpolate);
+		TeleportTo(position, f_Interpolate->enabled());
 		UpdateIndexName();
 	}
 
 	void CustomTeleports::OnPrevious()
 	{
-		if (f_Auto) return;
+		if (f_Auto->enabled()) return;
 		OnTeleportKeyPressed(false);
 	}
 	void CustomTeleports::OnNext()
 	{
-		if (f_Auto) return;
+		if (f_Auto->enabled()) return;
 		OnTeleportKeyPressed(true);
 	}
 
 	void CustomTeleports::OnGameUpdate()
 	{
-		if (!f_Enabled || !f_Auto)
+		if (!f_Enabled->enabled() || !f_Auto->enabled())
 			return;
 
 		auto currentTime = util::GetCurrentTimeMillisec();
@@ -264,9 +264,9 @@ namespace cheat::feature
 		static std::string JSONBuffer_;
 		static std::string descriptionBuffer_;
 
-		ImGui::InputText("Name", &nameBuffer_);
-		ImGui::InputText("Description", &descriptionBuffer_);
-		if (ImGui::Button("Add Teleport"))
+		ImGui::InputText(_TR("Name"), &nameBuffer_);
+		ImGui::InputText(_TR("Description"), &descriptionBuffer_);
+		if (ImGui::Button(_TR("Add Teleport")))
 		{
 			selectedIndex = std::nullopt;
 			UpdateIndexName();
@@ -276,7 +276,7 @@ namespace cheat::feature
 		}
 		ImGui::SameLine();
 
-		if (ImGui::Button("Reload"))
+		if (ImGui::Button(_TR("Reload")))
 		{
 			selectedIndex = std::nullopt;
 			UpdateIndexName();
@@ -285,14 +285,14 @@ namespace cheat::feature
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Open Folder"))
+		if (ImGui::Button(_TR("Open Folder")))
 		{
 			CheckFolder();
 			ShellExecuteA(NULL, "open", dir.string().c_str(), NULL, NULL, SW_SHOW);
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Load from JSON"))
+		if (ImGui::Button(_TR("Load from JSON")))
 		{
 			if (!JSONBuffer_.empty()) {
 				auto t = SerializeFromJson(JSONBuffer_, false);
@@ -305,28 +305,28 @@ namespace cheat::feature
 			}
 
 		}
-		ImGui::InputTextMultiline("JSON input", &JSONBuffer_, ImVec2(0, 50), ImGuiInputTextFlags_AllowTabInput);
+		ImGui::InputTextMultiline(_TR("JSON input"), &JSONBuffer_, ImVec2(0, 50), ImGuiInputTextFlags_AllowTabInput);
 
-		ConfigWidget("Teleport Next", f_Next, true, "Press to teleport next of selected.");
-		ConfigWidget("Teleport Previous", f_Previous, true, "Press to teleport previous of selected.");
-		ConfigWidget("Enable", f_Enabled,
-					 "Enable teleport-through-list functionality.\n"
+		ConfigWidget(_TR("Teleport Next"), f_Next, true, _TR("Press to teleport next of selected."));
+		ConfigWidget(_TR("Teleport Previous"), f_Previous, true, _TR("Press to teleport previous of selected."));
+		ConfigWidget(_TR("Enable"), f_Enabled,
+					 _TR("Enable teleport-through-list functionality.\n"
 					 "Usage:\n"
 					 "1. Put Checkmark to the teleports you want to teleport using hotkey\n"
 					 "2. Single click the teleport (with checkmark) to select where you want to start\n"
 					 "3. You can now press Next or Previous Hotkey to Teleport through the Checklist\n"
 					 "Initially it will teleport the player to the selection made\n"
-					 "Note: Double click or click the arrow to open teleport details");
-		ConfigWidget("Enable Interpolation", f_Interpolate, "Enable interpolation between teleports when using keybinds.");
+					 "Note: Double click or click the arrow to open teleport details"));
+		ConfigWidget(_TR("Enable Interpolation"), f_Interpolate, _TR("Enable interpolation between teleports when using keybinds."));
 		ImGui::SetNextItemWidth(300.0f);
-		ConfigWidget("Interpolation Speed", f_Speed, 0.1f, 0.1f, 99.0f,
-					 "Interpolation speed.\n recommended setting below or equal to 0.1.");
-		ConfigWidget("Auto Teleport", f_Auto, "Enable automatic forward teleporation between teleports");
+		ConfigWidget(_TR("Interpolation Speed"), f_Speed, 0.1f, 0.1f, 99.0f,
+					 _TR("Interpolation speed.\n recommended setting below or equal to 0.1."));
+		ConfigWidget(_TR("Auto Teleport"), f_Auto, _TR("Enable automatic forward teleporation between teleports"));
 		ImGui::SetNextItemWidth(300.0f);
-		ConfigWidget("Delay Time (s)", f_DelayTime, 1, 0, 60, "Delay (in s) between teleport.\n"
-			"Note: This is not fully tested detection-wise.\nNot recommended with low values.");
+		ConfigWidget(_TR("Delay Time (s)"), f_DelayTime, 1, 0, 60, _TR("Delay (in s) between teleport.\n"
+			"Note: This is not fully tested detection-wise.\nNot recommended with low values."));
 
-		if (ImGui::Button("Delete Checked"))
+		if (ImGui::Button(_TR("Delete Checked")))
 		{
 			if (!Teleports.empty())
 			{
@@ -348,19 +348,23 @@ namespace cheat::feature
 				checkedIndices.clear();
 				UpdateIndexName();
 				ReloadTeleports();
-			} else {LOG_INFO("No teleports to delete");}
+			} 
+			else 
+			{
+				LOG_INFO("No teleports to delete");
+			}
 		}
 		ImGui::SameLine();
-		HelpMarker("Warning: This will delete the file from the directory and\n \
-		remove the teleport from the list. It will be lost forever.");
+		HelpMarker(_TR("Warning: This will delete the file from the directory and\n \
+			remove the teleport from the list. It will be lost forever."));
 
-		if (ImGui::TreeNode("Teleports"))
+		if (ImGui::TreeNode(_TR("Teleports")))
 		{
 			std::sort(Teleports.begin(), Teleports.end(), [](const auto &a, const auto &b)
 					  { return StrCmpLogicalW(std::wstring(a.name.begin(), a.name.end()).c_str(), std::wstring(b.name.begin(), b.name.end()).c_str()) < 0; });
 			bool allSearchChecked = std::includes(checkedIndices.begin(), checkedIndices.end(), searchIndices.begin(), searchIndices.end()) && !searchIndices.empty();
 			bool allChecked = (checkedIndices.size() == Teleports.size() && !Teleports.empty()) || allSearchChecked;
-			ImGui::Checkbox("All", &allChecked);
+			ImGui::Checkbox(_TR("All"), &allChecked);
 			if (ImGui::IsItemClicked())
 			{
 				if (!Teleports.empty())
@@ -383,7 +387,7 @@ namespace cheat::feature
 				}
 			}
 			ImGui::SameLine();
-			ImGui::InputText("Search", &searchBuffer_);
+			ImGui::InputText(_TR("Search"), &searchBuffer_);
 			uint64_t index = 0;
 			searchIndices.clear();
 
@@ -393,9 +397,9 @@ namespace cheat::feature
 					maxNameLength = Teleport.name.length();
 			ImGui::BeginTable("Teleports", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable | ImGuiTableFlags_NoSavedSettings);
 			ImGui::TableSetupColumn("#", ImGuiTableColumnFlags_WidthFixed, 20);
-			ImGui::TableSetupColumn("Commands", ImGuiTableColumnFlags_WidthFixed, 130);
-			ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed, static_cast<float>(maxNameLength) * 8 + 10);
-			ImGui::TableSetupColumn("Position");
+			ImGui::TableSetupColumn(_TR("Commands"), ImGuiTableColumnFlags_WidthFixed, 130);
+			ImGui::TableSetupColumn(_TR("Name"), ImGuiTableColumnFlags_WidthFixed, static_cast<float>(maxNameLength) * 8 + 10);
+			ImGui::TableSetupColumn(_TR("Position"));
 			ImGui::TableHeadersRow();
 
 			for (const auto &[name, position, description] : Teleports)
@@ -412,7 +416,7 @@ namespace cheat::feature
 
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
-					ImGui::Text("%d", index);
+					ImGui::Text(_TR("%d"), index);
 					ImGui::TableNextColumn();
 					ImGui::Checkbox(("##Index" + stringIndex).c_str(), &checked);
 					if (ImGui::IsItemClicked(0))
@@ -429,19 +433,19 @@ namespace cheat::feature
 					}
 
 					ImGui::SameLine();
-					if (ImGui::Button(("TP##Button" + stringIndex).c_str()))
+					if (ImGui::Button((_TR("TP##Button") + stringIndex).c_str()))
 					{
 						TeleportTo(position, false);
 					}
 
 					ImGui::SameLine();
-					if (ImGui::Button(("Lerp##Button" + stringIndex).c_str()))
+					if (ImGui::Button((_TR("Lerp##Button") + stringIndex).c_str()))
 					{
 						TeleportTo(position, true);
 					}
 					ImGui::SameLine();
 
-					if (ImGui::Button(("Select##Button" + stringIndex).c_str()))
+					if (ImGui::Button((_TR("Select##Button") + stringIndex).c_str()))
 					{
 						auto isChecked = checkedIndices.find(index) != checkedIndices.end();
 						if (isChecked) {
@@ -459,7 +463,7 @@ namespace cheat::feature
 					{
 						ImGui::BeginTooltip();
 						ImGui::Text("%s", description.c_str());
-						ImGui::Text("Distance: %.2f", PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)));
+						ImGui::Text(_TR("Distance: %.2f"), PositionDistance(position, app::ActorUtils_GetAvatarPos(nullptr)));
 						ImGui::EndTooltip();
 					}
 					ImGui::TableNextColumn();
@@ -472,17 +476,17 @@ namespace cheat::feature
 		}
 
 		if (selectedIndex)
-			ImGui::Text("Selected: [%llu] %s", *selectedIndex, Teleports[*selectedIndex].name.c_str());
+			ImGui::Text("%s: [%llu] %s", _TR("Selected"), *selectedIndex, Teleports[*selectedIndex].name.c_str());
 	}
 
 	bool CustomTeleports::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void CustomTeleports::DrawStatus()
 	{
-		ImGui::Text("Custom Teleport\n[%s|%s]", f_Auto ? "Auto" : "Manual", selectedIndexName);
+		ImGui::Text("%s\n[%s|%s]", _TR("Custom Teleport"), f_Auto->enabled() ? _TR("Auto") : _TR("Manual"), selectedIndexName);
 	}
 
 	CustomTeleports &CustomTeleports::GetInstance()

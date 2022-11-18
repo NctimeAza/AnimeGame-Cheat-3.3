@@ -8,7 +8,7 @@ namespace cheat::feature
 	class AutoRun : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<float> f_Speed;
 
 		static AutoRun& GetInstance();

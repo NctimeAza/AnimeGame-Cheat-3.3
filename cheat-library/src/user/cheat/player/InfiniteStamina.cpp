@@ -8,8 +8,8 @@
 namespace cheat::feature 
 {
     InfiniteStamina::InfiniteStamina() : Feature(),
-        NF(f_Enabled, "Infinite stamina", "InfiniteStamina", false),
-        NF(f_PacketReplacement, "Move sync packet replacement", "InfiniteStamina", false)
+        NFP(f_Enabled, "InfiniteStamina", "Infinite Stamina", false),
+        NF(f_PacketReplacement, "InfiniteStamina", false)
     {
 		HookManager::install(app::MoleMole_DataItem_HandleNormalProp, DataItem_HandleNormalProp_Hook);
 
@@ -18,28 +18,28 @@ namespace cheat::feature
 
     const FeatureGUIInfo& InfiniteStamina::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info { "Infinite Stamina", "Player", true };
+		TRANSLATED_GROUP_INFO("Infinite Stamina", "Player");
         return info;
     }
 
     void InfiniteStamina::DrawMain()
     {
-		ConfigWidget("Enabled", f_Enabled, "Enables infinite stamina option.");
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables infinite stamina option."));
 
-		ConfigWidget("Move Sync Packet Replacement", f_PacketReplacement,
-			"This mode prevents sending server packets with stamina cost actions,\n"
+		ConfigWidget(_TR("Move Sync Packet Replacement"), f_PacketReplacement,
+			_TR("This mode prevents sending server packets with stamina cost actions,\n"
 			"e.g. swim, climb, sprint, etc.\n"
-			"NOTE: This is may be more safe than the standard method. More testing is needed.");
+			"NOTE: This is may be more safe than the standard method. More testing is needed."));
     }
 
     bool InfiniteStamina::NeedStatusDraw() const
 {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void InfiniteStamina::DrawStatus() 
     { 
-        ImGui::Text("Inf. Stamina [%s]", f_PacketReplacement ? "Packet" : "Normal");
+        ImGui::Text("%s [%s]", _TR("Inf. Stamina"), f_PacketReplacement ? _TR("Packet") : _TR("Normal"));
     }
 
     InfiniteStamina& InfiniteStamina::GetInstance()
@@ -60,7 +60,7 @@ namespace cheat::feature
 		if (propType == PT::PROP_CUR_TEMPORARY_STAMINA)
 			override_cheat = true;
 
-		const bool result = !f_Enabled || f_PacketReplacement || override_cheat ||
+		const bool result = !f_Enabled->enabled() || f_PacketReplacement || override_cheat ||
 							(propType != PT::PROP_MAX_STAMINA &&
 							 propType != PT::PROP_CUR_PERSIST_STAMINA &&
 							 propType != PT::PROP_CUR_TEMPORARY_STAMINA);
@@ -83,7 +83,7 @@ namespace cheat::feature
 		if (entity->type() == app::EntityType__Enum_1::Vehicle || entity->isAvatar())
 		{
 			// LOG_DEBUG("Movement packet: %s", magic_enum::enum_name(syncInfo->fields.motionState).data());
-			if (f_Enabled && f_PacketReplacement)
+			if (f_Enabled->enabled() && f_PacketReplacement)
 			{
 				auto state = syncInfo->fields.motionState;
 				switch (state)

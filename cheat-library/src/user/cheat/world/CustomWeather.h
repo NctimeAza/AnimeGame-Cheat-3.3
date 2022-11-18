@@ -20,8 +20,8 @@ namespace cheat::feature
 			EastCoast,
 		};
 
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_Lightning;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_Lightning;
 		config::Field<config::Enum<WeatherType>> f_WeatherType;
 
 		static CustomWeather& GetInstance();

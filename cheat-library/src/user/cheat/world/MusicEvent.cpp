@@ -6,7 +6,6 @@
 
 namespace cheat::feature
 {
-
     static void MusicGamePlayComponent_OnStart_Hook(app::MusicGamePlayComponent* __this, app::BeatMapData* beatMapData, app::MusicMetaInfo* musicMetaInfo, MethodInfo* method);
     static void MusicGamePlayComponent_OnMiss_Hook(app::MusicGamePlayComponent* __this, MethodInfo* method);
     static void MusicGamePlayComponent_set_combo_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method);
@@ -18,7 +17,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_OnHit_Hook(app::MusicGamePlayComponent* __this, float score, MethodInfo* method);
 
     MusicEvent::MusicEvent() : Feature(),
-        NF(f_Enabled, "Music Event", "MusicEvent", false)
+        NF(f_Enabled, "MusicEvent", "Music event", false)
     {
         //HookManager::install(app::MusicGamePlayComponent_OnStart, MusicGamePlayComponent_OnStart_Hook);
         HookManager::install(app::MusicGamePlayComponent_OnMiss, MusicGamePlayComponent_OnMiss_Hook);
@@ -33,24 +32,23 @@ namespace cheat::feature
 
     const FeatureGUIInfo& MusicEvent::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "World", false };
+        TRANSLATED_MODULE_INFO("World");
         return info;
     }
 
     void MusicEvent::DrawMain()
     {
-        ConfigWidget(f_Enabled, "Enemies don't attack or use abilities against player. \n"
-            "May not work with some enemies or enemy abilites.");
+        ConfigWidget(_TR("Music Event"), f_Enabled);
     }
 
     bool MusicEvent::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void MusicEvent::DrawStatus()
     {
-        ImGui::Text("Music Event");
+        ImGui::Text(_TR("Music Event"));
     }
 
     MusicEvent& MusicEvent::GetInstance()
@@ -62,7 +60,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_OnStart_Hook(app::MusicGamePlayComponent * __this, app::BeatMapData* beatMapData, app::MusicMetaInfo* musicMetaInfo, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             __this->fields._combo = 9999999;
             __this->fields._score_k__BackingField = 9999999;
@@ -77,7 +75,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_OnMiss_Hook(app::MusicGamePlayComponent* __this, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             return;
         }
@@ -87,7 +85,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_combo_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 999999999;
         }
@@ -97,7 +95,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_score_Hook(app::MusicGamePlayComponent* __this, float value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 999999999;
         }
@@ -106,7 +104,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_maxCombo_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 999999999;
         }
@@ -115,7 +113,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_perfectCnt_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 999999999;
         }
@@ -124,7 +122,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_greatCnt_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 999999999;
         }
@@ -133,7 +131,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_set_missCnt_Hook(app::MusicGamePlayComponent* __this, uint32_t value, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             value = 0;
         }
@@ -142,7 +140,7 @@ namespace cheat::feature
     static void MusicGamePlayComponent_OnHit_Hook(app::MusicGamePlayComponent* __this, float score, MethodInfo* method)
     {
         MusicEvent& MusicEvent = MusicEvent::GetInstance();
-        if (MusicEvent.f_Enabled)
+        if (MusicEvent.f_Enabled->enabled())
         {
             score = 999999999;
         }

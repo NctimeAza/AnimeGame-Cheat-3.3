@@ -8,10 +8,10 @@ namespace cheat::feature
 	class KillAura : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_DamageMode;
-		config::Field<config::Toggle<Hotkey>> f_PercentDamageMode;
-		config::Field<config::Toggle<Hotkey>> f_InstantDeathMode;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_DamageMode;
+		config::Field<TranslatedHotkey> f_PercentDamageMode;
+		config::Field<TranslatedHotkey> f_InstantDeathMode;
 		config::Field<bool> f_OnlyTargeted;
 		config::Field<float> f_Range;
 		config::Field<int> f_AttackDelay;

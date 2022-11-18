@@ -8,7 +8,7 @@ namespace cheat::feature
     class GameSpeed : public Feature
     {
     public:
-        config::Field<config::Toggle<Hotkey>> f_Enabled;
+        config::Field<TranslatedHotkey> f_Enabled;
         config::Field<Hotkey> f_Hotkey;
         config::Field<float> f_Speed;
 

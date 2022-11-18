@@ -11,45 +11,45 @@ namespace cheat::feature
 {
 
     ChestTeleport::ChestTeleport() : ItemTeleportBase("ChestTeleport", "Chest"),
-        NF(f_FilterChestLocked    , "Locked",       "ChestTeleport", true),
-		NF(f_FilterChestInRock    , "In rock",      "ChestTeleport", true),
-		NF(f_FilterChestFrozen    , "Frozen",       "ChestTeleport", true),
-		NF(f_FilterChestBramble   , "Bramble",      "ChestTeleport", true),
-		NF(f_FilterChestTrap      , "Trap",         "ChestTeleport", true),
+        NF(f_FilterChestLocked, "ChestTeleport", true),
+		NF(f_FilterChestInRock, "ChestTeleport", true),
+		NF(f_FilterChestFrozen, "ChestTeleport", true),
+		NF(f_FilterChestBramble, "ChestTeleport", true),
+		NF(f_FilterChestTrap, "ChestTeleport", true),
 
-		NF(f_FilterChestCommon    , "Common",       "ChestTeleport", true),
-		NF(f_FilterChestExquisite , "Exquisite",    "ChestTeleport", true),
-		NF(f_FilterChestPrecious  , "Precious",     "ChestTeleport", true),
-		NF(f_FilterChestLuxurious , "Luxurious",    "ChestTeleport", true),
-		NF(f_FilterChestRemarkable, "Remarkable",   "ChestTeleport", true),
+		NF(f_FilterChestCommon, "ChestTeleport", true),
+		NF(f_FilterChestExquisite, "ChestTeleport", true),
+		NF(f_FilterChestPrecious, "ChestTeleport", true),
+		NF(f_FilterChestLuxurious, "ChestTeleport", true),
+		NF(f_FilterChestRemarkable, "ChestTeleport", true),
 
-		NF(f_FilterChest          , "Chests",       "ChestTeleport", true),
-		NF(f_FilterInvestigates   , "Investigates", "ChestTeleport", false),
-		NF(f_FilterBookPage       , "Book pages",   "ChestTeleport", false),
-		NF(f_FilterBGM            , "BGMs",         "ChestTeleport", false),
-		NF(f_FilterQuestInt       , "Quest Interaction",  "ChestTeleport", false),
-		NF(f_FilterFloraChest     , "Flora chest",  "ChestTeleport", false),
+		NF(f_FilterChest, "ChestTeleport", true),
+		NF(f_FilterInvestigates, "ChestTeleport", false),
+		NF(f_FilterBookPage, "ChestTeleport", false),
+		NF(f_FilterBGM, "ChestTeleport", false),
+		NF(f_FilterQuestInt, "ChestTeleport", false),
+		NF(f_FilterFloraChest, "ChestTeleport", false),
 
-		NF(f_FilterUnknown        , "Unknowns",     "ChestTeleport", true)
+		NF(f_FilterUnknown, "ChestTeleport", true)
 	{ }
 
 
     void cheat::feature::ChestTeleport::DrawFilterOptions()
     {
-		ConfigWidget(f_ShowInfo, "Show short info about nearest chest to the info window.");
+		ConfigWidget(_TR("Show Info"), f_ShowInfo, _TR("Show short info about nearest chest to the info window."));
 
 		if (ImGui::TreeNode("Filters"))
 		{
 
-			ImGui::Text("Type Filters");
+			ImGui::Text(_TR("Type Filters"));
 
-			ConfigWidget(f_FilterChest, "Enable chest detection and filters.");
-			ConfigWidget(f_FilterInvestigates);
-			ConfigWidget(f_FilterBookPage);
-			ConfigWidget(f_FilterBGM);
-			ConfigWidget(f_FilterQuestInt);
-			ConfigWidget(f_FilterFloraChest);
-			ConfigWidget(f_FilterUnknown, "Enable detection of unknown items.\nYou can see these items below, if they exist.");
+			ConfigWidget(_TR("Chests"), f_FilterChest, _TR("Enable chest detection and filters."));
+			ConfigWidget(_TR("Investigates"), f_FilterInvestigates);
+			ConfigWidget(_TR("Book pages"), f_FilterBookPage);
+			ConfigWidget(_TR("BGMs"), f_FilterBGM);
+			ConfigWidget(_TR("Quest Interaction"), f_FilterQuestInt);
+			ConfigWidget(_TR("Flora chest"), f_FilterFloraChest);
+			ConfigWidget(_TR("Unknowns"), f_FilterUnknown, _TR("Enable detection of unknown items.\nYou can see these items below, if they exist."));
 
 			ImGui::Spacing();
 
@@ -59,44 +59,44 @@ namespace cheat::feature
 			if (ImGui::BeginTable("Chest Filters", 2, ImGuiTableFlags_NoBordersInBody))
 			{
 				ImGui::TableNextColumn();
-				ImGui::Text("Rarity Filter");
+				ImGui::Text(_TR("Rarity Filter"));
 
 				ImGui::TableNextColumn();
-				ImGui::Text("State Filter");
+				ImGui::Text(_TR("State Filter"));
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestCommon);
+				ConfigWidget(_TR("Common"), f_FilterChestCommon);
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestLocked);
-
-
-				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestExquisite);
-
-				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestInRock);
+				ConfigWidget(_TR("Locked"), f_FilterChestLocked);
 
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestPrecious);
+				ConfigWidget(_TR("Exquisite"), f_FilterChestExquisite);
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestFrozen);
-
-
-				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestLuxurious);
-
-				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestBramble);
+				ConfigWidget(_TR("In rock"), f_FilterChestInRock);
 
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestRemarkable);
+				ConfigWidget(_TR("Precious"), f_FilterChestPrecious);
 
 				ImGui::TableNextColumn();
-				ConfigWidget(f_FilterChestTrap);
+				ConfigWidget(_TR("Frozen"), f_FilterChestFrozen);
+
+
+				ImGui::TableNextColumn();
+				ConfigWidget(_TR("Luxurious"), f_FilterChestLuxurious);
+
+				ImGui::TableNextColumn();
+				ConfigWidget(_TR("Bramble"), f_FilterChestBramble);
+
+
+				ImGui::TableNextColumn();
+				ConfigWidget(_TR("Remarkable"), f_FilterChestRemarkable);
+
+				ImGui::TableNextColumn();
+				ConfigWidget(_TR("Trap"), f_FilterChestTrap);
 
 				ImGui::EndTable();
 			}
@@ -110,7 +110,7 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& ChestTeleport::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Chest Teleport", "Teleport", true };
+		TRANSLATED_GROUP_INFO("Chest Teleport", "Teleport");
 		return info;
 	}
 
@@ -214,7 +214,7 @@ namespace cheat::feature
 
 	void ChestTeleport::DrawChests()
 	{	
-		if (!ImGui::TreeNode("Items"))
+		if (!ImGui::TreeNode(_TR("Items")))
 			return;
 
 		auto& manager = game::EntityManager::instance();
@@ -243,7 +243,7 @@ namespace cheat::feature
 
 			ImGui::TableNextColumn();
 
-			if (ImGui::Button("Teleport"))
+			if (ImGui::Button(_TR("Teleport")))
 			{
 				auto& mapTeleport = MapTeleport::GetInstance();
 				mapTeleport.TeleportTo(chest->absolutePosition());
@@ -271,23 +271,23 @@ namespace cheat::feature
 		if (unknowns.empty())
 			return;
 
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "Wow, you found unknown chest names. This means this chest type has no filter yet.");
-		TextURL("Please contribute to issue on GitHub", "https://github.com/CallowBlack/genshin-cheat/issues/48", false, false);
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Wow, you found unknown chest names. This means this chest type has no filter yet."));
+		TextURL(_TR("Please contribute to issue on GitHub"), "https://github.com/CallowBlack/genshin-cheat/issues/48", false, false);
 		
-		if (ImGui::Button("Copy to clipboard"))
+		if (ImGui::Button(_TR("Copy to clipboard")))
 		{
 			ImGui::LogToClipboard();
 
-			ImGui::LogText("Unknown Names:\n");
+			ImGui::LogText(_TR("Unknown Names:\n"));
 			
 			for (auto& entity : unknowns)
-				ImGui::LogText("%s; Position: %s; Scene: %u\n", entity->name().c_str(), 
+				ImGui::LogText(_TR("%s; Position: %s; Scene: %u\n"), entity->name().c_str(), 
 					il2cppi_to_string(entity->relativePosition()).c_str(), game::GetCurrentPlayerSceneID());
 			
 			ImGui::LogFinish();
 		}
 
-		if (!ImGui::TreeNode("Unknown Items"))
+		if (!ImGui::TreeNode(_TR("Unknown Items")))
 			return;
 
 		ImGui::BeginTable("UnknownsTable", 2);
@@ -297,10 +297,10 @@ namespace cheat::feature
 			ImGui::PushID(entity);
 			
 			ImGui::TableNextColumn();
-			ImGui::Text("%s. Dist %0.3f", entity->name().c_str(), manager.avatar()->distance(entity));
+			ImGui::Text(_TR("%s. Dist %0.3f"), entity->name().c_str(), manager.avatar()->distance(entity));
 			
 			ImGui::TableNextColumn();
-			if (ImGui::Button("TP"))
+			if (ImGui::Button(_TR("TP")))
 			{
 				auto& mapTeleport = MapTeleport::GetInstance();
 				mapTeleport.TeleportTo(entity->absolutePosition());
@@ -311,8 +311,4 @@ namespace cheat::feature
 		ImGui::EndTable();
 		ImGui::TreePop();
 	}
-
-
-
 }
-

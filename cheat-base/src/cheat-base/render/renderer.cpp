@@ -18,23 +18,164 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 namespace renderer
 {
-	struct Data
+#pragma region Font
+
+	static size_t ImWCharStringLen(const ImWchar* content)
 	{
-		LPBYTE data;
-		DWORD size;
+		size_t i = 0;
+		while (content[i] != 0) i++;
+		return i;
+	}
+
+	static ImWchar* ConcatGlyphRanges(const ImWchar* first, const ImWchar* second)
+	{
+		auto flen = ImWCharStringLen(first);
+		auto slen = ImWCharStringLen(second);
+		auto totalLength = flen + slen;
+		auto content = new ImWchar[totalLength + 1];
+		std::memcpy(content, first, flen * sizeof(ImWchar));
+		std::memcpy(content + flen, second, slen * sizeof(ImWchar));
+		return content;
+	}
+
+	Font::Font(const std::string& name, LPBYTE pData, DWORD dDataSize, FONT_RANGE ranges) :
+		m_Name(name), m_Data(pData), m_DataSize(dDataSize), m_Ranges(nullptr)
+	{
+		AddRange(ranges);
+	}
+
+	Font::Font(const std::string& name, LPBYTE pData, DWORD dDataSize, const ImWchar* ranges)
+		: m_Name(name), m_Data(pData), m_DataSize(dDataSize), m_Ranges(const_cast<ImWchar*>(ranges))
+	{ }
+
+	std::string Font::GetName() const
+	{
+		return m_Name;
+	}
+
+	ImFont* Font::AddImGuiFont(float fontSize, ImFontConfig* fontConfig)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		return io.Fonts->AddFontFromMemoryTTF(GetData(), GetSize(), fontSize, fontConfig, GetGlyphRanges());
+	}
+
+	LPBYTE Font::GetData() const
+	{
+		return m_Data;
+	}
+
+	DWORD Font::GetSize() const
+	{
+		return m_DataSize;
+	}
+
+	const ImWchar* Font::GetGlyphRanges() const
+	{
+		return m_Ranges;
+	}
+
+	void Font::AddRange(FONT_RANGE ranges)
+	{
+		ImFontAtlas* fakeAtlas = nullptr;
+#define RANGE_ADD(COMPARE_RTYPE, IMGUI_RANGE) if (ranges & COMPARE_RTYPE) { if (m_Ranges == nullptr) m_Ranges = const_cast<ImWchar*>(IMGUI_RANGE); else m_Ranges = ConcatGlyphRanges(m_Ranges, IMGUI_RANGE); }
+
+		RANGE_ADD(FONT_RANGE_DEFAULT, fakeAtlas->GetGlyphRangesDefault());
+		RANGE_ADD(FONT_RANGE_CHINESE_FULL, fakeAtlas->GetGlyphRangesChineseFull());
+		RANGE_ADD(FONT_RANGE_CHINESE_SIMPLIFIED, fakeAtlas->GetGlyphRangesChineseSimplifiedCommon());
+		RANGE_ADD(FONT_RANGE_CYRILLIC, fakeAtlas->GetGlyphRangesCyrillic());
+		RANGE_ADD(FONT_RANGE_JAPANESE, fakeAtlas->GetGlyphRangesJapanese());
+		RANGE_ADD(FONT_RANGE_KOREAN, fakeAtlas->GetGlyphRangesKorean());
+		RANGE_ADD(FONT_RANGE_THAI, fakeAtlas->GetGlyphRangesThai());
+		RANGE_ADD(FONT_RANGE_VIETNAMESE, fakeAtlas->GetGlyphRangesVietnamese());
+
+#undef RANGE_ADD
+	}
+
+	void Font::AddRange(const ImWchar* ranges)
+	{
+		m_Ranges = ConcatGlyphRanges(m_Ranges, ranges);
+	}
+
+	std::shared_ptr<renderer::Font> Font::LoadFontFromResource(int resourceId, const char* resourceType, const std::string& fontName, FONT_RANGE ranges)
+	{
+		LPBYTE pData;
+		DWORD dSize;
+
+		if (ResourceLoader::LoadEx(resourceId, resourceType, pData, dSize))
+			return std::make_shared<renderer::Font>(fontName, pData, dSize, ranges);
+
+		return {};
+	}
+
+	std::shared_ptr<renderer::Font> Font::LoadFontFromResource(int resourceId, const char* resourceType, const std::string& fontName, const ImWchar* ranges)
+	{
+		LPBYTE pData;
+		DWORD dSize;
+
+		if (ResourceLoader::LoadEx(resourceId, resourceType, pData, dSize))
+			return std::make_shared<renderer::Font>(fontName, pData, dSize, ranges);
+
+		return {};
+	}
+
+#pragma endregion
+
+#pragma region Font Composit
+
+	FontComposit::FontComposit(const std::string& name, const std::initializer_list<Font>& fonts) : m_Name(name), m_Fonts(fonts)
+	{ }
+
+	FontComposit::FontComposit(const std::string& name, const std::vector<Font>& fonts) : m_Name(name), m_Fonts(fonts)
+	{ }
+
+	std::string FontComposit::GetName() const
+	{
+		return m_Name;
+	}
+
+	ImFont* FontComposit::AddImGuiFont(float fontSize, ImFontConfig* fontConfig)
+	{
+		ImFontConfig configCopy = *fontConfig;
+		configCopy.MergeMode = true;
+
+		ImGuiIO& io = ImGui::GetIO();
+		ImFont* font = nullptr;
+
+		if (!fontConfig->MergeMode)
+			font = io.Fonts->AddFontDefault();
+
+		for (auto& font : m_Fonts)
+		{
+			font.AddImGuiFont(fontSize, &configCopy);
+		}
+
+		return font;
+	}
+
+#pragma endregion
+
+	struct TokenData
+	{
+		std::shared_ptr<IFont> font;
+		float fontSize;
+		ImFont* fontImGui;
 	};
 
 	static std::unordered_set<void*> _inputLockers;
 
-	static float _globalFontSize = 16.0f;
-	static bool _isCustomFontLoaded = false;
+	static ImFont* _currentFontImgui;
+	static std::shared_ptr<IFont> _currentFont = {};
+	static float _currentFontSize = 12.0f;
 
-	static constexpr int _fontSizeStep = 1;
-	static constexpr int _fontSizeMax = 64;
-	static constexpr int _fontsCount = _fontSizeMax / _fontSizeStep;
-	static std::array<ImFont*, _fontsCount> _fonts;
+	static std::unordered_map<std::string, std::shared_ptr<IFont>> _fonts;
+	static std::mutex _fontsMutex;
 
-	static Data _customFontData{};
+	static FontToken _maxToken = 0x1;
+
+	static std::unordered_map<FontToken, TokenData> _fontTokens;
+	static std::mutex _fontTokensMutex;
+
+	static std::atomic<bool> _fontReloadRequested;
 
 	static WNDPROC OriginalWndProcHandler;
 	static ID3D11RenderTargetView* mainRenderTargetView;
@@ -46,12 +187,8 @@ namespace renderer
 	static void OnPostRenderDX12(ID3D12GraphicsCommandList* commandList);
 	static void OnInitializeDX12(HWND window, ID3D12Device* pDevice, UINT buffersCounts, ID3D12DescriptorHeap* pDescriptorHeapImGuiRender);
 
-
-
-	void Init(LPBYTE fontData, DWORD fontDataSize, DXVersion version)
+	void Init(DXVersion version)
 	{
-		_customFontData = { fontData, fontDataSize };
-
 		LOG_DEBUG("Initialize IMGui...");
 
 		switch (version)
@@ -71,6 +208,172 @@ namespace renderer
 		case renderer::DXVersion::D3D10:
 		default:
 			LOG_ERROR("Used unsupported version of DX.");
+		}
+	}
+
+	void AddFont(std::shared_ptr<IFont> font)
+	{
+		std::lock_guard<std::mutex> _lock(_fontsMutex);
+		
+		if (_fonts.contains(font->GetName()))
+			return;
+
+		_fonts[font->GetName()] = font;
+	}
+
+	void SetDefaultFont(const std::string& fontName)
+	{
+		std::lock_guard<std::mutex> _lock(_fontsMutex);
+
+		if (!_fonts.contains(fontName))
+			return;
+
+		_currentFont = _fonts.at(fontName);
+		_fontReloadRequested = true;
+	}
+
+	ImFont* GetDefaultImGuiFont()
+	{
+		if (_currentFontImgui != nullptr)
+			return _currentFontImgui;
+
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		return io.FontDefault;
+	}
+
+	std::string GetDefaultFontName()
+	{
+		if (!_currentFont)
+			return {};
+
+		return _currentFont->GetName();
+	}
+
+	void SetDefaultFontSize(float fontSize)
+	{
+		_currentFontSize = fontSize;
+		_fontReloadRequested = true;
+	}
+
+	float GetDefaultFontSize()
+	{
+		return _currentFontSize;
+	}
+
+	renderer::FontToken CreateFontToken(const std::string& fontName, float fontSize)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		std::lock_guard<std::mutex> _lock2(_fontsMutex);
+
+		if (!_fonts.contains(fontName))
+			return {};
+
+		_fontTokens[++_maxToken] = { _fonts.at(fontName), 12.0f, nullptr };
+		_fontReloadRequested = true;
+		return _maxToken;
+	}
+
+	bool DestroyFontToken(FontToken token)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return false;
+
+		_fontTokens.erase(token);
+		_fontReloadRequested = true;
+		return true;
+	}
+
+	void SetTokenFontSize(FontToken token, float size)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return;
+
+		_fontTokens.at(token).fontSize = size;
+		_fontReloadRequested = true;
+	}
+
+	float GetTokenFontSize(FontToken token)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return 0.0f;
+
+		return _fontTokens.at(token).fontSize;
+	}
+
+	void SetTokenFont(FontToken token, const std::string& fontName)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return;
+
+		std::lock_guard<std::mutex> _lock2(_fontsMutex);
+		if (!_fonts.contains(fontName))
+			return;
+
+		_fontTokens.at(token).font = _fonts.at(fontName);
+		_fontReloadRequested = true;
+	}
+
+	std::string GetTokenFontName(FontToken token)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return {};
+
+		return _fontTokens.at(token).font->GetName();
+	}
+
+	ImFont* GetTokenFont(FontToken token)
+	{
+		std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+		if (!_fontTokens.contains(token))
+			return nullptr;
+
+		auto& font = _fontTokens.at(token);
+		if (font.fontImGui == nullptr)
+		{
+			ImGuiIO& io = ImGui::GetIO(); (void)io;
+			return io.FontDefault;
+		}
+
+		return font.fontImGui;
+	}
+
+	void CheckFonts()
+	{
+		if (!_fontReloadRequested)
+			return;
+
+		_fontReloadRequested = false;
+
+		{
+			std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+			for (auto& [token, font] : _fontTokens)
+			{
+				font.fontImGui = nullptr;
+			}
+		}
+
+		_currentFontImgui = nullptr;
+
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		io.Fonts->Clear();
+
+		ImFontConfig fontConfig = {};
+		fontConfig.FontDataOwnedByAtlas = false;
+
+		if (_currentFont)
+			_currentFontImgui = _currentFont->AddImGuiFont(_currentFontSize, &fontConfig);
+
+		{
+			std::lock_guard<std::mutex> _lock(_fontTokensMutex);
+			for (auto& [token, font] : _fontTokens)
+			{
+				font.fontImGui = font.font->AddImGuiFont(font.fontSize, &fontConfig);
+			}
 		}
 	}
 
@@ -99,64 +402,6 @@ namespace renderer
 		return _inputLockers.size() > 0;
 	}
 
-	ImFont* GetFontBySize(float fontSize)
-	{
-		if (!_isCustomFontLoaded)
-		{
-			ImGuiIO& io = ImGui::GetIO();
-			return io.FontDefault;
-		}
-		int fontSizeInt = static_cast<int>(fontSize);
-		int fontIndex = fontSizeInt / _fontSizeStep +
-			(fontSizeInt % _fontSizeStep > (_fontSizeStep / 2) ? 1 : 0) - 1;
-		fontIndex = std::clamp(fontIndex, 0, _fontsCount - 1);
-		return _fonts[fontIndex];
-	}
-
-	float GetScaleByFontSize(float fontSize)
-	{
-		if (!_isCustomFontLoaded)
-		{
-			ImGuiIO& io = ImGui::GetIO();
-			return fontSize / io.FontDefault->FontSize;
-		}
-
-		int fontSizeInt = static_cast<int>(fontSize);
-		int fontIndex = fontSizeInt / _fontSizeStep;
-		int fontAligned = fontIndex * _fontSizeStep +
-			((fontSizeInt % _fontSizeStep) > _fontSizeStep / 2 ? _fontSizeStep : 0);
-		fontAligned = std::clamp(fontAligned, _fontSizeStep, _fontSizeMax);
-
-		return fontSize / static_cast<float>(fontAligned);
-	}
-
-	void SetGlobalFontSize(float globalFontSize)
-	{
-		_globalFontSize = globalFontSize;
-	}
-
-	float GetGlobalFontSize()
-	{
-		return _globalFontSize;
-	}
-
-	static void LoadCustomFont()
-	{
-		if (_customFontData.data == nullptr)
-			return;
-
-		for (int i = 0; i < _fontsCount; i++)
-		{
-			ImGuiIO& io = ImGui::GetIO();
-			auto newFont = io.Fonts->AddFontFromMemoryTTF(_customFontData.data, _customFontData.size, static_cast<float>((i + 1) * _fontSizeStep));
-			if (newFont == nullptr)
-				return;
-
-			_fonts[i] = newFont;
-		}
-		_isCustomFontLoaded = true;
-	}
-
 	static void LoadImGuiStyles()
 	{
 		auto& themes = cheat::feature::Settings::GetInstance();
@@ -167,21 +412,30 @@ namespace renderer
 
 	void OnPreRenderDX12()
 	{
+		CheckFonts();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+		if (!io.Fonts->IsBuilt())
+		{
+			io.Fonts->Build();
+			ImGui_ImplDX11_InvalidateDeviceObjects();
+		}
+
 		ImGui_ImplDX12_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.FontDefault = GetFontBySize(_globalFontSize);
+		if (_currentFontImgui != nullptr)
+			io.FontDefault = _currentFontImgui;
+
 		ImGui::NewFrame();
 
 		events::RenderEvent();
 
-		ImGui::EndFrame();
+		ImGui::Render();
 	}
 
 	void OnPostRenderDX12(ID3D12GraphicsCommandList* commandList)
 	{
-		ImGui::Render();
 		ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), commandList);
 	}
 
@@ -193,7 +447,6 @@ namespace renderer
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-		LoadCustomFont();
 		LoadImGuiStyles();
 
 		//Set OriginalWndProcHandler to the Address of the Original WndProc function
@@ -225,7 +478,6 @@ namespace renderer
 		static const std::string imguiPath = (util::GetCurrentPath() / "imgui.ini").string();
 		io.IniFilename = imguiPath.c_str();
 
-		LoadCustomFont();
 		LoadImGuiStyles();
 
 		//Set OriginalWndProcHandler to the Address of the Original WndProc function
@@ -245,11 +497,22 @@ namespace renderer
 
 	static void OnRenderDX11(ID3D11DeviceContext* pContext)
 	{
+		CheckFonts();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+		if (!io.Fonts->IsBuilt())
+		{
+			io.Fonts->Build();
+			ImGui_ImplDX11_InvalidateDeviceObjects();
+		}
+
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.FontDefault = GetFontBySize(_globalFontSize);
+
+		if (_currentFontImgui != nullptr)
+			io.FontDefault = _currentFontImgui;
+
 		ImGui::NewFrame();
 
 		events::RenderEvent();

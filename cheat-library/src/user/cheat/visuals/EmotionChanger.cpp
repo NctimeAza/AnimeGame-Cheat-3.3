@@ -13,70 +13,66 @@ namespace cheat::feature
     std::vector<std::string> emotions;
 
     EmotionChanger::EmotionChanger() : Feature(),
-        NF(f_Enabled, "Emotion Changer", "Visuals::EmotionChanger", false),
-        NF(f_Phonemes, "Phonemes", "Visuals::EmotionChanger", "P_None"),
-        NF(f_Emotions, "Emotions", "Visuals::EmotionChanger", "Normal"),
-        NF(f_ApplyKey, "Apply Animation", "Visuals::EmotionChanger", Hotkey('Y')),
-        NF(f_ResetKey, "Reset Animation", "Visuals::EmotionChanger", Hotkey('R'))
+        NFP(f_Enabled, "Visuals::EmotionChanger", "Emotion Changer", false),
+        NF(f_Phonemes, "Visuals::EmotionChanger", "P_None"),
+        NF(f_Emotions, "Visuals::EmotionChanger", "Normal"),
+        NF(f_ApplyKey, "Visuals::EmotionChanger", Hotkey('Y')),
+        NF(f_ResetKey, "Visuals::EmotionChanger", Hotkey('R'))
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(EmotionChanger::OnGameUpdate);
     }
 
     const FeatureGUIInfo& EmotionChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "EmotionChanger", "Visuals", false };
+        TRANSLATED_GROUP_INFO("Emotion Changer", "Visuals");
         return info;
     }
 
     void EmotionChanger::DrawMain()
     {
-        ImGui::BeginGroupPanel("Emotion Changer");
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Changes active character's emotion."));
+        if (f_Enabled->enabled())
         {
-            ConfigWidget(f_Enabled, "Changes active character's emotion.");
-            if (f_Enabled)
+            if (ImGui::BeginCombo(_TR("Phonemes"), f_Phonemes.value().c_str()))
             {
-                if (ImGui::BeginCombo("Phonemes", f_Phonemes.value().c_str()))
+                for (auto& phoneme : phonemes)
                 {
-                    for (auto& phoneme : phonemes)
-                    {
-                        bool is_selected = (f_Phonemes.value().c_str() == phoneme);
-                        if (ImGui::Selectable(phoneme.c_str(), is_selected))
-                            f_Phonemes.value() = phoneme;
+                    bool is_selected = (f_Phonemes.value().c_str() == phoneme);
+                    if (ImGui::Selectable(phoneme.c_str(), is_selected))
+                        f_Phonemes.value() = phoneme;
 
-                        if (is_selected)
-                            ImGui::SetItemDefaultFocus();
-                    }
-                    ImGui::EndCombo();
+                    if (is_selected)
+                        ImGui::SetItemDefaultFocus();
                 }
-
-                if (ImGui::BeginCombo("Emotions###ID" /*idk*/, f_Emotions.value().c_str()))
-                {
-                    for (auto& emotion : emotions)
-                    {
-                        bool is_selected = (f_Emotions.value().c_str() == emotion);
-                        if (ImGui::Selectable(emotion.c_str(), is_selected))
-                            f_Emotions.value() = emotion;
-
-                        if (is_selected)
-                            ImGui::SetItemDefaultFocus();
-                    }
-                    ImGui::EndCombo();
-                }
-                ConfigWidget("Apply Key", f_ApplyKey, true);
-                ConfigWidget("Reset Key", f_ResetKey, true);
+                ImGui::EndCombo();
             }
+
+            if (ImGui::BeginCombo(_TR("Emotions###ID") /*idk*/, f_Emotions.value().c_str()))
+            {
+                for (auto& emotion : emotions)
+                {
+                    bool is_selected = (f_Emotions.value().c_str() == emotion);
+                    if (ImGui::Selectable(emotion.c_str(), is_selected))
+                        f_Emotions.value() = emotion;
+
+                    if (is_selected)
+                        ImGui::SetItemDefaultFocus();
+                }
+                ImGui::EndCombo();
+            }
+            ConfigWidget(_TR("Apply Key"), f_ApplyKey, true);
+            ConfigWidget(_TR("Reset Key"), f_ResetKey, true);
         }
-        ImGui::EndGroupPanel();
     }
 
     bool EmotionChanger::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void EmotionChanger::DrawStatus()
     {
-        ImGui::Text("EmotionChanger");
+        ImGui::Text(_TR("Emotion Changer"));
     }
 
     EmotionChanger& EmotionChanger::GetInstance()
@@ -89,7 +85,7 @@ namespace cheat::feature
     {
         auto& animationChanger = AnimationChanger::GetInstance();
 
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return;
 
         auto& manager = game::EntityManager::instance();

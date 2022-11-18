@@ -1,7 +1,8 @@
 #include "pch-il2cpp.h"
 #include "Hotkeys.h"
 
-#include <helpers.h>
+#include <cheat-base/cheat/fields/TranslatedHotkey.h>
+#include <cheat-base/render/gui-util.h>
 #include <misc/cpp/imgui_stdlib.h>
 
 namespace cheat::feature 
@@ -10,24 +11,24 @@ namespace cheat::feature
 
     const FeatureGUIInfo& Hotkeys::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "Hotkeys", false };
+        TRANSLATED_MODULE_INFO("Hotkeys");
         return info;
     }
 
     void Hotkeys::DrawMain()
     {
         static std::string searchBuffer;
-        ImGui::InputText("Search", &searchBuffer);
+        ImGui::InputText(_TR("Search"), &searchBuffer);
 
         ImGui::BeginChild("Hotkeys");
         
-        std::unordered_map<std::string, std::vector<config::Field<config::Toggle<Hotkey>>*>> sections;
+        std::unordered_map<std::string, std::vector<config::Field<TranslatedHotkey>*>> sections;
 
-        for (auto& field : config::GetFields<config::Toggle<Hotkey>>())
+        for (auto& field : config::GetFields<TranslatedHotkey>())
         {
             if (!searchBuffer.empty())
             {
-                auto name = field.friendName();
+                auto name = field->name();
                 auto it = std::search(
                     name.begin(), name.end(),
                     searchBuffer.begin(), searchBuffer.end(),
@@ -40,8 +41,8 @@ namespace cheat::feature
             sections[field.section()].push_back(&field);
         }
 
-        std::vector<config::Field<config::Toggle<Hotkey>>*> singleLineSections;
-        std::vector<std::vector<config::Field<config::Toggle<Hotkey>>*>*> multiLineSections;
+        std::vector<config::Field<TranslatedHotkey>*> singleLineSections;
+        std::vector<std::vector<config::Field<TranslatedHotkey>*>*> multiLineSections;
         for (auto& [section, fields] : sections)
         {
             if (fields.size() == 1)
@@ -52,7 +53,7 @@ namespace cheat::feature
 
         for (auto& field : singleLineSections)
         {
-            ConfigWidget(*field, nullptr, true);
+            ConfigWidget(field->value().name().c_str(), *field, nullptr, true);
         }
 
         for (auto& fields : multiLineSections)
@@ -61,7 +62,7 @@ namespace cheat::feature
 	        {
 		        for (auto& field : *fields)
 		        {
-                    ConfigWidget(*field, nullptr, true);
+                    ConfigWidget(field->value().name().c_str(), *field, nullptr, true);
 		        }
 	        }
             ImGui::EndGroupPanel();

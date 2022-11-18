@@ -529,9 +529,16 @@ namespace cheat::feature::esp::render
 			namePosition.y -= fontSize;
 		}
 
-
 		auto draw = ImGui::GetBackgroundDrawList();
-		auto font = renderer::GetFontBySize(fontSize);
+		static auto fontToken = renderer::CreateFontToken(renderer::GetDefaultFontName(), fontSize);
+		
+		if (renderer::GetTokenFontName(fontToken) != renderer::GetDefaultFontName())
+			renderer::SetTokenFont(fontToken, renderer::GetDefaultFontName());
+
+		if (renderer::GetTokenFontSize(fontToken) != fontSize)
+			renderer::SetTokenFontSize(fontToken, fontSize);
+
+		auto font = renderer::GetTokenFont(fontToken);
 		// Outline
 		if (esp.f_FontOutline)
 			DrawTextWithOutline(draw, font, fontSize, namePosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);
@@ -580,7 +587,15 @@ namespace cheat::feature::esp::render
 
 		healthPosition.y += fontSize;
 		auto draw = ImGui::GetBackgroundDrawList();
-		auto font = renderer::GetFontBySize(fontSize);
+		static auto fontToken = renderer::CreateFontToken(renderer::GetDefaultFontName(), fontSize);
+
+		if (renderer::GetTokenFontName(fontToken) != renderer::GetDefaultFontName())
+			renderer::SetTokenFont(fontToken, renderer::GetDefaultFontName());
+
+		if (renderer::GetTokenFontSize(fontToken) != fontSize)
+			renderer::SetTokenFontSize(fontToken, fontSize);
+
+		auto font = renderer::GetTokenFont(fontToken);
 		// Outline
 		if (esp.f_FontOutline)
 			DrawTextWithOutline(draw, font, fontSize, healthPosition, text.c_str(), color, esp.f_FontOutlineSize, OutlineSide::All, contrastColor);

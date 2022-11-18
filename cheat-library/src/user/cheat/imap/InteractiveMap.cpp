@@ -22,41 +22,41 @@ namespace cheat::feature
 {
 
 	InteractiveMap::InteractiveMap() : Feature(),
-		NFEX(f_Enabled, "Interactive map", "m_InteractiveMap", "InteractiveMap", false, false),
-		NF(f_SeparatedWindows, "Separated windows", "InteractiveMap", true),
-		NF(f_ShowMaterialsWindow, "Materials filter window", "InteractiveMap", false),
-		NF(f_CompletionLogShow, "Completion log show", "InteractiveMap", false),
+		NFP(f_Enabled, "InteractiveMap", "Interactive map", false),
+		NF(f_SeparatedWindows, "InteractiveMap", true),
+		NF(f_ShowMaterialsWindow, "InteractiveMap", false),
+		NF(f_CompletionLogShow, "InteractiveMap", false),
 
-		NFS(f_STFixedPoints, "Fixed points", "InteractiveMap", SaveAttachType::Global),
-		NFS(f_STCustomPoints, "Custom points", "InteractiveMap", SaveAttachType::Global),
-		NFS(f_STCompletedPoints, "Save completed points", "InteractiveMap", SaveAttachType::Account),
+		NFS(f_STFixedPoints, "InteractiveMap", SaveAttachType::Global),
+		NFS(f_STCustomPoints, "InteractiveMap", SaveAttachType::Global),
+		NFS(f_STCompletedPoints, "InteractiveMap", SaveAttachType::Account),
 
-		NF(f_IconSize, "Icon size", "InteractiveMap", 20.0f),
-		NF(f_MinimapIconSize, "Minimap icon size", "InteractiveMap", 14.0f),
-		NF(f_DynamicSize, "Dynamic size", "InteractiveMap", false),
-		NF(f_ShowHDIcons, "Show HD icons", "InteractiveMap", false),
+		NF(f_IconSize, "InteractiveMap", 20.0f),
+		NF(f_MinimapIconSize, "InteractiveMap", 14.0f),
+		NF(f_DynamicSize, "InteractiveMap", false),
+		NF(f_ShowHDIcons, "InteractiveMap", false),
 
-		NF(f_ShowCompleted, "Show completed", "InteractiveMap", false),
-		NF(f_CompletePointTransparency, "Completed point transparency", "InteractiveMap", 0.5f),
-		NF(f_ShowInCompleted, "Show in-completed", "InteractiveMap", true),
-		NF(f_InCompletePointTransparency, "In-completed point transparency", "InteractiveMap", 1.0f),
+		NF(f_ShowCompleted, "InteractiveMap", false),
+		NF(f_CompletePointTransparency, "InteractiveMap", 0.5f),
+		NF(f_ShowInCompleted, "InteractiveMap", true),
+		NF(f_InCompletePointTransparency, "InteractiveMap", 1.0f),
 
-		NF(f_AutoDetectNewItems, "Detect new items", "InteractiveMap", true),
-		NF(f_AutoFixItemPositions, "Fix item positions", "InteractiveMap", true),
-		NF(f_ObjectCheckOnlyShowed, "Detect only showed", "InteractMap", true),
-		NF(f_ObjectDetectRange, "Detect range", "InteractiveMap", 20.0f),
-		NF(f_CheckObjectsDelay, "Detect delay (ms)", "InteractiveMap", 2000),
+		NF(f_AutoDetectNewItems, "InteractiveMap", true),
+		NF(f_AutoFixItemPositions, "InteractiveMap", true),
+		NF(f_ObjectCheckOnlyShowed, "InteractMap", true),
+		NF(f_ObjectDetectRange, "InteractiveMap", 20.0f),
+		NF(f_CheckObjectsDelay, "InteractiveMap", 2000),
 
-		NF(f_AutoDetectGatheredItems, "Detect gathered items", "InteractiveMap", true),
-		NF(f_GatheredItemsDetectRange, "Detect range", "InteractiveMap", 20.0f),
+		NF(f_AutoDetectGatheredItems, "InteractiveMap", true),
+		NF(f_GatheredItemsDetectRange, "InteractiveMap", 20.0f),
 
-		NF(f_CompleteNearestPoint, "Complete nearest point", "InteractiveMap", Hotkey()),
-		NF(f_RevertLatestCompletion, "Revert latest completion", "InteractiveMap", Hotkey()),
-		NF(f_CompleteOnlyViewed, "Complete only showed", "InteractiveMap", true),
-		NF(f_PointFindRange, "Point finding range", "InteractiveMap", 30.0f),
+		NF(f_CompleteNearestPoint, "InteractiveMap", Hotkey()),
+		NF(f_RevertLatestCompletion, "InteractiveMap", Hotkey()),
+		NF(f_CompleteOnlyViewed, "InteractiveMap", true),
+		NF(f_PointFindRange, "InteractiveMap", 30.0f),
 
-		NFS(f_CustomPointIndex, "Custom point index", "InteractiveMap", 1000000),
-		NFS(f_LastUserID, "Last user id", "InteractiveMap", 0),
+		NFS(f_CustomPointIndex, "InteractiveMap", 1000000),
+		NFS(f_LastUserID, "InteractiveMap", 0),
 
 		m_HoveredPoint(nullptr)
 	{
@@ -110,7 +110,7 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& InteractiveMap::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "World", false };
+		TRANSLATED_MODULE_INFO("World");
 		return info;
 	}
 
@@ -120,9 +120,9 @@ namespace cheat::feature
 	{
 		ImGui::BeginGroupPanel("General");
 		{
-			ConfigWidget("Enabled", f_Enabled);
-			ConfigWidget(f_SeparatedWindows, "Config and filters will be in separate windows.");
-			if (ConfigWidget(f_STCompletedPoints, "Save scope for completed items."))
+			ConfigWidget(_TR("Enabled"), f_Enabled);
+			ConfigWidget(_TR("Separated windows"), f_SeparatedWindows, _TR("Config and filters will be in separate windows."));
+			if (ConfigWidget(_TR("Save completed points"), f_STCompletedPoints, _TR("Save scope for completed items.")))
 			{
 				UpdateUserDataField(f_CompletedPointsJson, f_STCompletedPoints.value(), true);
 			}
@@ -131,59 +131,59 @@ namespace cheat::feature
 
 		ImGui::BeginGroupPanel("Icon view");
 		{
-			ConfigWidget(f_IconSize, 0.01f, 4.0f, 100.0f);
-			ConfigWidget(f_MinimapIconSize, 0.01f, 4.0f, 100.0f);
-			ConfigWidget(f_DynamicSize, "Icons will be sized dynamically depend to zoom size.\nMinimap icons don't affected.");
-			ConfigWidget(f_ShowHDIcons, "Toggle icons to HD format.");
+			ConfigWidget(_TR("Icon size"), f_IconSize, 0.01f, 4.0f, 100.0f);
+			ConfigWidget(_TR("Minimap icon size"), f_MinimapIconSize, 0.01f, 4.0f, 100.0f);
+			ConfigWidget(_TR("Dynamic size"), f_DynamicSize, _TR("Icons will be sized dynamically depend to zoom size.\nMinimap icons don't affected."));
+			ConfigWidget(_TR("Show HD icons"), f_ShowHDIcons, _TR("Toggle icons to HD format."));
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("In/Completed icon view");
 		{
-			ConfigWidget(f_ShowCompleted, "Show completed points.");
-			ConfigWidget(f_CompletePointTransparency, 0.01f, 0.0f, 1.0f, "Completed points transparency.");
-			ConfigWidget(f_ShowInCompleted, "Show in-completed points.");
-			ConfigWidget(f_InCompletePointTransparency, 0.01f, 0.0f, 1.0f, "In-completed points transparency.");
+			ConfigWidget(_TR("Show completed"), f_ShowCompleted, _TR("Show completed points."));
+			ConfigWidget(_TR("Completed point transparency"), f_CompletePointTransparency, 0.01f, 0.0f, 1.0f, _TR("Completed points transparency."));
+			ConfigWidget(_TR("Show in-completed"), f_ShowInCompleted, _TR("Show in-completed points."));
+			ConfigWidget(_TR("In-completed point transparency"), f_InCompletePointTransparency, 0.01f, 0.0f, 1.0f, _TR("In-completed points transparency."));
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Item adjusting");
 		{
-			ConfigWidget(f_AutoFixItemPositions, "Do fix positions to nearest to point.\n"
+			ConfigWidget(_TR("Fix item positions"), f_AutoFixItemPositions, "Do fix positions to nearest to point.\n"
 				"Only items with green line support this function.");
 
-			ConfigWidget(f_AutoDetectNewItems, "Enables detecting items what are not in interactive map data.\n"
+			ConfigWidget(_TR("Detect new items"), f_AutoDetectNewItems, "Enables detecting items what are not in interactive map data.\n"
 				"Only items with green line support this function.");
 
-			ConfigWidget(f_ObjectCheckOnlyShowed, "Detect objects only for showed filters.");
+			ConfigWidget(_TR("Detect only showed"), f_ObjectCheckOnlyShowed, _TR("Detect objects only for showed filters."));
 
-			ConfigWidget(f_ObjectDetectRange, 0.1f, 5.0f, 30.0f,
+			ConfigWidget(_TR("Detect range"), f_ObjectDetectRange, 0.1f, 5.0f, 30.0f,
 				"Fix positions: Only if item was found in this range about entity position,\n\t its position will be fixed.\n"
 				"New item detecting: Only if item not found in this range about entity position,\n\t it be detected as new."
 			);
 
-			ConfigWidget(f_CheckObjectsDelay, 10, 100, 100000, "Adjusting items is power consumption operation.\n"
+			ConfigWidget(_TR("Detect delay (ms)"), f_CheckObjectsDelay, 10, 100, 100000, "Adjusting items is power consumption operation.\n"
 				"So rescanning will happen with specified delay.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Gather detecting");
 		{
-			ConfigWidget(f_AutoDetectGatheredItems, "Enables detecting gathered items.\n"
+			ConfigWidget(_TR("Detect gathered items"), f_AutoDetectGatheredItems, "Enables detecting gathered items.\n"
 				"It works only items what will be gathered after enabling this function.\n"
 				"Only items with blue line support this function.");
 
-			ConfigWidget(f_GatheredItemsDetectRange, 0.1f, 5.0f, 30.0f,
+			ConfigWidget(_TR("Detect range"), f_GatheredItemsDetectRange, 0.1f, 5.0f, 30.0f,
 				"When entity was gathered finding nearest point in this range.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Manual completing");
 		{
-			ConfigWidget(f_CompleteNearestPoint, true, "When pressed, complete the nearest to avatar point.");
-			ConfigWidget(f_RevertLatestCompletion, true, "When pressed, revert latest complete operation.");
-			ConfigWidget(f_CompleteOnlyViewed, "Complete performed only to visible points.");
-			ConfigWidget(f_PointFindRange, 0.5f, 0.0f, 200.0f, "Complete performs within specified range. If 0 - unlimited.");
+			ConfigWidget(_TR("Complete nearest point"), f_CompleteNearestPoint, true, _TR("When pressed, complete the nearest to avatar point."));
+			ConfigWidget(_TR("Revert latest completion"), f_RevertLatestCompletion, true, _TR("When pressed, revert latest complete operation."));
+			ConfigWidget(_TR("Complete only showed"), f_CompleteOnlyViewed, _TR("Complete performed only to visible points."));
+			ConfigWidget(_TR("Point finding range"), f_PointFindRange, 0.5f, 0.0f, 200.0f, _TR("Complete performs within specified range. If 0 - unlimited."));
 		}
 		ImGui::EndGroupPanel();
 	}
@@ -343,16 +343,16 @@ namespace cheat::feature
 	{
 		const auto sceneID = game::GetCurrentMapSceneID();
 		if (m_ScenesData.count(sceneID) == 0)
-			ImGui::Text("Sorry. Current scene is not supported.");
+			ImGui::Text(_TR("Sorry. Current scene is not supported."));
 
 		ImGui::BeginGroupPanel("Ascension Materials Filter");
 		{
-			ConfigWidget("Show Ascension Materials", f_ShowMaterialsWindow, "Open ascension materials filter window");
+			ConfigWidget(_TR("Show Ascension Materials"), f_ShowMaterialsWindow, _TR("Open ascension materials filter window"));
 			DrawMaterials(sceneID);
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::InputText("Search", &m_SearchText); ImGui::SameLine();
+		ImGui::InputText(_TR("Search"), &m_SearchText); ImGui::SameLine();
 		HelpMarker(
 			"This page following with filters for items.\n"
 			"Items what was activated will be appear on mini/global map. (Obviously)\n"
@@ -1249,7 +1249,7 @@ namespace cheat::feature
 	void InteractiveMap::CreateUserDataField(const char* name, config::Field<nlohmann::json>& field, SaveAttachType saveType)
 	{
 		auto sectionName = GetUserDataFieldSection(saveType);
-		field = config::CreateField<nlohmann::json>("", name, sectionName, saveType != SaveAttachType::Profile, nlohmann::json::object());
+		field = config::CreateField<nlohmann::json>(name, sectionName, saveType != SaveAttachType::Profile, nlohmann::json::object());
 	}
 
 	void InteractiveMap::UpdateUserDataField(config::Field<nlohmann::json>& field, SaveAttachType saveType, bool move)
@@ -1326,7 +1326,7 @@ namespace cheat::feature
 		labelEntry.sceneID = sceneID;
         labelEntry.name = data["name"];
         labelEntry.clearName = data["clear_name"];
-        labelEntry.enabled = config::CreateField<bool>(labelEntry.name, labelEntry.clearName,
+        labelEntry.enabled = config::CreateField<bool>(labelEntry.clearName,
 			fmt::format("InteractiveMap::Filters::Scene{}", sceneID), false, false);
 
         for (auto& pointJsonData : data["points"])
@@ -1400,7 +1400,7 @@ namespace cheat::feature
 			materialEntry.name = filterData["name"];
 			materialEntry.clearName = filterData["clear_name"];
 			materialEntry.filter = filterData["materials"].get<std::vector<uint32_t>>();
-			materialEntry.selected = config::CreateField<bool>(materialEntry.name, materialEntry.clearName,
+			materialEntry.selected = config::CreateField<bool>(materialEntry.clearName,
 				"InteractiveMap::Materials::" + util::MakeCapital(type) + "{}", false, false);
 		}
 
@@ -1608,7 +1608,7 @@ namespace cheat::feature
 	void InteractiveMap::DrawExternal()
 	{
 
-		if (IsMiniMapActive() && f_Enabled)
+		if (IsMiniMapActive() && f_Enabled->enabled())
 			DrawMinimapPoints();
 
 		static bool _lastMapActive = false;
@@ -1682,7 +1682,7 @@ namespace cheat::feature
 			}
 		}
 
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			return;
 
         DrawPoints();

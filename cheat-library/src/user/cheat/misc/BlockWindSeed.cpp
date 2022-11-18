@@ -10,7 +10,7 @@ namespace cheat::feature
 	static void PlayerModule_OnReciveLuaShell_Hook(app::MoleMole_PlayerModule* __this, app::Proto_PlayerLuaShellNotify* playerLuaShellNotify, MethodInfo* method);
 
 	BlockWindSeed::BlockWindSeed() : Feature(),
-		NFEX(f_Enabled, "Block WindSeed", "m_BlockWindSeed", "General", false, false)
+		NF(f_Enabled, "General::BlockWindSeed", false)
 	{
 		HookManager::install(app::MoleMole_PlayerModule_OnWindSeedClientNotify, PlayerModule_OnWindSeedClientNotify_Hook);
 		HookManager::install(app::MoleMole_PlayerModule_OnReciveLuaShell, PlayerModule_OnReciveLuaShell_Hook);
@@ -18,14 +18,13 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& BlockWindSeed::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Block WindSeed", "Settings", true };
+		TRANSLATED_MODULE_INFO("Settings");
 		return info;
 	}
 
 	void BlockWindSeed::DrawMain()
 	{
-		ConfigWidget(f_Enabled,
-			"Blocks the WindSeed Packet which can cause RCE from malicious servers.");
+		ConfigWidget(_TR("Block WindSeed"), f_Enabled, _TR("Blocks the WindSeed Packet which can cause RCE from malicious servers."));
 	}
 
 	bool BlockWindSeed::NeedStatusDraw() const
@@ -35,7 +34,7 @@ namespace cheat::feature
 
 	void BlockWindSeed::DrawStatus()
 	{
-		ImGui::Text("Block WindSeed");
+		ImGui::Text(_TR("Block WindSeed"));
 	}
 
 	BlockWindSeed& BlockWindSeed::GetInstance()

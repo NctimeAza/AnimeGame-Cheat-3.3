@@ -9,21 +9,21 @@
 namespace cheat::feature 
 {
     MobVacuum::MobVacuum() : Feature(),
-        NF(f_Enabled,        "Mob vacuum", "MobVacuum", false),
-        NF(f_IncludeMonsters, "Include Monsters", "MobVacuum", true),
-        NF(f_MonsterCommon, "Common", "MobVacuum", true),
-        NF(f_MonsterElites, "Elite", "MobVacuum", true),
-        NF(f_MonsterBosses, "Boss", "MobVacuum", true),
-        NF(f_IncludeAnimals, "Include Animals", "MobVacuum", true),
-        NF(f_AnimalDrop, "Droppers", "MobVacuum", true),
-        NF(f_AnimalPickUp, "Pick-ups", "MobVacuum", true),
-        NF(f_AnimalNPC, "NPCs", "MobVacuum", true),
-        NF(f_Speed,      "Speed",         "MobVacuum", 2.5f),
-        NF(f_Distance,   "Distance",      "MobVacuum", 1.5f),
-        NF(f_Radius,     "Radius",        "MobVacuum", 10.0f),
-        NF(f_OnlyTarget, "Only targeted", "MobVacuum", true),
-        NF(f_Instantly,  "Instantly",     "MobVacuum", false),
-        NF(f_SetCollider, "SetCollider", "MobVacuum", false)
+        NFP(f_Enabled, "MobVacuum", "Mob Vacuum", false),
+        NFP(f_IncludeMonsters, "MobVacuum", "Include monsters", true),
+        NF(f_MonsterCommon, "MobVacuum", true),
+        NF(f_MonsterElites, "MobVacuum", true),
+        NF(f_MonsterBosses, "MobVacuum", true),
+        NFP(f_IncludeAnimals, "MobVacuum", "Include animals", true),
+        NF(f_AnimalDrop, "MobVacuum", true),
+        NF(f_AnimalPickUp, "MobVacuum", true),
+        NF(f_AnimalNPC, "MobVacuum", true),
+        NF(f_Speed, "MobVacuum", 2.5f),
+        NF(f_Distance, "MobVacuum", 1.5f),
+        NF(f_Radius, "MobVacuum", 10.0f),
+        NF(f_OnlyTarget, "MobVacuum", true),
+        NF(f_Instantly, "MobVacuum", false),
+        NFP(f_SetCollider, "MobVacuum", "Set collider", false)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(MobVacuum::OnGameUpdate);
         events::MoveSyncEvent += MY_METHOD_HANDLER(MobVacuum::OnMoveSync);
@@ -31,59 +31,60 @@ namespace cheat::feature
 
     const FeatureGUIInfo& MobVacuum::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Mob Vacuum", "World", true };
+        TRANSLATED_GROUP_INFO("Mob Vacuum", "World");
         return info;
     }
 
     void MobVacuum::DrawMain()
     {
-        ConfigWidget("Enabled", f_Enabled, "Enables mob vacuum.\n" \
-            "Mobs within the specified radius will move\nto a specified distance in front of the player.");
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables mob vacuum.\n" \
+            "Mobs within the specified radius will move\nto a specified distance in front of the player."));
 
         bool filtersChanged = false;
         ImGui::BeginGroupPanel("Monsters");
         {
-            filtersChanged |= ConfigWidget(f_IncludeMonsters, "Include monsters in vacuum.");
-            filtersChanged |= ConfigWidget(f_MonsterCommon, "Common enemies."); ImGui::SameLine();
-            filtersChanged |= ConfigWidget(f_MonsterElites, "Elite enemies."); ImGui::SameLine();
-            filtersChanged |= ConfigWidget(f_MonsterBosses, "World and Trounce boss enemies.");
+            filtersChanged |= ConfigWidget(_TR("Include Monsters"), f_IncludeMonsters, _TR("Include monsters in vacuum."));
+            filtersChanged |= ConfigWidget(_TR("Common"), f_MonsterCommon, _TR("Common enemies.")); ImGui::SameLine();
+            filtersChanged |= ConfigWidget(_TR("Elite"), f_MonsterElites, _TR("Elite enemies.")); ImGui::SameLine();
+            filtersChanged |= ConfigWidget(_TR("Boss"), f_MonsterBosses, _TR("World and Trounce boss enemies."));
         }
         ImGui::EndGroupPanel();
         
         ImGui::BeginGroupPanel("Animals");
         {
-            filtersChanged |= ConfigWidget(f_IncludeAnimals, "Include animals in vacuum.");
-            filtersChanged |= ConfigWidget(f_AnimalDrop, "Animals you need to kill before collecting."); ImGui::SameLine();
-            filtersChanged |= ConfigWidget(f_AnimalPickUp, "Animals you can immediately collect."); ImGui::SameLine();
-            filtersChanged |= ConfigWidget(f_AnimalNPC, "Animals without mechanics.");
+            filtersChanged |= ConfigWidget(_TR("Include Animals"), f_IncludeAnimals, _TR("Include animals in vacuum."));
+            filtersChanged |= ConfigWidget(_TR("Droppers"), f_AnimalDrop, _TR("Animals you need to kill before collecting.")); ImGui::SameLine();
+            filtersChanged |= ConfigWidget(_TR("Pick-ups"), f_AnimalPickUp, _TR("Animals you can immediately collect.")); ImGui::SameLine();
+            filtersChanged |= ConfigWidget(_TR("NPCs"), f_AnimalNPC, _TR("Animals without mechanics."));
         }
         ImGui::EndGroupPanel();
 
         if (filtersChanged)
             UpdateFilters();
 
-    	ConfigWidget("Instant Vacuum", f_Instantly, "Vacuum entities instantly.");
-        ConfigWidget("Only Hostile/Aggro", f_OnlyTarget, "If enabled, vacuum will only affect monsters targeting you. Will not affect animals.");
-        ConfigWidget("Remove Collider", f_SetCollider, "If enabled, monsters won't be able to push you despite the distance or size");
-        ConfigWidget("Speed", f_Speed, 0.1f, 1.0f, 15.0f, "If 'Instant Vacuum' is not checked, mob will be vacuumed at the specified speed.");
-        ConfigWidget("Radius (m)", f_Radius, 0.1f, 5.0f, 150.0f, "Radius of vacuum.");
-        ConfigWidget("Distance (m)", f_Distance, 0.1f, 0.5f, 10.0f, "Distance between the player and the monster.");
+    	ConfigWidget(_TR("Instant Vacuum"), f_Instantly, _TR("Vacuum entities instantly."));
+        ConfigWidget(_TR("Only Hostile/Aggro"), f_OnlyTarget, _TR("If enabled, vacuum will only affect monsters targeting you. Will not affect animals."));
+        ConfigWidget(_TR("Remove Collider"), f_SetCollider, _TR("If enabled, monsters won't be able to push you despite the distance or size"));
+        ConfigWidget(_TR("Speed"), f_Speed, 0.1f, 1.0f, 15.0f, _TR("If 'Instant Vacuum' is not checked, mob will be vacuumed at the specified speed."));
+        ConfigWidget(_TR("Radius (m)"), f_Radius, 0.1f, 5.0f, 150.0f, _TR("Radius of vacuum."));
+        ConfigWidget(_TR("Distance (m)"), f_Distance, 0.1f, 0.5f, 10.0f, _TR("Distance between the player and the monster."));
     }
 
     bool MobVacuum::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void MobVacuum::DrawStatus() 
     { 
-        ImGui::Text("Vacuum [%s]\n[%s|%.01fm|%.01fm|%s|%s]",
-            f_IncludeMonsters && f_IncludeAnimals ? "All" : f_IncludeMonsters ? "Monsters" : f_IncludeAnimals ? "Animals" : "None",
-            f_Instantly ? "Instant" : fmt::format("Normal|{:.1f}", f_Speed.value()).c_str(),
+        ImGui::Text("%s [%s]\n[%s|%.01fm|%.01fm|%s|%s]",
+            _TR("Mob Vacuum"),
+            f_IncludeMonsters->enabled() && f_IncludeAnimals->enabled() ? _TR("All") : f_IncludeMonsters ? _TR("Monsters") : f_IncludeAnimals ? _TR("Animals") : _TR("None"),
+            f_Instantly ? _TR("Instant") : fmt::format(_TR("Normal|{:.1f}"), f_Speed.value()).c_str(),
             f_Radius.value(),
             f_Distance.value(),
-            f_OnlyTarget ? "Aggro" : "All",
-            f_SetCollider ? "RC" : "");
+            f_OnlyTarget ? _TR("Aggro") : _TR("All"),
+            f_SetCollider->enabled() ? _TR("RC") : "");
     }
 
     MobVacuum& MobVacuum::GetInstance()
@@ -97,13 +98,15 @@ namespace cheat::feature
         
         m_Filters.clear();
 
-        if (f_IncludeMonsters) {
+        if (f_IncludeMonsters->enabled()) 
+        {
             if (f_MonsterCommon) m_Filters.push_back(&game::filters::combined::MonsterCommon);
             if (f_MonsterElites) m_Filters.push_back(&game::filters::combined::MonsterElites);
             if (f_MonsterBosses) m_Filters.push_back(&game::filters::combined::MonsterBosses);
         }
 
-        if (f_IncludeAnimals) {
+        if (f_IncludeAnimals->enabled()) 
+        {
             if (f_AnimalDrop) m_Filters.push_back(&game::filters::combined::AnimalDrop);
             if (f_AnimalPickUp) m_Filters.push_back(&game::filters::combined::AnimalPickUp);
             if (f_AnimalNPC) m_Filters.push_back(&game::filters::combined::AnimalNPC);
@@ -173,7 +176,7 @@ namespace cheat::feature
     // Changes position of monster, if mob vacuum enabled.
     void MobVacuum::OnGameUpdate()
     {
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return;
 
         app::Vector3 targetPos = CalcMobVacTargetPos();
@@ -181,7 +184,7 @@ namespace cheat::feature
             return;
 
         UpdateFilters();
-        if (!f_IncludeMonsters && !f_IncludeAnimals)
+        if (!f_IncludeMonsters->enabled() && !f_IncludeAnimals->enabled())
             return;
 
         if (m_Filters.empty())
@@ -193,7 +196,7 @@ namespace cheat::feature
             if (!IsEntityForVac(entity))
                 continue;
 
-            SetMonsterCollider(!f_SetCollider);
+            SetMonsterCollider(!f_SetCollider->enabled());
 
             if (f_Instantly)
             {
@@ -218,7 +221,7 @@ namespace cheat::feature
     //           because for server monster don't change position instantly.
     void MobVacuum::OnMoveSync(uint32_t entityId, app::MotionInfo* syncInfo)
     {
-        if (!f_Enabled || f_Instantly)
+        if (!f_Enabled->enabled() || f_Instantly)
             return;
 
         auto& manager = game::EntityManager::instance();
@@ -226,7 +229,7 @@ namespace cheat::feature
         if (!IsEntityForVac(entity))
             return;
 
-        SetMonsterCollider(!f_SetCollider);
+        SetMonsterCollider(!f_SetCollider->enabled());
 
         app::Vector3 targetPos = CalcMobVacTargetPos();
         app::Vector3 entityPos = entity->relativePosition();

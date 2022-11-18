@@ -1,37 +1,86 @@
 #pragma once
 
 #include <cheat-base/Hotkey.h>
-#include <cheat-base/config/internal/FieldBase.h>
+#include <cheat-base/config/Field.h>
+#include <cheat-base/ISerializable.h>
 
 namespace config
 {
 	template<typename T>
-	class Toggle
+	class Toggle : public ISerializable
 	{
 	public:
-		bool enabled;
-		T value;
 
-		Toggle(const T& value) : enabled(false), value(value) { }
-
-		Toggle(bool enabled) : enabled(enabled), value() { }
-
-		Toggle() : enabled(false), value() { }
-
-		inline operator bool&()
+		bool enabled() const
 		{
-			return enabled;
+			return m_Enabled;
 		}
 
-		inline operator T&()
+		const T& value() const
 		{
-			return value;
+			return m_Value;
+		}
+
+		T& value()
+		{
+			return m_Value;
+		}
+
+		void set_enabled(bool enable, bool notify = true)
+		{
+			m_Enabled = enable;
+			
+			if (notify)
+				OnEnableChange(this);
+		}
+
+		void set_value(const T& val)
+		{
+			m_Value = val;
+		}
+
+		void to_json(nlohmann::json& j) const override
+		{
+			j = {
+				{ "toggled", m_Enabled },
+				{ "value", config::converters::ToJson(m_Value) }
+			};
+		}
+
+		void from_json(const nlohmann::json& j) override
+		{
+			if (j.is_boolean())
+			{
+				m_Enabled = j;
+				m_Value = {};
+				return;
+			}
+
+			m_Enabled = j["toggled"].get<uint32_t>();
+			config::converters::FromJson(m_Value, j["value"]);
+		}
+
+		Toggle(const T& val) : m_Enabled(false), m_Value(val), OnEnableChange() { }
+
+		Toggle(bool enable) : m_Enabled(enable), m_Value(), OnEnableChange() { }
+
+		Toggle() : m_Enabled(false), m_Value(), OnEnableChange() { }
+
+		inline operator bool()
+		{
+			return m_Enabled;
 		}
 
 		inline bool operator==(const Toggle<T>& rhs)
 		{
-			return rhs.enabled == enabled && rhs.value == value;
+			return rhs.m_Enabled == m_Enabled && rhs.m_Value == m_Value;
 		}
+
+		TEvent<Toggle<T>*> OnEnableChange;
+
+	private:
+		bool m_Enabled;
+		T m_Value;
 	};
 
 	// Okay, close your eyes and don't look at this mess. (Please)
@@ -45,39 +94,12 @@ namespace config
 
 		operator bool() const
 		{
-			return base::value();
+			return base::value().enabled();
 		}
 
 		operator T&() const
 		{
-			return base::value().value;
-		}
-	};
-}
-
-namespace nlohmann
-{
-	template <typename T>
-	struct adl_serializer<config::Toggle<T>> {
-		static void to_json(json& j, const config::Toggle<T>& toggle)
-		{
-			j = {
-				{ "toggled", toggle.enabled },
-				{ "value", config::converters::ToJson(toggle.value) }
-			};
-		}
-
-		static void from_json(const json& j, config::Toggle<T>& toggle)
-		{
-			if (j.is_boolean())
-			{
-				toggle.enabled = j;
-				toggle.value = {};
-				return;
-			}
-
-			toggle.enabled = j["toggled"].get<uint32_t>() != 0;
-			config::converters::FromJson(toggle.value, j.contains("value") ? j["value"] : j["hotkey"]); // Support previously version
+			return base::value().value();
 		}
 	};
 }

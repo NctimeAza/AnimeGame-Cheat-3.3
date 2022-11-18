@@ -32,13 +32,14 @@ namespace cheat
 		void OnWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, bool& cancelled);
 		void OnRender();
 
-		void Init(LPBYTE pFontData, DWORD dFontDataSize, renderer::DXVersion dxVersion = renderer::DXVersion::D3D11);
+		void Init(renderer::DXVersion dxVersion = renderer::DXVersion::D3D11);
 
 		virtual void CursorSetVisibility(bool visibility) = 0;
 		virtual bool CursorGetVisibility() = 0;
 
 	protected:
-		config::Field<size_t> m_SelectedSection;
+		config::Field<size_t> f_SelectedModule;
+		const std::string* m_SelectedSection;
 
 		std::vector<Feature*> m_Features;
 		std::vector<std::string> m_ModuleOrder;
@@ -54,7 +55,7 @@ namespace cheat
 		void DrawExternal() const;
 
 		void DrawMenu();
-		void DrawMenuSection(const std::string& sectionName, const std::vector<Feature*>& features) const;
+		void DrawMenuSection(const std::string& sectionName, const std::vector<Feature*>& features, bool needGroup) const;
 
 		virtual void DrawProfileGlobalActivities();
 		virtual void DrawProfileEntryActivities(const std::string&profileName);
@@ -71,6 +72,8 @@ namespace cheat
 		void PushFeature(Feature* feature);
 		void CheckToggles(short key) const;
 
+		std::string GetModuleRepr(const std::string& name);
+		void DrawSectionSelection(const std::string& name, const std::string& translatedName, std::string*& currentModule, std::string& targetModule, size_t index);
 		void ToggleMenuShow();
 	};
 }

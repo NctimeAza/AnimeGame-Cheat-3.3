@@ -16,7 +16,7 @@ namespace config::converters
 	template<typename T>
 	inline void FromJson(T& value, const nlohmann::json& jObject)
 	{
-		value = jObject.get<T>();
+		jObject.get_to(value);
 	}
 
 	// Here is storing all simple converters json<->class
@@ -62,7 +62,4 @@ namespace config::converters
 
 		value = { jObject.get<std::vector<short>>() };
 	}
-
-	// Enum
-
 }

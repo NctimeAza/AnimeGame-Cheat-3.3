@@ -12,7 +12,7 @@ namespace cheat::feature
 	class VacuumLoot : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<float> f_Distance;
 		config::Field<float> f_Radius;
 		config::Field<float> f_MobDropRadius;

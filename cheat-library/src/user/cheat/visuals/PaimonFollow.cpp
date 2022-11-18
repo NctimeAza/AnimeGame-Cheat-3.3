@@ -12,31 +12,31 @@ namespace cheat::feature
     }
 
     PaimonFollow::PaimonFollow() : Feature(),
-        NFEX(f_Enabled, "Paimon Follow", "PaimonFollow", "Visuals", false, false)
+        NFP(f_Enabled, "Visuals::PaimonFollow", "Paimon follow", false)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(PaimonFollow::OnGameUpdate);
     }
 
     const FeatureGUIInfo& PaimonFollow::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "PaimonFollow", "Visuals", true };
+        TRANSLATED_MODULE_INFO("Visuals");
         return info;
     }
 
     void PaimonFollow::DrawMain()
     {
-        ConfigWidget(f_Enabled, "To display paimon, turn on the function, open the profile (esc) and close it. \n" \
-            "If the paimon disappeared after teleportation, do not disable the function, open and close the profile.");
+        ConfigWidget(_TR("Paimon Follow"), f_Enabled, _TR("To display paimon, turn on the function, open the profile (esc) and close it. \n" \
+            "If the paimon disappeared after teleportation, do not disable the function, open and close the profile."));
     }
 
     bool PaimonFollow::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void PaimonFollow::DrawStatus()
     {
-        ImGui::Text("Paimon Follow");
+        ImGui::Text(_TR("Paimon Follow"));
     }
 
     PaimonFollow& PaimonFollow::GetInstance()
@@ -49,7 +49,7 @@ namespace cheat::feature
     {
         UPDATE_DELAY(100);
 
-        if (f_Enabled)
+        if (f_Enabled->enabled())
         {
             GameObject::Paimon = app::GameObject_Find(string_to_il2cppi("/EntityRoot/OtherGadgetRoot/NPC_Guide_Paimon(Clone)"), nullptr);
             if (GameObject::Paimon == nullptr)

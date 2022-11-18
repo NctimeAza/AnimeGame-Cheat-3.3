@@ -9,19 +9,19 @@ namespace cheat::feature
 	class RapidFire : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_MultiHit;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_MultiHit;
 		config::Field<int> f_Multiplier;
 		config::Field<bool> f_OnePunch;
-		config::Field<config::Toggle<Hotkey>> f_Randomize;
+		config::Field<TranslatedHotkey> f_Randomize;
 		config::Field<int> f_minMultiplier;
 		config::Field<int> f_maxMultiplier;
-		config::Field<config::Toggle<Hotkey>> f_MultiTarget;
+		config::Field<TranslatedHotkey> f_MultiTarget;
 		config::Field<float> f_MultiTargetRadius;
-		config::Field<config::Toggle<Hotkey>> f_MultiAnimation;
+		config::Field<TranslatedHotkey> f_MultiAnimation;
 		config::Field<int> f_AnimationMultiplier;
 		config::Field<float> f_AnimationState;
-		config::Field<config::Toggle<Hotkey>> f_AttackSpeed;
+		config::Field<TranslatedHotkey> f_AttackSpeed;
 		config::Field<float> f_SpeedMultiplier;
 		int animationCounter;
 

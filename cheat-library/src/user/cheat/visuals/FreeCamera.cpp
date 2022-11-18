@@ -24,52 +24,52 @@ namespace cheat::feature
 	bool isEnabled = false;
 
 	FreeCamera::FreeCamera() : Feature(),
-		NF(f_Enabled, "Free Camera", "Visuals::FreeCamera", false),
-		NF(f_FreezeAnimation, "Freeze Character Animation", "Visuals::FreeCamera", false),
-		NF(f_SetAvatarInvisible, "Make Character invisible", "Visuals::FreeCamera", false),
-		NF(f_BlockInput, "Block Input", "Visuals::FreeCamera", false),
-		NF(f_DamageOverlay, "Damage Overlay", "Visuals::FreeCamera", false),
-		NF(f_HpOverlay, "Enemy HP Overlay", "Visuals::FreeCamera", false),
-		NF(f_Speed, "Speed", "Visuals::FreeCamera", 1.0f),
-		NF(f_LookSens, "Look Sensitivity", "Visuals::FreeCamera", 1.0f),
-		NF(f_RollSpeed, "Roll Speed", "Visuals::FreeCamera", 1.0f),
-		NF(f_FOVSpeed, "FOV Speed", "Visuals::FreeCamera", 0.1f),
-		NF(f_FOV, "Field of View", "Visuals::FreeCamera", 45.0f),
-		NF(f_MovSmoothing, "Movement Smoothing", "Visuals::FreeCamera", 1.0f),
-		NF(f_LookSmoothing, "Look Smoothing", "Visuals::FreeCamera", 1.0f),
-		NF(f_RollSmoothing, "Roll Smoothing", "Visuals::FreeCamera", 1.0f),
-		NF(f_FovSmoothing, "FOV Smoothing", "Visuals::FreeCamera", 1.0f),
-		NF(f_Forward, "Forward", "Visuals::FreeCamera", Hotkey('W')),
-		NF(f_Backward, "Backward", "Visuals::FreeCamera", Hotkey('S')),
-		NF(f_Left, "Left", "Visuals::FreeCamera", Hotkey('A')),
-		NF(f_Right, "Right", "Visuals::FreeCamera", Hotkey('D')),
-		NF(f_Up, "Up", "Visuals::FreeCamera", Hotkey(VK_SPACE)),
-		NF(f_Down, "Down", "Visuals::FreeCamera", Hotkey(VK_LCONTROL)),
-		NF(f_LeftRoll, "Roll Left", "Visuals::FreeCamera", Hotkey('Z')),
-		NF(f_RightRoll, "Roll Right", "Visuals::FreeCamera", Hotkey('X')),
-		NF(f_ResetRoll, "Reset Roll", "Visuals::FreeCamera", Hotkey('C')),
-		NF(f_IncFOV, "Increase FOV", "Visuals::FreeCamera", Hotkey('3')),
-		NF(f_DecFOV, "Decrease FOV", "Visuals::FreeCamera", Hotkey('1'))
+		NFP(f_Enabled, "Visuals::FreeCamera", "Free Camera", false),
+		NFP(f_FreezeAnimation, "Visuals::FreeCamera", "Freeze animation", false),
+		NFP(f_SetAvatarInvisible, "Visuals::FreeCamera", "Set avatar invisible", false),
+		NF(f_BlockInput, "Visuals::FreeCamera", false),
+		NF(f_DamageOverlay, "Visuals::FreeCamera", false),
+		NF(f_HpOverlay, "Visuals::FreeCamera", false),
+		NF(f_Speed, "Visuals::FreeCamera", 1.0f),
+		NF(f_LookSens, "Visuals::FreeCamera", 1.0f),
+		NF(f_RollSpeed, "Visuals::FreeCamera", 1.0f),
+		NF(f_FOVSpeed, "Visuals::FreeCamera", 0.1f),
+		NF(f_FOV, "Visuals::FreeCamera", 45.0f),
+		NF(f_MovSmoothing, "Visuals::FreeCamera", 1.0f),
+		NF(f_LookSmoothing, "Visuals::FreeCamera", 1.0f),
+		NF(f_RollSmoothing, "Visuals::FreeCamera", 1.0f),
+		NF(f_FovSmoothing, "Visuals::FreeCamera", 1.0f),
+		NF(f_Forward, "Visuals::FreeCamera", Hotkey('W')),
+		NF(f_Backward, "Visuals::FreeCamera", Hotkey('S')),
+		NF(f_Left, "Visuals::FreeCamera", Hotkey('A')),
+		NF(f_Right, "Visuals::FreeCamera", Hotkey('D')),
+		NF(f_Up, "Visuals::FreeCamera", Hotkey(VK_SPACE)),
+		NF(f_Down, "Visuals::FreeCamera", Hotkey(VK_LCONTROL)),
+		NF(f_LeftRoll, "Visuals::FreeCamera", Hotkey('Z')),
+		NF(f_RightRoll, "Visuals::FreeCamera", Hotkey('X')),
+		NF(f_ResetRoll, "Visuals::FreeCamera", Hotkey('C')),
+		NF(f_IncFOV, "Visuals::FreeCamera", Hotkey('3')),
+		NF(f_DecFOV, "Visuals::FreeCamera", Hotkey('1'))
 	{
 		events::GameUpdateEvent += MY_METHOD_HANDLER(FreeCamera::OnGameUpdate);
 	}
 
 	const FeatureGUIInfo& FreeCamera::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Free Camera", "Visuals", true };
+		TRANSLATED_GROUP_INFO("Free Camera", "Visuals");
 		return info;
 	}
 
 	void FreeCamera::DrawMain()
 	{
-		ConfigWidget("Enable", f_Enabled);
-		ConfigWidget("Freeze Character Animation", f_FreezeAnimation, "Freezes the active character's animation.");
-		ConfigWidget("Make Character invisible", f_SetAvatarInvisible, "Hide Character machine effects.");
-		ConfigWidget("Block User Input", f_BlockInput, "If enabled, any input will be blocked.");
-		if (f_Enabled)
+		ConfigWidget(_TR("Enable"), f_Enabled);
+		ConfigWidget(_TR("Freeze Character Animation"), f_FreezeAnimation, _TR("Freezes the active character's animation."));
+		ConfigWidget(_TR("Make Character invisible"), f_SetAvatarInvisible, _TR("Hide Character machine effects."));
+		ConfigWidget(_TR("Block User Input"), f_BlockInput, _TR("If enabled, any input will be blocked."));
+		if (f_Enabled->enabled())
 		{
-			ConfigWidget("Toggle Damage Overlay", f_DamageOverlay, "Remove damage output overlay");
-			if (ImGui::Button("Remove HP"))
+			ConfigWidget(_TR("Toggle Damage Overlay"), f_DamageOverlay, _TR("Remove damage output overlay"));
+			if (ImGui::Button(_TR("Remove HP")))
 			{
 				f_HpOverlay = true;
 			}
@@ -80,53 +80,51 @@ namespace cheat::feature
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(0);
 
-			ImGui::BeginGroupPanel("Settings");
+			ImGui::BeginGroupPanel(_TR("Settings"));
 			{
-				ConfigWidget("Movement Speed", f_Speed, 0.01f, 0.01f, 1000.0f);
-				ConfigWidget("Look Sensitivity", f_LookSens, 0.01f, 0.01f, 100.0f);
-				ConfigWidget("Roll Speed", f_RollSpeed, 0.01f, 0.01f, 100.0f);
-				ConfigWidget("FOV Speed", f_FOVSpeed, 0.01f, 0.01f, 100.0f);
-				ConfigWidget("Field of View", f_FOV, 0.1f, 0.01f, 200.0f, "Changes Vertical FoV. Horizontal FoV depends on the viewport's aspect ratio");
+				ConfigWidget(_TR("Movement Speed"), f_Speed, 0.01f, 0.01f, 1000.0f);
+				ConfigWidget(_TR("Look Sensitivity"), f_LookSens, 0.01f, 0.01f, 100.0f);
+				ConfigWidget(_TR("Roll Speed"), f_RollSpeed, 0.01f, 0.01f, 100.0f);
+				ConfigWidget(_TR("FOV Speed"), f_FOVSpeed, 0.01f, 0.01f, 100.0f);
+				ConfigWidget(_TR("Field of View"), f_FOV, 0.1f, 0.01f, 200.0f, _TR("Changes Vertical FoV. Horizontal FoV depends on the viewport's aspect ratio"));
 				if (ImGui::Button("Convert FoV to 35mm FF focal length"))
 					focalLength = 24 / (2 * tan((f_FOV * 3.14159265) / (2 * 180))); // FocalLength = (vertical) sensor size / 2 * tan( 2*(vertical) FoV * Pi / 180)  Remember to convert degree to radian.  
-				ImGui::Text("Focal length: %f", focalLength);
+				ImGui::Text(_TR("Focal length: %f"), focalLength);
 				ImGui::Spacing();
-				ConfigWidget("Movement Smoothing", f_MovSmoothing, 0.01f, 0.001f, 1.0f, "Lower = Smoother");
-				ConfigWidget("Look Smoothing", f_LookSmoothing, 0.01f, 0.001f, 1.0f, "Lower = Smoother");
-				ConfigWidget("Roll Smoothing", f_RollSmoothing, 0.01f, 0.001f, 1.0f, "Lower = Smoother");
-				ConfigWidget("FOV Smoothing", f_FovSmoothing, 0.01f, 0.001f, 1.0f, "Lower = Smoother");
+				ConfigWidget(_TR("Movement Smoothing"), f_MovSmoothing, 0.01f, 0.001f, 1.0f, _TR("Lower = Smoother"));
+				ConfigWidget(_TR("Look Smoothing"), f_LookSmoothing, 0.01f, 0.001f, 1.0f, _TR("Lower = Smoother"));
+				ConfigWidget(_TR("Roll Smoothing"), f_RollSmoothing, 0.01f, 0.001f, 1.0f, _TR("Lower = Smoother"));
+				ConfigWidget(_TR("FOV Smoothing"), f_FovSmoothing, 0.01f, 0.001f, 1.0f, _TR("Lower = Smoother"));
 			}
 			ImGui::EndGroupPanel();
 
-			ImGui::BeginGroupPanel("Hotkeys");
+			ImGui::BeginGroupPanel(_TR("Hotkeys"));
 			{
-				ConfigWidget("Forward", f_Forward, true);
-				ConfigWidget("Backward", f_Backward, true);
-				ConfigWidget("Left", f_Left, true);
-				ConfigWidget("Right", f_Right, true);
-				ConfigWidget("Up", f_Up, true);
-				ConfigWidget("Down", f_Down, true);
-				ConfigWidget("Roll Left", f_LeftRoll, true);
-				ConfigWidget("Roll Right", f_RightRoll, true);
-				ConfigWidget("Reset Roll", f_ResetRoll, true);
-				ConfigWidget("Increase FOV", f_IncFOV, true);
-				ConfigWidget("Decrease FOV", f_DecFOV, true);
+				ConfigWidget(_TR("Forward"), f_Forward, true);
+				ConfigWidget(_TR("Backward"), f_Backward, true);
+				ConfigWidget(_TR("Left"), f_Left, true);
+				ConfigWidget(_TR("Right"), f_Right, true);
+				ConfigWidget(_TR("Up"), f_Up, true);
+				ConfigWidget(_TR("Down"), f_Down, true);
+				ConfigWidget(_TR("Roll Left"), f_LeftRoll, true);
+				ConfigWidget(_TR("Roll Right"), f_RightRoll, true);
+				ConfigWidget(_TR("Reset Roll"), f_ResetRoll, true);
+				ConfigWidget(_TR("Increase FOV"), f_IncFOV, true);
+				ConfigWidget(_TR("Decrease FOV"), f_DecFOV, true);
 			}
 			ImGui::EndGroupPanel();
 			ImGui::EndTable();
 		}
-
-
 	}
 
 	bool FreeCamera::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void FreeCamera::DrawStatus()
 	{
-		ImGui::Text("Free Camera");
+		ImGui::Text(_TR("Free Camera"));
 	}
 
 	FreeCamera& FreeCamera::GetInstance()
@@ -258,7 +256,7 @@ namespace cheat::feature
 
 		static bool isBlock = false;
 
-		if (f_Enabled)
+		if (f_Enabled->enabled())
 		{
 			if (mainCam == nullptr)
 				mainCam = app::GameObject_Find(string_to_il2cppi("/EntityRoot/MainCamera(Clone)"), nullptr);
@@ -334,7 +332,7 @@ namespace cheat::feature
 		static bool changed = false;
 		static bool isVisible = false;
 
-		if (f_FreezeAnimation)
+		if (f_FreezeAnimation->enabled())
 		{
 			//auto constraints = app::Rigidbody_get_constraints(rigidBody, nullptr);
 			//LOG_DEBUG("%s", magic_enum::enum_name(constraints).data());
@@ -352,7 +350,7 @@ namespace cheat::feature
 			}
 		}
 		
-		if (f_SetAvatarInvisible)
+		if (f_SetAvatarInvisible->enabled())
 		{
 			app::Miscs_SetUILocalAvatarVisible(false, nullptr);
 			isVisible = false;

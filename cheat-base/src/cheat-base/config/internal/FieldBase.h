@@ -14,37 +14,27 @@ namespace config::internal
 	public:
 		using _ValueType = T;
 
-		explicit FieldBase() :
-			FieldChangedEvent(m_FieldChangedEvent),
-			p_Container(nullptr)
-		{
-		}
+		explicit FieldBase() : p_Container(nullptr), FieldChangedEvent(m_FieldChangedEvent) {}
 
-		explicit FieldBase(FieldSerialize<T>* serializeFieldPtr) : 
-			FieldChangedEvent(m_FieldChangedEvent),
-			p_Container(serializeFieldPtr)
+		explicit FieldBase(FieldSerialize<T>* serializeFieldPtr) : p_Container(serializeFieldPtr), FieldChangedEvent(m_FieldChangedEvent) 
 		{ 
 			p_Container->ChangedEvent += MY_METHOD_HANDLER(_FieldBaseT::OnFieldChanged);
 		}
 
-		explicit FieldBase(const std::shared_ptr<FieldSerialize<T>>& serializeField) :
-			FieldChangedEvent(m_FieldChangedEvent),
-			p_Container(serializeField)
+		explicit FieldBase(const std::shared_ptr<FieldSerialize<T>>& serializeField) : p_Container(serializeField), FieldChangedEvent(m_FieldChangedEvent) 
 		{ 
 			p_Container->ChangedEvent += MY_METHOD_HANDLER(_FieldBaseT::OnFieldChanged);
 		}
 
-		explicit FieldBase(const std::string friendlyName, const std::string name, const std::string section, T defaultValue, bool multiProfile = false)
-		  : FieldChangedEvent(m_FieldChangedEvent),
-		    p_Container(std::make_shared<FieldSerialize<T>>(friendlyName, name, section, defaultValue, multiProfile))
+		explicit FieldBase(const std::string name, const std::string section, T defaultValue, bool multiProfile = false)
+			: p_Container(std::make_shared<FieldSerialize<T>>(name, section, defaultValue, multiProfile)), FieldChangedEvent(m_FieldChangedEvent) 
 		{
 			p_Container->ChangedEvent += MY_METHOD_HANDLER(_FieldBaseT::OnFieldChanged);
 		}
 
 		explicit FieldBase(const FieldBase<T>& field) : 
-			FieldChangedEvent(m_FieldChangedEvent),
-			m_FieldChangedEvent(), 
-			p_Container(field.p_Container)
+			p_Container(field.p_Container), 
+			m_FieldChangedEvent(), FieldChangedEvent(m_FieldChangedEvent)
 		{
 			p_Container->ChangedEvent += MY_METHOD_HANDLER(FieldBase<T>::OnFieldChanged);
 		}
@@ -58,11 +48,6 @@ namespace config::internal
 		std::string name() const
 		{
 			return p_Container->GetName();
-		}
-
-		std::string friendName() const
-		{
-			return p_Container->GetFriendName();
 		}
 
 		std::string section() const
@@ -96,6 +81,16 @@ namespace config::internal
 		}
 
 		operator T* () const
+		{
+			return pointer();
+		}
+
+		T* operator->()
+		{
+			return &p_Container->m_Value;
+		}
+
+		T* operator->() const
 		{
 			return pointer();
 		}

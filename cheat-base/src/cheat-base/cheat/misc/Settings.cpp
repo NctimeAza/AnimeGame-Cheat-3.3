@@ -8,6 +8,8 @@
 #include <cheat-base/util.h>
 #include <SimpleIni.h>
 
+#include <cheat-base/Translator.h>
+
 #include "shlwapi.h"
 #pragma comment(lib, "shlwapi.lib")
 #include <WinReg.hpp>
@@ -18,40 +20,40 @@ static CSimpleIni ini;
 namespace cheat::feature
 {
 	Settings::Settings() : Feature(),
-		NF(f_MenuKey, "Show Cheat Menu Key", "General", Hotkey(VK_F1)),
-		NF(f_HotkeysEnabled, "Hotkeys Enabled", "General", true),
+		NF(f_MenuKey, "General", Hotkey(VK_F1)),
+		NF(f_HotkeysEnabled, "General", true),
 
-		NF(f_StatusMove, "Move Status Window", "General::StatusWindow", true),
-		NF(f_StatusShow, "Show Status Window", "General::StatusWindow", true),
+		NF(f_StatusMove, "General::StatusWindow", true),
+		NF(f_StatusShow, "General::StatusWindow", true),
 
-		NF(f_InfoMove, "Move Info Window", "General::InfoWindow", true),
-		NF(f_InfoShow, "Show Info Window", "General::InfoWindow", true),
+		NF(f_InfoMove, "General::InfoWindow", true),
+		NF(f_InfoShow, "General::InfoWindow", true),
 
-		NF(f_FpsMove, "Move FPS Indicator", "General::FPS", false),
-		NF(f_FpsShow, "Show FPS Indicator", "General::FPS", true),
+		NF(f_FpsMove, "General::FPS", false),
+		NF(f_FpsShow, "General::FPS", true),
 
-		NF(f_NotificationsShow, "Show Notifications", "General::Notify", true),
-		NF(f_NotificationsDelay, "Notifications Delay", "General::Notify", 500),
+		NF(f_NotificationsShow, "General::Notify", true),
+		NF(f_NotificationsDelay, "General::Notify", 500),
 
-		NF(f_FileLogging, "File Logging", "General::Logging", false),
-		NF(f_ConsoleLogging, "Console Logging", "General::Logging", true),
+		NF(f_FileLogging, "General::Logging", false),
+		NF(f_ConsoleLogging, "General::Logging", true),
 
-		NF(f_FastExitEnable, "Fast Exit", "General::FastExit", false),
-		NF(f_HotkeyExit, "Hotkeys", "General::FastExit", Hotkey(VK_F12)),
+		NF(f_FastExitEnable, "General::FastExit", false),
+		NF(f_HotkeyExit, "General::FastExit", Hotkey(VK_F12)),
 
-		NF(f_FontSize, "Font Size", "General::Theme", 16.0f),
-		NF(f_ShowStyleEditor, "Show Theme Customization", "General::Theme", false),
-		NFS(f_DefaultTheme, "Theme", "General::Theme", ""),
+		NF(f_FontSize, "General::Theme", 16.0f),
+		NF(f_ShowStyleEditor, "General::Theme", false),
+		NFS(f_DefaultTheme, "General::Theme", ""),
 		themesDir(util::GetCurrentPath() / "themes")
 
 	{
-		renderer::SetGlobalFontSize(static_cast<float>(f_FontSize));
+		renderer::SetDefaultFontSize(static_cast<float>(f_FontSize));
 		f_HotkeyExit.value().PressedEvent += MY_METHOD_HANDLER(Settings::OnExitKeyPressed);
 	}
 
 	const FeatureGUIInfo& Settings::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "Settings", false };
+		TRANSLATED_MODULE_INFO("Settings");
 		return info;
 	}
 
@@ -398,10 +400,9 @@ namespace cheat::feature
 
 	void Settings::DrawMain()
 	{
-
-		ImGui::BeginGroupPanel("General");
+		ImGui::BeginGroupPanel(_TR("General"));
 		{
-			ConfigWidget(f_MenuKey, false,
+			ConfigWidget("Show Cheat Menu Key", f_MenuKey, false,
 				"Key to toggle main menu visibility. Cannot be empty.\n"\
 				"If you forget this key, you can see or set it in your config file.");
 			ImGui::InputText("command line arguments", &cma);
@@ -494,20 +495,20 @@ namespace cheat::feature
 				ini.Reset();
 #endif
 			}
-			ConfigWidget(f_HotkeysEnabled, "Enable hotkeys.");
+			ConfigWidget("Hotkeys Enabled", f_HotkeysEnabled, "Enable hotkeys.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Logging");
 		{
-			bool consoleChanged = ConfigWidget(f_ConsoleLogging,
+			bool consoleChanged = ConfigWidget("Console Logging", f_ConsoleLogging,
 				"Enable console for logging information (changes will take effect after relaunch)");
 			if (consoleChanged && !f_ConsoleLogging)
 			{
 				Logger::SetLevel(Logger::Level::None, Logger::LoggerType::ConsoleLogger);
 			}
 
-			bool fileLogging = ConfigWidget(f_FileLogging,
+			bool fileLogging = ConfigWidget("File Logging", f_FileLogging,
 				"Enable file logging (changes will take effect after relaunch).\n" \
 				"A folder in the app directory will be created for logs.");
 			if (fileLogging && !f_FileLogging)
@@ -519,29 +520,29 @@ namespace cheat::feature
 
 		ImGui::BeginGroupPanel("Status Window");
 		{
-			ConfigWidget(f_StatusShow);
-			ConfigWidget(f_StatusMove, "Allow moving of 'Status' window.");
+			ConfigWidget("Show Status Window", f_StatusShow);
+			ConfigWidget("Move Status Window", f_StatusMove, "Allow moving of 'Status' window.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Info Window");
 		{
-			ConfigWidget(f_InfoShow);
-			ConfigWidget(f_InfoMove, "Allow moving of 'Info' window.");
+			ConfigWidget("Show Info Window", f_InfoShow);
+			ConfigWidget("Move Info Window", f_InfoMove, "Allow moving of 'Info' window.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("FPS indicator");
 		{
-			ConfigWidget(f_FpsShow);
-			ConfigWidget(f_FpsMove, "Allow moving of 'FPS Indicator' window.");
+			ConfigWidget("Show FPS Indicator", f_FpsShow);
+			ConfigWidget("Move FPS Indicator", f_FpsMove, "Allow moving of 'FPS Indicator' window.");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::BeginGroupPanel("Show Notifications");
 		{
-			ConfigWidget(f_NotificationsShow, "Notifications on the bottom-right corner of the window will be displayed.");
-			ConfigWidget(f_NotificationsDelay, 1, 1, 10000, "Delay in milliseconds between notifications.");
+			ConfigWidget("Show Notifications", f_NotificationsShow, "Notifications on the bottom-right corner of the window will be displayed.");
+			ConfigWidget("Notifications Delay", f_NotificationsDelay, 1, 1, 10000, "Delay in milliseconds between notifications.");
 		}
 		ImGui::EndGroupPanel();
 
@@ -565,8 +566,8 @@ namespace cheat::feature
 		ImGui::BeginGroupPanel("Interface Customization");
 		{
 			ImGui::SetNextItemWidth(200);
-			if (ConfigWidget(f_FontSize, 1, 8, 64, "Adjust interface font size."))
-				renderer::SetGlobalFontSize(static_cast<float>(f_FontSize));
+			if (ConfigWidget("Font Size", f_FontSize, 1, 8, 64, "Adjust interface font size."))
+				renderer::SetDefaultFontSize(static_cast<float>(f_FontSize));
 
 			static std::string themeNameBuffer_;
 
@@ -616,7 +617,7 @@ namespace cheat::feature
 				Init();
 			}
 
-			ConfigWidget(f_ShowStyleEditor, "Show ImGui theme customization window.");
+			ConfigWidget("Show Theme Customization", f_ShowStyleEditor, "Show ImGui theme customization window.");
 		}
 		ImGui::EndGroupPanel();
 

@@ -11,7 +11,7 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& OculiTeleport::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "0culi Teleport", "Teleport", true };
+		TRANSLATED_GROUP_INFO("0culi Teleport", "Teleport");
 		return info;
 	}
 

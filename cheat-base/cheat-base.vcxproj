@@ -267,6 +267,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\cheat-base\cheat\fields\NamedHotkey.h" />
+    <ClInclude Include="src\cheat-base\cheat\fields\TranslatedHotkey.h" />
+    <ClInclude Include="src\cheat-base\cheat\misc\Language.h" />
     <ClInclude Include="src\cheat-base\config\converters.h" />
     <ClInclude Include="src\cheat-base\config\Field.h" />
     <ClInclude Include="src\cheat-base\config\fields.h" />
@@ -315,6 +318,7 @@
     <ClInclude Include="src\cheat-base\singleton\Singleton.h" />
     <ClInclude Include="src\cheat-base\singleton\SingletonManager.h" />
     <ClInclude Include="src\cheat-base\thread-safe.h" />
+    <ClInclude Include="src\cheat-base\Translator.h" />
     <ClInclude Include="src\cheat-base\util.h" />
     <ClInclude Include="src\cheat-base\Logger.h" />
     <ClInclude Include="src\cheat-base\PipeTransfer.h" />
@@ -348,6 +352,9 @@
     <ClInclude Include="vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cheat-base\cheat\fields\NamedHotkey.cpp" />
+    <ClCompile Include="src\cheat-base\cheat\fields\TranslatedHotkey.cpp" />
+    <ClCompile Include="src\cheat-base\cheat\misc\Language.cpp" />
     <ClCompile Include="src\cheat-base\config\config.cpp" />
     <ClCompile Include="src\cheat-base\globals.cpp" />
     <ClCompile Include="src\cheat-base\events\joins\abstracteventjoin.cpp">
@@ -380,6 +387,7 @@
     <ClCompile Include="src\cheat-base\render\renderer.cpp" />
     <ClCompile Include="src\cheat-base\Patch.cpp" />
     <ClCompile Include="src\cheat-base\Logger.cpp" />
+    <ClCompile Include="src\cheat-base\Translator.cpp" />
     <ClCompile Include="src\cheat-base\util.cpp" />
     <ClCompile Include="framework\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

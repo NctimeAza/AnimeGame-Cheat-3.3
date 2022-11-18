@@ -8,13 +8,13 @@ namespace cheat::feature
 	class AutoDestroy : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_DestroyOres;
-		config::Field<config::Toggle<Hotkey>> f_DestroyShields;
-		config::Field<config::Toggle<Hotkey>> f_DestroyDoodads;
-		config::Field<config::Toggle<Hotkey>> f_DestroyPlants;
-		config::Field<config::Toggle<Hotkey>> f_DestroySpecialObjects;
-		config::Field<config::Toggle<Hotkey>> f_DestroySpecialChests;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_DestroyOres;
+		config::Field<TranslatedHotkey> f_DestroyShields;
+		config::Field<TranslatedHotkey> f_DestroyDoodads;
+		config::Field<TranslatedHotkey> f_DestroyPlants;
+		config::Field<TranslatedHotkey> f_DestroySpecialObjects;
+		config::Field<TranslatedHotkey> f_DestroySpecialChests;
 		config::Field<float> f_Range;
 
 		static AutoDestroy& GetInstance();

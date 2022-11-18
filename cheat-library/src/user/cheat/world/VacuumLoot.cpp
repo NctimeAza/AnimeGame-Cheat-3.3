@@ -9,11 +9,11 @@
 namespace cheat::feature
 {
 	VacuumLoot::VacuumLoot() : Feature(),
-		NF(f_Enabled, "Vacuum Loot", "VacuumLoot", false),
-		NF(f_Distance, "Distance", "VacuumLoot", 1.5f),
-		NF(f_Radius, "Radius", "VacuumLoot", 20.0f),
-		NF(f_MobDropRadius, "Mob Drop Radius", "VacuumLoot", 20.0f),
-		NF(f_DelayTime, "Delay time (in ms)", "VacuumLoot", 1000),
+		NFP(f_Enabled, "VacuumLoot", "Vacuum Loot", false),
+		NF(f_Distance, "VacuumLoot", 1.5f),
+		NF(f_Radius, "VacuumLoot", 20.0f),
+		NF(f_MobDropRadius, "VacuumLoot", 20.0f),
+		NF(f_DelayTime, "VacuumLoot", 1000),
 		nextTime(0)
 	{
 		InstallFilters();
@@ -22,40 +22,40 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& VacuumLoot::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Vacuum Loot", "World", true };
+		TRANSLATED_GROUP_INFO("Vacuum Loot", "World");
 		return info;
 	}
 
 	void VacuumLoot::DrawMain()
 	{
-
-			ConfigWidget("Enabled", f_Enabled, "Vacuum Loot drops"); ImGui::SameLine(); ImGui::SetNextItemWidth(100.0f);
-			ConfigWidget("Delay Time (ms)", f_DelayTime, 1, 0, 1000, "Delay (in ms) between loot vacuum.");
-			ConfigWidget("Radius (m)", f_Radius, 0.1f, 5.0f, 100.0f, "Radius of common loot vacuum.");
-			ConfigWidget("Mob Drop Radius (m)", f_MobDropRadius, 0.1f, 5.0f, 100.0f, "Radius of mob drop vacuum.\n"
-			"(Item Drops and Equipments)");
-			ConfigWidget("Distance (m)", f_Distance, 0.1f, 1.0f, 10.0f, "Distance between the player and the loot.\n"
-				"Values under 1.5 may be too intruding.");
-			if (ImGui::TreeNode("Loot Types"))
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Vacuum Loot drops")); ImGui::SameLine(); ImGui::SetNextItemWidth(100.0f);
+		ConfigWidget(_TR("Delay Time (ms)"), f_DelayTime, 1, 0, 1000, _TR("Delay (in ms) between loot vacuum."));
+		ConfigWidget(_TR("Radius (m)"), f_Radius, 0.1f, 5.0f, 100.0f, _TR("Radius of common loot vacuum."));
+		ConfigWidget(_TR("Mob Drop Radius (m)"), f_MobDropRadius, 0.1f, 5.0f, 100.0f, _TR("Radius of mob drop vacuum.\n"
+			"(Item Drops and Equipments)"));
+		ConfigWidget(_TR("Distance (m)"), f_Distance, 0.1f, 1.0f, 10.0f, _TR("Distance between the player and the loot.\n"
+			"Values under 1.5 may be too intruding."));
+		if (ImGui::TreeNode("Loot Types"))
+		{
+			for (auto& [section, filters] : m_Sections)
 			{
-				for (auto& [section, filters] : m_Sections)
-				{
-					ImGui::PushID(section.c_str());
-					DrawSection(section, filters);
-					ImGui::PopID();
-				}
-				ImGui::TreePop();
+				ImGui::PushID(section.c_str());
+				DrawSection(section, filters);
+				ImGui::PopID();
 			}
+			ImGui::TreePop();
+		}
 	}
 
 	bool VacuumLoot::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void VacuumLoot::DrawStatus()
 	{
-		ImGui::Text("VacuumLoot\n[%dms|%.01fm|%.01fm|%.01fm]",
+		ImGui::Text("%s\n[%dms|%.01fm|%.01fm|%.01fm]",
+			_TR("Vacuum Loot"),
 			f_DelayTime.value(),
 			f_Radius.value(),
 			f_MobDropRadius.value(),
@@ -93,7 +93,7 @@ namespace cheat::feature
 
 	void VacuumLoot::OnGameUpdate()
 	{
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			return;
 
 		auto currentTime = util::GetCurrentTimeMillisec();
@@ -138,7 +138,7 @@ namespace cheat::feature
 						ImGui::TableNextColumn();
 
 					ImGui::PushID(&filter);
-					ConfigWidget(filter.first);
+					ConfigWidget(filter.first.name().c_str(), filter.first);
 					ImGui::PopID();
 					i++;
 				}
@@ -165,7 +165,7 @@ namespace cheat::feature
 
 		auto& filters = m_Sections[section];
 		bool newItem = filter != nullptr;
-		filters.push_back({ config::CreateField<bool>(name,name,fmt::format("VacuumLoot::Filters::{}", section), false, newItem) , filter });
+		filters.push_back({ config::CreateField<bool>(name, fmt::format("VacuumLoot::Filters::{}", section), false, newItem) , filter });
 	}
 
 #define ADD_FILTER_FIELD(section, name) AddFilter(util::MakeCapital(#section), util::SplitWords(#name), &game::filters::##section##::##name##)

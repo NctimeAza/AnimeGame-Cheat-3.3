@@ -7,7 +7,7 @@ namespace cheat::feature
 	class EmotionChanger : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<std::string> f_Phonemes;
 		config::Field<std::string> f_Emotions;
 		config::Field<Hotkey> f_ApplyKey;

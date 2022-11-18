@@ -21,37 +21,37 @@ namespace cheat::feature
     };
 
     CustomWeather::CustomWeather() : Feature(),
-        NF(f_Enabled, "Custom Weather", "CustomWeather", false),
-        NF(f_Lightning, "Lightning", "CustomWeather", false),
-        NF(f_WeatherType, "WeatherType", "CustomWeather", CustomWeather::WeatherType::ClearSky)
+        NFP(f_Enabled, "CustomWeather", "Custom weather", false),
+        NFP(f_Lightning, "CustomWeather", "Lighting", false),
+        NF(f_WeatherType, "CustomWeather", CustomWeather::WeatherType::ClearSky)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(CustomWeather::OnGameUpdate);
     }
 
     const FeatureGUIInfo& CustomWeather::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "CustomWeather", "Visuals", true };
+        TRANSLATED_GROUP_INFO("Custom Weather", "Visuals");
         return info;
     }
 
     void CustomWeather::DrawMain()
     {
-        ConfigWidget(f_Enabled, "Custom Weather.");
-        if (f_Enabled)
-            ConfigWidget(f_WeatherType, "Select weather type.");
-        ConfigWidget(f_Lightning, "Lightning target enemy, works with RainHeavy weather.");
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Custom Weather."));
+        if (f_Enabled->enabled())
+            ConfigWidget(_TR("Weather type"), f_WeatherType, _TR("Select weather type."));
+        ConfigWidget(_TR("Lightning"), f_Lightning, _TR("Lightning target enemy, works with RainHeavy weather."));
     }
 
     bool CustomWeather::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void CustomWeather::DrawStatus()
     {
-        ImGui::Text("Custom Weather");
-        if (f_Lightning)
-            ImGui::Text("Lightning");
+        ImGui::Text(_TR("Custom Weather"));
+        if (f_Lightning->enabled())
+            ImGui::Text(_TR("Lightning"));
     }
 
     CustomWeather& CustomWeather::GetInstance()
@@ -62,7 +62,7 @@ namespace cheat::feature
 
     void CustomWeather::OnGameUpdate()
     {
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return;
 
         UPDATE_DELAY(100);
@@ -72,7 +72,7 @@ namespace cheat::feature
         {
             app::EnviroSky_ChangeWeather(Enviro, string_to_il2cppi(weather.at(f_WeatherType.value())), 1, 1, nullptr);
 
-            if (f_Lightning && f_WeatherType.value() == CustomWeather::WeatherType::RainHeavy)
+            if (f_Lightning->enabled() && f_WeatherType.value() == CustomWeather::WeatherType::RainHeavy)
             {
                 auto& manager = game::EntityManager::instance();
 

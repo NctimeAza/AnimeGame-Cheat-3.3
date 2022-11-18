@@ -134,7 +134,7 @@ bool IsStaticCheckSumValid()
 	}
 
 	static config::Field<nlohmann::json> checksumTimestamps = 
-		config::CreateField<nlohmann::json>("ChecksumTimestamp", "m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
+		config::CreateField<nlohmann::json>("m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
 	
 	std::string version = assemblyChecksumJson["game_version"];
 
