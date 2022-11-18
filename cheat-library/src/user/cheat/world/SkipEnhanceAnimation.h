@@ -9,6 +9,7 @@ namespace cheat::feature
 	{
 	public:
 		config::Field<bool> f_Enabled;
+		config::Field<bool> f_ShowLevelUp;
 
 		static SkipEnhanceAnimation& GetInstance();
 

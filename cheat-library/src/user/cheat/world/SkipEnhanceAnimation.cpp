@@ -10,7 +10,8 @@ namespace cheat::feature
 	static void MoleMole_EquipOverviewPageContext_PlayLevelUpSuccessShow_Hook(/*MoleMole_EquipOverviewPageContext*/ void* __this, /*Action*/ void* refreshViewAction, MethodInfo* method);
 
 	SkipEnhanceAnimation::SkipEnhanceAnimation() : Feature(),
-		NF(f_Enabled, "Skip Enhancement Animation", "SkipEnhanceAnimation", false)
+		NF(f_Enabled, "Skip Enhancement Animation", "SkipEnhanceAnimation", false),
+		NF(f_ShowLevelUp, "Show Level Up Screen", "SkipEnhanceAnimation", false)
 	{
 		HookManager::install(app::MoleMole_EquipLevelUpDialogContext_SetupView, MoleMole_EquipLevelUpDialogContext_SetupView_Hook);
 		HookManager::install(app::MoleMole_EquipOverviewPageContext_PlayExpAddAnimation, MoleMole_EquipOverviewPageContext_PlayExpAddAnimation_Hook);
@@ -26,6 +27,12 @@ namespace cheat::feature
 	void SkipEnhanceAnimation::DrawMain()
 	{
 		ConfigWidget("Skip Enhancement Animation", f_Enabled, "Skip weapon and artifact enhancement animation.");
+		if (f_Enabled)
+		{
+			ImGui::Indent();
+			ConfigWidget("Show Level Up Screen", f_ShowLevelUp, "Does not skip final Level Up screen");
+			ImGui::Unindent();
+		}
 	}
 
 	bool SkipEnhanceAnimation::NeedStatusDraw() const
@@ -49,7 +56,7 @@ namespace cheat::feature
 		CALL_ORIGIN(MoleMole_EquipLevelUpDialogContext_SetupView_Hook, __this, method);
 
 		auto& skipEnhaceAnimation = SkipEnhanceAnimation::GetInstance();
-		if (skipEnhaceAnimation.f_Enabled)
+		if (skipEnhaceAnimation.f_Enabled && !skipEnhaceAnimation.f_ShowLevelUp)
 			app::MoleMole_EquipLevelUpDialogContext_ShowReturnedMaterialAndCloseDialog(__this, method);
 	}
 
