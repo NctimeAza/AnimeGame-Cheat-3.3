@@ -160,6 +160,7 @@ DO_APP_FUNC(0x02C00580, 0x02C060A0, float, MoleMole_LCAvatarCombat_GetCurrentSki
 DO_APP_FUNC(0x04574440, 0x045DAB20, void, MonoTeamBtn_Update, (MonoTeamBtn* __this, MethodInfo* method));
 DO_APP_FUNC(0x04574AD0, 0x045DB1C0, void, MonoTeamBtn_set_showPCKey, (MonoTeamBtn* __this, bool value, MethodInfo* method));
 DO_APP_FUNC(0x045746A0, 0x045DAD80, void, MonoTeamBtn_set_PCKey, (MonoTeamBtn* __this, String* value, MethodInfo* method));
+DO_APP_FUNC(0x045745B0, 0x045DAC90, /*MonoControlElement*/ void*, MonoTeamBtn_get_PS4KeyIcon, (MonoTeamBtn* __this, MethodInfo* method));
 
 // Chest Indicator | RyujinZX#6666
 DO_APP_FUNC(0x05036F20, 0x050C6EF0, bool, MoleMole_LCIndicatorPlugin_DoCheck, (LCIndicatorPlugin* __this, MethodInfo* method));

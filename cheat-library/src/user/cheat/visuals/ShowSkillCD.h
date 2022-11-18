@@ -27,7 +27,9 @@ namespace cheat::feature
 
 		static void MoleMole_LCAvatarCombat_SetSkillIndex_Hook(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, int32_t index, int32_t priority, MethodInfo* method);
 		static void MoleMole_LCAvatarCombat_CheckCDTimer_Hook(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* info, MethodInfo* method);
+		
 		static void MonoTeamBtn_Update_Hook(app::MonoTeamBtn* __this, MethodInfo* method);
 		static void MonoTeamBtn_set_PCKey_Hook(app::MonoTeamBtn* __this, app::String* value, MethodInfo* method);
+		static /*MonoControlElement*/ void* MonoTeamBtn_get_PS4KeyIcon_Hook(app::MonoTeamBtn* __this, MethodInfo* method);
 	};
 }
