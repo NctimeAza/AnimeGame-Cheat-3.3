@@ -11,23 +11,23 @@ namespace cheat::feature
     About::About() : Feature()
     {
         std::string syslang = setlocale(LC_ALL, "");
-        if (std::regex_search(syslang, std::regex("^Arabic_")))
+        if (syslang.starts_with("Arabic_"))
             lang = "ArabicW";
-        else if (std::regex_search(syslang, std::regex("^Chinese (Simplified)_")))
+        else if (syslang.starts_with("Chinese (Simplified)_"))
             lang = "ZHCN";
-        else if (std::regex_search(syslang, std::regex("^Chinese (Traditional)_")))
+        else if (syslang.starts_with("Chinese (Traditional)_"))
             lang = "ZHTW";
-        else if (std::regex_search(syslang, std::regex("^Filipino_")))
+        else if (syslang.starts_with("Filipino_"))
             lang = "FilipinoW";
-        else if (std::regex_search(syslang, std::regex("^Japanese_")))
+        else if (syslang.starts_with("Japanese_"))
             lang = "JapaneseW";
-        else if (std::regex_search(syslang, std::regex("^Malay_")))
+        else if (syslang.starts_with("Malay_"))
             lang = "MalayW";
-        else if (std::regex_search(syslang, std::regex("^Portuguese_")))
+        else if (syslang.starts_with("Portuguese_"))
             lang = "PortugueseW";
-        else if (std::regex_search(syslang, std::regex("^Russian_")))
+        else if (syslang.starts_with("Russian_"))
             lang = "RussianW";
-        else if (std::regex_search(syslang, std::regex("^Vietnamese_")))
+        else if (syslang.starts_with("Vietnamese_"))
             lang = "VietnameseW";
 		else
 			lang = "EnglishW";
