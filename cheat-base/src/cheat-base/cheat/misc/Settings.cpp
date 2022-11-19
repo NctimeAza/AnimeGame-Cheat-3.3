@@ -402,12 +402,12 @@ namespace cheat::feature
 	{
 		ImGui::BeginGroupPanel(_TR("General"));
 		{
-			ConfigWidget("Show Cheat Menu Key", f_MenuKey, false,
-				"Key to toggle main menu visibility. Cannot be empty.\n"\
-				"If you forget this key, you can see or set it in your config file.");
-			ImGui::InputText("command line arguments", &cma);
-			ImGui::SameLine(); HelpMarker("Lanuch the game with command line arguments");
-			if (ImGui::Button("Refresh"))
+			ConfigWidget(_TR("Show Cheat Menu Key"), f_MenuKey, false,
+				_TR("Key to toggle main menu visibility. Cannot be empty.\n"\
+				"If you forget this key, you can see or set it in your config file."));
+			ImGui::InputText(_TR("command line arguments"), &cma);
+			ImGui::SameLine(); HelpMarker(_TR("Lanuch the game with command line arguments"));
+			if (ImGui::Button(_TR("Refresh")))
 			{
 				ini.SetUnicode();
 #ifdef _DEBUG
@@ -428,7 +428,7 @@ namespace cheat::feature
 #endif
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Apply"))
+			if (ImGui::Button(_TR("Apply")))
 			{
 				if (cma.empty())
 					return;
@@ -449,10 +449,10 @@ namespace cheat::feature
 				ini.Reset();
 #endif
 			}
-			ImGui::SameLine(); TextURL("List of unity command line arguments", "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
+			ImGui::SameLine(); TextURL(_TR("List of unity command line arguments"), "https://docs.unity3d.com/Manual/PlayerCommandLineArguments.html", false, false);
 			ImGui::Checkbox("", &ADll); ImGui::SameLine();
-			ImGui::InputText("Additional Dll", &DllPath); ImGui::SameLine(); HelpMarker("Inject an additional dll alongside the akebi dll.");
-			if (ImGui::Button("Refresh##2"))
+			ImGui::InputText(_TR("Additional Dll"), &DllPath); ImGui::SameLine(); HelpMarker(_TR("Inject an additional dll alongside the akebi dll."));
+			if (ImGui::Button(std::format("{}##2", _TR("Refresh")).c_str()))
 			{
 				ini.SetUnicode();
 #ifdef _DEBUG
@@ -475,7 +475,7 @@ namespace cheat::feature
 #endif
 			}
 			ImGui::SameLine();
-			if (ImGui::Button("Apply##2"))
+			if (ImGui::Button(std::format("{}##2", _TR("Apply")).c_str()))
 			{
 				ini.SetUnicode();
 #ifdef _DEBUG
@@ -495,22 +495,22 @@ namespace cheat::feature
 				ini.Reset();
 #endif
 			}
-			ConfigWidget("Hotkeys Enabled", f_HotkeysEnabled, "Enable hotkeys.");
+			ConfigWidget(_TR("Hotkeys Enabled"), f_HotkeysEnabled, _TR("Enable hotkeys."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Logging");
+		ImGui::BeginGroupPanel(_TR("Logging"));
 		{
-			bool consoleChanged = ConfigWidget("Console Logging", f_ConsoleLogging,
-				"Enable console for logging information (changes will take effect after relaunch)");
+			bool consoleChanged = ConfigWidget(_TR("Console Logging"), f_ConsoleLogging,
+				_TR("Enable console for logging information (changes will take effect after relaunch)"));
 			if (consoleChanged && !f_ConsoleLogging)
 			{
 				Logger::SetLevel(Logger::Level::None, Logger::LoggerType::ConsoleLogger);
 			}
 
-			bool fileLogging = ConfigWidget("File Logging", f_FileLogging,
-				"Enable file logging (changes will take effect after relaunch).\n" \
-				"A folder in the app directory will be created for logs.");
+			bool fileLogging = ConfigWidget(_TR("File Logging"), f_FileLogging,
+				_TR("Enable file logging (changes will take effect after relaunch).\n" \
+				"A folder in the app directory will be created for logs."));
 			if (fileLogging && !f_FileLogging)
 			{
 				Logger::SetLevel(Logger::Level::None, Logger::LoggerType::FileLogger);
@@ -518,70 +518,70 @@ namespace cheat::feature
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Status Window");
+		ImGui::BeginGroupPanel(_TR("Status Window"));
 		{
-			ConfigWidget("Show Status Window", f_StatusShow);
-			ConfigWidget("Move Status Window", f_StatusMove, "Allow moving of 'Status' window.");
+			ConfigWidget(_TR("Show Status Window"), f_StatusShow);
+			ConfigWidget(_TR("Move Status Window"), f_StatusMove, _TR("Allow moving of 'Status' window."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Info Window");
+		ImGui::BeginGroupPanel(_TR("Info Window"));
 		{
-			ConfigWidget("Show Info Window", f_InfoShow);
-			ConfigWidget("Move Info Window", f_InfoMove, "Allow moving of 'Info' window.");
+			ConfigWidget(_TR("Show Info Window"), f_InfoShow);
+			ConfigWidget(_TR("Move Info Window"), f_InfoMove, _TR("Allow moving of 'Info' window."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("FPS indicator");
+		ImGui::BeginGroupPanel(_TR("FPS indicator"));
 		{
-			ConfigWidget("Show FPS Indicator", f_FpsShow);
-			ConfigWidget("Move FPS Indicator", f_FpsMove, "Allow moving of 'FPS Indicator' window.");
+			ConfigWidget(_TR("Show FPS Indicator"), f_FpsShow);
+			ConfigWidget(_TR("Move FPS Indicator"), f_FpsMove, _TR("Allow moving of 'FPS Indicator' window."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Show Notifications");
+		ImGui::BeginGroupPanel(_TR("Show Notifications"));
 		{
-			ConfigWidget("Show Notifications", f_NotificationsShow, "Notifications on the bottom-right corner of the window will be displayed.");
-			ConfigWidget("Notifications Delay", f_NotificationsDelay, 1, 1, 10000, "Delay in milliseconds between notifications.");
+			ConfigWidget(_TR("Show Notifications"), f_NotificationsShow, _TR("Notifications on the bottom-right corner of the window will be displayed."));
+			ConfigWidget(_TR("Notifications Delay"), f_NotificationsDelay, 1, 1, 10000, _TR("Delay in milliseconds between notifications."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Fast Exit");
+		ImGui::BeginGroupPanel(_TR("Fast Exit"));
 		{
-			ConfigWidget("Enabled",
+			ConfigWidget(_TR("Enabled"),
 				f_FastExitEnable,
-				"Enable Fast Exit.\n"
+				_TR("Enable Fast Exit.\n")
 			);
 			if (!f_FastExitEnable)
 				ImGui::BeginDisabled();
 
-			ConfigWidget("Key", f_HotkeyExit, true,
-				"Key to exit the game.");
+			ConfigWidget(_TR("Key"), f_HotkeyExit, true,
+				_TR("Key to exit the game."));
 
 			if (!f_FastExitEnable)
 				ImGui::EndDisabled();
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Interface Customization");
+		ImGui::BeginGroupPanel(_TR("Interface Customization"));
 		{
 			ImGui::SetNextItemWidth(200);
-			if (ConfigWidget("Font Size", f_FontSize, 1, 8, 64, "Adjust interface font size."))
+			if (ConfigWidget(_TR("Font Size"), f_FontSize, 1, 8, 64, _TR("Adjust interface font size.")))
 				renderer::SetDefaultFontSize(static_cast<float>(f_FontSize));
 
 			static std::string themeNameBuffer_;
 
 			ImGui::SetNextItemWidth(200);
-			ImGui::InputText("Theme Name", &themeNameBuffer_);
+			ImGui::InputText(_TR("Theme Name"), &themeNameBuffer_);
 
 			bool alreadyExist = m_Themes.count(themeNameBuffer_) > 0;
 
 			ImGui::SameLine();
-			if (ImGui::Button(alreadyExist ? "Replace Theme" : "Save Theme"))
+			if (ImGui::Button(alreadyExist ? _TR("Replace Theme") : _TR("Save Theme")))
 			{
 				ImGui::SameLine();
 				if (themeNameBuffer_.empty())
-					ImGui::Text("Theme name is not valid. Falling back into default theme");
+					ImGui::Text(_TR("Theme name is not valid. Falling back into default theme"));
 				ThemeExport(themeNameBuffer_);
 				hasLoaded = false;
 				f_DefaultTheme = themeNameBuffer_;
@@ -590,7 +590,7 @@ namespace cheat::feature
 			}
 
 			ImGui::SetNextItemWidth(200);
-			if (ImGui::BeginCombo("Theme Select", f_DefaultTheme.value().c_str()))
+			if (ImGui::BeginCombo(_TR("Theme Select"), f_DefaultTheme.value().c_str()))
 			{
 				for (auto& [themeName, themeData] : m_Themes)
 				{
@@ -608,7 +608,7 @@ namespace cheat::feature
 			}
 
 			ImGui::SameLine();
-			if (ImGui::Button("Delete Theme"))
+			if (ImGui::Button(_TR("Delete Theme")))
 			{
 				std::filesystem::remove(themesDir / (f_DefaultTheme.value() + ".json"));
 				LOG_INFO("Deleted theme %s", f_DefaultTheme.value().c_str());
@@ -617,18 +617,18 @@ namespace cheat::feature
 				Init();
 			}
 
-			ConfigWidget("Show Theme Customization", f_ShowStyleEditor, "Show ImGui theme customization window.");
+			ConfigWidget(_TR("Show Theme Customization"), f_ShowStyleEditor, _TR("Show ImGui theme customization window."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Account Switcher");
+		ImGui::BeginGroupPanel(_TR("Account Switcher"));
 		{
-			ImGui::InputText("Account Name", &ae_Name);
-			if (ImGui::Button("Export"))
+			ImGui::InputText(_TR("Account Name"), &ae_Name);
+			if (ImGui::Button(_TR("Export")))
 			{
 				if (ae_Name.empty())
 				{
-					ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Please fill both boxes" });
+					ImGui::InsertNotification({ ImGuiToastType_None, 5000, _TR("Please fill both boxes") });
 				}
 				else if (!ae_Name.empty())
 				{
@@ -646,11 +646,11 @@ namespace cheat::feature
 					ini.LoadFile((InjectorPath + "\\accounts.ini").c_str());
 					if (ini.KeyExists("Accounts", ae_Name.c_str()))
 					{
-						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, _TR("Account successfully exported") });
 						ae_Name.clear();
 				    }
 					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
-						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, _TR("Account export failed") });
 #else
 					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
 					std::vector<BYTE> RegisteryValue = winreg::RegKey{ HKEY_CURRENT_USER, L"Software\\miHoYo\\Genshin Impact" }.GetBinaryValue(L"MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810");
@@ -661,21 +661,21 @@ namespace cheat::feature
 					ini.LoadFile((util::GetCurrentPath() / "accounts.ini").string().c_str());
 					if (ini.KeyExists("Accounts", ae_Name.c_str()))
 					{
-						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account successfully exported" });
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, _TR("Account successfully exported") });
 						ae_Name.clear();
 					}
 					else if (!ini.KeyExists("Accounts", ae_Name.c_str()))
-						ImGui::InsertNotification({ ImGuiToastType_None, 5000, "Account export failed" });
+						ImGui::InsertNotification({ ImGuiToastType_None, 5000, _TR("Account export failed") });
 #endif
 					ini.Reset();
 				}
 			}
 			ImGui::SameLine(); HelpMarker(
-				"Quickly switch accounts on launch\n"
+				_TR("Quickly switch accounts on launch\n"
 				"to use this, first export the account then add the following arguemnet to a shortcut or a command line\n"
 				"-account \"Account Name\".\n"
 				"You can also switch the region with -region \"Region Name\"\n"
-				"Availabe regions are \"usa\", \"eu\", \"asia\", \"thm\".");
+				"Availabe regions are \"usa\", \"eu\", \"asia\", \"thm\"."));
 		}
 		ImGui::EndGroupPanel();
 	}

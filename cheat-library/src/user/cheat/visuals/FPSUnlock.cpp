@@ -28,7 +28,7 @@ namespace cheat::feature
         if (f_Enabled)
         {
             ImGui::Indent();
-            ConfigWidget(_TR("##2"), f_Limit);
+            ConfigWidget("##2", f_Limit);
             ImGui::SameLine();
             ConfigWidget(_TR("FPS Limit"), f_FpsLimit, 1, 5, 360, _TR("Limit framerate while the game window isn't focused.\nThis won't work if the cheat menu is open or if you're in a loading screen."));
             ImGui::Unindent();

@@ -47,7 +47,7 @@ namespace cheat::feature
                 ImGui::EndCombo();
             }
 
-            if (ImGui::BeginCombo(_TR("Emotions###ID") /*idk*/, f_Emotions.value().c_str()))
+            if (ImGui::BeginCombo(_TR("Emotions") /*idk*/, f_Emotions.value().c_str()))
             {
                 for (auto& emotion : emotions)
                 {

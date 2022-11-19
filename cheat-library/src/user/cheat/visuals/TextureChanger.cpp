@@ -33,20 +33,20 @@ namespace cheat::feature
     void TextureChanger::DrawMain()
     {
         ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Texture Changer."));
-        ImGui::Text(_TR("Active Hero: %s"), ActiveHero.c_str());
-        ImGui::Text(_TR("Active Glider: %s"), ActiveGlider.c_str());
+        ImGui::Text("%s: %s", _TR("Active Hero"), ActiveHero.c_str());
+        ImGui::Text("%s: %s", _TR("Active Glider"), ActiveGlider.c_str());
  
-        ConfigWidget(_TR("Head"), f_HeadPath, "Head Texture.\n" \
-            "Example path: C:\\Head.png");
+        ConfigWidget(_TR("Head"), f_HeadPath, _TR("Head Texture.\n" \
+            "Example path: C:\\Head.png"));
 
-        ConfigWidget(_TR("Body"), f_BodyPath, "Body Texture.\n" \
-            "Example path: C:\\Body.png");
+        ConfigWidget(_TR("Body"), f_BodyPath, _TR("Body Texture.\n" \
+            "Example path: C:\\Body.png"));
 
-        ConfigWidget(_TR("Dress"), f_DressPath, "Dress Texture.\n" \
-            "Example path: C:\\Dress.png");
+        ConfigWidget(_TR("Dress"), f_DressPath, _TR("Dress Texture.\n" \
+            "Example path: C:\\Dress.png"));
 
-        ConfigWidget(_TR("Glider"), f_GliderPath, "Glider Texture.\n" \
-            "Example path: C:\\Glider.png");
+        ConfigWidget(_TR("Glider"), f_GliderPath, _TR("Glider Texture.\n" \
+            "Example path: C:\\Glider.png"));
 
         if (ImGui::Button(_TR("Apply")))
             ApplyTexture = true;

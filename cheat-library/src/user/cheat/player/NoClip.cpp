@@ -90,7 +90,8 @@ namespace cheat::feature
 
 	void NoClip::DrawStatus()
 	{
-		ImGui::Text(_TR("NoClip%s[%.01f%s%|%s]"),
+		ImGui::Text("%s%s[%.01f%s%|%s]",
+			_TR("No Clip"),
 			f_AltSpeedEnabled ? "+Alt " : " ",
 			f_Speed.value(),
 			f_AltSpeedEnabled ? fmt::format("|{:.1f}", f_AltSpeed.value()).c_str() : "",

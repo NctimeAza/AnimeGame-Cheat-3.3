@@ -22,15 +22,15 @@ namespace cheat::feature
 
 	RapidFire::RapidFire() : Feature(),
 		NFP(f_Enabled, "RapidFire", "Attack Effects", false),
-		NFP(f_MultiHit, "RapidFire", "Multi hit", false),
+		NFP(f_MultiHit, "RapidFire", "Multi-Hit", false),
 		NF(f_Multiplier, "RapidFire", 2),
 		NF(f_OnePunch, "RapidFire", false),
 		NFP(f_Randomize, "RapidFire", "Randomize", false),
 		NF(f_minMultiplier, "RapidFire", 1),
 		NF(f_maxMultiplier, "RapidFire", 3),
-		NFP(f_MultiTarget, "RapidFire", "Multi-target", false),
+		NFP(f_MultiTarget, "RapidFire", "Multi-Target", false),
 		NF(f_MultiTargetRadius, "RapidFire", 20.0f),
-		NFP(f_MultiAnimation, "RapidFire", "Multi-animation", false),
+		NFP(f_MultiAnimation, "RapidFire", "Multi-Animation", false),
 		NF(f_AnimationMultiplier, "RapidFire", 100),
 		NF(f_AnimationState, "RapidFire", 0.5f),
 		NFP(f_AttackSpeed, "RapidFire", "Attack speed", false),
@@ -54,7 +54,7 @@ namespace cheat::feature
 		ImGui::SameLine();
 		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Choose any or both modes below."));
 
-		ConfigWidget(_TR("Multi-hit Mode"), f_MultiHit, _TR("Enables multi-hit.\n" \
+		ConfigWidget(_TR("Multi-Hit Mode"), f_MultiHit, _TR("Enables multi-hit.\n" \
 			"Multiplies your attack count.\n" \
 			"This is not well tested, and can be detected by anticheat.\n" \
 			"Not recommended to be used with main accounts or used with high values.\n"));
@@ -83,7 +83,7 @@ namespace cheat::feature
 
 		ImGui::Unindent();
 
-		ConfigWidget(_TR("Multi-target"), f_MultiTarget, _TR("Enables multi-target attacks within specified radius of target.\n" \
+		ConfigWidget(_TR("Multi-Target"), f_MultiTarget, _TR("Enables multi-target attacks within specified radius of target.\n" \
 			"All valid targets around initial target will be hit based on setting.\n" \
 			"Damage numbers will only appear on initial target but all valid targets are damaged.\n" \
 			"If multi-hit is off and there are still multiple numbers on a single target, check the Entity Manager in the Debug section to see if there are invisible entities.\n" \
@@ -94,7 +94,7 @@ namespace cheat::feature
 		ConfigWidget(_TR("Radius (m)"), f_MultiTargetRadius, 0.1f, 5.0f, 50.0f, _TR("Radius to check for valid targets."));
 		ImGui::Unindent();
 
-		ConfigWidget(_TR("Multi-animation"), f_MultiAnimation, _TR("Enables multi-animation attacks.\n" \
+		ConfigWidget(_TR("Multi-Animation"), f_MultiAnimation, _TR("Enables multi-animation attacks.\n" \
 			"Do keep in mind that the character's audio will also be spammed."));
 		ConfigWidget(_TR("Animation Multiplier"), f_AnimationMultiplier, 1, 1, 150, _TR("Configure to how many times it will update the animation state.\n" \
 			"Results can vary alongside Animation State"));
@@ -117,21 +117,21 @@ namespace cheat::feature
 			if (f_MultiHit->enabled())
 			{
 				if (f_Randomize->enabled())
-					ImGui::Text(_TR("Multi-Hit Random[%d|%d]"), f_minMultiplier.value(), f_maxMultiplier.value());
+					ImGui::Text("%s [%d|%d]", _TR("Multi-Hit Random"), f_minMultiplier.value(), f_maxMultiplier.value());
 				else if (f_OnePunch)
 					ImGui::Text(_TR("Multi-Hit [OnePunch]"));
 				else
-					ImGui::Text(_TR("Multi-Hit [%d]"), f_Multiplier.value());
+					ImGui::Text("%s [%d]", _TR("Multi-Hit"), f_Multiplier.value());
 			}
 			if (f_MultiTarget->enabled())
-				ImGui::Text(_TR("Multi-Target [%.01fm]"), f_MultiTargetRadius.value());
+				ImGui::Text("%s [%.01fm]", _TR("Multi-Target"), f_MultiTargetRadius.value());
 		}
 
 		if (f_MultiAnimation->enabled())
-			ImGui::Text(_TR("Multi-Animation [%d|%0.2f]"), f_AnimationMultiplier.value(), f_AnimationState.value());
+			ImGui::Text("%s [%d|%0.2f]", _TR("Multi-Animation"), f_AnimationMultiplier.value(), f_AnimationState.value());
 		
 		if (f_AttackSpeed->enabled())
-			ImGui::Text(_TR("Attack Speed [%0.1f]"), f_SpeedMultiplier.value());
+			ImGui::Text("%s [%0.1f]", _TR("Attack Speed"), f_SpeedMultiplier.value());
 	}
 
 	RapidFire& RapidFire::GetInstance()

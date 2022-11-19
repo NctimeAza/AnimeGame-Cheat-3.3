@@ -30,7 +30,7 @@ namespace cheat::feature
 
 	void ItemTeleportBase::DrawItems()
 	{
-		auto nodeName = util::string_format(_TR("%s list"), name.c_str());
+		auto nodeName = util::string_format("%s %s", _TR("list"), name.c_str());
 		if (ImGui::TreeNode(nodeName.c_str()))
 		{
 			DrawEntities();

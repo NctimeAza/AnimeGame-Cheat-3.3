@@ -43,7 +43,7 @@ namespace cheat::feature
 			_TR("Removes energy requirement for elemental bursts.\n" \
 			"(Energy bubble may appear incomplete but still usable.)"));
 
-		ConfigWidget(_TR("## AbilityReduce"), f_AbilityReduce); ImGui::SameLine();
+		ConfigWidget("## AbilityReduce", f_AbilityReduce); ImGui::SameLine();
 		ConfigWidget(_TR("Reduce Skill/Burst Cooldown"), f_TimerReduce, 1.f, 1.f, 6.0f,
 			_TR("Reduce cooldowns of elemental skills and bursts.\n"\
 			"1.0 - no CD, 2.0 and higher - increases the timer value."));

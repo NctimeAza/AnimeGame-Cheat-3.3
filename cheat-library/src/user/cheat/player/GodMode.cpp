@@ -48,7 +48,7 @@ namespace cheat::feature
     {
         ImGui::Text(_TR("God Mode"));
         if (f_Conditional)
-            ImGui::Text(_TR("Condition MH%0.2f%% | MR%0.2f%%"), f_MinHealth.value(), f_MissingRate.value());
+            ImGui::Text("%s MH%0.2f%% | MR%0.2f%%", _TR("Condition"), f_MinHealth.value(), f_MissingRate.value());
     }
 
     GodMode& GodMode::GetInstance()
