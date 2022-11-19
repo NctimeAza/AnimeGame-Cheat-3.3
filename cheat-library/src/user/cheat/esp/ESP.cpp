@@ -102,7 +102,7 @@ namespace cheat::feature
 
 			ImGui::Spacing();
 			ConfigWidget(_TR("Font Size"), f_FontSize, 1, 1, 100, _TR("Font size of name or distance."));
-			ConfigWidget(_TR("## Font outline enabled"), f_FontOutline); ImGui::SameLine();
+			ConfigWidget("## Font outline enabled", f_FontOutline); ImGui::SameLine();
 			ConfigWidget(_TR("Font outline"), f_FontOutlineSize, 0.001f, 0.0f, 10.0f);
 
 			ImGui::Spacing();
@@ -419,7 +419,7 @@ namespace cheat::feature
 		bool checked = std::all_of(validFilters.begin(), validFilters.end(), [](const FilterInfo* filter) {  return filter->first.value().m_Enabled; });
 		bool changed = false;
 
-		if (ImGui::BeginSelectableGroupPanel(section.c_str(), checked, changed, true))
+		if (ImGui::BeginSelectableGroupPanel(Translator::RuntimeTranslate(section.c_str()).c_str(), checked, changed, true))
 		{
 			for (auto& info : validFilters)
 			{
@@ -430,7 +430,7 @@ namespace cheat::feature
 
 			ImGui::Spacing();
 
-			if (ImGui::TreeNode(this, "Hotkeys"))
+			if (ImGui::TreeNode(this, _TR("Hotkeys")))
 			{
 				for (auto& info : validFilters)
 				{
@@ -438,7 +438,7 @@ namespace cheat::feature
 					ImGui::PushID(info);
 
 					auto& hotkey = field.value().m_Hotkey;
-					if (InputHotkey(field.name().c_str(), &hotkey, true))
+					if (InputHotkey(Translator::RuntimeTranslate(field.name()).c_str(), &hotkey, true))
 						field.FireChanged();
 
 					ImGui::PopID();
@@ -507,7 +507,7 @@ namespace cheat::feature
 							if (puzzleFinished)
 								break;
 							else
-								esp::render::DrawEntity(entry.m_Name, entity, entry.m_Color, entry.m_ContrastColor);
+								esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
 							break;
 						}
 					}
@@ -515,7 +515,7 @@ namespace cheat::feature
 					{
                         if(isBuriedChest(entity))
                         {
-                            esp::render::DrawEntity(entry.m_Name, entity, entry.m_Color, entry.m_ContrastColor);
+                            esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         }
                         break;
                     }
@@ -527,11 +527,11 @@ namespace cheat::feature
 						{
 							std::string name = entity->name();
 							GetNpcName(name);
-							esp::render::DrawEntity(name, entity, entry.m_Color, entry.m_ContrastColor);
+							esp::render::DrawEntity(Translator::RuntimeTranslate(name), entity, entry.m_Color, entry.m_ContrastColor);
 							break;
 						}
 					}
-					esp::render::DrawEntity(entry.m_Name, entity, entry.m_Color, entry.m_ContrastColor);
+					esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
 					break;
 				}
 			}
@@ -566,8 +566,9 @@ namespace cheat::feature
 		ImGuiIO& io = g.IO;
 		const ImGuiStyle& style = g.Style;
 		const ImGuiID id = window->GetID(label);
-
-		const ImVec2 label_size = ImGui::CalcTextSize(label, NULL, true);
+		
+		auto translatedLabel = Translator::RuntimeTranslate(label);
+		const ImVec2 label_size = ImGui::CalcTextSize(translatedLabel.c_str(), NULL, true);
 		const ImVec2 item_size = ImGui::CalcItemSize(size, ImGui::CalcItemWidth(), label_size.y + style.FramePadding.y * 2.0f + 20.0f);
 
 		float region_max_x = ImGui::GetContentRegionMaxAbs().x;
@@ -669,7 +670,7 @@ namespace cheat::feature
 
 		ImVec2 text_end(frame_bb.Max.x - style.FramePadding.x - border_size, y_center + label_size.y / 2);
 		ImVec2 text_start(ImMax(image_end.x + style.FramePadding.x, text_end.x - label_size.x), y_center - label_size.y / 2);
-		ImGui::RenderTextClipped(text_start, text_end, label, NULL, NULL, { 0, 0 }, &clip_rect);
+		ImGui::RenderTextClipped(text_start, text_end, translatedLabel.c_str(), NULL, NULL, { 0, 0 }, &clip_rect);
 
 		if (pushed)
 			ImGui::PopStyleColor();
