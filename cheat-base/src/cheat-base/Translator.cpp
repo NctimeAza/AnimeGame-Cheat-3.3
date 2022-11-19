@@ -26,7 +26,7 @@ void Translator::Init(const nlohmann::json& json)
 	_languages.emplace_back("default");
 }
 
-const std::string& Translator::RuntimeTranslate(const std::string& origin)
+std::string Translator::RuntimeTranslate(const std::string& origin)
 {
 	return FindTranslationString(origin);
 }
@@ -93,7 +93,7 @@ void Translator::SetLanguage(const std::string& language)
 	NotifyUpdate();
 }
 
-const std::string& Translator::FindTranslationString(const std::string& origin)
+std::string Translator::FindTranslationString(const std::string& origin)
 {
 #ifdef _DEBUG
 	if (!_debugOrigins.contains(origin))
@@ -141,7 +141,7 @@ nlohmann::json Translator::DumpTranslateConfigTemplate()
 		for (auto& origin : _debugOrigins)
 		{
 			if (!translatesOrigin.contains(origin))
-				translatesOrigin[origin] = "";
+				translatesOrigin[origin] = origin;
 		}
 	}
 	return languages;

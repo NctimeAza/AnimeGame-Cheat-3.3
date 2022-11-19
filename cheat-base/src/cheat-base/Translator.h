@@ -28,7 +28,7 @@ public:
 		return translated.c_str();
 	}
 
-	static const std::string& RuntimeTranslate(const std::string& origin);
+	static std::string RuntimeTranslate(const std::string& origin);
 
 	static void SetDefaultPseudo(const std::string& pseudo);
 	static void SetDefaultFontName(const std::string& fontName);
@@ -44,7 +44,7 @@ public:
 #endif
 
 private:
-	static const std::string& FindTranslationString(const std::string& origin);
+	static std::string FindTranslationString(const std::string& origin);
 	static void NotifyUpdate();
 
 	inline static std::list<std::atomic<bool>> _updateFlags;
