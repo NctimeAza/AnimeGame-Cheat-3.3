@@ -12,6 +12,7 @@ DbgUiRemoteBreakin_t fnDbgUiRemoteBreakin = nullptr;
 
 static void RunVEH();
 static void FindAPI();
+static void VMPVirtualProtectCheckDisable();
 static bool Patch_NtSetInformationThread();
 static bool Patch_DbgUiRemoteBreakin();
 
@@ -35,6 +36,9 @@ void DebuggerBypassPost()
 
 	RunVEH();
 #endif
+
+	VMPVirtualProtectCheckDisable();
+
 }
 
 // Taken from https://github.com/yubie-re/vmp-virtualprotect-bypass/blob/main/src/vp-patch.hpp
@@ -53,7 +57,6 @@ static void VMPVirtualProtectCheckDisable()
 static void RunVEH()
 {
 	AddVectoredExceptionHandler(1, DebugHandler);
-	VMPVirtualProtectCheckDisable();
 }
 
 static bool Patch_NtSetInformationThread()

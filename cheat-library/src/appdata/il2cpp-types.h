@@ -11235,11 +11235,11 @@ namespace app {
         bool isLocked;
         bool ignoreCDMinusRatio;
         bool forceCanDoSkill;
-        struct SafeFloat KMKHNLHFIOL;
-        struct SafeFloat KBLGNPCEMON;
-        struct SafeFloat BKNLEDABNBI;
-        struct SafeFloat HADJBEOJAAI;
-        struct SafeFloat DJHJCNGKFMC;
+        struct SafeFloat maxHoldTime;
+        struct SafeFloat curHoldTime;
+        struct SafeFloat _costElem;
+        struct SafeFloat _costElemDelta;
+        struct SafeFloat _costElemRatio;
         int32_t skillIndex;
         int32_t prority;
         float _costElem_k__BackingField;
@@ -13276,6 +13276,89 @@ namespace app {
         struct RSA__Class* klass;
         MonitorData* monitor;
         struct RSA__Fields fields;
+    };
+
+    struct MonoTeamBtn__Fields {
+        struct MonoSpriteProxy__Fields _;
+        struct Animator* _animator;
+        struct Button_1* _actionBtn;
+        struct Button_1* _qteButton;
+        struct MonoBattleBtn* _energySkillButton;
+        struct Image_1* _avatarIcon;
+        struct Material* _deadMaterial;
+        struct Text* _nameText;
+        struct SmoothMask* _hpBar;
+        struct MonoColorExchange* _hpColor;
+        struct MonoColorExchange* _hpBgColor;
+        struct GameObject* _voiceButton;
+        struct SimpleText* _changeAvatarCD;
+        struct SmoothMask* _changeAvatarCDMask;
+        struct GameObject* _trialInfo;
+        struct GameObject* _talentCD;
+        struct SmoothMask* _talentCDMask;
+        struct Image_1* _talentCDMaskImage;
+        struct Image_1* _talentCDBgImage;
+        struct Transform* _talentCDEffectTrans;
+        struct Color _talentCDBgColor;
+        struct Color _talentCDFillColor;
+        struct Color _talentCDReadyBgColor;
+        struct Color _talentCDReadyFillColor;
+        struct GameObject* _talentCDEffect;
+        struct MonoPrefabPlugin* _prefabPlugin;
+        struct Transform* avatarLevelUpTrans;
+        struct GameObject* avatarLevelUpGameObject;
+        struct Transform* fetterUpTrans;
+        struct GameObject* fetterUpGameObject;
+        struct RectTransform* _pcKeyGrp;
+        struct MonoInLevelBuffInfo* inlevelBuffInfo;
+        struct MonoLongPressButton* _longPressBtn;
+        struct GameObject* _longPressBarGO;
+        struct SmoothMask* _longPressBarFill;
+        uint64_t _guid;
+        bool _showChangeAvatarCDText;
+        struct LCAvatarCombat* _lcCombat;
+        struct GameObject* _talentCDEffectIns;
+        struct MoleMole_AvatarDataItem* _avatarData;
+        struct MoleMole_UIUtil_MoleMole_UIUtil_LevelUpItemQueue* teamLevelUpItemQueue;
+        bool needTickBuff;
+        struct Image_1* _skillImage;
+        struct CanvasGroup* _actionBtnCanvasGroup;
+        struct CanvasGroup* _qteBtnCanvasGroup;
+        struct MoleMole_EditableString* _changeAvatarCDStr;
+        struct Action_1_MoleMole_EvtEntityReadyPost_* _onEntityReadyPost;
+        float _currHPRatio;
+        float _lastChangeAvatarCd;
+        struct Animation* _restoreHP;
+        struct MonoUIEffect* _restoreHPEffect;
+    };
+
+    struct MonoTeamBtn {
+        struct MonoTeamBtn__Class* klass;
+        MonitorData* monitor;
+        struct MonoTeamBtn__Fields fields;
+    };
+
+    struct __declspec(align(8)) Config_AvatarSkillDepotExcelConfig__Fields {
+        struct SimpleSafeUInt32 idRawNum;
+        struct SimpleSafeUInt32 energySkillRawNum;
+        struct SimpleSafeUInt32 talentSkillRawNum;
+        struct SimpleSafeUInt32__Array* _skills;
+        struct SimpleSafeUInt32__Array* _subSkills;
+        struct SimpleSafeUInt32 attackModeSkillRawNum;
+        struct SimpleSafeUInt32 leaderTalentRawNum;
+        struct String__Array* _extraAbilities;
+        struct SimpleSafeUInt32__Array* _talents;
+        struct String* _talentStarName;
+        struct SimpleSafeUInt32 coreProudSkillGroupIdRawNum;
+        struct SimpleSafeUInt32 coreProudAvatarPromoteLevelRawNum;
+        struct Config_ProudSkillOpenConfig__Array* _inherentProudSkillOpens;
+        struct String* _skillDepotAbilityGroup;
+    };
+
+    struct Config_AvatarSkillDepotExcelConfig {
+        struct Config_AvatarSkillDepotExcelConfig__Class* klass;
+        MonitorData* monitor;
+        struct Config_AvatarSkillDepotExcelConfig__Fields fields;
     };
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)

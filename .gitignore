@@ -365,5 +365,3 @@ FodyWeavers.xsd
 enc_temp_folder/
 ModelChanger.h
 ModelChanger.cpp
-RSAHook.h
-RSAHook.cpp
