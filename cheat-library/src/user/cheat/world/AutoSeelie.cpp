@@ -18,7 +18,7 @@ namespace cheat::feature
 	}
 	const FeatureGUIInfo& AutoSeelie::GetGUIInfo() const
 	{
-		TRANSLATED_GROUP_INFO("Auto Sellie", "World");
+		TRANSLATED_GROUP_INFO("Auto Seelie", "World");
 		return info;
 	}
 
