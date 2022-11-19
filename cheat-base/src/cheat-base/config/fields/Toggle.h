@@ -60,11 +60,11 @@ namespace config
 			config::converters::FromJson(m_Value, j["value"]);
 		}
 
-		Toggle(const T& val) : m_Enabled(false), m_Value(val), OnEnableChange() { }
+		explicit Toggle(const T& val) : m_Enabled(false), m_Value(val), OnEnableChange() { }
 
-		Toggle(bool enable) : m_Enabled(enable), m_Value(), OnEnableChange() { }
+		explicit Toggle(bool enable) : m_Enabled(enable), m_Value(), OnEnableChange() { }
 
-		Toggle() : m_Enabled(false), m_Value(), OnEnableChange() { }
+		explicit Toggle() : m_Enabled(false), m_Value(), OnEnableChange() { }
 
 		inline operator bool()
 		{
