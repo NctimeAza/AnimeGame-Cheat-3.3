@@ -73,11 +73,9 @@ ASCENSIONMATERIALSDATA  RCDATA                  "ascension_materials.json"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// PNG"
-
+// PNG
 //
 
-#pragma region iconsHD
 HDABIDINGANGELFISH      PNG                     "iconsHD\\AbidingAngelfish.png"
 
 HDABYSSMAGE             PNG                     "iconsHD\\AbyssMage.png"
@@ -98,7 +96,7 @@ HDAKUOUMARU             PNG                     "iconsHD\\Akuoumaru.png"
 
 HDALBEDO                PNG                     "iconsHD\\Albedo.png"
 
-HDALGORITHMOFSEMIINTRANSIENTMATRIXOFOVERSEERNETWORK        PNG         "iconsHD\\SemiPerpetualControlMatrix.png"
+HDALGORITHMOFSEMIINTRANSIENTMATRIXOFOVERSEERNETWORK PNG                     "iconsHD\\SemiPerpetualControlMatrix.png"
 
 HDALLEYHUNTER           PNG                     "iconsHD\\AlleyHunter.png"
 
@@ -144,7 +142,7 @@ HDARTIFACT              PNG                     "iconsHD\\Artifact.png"
 
 HDATHELWOOD             PNG                     "iconsHD\\AthelWood.png"
 
-HDATHOUSANDFLOATINGDREAMS PNG                   "iconsHD\\AThousandFloatingDreams.png"
+HDATHOUSANDFLOATINGDREAMS PNG                     "iconsHD\\AThousandFloatingDreams.png"
 
 HDAZHDAHA               PNG                     "iconsHD\\Azhdaha.png"
 
@@ -250,7 +248,7 @@ HDCINNABARSPINDLE       PNG                     "iconsHD\\CinnabarSpindle.png"
 
 HDCLOUDLEISURESTEPS     PNG                     "iconsHD\\CloudleisureSteps.png"
 
-HDCLUSTERLEAFOFCULTIVATION PNG                  "iconsHD\\ClusterleafOfCultivation.png"
+HDCLUSTERLEAFOFCULTIVATION PNG                     "iconsHD\\ClusterleafOfCultivation.png"
 
 HDCOLLEI                PNG                     "iconsHD\\Collei.png"
 
@@ -312,7 +310,7 @@ HDDARKIRONSWORD         PNG                     "iconsHD\\DarkIronSword.png"
 
 HDDAWNCATCHER           PNG                     "iconsHD\\Dawncatcher.png"
 
-HDDAYNIGHTSWITCHINGMECHANISM PNG                "iconsHD\\DayNightSwitchingMechanism.png"
+HDDAYNIGHTSWITCHINGMECHANISM PNG                     "iconsHD\\DayNightSwitchingMechanism.png"
 
 HDDEATHMATCH            PNG                     "iconsHD\\Deathmatch.png"
 
@@ -400,7 +398,7 @@ HDEMERALDORB            PNG                     "iconsHD\\EmeraldOrb.png"
 
 HDENDOFTHELINE          PNG                     "iconsHD\\EndoftheLine.png"
 
-HDENEMIESFIRSTTIMEVICTORY PNG                   "iconsHD\\EnemiesFirstTimeVictory.png"
+HDENEMIESFIRSTTIMEVICTORY PNG                     "iconsHD\\EnemiesFirstTimeVictory.png"
 
 HDENGULFINGLIGHTNING    PNG                     "iconsHD\\EngulfingLightning.png"
 
@@ -668,7 +666,7 @@ HDLIZARDTAIL            PNG                     "iconsHD\\LizardTail.png"
 
 HDLOACHPEARL            PNG                     "iconsHD\\LoachPearl.png"
 
-HDLOSTPRAYERTOTHESACREDWINDS PNG                "iconsHD\\LostPrayertotheSacredWinds.png"
+HDLOSTPRAYERTOTHESACREDWINDS PNG                     "iconsHD\\LostPrayertotheSacredWinds.png"
 
 HDLOTUSHEAD             PNG                     "iconsHD\\LotusHead.png"
 
@@ -686,7 +684,7 @@ HDLUMINOUSSEELIE        PNG                     "iconsHD\\LuminousSeelie.png"
 
 HDLUNGEDSTICKLEBACK     PNG                     "iconsHD\\LungedStickleback.png"
 
-HDLUPUSBOREASDOMINATOROFWOLVES PNG              "iconsHD\\LupusBoreasDominatorofWolves.png"
+HDLUPUSBOREASDOMINATOROFWOLVES PNG                     "iconsHD\\LupusBoreasDominatorofWolves.png"
 
 HDLUXURIOUSCHEST        PNG                     "iconsHD\\LuxuriousChest.png"
 
@@ -814,7 +812,7 @@ HDPALEREDCRAB           PNG                     "iconsHD\\PaleRedCrab.png"
 
 HDPEACHOFTHEDEEPWAVES   PNG                     "iconsHD\\PeachoftheDeepWaves.png"
 
-HDPERPETUALMECHANICALARRAY PNG                  "iconsHD\\PerpetualMechanicalArray.png"
+HDPERPETUALMECHANICALARRAY PNG                     "iconsHD\\PerpetualMechanicalArray.png"
 
 HDPHANTASMALGATE        PNG                     "iconsHD\\PhantasmalGate.png"
 
@@ -856,7 +854,7 @@ HDPRIMOGEOVISHAP        PNG                     "iconsHD\\PrimoGeovishap.png"
 
 HDPRIMORDIALJADECUTTER  PNG                     "iconsHD\\PrimordialJadeCutter.png"
 
-HDPRIMORDIALJADEWINGEDSPEAR PNG                 "iconsHD\\PrimordialJadeWingedSpear.png"
+HDPRIMORDIALJADEWINGEDSPEAR PNG                     "iconsHD\\PrimordialJadeWingedSpear.png"
 
 HDPROTOTYPEAMBER        PNG                     "iconsHD\\PrototypeAmber.png"
 
@@ -1114,7 +1112,7 @@ HDSQUIRREL              PNG                     "iconsHD\\Squirrel.png"
 
 HDSTAFFOFHOMA           PNG                     "iconsHD\\StaffofHoma.png"
 
-HDSTAFFOFTHESCARLETSANDS PNG                    "iconsHD\\StaffoftheScarletSands.png"
+HDSTAFFOFTHESCARLETSANDS PNG                     "iconsHD\\StaffoftheScarletSands.png"
 
 HDSTARCONCH             PNG                     "iconsHD\\Starconch.png"
 
@@ -1202,7 +1200,7 @@ HDTHOMA                 PNG                     "iconsHD\\Thoma.png"
 
 HDTHREEBOXES            PNG                     "iconsHD\\ThreeBoxes.png"
 
-HDTHRILLINGTALESOFDRAGONSLAYERS PNG             "iconsHD\\ThrillingTalesofDragonSlayers.png"
+HDTHRILLINGTALESOFDRAGONSLAYERS PNG                     "iconsHD\\ThrillingTalesofDragonSlayers.png"
 
 HDTHUNDERINGPULSE       PNG                     "iconsHD\\ThunderingPulse.png"
 
@@ -1262,7 +1260,7 @@ HDWASTERGREATSWORD      PNG                     "iconsHD\\WasterGreatsword.png"
 
 HDWAVEBREAKERSFIN       PNG                     "iconsHD\\WavebreakersFin.png"
 
-HDWAVERIDERWAYPOINTCANNOTTELEPORT PNG           "iconsHD\\WaveriderWaypointCannotTeleport.png"
+HDWAVERIDERWAYPOINTCANNOTTELEPORT PNG                     "iconsHD\\WaveriderWaypointCannotTeleport.png"
 
 HDWEAPON                PNG                     "iconsHD\\Weapon.png"
 
@@ -1329,11 +1327,7 @@ HDYUNJIN                PNG                     "iconsHD\\YunJin.png"
 HDZAYTUNPEACH           PNG                     "iconsHD\\ZaytunPeach.png"
 
 HDZHONGLI               PNG                     "iconsHD\\Zhongli.png"
-#pragma endregion
 
-
-
-#pragma region icons
 ABIDINGANGELFISH        PNG                     "icons\\AbidingAngelfish.png"
 
 ABYSSMAGE               PNG                     "icons\\AbyssMage.png"
@@ -1452,7 +1446,7 @@ CICIN                   PNG                     "icons\\Cicin.png"
 
 CLOUDLEISURESTEPS       PNG                     "icons\\CloudleisureSteps.png"
 
-CLUSTERLEAFOFCULTIVATION PNG                    "icons\\ClusterleafOfCultivation.png"
+CLUSTERLEAFOFCULTIVATION PNG                     "icons\\ClusterleafOfCultivation.png"
 
 COMMONCHEST             PNG                     "icons\\CommonChest.png"
 
@@ -1502,7 +1496,7 @@ DANDY                   PNG                     "icons\\Dandy.png"
 
 DAWNCATCHER             PNG                     "icons\\Dawncatcher.png"
 
-DAYNIGHTSWITCHINGMECHANISM PNG                  "icons\\DayNightSwitchingMechanism.png"
+DAYNIGHTSWITCHINGMECHANISM PNG                     "icons\\DayNightSwitchingMechanism.png"
 
 DEEPSEAUNAGI            PNG                     "icons\\DeepSeaUnagi.png"
 
@@ -1752,7 +1746,7 @@ LUMINOUSSEELIE          PNG                     "icons\\LuminousSeelie.png"
 
 LUNGEDSTICKLEBACK       PNG                     "icons\\LungedStickleback.png"
 
-LUPUSBOREASDOMINATOROFWOLVES PNG                "icons\\LupusBoreasDominatorofWolves.png"
+LUPUSBOREASDOMINATOROFWOLVES PNG                     "icons\\LupusBoreasDominatorofWolves.png"
 
 LUXURIOUSCHEST          PNG                     "icons\\LuxuriousChest.png"
 
@@ -2002,7 +1996,7 @@ SEELIECOURT             PNG                     "icons\\SeelieCourt.png"
 
 SEELIELAMP              PNG                     "icons\\SeelieLamp.png"
 
-ALGORITHMOFSEMIINTRANSIENTMATRIXOFOVERSEERNETWORK      PNG             "icons\\SemiPerpetualControlMatrix.png"
+ALGORITHMOFSEMIINTRANSIENTMATRIXOFOVERSEERNETWORK PNG                     "icons\\SemiPerpetualControlMatrix.png"
 
 SHADOWYHUSK             PNG                     "icons\\ShadowyHusk.png"
 
@@ -2148,7 +2142,7 @@ VULTURE                 PNG                     "icons\\Vulture.png"
 
 WARMINGSEELIE           PNG                     "icons\\WarmingSeelie.png"
 
-WAVERIDERWAYPOINTCANNOTTELEPORT PNG             "icons\\WaveriderWaypointCannotTeleport.png"
+WAVERIDERWAYPOINTCANNOTTELEPORT PNG                     "icons\\WaveriderWaypointCannotTeleport.png"
 
 WEAPON                  PNG                     "icons\\Weapon.png"
 
@@ -2181,6 +2175,26 @@ WORLDQUESTS             PNG                     "icons\\WorldQuests.png"
 YUMEMIRUWOOD            PNG                     "icons\\YumemiruWood.png"
 
 ZAYTUNPEACH             PNG                     "icons\\ZaytunPeach.png"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// GIF
+//
+
+ANIM_AKEBIBOUNCE        GIF                     "anim\\akebi_bounce.gif"
+
+#pragma region "Warning"
+ArabicW                 PNG                     "warnings\\AR.png"
+ZHCN                    PNG                     "warnings\\ZHCN.png"
+ZHTW                    PNG                     "warnings\\ZHTW.png"
+FilipinoW               PNG                     "warnings\\PH.png"
+JapaneseW               PNG                     "warnings\\JA.png"
+MalayW                  PNG                     "warnings\\MY.png"
+PortugueseW             PNG                     "warnings\\PT.png"
+RussianW                PNG                     "warnings\\RU.png"
+VietnameseW             PNG                     "warnings\\VN.png"
+EnglishW                PNG                     "warnings\\EN.png"
 #pragma endregion
 
 #endif    // English (United States) resources
@@ -2197,3 +2211,4 @@ ZAYTUNPEACH             PNG                     "icons\\ZaytunPeach.png"
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+

@@ -80,7 +80,7 @@ namespace cheat::feature
         ImGui::Text("%s [%s]\n[%s|%.01fm|%.01fm|%s|%s]",
             _TR("Mob Vacuum"),
             f_IncludeMonsters->enabled() && f_IncludeAnimals->enabled() ? _TR("All") : f_IncludeMonsters ? _TR("Monsters") : f_IncludeAnimals ? _TR("Animals") : _TR("None"),
-            f_Instantly ? _TR("Instant") : fmt::format("%s|{:.1f}", _TR("Normal"), f_Speed.value()).c_str(),
+            f_Instantly ? _TR("Instant") : fmt::format("{}|{:.1f}", _TR("Normal"), f_Speed.value()).c_str(),
             f_Radius.value(),
             f_Distance.value(),
             f_OnlyTarget ? _TR("Aggro") : _TR("All"),

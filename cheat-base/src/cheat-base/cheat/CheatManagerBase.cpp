@@ -10,6 +10,8 @@
 
 #include <imgui_internal.h>
 
+#include <cheat-base/render/ImageLoader.cpp>
+#include <user/cheat/misc/About.h>
 namespace cheat
 {
 
@@ -489,6 +491,20 @@ namespace cheat
 		}
 	}
 
+	void CheatManagerBase::DrawWarning()
+	{
+		auto& about = feature::About::GetInstance();
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoFocusOnAppearing| ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
+		ImGui::SetNextWindowPos(ImVec2( about.width / 2, about.height * 0.17), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+		if (ImGui::Begin("Warning", nullptr, flags))
+		{
+			auto image = ImageLoader::GetImage(about.lang);
+			if (image)
+				ImGui::Image(image->textureID, ImVec2(about.width * 0.95f, about.height * 0.17f));
+			ImGui::End();
+		}
+	}
+
 	void CheatManagerBase::DrawNotifications()
 	{
 		ImGui::RenderNotifications();
@@ -498,6 +514,7 @@ namespace cheat
 	void CheatManagerBase::OnRender()
 	{
 		auto& settings = feature::Settings::GetInstance();
+		auto& about = feature::About::GetInstance();
 
 		DrawExternal();
 
@@ -521,6 +538,9 @@ namespace cheat
 
 		if (settings.f_FpsShow)
 			DrawFps();
+		
+		if (about.show)
+			DrawWarning();
 
 		if (settings.f_NotificationsShow)
 			DrawNotifications();

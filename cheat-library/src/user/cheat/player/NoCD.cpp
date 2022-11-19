@@ -87,7 +87,7 @@ namespace cheat::feature
     {
 		  ImGui::Text("%s\n[%s%s%s%s%s]",
 			_TR("Cooldown"),
-			f_AbilityReduce->enabled()? fmt::format(_TR("Reduce x{:.1f}"), f_TimerReduce.value()).c_str() : "",
+			f_AbilityReduce->enabled()? fmt::format("{} x{:.1f}",_TR("Reduce"), f_TimerReduce.value()).c_str() : "",
 			f_AbilityReduce->enabled() && (f_InstantBow->enabled() || f_Sprint->enabled()) ? "|" : "",
 			f_InstantBow->enabled() ? _TR("Bow") : "",
 			f_InstantBow->enabled() && f_Sprint->enabled() ? "|" : "",
@@ -158,7 +158,7 @@ namespace cheat::feature
 		bool forceDoAtRemote, MethodInfo* method)
 	{
 		std::time_t t = std::time(nullptr);
-		auto logEntry = fmt::format(_TR("{:%H:%M:%S} | Key: {} value: {} | min: {} | max: {}."), fmt::localtime(t), il2cppi_to_string(key), value, minValue, maxValue);
+		auto logEntry = fmt::format("{:%H:%M:%S} | Key: {} value: {} | min: {} | max: {}.", fmt::localtime(t), il2cppi_to_string(key), value, minValue, maxValue);
 		abilityLog.push_front(logEntry);
 		if (abilityLog.size() > 50)
 			abilityLog.pop_back();

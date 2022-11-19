@@ -49,6 +49,7 @@
 #include <cheat/world/AutoChallenge.h>
 #include <cheat/world/CustomWeather.h>
 #include <cheat/world/OpenTeamImmediately.h>
+#include <cheat/world/SkipEnhanceAnimation.h>
 
 #include <cheat/visuals/NoFog.h>
 #include <cheat/visuals/FPSUnlock.h>
@@ -63,6 +64,7 @@
 #include <cheat/visuals/FreeCamera.h>
 #include <cheat/visuals/AnimationChanger.h>
 #include <cheat/visuals/EmotionChanger.h>
+#include <cheat/visuals/ShowSkillCD.h>
 
 #include <resource.h>
 
@@ -110,6 +112,7 @@ namespace cheat
 			FEAT_INST(AutoDestroy),
 			FEAT_INST(AutoSeelie),
 			FEAT_INST(OpenTeamImmediately),
+			FEAT_INST(SkipEnhanceAnimation),
 			FEAT_INST(VacuumLoot),
 			FEAT_INST(DialogSkip),
 			FEAT_INST(DumbEnemies),
@@ -136,6 +139,7 @@ namespace cheat
 
 			FEAT_INST(FPSUnlock),
 			FEAT_INST(ChestIndicator),
+			FEAT_INST(ShowSkillCD),
 			FEAT_INST(NoFog),
 			FEAT_INST(HideUI),
 			FEAT_INST(EnablePeeking),
@@ -153,6 +157,7 @@ namespace cheat
 #undef FEAT_INST
 
 		manager.SetModuleOrder({
+			"About",
 			"Player",
 			"World",
 			"Teleport",
@@ -160,7 +165,6 @@ namespace cheat
 			"Visuals",
 			"Hotkeys",
 			"Settings",
-			"About",
 			"Debug"
 			});
 

@@ -1,11 +1,38 @@
 #include "pch-il2cpp.h"
 #include "About.h"
 
-#include <helpers.h>
-#include <cheat/game/EntityManager.h>
+#include <cheat/events.h>
+#include <regex>
+
+int timer = 0;
 
 namespace cheat::feature 
 {
+    About::About() : Feature()
+    {
+        std::string syslang = setlocale(LC_ALL, "");
+        if (syslang.starts_with("Arabic_"))
+            lang = "ArabicW";
+        else if (syslang.starts_with("Chinese (Simplified)_"))
+            lang = "ZHCN";
+        else if (syslang.starts_with("Chinese (Traditional)_"))
+            lang = "ZHTW";
+        else if (syslang.starts_with("Filipino_"))
+            lang = "FilipinoW";
+        else if (syslang.starts_with("Japanese_"))
+            lang = "JapaneseW";
+        else if (syslang.starts_with("Malay_"))
+            lang = "MalayW";
+        else if (syslang.starts_with("Portuguese_"))
+            lang = "PortugueseW";
+        else if (syslang.starts_with("Russian_"))
+            lang = "RussianW";
+        else if (syslang.starts_with("Vietnamese_"))
+            lang = "VietnameseW";
+		else
+			lang = "EnglishW";
+        events::GameUpdateEvent += MY_METHOD_HANDLER(About::OnGameUpdate);
+    }
     const FeatureGUIInfo& About::GetGUIInfo() const
     {
         TRANSLATED_MODULE_INFO("About");
@@ -14,8 +41,19 @@ namespace cheat::feature
 
     void About::DrawMain()
     {
+        std::optional<ImageLoader::GIFData*> gif = ImageLoader::GetGIF("ANIM_AKEBIBOUNCE");
+        if (gif)
+        {
+            if (gif.value()->is_next_frame())
+            {
+                ImGui::Image((void*)gif.value()->get_next_frame(), ImVec2(ImGui::GetWindowSize().x / 3.5f, ImGui::GetWindowSize().y / 2.5f));
+            }
+        }
+
+        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowSize().x);
+
         ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi github:"));
-        TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC", true, false);
+        TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/", true, false);
 
 		ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi discord:"));
 		TextURL(_TR("Discord invite link"), "https://discord.com/invite/MmV8hNZB9S", true, false);
@@ -29,10 +67,24 @@ namespace cheat::feature
 		ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga");
 
 		ImGui::Text(_TR("Main contributors:"));
-		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, Shichiha, harlanx, andiabrudan, hellomykami");
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, Shichiha, harlanx, andiabrudan, hellomykami, FawazTakhji, RedDango");
 
 		ImGui::Text(_TR("Full contributor list:"));
-		TextURL(_TR("Github link"), "https://github.com/Akebi-Group/Papaya-GC/graphs/contributors", true, false);
+		TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
+
+        ImGui::PopTextWrapPos();
+    }
+
+    void About::OnGameUpdate()
+    {
+        if (show)
+        {
+            width = app::Screen_get_width(nullptr);
+            height = app::Screen_get_height(nullptr);
+            timer++;
+            if (timer > 3100)
+               show = false;
+        }
     }
 
     About& About::GetInstance()
