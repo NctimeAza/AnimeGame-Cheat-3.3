@@ -85,7 +85,7 @@ namespace cheat::feature
 
 	bool NoClip::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void NoClip::DrawStatus()
