@@ -56,7 +56,7 @@ namespace cheat::game
 		return m_RawEntity->fields.entityType;
 	}
 
-	app::Vector3 Entity::relativePosition()
+	app::Vector3 Entity::relativePosition() const
 	{
 		if (m_RawEntity == nullptr)
 			return {};
@@ -64,7 +64,7 @@ namespace cheat::game
 		return app::MoleMole_BaseEntity_GetRelativePosition(m_RawEntity, nullptr);
 	}
 
-	app::Vector3 Entity::absolutePosition()
+	app::Vector3 Entity::absolutePosition() const
 	{
 		if (m_RawEntity == nullptr)
 			return {};
@@ -72,7 +72,7 @@ namespace cheat::game
 		return app::MoleMole_BaseEntity_GetAbsolutePosition(m_RawEntity, nullptr);
 	}
 	
-	app::Vector2 Entity::levelPosition()
+	app::Vector2 Entity::levelPosition() const
 	{
 		if (m_RawEntity == nullptr)
 			return {};
@@ -80,7 +80,7 @@ namespace cheat::game
 		return app::Miscs_GenLevelPos_1(absolutePosition(), nullptr);
 	}
 
-	float Entity::distance(Entity* entity)
+	float Entity::distance(Entity* entity) const
 	{
 		if (entity == nullptr)
 			return 10000;
@@ -88,7 +88,7 @@ namespace cheat::game
 		return distance(entity->relativePosition());
 	}
 
-	float Entity::distance(app::BaseEntity* rawEntity)
+	float Entity::distance(app::BaseEntity* rawEntity) const
 	{
 		if (rawEntity == nullptr)
 			return 10000;
@@ -97,7 +97,7 @@ namespace cheat::game
 		return distance(point);
 	}
 
-	float Entity::distance(const app::Vector3& point)
+	float Entity::distance(const app::Vector3& point) const
 	{
 		if (m_RawEntity == nullptr)
 			return 10000;
@@ -106,7 +106,7 @@ namespace cheat::game
 		return dist;
 	}
 
-	float Entity::distance(const app::Vector2& levelPoint)
+	float Entity::distance(const app::Vector2& levelPoint) const
 	{
 		if (m_RawEntity == nullptr)
 			return 10000;
@@ -114,7 +114,7 @@ namespace cheat::game
 		return app::Vector2_Distance(levelPosition(), levelPoint, nullptr);
 	}
 
-	bool Entity::isGadget()
+	bool Entity::isGadget() const
 	{
 		if (m_RawEntity == nullptr)
 			return false;
@@ -124,7 +124,7 @@ namespace cheat::game
 			m_RawEntity->fields.entityType == app::EntityType__Enum_1::Field;
 	}
 
-	bool Entity::isChest()
+	bool Entity::isChest() const
 	{
 		if (m_RawEntity == nullptr)
 			return false;
@@ -132,13 +132,14 @@ namespace cheat::game
 		return m_RawEntity->fields.entityType == app::EntityType__Enum_1::Chest;
 	}
 
-	bool Entity::isMonster() {
+	bool Entity::isMonster() const 
+	{
 		if (m_RawEntity == nullptr)
 			return false;
 		return m_RawEntity->fields.entityType == app::EntityType__Enum_1::Monster;
 	}
 
-	bool Entity::isAvatar()
+	bool Entity::isAvatar() const
 	{
 		if (m_RawEntity == nullptr)
 			return false;
@@ -166,7 +167,7 @@ namespace cheat::game
 		app::MoleMole_BaseEntity_SetAbsolutePosition(m_RawEntity, value, true, nullptr);
 	}
 
-	bool Entity::isLoaded()
+	bool Entity::isLoaded() const
 	{
 		if (m_RawEntity == nullptr || !app::MoleMole_BaseEntity_IsActive(m_RawEntity, nullptr))
 			return false;
