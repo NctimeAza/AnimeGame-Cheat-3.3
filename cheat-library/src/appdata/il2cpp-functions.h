@@ -406,7 +406,7 @@ DO_APP_FUNC(0x04F9A2A0, 0x050278E0, void, MoleMole_InLevelPlayerProfilePageConte
 DO_APP_FUNC(0x04F937F0, 0x05020CA0, void, MoleMole_InLevelPlayerProfilePageContext_ClearView, (/*MoleMole_InLevelPlayerProfilePageContext*/void* __this, MethodInfo* method));
 
 // Skip enhance animation
-DO_APP_FUNC(0x02DE9770, 0x02DF72F0, void, MoleMole_EquipLevelUpDialogContext_SetupView, (/*MoleMole_EquipLevelUpDialogContext*/ void* __this, MethodInfo* method));
+DO_APP_FUNC(0x02DE9770, 0x02DF72F0, void, MoleMole_EquipLevelUpDialogContext_SetupView, (MoleMole_EquipLevelUpDialogContext* __this, MethodInfo* method));
 DO_APP_FUNC(0x02DE90D0, 0x02DF6C40, void, MoleMole_EquipLevelUpDialogContext_ShowReturnedMaterialAndCloseDialog, (/*MoleMole_EquipLevelUpDialogContext*/ void* __this, MethodInfo* method));
 DO_APP_FUNC(0x05D4EC80, 0x05E0F8B0, void, MoleMole_EquipOverviewPageContext_PlayExpAddAnimation, (/*MoleMole_EquipOverviewPageContext*/ void* __this, float startPer, float endPer, /*Action*/ void* callback, MethodInfo* method));
 DO_APP_FUNC(0x05D44620, 0x05E05070, void, MoleMole_EquipOverviewPageContext_PlayLevelUpSuccessShow, (/*MoleMole_EquipOverviewPageContext*/ void* __this, /*Action*/ void* refreshViewAction, MethodInfo* method));

@@ -19,6 +19,7 @@ namespace cheat::feature
 		virtual bool NeedStatusDraw() const override;
 		void DrawStatus() override;
 
+		bool ShouldShowLevelUpDialog(app::MoleMole_EquipLevelUpDialogContext* dialog);
 	private:
 		SkipEnhanceAnimation();
 	};
