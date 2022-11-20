@@ -9,7 +9,7 @@ namespace cheat::feature
 	static void MoleMole_EquipOverviewPageContext_PlayExpAddAnimation_Hook(/*MoleMole_EquipOverviewPageContext*/ void* __this, float startPer, float endPer, /*Action*/ void* callback, MethodInfo* method);
 	static void MoleMole_EquipOverviewPageContext_PlayLevelUpSuccessShow_Hook(/*MoleMole_EquipOverviewPageContext*/ void* __this, /*Action*/ void* refreshViewAction, MethodInfo* method);
 
-	static int substatRollLevels[] = { 5, 9, 13, 17, 21 }; // artifact levels from the field go from 1 to 21, so we do +1
+	static uint32_t substatRollLevels[] = { 5, 9, 13, 17, 21 }; // artifact levels from the field go from 1 to 21, so we do +1
 
 	SkipEnhanceAnimation::SkipEnhanceAnimation() : Feature(),
 		NF(f_Enabled, "Skip Enhancement Animation", "SkipEnhanceAnimation", false),
@@ -62,8 +62,10 @@ namespace cheat::feature
 		{
 			if (dialog->fields._equipType == app::MoleMole_Config_ItemType__Enum::ITEM_RELIQUARY)
 			{
+				const uint32_t prevLvl = dialog->fields._prevLevel;
+				const uint32_t currLvl = dialog->fields._currLevel;
 				return std::any_of(std::begin(substatRollLevels), std::end(substatRollLevels),
-					[&](int32_t level) { return dialog->fields._currLevel == level; });
+								   [prevLvl, currLvl](uint32_t level) { return prevLvl < level && level <= currLvl; });
 			}
 		}
 		return false;
