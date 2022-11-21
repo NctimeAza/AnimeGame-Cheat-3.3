@@ -48,6 +48,10 @@ namespace cheat::feature
             {
                 ImGui::Image((void*)gif.value()->get_next_frame(), ImVec2(ImGui::GetWindowSize().x / 3.5f, ImGui::GetWindowSize().y / 2.5f));
             }
+            else
+            {
+                ImGui::Image((void*)gif.value()->get_current_frame(), ImVec2(ImGui::GetWindowSize().x / 3.5f, ImGui::GetWindowSize().y / 2.5f));
+            }
         }
 
         ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowSize().x);

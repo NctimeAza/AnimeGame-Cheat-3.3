@@ -36,7 +36,7 @@ public:
 		{
 			current_time = std::chrono::system_clock::now();
 			std::chrono::duration<double, std::milli> elapsed_time = current_time - previous_time;
-			if (elapsed_time.count() >= (frame_delays[current_frame] * 1 / 100))
+			if (elapsed_time.count() >= (frame_delays[current_frame]))
 			{
 				previous_time = current_time;
 				return true;
@@ -47,6 +47,11 @@ public:
 		ImTextureID get_next_frame()
 		{
 			return textureIDs[get_next_frame_index()];
+		}
+
+		ImTextureID get_current_frame()
+		{
+			return textureIDs[current_frame];
 		}
 	};
 
