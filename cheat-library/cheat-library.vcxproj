@@ -112,6 +112,7 @@
     <ClInclude Include="src\user\main.h" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="res\NotoSansSC-Bold.otf" />
     <Font Include="res\Ruda-Bold.ttf" />
     <Font Include="res\Ruda-ExtraBold.ttf" />
   </ItemGroup>

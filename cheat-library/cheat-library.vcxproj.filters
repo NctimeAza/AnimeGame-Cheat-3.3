@@ -283,6 +283,7 @@
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />
     <Font Include="res\Ruda-ExtraBold.ttf" />
+    <Font Include="res\NotoSansSC-Bold.otf" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\framework\dllmain.cpp">

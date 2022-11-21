@@ -70,6 +70,8 @@ ASSEMBLYCHECKSUMS       RCDATA                  "assembly_checksum.json"
 
 ASCENSIONMATERIALSDATA  RCDATA                  "ascension_materials.json"
 
+IMGUI_FONT_CHINESE      RCDATA                  "NotoSansSC-Bold.otf"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

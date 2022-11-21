@@ -159,7 +159,14 @@ namespace cheat
 
 			index++;
 		}
-
+#ifdef _DEBUG
+		ImGui::NewLine();
+		static bool _showMetricsWindow = false;
+		if (ImGui::Button("Open Imgui Debug Tool"))
+			_showMetricsWindow = !_showMetricsWindow;
+		if (_showMetricsWindow)
+			ImGui::ShowMetricsWindow(&_showMetricsWindow);
+#endif // _DEBUG
 		ImGui::EndChild();
 		ImGui::EndGroup();
 
