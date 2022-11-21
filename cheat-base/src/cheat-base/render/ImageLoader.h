@@ -53,6 +53,18 @@ public:
 		{
 			return textureIDs[current_frame];
 		}
+
+		void render(ImVec2 size)
+		{
+			if (is_next_frame())
+			{
+				ImGui::Image((void*)get_next_frame(), size);
+			}
+			else
+			{
+				ImGui::Image((void*)get_current_frame(), size);
+			}
+		}
 	};
 
 	static std::optional<ImageData> GetImage(const std::string& imageName, const char* imageType = "PNG");
