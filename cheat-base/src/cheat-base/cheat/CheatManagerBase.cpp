@@ -408,7 +408,7 @@ namespace cheat
 		{
 			auto image = ImageLoader::GetImage(about.lang);
 			if (image)
-				ImGui::Image(image->textureID, ImVec2(about.width * 0.4f, about.height * 0.13f));
+				ImGui::Image(image->textureID, ImVec2(about.width_picture, about.height_picture));
 			ImGui::End();
 		}
 	}
