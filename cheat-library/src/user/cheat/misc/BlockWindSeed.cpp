@@ -25,7 +25,7 @@ namespace cheat::feature
 	void BlockWindSeed::DrawMain()
 	{
 		ConfigWidget(f_Enabled,
-			"Blocks the WindSeed Packet which can cause RCE from malicious servers.");
+			"Blocks the WindSeed Packet which can cause RCE from malicious private servers. Only use it on private servers.");
 	}
 
 	bool BlockWindSeed::NeedStatusDraw() const
