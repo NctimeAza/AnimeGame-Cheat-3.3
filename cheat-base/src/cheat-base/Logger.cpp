@@ -88,7 +88,7 @@ Prefix GetLevelPrefix(Logger::Level level)
 
 void Logger::Log(Logger::Level logLevel, const char* filepath, int line, const char* fmt, ...)
 {
-	char buffer[1024];
+	char buffer[4096];
 
 	va_list args;
 	va_start(args, fmt);

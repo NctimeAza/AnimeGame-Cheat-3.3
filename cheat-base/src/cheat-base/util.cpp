@@ -41,6 +41,25 @@ namespace util
 
         return message;
     }
+	std::vector<uint8_t> from_hex_string(std::string string)
+	{
+		std::vector<uint8_t> ret;
+		auto HexCharToByte = [](char ch) {
+			if (ch <= 0x40)
+				return ch - 48;
+			else
+				return ch - 55;
+		};
+
+		for (int i = 0; i < string.length(); i += 2)
+		{
+			char firstchar = HexCharToByte(string[i]);
+			char secondchar = HexCharToByte(string[i+1]);
+			char result = (16 * firstchar) | secondchar;
+			ret.push_back(result);
+		}
+		return ret;
+	}
 
     std::string to_hex_string(uint8_t* barray, int length)
     {
