@@ -1,10 +1,9 @@
 #include "pch-il2cpp.h"
 #include "About.h"
 
+#include <cheat/game/util.h>
 #include <cheat/events.h>
 #include <regex>
-
-int timer = 0;
 
 namespace cheat::feature 
 {
@@ -31,6 +30,17 @@ namespace cheat::feature
             lang = "VietnameseW";
 		else
 			lang = "EnglishW";
+
+        width = app::Screen_get_width(nullptr);
+        height = app::Screen_get_height(nullptr);
+
+        if ((float)width / (float)height > 2) { width_picture = width * 0.305; height_picture = height * 0.13; }          // 21:9
+        else if ((float)width / (float)height > 1.6) { width_picture = width * 0.4; height_picture = height * 0.13; }     // 16:9
+        else if ((float)width / (float)height > 1.4) { width_picture = width * 0.4; height_picture = height * 0.117; }    // 16:10
+        else { width_picture = width * 0.4; height_picture = height * 0.0975; }                                           // 4:3
+
+        timer = util::GetCurrentTimeMillisec();
+
         events::GameUpdateEvent += MY_METHOD_HANDLER(About::OnGameUpdate);
     }
     const FeatureGUIInfo& About::GetGUIInfo() const
@@ -79,11 +89,8 @@ namespace cheat::feature
     {
         if (show)
         {
-            width = app::Screen_get_width(nullptr);
-            height = app::Screen_get_height(nullptr);
-            timer++;
-            if (timer > 3100)
-               show = false;
+            if (int(util::GetCurrentTimeMillisec() - timer) > (int)60000)
+                show = false;
         }
     }
 
