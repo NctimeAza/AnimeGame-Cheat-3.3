@@ -9,6 +9,7 @@ namespace cheat::feature
 	{
 	public:
 		config::Field<bool> f_Enabled;
+		config::Field<bool> f_ShowLevelUp;
 
 		static SkipEnhanceAnimation& GetInstance();
 
@@ -18,6 +19,7 @@ namespace cheat::feature
 		virtual bool NeedStatusDraw() const override;
 		void DrawStatus() override;
 
+		bool ShouldShowLevelUpDialog(app::MoleMole_EquipLevelUpDialogContext* dialog);
 	private:
 		SkipEnhanceAnimation();
 	};
