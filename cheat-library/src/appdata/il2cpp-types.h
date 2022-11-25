@@ -13149,6 +13149,51 @@ namespace app {
         struct Config_AvatarSkillDepotExcelConfig__Fields fields;
     };
 
+    enum class MoleMole_Config_ItemType__Enum : int32_t {
+        ITEM_NONE = 0x00000000,
+        ITEM_VIRTUAL = 0x00000001,
+        ITEM_MATERIAL = 0x00000002,
+        ITEM_RELIQUARY = 0x00000003,
+        ITEM_WEAPON = 0x00000004,
+        ITEM_DISPLAY = 0x00000005,
+        ITEM_FURNITURE = 0x00000006,
+    };
+
+    struct MoleMole_BaseDialogContext__Fields {
+        struct BaseContext__Fields _;
+        bool attachToPage;
+        bool _autoCloseDialogOnBackEvent;
+        struct MoleMole_BasePageContext* _pageContext_k__BackingField;
+    };
+
+    struct MoleMole_BaseDialogContext {
+        struct MoleMole_BaseDialogContext__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_BaseDialogContext__Fields fields;
+    };
+
+    struct MoleMole_EquipLevelUpDialogContext__Fields {
+        struct MoleMole_BaseDialogContext__Fields _;
+        struct MonoAvatarPropertyItem* _propertyItemPrefab;
+        uint32_t _propertyItemPrefabHandle;
+        uint32_t _mainPropItemPrefabHandle;
+        struct MonoEquipLevelUpDialog* _dialogMono;
+        struct MoleMole_BagItem* _equip;
+        uint32_t _prevLevel;
+        uint32_t _currLevel;
+        uint32_t _powerUpRate;
+        struct List_1_MoleMole_PropertyChange_* _propertyChange;
+        MoleMole_Config_ItemType__Enum _equipType;
+        bool _canClose;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* _returnedMaterialList;
+    };
+
+    struct MoleMole_EquipLevelUpDialogContext {
+        struct MoleMole_EquipLevelUpDialogContext__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_EquipLevelUpDialogContext__Fields fields;
+    };
+
 #if !defined(_GHIDRA_) && !defined(_IDA_)
 }
 #endif

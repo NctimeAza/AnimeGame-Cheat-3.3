@@ -29,7 +29,6 @@ namespace cheat::feature
     {
         events::GameUpdateEvent += FUNCTION_HANDLER(OnGameUpdate);
         HookManager::install(app::MoleMole_ActorAbilityPlugin_OnEvent, ActorAbilityPlugin_OnEvent_Hook);
-        // HookManager::install(app::MoleMole_LuaShellManager_ReportLuaShellResult, LuaShellManager_ReportLuaShellResult_Hook);
         // HookManager::install(app::MoleMole_LuaShellManager_DoString, LuaShellManager_DoString_Hook);
         // HookManager::install(app::LuaEnv_DoString, LuaEnv_DoString_Hook);
         // HookManager::install(app::Lua_xlua_pushasciistring, Lua_xlua_pushasciistring_Hook);
@@ -105,13 +104,6 @@ namespace cheat::feature
         LOG_DEBUG("Size %d", byteArray->bounds == nullptr ? byteArray->max_length : byteArray->bounds->length);
         checkCount = 10;
         CALL_ORIGIN(LuaShellManager_DoString_Hook, __this, byteArray, method);
-    }
-
-    static void LuaShellManager_ReportLuaShellResult_Hook(void* __this, app::String* type, app::String* value, MethodInfo* method)
-    {
-        std::cout << "Type: " << il2cppi_to_string(type) << std::endl;
-        std::cout << "Value: " << il2cppi_to_string(value) << std::endl;
-        CALL_ORIGIN(LuaShellManager_ReportLuaShellResult_Hook, __this, type, value, method);
     }
 
     static bool ActorAbilityPlugin_OnEvent_Hook(void* __this, app::BaseEvent* e, MethodInfo* method)

@@ -21,13 +21,22 @@ namespace cheat::feature
 	private:
 		ShowSkillCD();
 
-		std::map<uint32_t, uint32_t> m_skillMap;
+		struct SkillData
+		{
+			uint32_t id;
+			float cd;
+		};
 
-		static void UpdateSkillMap(app::LCAvatarCombat* lcCombat, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo);
+		std::unordered_map<uint32_t, SkillData> m_skillDataMap;
+		std::unordered_map<uint64_t, app::MonoTeamBtn*> m_teamBtnMap;
+
+		static void SetShowKey(void* key, bool show);
+		static void UpdateSkillMap(app::LCAvatarCombat* lcCombat, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, float cd);
+
+		void OnGameUpdate();
 
 		static void MoleMole_LCAvatarCombat_SetSkillIndex_Hook(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, int32_t index, int32_t priority, MethodInfo* method);
 		static void MoleMole_LCAvatarCombat_CheckCDTimer_Hook(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* info, MethodInfo* method);
-		static void MonoTeamBtn_Update_Hook(app::MonoTeamBtn* __this, MethodInfo* method);
-		static void MonoTeamBtn_set_PCKey_Hook(app::MonoTeamBtn* __this, app::String* value, MethodInfo* method);
+		static void MonoTeamBtn_SetupView_Hook(app::MonoTeamBtn* __this, uint64_t guid, MethodInfo* method);
 	};
 }

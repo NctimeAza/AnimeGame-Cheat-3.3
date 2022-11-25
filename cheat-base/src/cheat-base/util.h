@@ -48,6 +48,7 @@ namespace util
 	std::vector<std::string> StringSplit(const std::string& delimiter, const std::string& content);
 	std::string SplitWords(const std::string& value);
 	std::string MakeCapital(std::string value);
+	std::vector<uint8_t> from_hex_string(std::string string);
 	std::string to_hex_string(uint8_t* barray, int length);
 	bool IsLittleEndian();
 

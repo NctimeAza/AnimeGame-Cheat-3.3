@@ -16,6 +16,9 @@ namespace cheat::feature
 		bool show = true;
 		int width;
 		int height;
+		int width_picture;
+		int height_picture;
+		int timer;
 		std::string lang;
 	private:
 		About();

@@ -12,6 +12,9 @@ namespace cheat::feature
     {
 	public:
 		config::Field<bool> f_Enabled;
+		config::Field<bool> f_SpoofLuaShell;
+
+		bool report_sent = false;
 
 		static ProtectionBypass& GetInstance();
 
@@ -19,6 +22,7 @@ namespace cheat::feature
 		void DrawMain() override;
 	
 		app::Byte__Array* OnRecordUserData(int32_t nType);
+		void OnReportLuaShell(void* __this, app::String* type, app::String* value, MethodInfo* method);
 
 		void Init();
 
