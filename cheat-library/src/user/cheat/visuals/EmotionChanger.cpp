@@ -37,6 +37,8 @@ namespace cheat::feature
             {
                 for (auto& phoneme : phonemes)
                 {
+                    if (phoneme.empty())
+                        phoneme = "None";
                     bool is_selected = (f_Phonemes.value().c_str() == phoneme);
                     if (ImGui::Selectable(phoneme.c_str(), is_selected))
                         f_Phonemes.value() = phoneme;
@@ -51,6 +53,8 @@ namespace cheat::feature
             {
                 for (auto& emotion : emotions)
                 {
+					if (emotion.empty())
+                        emotion = "None";
                     bool is_selected = (f_Emotions.value().c_str() == emotion);
                     if (ImGui::Selectable(emotion.c_str(), is_selected))
                         f_Emotions.value() = emotion;

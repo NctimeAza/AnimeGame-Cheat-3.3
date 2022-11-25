@@ -49,9 +49,9 @@ namespace cheat::feature
     {
         static bool isSpeed = false;
         float currentSpeed = app::Time_get_timeScale(nullptr);
-
         if (f_Enabled->enabled())
         {
+			SAFE_BEGIN();
             if (f_Hotkey.value().IsPressed())
             {
                 if (currentSpeed == 1.0f)
@@ -69,6 +69,7 @@ namespace cheat::feature
                     isSpeed = false;
                 }
             }
+			SAFE_EEND();
         }
         else
         {

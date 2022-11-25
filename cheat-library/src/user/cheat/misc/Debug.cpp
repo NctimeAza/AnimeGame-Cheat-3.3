@@ -578,7 +578,6 @@ namespace cheat::feature
                 }
 
                 ImGui::Checkbox("Show Only Oculi", &checkOnlyShells);
-                ImGui::SameLine();
 
                 if (entities.size() > 0) {
                     if (groupByType) {

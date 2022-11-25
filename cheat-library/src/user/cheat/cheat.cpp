@@ -170,10 +170,13 @@ namespace cheat
 
 
 		auto defaultFont = renderer::Font::LoadFontFromResource(IMGUI_FONT, RT_RCDATA, "DefaultFont", renderer::Font::FONT_RANGE_DEFAULT);
+		auto ChineseSimplifiedFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "ChineseSimplifiedFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
 		renderer::AddFont(defaultFont);
+		renderer::AddFont(ChineseSimplifiedFont);
 		
+		auto& language = feature::Language::GetInstance();
 		Translator::Init(ResourceLoader::Load(R_LANGUAGES, RT_RCDATA));
-		Translator::SetLanguage("English");
+		Translator::SetLanguage(language.f_Language.value());
 
 		Translator::LanguageChangedEvent += FUNCTION_HANDLER(OnLanguageChanged);
 		OnLanguageChanged();
