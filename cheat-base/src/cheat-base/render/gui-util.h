@@ -95,6 +95,9 @@ namespace ImGui
 	void NextGroupPanelHeaderItem(const ImVec2& size, bool rightAlign = false);
 
 	ImVec2 CalcButtonSize(const char* label);
+
+	// https://github.com/ocornut/imgui/issues/319#issuecomment-345795629
+	bool Splitter(bool split_vertically, float thickness, float* size1, float* size2, float min_size1, float min_size2, float splitter_long_axis_size = -1.0f);
 }
 
 float CalcWidth(const std::string_view& view);

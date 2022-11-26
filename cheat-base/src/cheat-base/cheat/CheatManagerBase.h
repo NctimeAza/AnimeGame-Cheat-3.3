@@ -38,6 +38,7 @@ namespace cheat
 		virtual bool CursorGetVisibility() = 0;
 
 	protected:
+		config::Field<float> f_ModuleListWidth;
 		config::Field<size_t> f_SelectedModule;
 		const std::string* m_SelectedSection;
 
