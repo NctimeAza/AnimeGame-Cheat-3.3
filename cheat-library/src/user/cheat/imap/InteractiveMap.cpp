@@ -118,7 +118,7 @@ namespace cheat::feature
 
 	void InteractiveMap::DrawMenu()
 	{
-		ImGui::BeginGroupPanel("General");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("General").c_str());
 		{
 			ConfigWidget(_TR("Enabled"), f_Enabled);
 			ConfigWidget(_TR("Separated windows"), f_SeparatedWindows, _TR("Config and filters will be in separate windows."));
@@ -129,7 +129,7 @@ namespace cheat::feature
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Icon view");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("Icon view").c_str());
 		{
 			ConfigWidget(_TR("Icon size"), f_IconSize, 0.01f, 4.0f, 100.0f);
 			ConfigWidget(_TR("Minimap icon size"), f_MinimapIconSize, 0.01f, 4.0f, 100.0f);
@@ -138,7 +138,7 @@ namespace cheat::feature
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("In/Completed icon view");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("In/Completed icon view").c_str());
 		{
 			ConfigWidget(_TR("Show completed"), f_ShowCompleted, _TR("Show completed points."));
 			ConfigWidget(_TR("Completed point transparency"), f_CompletePointTransparency, 0.01f, 0.0f, 1.0f, _TR("Completed points transparency."));
@@ -147,38 +147,38 @@ namespace cheat::feature
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Item adjusting");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("Item adjusting").c_str());
 		{
-			ConfigWidget(_TR("Fix item positions"), f_AutoFixItemPositions, "Do fix positions to nearest to point.\n"
-				"Only items with green line support this function.");
+			ConfigWidget(_TR("Fix item positions"), f_AutoFixItemPositions, _TR("Do fix positions to nearest to point.\n"
+				"Only items with green line support this function."));
 
-			ConfigWidget(_TR("Detect new items"), f_AutoDetectNewItems, "Enables detecting items what are not in interactive map data.\n"
-				"Only items with green line support this function.");
+			ConfigWidget(_TR("Detect new items"), f_AutoDetectNewItems, _TR("Enables detecting items what are not in interactive map data.\n"
+				"Only items with green line support this function."));
 
 			ConfigWidget(_TR("Detect only showed"), f_ObjectCheckOnlyShowed, _TR("Detect objects only for showed filters."));
 
 			ConfigWidget(_TR("Detect range"), f_ObjectDetectRange, 0.1f, 5.0f, 30.0f,
-				"Fix positions: Only if item was found in this range about entity position,\n\t its position will be fixed.\n"
+				_TR("Fix positions: Only if item was found in this range about entity position,\n\t its position will be fixed.\n"
 				"New item detecting: Only if item not found in this range about entity position,\n\t it be detected as new."
-			);
+			));
 
-			ConfigWidget(_TR("Detect delay (ms)"), f_CheckObjectsDelay, 10, 100, 100000, "Adjusting items is power consumption operation.\n"
-				"So rescanning will happen with specified delay.");
+			ConfigWidget(_TR("Detect delay (ms)"), f_CheckObjectsDelay, 10, 100, 100000, _TR("Adjusting items is power consumption operation.\n"
+				"So rescanning will happen with specified delay."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Gather detecting");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("Gather detecting").c_str());
 		{
-			ConfigWidget(_TR("Detect gathered items"), f_AutoDetectGatheredItems, "Enables detecting gathered items.\n"
+			ConfigWidget(_TR("Detect gathered items"), f_AutoDetectGatheredItems, _TR("Enables detecting gathered items.\n"
 				"It works only items what will be gathered after enabling this function.\n"
-				"Only items with blue line support this function.");
+				"Only items with blue line support this function."));
 
 			ConfigWidget(_TR("Detect range"), f_GatheredItemsDetectRange, 0.1f, 5.0f, 30.0f,
-				"When entity was gathered finding nearest point in this range.");
+				_TR("When entity was gathered finding nearest point in this range."));
 		}
 		ImGui::EndGroupPanel();
 
-		ImGui::BeginGroupPanel("Manual completing");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("Manual completing").c_str());
 		{
 			ConfigWidget(_TR("Complete nearest point"), f_CompleteNearestPoint, true, _TR("When pressed, complete the nearest to avatar point."));
 			ConfigWidget(_TR("Revert latest completion"), f_RevertLatestCompletion, true, _TR("When pressed, revert latest complete operation."));
@@ -193,7 +193,7 @@ namespace cheat::feature
 		ImGui::BeginTabBar("#TypesTabs", ImGuiTabBarFlags_None);
 		for (auto& [type, data] : m_MaterialData)
 		{
-			if (ImGui::BeginTabItem(util::MakeCapital(type).c_str()))
+			if (ImGui::BeginTabItem(Translator::RuntimeTranslate(util::MakeCapital(type)).c_str()))
 			{
 				for (auto& category : data.categories)
 					DrawMaterialFilterCategories(category, type);
@@ -209,7 +209,7 @@ namespace cheat::feature
 	{
 		bool checked = std::all_of(category.children.begin(), category.children.end(), [](MaterialData* matData) {  return matData->selected; });
 		bool changed = false;
-		if (ImGui::BeginSelectableGroupPanel(category.name.c_str(), checked, changed, true))
+		if (ImGui::BeginSelectableGroupPanel(Translator::RuntimeTranslate(category.name).c_str(), checked, changed, true))
 		{
 			int columns = 3;
 			if (ImGui::BeginTable(category.name.c_str(), columns))
@@ -258,7 +258,7 @@ namespace cheat::feature
 		ImVec2 pos_max = pos_min + box_sz;
 
 		// Text
-		const ImVec2 textSize = ImGui::CalcTextSize(material->name.c_str(), nullptr, true);
+		const ImVec2 textSize = ImGui::CalcTextSize(Translator::RuntimeTranslate(material->name).c_str(), nullptr, true);
 		ImVec2 textPos = ImVec2(pos_max.x + style.FramePadding.x, pos_min.y + (box_sz.y / 2) - (textSize.y / 2));
 
 		// Widget
@@ -275,7 +275,7 @@ namespace cheat::feature
 		else
 			window->DrawList->AddRectFilled(pos_min, pos_max, ImGui::GetColorU32(ImGuiCol_FrameBg), 10.f);
 
-		window->DrawList->AddText(textPos, ImGui::GetColorU32(ImGuiCol_Text), material->name.c_str());
+		window->DrawList->AddText(textPos, ImGui::GetColorU32(ImGuiCol_Text), Translator::RuntimeTranslate(material->name).c_str());
 
 		if (itemClicked)
 			material->selected = !material->selected;
@@ -313,7 +313,7 @@ namespace cheat::feature
 			bool checked = std::all_of(materials.begin(), materials.end(), [](const LabelData* label) { return label->enabled; });
 			bool changed = false;
 
-			if (ImGui::BeginSelectableGroupPanel((util::MakeCapital(type) + " Filters").c_str(), checked, changed, true))
+			if (ImGui::BeginSelectableGroupPanel(Translator::RuntimeTranslate(util::MakeCapital(type) + " Filters").c_str(), checked, changed, true))
 			{
 				if (ImGui::BeginTable(("##" + util::MakeCapital(type) + "Table").c_str(), 3))
 				{
@@ -345,7 +345,7 @@ namespace cheat::feature
 		if (m_ScenesData.count(sceneID) == 0)
 			ImGui::Text(_TR("Sorry. Current scene is not supported."));
 
-		ImGui::BeginGroupPanel("Ascension Materials Filter");
+		ImGui::BeginGroupPanel(Translator::RuntimeTranslate("Ascension Materials Filter").c_str());
 		{
 			ConfigWidget(_TR("Show Ascension Materials"), f_ShowMaterialsWindow, _TR("Open ascension materials filter window"));
 			DrawMaterials(sceneID);
@@ -354,13 +354,13 @@ namespace cheat::feature
 
 		ImGui::InputText(_TR("Search"), &m_SearchText); ImGui::SameLine();
 		HelpMarker(
-			"This page following with filters for items.\n"
+			_TR("This page following with filters for items.\n"
 			"Items what was activated will be appear on mini/global map. (Obviously)\n"
 			"Each filter have options, you can access to it by clicking RMB on filter.\n"
 			"Filters can be marked with colored lines,\n"
 			"\tthey indicate that filter support some features. (Hover it)\n"
 			"Thats all for now. Happy using ^)"
-		);
+		));
 
 		if (searchFixed)
 			ImGui::BeginChild("FiltersList", ImVec2(-1, 0), false, ImGuiWindowFlags_NoBackground);
@@ -393,7 +393,7 @@ namespace cheat::feature
 			bool checked = std::all_of(validLabels.begin(), validLabels.end(), [](const LabelData* label) { return label->enabled; });
 			bool changed = false;
 
-			if (ImGui::BeginSelectableGroupPanel(categoryName.c_str(), checked, changed, true))
+			if (ImGui::BeginSelectableGroupPanel(Translator::RuntimeTranslate(categoryName).c_str(), checked, changed, true))
 			{
 				if (ImGui::BeginTable("MarkFilters", 2))
 				{
@@ -433,7 +433,7 @@ namespace cheat::feature
 		ImGuiContext& g = *GImGui;
 		const ImGuiStyle& style = g.Style;
 		const ImGuiID id = window->GetID(&label);
-		const ImVec2 label_size = ImGui::CalcTextSize(label.name.c_str(), nullptr, true);
+		const ImVec2 label_size = ImGui::CalcTextSize(Translator::RuntimeTranslate(label.name).c_str(), nullptr, true);
 
 		const float square_sz = ImGui::GetFrameHeight();
 		const float image_sz = square_sz;
@@ -523,7 +523,7 @@ namespace cheat::feature
 				if (ImGui::IsMouseHoveringRect(mark_bb.Min, mark_bb.Max))
 				{
 					markHovered = true;
-					ShowHelpText("New items detect supported");
+					ShowHelpText(Translator::RuntimeTranslate("New items detect supported").c_str());
 				}
 
 				ImGui::RenderFrame(mark_bb.Min, mark_bb.Max, ImColor(0.0f, 1.0f, 0.0f), false, 3.0f);
@@ -536,7 +536,7 @@ namespace cheat::feature
 				if (ImGui::IsMouseHoveringRect(mark_bb.Min, mark_bb.Max))
 				{
 					markHovered = true;
-					ShowHelpText("Gather detect supported");
+					ShowHelpText(Translator::RuntimeTranslate("Gather detect supported").c_str());
 				}
 
 				ImGui::RenderFrame(mark_bb.Min, mark_bb.Max, ImColor(0.0f, 0.0f, 1.0f), false, 3.0f);
@@ -558,10 +558,10 @@ namespace cheat::feature
 		if (g.LogEnabled)
 			ImGui::LogRenderedText(&label_pos, mixed_value ? "[~]" : label.enabled.value() ? "[x]" : "[ ]");
 		if (label_size.x > 0.0f)
-			ImGui::RenderText(label_pos, label.name.c_str());
+			ImGui::RenderText(label_pos, Translator::RuntimeTranslate(label.name).c_str());
 
 		if (!markHovered && ImGui::IsItemHovered())
-			ShowHelpText(label.name.c_str());
+			ShowHelpText(Translator::RuntimeTranslate(label.name).c_str());
 
 		// -- Filter options
 		if (ImGui::IsItemClicked(ImGuiMouseButton_Right))
@@ -569,7 +569,7 @@ namespace cheat::feature
 
 		if (ImGui::BeginPopup("Filter options", ImGuiWindowFlags_AlwaysAutoResize))
 		{
-			if (ImGui::Button("Drop progress"))
+			if (ImGui::Button(Translator::RuntimeTranslate("Drop progress").c_str()))
 			{
 				for (auto& [pointID, point] : label.points)
 				{
@@ -578,7 +578,7 @@ namespace cheat::feature
 				}
 				ImGui::CloseCurrentPopup();
 			}
-			if (ImGui::Button("Complete progress"))
+			if (ImGui::Button(Translator::RuntimeTranslate("Complete progress").c_str()))
 			{
 				for (auto& [pointID, point] : label.points)
 				{
@@ -1644,7 +1644,7 @@ namespace cheat::feature
 			
 			_windowRects.clear();
 
-			bool menuOpened = ImGui::Begin("Interactive map", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
+			bool menuOpened = ImGui::Begin(Translator::RuntimeTranslate("Interactive map").c_str(), nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 			AddWindowRect();
 
 			if (menuOpened)
@@ -1661,7 +1661,7 @@ namespace cheat::feature
 
 			if (f_SeparatedWindows)
 			{
-				bool filtersOpened = ImGui::Begin("Filters", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
+				bool filtersOpened = ImGui::Begin(Translator::RuntimeTranslate("Filters").c_str(), nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 				AddWindowRect();
 
 				if (filtersOpened)
@@ -1672,7 +1672,7 @@ namespace cheat::feature
 
 			if (f_ShowMaterialsWindow)
 			{
-				bool materialsOpened = ImGui::Begin("Ascension Materials Filter", nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
+				bool materialsOpened = ImGui::Begin(Translator::RuntimeTranslate("Ascension Materials Filter").c_str(), nullptr, ImGuiWindowFlags_NoFocusOnAppearing);
 				AddWindowRect();
 
 				if (materialsOpened)

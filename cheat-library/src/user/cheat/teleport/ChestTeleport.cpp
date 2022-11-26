@@ -38,7 +38,7 @@ namespace cheat::feature
     {
 		ConfigWidget(_TR("Show Info"), f_ShowInfo, _TR("Show short info about nearest chest to the info window."));
 
-		if (ImGui::TreeNode("Filters"))
+		if (ImGui::TreeNode(Translator::RuntimeTranslate("Filters").c_str()))
 		{
 
 			ImGui::Text(_TR("Type Filters"));
