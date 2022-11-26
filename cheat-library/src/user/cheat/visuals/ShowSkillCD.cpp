@@ -71,7 +71,8 @@ namespace cheat::feature
 			++next_it;
 			uint64_t guid = it->first;
 			auto* teamBtn = it->second;
-			if (guid != teamBtn->fields._guid) // clean-up and prevent dupes from updating
+			if (teamBtn->fields._._._._._.m_CachedPtr == nullptr || 
+				guid != teamBtn->fields._guid) // clean-up and prevent dupes from updating
 			{
 				showSkillCD.m_teamBtnMap.erase(it);
 				continue;
