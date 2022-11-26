@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\user\cheat\game\xxHash.hpp" />
     <ClInclude Include="src\user\cheat\misc\About.h" />
     <ClInclude Include="src\user\cheat\misc\BlockWindSeed.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.h" />
