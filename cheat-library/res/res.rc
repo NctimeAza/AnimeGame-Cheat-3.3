@@ -72,6 +72,7 @@ ASCENSIONMATERIALSDATA  RCDATA                  "ascension_materials.json"
 
 IMGUI_FONT_CHINESE      RCDATA                  "NotoSansSC-Bold.otf"
 
+IMGUI_FONT_CYRILLIC     RCDATA                  "ubuntu_bold.ttf"
 
 /////////////////////////////////////////////////////////////////////////////
 //

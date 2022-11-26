@@ -171,7 +171,9 @@ namespace cheat
 
 		auto defaultFont = renderer::Font::LoadFontFromResource(IMGUI_FONT, RT_RCDATA, "DefaultFont", renderer::Font::FONT_RANGE_DEFAULT);
 		auto ChineseSimplifiedFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "ChineseSimplifiedFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
+		auto cyrillicFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "CyrillicFont", renderer::Font::FONT_RANGE_CYRILLIC);
 		renderer::AddFont(defaultFont);
+		renderer::AddFont(cyrillicFont);
 		renderer::AddFont(ChineseSimplifiedFont);
 		
 		auto& language = feature::Language::GetInstance();

@@ -10,8 +10,11 @@
 #define IDB_ANEMOCULUS                  106
 #define IDR_RCDATA3                     107
 #define IDR_RCDATA4                     110
+
 #define IMGUI_FONT                      201
 #define IMGUI_FONT_CHINESE              202
+#define IMGUI_FONT_CYRILLIC             203
+
 #define R_LANGUAGES                     301
 
 // Next default values for new objects
