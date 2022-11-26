@@ -79,6 +79,10 @@ namespace cheat::feature
 		ImGui::Text(_TR("Full contributor list:"));
 		TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
 
+        ImGui::Text(_TR("Translators list:"));
+        ImGui::Text(_TR("  Russian:"));
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "    - phenacemide#2436");
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "    - AMOGUSS#0530");
         ImGui::PopTextWrapPos();
     }
 
