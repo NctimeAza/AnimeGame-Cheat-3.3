@@ -84,6 +84,8 @@ void Translator::SetLanguage(const std::string& language)
 	if (!_languagesInfo.contains(language))
 		return;
 
+	_translations.clear();
+
 	auto& translates = _languagesInfo[language]["translates"];
 	for (auto& [key, value] : translates.items())
 		_translations[key] = value;
