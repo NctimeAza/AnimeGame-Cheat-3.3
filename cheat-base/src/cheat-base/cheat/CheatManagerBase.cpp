@@ -26,6 +26,7 @@ namespace cheat
 
 	CheatManagerBase::CheatManagerBase():
 		NF(f_SelectedModule, "General", 0),
+		NF(f_ModuleListWidth, "General", 175.0f),
 		m_SelectedSection(nullptr),
 		m_IsBlockingInput(true),
 		m_IsPrevCursorActive(false)
@@ -98,11 +99,14 @@ namespace cheat
 			return;
 		}
 
-		ImGui::BeginGroup();
+		float width = f_ModuleListWidth;
+		float dummyWidth = 1000.0f;
+		if (ImGui::Splitter(true, 6.0f, &width, &dummyWidth, 175.0f, 8, -FLT_MIN))
+			f_ModuleListWidth = width;
 
 		ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
 
-		ImGui::BeginChild("ChildL", ImVec2(175, -FLT_MIN), true);
+		ImGui::BeginChild("ChildL", ImVec2(f_ModuleListWidth, -FLT_MIN), true);
 
 		//if (ImGui::Checkbox(_TR("Block key/mouse"), &m_IsBlockingInput))
 		//{
@@ -168,7 +172,6 @@ namespace cheat
 			ImGui::ShowMetricsWindow(&_showMetricsWindow);
 #endif // _DEBUG
 		ImGui::EndChild();
-		ImGui::EndGroup();
 
 		ImGui::SameLine();
 
@@ -177,7 +180,7 @@ namespace cheat
 		DrawProfileLine();
 
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_None;
-		ImGui::BeginChild("ChildR", ImVec2(0, 0), true, window_flags);
+		ImGui::BeginChild("ChildR", ImVec2(0, -FLT_MIN), true, window_flags);
 
 		auto& sections = m_FeatureMap[*current];
 		if (m_SelectedSection == nullptr)
