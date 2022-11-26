@@ -31,8 +31,7 @@ namespace cheat::feature
     {
 		HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
 		HookManager::install(app::CrashReporter, CrashReporter_Hook);
-		HookManager::install(app::MoleMole_LuaShellManager_ReportLuaShellResult, LuaShellManager_ReportLuaShellResult_Hook);
-    }
+	}
 
 	void ProtectionBypass::Init()
 	{
@@ -50,6 +49,9 @@ namespace cheat::feature
 		}
 
 		LOG_DEBUG("Initialized");
+
+		// Don't hook anything from the UserAssembly before init.
+		HookManager::install(app::MoleMole_LuaShellManager_ReportLuaShellResult, LuaShellManager_ReportLuaShellResult_Hook);
 	}
 
     const FeatureGUIInfo& ProtectionBypass::GetGUIInfo() const
