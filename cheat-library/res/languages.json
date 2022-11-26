@@ -3,6 +3,8 @@
     "font": "DefaultFont",
     "pseudo": "English | EN (DEBUG)",
     "translates": {
+      "  Chinese:": "  Chinese:",
+      "  Russian:": "  Russian:",
       "Auto Cooking [Standart, %s]": "Auto Cooking [Standart, %s]",
       "BGMs": "BGMs",
       "Book pages": "Book pages",
@@ -920,6 +922,8 @@
     "font": "ChineseSimplifiedFont",
     "pseudo": "Chinese | Zh-cn",
     "translates": {
+      "  Chinese:": "  中文:",
+      "  Russian:": "  俄文:",
       "0culi Teleport": "神瞳传送",
       "Ability Log [DEBUG]": "技能日志[调试]",
       "Ability Reduce": "属性降低(暂)",
@@ -1857,6 +1861,8 @@
     "font": "CyrillicFont",
     "pseudo": "Russian | RU",
     "translates": {
+      "  Chinese:": "  Упрощенный китайский:",
+      "  Russian:": "  Русский:",
       "Auto Cooking [Standart, %s]": "Авто готовка [Standart, %s]",
       "BGMs": "BGMs",
       "Book pages": "Книги (страницы)",
