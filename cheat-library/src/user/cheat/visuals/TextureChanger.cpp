@@ -3,6 +3,7 @@
 
 #include <helpers.h>
 #include <cheat/events.h>
+#include <cheat-base/ISerializable.h>
 #include <misc/cpp/imgui_stdlib.h>
 #include <fstream>
 
@@ -13,11 +14,11 @@ namespace cheat::feature
     }
  
     TextureChanger::TextureChanger() : Feature(),
-        NF(f_Enabled, "Texture Changer", "Visuals::TextureChanger", false),
-        NF(f_HeadPath, "Head", "Visuals::TextureChanger", false),
-        NF(f_BodyPath, "Body", "Visuals::TextureChanger", false),
-        NF(f_DressPath, "Dress", "Visuals::TextureChanger", false),
-        NF(f_GliderPath, "Glider", "Visuals::TextureChanger", false),
+        NFP(f_Enabled, "Visuals::TextureChanger", "Texture changer", false),
+        NF(f_HeadPath, "Visuals::TextureChanger", false),
+        NF(f_BodyPath, "Visuals::TextureChanger", false),
+        NF(f_DressPath, "Visuals::TextureChanger", false),
+        NF(f_GliderPath, "Visuals::TextureChanger", false),
         toBeUpdate(), nextUpdate(0)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(TextureChanger::OnGameUpdate);
@@ -25,40 +26,40 @@ namespace cheat::feature
 
     const FeatureGUIInfo& TextureChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "TextureChanger", "Visuals", true };
+        TRANSLATED_GROUP_INFO("Texture changer", "Visuals");
         return info;
     }
 
     void TextureChanger::DrawMain()
     {
-        ConfigWidget(f_Enabled, "Texture Changer.");
-        ImGui::Text("Active Hero: %s", ActiveHero.c_str());
-        ImGui::Text("Active Glider: %s", ActiveGlider.c_str());
+        ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Texture Changer."));
+        ImGui::Text("%s: %s", _TR("Active Hero"), ActiveHero.c_str());
+        ImGui::Text("%s: %s", _TR("Active Glider"), ActiveGlider.c_str());
  
-        ConfigWidget(f_HeadPath, "Head Texture.\n" \
-            "Example path: C:\\Head.png");
+        ConfigWidget(_TR("Head"), f_HeadPath, _TR("Head Texture.\n" \
+            "Example path: C:\\Head.png"));
 
-        ConfigWidget(f_BodyPath, "Body Texture.\n" \
-            "Example path: C:\\Body.png");
+        ConfigWidget(_TR("Body"), f_BodyPath, _TR("Body Texture.\n" \
+            "Example path: C:\\Body.png"));
 
-        ConfigWidget(f_DressPath, "Dress Texture.\n" \
-            "Example path: C:\\Dress.png");
+        ConfigWidget(_TR("Dress"), f_DressPath, _TR("Dress Texture.\n" \
+            "Example path: C:\\Dress.png"));
 
-        ConfigWidget(f_GliderPath, "Glider Texture.\n" \
-            "Example path: C:\\Glider.png");
+        ConfigWidget(_TR("Glider"), f_GliderPath, _TR("Glider Texture.\n" \
+            "Example path: C:\\Glider.png"));
 
-        if (ImGui::Button("Apply"))
+        if (ImGui::Button(_TR("Apply")))
             ApplyTexture = true;
     }
 
     bool TextureChanger::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void TextureChanger::DrawStatus()
     {
-        ImGui::Text("Texture Changer");
+        ImGui::Text(_TR("Texture Changer"));
     }
 
     TextureChanger& TextureChanger::GetInstance()
@@ -69,7 +70,7 @@ namespace cheat::feature
 
     void TextureChanger::OnGameUpdate()
     {
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return;
 
         auto currentTime = util::GetCurrentTimeMillisec();
@@ -120,25 +121,30 @@ namespace cheat::feature
                         auto GliderMaterial = app::Renderer_GetMaterialArray(reinterpret_cast<app::Renderer*>(GliderSkinnedMeshRenderer), nullptr);
 
                         // 0 - Hair, 1 - Body, 2 - Dress
-                        if (f_HeadPath && CheckFile(f_HeadPath)) {
-                            auto HeadTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_HeadPath), 100, false, false, false, nullptr);
+                        if (f_HeadPath->enabled() && CheckFile(f_HeadPath->value())) 
+                        {
+                            auto HeadTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_HeadPath->value()), 100, false, false, false, nullptr);
                             app::Material_set_mainTexture(AvatarMaterial->vector[0], reinterpret_cast<app::Texture*>(HeadTexture), nullptr);
                         }
-                        if (f_BodyPath && CheckFile(f_BodyPath)) {
-                            auto BodyTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_BodyPath), 100, false, false, false, nullptr);
+
+                        if (f_BodyPath->enabled() && CheckFile(f_BodyPath->value()))
+                        {
+                            auto BodyTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_BodyPath->value()), 100, false, false, false, nullptr);
                             app::Material_set_mainTexture(AvatarMaterial->vector[1], reinterpret_cast<app::Texture*>(BodyTexture), nullptr);
                         }
-                        if (f_DressPath && CheckFile(f_DressPath)) {
-                            auto DressTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_DressPath), 100, false, false, false, nullptr);
+
+                        if (f_DressPath->enabled() && CheckFile(f_DressPath->value())) 
+                        {
+                            auto DressTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_DressPath->value()), 100, false, false, false, nullptr);
                             
                             if (AvatarMaterial->vector[2] != nullptr)
                                 app::Material_set_mainTexture(AvatarMaterial->vector[2], reinterpret_cast<app::Texture*>(DressTexture), nullptr);
                         }         
 
                         //Glider
-                        if (f_GliderPath && CheckFile(f_GliderPath))
+                        if (f_GliderPath->enabled() && CheckFile(f_GliderPath->value()))
                         {
-                            auto GliderTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_GliderPath), 100, false, false, false, nullptr);
+                            auto GliderTexture = app::NativeGallery_LoadImageAtPath(string_to_il2cppi(f_GliderPath->value()), 100, false, false, false, nullptr);
                             app::Material_set_mainTexture(GliderMaterial->vector[0], reinterpret_cast<app::Texture*>(GliderTexture), nullptr);
                         }
                         ApplyTexture = false;

@@ -115,9 +115,19 @@ bool TypeWidget(const char* label, ImColor& value, const char* desc)
 
 bool TypeWidget(const char* label, config::Toggle<Hotkey>& value, const char* desc, bool hotkey)
 {
-    bool result = hotkey ? InputHotkey(label, &value.value, true) : ImGui::Checkbox(label, &value.enabled);
-    END_TYPE_WIDGET();
+	bool result = false;
+	if (hotkey)
+		result = InputHotkey(label, &value.value(), true);
+	else
+	{
+		bool temp = value.enabled();
+		result = ImGui::Checkbox(label, &temp);
+		if (result)
+			value.set_enabled(temp);
+	}
+	END_TYPE_WIDGET();
 }
+
 
 bool ConfigWidget(const char* label, config::Field<bool>& field, const char* desc)
 {
@@ -158,58 +168,34 @@ bool ConfigWidget(const char* label, config::Field<ImColor>& field, const char* 
 bool ConfigWidget(const char* label, config::Field<config::Toggle<float>>& field, float step, float start, float end,
 	const char* desc, bool hotkey)
 {
-    ImGui::PushID(&label);
-    bool result = TypeWidget("", field.value().enabled);
-    ImGui::SameLine();
-    result |= TypeWidget(label, field.value().value, step, start, end, desc);
-    ImGui::PopID();
-    END_CONFIG_WIDGET();
+	ImGui::PushID(&label);
+	bool temp = field->enabled();
+	bool result = TypeWidget("", temp);
+	if (result)
+		field->set_enabled(temp);
+
+	ImGui::SameLine();
+	result |= TypeWidget(label, field->value(), step, start, end, desc);
+	ImGui::PopID();
+	END_CONFIG_WIDGET();
 }
 
 bool ConfigWidget(const char* label, config::Field<config::Toggle<Hotkey>>& field, const char* desc /*= nullptr*/, bool hotkey /*= false*/)
 {
-    bool result = TypeWidget(label, field.value(), desc, hotkey);
-    END_CONFIG_WIDGET();
+	bool result = TypeWidget(label, field.value(), desc, hotkey);
+	END_CONFIG_WIDGET();
 }
 
-bool ConfigWidget(config::Field<bool>& field, const char* desc)
+bool ConfigWidget(const char* label, config::Field<cheat::TranslatedHotkey>& field, const char* desc /*= nullptr*/, bool hotkey /*= false*/)
 {
-    return ConfigWidget(field.friendName().c_str(), field, desc);
+	bool result = TypeWidget(label, field.value(), desc, hotkey);
+	END_CONFIG_WIDGET();
 }
 
-bool ConfigWidget(config::Field<int>& field, int step, int start, int end, const char* desc)
+bool ConfigWidget(const char* label, config::Field<cheat::NamedHotkey>& field, const char* desc /*= nullptr*/, bool hotkey /*= false*/)
 {
-    return ConfigWidget(field.friendName().c_str(), field, step, start, end, desc);
-}
-
-bool ConfigWidget(config::Field<float>& field, float step, float start, float end, const char* desc)
-{
-    return ConfigWidget(field.friendName().c_str(), field, step, start, end, desc);
-}
-
-bool ConfigWidget(config::Field<Hotkey>& field, bool clearable, const char* desc)
-{
-    return ConfigWidget(field.friendName().c_str(), field, clearable, desc);
-}
-
-bool ConfigWidget(config::Field<std::string>& field, const char* desc)
-{
-    return ConfigWidget(field.friendName().c_str(), field, desc);
-}
-
-bool ConfigWidget(config::Field<ImColor>& field, const char* desc /*= nullptr*/)
-{
-    return ConfigWidget(field.friendName().c_str(), field, desc);
-}
-
-bool ConfigWidget(config::Field<config::Toggle<float>>& field, float step, float start, float end, const char* desc)
-{
-    return ConfigWidget(field.friendName().c_str(), field, step, start, end, desc);
-}
-
-bool ConfigWidget(config::Field<config::Toggle<Hotkey>>& field, const char* desc /*= nullptr*/, bool hotkey /*= false*/)
-{
-    return ConfigWidget(field.friendName().c_str(), field, desc, hotkey);
+	bool result = TypeWidget(label, field.value(), desc, hotkey);
+	END_CONFIG_WIDGET();
 }
 
 #undef ShowDesc

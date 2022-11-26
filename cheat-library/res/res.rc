@@ -52,6 +52,8 @@ END
 
 IMGUI_FONT              RCDATA                  "Ruda-Bold.ttf"
 
+R_LANGUAGES             RCDATA                  "languages.json"
+
 IMGUI_FONT_BOLD         RCDATA                  "Ruda-ExtraBold.ttf"
 
 SIGNATURES              RCDATA                  "signatures.json"
@@ -68,6 +70,9 @@ ASSEMBLYCHECKSUMS       RCDATA                  "assembly_checksum.json"
 
 ASCENSIONMATERIALSDATA  RCDATA                  "ascension_materials.json"
 
+IMGUI_FONT_CHINESE      RCDATA                  "NotoSansSC-Bold.otf"
+
+IMGUI_FONT_CYRILLIC     RCDATA                  "ubuntu_bold.ttf"
 
 /////////////////////////////////////////////////////////////////////////////
 //

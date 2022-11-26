@@ -10,11 +10,11 @@ namespace cheat::feature
 {
 
 	MapTeleport::MapTeleport() : Feature(),
-		NF(f_Enabled, "Map teleport", "MapTeleport", false),
-		NF(f_DetectHeight, "Auto height detect", "MapTeleport", true),
-		NF(f_UseTransPosition, "Use transport position", "MapTeleport", false),
-		NF(f_DefaultHeight, "Default teleport height", "MapTeleport", 300.0f),
-		NF(f_Key, "Teleport key", "MapTeleport", Hotkey('T'))
+		NFP(f_Enabled, "MapTeleport", "Map Teleport", false),
+		NF(f_DetectHeight, "MapTeleport", true),
+		NF(f_UseTransPosition, "MapTeleport", false),
+		NF(f_DefaultHeight, "MapTeleport", 300.0f),
+		NF(f_Key, "MapTeleport", Hotkey('T'))
 	{
 		// Map touch
 		HookManager::install(app::MoleMole_InLevelMapPageContext_OnMarkClicked, InLevelMapPageContext_OnMarkClicked_Hook);
@@ -34,37 +34,37 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& MapTeleport::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Map Teleport", "Teleport", true };
+		TRANSLATED_GROUP_INFO("Map Teleport", "Teleport");
 		return info;
 	}
 
 	void MapTeleport::DrawMain()
 	{
-		ConfigWidget("Enabled",
+		ConfigWidget(_TR("Enabled"),
 			f_Enabled,
-			"Enable teleport-to-mark functionality.\n" \
+			_TR("Enable teleport-to-mark functionality.\n" \
 			"Usage: \n" \
 			"\t1. Open map.\n" \
 			"\t2. Hold [Teleport Key] and click with the LMB anywhere in the map.\n" \
 			"\tDone. You have been teleported to selected location.\n" \
 			"Teleport might glitch if teleporting to an extremely high location. \n" \
-			"Adjust Override Height accordingly to help avoid."
+			"Adjust Override Height accordingly to help avoid.")
 		);
 
 		ImGui::SameLine();
-		ConfigWidget("Use transport position", f_UseTransPosition, "Use system default transport position instead of mark absolute position when teleport to building and transport mark.");
+		ConfigWidget(_TR("Use transport position"), f_UseTransPosition, _TR("Use system default transport position instead of mark absolute position when teleport to building and transport mark."));
 
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			ImGui::BeginDisabled();
 
-		ConfigWidget("Override Height (m)", f_DefaultHeight, 1.0F, 200.0F, 800.0F,
-			"If teleport cannot get ground height of target location,\nit will teleport you to the height specified here.\n" \
-			"It is recommended to have this value to be at least as high as a mountain.\nOtherwise, you may fall through the ground.");
+		ConfigWidget(_TR("Override Height (m)"), f_DefaultHeight, 1.0F, 200.0F, 800.0F,
+			_TR("If teleport cannot get ground height of target location,\nit will teleport you to the height specified here.\n" \
+			"It is recommended to have this value to be at least as high as a mountain.\nOtherwise, you may fall through the ground."));
 
-		ConfigWidget("Teleport Key", f_Key, true,
-			"Key to hold down before clicking on target location.");
+		ConfigWidget(_TR("Teleport Key"), f_Key, true,
+			_TR("Key to hold down before clicking on target location."));
 
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			ImGui::EndDisabled();
 	}
 
@@ -160,7 +160,7 @@ namespace cheat::feature
 	{
 		MapTeleport& mapTeleport = GetInstance();
 
-		if (!mapTeleport.f_Enabled || !mapTeleport.f_Key.value().IsPressed())
+		if (!mapTeleport.f_Enabled->enabled() || !mapTeleport.f_Key.value().IsPressed())
 			return CALL_ORIGIN(InLevelMapPageContext_OnMapClicked_Hook, __this, screenPos, method);
 
 		app::Vector2 mapPosition{};
@@ -175,7 +175,7 @@ namespace cheat::feature
 	void MapTeleport::InLevelMapPageContext_OnMarkClicked_Hook(app::InLevelMapPageContext* __this, app::MonoMapMark* mark, MethodInfo* method)
 	{
 		MapTeleport& mapTeleport = GetInstance();
-		if (!mapTeleport.f_Enabled || !mapTeleport.f_Key.value().IsPressed())
+		if (!mapTeleport.f_Enabled->enabled() || !mapTeleport.f_Key.value().IsPressed())
 			return CALL_ORIGIN(InLevelMapPageContext_OnMarkClicked_Hook, __this, mark, method);
 		if (mark->fields._markType == app::MoleMole_Config_MarkType__Enum::TransPoint || mark->fields._markType == app::MoleMole_Config_MarkType__Enum::ScenePoint)
 		{

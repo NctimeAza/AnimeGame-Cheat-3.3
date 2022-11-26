@@ -8,12 +8,12 @@ namespace cheat::feature
 	class DialogSkip : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<Hotkey> f_ToggleHotkey;
-		config::Field<config::Toggle<Hotkey>> f_AutoSelectDialog;
-		config::Field<config::Toggle<Hotkey>> f_ExcludeImportant;
-		config::Field<config::Toggle<Hotkey>> f_FastDialog;
-		config::Field<config::Toggle<Hotkey>> f_CutsceneUSM;
+		config::Field<TranslatedHotkey> f_AutoSelectDialog;
+		config::Field<TranslatedHotkey> f_ExcludeImportant;
+		config::Field<TranslatedHotkey> f_FastDialog;
+		config::Field<TranslatedHotkey> f_CutsceneUSM;
 		config::Field<float> f_TimeSpeedup;
 
 		static DialogSkip& GetInstance();

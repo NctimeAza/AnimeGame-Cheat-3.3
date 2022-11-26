@@ -17,24 +17,24 @@ namespace cheat::feature
 	float g_default_range = 3.0f;
 
     AutoLoot::AutoLoot() : Feature(),
-        NF(f_AutoPickup, "Auto-pickup drops", "AutoLoot", false),
-        NF(f_AutoDisablePickupWhenAddItemExceedLimit, "Auto disable pickup when full", "AutoLoot", true),
-        NF(f_AutoTreasure, "Auto-open treasures", "AutoLoot", false),
-        NF(f_UseCustomRange, "Use custom pickup range", "AutoLoot", false),
-        NF(f_UseDelayTimeFluctuation, "Use delay fluctuation", "AutoLoot", false),
-        NF(f_PickupFilter, "Pickup filter", "AutoLoot", false),
-        NF(f_DelayTime, "Delay time (in ms)", "AutoLoot", 200),
-        NF(f_DelayTimeFluctuation, "Delay fluctuation +(in ms)", "AutoLoot", 200),
-        NF(f_CustomRange, "Pickup Range", "AutoLoot", 5.0f),
-        NF(f_Chest, "Chests", "AutoLoot", false),
-        NF(f_Leyline, "Leylines", "AutoLoot", false),
-        NF(f_Investigate, "Search points", "AutoLoot", false),
-        NF(f_QuestInteract, "Quest interacts", "AutoLoot", false),
-        NF(f_Others, "Other treasures", "AutoLoot", false),
-        NF(f_PickupFilter_Animals, "Animals filter", "AutoLoot", true),
-        NF(f_PickupFilter_DropItems, "Drop items filter", "AutoLoot", true),
-        NF(f_PickupFilter_Resources, "Resources filter", "AutoLoot", true),
-        NF(f_PickupFilter_Oculus, "Oculus filter", "AutoLoot", true),
+        NFP(f_AutoPickup, "AutoLoot", "Auto-Pickup", false),
+        NFP(f_AutoDisablePickupWhenAddItemExceedLimit, "AutoLoot", "Auto disable pickup (on full)", true),
+        NFP(f_AutoTreasure, "AutoLoot", "Auto-Treasure", false),
+        NFP(f_UseCustomRange, "AutoLoot", "Use custom range", false),
+        NFP(f_UseDelayTimeFluctuation, "AutoLoot", "Use delay time fluctuation", false),
+        NFP(f_PickupFilter, "AutoLoot", "Pickup Filter", false),
+        NF(f_DelayTime, "AutoLoot", 200),
+        NF(f_DelayTimeFluctuation, "AutoLoot", 200),
+        NF(f_CustomRange, "AutoLoot", 5.0f),
+        NF(f_Chest, "AutoLoot", false),
+        NF(f_Leyline, "AutoLoot", false),
+        NF(f_Investigate, "AutoLoot", false),
+        NF(f_QuestInteract, "AutoLoot", false),
+        NF(f_Others, "AutoLoot", false),
+        NF(f_PickupFilter_Animals, "AutoLoot", true),
+        NF(f_PickupFilter_DropItems, "AutoLoot", true),
+        NF(f_PickupFilter_Resources, "AutoLoot", true),
+        NF(f_PickupFilter_Oculus, "AutoLoot", true),
         toBeLootedItems(), nextLootTime(0)
     {
 		// Auto loot
@@ -48,7 +48,7 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AutoLoot::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Auto Loot", "World", true };
+        TRANSLATED_GROUP_INFO("Auto Loot", "World");
         return info;
     }
 
@@ -59,99 +59,100 @@ namespace cheat::feature
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(0);
 
-			ImGui::BeginGroupPanel("Auto-Pickup");
+			ImGui::BeginGroupPanel(_TR("Auto-Pickup"));
 			{
-				ConfigWidget("Enabled", f_AutoPickup, "Automatically picks up dropped items.\n" \
+				ConfigWidget(_TR("Enabled"), f_AutoPickup, _TR("Automatically picks up dropped items.\n" \
 					"Note: Using this with custom range and low delay times is extremely risky.\n" \
 					"Abuse will definitely merit a ban.\n\n" \
-					"If using with custom range, make sure this is turned on FIRST.");
+					"If using with custom range, make sure this is turned on FIRST."));
 				ImGui::SameLine();
-				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 				ImGui::Indent();
-				ConfigWidget("Auto disable when bag is full", f_AutoDisablePickupWhenAddItemExceedLimit, "Automatically disables auto pickup when bag is full.");
+				ConfigWidget(_TR("Auto disable when bag is full"), f_AutoDisablePickupWhenAddItemExceedLimit, _TR("Automatically disables auto pickup when bag is full."));
 				ImGui::SameLine();
-				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 			}
 			ImGui::EndGroupPanel();
 			
-			ImGui::BeginGroupPanel("Custom Pickup Range");
+			ImGui::BeginGroupPanel(_TR("Custom Pickup Range"));
 			{
-				ConfigWidget("Enabled", f_UseCustomRange, "Enable custom pickup range.\n" \
+				ConfigWidget(_TR("Enabled"), f_UseCustomRange, _TR("Enable custom pickup range.\n" \
 					"High values are not recommended, as it is easily detected by the server.\n\n" \
-					"If using with auto-pickup/auto-treasure, turn this on LAST.");
+					"If using with auto-pickup/auto-treasure, turn this on LAST."));
 				ImGui::SameLine();
-				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 				ImGui::SetNextItemWidth(100.0f);
-				ConfigWidget("Range (m)", f_CustomRange, 0.1f, 0.5f, 40.0f, "Modifies pickup/open range to this value (in meters).");
+				ConfigWidget(_TR("Range (m)"), f_CustomRange, 0.1f, 0.5f, 40.0f, _TR("Modifies pickup/open range to this value (in meters)."));
 			}
 			ImGui::EndGroupPanel();
 			
-			ImGui::BeginGroupPanel("Looting Speed");
+			ImGui::BeginGroupPanel(_TR("Looting Speed"));
 			{
 				ImGui::SetNextItemWidth(100.0f);
-				ConfigWidget("Delay Time (ms)", f_DelayTime, 1, 0, 1000, "Delay (in ms) between loot/open actions.\n" \
-					"Values under 200ms are unsafe.\nNot used if no auto-functions are on.");
+				ConfigWidget(_TR("Delay Time (ms)"), f_DelayTime, 1, 0, 1000, _TR("Delay (in ms) between loot/open actions.\n" \
+					"Values under 200ms are unsafe.\nNot used if no auto-functions are on."));
 			}
 			ImGui::EndGroupPanel();
 
-			ImGui::BeginGroupPanel("Looting delay fluctuation");
+			ImGui::BeginGroupPanel(_TR("Looting delay fluctuation"));
 			{
-				ConfigWidget("Enabled", f_UseDelayTimeFluctuation, "Enable delay fluctuation.\n" \
-					"Simulates human clicking delay as manual clickling never consistent.");
+				ConfigWidget(_TR("Enabled"), f_UseDelayTimeFluctuation, _TR("Enable delay fluctuation.\n" \
+					"Simulates human clicking delay as manual clickling never consistent."));
 				ImGui::SameLine();
-				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 				ImGui::SetNextItemWidth(100.0f);
-				ConfigWidget("Delay range +(ms)", f_DelayTimeFluctuation, 1, 0, 1000, "Delay randomly fluctuates between 'Delay Time'+'Delay Time+range'");
+				ConfigWidget(_TR("Delay range +(ms)"), f_DelayTimeFluctuation, 1, 0, 1000, _TR("Delay randomly fluctuates between 'Delay Time'+'Delay Time+range'"));
 			}
 			ImGui::EndGroupPanel();
 			
 			ImGui::TableSetColumnIndex(1);
-			ImGui::BeginGroupPanel("Auto-Treasure");
+			ImGui::BeginGroupPanel(_TR("Auto-Treasure"));
 			{
-				ConfigWidget("Enabled", f_AutoTreasure, "Automatically opens chests and other treasures.\n" \
+				ConfigWidget(_TR("Enabled"), f_AutoTreasure, _TR("Automatically opens chests and other treasures.\n" \
 					"Note: Using this with custom range and low delay times is extremely risky.\n" \
 					"Abuse will definitely merit a ban.\n\n" \
-					"If using with custom range, make sure this is turned on FIRST.");
+					"If using with custom range, make sure this is turned on FIRST."));
 				ImGui::SameLine();
-				ImGui::TextColored(ImColor(255, 165, 0, 255), "Read the note!");
+				ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Read the note!"));
 				ImGui::Indent();
-				ConfigWidget("Chests", f_Chest, "Common, precious, luxurious, etc.");
-				ConfigWidget("Leyline", f_Leyline, "Mora/XP, overworld/Trounce bosses, etc.");
-				ConfigWidget("Search Points", f_Investigate, "Marked as Investigate/Search, etc.");
-				ConfigWidget("Quest Interacts", f_QuestInteract, "Valid quest interact points.");
-				ConfigWidget("Others", f_Others, "Book Pages, Spincrystals, etc.");
+				ConfigWidget(_TR("Chests"), f_Chest, _TR("Common, precious, luxurious, etc."));
+				ConfigWidget(_TR("Leyline"), f_Leyline, _TR("Mora/XP, overworld/Trounce bosses, etc."));
+				ConfigWidget(_TR("Search Points"), f_Investigate, _TR("Marked as Investigate/Search, etc."));
+				ConfigWidget(_TR("Quest Interacts"), f_QuestInteract, _TR("Valid quest interact points."));
+				ConfigWidget(_TR("Others"), f_Others, _TR("Book Pages, Spincrystals, etc."));
 				ImGui::Unindent();
 			}
 			ImGui::EndGroupPanel();
 			ImGui::EndTable();
 		}
 			
-    	ImGui::BeginGroupPanel("Pickup Filter");
+    	ImGui::BeginGroupPanel(_TR("Pickup Filter"));
 	    {
-			ConfigWidget("Enabled", f_PickupFilter, "Enable pickup filter.\n");
-			ConfigWidget("Animals", f_PickupFilter_Animals, "Fish, Lizard, Frog, Flying animals."); ImGui::SameLine();
-			ConfigWidget("Drop Items", f_PickupFilter_DropItems, "Material, Mineral, Artifact."); ImGui::SameLine();
-			ConfigWidget("Resources", f_PickupFilter_Resources, "Everything beside Animals and Drop Items (Plants, Books, etc)."); ImGui::SameLine();
-			ConfigWidget("Oculus", f_PickupFilter_Oculus, "Filter Oculus");
+			ConfigWidget(_TR("Enabled"), f_PickupFilter, _TR("Enable pickup filter.\n"));
+			ConfigWidget(_TR("Animals"), f_PickupFilter_Animals, _TR("Fish, Lizard, Frog, Flying animals.")); ImGui::SameLine();
+			ConfigWidget(_TR("Drop Items"), f_PickupFilter_DropItems, _TR("Material, Mineral, Artifact.")); ImGui::SameLine();
+			ConfigWidget(_TR("Resources"), f_PickupFilter_Resources, _TR("Everything beside Animals and Drop Items (Plants, Books, etc).")); ImGui::SameLine();
+			ConfigWidget(_TR("Oculus"), f_PickupFilter_Oculus, _TR("Filter Oculus"));
 	    }
     	ImGui::EndGroupPanel();
     }
 
     bool AutoLoot::NeedStatusDraw() const
 	{
-        return f_AutoPickup || f_AutoTreasure || f_UseCustomRange || f_PickupFilter;
+        return f_AutoPickup->enabled() || f_AutoTreasure->enabled() || f_UseCustomRange->enabled() || f_PickupFilter->enabled();
     }
 
     void AutoLoot::DrawStatus() 
     {
-		ImGui::Text("Auto Loot\n[%s%s%s%s%s%s%s]",
-			f_AutoPickup ? "AP" : "",
-			f_AutoPickup && f_AutoDisablePickupWhenAddItemExceedLimit ? "AutoDisable" : "",
-			f_AutoTreasure ? fmt::format("{}AT", f_AutoPickup ? "|" : "").c_str() : "",
-			f_UseCustomRange ? fmt::format("{}CR{:.1f}m", f_AutoPickup || f_AutoTreasure ? "|" : "", f_CustomRange.value()).c_str() : "",
-			f_PickupFilter ? fmt::format("{}PF", f_AutoPickup || f_AutoTreasure || f_UseCustomRange ? "|" : "").c_str() : "",
-			f_AutoPickup || f_AutoTreasure ? fmt::format("|{}ms", f_DelayTime.value()).c_str() : "", 
-			f_UseDelayTimeFluctuation ? fmt::format("|FL+{}ms", f_DelayTimeFluctuation.value()).c_str() : ""
+		ImGui::Text("%s\n[%s%s%s%s%s%s%s]",
+			_TR("Auto Loot"),
+			f_AutoPickup->enabled() ? "AP" : "",
+			f_AutoPickup->enabled() && f_AutoDisablePickupWhenAddItemExceedLimit->enabled() ? "AutoDisable" : "",
+			f_AutoTreasure->enabled() ? fmt::format("{}AT", f_AutoPickup->enabled() ? "|" : "").c_str() : "",
+			f_UseCustomRange->enabled() ? fmt::format("{}CR{:.1f}m", f_AutoPickup->enabled() || f_AutoTreasure->enabled() ? "|" : "", f_CustomRange.value()).c_str() : "",
+			f_PickupFilter->enabled() ? fmt::format("{}PF", f_AutoPickup->enabled() || f_AutoTreasure->enabled() || f_UseCustomRange->enabled() ? "|" : "").c_str() : "",
+			f_AutoPickup->enabled() || f_AutoTreasure->enabled() ? fmt::format("|{}ms", f_DelayTime.value()).c_str() : "",
+			f_UseDelayTimeFluctuation->enabled() ? fmt::format("|FL+{}ms", f_DelayTimeFluctuation.value()).c_str() : ""
 		);
     }
 
@@ -163,7 +164,7 @@ namespace cheat::feature
 
 	bool AutoLoot::OnCreateButton(app::BaseEntity* entity)
 	{
-		if (!f_AutoPickup)
+		if (!f_AutoPickup->enabled())
 			return false;
 
 		auto itemModule = GET_SINGLETON(MoleMole_ItemModule);
@@ -192,12 +193,12 @@ namespace cheat::feature
 			return;
 
 		// RyujinZX#6666
-		if (f_AutoTreasure) 
+		if (f_AutoTreasure->enabled()) 
 		{
 			auto& manager = game::EntityManager::instance();
 			for (auto entity : manager.entities(game::filters::combined::Chests)) 
 			{
-				float range = f_UseCustomRange ? f_CustomRange : g_default_range;
+				float range = f_UseCustomRange->enabled() ? f_CustomRange : g_default_range;
 				if (manager.avatar()->distance(entity) >= range)
 					continue;
 
@@ -248,7 +249,7 @@ namespace cheat::feature
 		app::MoleMole_ItemModule_PickItem(itemModule, *entityId, nullptr);
 
 		int fluctuation = 0;
-		if (f_UseDelayTimeFluctuation)
+		if (f_UseDelayTimeFluctuation->enabled())
 		{
 			fluctuation = std::rand() % (f_DelayTimeFluctuation + 1);
 		}
@@ -261,9 +262,9 @@ namespace cheat::feature
 		// TODO: Maybe add a list of filter for all GatherObject instead of just using entityType in general.
 		auto& manager = game::EntityManager::instance();
 
-		if (f_AutoPickup || f_UseCustomRange) {
-			float pickupRange = f_UseCustomRange ? f_CustomRange : g_default_range;
-			if (f_PickupFilter)
+		if (f_AutoPickup->enabled() || f_UseCustomRange->enabled()) {
+			float pickupRange = f_UseCustomRange->enabled() ? f_CustomRange : g_default_range;
+			if (f_PickupFilter->enabled())
 			{
 				if (!f_PickupFilter_Animals && entity->fields.entityType == app::EntityType__Enum_1::EnvAnimal ||
 					!f_PickupFilter_DropItems && entity->fields.entityType == app::EntityType__Enum_1::DropItem ||
@@ -318,12 +319,12 @@ namespace cheat::feature
 	static void ItemModule_OnCheckAddItemExceedLimitNotify_Hook(/*MoleMole_ItemModule* */ void*  __this, app::Proto_CheckAddItemExceedLimitNotify* notify, MethodInfo* method)
 	{
 		AutoLoot& autoLoot = AutoLoot::GetInstance();
-		if (autoLoot.f_AutoPickup && autoLoot.f_AutoDisablePickupWhenAddItemExceedLimit &&
+		if (autoLoot.f_AutoPickup->enabled() && autoLoot.f_AutoDisablePickupWhenAddItemExceedLimit->enabled() &&
 			// notify->fields.reason_ != 1103 // ACTION_REASON_HOME_PLANT_BOX_GATHER = 0x44F, alternative to only exclude seed box gather if below condition has problems
 			notify->fields.msgType_ != app::Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum::ITEM_EXCEED_LIMIT_MSG_TYPE_TEXT) // exclude if prompt is only text
 		{
 			// Temporary toggles autoloot off, not saved to config
-			autoLoot.f_AutoPickup.value().enabled = false;
+			autoLoot.f_AutoPickup->set_enabled(false);
 
 			// Clear loot queue
 			autoLoot.clear_toBeLootedItems();

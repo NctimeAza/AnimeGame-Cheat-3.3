@@ -45,7 +45,7 @@ namespace cheat::feature
     }
     const FeatureGUIInfo& About::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "", "About", false };
+        TRANSLATED_MODULE_INFO("About");
         return info;
     }
 
@@ -59,26 +59,30 @@ namespace cheat::feature
 
         ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowSize().x);
 
-        ImGui::TextColored(ImColor(28, 202, 214, 255), "Akebi github:");
-        TextURL("GitHub link", "https://github.com/Papaya-Group/Akebi-GC/", true, false);
+        ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi github:"));
+        TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/", true, false);
 
-		ImGui::TextColored(ImColor(28, 202, 214, 255), "Akebi discord:");
-		TextURL("Discord invite link", "https://discord.com/invite/MmV8hNZB9S", true, false);
+		ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi discord:"));
+		TextURL(_TR("Discord invite link"), "https://discord.com/invite/MmV8hNZB9S", true, false);
 
-        ImGui::Text("Founder:");
+        ImGui::Text(_TR("Founder:"));
         ImGui::SameLine();
         ImGui::TextColored(ImColor(0, 102, 255, 255), "Callow");
         
-		ImGui::Text("Main developer and updater:");
+		ImGui::Text(_TR("Main developer and updater:"));
 		ImGui::SameLine();
 		ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga");
 
-		ImGui::Text("Main contributors:");
+		ImGui::Text(_TR("Main contributors:"));
 		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, Shichiha, harlanx, andiabrudan, hellomykami, FawazTakhji, RedDango");
 
-		ImGui::Text("Full contributor list:");
-		TextURL("Github link", "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
+		ImGui::Text(_TR("Full contributor list:"));
+		TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
 
+        ImGui::Text(_TR("Translators list:"));
+        ImGui::Text(_TR("  Russian:"));
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "    - phenacemide#2436");
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "    - AMOGUSS#0530");
         ImGui::PopTextWrapPos();
     }
 

@@ -2,13 +2,40 @@
 
 #include <string>
 
+#define TRANSLATED_GROUP_INFO(GROUP_NAME, MODULE_NAME) \
+	static FeatureGUIInfo info {					   \
+		GROUP_NAME,									   \
+		{},									           \
+													   \
+		MODULE_NAME,								   \
+		{}										       \
+	};												   \
+													   \
+	info.groupRepr = _TR(GROUP_NAME);				   \
+	info.moduleRepr = _TR(MODULE_NAME);				   
+
+#define TRANSLATED_MODULE_INFO(MODULE_NAME)\
+	static FeatureGUIInfo info {		   \
+		{},								   \
+		{},						           \
+										   \
+		MODULE_NAME,					   \
+		{}							       \
+	};									   \
+										   \
+	info.moduleRepr = _TR(MODULE_NAME);		
+
+
 namespace cheat 
 {
+
 	struct FeatureGUIInfo
 	{
-		std::string name;
-		std::string moduleName;
-		bool isGroup;
+		std::string groupKey;
+		std::string groupRepr;
+
+		std::string moduleKey;
+		std::string moduleRepr;
 	};
 
 	class Feature

@@ -39,6 +39,10 @@
 #include <cheat-base/Patch.h>
 #include <cheat-base/render/gui-util.h>
 #include <cheat-base/render/ImageLoader.h>
+#include <cheat-base/cheat/misc/Language.h>
+#include <cheat-base/cheat/fields/NamedHotkey.h>
+#include <cheat-base/cheat/fields/TranslatedHotkey.h>
+#include <cheat-base/Translator.h>
 
 #include <cheat-base/events/event.hpp>
 #include <cheat-base/events/handlers/methodeventhandler.hpp>

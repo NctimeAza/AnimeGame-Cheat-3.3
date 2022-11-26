@@ -7,9 +7,9 @@ namespace cheat::feature
 	class FreeCamera : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_FreezeAnimation;
-		config::Field<config::Toggle<Hotkey>> f_SetAvatarInvisible;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_FreezeAnimation;
+		config::Field<TranslatedHotkey> f_SetAvatarInvisible;
 		config::Field<bool> f_BlockInput;
 		config::Field<bool> f_DamageOverlay;
 		config::Field<bool> f_HpOverlay;

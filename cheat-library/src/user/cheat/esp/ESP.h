@@ -6,6 +6,8 @@
 #include <cheat/game/IEntityFilter.h>
 #include <cheat/game/CacheFilterExecutor.h>
 
+#include <cheat-base/cheat/fields/TranslatedHotkey.h>
+
 namespace cheat::feature 
 {
 
@@ -27,7 +29,7 @@ namespace cheat::feature
 			OffscreenArrows
 		};
 
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
     
 		config::Field<config::Enum<DrawMode>> f_DrawBoxMode;
 		config::Field<float> f_CorneredBoxSize;

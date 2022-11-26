@@ -11,7 +11,7 @@ namespace cheat::feature
 
 
 	OpenTeamImmediately::OpenTeamImmediately() : Feature(),
-		NF(f_Enabled, "Enable Open Team Immediately", "Open Team", false),
+		NFP(f_Enabled, "OpenTeam", "Open Team Immediately", false),
 		InLevelPlayerProfilePageContext(nullptr)
 	{
 		HookManager::install(app::MoleMole_InLevelMainPageContext_DoTeamCountDown_c_Iterator0__MoveNext, MoleMole_InLevelMainPageContext_DoTeamCountDown_c_Iterator0__MoveNext_Hook);
@@ -21,23 +21,23 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& OpenTeamImmediately::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "", "World", false };
+		TRANSLATED_MODULE_INFO("World");
 		return info;
 	}
 
 	void OpenTeamImmediately::DrawMain()
 	{
-		ConfigWidget("Open Team Immediately", f_Enabled, "Open team immediately without waiting for count down.");
+		ConfigWidget(_TR("Open Team Immediately"), f_Enabled, _TR("Open team immediately without waiting for count down."));
 	}
 
 	bool OpenTeamImmediately::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void OpenTeamImmediately::DrawStatus()
 	{
-		ImGui::Text("OpenTeamImmediately");
+		ImGui::Text(_TR("OTI"));
 	}
 
 	OpenTeamImmediately& OpenTeamImmediately::GetInstance()
@@ -51,7 +51,7 @@ namespace cheat::feature
 		auto& openTeamImmediately = OpenTeamImmediately::GetInstance();
 
 		// if paimon menu open, team ui will not open
-		if (openTeamImmediately.f_Enabled && !openTeamImmediately.InLevelPlayerProfilePageContext)
+		if (openTeamImmediately.f_Enabled->enabled() && !openTeamImmediately.InLevelPlayerProfilePageContext)
 		{
 			__this->fields._levelMainPageContext->fields._countDownTime = __this->fields._levelMainPageContext->fields.EnterCountDown + 1.f;
 		}

@@ -9,12 +9,12 @@ namespace cheat::feature
 	class AutoLoot : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_AutoPickup;
-		config::Field<config::Toggle<Hotkey>> f_AutoDisablePickupWhenAddItemExceedLimit;
-		config::Field<config::Toggle<Hotkey>> f_AutoTreasure;
-		config::Field<config::Toggle<Hotkey>> f_UseCustomRange;
-		config::Field<config::Toggle<Hotkey>> f_UseDelayTimeFluctuation;
-		config::Field<config::Toggle<Hotkey>> f_PickupFilter;
+		config::Field<TranslatedHotkey> f_AutoPickup;
+		config::Field<TranslatedHotkey> f_AutoDisablePickupWhenAddItemExceedLimit;
+		config::Field<TranslatedHotkey> f_AutoTreasure;
+		config::Field<TranslatedHotkey> f_UseCustomRange;
+		config::Field<TranslatedHotkey> f_UseDelayTimeFluctuation;
+		config::Field<TranslatedHotkey> f_PickupFilter;
 
 		config::Field<int> f_DelayTime;
 		config::Field<int> f_DelayTimeFluctuation;

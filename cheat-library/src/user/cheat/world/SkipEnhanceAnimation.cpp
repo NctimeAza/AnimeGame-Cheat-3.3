@@ -12,8 +12,8 @@ namespace cheat::feature
 	static uint32_t substatRollLevels[] = { 5, 9, 13, 17, 21 }; // artifact levels from the field go from 1 to 21, so we do +1
 
 	SkipEnhanceAnimation::SkipEnhanceAnimation() : Feature(),
-		NF(f_Enabled, "Skip Enhancement Animation", "SkipEnhanceAnimation", false),
-		NF(f_ShowLevelUp, "Show Level-Up Dialog", "SkipEnhanceAnimation", true)
+		NF(f_Enabled, "SkipEnhanceAnimation", false),
+		NF(f_ShowLevelUp, "SkipEnhanceAnimation", true)
 	{
 		HookManager::install(app::MoleMole_EquipLevelUpDialogContext_SetupView, MoleMole_EquipLevelUpDialogContext_SetupView_Hook);
 		HookManager::install(app::MoleMole_EquipOverviewPageContext_PlayExpAddAnimation, MoleMole_EquipOverviewPageContext_PlayExpAddAnimation_Hook);
@@ -22,19 +22,19 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& SkipEnhanceAnimation::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{"", "World", false };
+		TRANSLATED_MODULE_INFO("World");
 		return info;
 	}
 
 	void SkipEnhanceAnimation::DrawMain()
 	{
-		ConfigWidget("Skip Enhancement Animation", f_Enabled, "Skip weapon and artifact enhancement animation.");
+		ConfigWidget(_TR("Skip Enhance Animation"), f_Enabled, _TR("Skip weapon and artifact enhancement animation."));
 		if (f_Enabled)
 		{
 			ImGui::Indent();
-			ConfigWidget("Show Level-Up Dialog For Substat Rolls", f_ShowLevelUp,
-				"Show level up dialog when artifacts roll substats\n"
-				"(when hitting levels 4, 8, 12, 16, and 20).");
+			ConfigWidget(_TR("Show Level-Up Dialog For Substat Rolls"), f_ShowLevelUp,
+				_TR("Show level up dialog when artifacts roll substats\n"
+				"(when hitting levels 4, 8, 12, 16, and 20)."));
 			ImGui::Unindent();
 		}
 	}
@@ -46,7 +46,7 @@ namespace cheat::feature
 
 	void SkipEnhanceAnimation::DrawStatus()
 	{
-		ImGui::Text("SkipEnhanceAnimation");
+		ImGui::Text(_TR("Skip Enhance Animation"));
 	}
 
 	SkipEnhanceAnimation& SkipEnhanceAnimation::GetInstance()

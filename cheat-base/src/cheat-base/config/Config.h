@@ -3,23 +3,25 @@
 #include "Field.h"
 #include <vector>
 #include <string>
+#include <filesystem>
+
 #include "fields/Toggle.h"
 #include "fields/Enum.h"
 
-#define SNFEX(field, friendName, name, section, defaultValue, shared) config::CreateField<decltype(##field##)::_ValueType>(friendName, name, section, shared, defaultValue)
-#define SNFB(field, name, section, defaultValue, shared) SNFEX(field, name, config::internal::FixFieldName(#field), section, defaultValue, shared)
-#define SNF(field, name, section, defaultValue) SNFB(field, name, section, defaultValue, false)
+#define SNFEX(field, name, section, defaultValue, shared) config::CreateField<decltype(##field##)::_ValueType>(name, section, shared, defaultValue)
+#define SNFB(field, section, defaultValue, shared) SNFEX(field, config::internal::FixFieldName(#field), section, defaultValue, shared)
+#define SNF(field, section, defaultValue) SNFB(field, section, defaultValue, false)
 
-#define NFEX(field, friendName, name, section, defaultValue, shared) field##(SNFEX(field, friendName, name, section, defaultValue, shared))
-#define NFEXUP(field, friendName, name, section, shared, ...) field##(config::CreateField<decltype(##field##)::_ValueType>(friendName, name, section, shared, __VA_ARGS__))
+#define NFEX(field, name, section, defaultValue, shared) field##(SNFEX(field, name, section, defaultValue, shared))
+#define NFEXUP(field, name, section, shared, ...) field##(config::CreateField<decltype(##field##)::_ValueType>(name, section, shared, __VA_ARGS__))
 
-#define NFB(field, name, section, defaultValue, shared) NFEX(field, name, config::internal::FixFieldName(#field), section, defaultValue, shared)
-#define NFS(field, name, section, defaultValue) NFB(field, name, section, defaultValue, true)
-#define NF(field, name, section, defaultValue) NFB(field, name, section, defaultValue, false)
+#define NFB(field, section, defaultValue, shared) NFEX(field, config::internal::FixFieldName(#field), section, defaultValue, shared)
+#define NFS(field, section, defaultValue) NFB(field, section, defaultValue, true)
+#define NF(field, section, defaultValue) NFB(field, section, defaultValue, false)
 
-#define NFPB(field, name, section, shared, ...) NFEXUP(field, name, config::internal::FixFieldName(#field), section, shared, __VA_ARGS__)
-#define NFPS(field, name, section, ...) NFPB(field, name, section, true, __VA_ARGS__)
-#define NFP(field, name, section, ...) NFPB(field, name, section, false, __VA_ARGS__)
+#define NFPB(field, section, shared, ...) NFEXUP(field, config::internal::FixFieldName(#field), section, shared, __VA_ARGS__)
+#define NFPS(field, section, ...) NFPB(field, section, true, __VA_ARGS__)
+#define NFP(field, section, ...) NFPB(field, section, false, __VA_ARGS__)
 
 namespace config
 {
@@ -39,9 +41,9 @@ namespace config
 	}
 
 	template<typename T, typename... Args>
-	Field<T> CreateField(const std::string& friendName, const std::string& name, const std::string& section, bool multiProfile, Args... args)
+	Field<T> CreateField(const std::string& name, const std::string& section, bool multiProfile, Args... args)
 	{
-		auto newField = Field<T>(friendName, name, section, T(args...), multiProfile);
+		auto newField = Field<T>(name, section, T(args...), multiProfile);
 		internal::s_Fields<Field<T>>.push_back(newField);
 		internal::AddField(newField.entry());
 		return newField;

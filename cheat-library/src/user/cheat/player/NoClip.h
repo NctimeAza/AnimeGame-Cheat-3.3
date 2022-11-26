@@ -10,8 +10,8 @@ namespace cheat::feature
 	class NoClip : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
-		config::Field<config::Toggle<Hotkey>> f_NoAnimation;
+		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<TranslatedHotkey> f_NoAnimation;
 
 		config::Field<bool> f_UseCustomKeys;
 		config::Field<Hotkey> f_ForwardKey;
@@ -24,8 +24,8 @@ namespace cheat::feature
 
 		config::Field<float> f_Speed;
 		config::Field<bool> f_CameraRelative;
-		config::Field<config::Toggle<Hotkey>> f_VelocityMode;
-		config::Field<config::Toggle<Hotkey>> f_FreeflightMode;
+		config::Field<TranslatedHotkey> f_VelocityMode;
+		config::Field<TranslatedHotkey> f_FreeflightMode;
 
 		config::Field<bool> f_AltSpeedEnabled;
 		config::Field<float> f_AltSpeed;

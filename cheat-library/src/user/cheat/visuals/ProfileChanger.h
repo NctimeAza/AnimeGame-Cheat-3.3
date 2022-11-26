@@ -8,7 +8,7 @@ namespace cheat::feature
 	class ProfileChanger : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<config::Toggle<std::string>> f_UID;
 		config::Field<bool> f_UIDWaterMarkPrefix;
 		config::Field<int> f_UIDsize;
@@ -16,10 +16,10 @@ namespace cheat::feature
 		config::Field<float> f_UIDpos_y;
 		config::Field<config::Toggle<std::string>> f_NickName;
 		config::Field<config::Toggle<std::string>> f_Level;
-		config::Field<config::Toggle<Hotkey>> f_Exp;
+		config::Field<TranslatedHotkey> f_Exp;
 		config::Field<int> f_CurExp;
 		config::Field<int> f_MaxExp;
-		config::Field<config::Toggle<Hotkey>> f_ExpBar;
+		config::Field<TranslatedHotkey> f_ExpBar;
 		config::Field<float> f_ExpBarValue;
 		config::Field<config::Toggle<std::string>> f_WorldLevel;
 

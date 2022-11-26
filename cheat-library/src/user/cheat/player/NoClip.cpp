@@ -13,22 +13,22 @@ namespace cheat::feature
 	app::Vector3 zero;
 
 	NoClip::NoClip() : Feature(),
-		NF(f_Enabled,			"No clip",				"NoClip", false),
-		NF(f_NoAnimation,		"No Animation",			"NoClip", true),
-		NF(f_UseCustomKeys,		"Use Custom Hotkeys",	"NoClip", false),
-		NF(f_ForwardKey,		"Forward HotKey",		"NoClip", Hotkey(ImGuiKey_W)),
-		NF(f_LeftKey,			"Left HotKey",			"NoClip", Hotkey(ImGuiKey_A)),
-		NF(f_BackKey,			"Back HotKey",			"NoClip", Hotkey(ImGuiKey_S)),
-		NF(f_RightKey,			"Right HotKey",			"NoClip", Hotkey(ImGuiKey_D)),
-		NF(f_AscendKey,			"Ascend HotKey",		"NoClip", Hotkey(ImGuiKey_Space)),
-		NF(f_DescendKey,		"Descend HotKey",		"NoClip", Hotkey(ImGuiKey_ModShift)),
-		NF(f_AltSpeedKey,		"Alt Speed Hotkey",		"NoClip", Hotkey(ImGuiKey_ModCtrl)),
-		NF(f_Speed,				"Speed",				"NoClip", 5.5f),
-		NF(f_CameraRelative,	"Relative to camera",	"NoClip", true),
-		NF(f_VelocityMode,		"Velocity mode",		"NoClip", false),
-		NF(f_FreeflightMode,	"Freeflight mode",		"NoClip", false),
-		NF(f_AltSpeedEnabled,	"Alt speed enabled",	"NoClip", false),
-		NF(f_AltSpeed,			"Alt speed",			"NoClip", 1.0f)
+		NFP(f_Enabled, "NoClip", "No Clip", false),
+		NFP(f_NoAnimation, "NoClip", "No Animation", true),
+		NF(f_UseCustomKeys, "NoClip", false),
+		NF(f_ForwardKey, "NoClip", Hotkey(ImGuiKey_W)),
+		NF(f_LeftKey, "NoClip", Hotkey(ImGuiKey_A)),
+		NF(f_BackKey, "NoClip", Hotkey(ImGuiKey_S)),
+		NF(f_RightKey, "NoClip", Hotkey(ImGuiKey_D)),
+		NF(f_AscendKey, "NoClip", Hotkey(ImGuiKey_Space)),
+		NF(f_DescendKey, "NoClip", Hotkey(ImGuiKey_ModShift)),
+		NF(f_AltSpeedKey, "NoClip", Hotkey(ImGuiKey_ModCtrl)),
+		NF(f_Speed, "NoClip", 5.5f),
+		NF(f_CameraRelative, "NoClip", true),
+		NFP(f_VelocityMode, "NoClip", "Velocity Mode", false),
+		NFP(f_FreeflightMode, "NoClip", "Freeflight Mode", false),
+		NF(f_AltSpeedEnabled, "NoClip", false),
+		NF(f_AltSpeed, "NoClip", 1.0f)
 
 	{
 		HookManager::install(app::MoleMole_HumanoidMoveFSM_LateTick, HumanoidMoveFSM_LateTick_Hook);
@@ -39,58 +39,59 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& NoClip::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "No-Clip", "Player", true };
+		TRANSLATED_GROUP_INFO("No-Clip", "Player");
 		return info;
 	}
 
 	void NoClip::DrawMain()
 	{
-		ConfigWidget("Enabled", f_Enabled, "Enables no-clip (fast speed + no collision).\n" \
-			"To move, use WASD, Space (go up), and Shift (go down), or customize your own keys.");
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables no-clip (fast speed + no collision).\n" \
+			"To move, use WASD, Space (go up), and Shift (go down), or customize your own keys."));
 
-		ConfigWidget("No Animation", f_NoAnimation, "Disables player animations.");
+		ConfigWidget(_TR("No Animation"), f_NoAnimation, _TR("Disables player animations."));
 
-		ConfigWidget("Speed", f_Speed, 0.1f, 2.0f, 100.0f,
-			"No-clip move speed.\n" \
-			"Not recommended setting above 5.0.");
+		ConfigWidget(_TR("Speed"), f_Speed, 0.1f, 2.0f, 100.0f,
+			_TR("No-clip move speed.\n" \
+			"Not recommended setting above 5.0."));
 
-		ConfigWidget("Camera-relative movement", f_CameraRelative,
-			"Move relative to camera view instead of avatar view/direction.");
+		ConfigWidget(_TR("Camera-relative movement"), f_CameraRelative,
+			_TR("Move relative to camera view instead of avatar view/direction."));
 
-		ConfigWidget("Alternate No-clip", f_AltSpeedEnabled,
-			"Allows usage of alternate speed when holding down LeftCtrl key.\n" \
-			"Useful if you want to temporarily go faster/slower than the no-clip speed setting.");
+		ConfigWidget(_TR("Alternate No-clip"), f_AltSpeedEnabled,
+			_TR("Allows usage of alternate speed when holding down LeftCtrl key.\n" \
+			"Useful if you want to temporarily go faster/slower than the no-clip speed setting."));
 
 		if (f_AltSpeedEnabled) {
-			ConfigWidget("Alt Speed", f_AltSpeed, 0.1f, 2.0f, 100.0f,
-				"Alternate no-clip move speed.\n" \
-				"Not recommended setting above 5.0.");
+			ConfigWidget(_TR("Alt Speed"), f_AltSpeed, 0.1f, 2.0f, 100.0f,
+				_TR("Alternate no-clip move speed.\n" \
+				"Not recommended setting above 5.0."));
 
-			ConfigWidget("Velocity mode", f_VelocityMode, "Use velocity instead of position to move.");
-			ConfigWidget("Freeflight mode", f_FreeflightMode, "Don't remove collisions");
+			ConfigWidget(_TR("Velocity mode"), f_VelocityMode, _TR("Use velocity instead of position to move."));
+			ConfigWidget(_TR("Freeflight mode"), f_FreeflightMode, _TR("Don't remove collisions"));
 		}
 
-		ConfigWidget("Use Custom Keys", f_UseCustomKeys, "Enable the Use of Custom HotKeys");
+		ConfigWidget(_TR("Use Custom Keys"), f_UseCustomKeys, _TR("Enable the Use of Custom HotKeys"));
 
 		if (f_UseCustomKeys) {
-			ConfigWidget("Forward HotKey", f_ForwardKey, true, "Set Forward Key");
-			ConfigWidget("Left HotKey", f_LeftKey, true, "Set Left Key");
-			ConfigWidget("Back HotKey", f_BackKey, true, "Set Back Key");
-			ConfigWidget("Right HotKey", f_RightKey, true, "Set Right Key");
-			ConfigWidget("Ascend HotKey", f_AscendKey, true, "Set Ascend Key");
-			ConfigWidget("Descend HotKey", f_DescendKey, true, "Set Descend Key");
-			ConfigWidget("Alt Speed Key", f_AltSpeedKey, true, "Set AltSpeed HotKey");
+			ConfigWidget(_TR("Forward HotKey"), f_ForwardKey, true, _TR("Set Forward Key"));
+			ConfigWidget(_TR("Left HotKey"), f_LeftKey, true, _TR("Set Left Key"));
+			ConfigWidget(_TR("Back HotKey"), f_BackKey, true, _TR("Set Back Key"));
+			ConfigWidget(_TR("Right HotKey"), f_RightKey, true, _TR("Set Right Key"));
+			ConfigWidget(_TR("Ascend HotKey"), f_AscendKey, true, _TR("Set Ascend Key"));
+			ConfigWidget(_TR("Descend HotKey"), f_DescendKey, true, _TR("Set Descend Key"));
+			ConfigWidget(_TR("Alt Speed Key"), f_AltSpeedKey, true, _TR("Set AltSpeed HotKey"));
 		}
 	}
 
 	bool NoClip::NeedStatusDraw() const
 	{
-		return f_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void NoClip::DrawStatus()
 	{
-		ImGui::Text("NoClip%s[%.01f%s%|%s]",
+		ImGui::Text("%s%s[%.01f%s%|%s]",
+			_TR("No Clip"),
 			f_AltSpeedEnabled ? "+Alt " : " ",
 			f_Speed.value(),
 			f_AltSpeedEnabled ? fmt::format("|{:.1f}", f_AltSpeed.value()).c_str() : "",
@@ -111,7 +112,7 @@ namespace cheat::feature
 
 		auto& manager = game::EntityManager::instance();
 
-		if (!f_Enabled && isApplied)
+		if (!f_Enabled->enabled() && isApplied)
 		{
 			auto avatarEntity = manager.avatar();
 			auto rigidBody = avatarEntity->rigidbody();
@@ -123,7 +124,7 @@ namespace cheat::feature
 			isApplied = false;
 		}
 
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 			return;
 
 		isApplied = true;
@@ -140,13 +141,13 @@ namespace cheat::feature
 		if (rigidBody == nullptr)
 			return;
 
-		if (!f_FreeflightMode)
+		if (!f_FreeflightMode->enabled())
 		{
 			app::Rigidbody_set_collisionDetectionMode(rigidBody, app::CollisionDetectionMode__Enum::Continuous, nullptr);
 			app::Rigidbody_set_detectCollisions(rigidBody, false, nullptr);
 		}
 
-		if (!f_VelocityMode)
+		if (!f_VelocityMode->enabled())
 			app::Rigidbody_set_velocity(rigidBody, zero, nullptr);
 
 		auto cameraEntity = game::Entity(reinterpret_cast<app::BaseEntity*>(manager.mainCamera()));
@@ -183,7 +184,7 @@ namespace cheat::feature
 		float deltaTime = app::Time_get_deltaTime(nullptr);
 
 		app::Vector3 newPos = prevPos + dir * speed * deltaTime;
-		if (!f_VelocityMode)
+		if (!f_VelocityMode->enabled())
 			avatarEntity->setRelativePosition(newPos);
 		else
 			app::Rigidbody_set_velocity(rigidBody, dir * speed, nullptr);
@@ -195,7 +196,7 @@ namespace cheat::feature
 		static app::Vector3 prevPosition = {};
 		static int64_t prevSyncTime = 0;
 
-		if (!f_Enabled)
+		if (!f_Enabled->enabled())
 		{
 			prevSyncTime = 0;
 			return;
@@ -243,16 +244,14 @@ namespace cheat::feature
 	{
 		NoClip& noClip = NoClip::GetInstance();
 
-		if (noClip.f_Enabled) {
-			if (!noClip.f_NoAnimation) {
+		if (noClip.f_Enabled->enabled()) 
+		{
+			if (!noClip.f_NoAnimation->enabled()) 
 				__this->fields._layerMaskScene = 2;
-			}
-			else {
+			else
 				return;
-			}
 		}
 
 		CALL_ORIGIN(HumanoidMoveFSM_LateTick_Hook, __this, deltaTime, method);
 	}
 }
-

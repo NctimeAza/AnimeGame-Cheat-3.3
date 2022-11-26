@@ -17,11 +17,11 @@ namespace cheat::feature
 	static std::list<std::string> abilityLog;
 
     NoCD::NoCD() : Feature(),
-        NF(f_AbilityReduce,      "Reduce Skill/Burst Cooldown",  "NoCD", false),
-		NF(f_TimerReduce,		 "Reduce Timer",                 "NoCD", 1.f),
-		NF(f_UtimateMaxEnergy,   "Burst max energy",             "NoCD", false),
-        NF(f_Sprint,             "No Sprint Cooldown",           "NoCD", false),
-		NF(f_InstantBow,         "Instant bow",                  "NoCD", false)
+        NFP(f_AbilityReduce, "NoCD", "Ability Reduce", false),
+		NF(f_TimerReduce, "NoCD", 1.f),
+		NFP(f_UtimateMaxEnergy, "NoCD", "Ultimate Max Energy", false),
+        NFP(f_Sprint, "NoCD", "Sprint", false),
+		NFP(f_InstantBow, "NoCD", "Instant Bow", false)
     {
 		HookManager::install(app::MoleMole_LCAvatarCombat_IsEnergyMax, LCAvatarCombat_IsEnergyMax_Hook);
 		HookManager::install(app::MoleMole_LCAvatarCombat_IsSkillInCD_1, LCAvatarCombat_IsSkillInCD_1);
@@ -33,37 +33,36 @@ namespace cheat::feature
 
     const FeatureGUIInfo& NoCD::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Cooldown Effects", "Player", true };
+		TRANSLATED_GROUP_INFO("Cooldown Effects", "Player");
         return info;
     }
 
     void NoCD::DrawMain()
     {
-
-		ConfigWidget("Max Burst Energy", f_UtimateMaxEnergy,
-			"Removes energy requirement for elemental bursts.\n" \
-			"(Energy bubble may appear incomplete but still usable.)");
+		ConfigWidget(_TR("Max Burst Energy"), f_UtimateMaxEnergy,
+			_TR("Removes energy requirement for elemental bursts.\n" \
+			"(Energy bubble may appear incomplete but still usable.)"));
 
 		ConfigWidget("## AbilityReduce", f_AbilityReduce); ImGui::SameLine();
-		ConfigWidget("Reduce Skill/Burst Cooldown", f_TimerReduce, 1.f, 1.f, 6.0f,
-			"Reduce cooldowns of elemental skills and bursts.\n"\
-			"1.0 - no CD, 2.0 and higher - increases the timer value.");
+		ConfigWidget(_TR("Reduce Skill/Burst Cooldown"), f_TimerReduce, 1.f, 1.f, 6.0f,
+			_TR("Reduce cooldowns of elemental skills and bursts.\n"\
+			"1.0 - no CD, 2.0 and higher - increases the timer value."));
 
-    	ConfigWidget(f_Sprint, "Removes delay in-between sprints.");
+    	ConfigWidget(_TR("No Sprint Cooldown"), f_Sprint, _TR("Removes delay in-between sprints."));
 
-    	ConfigWidget("Instant Bow Charge", f_InstantBow, "Disable cooldown of bow charge.\n" \
-			"Known issues with Fischl.");
+    	ConfigWidget(_TR("Instant Bow Charge"), f_InstantBow, _TR("Disable cooldown of bow charge.\n" \
+			"Known issues with Fischl."));
 
     	if (f_InstantBow) {
-			ImGui::Text("If Instant Bow Charge doesn't work:");
-			TextURL("Please contribute to issue on GitHub.", "https://github.com/Papaya-Group/Akebi-GC/issues/281", false, false);
-			if (ImGui::TreeNode("Ability Log [DEBUG]"))
+			ImGui::Text(_TR("If Instant Bow Charge doesn't work:"));
+			TextURL(_TR("Please contribute to issue on GitHub."), "https://github.com/Papaya-Group/Akebi-GC/issues/281", false, false);
+			if (ImGui::TreeNode(_TR("Ability Log [DEBUG]")))
 			{
-				if (ImGui::Button("Copy to Clipboard"))
+				if (ImGui::Button(_TR("Copy to Clipboard")))
 				{
 					ImGui::LogToClipboard();
 
-					ImGui::LogText("Ability Log:\n");
+					ImGui::LogText(_TR("Ability Log:\n"));
 
 					for (auto& logEntry : abilityLog)
 						ImGui::LogText("%s\n", logEntry.c_str());
@@ -81,17 +80,18 @@ namespace cheat::feature
 
     bool NoCD::NeedStatusDraw() const
 {
-        return f_InstantBow || f_AbilityReduce || f_Sprint ;
+        return f_InstantBow->enabled() || f_AbilityReduce->enabled() || f_Sprint->enabled() ;
     }
 
     void NoCD::DrawStatus() 
     {
-		  ImGui::Text("Cooldown\n[%s%s%s%s%s]",
-			f_AbilityReduce ? fmt::format("Reduce x{:.1f}", f_TimerReduce.value()).c_str() : "",
-			f_AbilityReduce && (f_InstantBow || f_Sprint) ? "|" : "",
-			f_InstantBow ? "Bow" : "",
-			f_InstantBow && f_Sprint ? "|" : "",
-			f_Sprint ? "Sprint" : "");
+		  ImGui::Text("%s\n[%s%s%s%s%s]",
+			_TR("Cooldown"),
+			f_AbilityReduce->enabled()? fmt::format("{} x{:.1f}",_TR("Reduce"), f_TimerReduce.value()).c_str() : "",
+			f_AbilityReduce->enabled() && (f_InstantBow->enabled() || f_Sprint->enabled()) ? "|" : "",
+			f_InstantBow->enabled() ? _TR("Bow") : "",
+			f_InstantBow->enabled() && f_Sprint->enabled() ? "|" : "",
+			f_Sprint->enabled() ? _TR("Sprint") : "");
     }
 
     NoCD& NoCD::GetInstance()
@@ -103,7 +103,7 @@ namespace cheat::feature
 	static bool LCAvatarCombat_IsEnergyMax_Hook(void* __this, MethodInfo* method)
 	{
 		NoCD& noCD = NoCD::GetInstance();
-		if (noCD.f_UtimateMaxEnergy)
+		if (noCD.f_UtimateMaxEnergy->enabled())
 			return true;
 
 		return CALL_ORIGIN(LCAvatarCombat_IsEnergyMax_Hook, __this, method);
@@ -112,7 +112,7 @@ namespace cheat::feature
 	// Multipler CoolDown Timer Old | RyujinZX#6666
 	static bool LCAvatarCombat_OnSkillStart(app::LCAvatarCombat* __this, uint32_t skillID, float cdMultipler, MethodInfo* method) {
 		NoCD& noCD = NoCD::GetInstance();
-		if (noCD.f_AbilityReduce)
+		if (noCD.f_AbilityReduce->enabled())
 		{
 			if (__this->fields._targetFixTimer->fields._._timer_k__BackingField > 0) {
 				cdMultipler = noCD.f_TimerReduce / 3;
@@ -127,7 +127,7 @@ namespace cheat::feature
 	// Timer Speed Up / CoolDown Reduce New | RyujinZX#6666
 	static bool LCAvatarCombat_IsSkillInCD_1(app::LCAvatarCombat* __this, app::LCAvatarCombat_LCAvatarCombat_SkillInfo* skillInfo, MethodInfo* method) {
 		NoCD& noCD = NoCD::GetInstance();
-		if (noCD.f_AbilityReduce)
+		if (noCD.f_AbilityReduce->enabled())
 		{
 			auto cdTimer = app::MoleMole_SafeFloat_get_Value(skillInfo->fields.cdTimer, nullptr); // Timer start value in the game
 
@@ -144,7 +144,7 @@ namespace cheat::feature
 	static bool HumanoidMoveFSM_CheckSprintCooldown_Hook(void* __this, MethodInfo* method)
 	{
 		NoCD& noCD = NoCD::GetInstance();
-		if (noCD.f_Sprint)
+		if (noCD.f_Sprint->enabled())
 			return true;
 
 		return CALL_ORIGIN(HumanoidMoveFSM_CheckSprintCooldown_Hook, __this, method);
@@ -166,7 +166,7 @@ namespace cheat::feature
 		NoCD& noCD = NoCD::GetInstance();
 		// This function is calling not only for bows, so if don't put key filter it cause various game mechanic bugs.
 		// For now only "_Enchanted_Time" found for bow charging, maybe there are more. Need to continue research.
-		if (noCD.f_InstantBow && il2cppi_to_string(key) == "_Enchanted_Time")
+		if (noCD.f_InstantBow->enabled() && il2cppi_to_string(key) == "_Enchanted_Time")
 		{
 			value = maxValue;
 			__this->fields.nextValidAbilityID = 36; // HotFix Yelan, Fishl | It's essentially a game bug. | RyujinZX#7832

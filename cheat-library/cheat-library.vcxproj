@@ -113,6 +113,7 @@
     <ClInclude Include="src\user\main.h" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="res\NotoSansSC-Bold.otf" />
     <Font Include="res\Ruda-Bold.ttf" />
     <Font Include="res\Ruda-ExtraBold.ttf" />
   </ItemGroup>
@@ -228,6 +229,7 @@
   <ItemGroup>
     <None Include="res\ascension_materials.json" />
     <None Include="res\assembly_checksum.json" />
+    <None Include="res\languages.json" />
     <None Include="res\map_enkanomiya.json" />
     <None Include="res\map_teyvat.json" />
     <None Include="res\map_undeground_mines.json" />

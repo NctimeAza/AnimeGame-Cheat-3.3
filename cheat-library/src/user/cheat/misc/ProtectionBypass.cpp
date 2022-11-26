@@ -25,9 +25,9 @@ namespace cheat::feature
 	}
 
     ProtectionBypass::ProtectionBypass() : Feature(),
-        NFEX(f_Enabled, "Disable Protection", "m_DisableMhyProt", "General", true, false),
-		m_CorrectSignatures({}),
-		NFEX(f_SpoofLuaShell, "Spoof Anticheat result", "m_SpoofLuaShell", "General", true, false)
+        NF(f_Enabled, "General::ProtectionBypass", true),
+		NF(f_SpoofLuaShell, "General::ProtectionBypass", true),
+		m_CorrectSignatures({})
     {
 		HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
 		HookManager::install(app::CrashReporter, CrashReporter_Hook);
@@ -56,17 +56,14 @@ namespace cheat::feature
 
     const FeatureGUIInfo& ProtectionBypass::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info { "", "Settings", false };
+		TRANSLATED_MODULE_INFO("Settings");
         return info;
     }
 
     void ProtectionBypass::DrawMain()
     {
-		ConfigWidget(f_Enabled, 
-			"Close mhyprot2 handle (changes will take effect after relaunch).");
-
-		ConfigWidget(f_SpoofLuaShell,
-			"Spoofs/Blocks anticheat reports made by WindSeedClientNotify.");
+		ConfigWidget(_TR("Spoof Anticheat result"), f_SpoofLuaShell, _TR("Spoofs/Blocks anticheat reports made by WindSeedClientNotify."));
+		ConfigWidget(_TR("Disable Protection"), f_Enabled, _TR("Close mhyprot2 handle (changes will take effect after relaunch)."));
     }
 
     ProtectionBypass& ProtectionBypass::GetInstance()

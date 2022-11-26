@@ -12,14 +12,14 @@ namespace cheat::feature
 	class MobVacuum : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 
-		config::Field<config::Toggle<Hotkey>> f_IncludeMonsters;
+		config::Field<TranslatedHotkey> f_IncludeMonsters;
 		config::Field<bool> f_MonsterCommon;
 		config::Field<bool> f_MonsterElites;
 		config::Field<bool> f_MonsterBosses;
 
-		config::Field<config::Toggle<Hotkey>> f_IncludeAnimals;
+		config::Field<TranslatedHotkey> f_IncludeAnimals;
 		config::Field<bool> f_AnimalDrop;
 		config::Field<bool> f_AnimalPickUp;
 		config::Field<bool> f_AnimalNPC;
@@ -29,7 +29,7 @@ namespace cheat::feature
 		config::Field<float> f_Distance;
 		config::Field<bool> f_OnlyTarget;
 		config::Field<bool> f_Instantly;
-		config::Field<config::Toggle<Hotkey>> f_SetCollider;
+		config::Field<TranslatedHotkey> f_SetCollider;
 
 		static MobVacuum& GetInstance();
 

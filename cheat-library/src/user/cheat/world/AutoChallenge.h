@@ -8,8 +8,8 @@ namespace cheat::feature
     class AutoChallenge : public Feature
     {
     public:
-        config::Field<config::Toggle<Hotkey>> f_Enabled;
-        config::Field<config::Toggle<Hotkey>> f_BombDestroy;
+        config::Field<TranslatedHotkey> f_Enabled;
+        config::Field<TranslatedHotkey> f_BombDestroy;
         config::Field<int> f_Delay;
         config::Field<float> f_Range;
 

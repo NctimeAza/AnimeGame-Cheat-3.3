@@ -8,7 +8,7 @@ namespace cheat::feature
 	class MusicEvent : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 
 		static MusicEvent& GetInstance();
 

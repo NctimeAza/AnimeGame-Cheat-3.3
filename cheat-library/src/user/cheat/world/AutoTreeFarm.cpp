@@ -11,52 +11,53 @@
 namespace cheat::feature
 {
 	AutoTreeFarm::AutoTreeFarm() : Feature(),
-		NF(m_Enabled, "Auto tree farm", "AutoTreeFarm", false),
-		NF(m_AttackDelay, "Attack delay", "AutoTreeFarm", 150),
-		NF(m_RepeatDelay, "Repeat delay", "AutoTreeFarm", 500),
-		NF(m_AttackPerTree, "Attack per tree", "AutoTreeFarm", 5),
-		NF(m_Range, "Range", "AutoTreeFarm", 15.0f)
+		NFP(f_Enabled, "AutoTreeFarm", "Auto Tree Farm", false),
+		NF(f_AttackDelay, "AutoTreeFarm", 150),
+		NF(f_RepeatDelay, "AutoTreeFarm", 500),
+		NF(f_AttackPerTree, "AutoTreeFarm", 5),
+		NF(f_Range, "AutoTreeFarm", 15.0f)
 	{
 		events::GameUpdateEvent += MY_METHOD_HANDLER(AutoTreeFarm::OnGameUpdate);
 	}
 
 	const FeatureGUIInfo& AutoTreeFarm::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Auto Tree Farm", "World", true };
+		TRANSLATED_GROUP_INFO("Auto Tree Farm", "World");
 		return info;
 	}
 
 	void AutoTreeFarm::DrawMain()
 	{
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "Note. This feature is not fully tested detection-wise.\n"
-			"Not recommended for main accounts or used with high values.");
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Note. This feature is not fully tested detection-wise.\n"
+			"Not recommended for main accounts or used with high values."));
 
-		ConfigWidget("Enabled", m_Enabled, "Automatically attack trees in range.");
-		ConfigWidget("Attack Delay (ms)", m_AttackDelay, 1, 0, 1000, "Delay before attacking the next tree (in ms).");
-		ConfigWidget("Repeat Delay (ms)", m_RepeatDelay, 1, 500, 1000, "Delay before attacking the same tree (in ms).\nValues <500ms will not work.");
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Automatically attack trees in range."));
+		ConfigWidget(_TR("Attack Delay (ms)"), f_AttackDelay, 1, 0, 1000, _TR("Delay before attacking the next tree (in ms)."));
+		ConfigWidget(_TR("Repeat Delay (ms)"), f_RepeatDelay, 1, 500, 1000, _TR("Delay before attacking the same tree (in ms).\nValues <500ms will not work."));
 
-		ConfigWidget("Attacks per Tree", m_AttackPerTree, 1, 0, 100, "Count of attacks for one tree.\n" \
+		ConfigWidget(_TR("Attacks per Tree"), f_AttackPerTree, 1, 0, 100, _TR("Count of attacks for one tree.\n" \
 			"Recommended to set to 10 or lower to avoid attacking empty trees.\n" \
 			"Set to 0 for unlimited attacks (even empty trees, extremely high risk).\n" \
-			"Note: Memorized trees' attacks are reset after game restart."
+			"Note: Memorized trees' attacks are reset after game restart.")
 		);
 
-		ConfigWidget("Range (m)", m_Range, 0.1f, 1.0f, 15.0f);
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "Range is softly limited to ~15m for safety purposes.");
+		ConfigWidget(_TR("Range (m)"), f_Range, 0.1f, 1.0f, 15.0f);
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Range is softly limited to ~15m for safety purposes."));
 	}
 
 	bool AutoTreeFarm::NeedStatusDraw() const
 	{
-		return m_Enabled;
+		return f_Enabled->enabled();
 	}
 
 	void AutoTreeFarm::DrawStatus()
 	{
-		ImGui::Text("Tree Farm\n[%dms|%dms|%d|%.1fm]",
-			m_AttackDelay.value(),
-			m_RepeatDelay.value(),
-			m_AttackPerTree.value(),
-			m_Range.value());
+		ImGui::Text("%s\n[%dms|%dms|%d|%.1fm]",
+			_TR("Tree Farm"),
+			f_AttackDelay.value(),
+			f_RepeatDelay.value(),
+			f_AttackPerTree.value(),
+			f_Range.value());
 	}
 
 	AutoTreeFarm& AutoTreeFarm::GetInstance()
@@ -163,7 +164,7 @@ namespace cheat::feature
 		static uint64_t s_LastAttackTimestamp = 0;
 
 		uint64_t timestamp = app::MoleMole_TimeUtil_get_LocalNowMsTimeStamp(nullptr);
-		if (!m_Enabled || s_LastAttackTimestamp + m_AttackDelay > timestamp)
+		if (!f_Enabled->enabled() || s_LastAttackTimestamp + f_AttackDelay > timestamp)
 			return;
 
 		auto& manager = game::EntityManager::instance();
@@ -178,11 +179,11 @@ namespace cheat::feature
 			if (s_AttackQueueSet.count(tree) > 0)
 				continue;
 
-			if (s_LastAttackTimestamp + m_RepeatDelay > timestamp)
+			if (s_LastAttackTimestamp + f_RepeatDelay > timestamp)
 				continue;
 
 			auto position = tree->fields._.realBounds.m_Center;
-			if (manager.avatar()->distance(app::WorldShiftManager_GetRelativePosition(position, nullptr)) > m_Range)
+			if (manager.avatar()->distance(app::WorldShiftManager_GetRelativePosition(position, nullptr)) > f_Range)
 				continue;
 
 			s_AttackQueueSet.insert(tree);
@@ -199,7 +200,7 @@ namespace cheat::feature
 				continue;
 
 			auto position = tree->fields._.realBounds.m_Center;
-			if (manager.avatar()->distance(app::WorldShiftManager_GetRelativePosition(position, nullptr)) > m_Range)
+			if (manager.avatar()->distance(app::WorldShiftManager_GetRelativePosition(position, nullptr)) > f_Range)
 				continue;
 
 			app::MoleMole_Config_TreeType__Enum treeType;
@@ -207,7 +208,7 @@ namespace cheat::feature
 			if (!app::MoleMole_ScenePropManager_GetTreeTypeByPattern(scenePropManager, pattern, &treeType, nullptr))
 				continue;
 
-			if (m_AttackPerTree > 0)
+			if (f_AttackPerTree > 0)
 			{
 				if (!s_AttackCountMap.exists(position))
 					s_AttackCountMap.put(position, 0);
@@ -215,7 +216,7 @@ namespace cheat::feature
 				auto& attackCount = s_AttackCountMap.get(position);
 				attackCount++;
 
-				if (attackCount > static_cast<uint32_t>(m_AttackPerTree))
+				if (attackCount > static_cast<uint32_t>(f_AttackPerTree))
 					continue;
 			}
 

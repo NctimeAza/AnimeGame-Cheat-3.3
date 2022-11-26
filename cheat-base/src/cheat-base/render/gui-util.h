@@ -4,6 +4,8 @@
 #include <filesystem>
 #include <cheat-base/config/config.h>
 #include <cheat-base/Hotkey.h>
+#include <cheat-base/cheat/fields/NamedHotkey.h>
+#include <cheat-base/cheat/fields/TranslatedHotkey.h>
 #include <cheat-base/config/fields/Toggle.h>
 #include <cheat-base/config/fields/Enum.h>
 
@@ -17,10 +19,10 @@ bool TypeWidget(const char* label, std::string& value, const char* desc = nullpt
 bool TypeWidget(const char* label, ImColor& value, const char* desc = nullptr);
 bool TypeWidget(const char* label, config::Toggle<Hotkey>& value, const char* desc = nullptr, bool hotkey = false);
 
+bool ConfigWidget(const char* label, config::Field<Hotkey>& field, bool clearable = true, const char* desc = nullptr);
 bool ConfigWidget(const char* label, config::Field<bool>& field, const char* desc = nullptr);
 bool ConfigWidget(const char* label, config::Field<int>& field, int step = 1, int start = 0, int end = 0, const char* desc = nullptr);
 bool ConfigWidget(const char* label, config::Field<float>& field, float step = 1.0F, float start = 0, float end = 0, const char* desc = nullptr);
-bool ConfigWidget(const char* label, config::Field<Hotkey>& field, bool clearable = true, const char* desc = nullptr);
 bool ConfigWidget(const char* label, config::Field<std::string>& field, const char* desc = nullptr);
 bool ConfigWidget(const char* label, config::Field<ImColor>& field, const char* desc = nullptr);
 
@@ -28,33 +30,24 @@ template<typename T>
 bool ConfigWidget(const char* label, config::Field<config::Toggle<T>>& field, const char* desc = nullptr)
 {
 	ImGui::PushID(&field);
-	bool result = TypeWidget("", field.value().enabled);
+	bool temp = field->enabled();
+	bool result = TypeWidget("", temp);
+	if (result)
+		field->set_enabled(temp);
+
 	ImGui::SameLine();
-	result |= TypeWidget(label, field.value().value, desc);
+	result |= TypeWidget(label, field->value(), desc);
 	ImGui::PopID();
 	if (result)
 		field.FireChanged();
 
 	return result;
 }
+
 bool ConfigWidget(const char* label, config::Field<config::Toggle<float>>& field, float step = 1.0F, float start = 0, float end = 0, const char* desc = nullptr, bool hotkey = false);
 bool ConfigWidget(const char* label, config::Field<config::Toggle<Hotkey>>& field, const char* desc = nullptr, bool hotkey = false);
-
-bool ConfigWidget(config::Field<bool>& field, const char* desc = nullptr);
-bool ConfigWidget(config::Field<int>& field, int step = 1, int start = 0, int end = 0, const char* desc = nullptr);
-bool ConfigWidget(config::Field<float>& field, float step = 1.0F, float start = 0, float end = 0, const char* desc = nullptr);
-bool ConfigWidget(config::Field<Hotkey>& field, bool clearable = true, const char* desc = nullptr);
-bool ConfigWidget(config::Field<std::string>& field, const char* desc = nullptr);
-bool ConfigWidget(config::Field<ImColor>& field, const char* desc = nullptr);
-
-template<typename T>
-bool ConfigWidget(config::Field<config::Toggle<T>>& field, const char* desc = nullptr)
-{
-	return ConfigWidget(field.friendName().c_str(), field, desc);
-}
-
-bool ConfigWidget(config::Field<config::Toggle<float>>& field, float step = 1.0F, float start = 0, float end = 0, const char* desc = nullptr);
-bool ConfigWidget(config::Field<config::Toggle<Hotkey>>& field, const char* desc = nullptr, bool hotkey = false);
+bool ConfigWidget(const char* label, config::Field<cheat::NamedHotkey>& field, const char* desc = nullptr, bool hotkey = false);
+bool ConfigWidget(const char* label, config::Field<cheat::TranslatedHotkey>& field, const char* desc = nullptr, bool hotkey = false);
 
 void ShowHelpText(const char* text);
 void HelpMarker(const char* desc);

@@ -7,7 +7,7 @@ namespace cheat::feature
 	class PaimonFollow : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		static PaimonFollow& GetInstance();
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;

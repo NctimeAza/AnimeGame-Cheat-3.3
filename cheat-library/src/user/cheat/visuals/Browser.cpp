@@ -12,9 +12,9 @@ namespace cheat::feature
     static std::string f_URL;
 
     Browser::Browser() : Feature(),
-        NFEX(f_Enabled, "Browser", "Browser", "Visuals", false, false),
-        NF(f_planeWidth, "Browser", "Visuals", 1.0f),
-        NF(f_planeHeight, "Browser", "Visuals", 1.0f),
+        NFP(f_Enabled, "Visuals::Browser", "Browser", false),
+        NF(f_planeWidth, "Visuals::Browser", 1.0f),
+        NF(f_planeHeight, "Visuals::Browser", 1.0f),
         toBeUpdate(), nextUpdate(0)
     {
         events::GameUpdateEvent += MY_METHOD_HANDLER(Browser::OnGameUpdate);
@@ -22,30 +22,26 @@ namespace cheat::feature
 
     const FeatureGUIInfo& Browser::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "Browser", "Visuals", false };
+        TRANSLATED_GROUP_INFO("Browser", "Visuals");
         return info;
     }
 
     void Browser::DrawMain()
     {
-        ImGui::BeginGroupPanel("Browser");
-        {
-            ConfigWidget(f_Enabled, "Create in-game Browser");
-            ImGui::InputText("URL", &f_URL);
-            ConfigWidget("Browser width", f_planeWidth, 0.1f, 0.5f, 20.0f);
-            ConfigWidget("Browser height", f_planeHeight, 0.1f, 0.5f, 20.0f);
-        }
-        ImGui::EndGroupPanel();
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Create in-game Browser"));
+		ImGui::InputText(_TR("URL"), &f_URL);
+		ConfigWidget(_TR("Width"), f_planeWidth, 0.1f, 0.5f, 20.0f);
+		ConfigWidget(_TR("Height"), f_planeHeight, 0.1f, 0.5f, 20.0f);
     }
 
     bool Browser::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void Browser::DrawStatus()
     {
-        ImGui::Text("Browser");
+        ImGui::Text(_TR("Browser"));
     }
 
     Browser& Browser::GetInstance()
@@ -60,7 +56,8 @@ namespace cheat::feature
         if (currentTime < nextUpdate)
             return;
 
-        if (f_Enabled) {
+        if (f_Enabled->enabled()) 
+        {
             auto entityRoot = app::GameObject_Find(string_to_il2cppi("EntityRoot/AvatarRoot/"), nullptr);
             if (!app::GameObject_get_active(entityRoot, nullptr))
                 return;

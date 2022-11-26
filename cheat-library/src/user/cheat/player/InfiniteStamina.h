@@ -10,7 +10,7 @@ namespace cheat::feature
 	class InfiniteStamina : public Feature
     {
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<bool> f_PacketReplacement;
 
 		static InfiniteStamina& GetInstance();

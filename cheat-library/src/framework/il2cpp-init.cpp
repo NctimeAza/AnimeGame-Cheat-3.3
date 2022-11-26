@@ -149,7 +149,7 @@ LGameVersion GetGameVersion()
 	}
 
 	static config::Field<nlohmann::json> checksumTimestamps =
-		config::CreateField<nlohmann::json>("ChecksumTimestamp", "m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
+		config::CreateField<nlohmann::json>("m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
 
 	PatternScanner scanner;
 	for (const auto& [lVersionName, lVersion] : gameVersions)

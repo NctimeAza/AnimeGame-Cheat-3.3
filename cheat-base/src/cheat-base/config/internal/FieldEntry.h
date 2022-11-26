@@ -8,16 +8,8 @@ namespace config::internal
 	class FieldEntry
 	{
 	public:
-		FieldEntry(const std::string& friendlyName, const std::string& name, const std::string& sectionName, bool multiProfile = false)
-			: m_Name(name),
-			  m_FriendName(friendlyName),
-			  m_Section(sectionName),
-			  m_MultiProfile(multiProfile),
-			  m_Container(nullptr)
-		{
-		}
-
-		virtual ~FieldEntry() = default;
+		FieldEntry(const std::string& name, const std::string& sectionName, bool multiProfile = false)
+			: m_Name(name), m_Section(sectionName), m_MultiProfile(multiProfile), m_Container(nullptr) {}
 
 		TEvent<FieldEntry*> ChangedEvent;
 		TEvent<FieldEntry*, const std::string&, bool> MovedEvent;
@@ -42,11 +34,6 @@ namespace config::internal
 			return m_Name;
 		}
 
-		inline std::string GetFriendName() const
-		{
-			return m_FriendName;
-		}
-
 		inline std::string GetSection() const
 		{
 			return m_Section;
@@ -60,6 +47,7 @@ namespace config::internal
 		inline void Reposition(const std::string& newSection, bool shared = false)
 		{
 			std::string oldSection = m_Section;
+			bool oldMultiProfile = m_MultiProfile;
 
 			m_Section = newSection;
 			m_MultiProfile = shared;
@@ -85,7 +73,6 @@ namespace config::internal
 
 	protected:
 		std::string m_Name;
-		std::string m_FriendName;
 		std::string m_Section;
 		bool m_MultiProfile;
 

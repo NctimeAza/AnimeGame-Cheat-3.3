@@ -66,11 +66,18 @@
 #include <cheat/visuals/EmotionChanger.h>
 #include <cheat/visuals/ShowSkillCD.h>
 
+#include <resource.h>
+
 #include "GenshinCM.h"
 
 namespace cheat 
 {
 	static void InstallEventHooks();
+
+	void OnLanguageChanged()
+	{
+		renderer::SetDefaultFont(Translator::GetCurrentFontName());
+	}
 
 	void Init()
 	{
@@ -84,6 +91,7 @@ namespace cheat
 #define FEAT_INST(name) &feature::##name##::GetInstance()
 		manager.AddFeatures({
 			&protectionBypass,
+			FEAT_INST(Language),
 			FEAT_INST(Settings),
 			FEAT_INST(Hotkeys),
 			FEAT_INST(Debug),
@@ -160,12 +168,22 @@ namespace cheat
 			"Debug"
 			});
 
-		LPBYTE pFontData = nullptr;
-		DWORD dFontSize = 0;
-		if (!ResourceLoader::LoadEx("ImGui_Font", RT_RCDATA, pFontData, dFontSize))
-			LOG_WARNING("Failed to get font from resources.");
 
-		manager.Init(pFontData, dFontSize);
+		auto defaultFont = renderer::Font::LoadFontFromResource(IMGUI_FONT, RT_RCDATA, "DefaultFont", renderer::Font::FONT_RANGE_DEFAULT);
+		auto ChineseSimplifiedFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "ChineseSimplifiedFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
+		auto cyrillicFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "CyrillicFont", renderer::Font::FONT_RANGE_CYRILLIC);
+		renderer::AddFont(defaultFont);
+		renderer::AddFont(cyrillicFont);
+		renderer::AddFont(ChineseSimplifiedFont);
+		
+		auto& language = feature::Language::GetInstance();
+		Translator::Init(ResourceLoader::Load(R_LANGUAGES, RT_RCDATA));
+		Translator::SetLanguage(language.f_Language.value());
+
+		Translator::LanguageChangedEvent += FUNCTION_HANDLER(OnLanguageChanged);
+		OnLanguageChanged();
+
+		manager.Init();
 
 		InstallEventHooks();
 	}

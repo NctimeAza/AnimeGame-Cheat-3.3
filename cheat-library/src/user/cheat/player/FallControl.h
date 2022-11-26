@@ -9,7 +9,7 @@ namespace cheat::feature
     class FallControl : public Feature
     {
     public:
-        config::Field<config::Toggle<Hotkey>> f_Enabled;
+        config::Field<TranslatedHotkey> f_Enabled;
         config::Field<float> f_Speed;
 
         static FallControl& GetInstance();

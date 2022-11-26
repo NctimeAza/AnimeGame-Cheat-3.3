@@ -21,20 +21,20 @@ namespace cheat::feature
 	};
 
 	RapidFire::RapidFire() : Feature(),
-		NF(f_Enabled, "Attack Multiplier", "RapidFire", false),
-		NF(f_MultiHit, "Multi-hit", "RapidFire", false),
-		NF(f_Multiplier, "Hit Multiplier", "RapidFire", 2),
-		NF(f_OnePunch, "One Punch Mode", "RapidFire", false),
-		NF(f_Randomize, "Randomize", "RapidFire", false),
-		NF(f_minMultiplier, "Min Multiplier", "RapidFire", 1),
-		NF(f_maxMultiplier, "Max Multiplier", "RapidFire", 3),
-		NF(f_MultiTarget, "Multi-target", "RapidFire", false),
-		NF(f_MultiTargetRadius, "Multi-target Radius", "RapidFire", 20.0f),
-		NF(f_MultiAnimation, "Multi-animation", "RapidFire", false),
-		NF(f_AnimationMultiplier, "Animation Multiplier", "RapidFire", 100),
-		NF(f_AnimationState, "Animation State", "RapidFire", 0.5f),
-		NF(f_AttackSpeed, "Attack Speed", "RapidFire", false),
-		NF(f_SpeedMultiplier, "Speed Multiplier", "RapidFire", 1.5f),
+		NFP(f_Enabled, "RapidFire", "Attack Effects", false),
+		NFP(f_MultiHit, "RapidFire", "Multi-Hit", false),
+		NF(f_Multiplier, "RapidFire", 2),
+		NF(f_OnePunch, "RapidFire", false),
+		NFP(f_Randomize, "RapidFire", "Randomize", false),
+		NF(f_minMultiplier, "RapidFire", 1),
+		NF(f_maxMultiplier, "RapidFire", 3),
+		NFP(f_MultiTarget, "RapidFire", "Multi-Target", false),
+		NF(f_MultiTargetRadius, "RapidFire", 20.0f),
+		NFP(f_MultiAnimation, "RapidFire", "Multi-Animation", false),
+		NF(f_AnimationMultiplier, "RapidFire", 100),
+		NF(f_AnimationState, "RapidFire", 0.5f),
+		NFP(f_AttackSpeed, "RapidFire", "Attack speed", false),
+		NF(f_SpeedMultiplier, "RapidFire", 1.5f),
 		animationCounter(1)
 	{
 		// HookManager::install(app::MoleMole_LCBaseCombat_DoHitEntity, LCBaseCombat_DoHitEntity_Hook); -- Looks like FireBeingHitEvent is superior to this.
@@ -44,92 +44,94 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& RapidFire::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "Attack Effects", "Player", true };
+		TRANSLATED_GROUP_INFO("Attack Effects", "Player");
 		return info;
 	}
 
 	void RapidFire::DrawMain()
 	{
-		ConfigWidget("Enabled", f_Enabled, "Enables attack multipliers. Need to choose a mode to work.");
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables attack multipliers. Need to choose a mode to work."));
 		ImGui::SameLine();
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "Choose any or both modes below.");
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("Choose any or both modes below."));
 
-		ConfigWidget("Multi-hit Mode", f_MultiHit, "Enables multi-hit.\n" \
+		ConfigWidget(_TR("Multi-Hit Mode"), f_MultiHit, _TR("Enables multi-hit.\n" \
 			"Multiplies your attack count.\n" \
 			"This is not well tested, and can be detected by anticheat.\n" \
-			"Not recommended to be used with main accounts or used with high values.\n");
+			"Not recommended to be used with main accounts or used with high values.\n"));
 
 		ImGui::Indent();
 
-		ConfigWidget("One-Punch Mode", f_OnePunch, "Calculate how many attacks needed to kill an enemy based on their HP\n" \
+		ConfigWidget(_TR("One-Punch Mode"), f_OnePunch, _TR("Calculate how many attacks needed to kill an enemy based on their HP\n" \
 			"and uses that to set the multiplier accordingly.\n" \
-			"May be safer, but multiplier calculation may not be on-point.");
+			"May be safer, but multiplier calculation may not be on-point."));
 
-		ConfigWidget("Randomize Multiplier", f_Randomize, "Randomize multiplier between min and max multiplier.");
+		ConfigWidget(_TR("Randomize Multiplier"), f_Randomize, _TR("Randomize multiplier between min and max multiplier."));
 		ImGui::SameLine();
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "This will override One-Punch Mode!");
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("This will override One-Punch Mode!"));
 
 		if (!f_OnePunch) {
 			if (!f_Randomize)
 			{
-				ConfigWidget("Multiplier", f_Multiplier, 1, 2, 1000, "Attack count multiplier.");
+				ConfigWidget(_TR("Multiplier"), f_Multiplier, 1, 2, 1000, _TR("Attack count multiplier."));
 			}
 			else
 			{
-				ConfigWidget("Min Multiplier", f_minMultiplier, 1, 1, 1000, "Attack count minimum multiplier.");
-				ConfigWidget("Max Multiplier", f_maxMultiplier, 1, 2, 1000, "Attack count maximum multiplier.");
+				ConfigWidget(_TR("Min Multiplier"), f_minMultiplier, 1, 1, 1000, _TR("Attack count minimum multiplier."));
+				ConfigWidget(_TR("Max Multiplier"), f_maxMultiplier, 1, 2, 1000, _TR("Attack count maximum multiplier."));
 			}
 		}
 
 		ImGui::Unindent();
 
-		ConfigWidget("Multi-target", f_MultiTarget, "Enables multi-target attacks within specified radius of target.\n" \
+		ConfigWidget(_TR("Multi-Target"), f_MultiTarget, _TR("Enables multi-target attacks within specified radius of target.\n" \
 			"All valid targets around initial target will be hit based on setting.\n" \
 			"Damage numbers will only appear on initial target but all valid targets are damaged.\n" \
 			"If multi-hit is off and there are still multiple numbers on a single target, check the Entity Manager in the Debug section to see if there are invisible entities.\n" \
-			"This can cause EXTREME lag and quick bans if used with multi-hit. You are warned."
+			"This can cause EXTREME lag and quick bans if used with multi-hit. You are warned.")
 		);
 
 		ImGui::Indent();
-		ConfigWidget("Radius (m)", f_MultiTargetRadius, 0.1f, 5.0f, 50.0f, "Radius to check for valid targets.");
+		ConfigWidget(_TR("Radius (m)"), f_MultiTargetRadius, 0.1f, 5.0f, 50.0f, _TR("Radius to check for valid targets."));
 		ImGui::Unindent();
 
-		ConfigWidget("Multi-animation", f_MultiAnimation, "Enables multi-animation attacks.\n" \
-			"Do keep in mind that the character's audio will also be spammed.");
-		ConfigWidget("Animation Multiplier", f_AnimationMultiplier, 1, 1, 150, "Configure to how many times it will update the animation state.\n" \
-			"Results can vary alongside Animation State");
-		ConfigWidget("Animation State", f_AnimationState, 0.01f, 0.f, 2.f, "Animation state to replay.\n"\
-			"Results can vary alongside Animation Multiplier");
-		ConfigWidget("Attack Speed", f_AttackSpeed, "Enables fast animation attacks.\n");
-		ConfigWidget("Speed Multiplier", f_SpeedMultiplier, 0.1f, 1.0f, 5.0f, "Attack speed multiplier.");
+		ConfigWidget(_TR("Multi-Animation"), f_MultiAnimation, _TR("Enables multi-animation attacks.\n" \
+			"Do keep in mind that the character's audio will also be spammed."));
+		ConfigWidget(_TR("Animation Multiplier"), f_AnimationMultiplier, 1, 1, 150, _TR("Configure to how many times it will update the animation state.\n" \
+			"Results can vary alongside Animation State"));
+		ConfigWidget(_TR("Animation State"), f_AnimationState, 0.01f, 0.f, 2.f, _TR("Animation state to replay.\n"\
+			"Results can vary alongside Animation Multiplier"));
+		ConfigWidget(_TR("Attack Speed"), f_AttackSpeed, _TR("Enables fast animation attacks.\n"));
+		ConfigWidget(_TR("Speed Multiplier"), f_SpeedMultiplier, 0.1f, 1.0f, 5.0f, _TR("Attack speed multiplier."));
 	}
 
 	bool RapidFire::NeedStatusDraw() const
 	{
-		return (f_Enabled && (f_MultiHit || f_MultiTarget)) || f_MultiAnimation || f_AttackSpeed;
+		return (f_Enabled->enabled() && (f_MultiHit->enabled() || f_MultiTarget->enabled())) || f_MultiAnimation->enabled() || f_AttackSpeed->enabled();
 	}
 
 	void RapidFire::DrawStatus()
 	{
-		if (f_Enabled) {
-			ImGui::Text("Rapid Fire:");
-			if (f_MultiHit)
+		if (f_Enabled->enabled()) 
+		{
+			ImGui::Text(_TR("Rapid Fire:"));
+			if (f_MultiHit->enabled())
 			{
-				if (f_Randomize)
-					ImGui::Text("Multi-Hit Random[%d|%d]", f_minMultiplier.value(), f_maxMultiplier.value());
+				if (f_Randomize->enabled())
+					ImGui::Text("%s [%d|%d]", _TR("Multi-Hit Random"), f_minMultiplier.value(), f_maxMultiplier.value());
 				else if (f_OnePunch)
-					ImGui::Text("Multi-Hit [OnePunch]");
+					ImGui::Text(_TR("Multi-Hit [OnePunch]"));
 				else
-					ImGui::Text("Multi-Hit [%d]", f_Multiplier.value());
+					ImGui::Text("%s [%d]", _TR("Multi-Hit"), f_Multiplier.value());
 			}
-			if (f_MultiTarget)
-				ImGui::Text("Multi-Target [%.01fm]", f_MultiTargetRadius.value());
+			if (f_MultiTarget->enabled())
+				ImGui::Text("%s [%.01fm]", _TR("Multi-Target"), f_MultiTargetRadius.value());
 		}
 
-		if (f_MultiAnimation)
-			ImGui::Text("Multi-Animation [%d|%0.2f]", f_AnimationMultiplier.value(), f_AnimationState.value());
-		if(f_AttackSpeed)
-			ImGui::Text("Attack Speed [%0.1f]", f_SpeedMultiplier.value());
+		if (f_MultiAnimation->enabled())
+			ImGui::Text("%s [%d|%0.2f]", _TR("Multi-Animation"), f_AnimationMultiplier.value(), f_AnimationState.value());
+		
+		if (f_AttackSpeed->enabled())
+			ImGui::Text("%s [%0.1f]", _TR("Attack Speed"), f_SpeedMultiplier.value());
 	}
 
 	RapidFire& RapidFire::GetInstance()
@@ -177,7 +179,7 @@ namespace cheat::feature
 				attackResult, manager.avatar()->raw(), targetEntity->raw(), nullptr);
 			countOfAttacks = CalcCountToKill(attackResult->fields.damage, targetID);
 		}
-		if (f_Randomize)
+		if (f_Randomize->enabled())
 		{
 			if (f_minMultiplier.value() >= f_maxMultiplier.value()) 
 				countOfAttacks = f_minMultiplier.value();
@@ -315,7 +317,7 @@ namespace cheat::feature
 		std::vector<cheat::game::Entity*> validEntities;
 		validEntities.push_back(originalTarget);
 
-		if (rapidFire.f_MultiTarget)
+		if (rapidFire.f_MultiTarget->enabled())
 		{
 			auto filteredEntities = manager.entities();
 			for (const auto& entity : filteredEntities) {
@@ -338,7 +340,7 @@ namespace cheat::feature
 		}
 
 		for (const auto& entity : validEntities) {
-			int attackCount = rapidFire.f_MultiHit ? rapidFire.GetAttackCount(__this, entity->runtimeID(), attackResult) : 1;
+			int attackCount = rapidFire.f_MultiHit->enabled() ? rapidFire.GetAttackCount(__this, entity->runtimeID(), attackResult) : 1;
 			for (int i = 0; i < attackCount; i++)
 				CALL_ORIGIN(LCBaseCombat_FireBeingHitEvent_Hook, __this, entity->runtimeID(), attackResult, method);
 		}
@@ -354,7 +356,7 @@ namespace cheat::feature
 			[&](int32_t tag) { return processStateInfo.m_Tag == tag; });
 		bool isAttacking = IsAttackByAvatar(attacker) && isAttackAnimation;
 
-		if (rapidFire.f_MultiAnimation && isAttacking)
+		if (rapidFire.f_MultiAnimation->enabled() && isAttacking)
 		{
 			// Set counter back to 1 when any new attack animation is invoked
 			if (processStateInfo.m_NormalizedTime <= 0.01f)
@@ -370,7 +372,7 @@ namespace cheat::feature
 		}
 
 		static bool isFastSpeed = false;
-		if (rapidFire.f_AttackSpeed && isAttacking)
+		if (rapidFire.f_AttackSpeed->enabled() && isAttacking)
 		{
 			if (!isinf(processStateInfo.m_Length))
 				app::Animator_set_speed(attacker.animator(), rapidFire.f_SpeedMultiplier, nullptr);

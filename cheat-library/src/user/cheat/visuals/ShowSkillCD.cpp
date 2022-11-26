@@ -7,7 +7,7 @@
 namespace cheat::feature
 {
 	ShowSkillCD::ShowSkillCD() : Feature(),
-		NF(f_Enabled, "Show Skill Cooldowns", "Visuals::ShowSkillCD", false)
+		NF(f_Enabled, "Visuals::ShowSkillCD", false)
 	{
 		cheat::events::GameUpdateEvent += MY_METHOD_HANDLER(ShowSkillCD::OnGameUpdate);
 
@@ -18,13 +18,13 @@ namespace cheat::feature
 
 	const FeatureGUIInfo& ShowSkillCD::GetGUIInfo() const
 	{
-		static const FeatureGUIInfo info{ "ShowSkillCD", "Visuals", false };
+		TRANSLATED_MODULE_INFO("Visuals");
 		return info;
 	}
 
 	void ShowSkillCD::DrawMain()
 	{
-		ConfigWidget(f_Enabled, "Show skill cooldowns and charges besides team buttons.");
+		ConfigWidget(_TR("Show Skill Cooldowns"), f_Enabled, _TR("Show skill cooldowns and charges besides team buttons."));
 	}
 
 	bool ShowSkillCD::NeedStatusDraw() const
@@ -34,7 +34,7 @@ namespace cheat::feature
 
 	void ShowSkillCD::DrawStatus()
 	{
-		ImGui::Text("Show Skill CDs");
+		ImGui::Text(_TR("Show Skill CDs"));
 	}
 
 	ShowSkillCD& ShowSkillCD::GetInstance()

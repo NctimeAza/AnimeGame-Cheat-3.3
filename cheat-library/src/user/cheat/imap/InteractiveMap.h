@@ -18,7 +18,7 @@ namespace cheat::feature
 			Global
 		};
 
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<bool> f_ShowMaterialsWindow;
 		config::Field<bool> f_SeparatedWindows;
 		config::Field<bool> f_CompletionLogShow;

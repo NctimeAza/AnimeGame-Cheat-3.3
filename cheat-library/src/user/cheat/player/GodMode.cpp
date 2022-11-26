@@ -7,10 +7,10 @@
 namespace cheat::feature 
 {
     GodMode::GodMode() : Feature(),
-        NF(f_Enabled, "God Mode", "GodMode", false),
-        NF(f_Conditional, "Conditional", "GodMode", false),
-        NF(f_MinHealth, "Minimum Health", "GodMode", 95.0f),
-        NF(f_MissingRate, "Missing Attack Rate", "GodMode", 100.0f)
+        NFP(f_Enabled, "GodMode", "God Mode", false),
+        NF(f_Conditional, "GodMode", false),
+        NF(f_MinHealth, "GodMode", 95.0f),
+        NF(f_MissingRate, "GodMode", 100.0f)
     {
 		HookManager::install(app::VCHumanoidMove_NotifyLandVelocity, VCHumanoidMove_NotifyLandVelocity_Hook);
 		HookManager::install(app::Miscs_CheckTargetAttackable, Miscs_CheckTargetAttackable_Hook);
@@ -20,19 +20,20 @@ namespace cheat::feature
 
     const FeatureGUIInfo& GodMode::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "God Mode", "Player", false };
+        TRANSLATED_GROUP_INFO("God Mode", "Player");
         return info;
     }
 
     void GodMode::DrawMain()
     {
-        ConfigWidget("God Mode", f_Enabled, "Enables god mode, i.e. no incoming damage including environmental damage.\n");
+        ConfigWidget(_TR("God Mode"), f_Enabled, _TR("Enables god mode, i.e. no incoming damage including environmental damage.\n"));
         ImGui::Indent();
-        ConfigWidget("Conditional", f_Conditional, "Enables god mode when the character's health drops\n"
-            "below the specified minimum.\n");
-        if (f_Conditional) {
-            ConfigWidget("Minimum Health", f_MinHealth, 0.1f, 0.1f, 100.0f, "Minimum health (in %) required before god mode takes effect.");
-            ConfigWidget("Missing Attack Rate", f_MissingRate, 0.1f, 0.0f, 100.0f, "Randomly missing enemies attack (in %, 0% = never, 100% = always) such as evade ability in other games.");
+        ConfigWidget(_TR("Conditional"), f_Conditional, _TR("Enables god mode when the character's health drops\n"
+            "below the specified minimum.\n"));
+        if (f_Conditional) 
+        {
+            ConfigWidget(_TR("Minimum Health"), f_MinHealth, 0.1f, 0.1f, 100.0f, _TR("Minimum health (in %) required before god mode takes effect."));
+            ConfigWidget(_TR("Missing Attack Rate"), f_MissingRate, 0.1f, 0.0f, 100.0f, _TR("Randomly missing enemies attack (in %, 0% = never, 100% = always) such as evade ability in other games."));
         }
             
         ImGui::Unindent();
@@ -40,14 +41,14 @@ namespace cheat::feature
 
     bool GodMode::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void GodMode::DrawStatus() 
     {
-        ImGui::Text("God Mode");
+        ImGui::Text(_TR("God Mode"));
         if (f_Conditional)
-            ImGui::Text("Condition MH%0.2f%% | MR%0.2f%%", f_MinHealth.value(), f_MissingRate.value());
+            ImGui::Text("%s MH%0.2f%% | MR%0.2f%%", _TR("Condition"), f_MinHealth.value(), f_MissingRate.value());
     }
 
     GodMode& GodMode::GetInstance()
@@ -91,7 +92,7 @@ namespace cheat::feature
         auto& gm = GodMode::GetInstance();
         auto& manager = game::EntityManager::instance();
         auto entity = manager.entity(target);
-        if (gm.f_Enabled && entity->isAvatar())
+        if (gm.f_Enabled->enabled() && entity->isAvatar())
             if (gm.f_Conditional) { // Calculate only when conditional is enabled
                 if (IsMissingAttack() || HealthLowThanMin(target))
                     return false;
@@ -108,7 +109,7 @@ namespace cheat::feature
 	void GodMode::VCHumanoidMove_NotifyLandVelocity_Hook(app::VCHumanoidMove* __this, app::Vector3 velocity, float reachMaxDownVelocityTime, MethodInfo* method)
 	{
         auto& gm = GodMode::GetInstance();
-		if (gm.f_Enabled && -velocity.y > 13)
+		if (gm.f_Enabled->enabled() && -velocity.y > 13)
 		{
             if (gm.f_Conditional)
             {
@@ -158,7 +159,7 @@ namespace cheat::feature
 
 	bool GodMode::NeedBlockHanlerModifierThinkTimeUp(app::Object* arg)
 	{
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return false;
 
 		auto actorModifier = CastTo<app::MoleMole_ActorModifier>(arg, *app::MoleMole_ActorModifier__TypeInfo);

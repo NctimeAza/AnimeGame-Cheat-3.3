@@ -6,6 +6,7 @@
 #include <cheat-base/render/renderer.h>
 #include <cheat-base/render/gui-util.h>
 #include <cheat-base/cheat/misc/Settings.h>
+#include <cheat-base/Translator.h>
 
 #include <imgui_internal.h>
 
@@ -13,10 +14,10 @@
 #include <user/cheat/misc/About.h>
 namespace cheat
 {
-	
-	void CheatManagerBase::Init(LPBYTE pFontData, DWORD dFontDataSize, renderer::DXVersion dxVersion)
+
+	void CheatManagerBase::Init(renderer::DXVersion dxVersion)
 	{
-		renderer::Init(pFontData, dFontDataSize, dxVersion);
+		renderer::Init(dxVersion);
 
 		events::RenderEvent += MY_METHOD_HANDLER(CheatManagerBase::OnRender);
 		events::KeyUpEvent += MY_METHOD_HANDLER(CheatManagerBase::OnKeyUp);
@@ -24,7 +25,8 @@ namespace cheat
 	}
 
 	CheatManagerBase::CheatManagerBase():
-		NF(m_SelectedSection, "", "General", 0),
+		NF(f_SelectedModule, "General", 0),
+		m_SelectedSection(nullptr),
 		m_IsBlockingInput(true),
 		m_IsPrevCursorActive(false)
 	{
@@ -40,16 +42,57 @@ namespace cheat
 		}
 	}
 
+	std::string CheatManagerBase::GetModuleRepr(const std::string& name)
+	{
+		auto& sections = m_FeatureMap.at(name);
+		if (sections.empty())
+			return {};
+
+		for (auto& [_, features] : sections)
+		{
+			if (features.empty())
+				continue;
+
+			return (*features.begin())->GetGUIInfo().moduleRepr;
+		}
+		return {};
+	}
+
+	void CheatManagerBase::DrawSectionSelection(const std::string& name, const std::string& translatedName, std::string*& currentModule, std::string& targetModule, size_t index)
+	{
+		bool is_module_selected = (&targetModule == currentModule) && m_SelectedSection == &name;
+		ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;
+		if (is_module_selected)
+			node_flags |= ImGuiTreeNodeFlags_Selected;
+		bool node_open = ImGui::TreeNodeEx(&name, node_flags, translatedName.c_str());
+
+		if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
+		{
+			currentModule = &targetModule;
+			f_SelectedModule = index;
+			m_SelectedSection = &name;
+		}
+
+		if (node_open)
+			ImGui::TreePop();
+	}
+
 	void CheatManagerBase::DrawMenu()
 	{
 		if (m_ModuleOrder.empty())
 			return;
 
-		static std::string* current = &m_ModuleOrder[m_SelectedSection];
+		if (f_SelectedModule >= m_ModuleOrder.size())
+			f_SelectedModule = static_cast<size_t>(0);
+
+		static std::string* current = &m_ModuleOrder[f_SelectedModule];
+
+		if (m_SelectedSection != nullptr && !m_FeatureMap[*current].contains(*m_SelectedSection))
+			m_SelectedSection = nullptr;
 
 		ImGui::SetNextWindowSize(ImVec2(600, 300), ImGuiCond_FirstUseEver);
 
-		if (!ImGui::Begin("Akebi-GC"))
+		if (!ImGui::Begin(Translator::RuntimeTranslate("Akebi GC").c_str(), nullptr, ImGuiWindowFlags_NoCollapse))
 		{
 			ImGui::End();
 			return;
@@ -57,30 +100,74 @@ namespace cheat
 
 		ImGui::BeginGroup();
 
-		if (ImGui::Checkbox("Block key/mouse", &m_IsBlockingInput))
-		{
-			renderer::SetInputLock(this, m_IsBlockingInput);
-		}
+		ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
 
-		if (ImGui::BeginListBox("##listbox 2", ImVec2(175, -FLT_MIN)))
+		ImGui::BeginChild("ChildL", ImVec2(175, -FLT_MIN), true);
+
+		//if (ImGui::Checkbox(_TR("Block key/mouse"), &m_IsBlockingInput))
+		//{
+		//	renderer::SetInputLock(this, m_IsBlockingInput);
+		//}
+
+		size_t index = 0;
+		for (auto& moduleName : m_ModuleOrder)
 		{
-			size_t index = 0;
-			for (auto& moduleName : m_ModuleOrder)
+			bool is_module_selected = (current == &moduleName) && m_SelectedSection == nullptr;
+			ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_DefaultOpen |
+				ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+
+			auto& sections = m_FeatureMap[moduleName];
+			if (sections.size() == 1)
+				node_flags = ImGuiTreeNodeFlags_Leaf;
+
+			if (is_module_selected)
+				node_flags |= ImGuiTreeNodeFlags_Selected;
+
+			bool node_open = ImGui::TreeNodeEx(GetModuleRepr(moduleName).c_str(), node_flags);
+			if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
 			{
-				const bool is_selected = (current == &moduleName);
-				if (ImGui::Selectable(moduleName.c_str(), is_selected))
+				current = &moduleName;
+				f_SelectedModule = index;
+				m_SelectedSection = nullptr;
+			}
+
+			if (node_open)
+			{
+				if (sections.size() > 1)
 				{
-					current = &moduleName;
-					m_SelectedSection = index;
+					const std::string* emptyString = nullptr;
+
+					for (auto& [sectionName, features] : sections)
+					{
+						if (sectionName.empty())
+						{
+							emptyString = &sectionName;
+							continue;
+						}
+
+						DrawSectionSelection(sectionName, Translator::RuntimeTranslate(sectionName),
+							current, moduleName, index);
+					}
+
+					if (emptyString != nullptr)
+						DrawSectionSelection(*emptyString, _TR("Other"),
+							current, moduleName, index);
 				}
 
-				if (is_selected)
-					ImGui::SetItemDefaultFocus();
-				index++;
+				ImGui::TreePop();
 			}
-			ImGui::EndListBox();
-		}
 
+			index++;
+		}
+#ifdef _DEBUG
+		ImGui::NewLine();
+		static bool _showMetricsWindow = false;
+		if (ImGui::Button("Open Imgui Debug Tool"))
+			_showMetricsWindow = !_showMetricsWindow;
+		if (_showMetricsWindow)
+			ImGui::ShowMetricsWindow(&_showMetricsWindow);
+#endif // _DEBUG
+		ImGui::EndChild();
 		ImGui::EndGroup();
 
 		ImGui::SameLine();
@@ -90,20 +177,26 @@ namespace cheat
 		DrawProfileLine();
 
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_None;
-		ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 5.0f);
 		ImGui::BeginChild("ChildR", ImVec2(0, 0), true, window_flags);
 
 		auto& sections = m_FeatureMap[*current];
-		auto emptyName = std::string();
-		if (sections.count(emptyName) > 0)
-			DrawMenuSection(emptyName, sections[""]);
-
-		for (auto& [sectionName, features] : sections)
+		if (m_SelectedSection == nullptr)
 		{
-			if (sectionName.empty())
-				continue;
+			if (sections.contains(std::string()))
+				DrawMenuSection(std::string(), sections[""], false);
 
-			DrawMenuSection(sectionName, features);
+			for (auto& [sectionName, features] : sections)
+			{
+				if (sectionName.empty())
+					continue;
+
+				DrawMenuSection(sectionName, features, true);
+			}
+		}
+		else
+		{
+			auto& features = sections.at(*m_SelectedSection);
+			DrawMenuSection(*m_SelectedSection, features, false);
 		}
 
 		ImGui::EndChild();
@@ -114,10 +207,16 @@ namespace cheat
 		ImGui::End();
 	}
 
-	void CheatManagerBase::DrawMenuSection(const std::string& sectionName, const std::vector<Feature*>& features) const
+	void CheatManagerBase::DrawMenuSection(const std::string& sectionName, const std::vector<Feature*>& features, bool needGroup) const
 	{
-		if (!sectionName.empty())
-			ImGui::BeginGroupPanel(sectionName.c_str());
+		if (needGroup && !sectionName.empty())
+		{
+			if (features.empty())
+				return;
+
+			auto feature = *features.begin();
+			ImGui::BeginGroupPanel(feature->GetGUIInfo().groupRepr.c_str());
+		}
 
 		for (auto& feature : features)
 		{
@@ -126,13 +225,13 @@ namespace cheat
 			ImGui::PopID();
 		}
 
-		if (!sectionName.empty())
+		if (needGroup && !sectionName.empty())
 			ImGui::EndGroupPanel();
 	}
 
 	void CheatManagerBase::DrawProfileGlobalActivities()
 	{
-		if (ImGui::Button("Add new profile"))
+		if (ImGui::Button(_TR("Add new profile")))
 		{
 			std::unordered_set<std::string> profileNameSet = { config::GetProfiles().begin(), config::GetProfiles().end() };
 			size_t index = 0;
@@ -157,10 +256,10 @@ namespace cheat
 		if (isPopupOpen)
 			ImGui::BeginDisabled();
 
-		if (ImGui::SmallButton("Rnm"))
+		if (ImGui::SmallButton(_TR("Rnm")))
 			ImGui::OpenRenamePopup(profileName);
 		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Rename");
+			ImGui::SetTooltip(_TR("Rename"));
 
 		if (isPopupOpen)
 			ImGui::EndDisabled();
@@ -173,17 +272,17 @@ namespace cheat
 
 		ImGui::SameLine();
 
-		if (ImGui::SmallButton("Del"))
+		if (ImGui::SmallButton(_TR("Del")))
 			config::RemoveProfile(profileName);
 		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Delete");
+			ImGui::SetTooltip(_TR("Delete"));
 
 		ImGui::SameLine();
 
-		if (ImGui::SmallButton("Dupe"))
+		if (ImGui::SmallButton(_TR("Dupe")))
 			config::DuplicateProfile(profileName);
 		if (ImGui::IsItemHovered())
-			ImGui::SetTooltip("Duplicate Profile");
+			ImGui::SetTooltip(_TR("Duplicate Profile"));
 	}
 
 	void CheatManagerBase::DrawProfileEntry(const std::string& profileName)
@@ -193,7 +292,7 @@ namespace cheat
 
 	void CheatManagerBase::DrawProfileTableHeader()
 	{
-		ImGui::TableSetupColumn("Name");
+		ImGui::TableSetupColumn(_TR("Name"));
 	}
 
 	int CheatManagerBase::GetProfileTableColumnCount()
@@ -211,7 +310,7 @@ namespace cheat
 			ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * 10), 0.0f))
 		{
 			DrawProfileTableHeader();
-			ImGui::TableSetupColumn("Actions");
+			ImGui::TableSetupColumn(_TR("Actions"));
 			ImGui::TableSetupScrollFreeze(0, 1);
 			ImGui::TableHeadersRow();
 
@@ -241,7 +340,7 @@ namespace cheat
 		if (m_IsProfileConfigurationShowed)
 			ImGui::BeginDisabled();
 
-		bool buttonPressed = ImGui::Button("Configure...");
+		bool buttonPressed = ImGui::Button(_TR("Configure..."));
 
 		if (m_IsProfileConfigurationShowed)
 			ImGui::EndDisabled();
@@ -256,7 +355,7 @@ namespace cheat
 
 		constexpr float width = 200.0f;
 		ImGui::SetNextItemWidth(width);
-		if (ImGui::BeginCombo("Profile", currentProfile.c_str()))
+		if (ImGui::BeginCombo(_TR("Profile"), currentProfile.c_str()))
 		{
 			for (auto& name : profiles)
 			{
@@ -285,13 +384,13 @@ namespace cheat
 		if (!settings.f_StatusMove)
 			flags |= ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoMove;
 
-		ImGui::Begin("Cheat status", nullptr, flags);
+		ImGui::Begin(_TR("Cheat status"), nullptr, flags);
 
 		static ImGuiTableFlags tabFlags = ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg;
 
 		if (ImGui::BeginTable("activesTable", 1, tabFlags))
 		{
-			ImGui::TableSetupColumn("Active features");
+			ImGui::TableSetupColumn(_TR("Active features"));
 			ImGui::TableHeadersRow();
 
 			int row = 0;
@@ -335,12 +434,12 @@ namespace cheat
 			return;
 
 		//ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.04f, 0.05f, 0.05f, 0.90f));
-		ImGui::Begin("Info window", nullptr, flags);
+		ImGui::Begin(_TR("Info window"), nullptr, flags);
 		//ImGui::PopStyleColor();
 
 		if (!showAny)
 		{
-			ImGui::Text("Nothing here");
+			ImGui::Text(_TR("Nothing here"));
 			ImGui::End();
 			return;
 		}
@@ -432,7 +531,7 @@ namespace cheat
 		if (m_IsProfileConfigurationShowed)
 		{
 			ImGui::SetNextWindowSize({ 0, ImGui::GetTextLineHeightWithSpacing() * 11 }, ImGuiCond_FirstUseEver);
-			if (ImGui::Begin("Config profile configuration", &m_IsProfileConfigurationShowed))
+			if (ImGui::Begin(_TR("Config profile configuration"), &m_IsProfileConfigurationShowed))
 				DrawProfileConfiguration();
 
 			ImGui::End();
@@ -469,15 +568,15 @@ namespace cheat
 		if (!settings.f_HotkeysEnabled)
 			return;
 
-		for (auto& field : config::GetFields<config::Toggle<Hotkey>>())
+		for (auto& field : config::GetFields<TranslatedHotkey>())
 		{
 			auto& toggle = field.value();
-			if (toggle.value.IsPressed(key))
+			if (toggle.value().IsPressed(key))
 			{
-				toggle.enabled = !toggle.enabled;
+				toggle.set_enabled(!toggle.enabled());
 				field.FireChanged();
 
-				std::string title = fmt::format("{}: {}", field.friendName(), (toggle ? "Enabled" : "Disabled"));
+				std::string title = fmt::format("{}: {}", field->name(), (toggle.enabled() ? _TR("Enabled") : _TR("Disabled")));
 				ImGuiToast toast(ImGuiToastType_None, settings.f_NotificationsDelay);
 				toast.set_title(title.c_str());
 				ImGui::InsertNotification(toast);
@@ -531,14 +630,14 @@ namespace cheat
 		m_Features.push_back(feature);
 
 		auto& info = feature->GetGUIInfo();
-		if (m_FeatureMap.count(info.moduleName) == 0)
+		if (m_FeatureMap.count(info.moduleKey) == 0)
 		{
-			m_FeatureMap[info.moduleName] = {};
-			m_ModuleOrder.push_back(info.moduleName);
+			m_FeatureMap[info.moduleKey] = {};
+			m_ModuleOrder.push_back(info.moduleKey);
 		}
 
-		auto& sectionMap = m_FeatureMap[info.moduleName];
-		std::string sectionName = info.isGroup ? info.name : std::string();
+		auto& sectionMap = m_FeatureMap[info.moduleKey];
+		std::string sectionName = info.groupKey;
 		if (sectionMap.count(sectionName) == 0)
 			sectionMap[sectionName] = {};
 

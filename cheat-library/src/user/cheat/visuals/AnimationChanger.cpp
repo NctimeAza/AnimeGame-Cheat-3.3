@@ -11,12 +11,12 @@ namespace cheat::feature
     std::vector<std::string> animations;
 
     AnimationChanger::AnimationChanger() : Feature(),
-        NF(f_Enabled, "Animation Changer", "Visuals::AnimationChanger", false),
-        NF(f_Animation, "Animation", "Visuals::AnimationChanger", "Attack01"),
-        NF(f_ApplyKey, "Apply Animation", "Visuals::AnimationChanger", Hotkey('Y')),
-        NF(f_ResetKey, "Reset Animation", "Visuals::AnimationChanger", Hotkey('R')),
-        NF(f_Delay, "Repeat Delay", "Visuals::AnimationChanger", 400),
-        NF(f_Debug, "Debug Animations", "Visuals::AnimationChanger", false)
+        NFP(f_Enabled, "Visuals::AnimationChanger", "Animation Changer", false),
+        NF(f_Animation, "Visuals::AnimationChanger", "Attack01"),
+        NF(f_ApplyKey, "Visuals::AnimationChanger", Hotkey('Y')),
+        NF(f_ResetKey, "Visuals::AnimationChanger", Hotkey('R')),
+        NF(f_Delay, "Visuals::AnimationChanger", 400),
+        NF(f_Debug, "Visuals::AnimationChanger", false)
     {
         HookManager::install(app::MoleMole_PlayerModule_EntityAppear, MoleMole_PlayerModule_EntityAppear_Hook);
         events::GameUpdateEvent += MY_METHOD_HANDLER(AnimationChanger::OnGameUpdate);
@@ -24,48 +24,44 @@ namespace cheat::feature
 
     const FeatureGUIInfo& AnimationChanger::GetGUIInfo() const
     {
-        static const FeatureGUIInfo info{ "AnimationChanger", "Visuals", false };
+        TRANSLATED_GROUP_INFO("Animation Changer", "Visuals");
         return info;
     }
 
     void AnimationChanger::DrawMain()
     {
-        ImGui::BeginGroupPanel("Animation Changer");
-        {
-            ConfigWidget(f_Enabled, "Changes active character's animation.");
-            if (f_Enabled)
-            {
-                if (ImGui::BeginCombo("Animations", f_Animation.value().c_str()))
-                {
-                    for (auto& animation : animations)
-                    {
-                        bool is_selected = (f_Animation.value().c_str() == animation);
-                        if (ImGui::Selectable(animation.c_str(), is_selected))
-                            f_Animation.value() = animation;
+		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Changes active character's animation."));
+		if (f_Enabled->enabled())
+		{
+			if (ImGui::BeginCombo(_TR("Animations"), f_Animation.value().c_str()))
+			{
+				for (auto& animation : animations)
+				{
+					bool is_selected = (f_Animation.value().c_str() == animation);
+					if (ImGui::Selectable(animation.c_str(), is_selected))
+						f_Animation.value() = animation;
 
-                        if (is_selected)
-                            ImGui::SetItemDefaultFocus();
-                    }
-                    ImGui::EndCombo();
-                }
+					if (is_selected)
+						ImGui::SetItemDefaultFocus();
+				}
+				ImGui::EndCombo();
+			}
 
-                ConfigWidget("Apply Key", f_ApplyKey, true);
-                ConfigWidget("Reset Key", f_ResetKey, true);
-                ConfigWidget("Delay", f_Delay, 1, 1, 1000000000, "Delay to repeat animation");
-                ConfigWidget(f_Debug, "Logs current active character's animation state.");
-            }
-        }
-        ImGui::EndGroupPanel();
+			ConfigWidget(_TR("Apply Key"), f_ApplyKey, true);
+			ConfigWidget(_TR("Reset Key"), f_ResetKey, true);
+			ConfigWidget(_TR("Delay"), f_Delay, 1, 1, 1000000000, _TR("Delay to repeat animation"));
+			ConfigWidget(_TR("Debug Animations"), f_Debug, _TR("Logs current active character's animation state."));
+		}
     }
 
     bool AnimationChanger::NeedStatusDraw() const
     {
-        return f_Enabled;
+        return f_Enabled->enabled();
     }
 
     void AnimationChanger::DrawStatus()
     {
-        ImGui::Text("AnimationChanger");
+        ImGui::Text(_TR("Animation Changer"));
     }
 
     AnimationChanger& AnimationChanger::GetInstance()
@@ -85,7 +81,7 @@ namespace cheat::feature
     // Feel free to refactor.
     void AnimationChanger::OnGameUpdate()
     {
-        if (!f_Enabled)
+        if (!f_Enabled->enabled())
             return;
 
         UPDATE_DELAY(f_Delay);

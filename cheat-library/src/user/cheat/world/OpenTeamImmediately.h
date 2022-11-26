@@ -7,7 +7,7 @@ namespace cheat::feature
 	class OpenTeamImmediately : public Feature
 	{
 	public:
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		//MoleMole_InLevelPlayerProfilePageContext*
 		void* InLevelPlayerProfilePageContext;
 

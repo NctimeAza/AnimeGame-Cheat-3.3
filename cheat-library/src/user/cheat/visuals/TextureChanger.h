@@ -8,7 +8,7 @@ namespace cheat::feature
 	class TextureChanger : public Feature
 	{
 	public:		
-		config::Field<config::Toggle<Hotkey>> f_Enabled;
+		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<config::Toggle<std::string>> f_HeadPath;
 		config::Field<config::Toggle<std::string>> f_BodyPath;
 		config::Field<config::Toggle<std::string>> f_DressPath;
