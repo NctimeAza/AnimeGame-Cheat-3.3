@@ -83,6 +83,10 @@ namespace cheat::feature
         ImGui::Text(_TR("  Russian:"));
         ImGui::TextColored(ImColor(0, 102, 255, 255), "    - phenacemide#2436");
         ImGui::TextColored(ImColor(0, 102, 255, 255), "    - AMOGUSS#0530");
+        ImGui::Text(_TR("  Chinese:"));
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "    - Word.exe#1377");
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "    - ShinaKaria#9760");
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "    - black_zero#3327");
         ImGui::PopTextWrapPos();
     }
 
