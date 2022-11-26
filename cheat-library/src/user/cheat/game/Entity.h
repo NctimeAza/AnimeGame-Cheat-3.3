@@ -15,21 +15,21 @@ namespace cheat::game
 		uint32_t runtimeID();
 		app::EntityType__Enum_1 type();
 
-		app::Vector3 relativePosition();
-		app::Vector3 absolutePosition();
-		app::Vector2 levelPosition();
+		app::Vector3 relativePosition() const;
+		app::Vector3 absolutePosition() const;
+		app::Vector2 levelPosition() const;
 
-		float distance(const app::Vector3& point);
-		float distance(const app::Vector2& levelPosition);
-		float distance(Entity* entity);
-		float distance(app::BaseEntity* rawEntity);
+		float distance(const app::Vector3& point) const;
+		float distance(const app::Vector2& levelPosition) const;
+		float distance(Entity* entity) const;
+		float distance(app::BaseEntity* rawEntity) const;
 
-		bool isGadget();
-		bool isChest();
-		bool isAvatar();
-		bool isMonster();
+		bool isGadget() const;
+		bool isChest() const;
+		bool isAvatar() const;
+		bool isMonster() const;
 
-		bool isLoaded();
+		bool isLoaded() const;
 
 		void setRelativePosition(const app::Vector3& value);
 		void setAbsolutePosition(const app::Vector3& value);
@@ -80,7 +80,7 @@ namespace cheat::game
 		bool m_HasName;
 		std::string m_Name;
 
-		bool m_IsLoaded;
+		mutable bool m_IsLoaded;
 
 		template<class T>
 		T* GetLCPlugin(app::BaseComponentPlugin* plugin, void* pClass)

@@ -279,6 +279,9 @@
     <ClInclude Include="src\user\cheat\visuals\ShowSkillCD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\game\xxHash.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />

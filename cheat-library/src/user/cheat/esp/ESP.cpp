@@ -3,11 +3,13 @@
 
 #include <helpers.h>
 #include <algorithm>
+#include <ranges>
 
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
 #include "ESPRender.h"
 #include <cheat/game/filters.h>
+#include <cheat/game/xxHash.hpp>
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui_internal.h>
@@ -17,6 +19,7 @@
 
 namespace cheat::feature
 {
+	using namespace xxh;
 
 	ESP::ESP() : Feature(),
 		NFP(f_Enabled, "ESP", "ESP", false),
@@ -487,55 +490,59 @@ namespace cheat::feature
 
 		auto& entityManager = game::EntityManager::instance();
 
-		for (auto& entity : entityManager.entities())
-		{
-			if (entityManager.avatar()->distance(entity) > esp.f_Range)
-				continue;
+        for (const auto entity : entityManager.entities())
+        {
+            if (entityManager.avatar()->distance(entity) > esp.f_Range)
+                continue;
 
-			for (auto& [section, filters] : m_Sections)
-			{
-				for (auto& [field, filter] : filters)
-				{
-					auto& entry = field.value();
-					if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filter))
-						continue;
-					if (entry.m_Name == "Elemental Monument" || entry.m_Name == "Bloatty Floatty" || entry.m_Name == "Electro Seelie")
-					{
-						if (f_HideCompleted)
-						{
-							const bool puzzleFinished = ESP::CheckPuzzleFinished(entity);
-							if (puzzleFinished)
-								break;
-							else
-								esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
-							break;
-						}
-					}
-                    if (entry.m_Name == "Buried Chest")
-					{
-                        if(isBuriedChest(entity))
+            for (const auto &filters : m_Sections | std::views::values)
+            {
+                for (const auto &[field, filter] : filters)
+                {
+                    const auto &entry = field.value();
+                    const uint64_t name_hash = xxHash64(entry.m_Name);
+                    if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filter))
+                        continue;
+
+                    switch (name_hash)
+                    {
+                    case "Elemental Monument"_h:
+                    case "Bloatty Floatty"_h:
+                    case "Electro Seelie"_h:
+                        if (f_HideCompleted && ESP::CheckPuzzleFinished(entity))
+                            break;
+                        esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                        break;
+
+                    case "Buried Chest"_h:
+                        if (isBuriedChest(entity))
                         {
                             esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         }
                         break;
-                    }
-					if (entry.m_Name == "Npc" || entry.m_Name == "AvatarOwn" || entry.m_Name == "AvatarTeammate")
-					{
+
+                    case "Npc"_h:
+                    case "AvatarOwn"_h:
+                    case "AvatarTeammate"_h:
                         if (isBuriedChest(entity))
                             continue;
-						if (entity->type() == app::EntityType__Enum_1::Avatar || entity->type() == app::EntityType__Enum_1::NPC)
-						{
-							std::string name = entity->name();
-							GetNpcName(name);
-							esp::render::DrawEntity(Translator::RuntimeTranslate(name), entity, entry.m_Color, entry.m_ContrastColor);
-							break;
-						}
-					}
-					esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
-					break;
-				}
-			}
-		}
+                        if (entity->type() == app::EntityType__Enum_1::Avatar ||
+                            entity->type() == app::EntityType__Enum_1::NPC)
+                        {
+                            std::string name = entity->name();
+                            GetNpcName(name);
+                            esp::render::DrawEntity(Translator::RuntimeTranslate(name), entity, entry.m_Color, entry.m_ContrastColor);
+                        }
+                        break;
+
+                    default:
+                        esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                        break;
+                    }
+                    break;
+                }
+            }
+        }
 	}
 
 	void ESP::OnKeyUp(short key, bool& cancelled)
