@@ -87,7 +87,7 @@ namespace cheat::feature
 				ConfigWidget(_TR("Roll Speed"), f_RollSpeed, 0.01f, 0.01f, 100.0f);
 				ConfigWidget(_TR("FOV Speed"), f_FOVSpeed, 0.01f, 0.01f, 100.0f);
 				ConfigWidget(_TR("Field of View"), f_FOV, 0.1f, 0.01f, 200.0f, _TR("Changes Vertical FoV. Horizontal FoV depends on the viewport's aspect ratio"));
-				if (ImGui::Button("Convert FoV to 35mm FF focal length"))
+				if (ImGui::Button(_TR("Convert FoV to 35mm FF focal length")))
 					focalLength = 24 / (2 * tan((f_FOV * 3.14159265) / (2 * 180))); // FocalLength = (vertical) sensor size / 2 * tan( 2*(vertical) FoV * Pi / 180)  Remember to convert degree to radian.  
 				ImGui::Text("%s: %f", _TR("Focal length"), focalLength);
 				ImGui::Spacing();
