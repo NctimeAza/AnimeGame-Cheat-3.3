@@ -1392,9 +1392,9 @@
       "Zoom Speed": "Zoom Speed"
     }
   },
-  "Chinese": {
-    "font": "ChineseSimplifiedFont",
-    "pseudo": "Chinese | Zh-cn",
+  "SimplifiedChinese": {
+    "font": "SimplifiedChineseFont",
+    "pseudo": "Simplified Chinese | ZH-CN",
     "translates": {
       "  Chinese:": "  中文:",
       "  Russian:": "  俄文:",

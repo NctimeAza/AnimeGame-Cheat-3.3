@@ -12,8 +12,9 @@
 #define IDR_RCDATA4                     110
 
 #define IMGUI_FONT                      201
-#define IMGUI_FONT_CHINESE              202
-#define IMGUI_FONT_CYRILLIC             203
+#define IMGUI_FONT_SIMPLIFIED_CHINESE   202
+#define IMGUI_FONT_TRADITIONAL_CHINESE  203
+#define IMGUI_FONT_CYRILLIC             204
 
 #define R_LANGUAGES                     301
 
