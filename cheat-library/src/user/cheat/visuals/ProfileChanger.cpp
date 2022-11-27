@@ -83,13 +83,8 @@ namespace cheat::feature
         }   
 
         ConfigWidget(_TR("World level"), f_WorldLevel, _TR("Changes the world-level visually."));
-        ConfigWidget(_TR("Avatar image"), f_Avatar, "Changes the Avatar Image visually.\n" \
-            "Note the size of the picture must be: 256x256.\n" \
-            "Example path: C:\\Avatars.png");
-
-        ConfigWidget(_TR("Card image"), f_Card, "Changes the Card visually.\n" \
-            "Note the size of the picture must be: 840x400.\n" \
-            "Example path: C:\\Avatars.png");
+        ConfigWidget(_TR("Avatar image"), f_Avatar, _TR("Changes the Avatar Image visually.\nNote the size of the picture must be: 256x256.\nExample path: C:\\Avatars.png"));
+        ConfigWidget(_TR("Card image"), f_Card, _TR("Changes the Card visually.\nNote the size of the picture must be: 840x400.\nExample path: C:\\Card.png"));
     }
 
     bool ProfileChanger::NeedStatusDraw() const
