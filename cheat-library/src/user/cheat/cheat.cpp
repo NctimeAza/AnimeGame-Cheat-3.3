@@ -170,13 +170,11 @@ namespace cheat
 
 
 		auto defaultFont = renderer::Font::LoadFontFromResource(IMGUI_FONT, RT_RCDATA, "DefaultFont", renderer::Font::FONT_RANGE_DEFAULT);
-		auto simplifiedChineseFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_SIMPLIFIED_CHINESE, RT_RCDATA, "SimplifiedChineseFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
-		auto traditionalChineseFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_TRADITIONAL_CHINESE, RT_RCDATA, "TraditionalChineseFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
-		auto cyrillicFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_SIMPLIFIED_CHINESE, RT_RCDATA, "CyrillicFont", renderer::Font::FONT_RANGE_CYRILLIC);
+		auto ChineseFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "ChineseFont", renderer::Font::FONT_RANGE_CHINESE_FULL);
+		auto cyrillicFont = renderer::Font::LoadFontFromResource(IMGUI_FONT_CHINESE, RT_RCDATA, "CyrillicFont", renderer::Font::FONT_RANGE_CYRILLIC);
 		renderer::AddFont(defaultFont);
 		renderer::AddFont(cyrillicFont);
-		renderer::AddFont(simplifiedChineseFont);
-		renderer::AddFont(traditionalChineseFont);
+		renderer::AddFont(ChineseFont);
 
 		auto& language = feature::Language::GetInstance();
 		Translator::Init(ResourceLoader::Load(R_LANGUAGES, RT_RCDATA));
