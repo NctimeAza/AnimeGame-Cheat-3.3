@@ -4,6 +4,7 @@
 #include <helpers.h>
 #include <algorithm>
 #include <ranges>
+#include <regex>
 
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
@@ -242,156 +243,50 @@ namespace cheat::feature
 
 	void ESP::GetNpcName(std::string& name)
 	{
-		if (name.find("Avatar") != std::string::npos)
-		{
-			//cause name is like "Avatar_Catalyst_Boy_Heizo(Clone)" - We'll get name between 3rd underscore and 1st bracket
-			int  j = 0;		// j is the number of spaces before the name starts
-			size_t pos1 = 0;
-			size_t pos2 = 0;
-			for (size_t i = 0; i < name.length(); i++)
-			{
-				if (name[i] == '_')
-				{
-					j++;
-					if (j == 3)
-					{
-						pos1 = i;
-					}
+		std::regex Avatars("Avatar_.*_.*_(\\D[a-z]+).*");
+		std::regex NPCDefault(".*_.*_([A-Z][a-z]+).*");
+		std::regex NPCAdvanced(".*_.*_.*_(([A-Z][a-z]+)([A-Z][a-z]+)).*");
 
-				}
-				if (name[i] == '(')
-				{
-					pos2 = i;
-					break;
-				}
-			}
-			name = name.substr(pos1 + 1, pos2 - pos1 - 1);
-		}
-		else if (name.find("Animal") != std::string::npos)
+		std::smatch m;
+		
+		if (name.find("Megamoth") != std::string::npos)
 		{
-			int count = 0;
-			int j = 0;
-			size_t pos1 = 0;
-			size_t pos2 = 0;
-			for (size_t i = 0; i < name.length(); i++)
-			{
-				if (name[i] == '_')
-				{
-					count++;
-				}
-			}
-			//switch statement to determine how we will get name
-			switch (count)
-			{
-			case 3:
-			{
-				j = 0;		// j is the number of spaces before the name starts
-				pos1 = 0;
-				pos2 = 0;
-				for (size_t i = 0; i < name.length(); i++)
-				{
-					if (name[i] == '_')
-					{
-						j++;
-						if (j == 3)
-						{
-							pos1 = i;
-						}
-
-					}
-					if (name[i] == '(')
-					{
-						pos2 = i;
-						break;
-					}
-				}
-				name = name.substr(pos1, pos2 - pos1);
-			}
-			case 4:
-			{
-				j = 0;		// j is the number of spaces before the name starts
-				pos1 = 0;
-				pos2 = 0;
-				for (size_t i = 0; i < name.length(); i++)
-				{
-					if (name[i] == '_')
-					{
-						j++;
-						if (j == 3)
-						{
-							pos1 = i;
-						}
-						if (j == 4)
-						{
-							pos2 = i;
-							break;
-						}
-					}
-				}
-				name = name.substr(pos1 + 1, pos2 - pos1 - 1);
-			}
-			default:
-				break;
-			}
+			char AA[] = "Megamoth";
+			name = AA;
 			return;
 		}
-		else if (name.find("Monster") != std::string::npos)
+		if (name.find("Aranara") != std::string::npos)
 		{
-			int  j = 0;     //number of underscores in the name
-			size_t pos1 = 0;	//position of the first underscore in the name
-			size_t pos2 = 0;   //position of the second underscore in the name
-			for (size_t i = 0; i < name.length(); i++)
-			{
-				if (name[i] == '_')
-				{
-					j++;
-					if (j == 3)
-					{
-						pos1 = i;
-					}
-					if (j == 4)
-					{
-						pos2 = i;
-						break;
-					}
-				}
-			}
-			name = name.substr(pos1 + 1, pos2 - pos1 - 1);
-		}	
-		else if (name.find("Aranara") != std::string::npos)
-		{
-		char AA[] = "Aranara";
-		name = AA;
+			char AA[] = "Aranara";
+			name = AA;
+			return;
 		}
 		else if (name.find("Kanban") != std::string::npos)
 		{
-		char AA[] = "Paimon";
-		name = AA;
+			char AA[] = "Paimon";
+			name = AA;
+			return;
+		}
+		else if (std::regex_match(name, m, Avatars))
+		{
+			name = m[1].str();
+			return;
+		}
+		else if (std::regex_match(name, m, NPCAdvanced))
+		{
+			name = m[2].str() + " " + m[3].str();
+			return;
+		}
+		else if (std::regex_match(name, m, NPCDefault))
+		{
+			name = m[1].str();
+			return;
 		}
 		else
 		{
-			int  j = 0;     //number of underscores in the name
-			size_t pos1 = 0;	//position of the first underscore in the name
-			size_t pos2 = 0;   //position of the second underscore in the name
-			for (size_t i = 0; i < name.length(); i++)
-			{
-				if (name[i] == '_')
-				{
-					j++;
-					if (j == 4)
-					{
-						pos1 = i;
-					}
-					if (j == 5)
-					{
-						pos2 = i;
-						break;
-					}
-				}
-			}
-			name = name.substr(pos1 + 1, pos2 - pos1 - 1);
+			name = "ERROR";
 		}
-		return;
+		
 	}
 
 	void ESP::AddFilter(const std::string& section, const std::string& name, game::IEntityFilter* filter)
