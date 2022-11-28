@@ -70,7 +70,7 @@ ASSEMBLYCHECKSUMS       RCDATA                  "assembly_checksum.json"
 
 ASCENSIONMATERIALSDATA  RCDATA                  "ascension_materials.json"
 
-IMGUI_FONT_CHINESE      RCDATA                  "NotoSansSC-Bold.otf"
+IMGUI_FONT_CHINESE      RCDATA                  "MiSans-Regular.ttf"
 
 IMGUI_FONT_CYRILLIC     RCDATA                  "ubuntu_bold.ttf"
 

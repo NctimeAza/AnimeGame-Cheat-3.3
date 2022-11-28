@@ -230,7 +230,7 @@ void cheat::GenshinCM::DrawProfileLine()
 
 void cheat::GenshinCM::DrawProfileConfiguration()
 {
-	ConfigWidget("Show type", f_ShowType, _TR("Set accounts' name showing type."));
+	ConfigWidget(_TR("Show type"), f_ShowType, _TR("Set accounts' name showing type."));
 	auto& pseudos = f_AccConfig.value().pseudos;
 	if (pseudos.count(m_CurrentAccount.userID) > 0)
 	{

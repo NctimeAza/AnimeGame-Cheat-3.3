@@ -48,6 +48,9 @@ namespace renderer
 		inline DWORD GetSize() const;
 		inline const ImWchar* GetGlyphRanges() const;
 
+		// Fix Chinese missing characters
+		const ImWchar* GetGlyphRangesChineseFull();
+
 		void AddRange(FONT_RANGE ranges);
 		void AddRange(const ImWchar* ranges);
 
