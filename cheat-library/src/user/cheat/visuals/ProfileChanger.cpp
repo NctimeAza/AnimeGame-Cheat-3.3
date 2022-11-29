@@ -3,6 +3,7 @@
 
 #include <helpers.h>
 #include <cheat/events.h>
+#include <cheat/game/util.h>
 #include <misc/cpp/imgui_stdlib.h>
 #include <fstream>
  
