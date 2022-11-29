@@ -65,13 +65,13 @@ namespace cheat::feature
 	{
 		if (entity == nullptr)
 		{
-			ImGui::Text(name.c_str()); ImGui::SameLine();
+			ImGui::Text(Translator::RuntimeTranslate(name).c_str()); ImGui::SameLine();
 			ImGui::TextColored(ImVec4(1.0f, 0.1f, 0.1f, 1.0f), _TR("not found"));
 			return;
 		}
 		
 		auto& manager = game::EntityManager::instance();
-		ImGui::Text(name.c_str()); ImGui::SameLine();
+		ImGui::Text(Translator::RuntimeTranslate(name).c_str()); ImGui::SameLine();
 		ImGui::TextColored(ImVec4(0.1f, 1.0f, 0.1f, 1.0f), "%.3fm", manager.avatar()->distance(entity));
 	}
 
