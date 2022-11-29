@@ -463,7 +463,7 @@ namespace cheat
 			if (!moduleShowAny)
 				continue;
 
-			ImGui::BeginGroupPanel(moduleName.c_str());
+			ImGui::BeginGroupPanel(Translator::RuntimeTranslate(moduleName).c_str());
 
 			for (auto& [sectionName, features] : sections)
 			{
