@@ -88,6 +88,7 @@ namespace cheat::feature
         ImGui::TextColored(ImColor(0, 102, 255, 255), "    - ShinaKaria#9760");
         ImGui::TextColored(ImColor(0, 102, 255, 255), "    - black_zero#3327");
         ImGui::TextColored(ImColor(0, 102, 255, 255), "    - (ZH-TW) xTaiwanPingLord#9960");
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "    - (Proofread) inkay#5122");
         ImGui::PopTextWrapPos();
     }
 

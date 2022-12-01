@@ -1422,6 +1422,7 @@ powershell -nop -c "&amp;{sleep 30}"</Command>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>cheat-base.lib;ntdll.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <CustomBuildStep>
       <Command>"$(OutDir)injector.exe"

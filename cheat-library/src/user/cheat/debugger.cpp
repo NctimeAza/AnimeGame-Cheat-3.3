@@ -21,16 +21,20 @@ static NTSTATUS WINAPI NtSetInformationThread_Hook(HANDLE handle, THREADINFOCLAS
 
 void DebuggerBypassPre()
 {
-	if (!Patch_NtSetInformationThread())
-		LOG_ERROR("Failed to patch NtSetInformationThread, so main thread will be hidden from debugger. ^(");
+#ifdef _DEBUG
+    if (!Patch_NtSetInformationThread())
+        LOG_ERROR("Failed to patch NtSetInformationThread, so main thread will be hidden from debugger. ^(");
+#endif
 }
 
 void DebuggerBypassPost()
 {
-	if (!Patch_DbgUiRemoteBreakin())
-		LOG_ERROR("Failed to patch DbgUiRemoteBreakin, so when debugger will try to attach, game crash. ^(");
-
+#ifdef _DEBUG
+    if (!Patch_DbgUiRemoteBreakin())
+        LOG_ERROR("Failed to patch DbgUiRemoteBreakin, so when debugger will try to attach, game crash. ^(");
+	
 	RunVEH();
+#endif
 }
 
 static void RunVEH()
