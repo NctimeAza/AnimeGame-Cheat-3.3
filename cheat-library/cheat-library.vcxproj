@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\user\cheat\esp\ESPCustomFilter.h" />
     <ClInclude Include="src\user\cheat\game\xxHash.hpp" />
     <ClInclude Include="src\user\cheat\misc\About.h" />
     <ClInclude Include="src\user\cheat\misc\BlockWindSeed.h" />
@@ -118,6 +119,7 @@
     <Font Include="res\Ruda-ExtraBold.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\user\cheat\esp\ESPCustomFilter.cpp" />
     <ClCompile Include="src\user\cheat\misc\About.cpp" />
     <ClCompile Include="src\user\cheat\misc\BlockWindSeed.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.cpp" />

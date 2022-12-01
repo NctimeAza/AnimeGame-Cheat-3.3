@@ -282,6 +282,9 @@
     <ClInclude Include="src\user\cheat\game\xxHash.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\esp\ESPCustomFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />
@@ -521,6 +524,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\visuals\ShowSkillCD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\cheat\esp\ESPCustomFilter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

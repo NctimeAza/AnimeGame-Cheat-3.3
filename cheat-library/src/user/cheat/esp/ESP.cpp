@@ -36,7 +36,7 @@ namespace cheat::feature
 		NF(f_TracerSize, "ESP", 1.0f),
 		NF(f_MiddleScreenTracer, "ESP", false),
 		NF(f_DrawDistance, "ESP", false),
-		NF(f_DrawName, "ESP", false),	
+		NF(f_DrawName, "ESP", false),
 		NF(f_DrawHealth, "ESP", false),
 		NF(f_HideCompleted, "ESP", false),
 
@@ -51,9 +51,19 @@ namespace cheat::feature
 
 		NF(f_MinSize, "ESP", 0.5f),
 		NF(f_Range, "ESP", 100.0f),
+
+		NFS(f_ShowCustomFiltersWindow, "ESP", false),
+		NFEX(f_CustomFilterJson, "CustomFilter", "ESP", std::vector<nlohmann::json>(), false),
+		NFS(f_CustomFilterType, "ESP", app::EntityType__Enum_1::None),
+		m_CustomFilterUiName({}),
+		m_CustomFilterNameToAdd({}),
+		m_CustomFilterNames({}),
+		m_CustomFilters({}),
+		m_CustomFilterInfos({}),
 		m_Search({})
 	{
 		InstallFilters();
+		InstallCustomFilters();
 
 		m_FontContrastColor = ImGui::CalcContrastColor(f_GlobalFontColor);
 
@@ -124,11 +134,17 @@ namespace cheat::feature
 			ConfigWidget(_TR("Min. Entity Size"), f_MinSize, 0.05f, 0.1f, 200.0f, _TR("Minimum entity size as measured in-world.\n" \
 				"Some entities have either extremely small or no bounds at all.\n" \
 				"This parameter helps filter out entities that don't meet this condition."));
+
+			ConfigWidget(_TR("Show custom filters config window"), f_ShowCustomFiltersWindow, "This is for advanced users...");
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::Text(_TR("How to use item filters:\n\tLMB - Toggle visibility\n\tRMB - Open color picker"));
 		ImGui::InputText(_TR("Search Filters"), &m_Search);
+
+		ImGui::PushID("Custom");
+		DrawSection(m_CustomFilterInfos);
+		ImGui::PopID();
 
 		for (auto& [section, filters] : m_Sections)
 		{
@@ -363,6 +379,70 @@ namespace cheat::feature
 		}
 	}
 
+	void ESP::DrawSection(const CustomFilters& filters)
+	{
+		std::vector<CustomFilterInfo> validFilters;
+
+		for (auto& info : filters)
+		{
+			const auto& filterName = info.first.value().m_Name;
+
+			auto it = std::search(
+				filterName.begin(), filterName.end(),
+				m_Search.begin(), m_Search.end(),
+				[](char ch1, char ch2) { return std::tolower(ch1) == std::tolower(ch2); }
+			);
+
+			if (it != filterName.end())
+				validFilters.push_back(info);
+		}
+
+		if (validFilters.empty())
+			return;
+
+		bool checked = std::all_of(validFilters.begin(), validFilters.end(), [](CustomFilterInfo filter) {  return filter.first.value().m_Enabled; });
+		bool changed = false;
+
+		if (ImGui::BeginSelectableGroupPanel(_TR("Custom"), checked, changed, true))
+		{
+			for (auto& info : validFilters)
+			{
+				ImGui::PushID(&info);
+				DrawFilterField(info.first);
+				ImGui::PopID();
+			}
+
+			ImGui::Spacing();
+
+			if (ImGui::TreeNode(this, _TR("Hotkeys")))
+			{
+				for (auto& info : validFilters)
+				{
+					auto& field = info.first;
+					ImGui::PushID(&info);
+
+					auto& hotkey = field.value().m_Hotkey;
+					if (InputHotkey(Translator::RuntimeTranslate(field.name()).c_str(), &hotkey, true))
+						field.FireChanged();
+
+					ImGui::PopID();
+				}
+
+				ImGui::TreePop();
+			}
+		}
+		ImGui::EndSelectableGroupPanel();
+
+		if (changed)
+		{
+			for (auto& info : validFilters)
+			{
+				info.first.value().m_Enabled = checked;
+				info.first.FireChanged();
+			}
+		}
+	}
+
 	std::string Unsplit(const std::string& value)
 	{
 		std::stringstream in(value);
@@ -381,13 +461,139 @@ namespace cheat::feature
 		FilterItemSelector(field.value().m_Name.c_str(), imageInfo ? imageInfo->textureID : nullptr, field);
 	}
 
+	void ESP::DrawCustomFilterNames()
+	{
+		const float clipSize = static_cast<float>(min(m_CustomFilterNames.size(), 15) + 1); // Number of rows in table as initial view. Past this is scrollbar territory.
+		static ImGuiTableFlags flags = ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY;
+
+		static int rowToDelete = -1;
+		if (ImGui::BeginTable("Names", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
+		{
+			ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
+			ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
+			ImGui::TableSetupScrollFreeze(0, 1);
+			ImGui::TableHeadersRow();
+
+			ImGuiListClipper clipper;
+			clipper.Begin(static_cast<int>(m_CustomFilterNames.size()));
+			while (clipper.Step())
+				for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++)
+				{
+					auto name = m_CustomFilterNames[row_n];
+					ImGui::PushID((name + ":" + std::to_string(row_n)).c_str());
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+
+					ImGui::Text(name.c_str());
+					ImGui::TableNextColumn();
+
+					if (ImGui::SmallButton(_TR("Delete")))
+						rowToDelete = row_n;
+
+					ImGui::PopID();
+				}
+
+			ImGui::EndTable();
+		}
+
+		if (rowToDelete > -1)
+		{
+			m_CustomFilterNames.erase(m_CustomFilterNames.begin() + rowToDelete);
+			rowToDelete = -1;
+		}
+	}
+
+	void ESP::DrawCustomFiltersTable()
+	{
+		const float clipSize = static_cast<float>(min(m_CustomFilters.size(), 15) + 1); // Number of rows in table as initial view. Past this is scrollbar territory.
+		static ImGuiTableFlags flags = ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY;
+
+		static int rowToDelete = -1;
+		if (ImGui::BeginTable("Filters", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
+		{
+			ImGui::TableSetupColumn("Display name", ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
+			ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
+			ImGui::TableSetupScrollFreeze(0, 1);
+			ImGui::TableHeadersRow();
+
+			ImGuiListClipper clipper;
+			clipper.Begin(static_cast<int>(m_CustomFilters.size()));
+			while (clipper.Step())
+				for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++)
+				{
+					auto& filter = m_CustomFilters[row_n];
+					ImGui::PushID((filter.m_FilterName + ":" + std::to_string(row_n)).c_str());
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+
+					ImGui::Text(filter.m_FilterName.c_str());
+					ImGui::TableNextColumn();
+
+					if (ImGui::SmallButton(_TR("Delete")))
+						rowToDelete = row_n;
+
+					ImGui::PopID();
+				}
+
+			ImGui::EndTable();
+		}
+
+		if (rowToDelete > -1)
+		{
+			m_CustomFilters.erase(m_CustomFilters.begin() + rowToDelete);
+			m_CustomFilterInfos.erase(m_CustomFilterInfos.begin() + rowToDelete);
+			rowToDelete = -1;
+		}
+	}
+
+	void ESP::DrawCustomFiltersUi()
+	{
+		if (!f_ShowCustomFiltersWindow.value())
+			return;
+
+		static ImGuiWindowFlags flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize;
+
+		if (ImGui::Begin("Custom filter", &f_ShowCustomFiltersWindow.value(), flags))
+		{
+			ImGui::Text(_TR("NOTE: Custom filter is only for advanced users or contributors! You must know what are you doing."));
+
+			ImGui::Spacing();
+			ImGui::InputText(_TR("Display name"), &m_CustomFilterUiName);
+			ConfigWidget(_TR("Type"), f_CustomFilterType);
+
+			ImGui::Spacing();
+			ImGui::InputText(_TR("Name"), &m_CustomFilterNameToAdd);
+
+			ImGui::SameLine();
+			if (ImGui::Button(_TR("Add")))
+			{
+				m_CustomFilterNames.push_back(m_CustomFilterNameToAdd);
+				m_CustomFilterNameToAdd = "";
+			}
+
+			DrawCustomFilterNames();
+
+			if (ImGui::Button(_TR("Add filter")))
+			{
+				auto filter = ESPCustomFilter(m_CustomFilterUiName, f_CustomFilterType.value(), m_CustomFilterNames);
+				AddCustomFilter(filter, true);
+			}
+
+			DrawCustomFiltersTable();
+		}
+		ImGui::End();
+	}
+
 	void ESP::DrawExternal()
 	{
+		esp::render::PrepareFrame();
+
+		if (CheatManagerBase::IsMenuShowed())
+			DrawCustomFiltersUi();
+
 		auto& esp = ESP::GetInstance();
 		if (!esp.f_Enabled->enabled())
 			return;
-
-		esp::render::PrepareFrame();
 
 		auto& entityManager = game::EntityManager::instance();
 
@@ -443,7 +649,28 @@ namespace cheat::feature
                     break;
                 }
             }
+
+            for (const auto &[field, filter] : m_CustomFilterInfos)
+            {
+                const auto &entry = field.value();
+				ESPCustomFilter* filterHack = const_cast<ESPCustomFilter*>(&filter);
+                if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filterHack))
+                    continue;
+
+                esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+            }
         }
+	}
+
+	void ESP::AddCustomFilter(ESPCustomFilter filter, bool convertToJson)
+	{
+		m_CustomFilters.push_back(filter);
+
+		esp::ESPItem newItem(filter.m_FilterName, ImColor(120, 120, 120, 255), {}, "CustomFilterItem");
+		m_CustomFilterInfos.push_back(CustomFilterInfo(config::CreateField<esp::ESPItem>(filter.m_FilterName, "ESP::Filters::Custom", false, newItem), filter));
+
+		if (convertToJson)
+			SaveCustomFilters();
 	}
 
 	void ESP::OnKeyUp(short key, bool& cancelled)
@@ -460,6 +687,17 @@ namespace cheat::feature
 				}
 			}
 		}
+	}
+
+	void ESP::SaveCustomFilters()
+	{
+		std::vector<nlohmann::json> jItems = {};
+		for (auto& filter : m_CustomFilters)
+		{
+			jItems.push_back(config::converters::ToJson(filter));
+		}
+
+		f_CustomFilterJson = config::converters::ToJson(jItems);
 	}
 
 	void FilterItemSelector(const char* label, ImTextureID image, const config::Field<esp::ESPItem>& field, const ImVec2& size, float icon_size)
@@ -881,4 +1119,29 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(puzzle, WindmillMechanism);
 	}
 #undef ADD_FILTER_FIELD
+
+	void ESP::InstallCustomFilters()
+	{
+		if (f_CustomFilterJson.value().is_null() || !f_CustomFilterJson.value().is_array()) {
+			LOG_WARNING("Failed to load custom filter data.");
+			return;
+		}
+
+		auto jItems = f_CustomFilterJson.value().get<std::vector<nlohmann::json>>();
+		for (auto& jObject : jItems)
+		{
+			try
+			{
+				auto filter = ESPCustomFilter();
+				config::converters::FromJson(filter, jObject);
+
+				AddCustomFilter(filter);
+			}
+			catch (const std::exception& e)
+			{
+				LOG_WARNING("Failed to initialize custom filter item.\n%s\n\nJSON dump:\n%s", e.what(), jObject.dump(4).c_str());
+				continue;
+			}
+		}
+	}
 }
