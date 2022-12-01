@@ -1,5 +1,6 @@
 #pragma once
 #include <cheat-base/cheat/fields/NamedHotkey.h>
+#include <cheat-base/config/Field.h>
 
 namespace cheat
 {
@@ -11,5 +12,20 @@ namespace cheat
 
 		std::string name() final;
 	};
+}
 
+namespace config {
+	template<>
+	class Field<cheat::TranslatedHotkey> : public internal::FieldBase<cheat::TranslatedHotkey>
+	{
+	public:
+		using base = internal::FieldBase<cheat::TranslatedHotkey>;
+		using base::operator=;
+		using base::base;
+
+		operator bool() const
+		{
+			return base::value().enabled();
+		}
+	};
 }
