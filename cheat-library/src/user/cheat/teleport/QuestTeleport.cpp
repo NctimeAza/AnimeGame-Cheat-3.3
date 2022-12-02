@@ -73,7 +73,7 @@ namespace cheat::feature
 						auto WorldPos = app::Miscs_GenWorldPos(LevelMapPos, nullptr);
 						WorldPos.y = height;
 						//Prevent error Pos caused by error when obtaining quest point.(e.g x = 4294967294)
-						if (f_QuestTP && WorldPos.x != 0.0f && WorldPos.z != 0.0f && WorldPos.x <= 20000.0f && WorldPos.z <= 20000.0f && WorldPos.x >= -20000.0f && WorldPos.z >= -20000.0f && WorldPos.y<1000.0f && WorldPos.y > -1000.0f) {
+						if (f_QuestTP->enabled() && WorldPos.x != 0.0f && WorldPos.z != 0.0f && WorldPos.x <= 20000.0f && WorldPos.z <= 20000.0f && WorldPos.x >= -20000.0f && WorldPos.z >= -20000.0f && WorldPos.y<1000.0f && WorldPos.y > -1000.0f) {
 							teleport.TeleportTo(WorldPos);
 							//LOG_DEBUG("QuestPointPosition: x=%f, y=%f z=%f", WorldPos.x, WorldPos.y, WorldPos.z);
 						}
