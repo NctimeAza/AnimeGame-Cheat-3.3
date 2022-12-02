@@ -288,6 +288,8 @@ namespace cheat::feature
             esp.m_CustomFilterNameToAdd = entity->name();
             esp.f_CustomFilterType = entity->type();
         }
+        if (ImGui::IsItemHovered())
+            ImGui::SetTooltip("Copy to ESP custom filters");
     }
 
     std::vector<game::Entity*> SortEntities(std::vector<game::Entity*> entities, Debug::EntitySortCondition condition)
