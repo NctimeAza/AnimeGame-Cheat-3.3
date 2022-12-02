@@ -3,6 +3,7 @@
 
 #include <helpers.h>
 #include <cheat/events.h>
+#include <cheat/game/util.h>
 #include <misc/cpp/imgui_stdlib.h>
 #include <fstream>
  
@@ -227,7 +228,12 @@ namespace cheat::feature
 
     static void ProfileEditPage(app::MonoFriendInformationDialog* __this, app::Sprite* value, MethodInfo* method) {
         auto& profile = ProfileChanger::GetInstance();
-        if (profile.f_Enabled->enabled())
+
+        auto accountUid = std::to_string(game::GetAccountData()->fields.userId);
+        auto profileUid = il2cppi_to_string(app::Text_get_text(__this->fields._playerUID, nullptr));
+        bool isMe = accountUid.compare(profileUid) == 0;
+
+        if (profile.f_Enabled->enabled() && isMe)
         {
             if (profile.f_UID->enabled())
                 __this->fields._playerUID->fields.m_Text = string_to_il2cppi(profile.f_UID->value());
