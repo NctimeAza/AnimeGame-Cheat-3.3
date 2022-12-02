@@ -31,9 +31,9 @@ namespace cheat::feature
 	void PacketSniffer::DrawMain()
 	{
 		ImGui::Text(_TR("Dev: for working needs server for named pipe with specified name.\nCheck 'packet-handler' project like example."));
-		ConfigWidget(_TR("Capturing"), f_PipeName, _TR("Pipe name for connecting. Changes will apply after next game launch."));
-		ConfigWidget(_TR("Manipulation"), f_CaptureEnabled, _TR("Enable capturing of packet info and sending to pipe, if it exists."));
-		ConfigWidget(_TR("Pipe name"), f_ManipulationEnabled, _TR("Enable blocking and modifying packets by sniffer, can cause network lags."));
+		ConfigWidget(_TR("Pipe name"), f_PipeName, _TR("Pipe name for connecting. Changes will apply after next game launch."));
+		ConfigWidget(_TR("Capturing"), f_CaptureEnabled, _TR("Enable capturing of packet info and sending to pipe, if it exists."));
+		ConfigWidget(_TR("Manipulation"), f_ManipulationEnabled, _TR("Enable blocking and modifying packets by sniffer, can cause network lags."));
 	}
 	
 	PacketSniffer& PacketSniffer::GetInstance()
