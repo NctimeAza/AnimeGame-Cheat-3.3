@@ -226,6 +226,8 @@ namespace cheat::feature
         if (entity->name().find("_WorldArea_Operator") != std::string::npos)
         {
             auto entityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+			if (entityGameObject == nullptr)
+				return false;
             auto transform = app::GameObject_GetComponentByName(entityGameObject, string_to_il2cppi("Transform"), nullptr);
             auto child = app::Transform_FindChild(reinterpret_cast<app::Transform*>(transform), string_to_il2cppi("CircleR2H2"), nullptr);
             if (child == nullptr)
