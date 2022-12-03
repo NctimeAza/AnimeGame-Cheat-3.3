@@ -411,6 +411,10 @@ DO_APP_FUNC(0x02DE90D0, 0x02DF6C40, void, MoleMole_EquipLevelUpDialogContext_Sho
 DO_APP_FUNC(0x05D4EC80, 0x05E0F8B0, void, MoleMole_EquipOverviewPageContext_PlayExpAddAnimation, (/*MoleMole_EquipOverviewPageContext*/ void* __this, float startPer, float endPer, /*Action*/ void* callback, MethodInfo* method));
 DO_APP_FUNC(0x05D44620, 0x05E05070, void, MoleMole_EquipOverviewPageContext_PlayLevelUpSuccessShow, (/*MoleMole_EquipOverviewPageContext*/ void* __this, /*Action*/ void* refreshViewAction, MethodInfo* method));
 
+//Quest Teleport
+DO_APP_FUNC(0x090E2DE0, 0x04F997A0, Vector2, MonoMapMark_get_levelMapPos, (MonoMapMark* __this, MethodInfo* method));
+DO_APP_FUNC(0x0731C870, 0x03A318F0, MoleMole_Config_MarkIconType__Enum, MonoMapMark_get_iconType, (MonoMapMark* __this, MethodInfo* method));
+
 // Singletons
 DO_APP_FUNC(0x020A1910, 0x020ADA60, void*, Singleton_GetInstance, (MethodInfo* method));
 DO_APP_FUNC_METHODINFO(0x0CDBA9B0, 0x0CEAC9B0, Singleton_1_MoleMole_UIManager__get_Instance__MethodInfo);

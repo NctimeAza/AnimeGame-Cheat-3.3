@@ -25,6 +25,7 @@
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\PipeClient.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\PipeIO.h" />
     <ClInclude Include="src\user\cheat\player\AutoRun.h" />
+    <ClInclude Include="src\user\cheat\teleport\QuestTeleport.h" />
     <ClInclude Include="src\user\cheat\visuals\AnimationChanger.h" />
     <ClInclude Include="src\user\cheat\player\FallControl.h" />
     <ClInclude Include="src\user\cheat\visuals\EmotionChanger.h" />
@@ -128,6 +129,7 @@
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\PipeClient.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\PipeIO.cpp" />
     <ClCompile Include="src\user\cheat\player\AutoRun.cpp" />
+    <ClCompile Include="src\user\cheat\teleport\QuestTeleport.cpp" />
     <ClCompile Include="src\user\cheat\visuals\AnimationChanger.cpp" />
     <ClCompile Include="src\user\cheat\player\FallControl.cpp" />
     <ClCompile Include="src\user\cheat\visuals\EmotionChanger.cpp" />
