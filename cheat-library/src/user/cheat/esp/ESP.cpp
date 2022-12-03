@@ -579,6 +579,9 @@ namespace cheat::feature
 			{
 				auto filter = ESPCustomFilter(m_CustomFilterUiName, f_CustomFilterType.value(), m_CustomFilterNames);
 				AddCustomFilter(filter, true);
+
+				m_CustomFilterUiName = "";
+				m_CustomFilterNames = {};
 			}
 
 			DrawCustomFiltersTable();
