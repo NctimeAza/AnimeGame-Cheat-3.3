@@ -560,29 +560,38 @@ namespace cheat::feature
 			ImGui::Text(_TR("NOTE: Custom filter is only for advanced users or contributors! You must know what are you doing."));
 
 			ImGui::Spacing();
-			ImGui::InputText(_TR("Display name"), &m_CustomFilterUiName);
-			ConfigWidget(_TR("Type"), f_CustomFilterType);
+
+			if (ImGui::BeginGroupPanel(_TR("New filter")))
+			{
+				ImGui::InputText(_TR("Display name"), &m_CustomFilterUiName);
+				ConfigWidget(_TR("Type"), f_CustomFilterType);
+
+				ImGui::Spacing();
+				ImGui::InputText(_TR("Name"), &m_CustomFilterNameToAdd);
+
+				ImGui::SameLine();
+				if (ImGui::Button(_TR("Add")))
+				{
+					m_CustomFilterNames.push_back(m_CustomFilterNameToAdd);
+					m_CustomFilterNameToAdd = "";
+				}
+
+				DrawCustomFilterNames();
+
+				//ImGui::CalcButtonSize
+				ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - ImGui::CalcButtonSize(_TR("Add filter")).x);
+				if (ImGui::Button(_TR("Add filter")))
+				{
+					auto filter = ESPCustomFilter(m_CustomFilterUiName, f_CustomFilterType.value(), m_CustomFilterNames);
+					AddCustomFilter(filter, true);
+
+					m_CustomFilterUiName = "";
+					m_CustomFilterNames = {};
+				}
+			}
+			ImGui::EndGroupPanel();
 
 			ImGui::Spacing();
-			ImGui::InputText(_TR("Name"), &m_CustomFilterNameToAdd);
-
-			ImGui::SameLine();
-			if (ImGui::Button(_TR("Add")))
-			{
-				m_CustomFilterNames.push_back(m_CustomFilterNameToAdd);
-				m_CustomFilterNameToAdd = "";
-			}
-
-			DrawCustomFilterNames();
-
-			if (ImGui::Button(_TR("Add filter")))
-			{
-				auto filter = ESPCustomFilter(m_CustomFilterUiName, f_CustomFilterType.value(), m_CustomFilterNames);
-				AddCustomFilter(filter, true);
-
-				m_CustomFilterUiName = "";
-				m_CustomFilterNames = {};
-			}
 
 			DrawCustomFiltersTable();
 		}
