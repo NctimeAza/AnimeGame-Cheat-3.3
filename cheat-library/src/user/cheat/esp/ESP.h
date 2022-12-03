@@ -88,12 +88,12 @@ namespace cheat::feature
 		using Filters = std::vector<FilterInfo>;
 		using Sections = std::map<std::string, Filters>;
 
-		using CustomFilterInfo = std::pair<config::Field<esp::ESPItem>, ESPCustomFilter>;
+		using CustomFilterInfo = std::pair<config::Field<esp::ESPItem>, ESPCustomFilter*>;
 		using CustomFilters = std::vector<CustomFilterInfo>;
 
 		Sections m_Sections;
 		game::CacheFilterExecutor m_FilterExecutor;
-		std::vector<ESPCustomFilter> m_CustomFilters;
+		std::vector<std::shared_ptr<ESPCustomFilter>> m_CustomFilters;
 		CustomFilters m_CustomFilterInfos;
 		bool b_DrawCustomFiltersWindow;
 
@@ -102,7 +102,7 @@ namespace cheat::feature
 		void AddFilter(const std::string& section, const std::string& name, game::IEntityFilter* filter);
 
 		void DrawSection(const std::string& section, const Filters& filters);
-		void DrawSection(const CustomFilters& filters);
+		void DrawCustomSection();
 		void DrawFilterField(const config::Field<esp::ESPItem>& field);
 		void DrawCustomFilterNames();
 		void DrawCustomFiltersTable();

@@ -143,7 +143,7 @@ namespace cheat::feature
 		ImGui::InputText(_TR("Search Filters"), &m_Search);
 
 		ImGui::PushID("Custom");
-		DrawSection(m_CustomFilterInfos);
+		DrawCustomSection();
 		ImGui::PopID();
 
 		for (auto& [section, filters] : m_Sections)
@@ -379,11 +379,11 @@ namespace cheat::feature
 		}
 	}
 
-	void ESP::DrawSection(const CustomFilters& filters)
+	void ESP::DrawCustomSection()
 	{
-		std::vector<CustomFilterInfo> validFilters;
+		std::vector<const CustomFilterInfo*> validFilters;
 
-		for (auto& info : filters)
+		for (auto& info : m_CustomFilterInfos)
 		{
 			const auto& filterName = info.first.value().m_Name;
 
@@ -394,21 +394,21 @@ namespace cheat::feature
 			);
 
 			if (it != filterName.end())
-				validFilters.push_back(info);
+				validFilters.push_back(&info);
 		}
 
 		if (validFilters.empty())
 			return;
 
-		bool checked = std::all_of(validFilters.begin(), validFilters.end(), [](CustomFilterInfo filter) {  return filter.first.value().m_Enabled; });
+		bool checked = std::all_of(validFilters.begin(), validFilters.end(), [](const CustomFilterInfo* filter) {  return filter->first.value().m_Enabled; });
 		bool changed = false;
 
 		if (ImGui::BeginSelectableGroupPanel(_TR("Custom"), checked, changed, true))
 		{
 			for (auto& info : validFilters)
 			{
-				ImGui::PushID(&info);
-				DrawFilterField(info.first);
+				ImGui::PushID(info);
+				DrawFilterField(info->first);
 				ImGui::PopID();
 			}
 
@@ -418,8 +418,8 @@ namespace cheat::feature
 			{
 				for (auto& info : validFilters)
 				{
-					auto& field = info.first;
-					ImGui::PushID(&info);
+					auto& field = info->first;
+					ImGui::PushID(info);
 
 					auto& hotkey = field.value().m_Hotkey;
 					if (InputHotkey(Translator::RuntimeTranslate(field.name()).c_str(), &hotkey, true))
@@ -437,8 +437,8 @@ namespace cheat::feature
 		{
 			for (auto& info : validFilters)
 			{
-				info.first.value().m_Enabled = checked;
-				info.first.FireChanged();
+				info->first.value().m_Enabled = checked;
+				info->first.FireChanged();
 			}
 		}
 	}
@@ -522,11 +522,11 @@ namespace cheat::feature
 				for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++)
 				{
 					auto& filter = m_CustomFilters[row_n];
-					ImGui::PushID((filter.m_FilterName + ":" + std::to_string(row_n)).c_str());
+					ImGui::PushID((filter->m_FilterName + ":" + std::to_string(row_n)).c_str());
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
 
-					ImGui::Text(filter.m_FilterName.c_str());
+					ImGui::Text(filter->m_FilterName.c_str());
 					ImGui::TableNextColumn();
 
 					if (ImGui::SmallButton(_TR("Delete")))
@@ -653,8 +653,7 @@ namespace cheat::feature
             for (const auto &[field, filter] : m_CustomFilterInfos)
             {
                 const auto &entry = field.value();
-				ESPCustomFilter* filterHack = const_cast<ESPCustomFilter*>(&filter);
-                if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filterHack))
+                if (!entry.m_Enabled || !m_FilterExecutor.ApplyFilter(entity, filter))
                     continue;
 
                 esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
@@ -664,10 +663,11 @@ namespace cheat::feature
 
 	void ESP::AddCustomFilter(ESPCustomFilter filter, bool convertToJson)
 	{
-		m_CustomFilters.push_back(filter);
+		auto ptrFilter = std::make_shared<ESPCustomFilter>(filter);
+		m_CustomFilters.push_back(ptrFilter);
 
 		esp::ESPItem newItem(filter.m_FilterName, ImColor(120, 120, 120, 255), {}, "CustomFilterItem");
-		m_CustomFilterInfos.push_back(CustomFilterInfo(config::CreateField<esp::ESPItem>(filter.m_FilterName, "ESP::Filters::Custom", false, newItem), filter));
+		m_CustomFilterInfos.push_back(CustomFilterInfo(config::CreateField<esp::ESPItem>(filter.m_FilterName, "ESP::Filters::Custom", false, newItem), ptrFilter.get()));
 
 		if (convertToJson)
 			SaveCustomFilters();
@@ -694,7 +694,7 @@ namespace cheat::feature
 		std::vector<nlohmann::json> jItems = {};
 		for (auto& filter : m_CustomFilters)
 		{
-			jItems.push_back(config::converters::ToJson(filter));
+			jItems.push_back(config::converters::ToJson(*filter.get()));
 		}
 
 		f_CustomFilterJson = config::converters::ToJson(jItems);
