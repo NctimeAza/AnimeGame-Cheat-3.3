@@ -113,7 +113,7 @@ namespace cheat::feature
 	{
 		if (f_Enabled->enabled()) 
 		{
-			ImGui::Text(_TR("Rapid Fire:"));
+			ImGui::Text(_TR("Attack Effects"));
 			if (f_MultiHit->enabled())
 			{
 				if (f_Randomize->enabled())
