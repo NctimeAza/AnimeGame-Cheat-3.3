@@ -1,6 +1,7 @@
 #include "pch-il2cpp.h"
 #include "FakeTime.h"
 #include <cheat/events.h>
+#include <helpers.h>
 
 
 namespace cheat::feature
@@ -34,6 +35,7 @@ namespace cheat::feature
 		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Keep game time the same"));
 		ConfigWidget(_TR("TimeHour"), f_TimeHour, 1, 0, 24);
 		ConfigWidget(_TR("TimeMinute"), f_TimeMinute, 1, 0, 60);
+		ConfigWidget(_TR("Sync to server"), f_Sync2Server);
 	}
 
 	bool FakeTime::NeedStatusDraw() const
@@ -46,7 +48,7 @@ namespace cheat::feature
 		ImGui::Text("%s|%d:%d", _TR("Fake Time"), f_TimeHour.value(), f_TimeMinute.value());
 	}
 
-	float FakeTime::ConversionTime() 
+	float FakeTime::ConversionTime()
 	{
 		float time = float(f_TimeHour);
 		float timemin = float(f_TimeMinute) / 60;
@@ -58,11 +60,21 @@ namespace cheat::feature
 		if (LevelTimeManager != NULL && f_Enabled->enabled())
 		{
 			auto& faketime = GetInstance();
-			CALL_ORIGIN(LevelTimeManager_SetInternalTimeOfDay_Hook, LevelTimeManager, faketime.ConversionTime(), false, false, (MethodInfo*)0);
+			auto time = faketime.ConversionTime();
+			CALL_ORIGIN(LevelTimeManager_SetInternalTimeOfDay_Hook, LevelTimeManager, time, false, false, (MethodInfo*)0);
+			if (f_Sync2Server.value())
+			{
+				UPDATE_DELAY(60 * 1000 * 30);
+				auto PlayerModule = GET_SINGLETON(MoleMole_PlayerModule);
+				if (PlayerModule)
+				{
+					app::MoleMole_PlayerModule_ChangeGameTime(PlayerModule, time, false, false, nullptr);
+				}
+			}
 		}
 	}
 
-	void FakeTime::LevelTimeManager_SetInternalTimeOfDay_Hook(void* __this, float inHours, bool force, bool refreshEnviroTime, MethodInfo* method) 
+	void FakeTime::LevelTimeManager_SetInternalTimeOfDay_Hook(void* __this, float inHours, bool force, bool refreshEnviroTime, MethodInfo* method)
 	{
 		float Hours = inHours;
 		auto& faketime = GetInstance();

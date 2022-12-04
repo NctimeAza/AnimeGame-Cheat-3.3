@@ -392,6 +392,7 @@ DO_APP_FUNC(0x0966F090, 0x09762930, float, Canvas_get_scaleFactor, (/*Canvas**/v
 
 DO_APP_FUNC(0x072B1BE0, 0x038722D0, void, Action_Invoke, (/*Action*/ void* __this, MethodInfo* method));
 
+DO_APP_FUNC(0x030DF9E0, 0x030F80A0 void, MoleMole_PlayerModule_ChangeGameTime, (MoleMole_PlayerModule* __this, float value, bool force, bool forceLocal, MethodInfo* method));
 DO_APP_FUNC(0x03B61DC0, 0x03BA1DA0, void, LevelTimeManager_SetInternalTimeOfDay, (/*LevelTimeManager**/void* __this, float inHours, bool force, bool refreshEnviroTime, MethodInfo* method));
 
 DO_APP_FUNC(0x05128C40, 0x051BB890, void, Miscs_SetUILocalAvatarVisible, (bool visible, MethodInfo* method));

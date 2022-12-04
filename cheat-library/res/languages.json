@@ -2803,7 +2803,8 @@
       "Yun Jin": "云堇",
       "Zaytun Peach": "墩墩桃",
       "Zhongli": "钟离",
-      "Zoom Speed": "切换速度"
+      "Zoom Speed": "切换速度",
+      "Sync to server": "同步到服务器"
     }
   },
   "TraditionalChinese": {
@@ -4206,7 +4207,8 @@
       "Yun Jin": "雲堇",
       "Zaytun Peach": "墩墩桃",
       "Zhongli": "鐘離",
-      "Zoom Speed": "變焦速度"
+      "Zoom Speed": "變焦速度",
+      "Sync to server": "同步到伺服器"
     }
   },
   "Russian": {
