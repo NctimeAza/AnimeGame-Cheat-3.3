@@ -144,15 +144,38 @@ namespace cheat::feature
 
     void AutoLoot::DrawStatus() 
     {
-		ImGui::Text("%s\n[%s%s%s%s%s%s%s]",
+		std::string s;
+		// Auto Pickup
+		if (f_AutoPickup->enabled()) {
+			s.append(_TR("AP"));
+			if (f_AutoDisablePickupWhenAddItemExceedLimit->enabled())
+				s.append("|")
+				.append(_TR("AD"));
+		}
+		// Auto Treasure
+		if (f_AutoTreasure->enabled())
+			s.append(s.empty() ? "" : "|")
+			.append(_TR("AT"));
+
+		// Custom Range
+		if (f_UseCustomRange->enabled())
+			s.append(s.empty() ? "" : "|")
+			.append(_TR("CR"))
+			.append(fmt::format("{:.1f}m", f_CustomRange.value()));
+	
+		// Pickup Filter
+		if (f_PickupFilter->enabled())
+			s.append(s.empty() ? "" : "|")
+			.append(_TR("PF"));
+		
+		// Pickup Delay
+		if (f_AutoPickup->enabled() || f_AutoTreasure->enabled())
+			s.append(fmt::format("|{}ms", f_DelayTime.value()))
+			.append(f_UseDelayTimeFluctuation->enabled() ? fmt::format("|{}+{}ms", _TR("FL"), f_DelayTimeFluctuation.value()) : "");
+		
+		ImGui::Text("%s\n[%s]",
 			_TR("Auto Loot"),
-			f_AutoPickup->enabled() ? "AP" : "",
-			f_AutoPickup->enabled() && f_AutoDisablePickupWhenAddItemExceedLimit->enabled() ? "AutoDisable" : "",
-			f_AutoTreasure->enabled() ? fmt::format("{}AT", f_AutoPickup->enabled() ? "|" : "").c_str() : "",
-			f_UseCustomRange->enabled() ? fmt::format("{}CR{:.1f}m", f_AutoPickup->enabled() || f_AutoTreasure->enabled() ? "|" : "", f_CustomRange.value()).c_str() : "",
-			f_PickupFilter->enabled() ? fmt::format("{}PF", f_AutoPickup->enabled() || f_AutoTreasure->enabled() || f_UseCustomRange->enabled() ? "|" : "").c_str() : "",
-			f_AutoPickup->enabled() || f_AutoTreasure->enabled() ? fmt::format("|{}ms", f_DelayTime.value()).c_str() : "",
-			f_UseDelayTimeFluctuation->enabled() ? fmt::format("|FL+{}ms", f_DelayTimeFluctuation.value()).c_str() : ""
+			s.c_str()
 		);
     }
 
