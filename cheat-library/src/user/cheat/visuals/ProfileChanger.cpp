@@ -75,8 +75,8 @@ namespace cheat::feature
         
         if (f_Exp->enabled()) 
         {
-            ConfigWidget(_TR("CurExp"), f_CurExp, 1, 2, 100000, _TR("Changes the ExpBar visually."));
-            ConfigWidget(_TR("MaxExp"), f_MaxExp, 1, 2, 100000, _TR("Changes the ExpBar visually."));
+            ConfigWidget(_TR("CurExp"), f_CurExp, 1, 2, INT32_MAX, _TR("Changes the ExpBar visually."));
+            ConfigWidget(_TR("MaxExp"), f_MaxExp, 1, 2, INT32_MAX, _TR("Changes the ExpBar visually."));
             ConfigWidget(_TR("ExpBar"), f_ExpBar, _TR("Changes the ExpBar visually."));
             
             if (f_ExpBar->enabled())
