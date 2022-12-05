@@ -1398,7 +1398,13 @@
       "Yun Jin": "Yun Jin",
       "Zaytun Peach": "Zaytun Peach",
       "Zhongli": "Zhongli",
-      "Zoom Speed": "Zoom Speed"
+      "Zoom Speed": "Zoom Speed",
+      "AP": "AP",
+      "AD": "AD",
+      "AT": "AT",
+      "CR": "CR",
+      "PF": "PF",
+      "FL": "FL"
     }
   },
   "SimplifiedChinese": {
@@ -1876,7 +1882,7 @@
       "End of the Line": "竭泽",
       "Enemies (Boss)": "敌人 (Boss)",
       "Enemies (Common)": "敌人 (普通)",
-      "Enemies (Easter Egg)": "敌人 (复活节彩蛋)",
+      "Enemies (Easter Egg)": "敌人 (彩蛋)",
       "Enemies (Elite)": "敌人 (精英)",
       "Enemies (First-Time Victory)": "敌人 (初胜)",
       "Enemies don't attack or use abilities against player. \nMay not work with some enemies or enemy abilities.": "敌人对玩家攻击或者使用技能。\n也许对某些敌人不会生效。",
@@ -2122,7 +2128,7 @@
       "Key Sigil II": "键纹 II",
       "Key Sigil III": "键纹 III",
       "Key Sigil IV": "键纹 IV",
-      "Key to exit the game.": "按键退出游戏",
+      "Key to exit the game.": "退出游戏的按键",
       "Key to hold down before clicking on target location.": "传送前需要按住的键位",
       "Key to toggle main menu visibility. Cannot be empty.\nIf you forget this key, you can see or set it in your config file.": "开关Akebi菜单的按键，不能为空。\n如果你忘记了该热键，你可以在你的配置文件中看到或设置它。",
       "Kid Kujirai": "鲸井小弟",
@@ -2804,7 +2810,13 @@
       "Zaytun Peach": "墩墩桃",
       "Zhongli": "钟离",
       "Zoom Speed": "切换速度",
-      "Sync to server": "同步到服务器"
+      "Sync to server": "同步到服务器",
+      "AP": "拾取",
+      "AD": "包满禁用",
+      "AT": "交互",
+      "CR": "范围",
+      "PF": "过滤",
+      "FL": "随机"
     }
   },
   "TraditionalChinese": {
@@ -3282,7 +3294,7 @@
       "End of the Line": "竭澤",
       "Enemies (Boss)": "敵人 (Boss)",
       "Enemies (Common)": "敵人 (普通)",
-      "Enemies (Easter Egg)": "敵人 (復活節彩蛋)",
+      "Enemies (Easter Egg)": "敵人 (彩蛋)",
       "Enemies (Elite)": "敵人 (精英)",
       "Enemies (First-Time Victory)": "敵人 (初勝)",
       "Enemies don't attack or use abilities against player. \nMay not work with some enemies or enemy abilities.": "敵人對玩家攻擊或者使用技能。\n也許對某些敵人不會生效。",
@@ -3528,7 +3540,7 @@
       "Key Sigil II": "鍵紋 II",
       "Key Sigil III": "鍵紋 III",
       "Key Sigil IV": "鍵紋 IV",
-      "Key to exit the game.": "按鍵退出遊戲",
+      "Key to exit the game.": "退出遊戲的按鍵",
       "Key to hold down before clicking on target location.": "傳送前需要按住的鍵位",
       "Key to toggle main menu visibility. Cannot be empty.\nIf you forget this key, you can see or set it in your config file.": "開關Akebi菜單的按鍵，不能為空。\n如果你忘記了該熱鍵，你可以在你的配置文件中看到或設置它。",
       "Kid Kujirai": "鯨井小弟",
@@ -4208,7 +4220,13 @@
       "Zaytun Peach": "墩墩桃",
       "Zhongli": "鐘離",
       "Zoom Speed": "變焦速度",
-      "Sync to server": "同步到伺服器"
+      "Sync to server": "同步到伺服器",
+      "AP": "拾取",
+      "AD": "包滿禁用",
+      "AT": "交互",
+      "CR": "範圍",
+      "PF": "過濾",
+      "FL": "隨機"
     }
   },
   "Russian": {
