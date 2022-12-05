@@ -285,6 +285,9 @@
     <ClInclude Include="src\user\cheat\teleport\QuestTeleport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\misc\RSAPatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />
@@ -527,6 +530,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\teleport\QuestTeleport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\cheat\misc\RSAPatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

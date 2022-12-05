@@ -28,6 +28,7 @@ namespace cheat::feature
 		void OnMoveSync(uint32_t entityId, app::MotionInfo* syncInfo);
 
 		static void DataItem_HandleNormalProp_Hook(app::DataItem* __this, uint32_t type, int64_t value, app::DataPropOp__Enum state, MethodInfo* method);
+		static void VCHumanoidMove_MNKKEGMDFFO_Hook(app::VCHumanoidMove* __this, float JJJEOEHLNGP, MethodInfo* method);
 	};
 }
 

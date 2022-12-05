@@ -236,6 +236,18 @@ namespace cheat::game
 		SAFE_END();
 	}
 
+	app::GameObject* Entity::rootGameObject()
+	{
+		if (!isLoaded())
+			return nullptr;
+
+		SAFE_BEGIN();
+		return app::MoleMole_BaseEntity_get_rootGameObject(m_RawEntity, nullptr);
+		SAFE_ERROR();
+		return nullptr;
+		SAFE_END();
+	}
+
 	app::Vector3 Entity::forward() const
 	{
 		if (m_RawEntity == nullptr)

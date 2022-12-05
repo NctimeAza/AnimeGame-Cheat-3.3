@@ -12,6 +12,7 @@ DbgUiRemoteBreakin_t fnDbgUiRemoteBreakin = nullptr;
 
 static void RunVEH();
 static void FindAPI();
+static void DisableVMP();
 static bool Patch_NtSetInformationThread();
 static bool Patch_DbgUiRemoteBreakin();
 
@@ -35,6 +36,7 @@ void DebuggerBypassPost()
 	
 	RunVEH();
 #endif
+	DisableVMP();
 }
 
 static void RunVEH()
@@ -91,6 +93,19 @@ static void FindAPI()
 		if (fnNtSetInformationThread == nullptr)
 			LOG_LAST_ERROR("GetProcAddress(ntdll::NtSetInformationThread) failed");
 	}
+}
+
+// Taken from https://github.com/yubie-re/vmp-virtualprotect-bypass/blob/main/src/vp-patch.hpp
+static void DisableVMP()
+{
+	DWORD oldProtect;
+	auto ntdll = GetModuleHandleA("ntdll.dll");
+	BYTE callCode = ((BYTE*)GetProcAddress(ntdll, "NtQuerySection"))[4] - 1;
+	BYTE restore[] = { 0x4C, 0x8B, 0xD1, 0xB8, callCode };
+	auto nt_vp = (BYTE*)GetProcAddress(ntdll, "NtProtectVirtualMemory");
+	VirtualProtect(nt_vp, sizeof(restore), PAGE_EXECUTE_READWRITE, &oldProtect);
+	memcpy(nt_vp, restore, sizeof(restore));
+	VirtualProtect(nt_vp, sizeof(restore), oldProtect, &oldProtect);
 }
 
 // Modified version of https://guidedhacking.com/threads/how-to-find-hidden-threads-threadhidefromdebugger-antidebug-trick.14281/

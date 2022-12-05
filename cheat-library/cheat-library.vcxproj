@@ -18,6 +18,7 @@
     <ClInclude Include="src\user\cheat\game\xxHash.hpp" />
     <ClInclude Include="src\user\cheat\misc\About.h" />
     <ClInclude Include="src\user\cheat\misc\BlockWindSeed.h" />
+    <ClInclude Include="src\user\cheat\misc\RSAPatch.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipeModifyData.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipePacketData.h" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="src\user\cheat\misc\About.cpp" />
     <ClCompile Include="src\user\cheat\misc\BlockWindSeed.cpp" />
+    <ClCompile Include="src\user\cheat\misc\RSAPatch.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeModifyData.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipePacketData.cpp" />
