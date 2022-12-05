@@ -6,6 +6,7 @@ namespace cheat::feature
 	{
 	public:
 		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<bool> f_Sync2Server;
 		config::Field<int> f_TimeHour;
 		config::Field<int> f_TimeMinute;
 
