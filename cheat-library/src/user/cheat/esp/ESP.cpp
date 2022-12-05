@@ -135,14 +135,14 @@ namespace cheat::feature
 				"Some entities have either extremely small or no bounds at all.\n" \
 				"This parameter helps filter out entities that don't meet this condition."));
 
-			ConfigWidget(_TR("Show custom filters config window"), f_ShowCustomFiltersWindow, "This is for advanced users...");
+			ConfigWidget(_TR("Show custom filters config window"), f_ShowCustomFiltersWindow, _TR("This is for advanced users..."));
 		}
 		ImGui::EndGroupPanel();
 
 		ImGui::Text(_TR("How to use item filters:\n\tLMB - Toggle visibility\n\tRMB - Open color picker"));
 		ImGui::InputText(_TR("Search Filters"), &m_Search);
 
-		ImGui::PushID("Custom");
+		ImGui::PushID("Custom filters");
 		DrawCustomSection();
 		ImGui::PopID();
 
@@ -405,7 +405,7 @@ namespace cheat::feature
 		bool checked = std::all_of(validFilters.begin(), validFilters.end(), [](const CustomFilterInfo* filter) {  return filter->first.value().m_Enabled; });
 		bool changed = false;
 
-		if (ImGui::BeginSelectableGroupPanel(_TR("Custom"), checked, changed, true))
+		if (ImGui::BeginSelectableGroupPanel(_TR("Custom filters"), checked, changed, true))
 		{
 			for (auto& info : validFilters)
 			{
@@ -471,8 +471,8 @@ namespace cheat::feature
 		static int rowToDelete = -1;
 		if (ImGui::BeginTable("Names", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
 		{
-			ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
-			ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
+			ImGui::TableSetupColumn(_TR("Name"), ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
+			ImGui::TableSetupColumn(_TR("Actions"), ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
 			ImGui::TableSetupScrollFreeze(0, 1);
 			ImGui::TableHeadersRow();
 
@@ -513,8 +513,8 @@ namespace cheat::feature
 		static int rowToDelete = -1;
 		if (ImGui::BeginTable("Filters", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
 		{
-			ImGui::TableSetupColumn("Display name", ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
-			ImGui::TableSetupColumn("Actions", ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
+			ImGui::TableSetupColumn(_TR("Display name"), ImGuiTableColumnFlags_WidthStretch, 0.0, 0);
+			ImGui::TableSetupColumn(_TR("Actions"), ImGuiTableColumnFlags_WidthFixed, 0.0f, 1);
 			ImGui::TableSetupScrollFreeze(0, 1);
 			ImGui::TableHeadersRow();
 
@@ -555,7 +555,7 @@ namespace cheat::feature
 
 		static ImGuiWindowFlags flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize;
 
-		if (ImGui::Begin("Custom filter", &f_ShowCustomFiltersWindow.value(), flags))
+		if (ImGui::Begin(_TR("Custom filters"), &f_ShowCustomFiltersWindow.value(), flags))
 		{
 			ImGui::Text(_TR("NOTE: Custom filter is only for advanced users or contributors! You must know what are you doing."));
 
