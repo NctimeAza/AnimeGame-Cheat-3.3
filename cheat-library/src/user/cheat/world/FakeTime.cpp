@@ -11,7 +11,8 @@ namespace cheat::feature
 	FakeTime::FakeTime() : Feature(),
 		NFP(f_Enabled, "FakeTime", "Fake Time", false),
 		NF(f_TimeHour, "FakeTime", 12),
-		NF(f_TimeMinute, "FakeTime", 0)
+		NF(f_TimeMinute, "FakeTime", 0),
+		NF(f_Sync2Server, "FakeTime", false)
 	{
 		HookManager::install(app::LevelTimeManager_SetInternalTimeOfDay, LevelTimeManager_SetInternalTimeOfDay_Hook);
 
