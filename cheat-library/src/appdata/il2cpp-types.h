@@ -3464,7 +3464,7 @@ namespace app {
         struct String* string_15;
     };
 
-    struct GKOJAICIOPA {
+    struct PlayerLoginReq {
         void* klass;
         MonitorData* monitor;
         struct PlayerLoginReq__Fields fields;
@@ -5219,21 +5219,23 @@ namespace app {
     struct PlayerEnterSceneNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
         uint32_t prevSceneId_;
-        uint32_t dungeonId_;
         bool isSkipUi_;
+        uint32_t worldLevel_;
+    	struct Vector_1* pos_;
+        bool isFirstLoginEnterScene_;
+        uint32_t enterReason_;
+        uint32_t enterSceneToken_;
+        uint32_t dungeonId_;
         uint32_t sceneId_;
         EnterType__Enum type_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* sceneTagIdList_;
         uint64_t sceneBeginTime_;
-        uint32_t worldLevel_;
         uint32_t worldType_;
         uint32_t targetUid_;
-        bool isFirstLoginEnterScene_;
-        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* sceneTagIdList_;
-        struct String* sceneTransaction_;
         struct Vector_1* prevPos_;
-        uint32_t enterReason_;
-        struct Vector_1* pos_;
-        uint32_t enterSceneToken_;
+        struct String* sceneTransaction_;
+    	uint32_t prevSceneId_;
+        bool isSkipUi_;
     };
 
     struct PlayerEnterSceneNotify {
@@ -6876,27 +6878,27 @@ namespace app {
         struct MoleMole_CombatEntryProxy* vector[32];
     };
 
-    enum class GBCFKNINCEI__Enum : int32_t {
-        HAKNGINBAOC = 0x00000000,
-        NGEKCHOHNOP = 0x00000001,
-        ILNKLKMFPEK = 0x00000002,
-        FBMKDOBDCAH = 0x00000003,
-        DIFAKMKJBLO = 0x00000004,
-        ICHJIGAMFOE = 0x00000005,
-        BADAJKFEECO = 0x00000006,
-        PDNFEHPDLFJ = 0x00000007,
-        IONAKFGOPKC = 0x00000008,
-        LLMMGINHILB = 0x00000009,
-        PONJALOOAAJ = 0x0000000a,
-        BLBGDJOBDCA = 0x0000000b,
-        NNHMAMFCPKO = 0x0000000c,
-        LKFOOCDOEBK = 0x0000000d,
-        HNPDJAIAKIM = 0x0000000e,
-        CNEKEMFNBLD = 0x0000000f,
-        LJEAKMDCMFF = 0x00000010,
+    enum class Proto_CombatTypeArgument__Enum : int32_t {
+        CombatNone = 0x00000000,
+        CombatEvtBeingHit = 0x00000001,
+        CombatAnimatorStateChanged = 0x00000002,
+        CombatFaceToDir = 0x00000003,
+        CombatSetAttackTarget = 0x00000004,
+        CombatRushMove = 0x00000005,
+        CombatAnimatorParameterChanged = 0x00000006,
+        EntityMove = 0x00000007,
+        SyncEntityPosition = 0x00000008,
+        CombatSteerMotionInfo = 0x00000009,
+        CombatForceSetPosInfo = 0x0000000a,
+        CombatCompensatePosDiff = 0x0000000b,
+        CombatMonsterDoBlink = 0x0000000c,
+        CombatFixedRushMove = 0x0000000d,
+        CombatSyncTransform = 0x0000000e,
+        CombatLightCoreMove = 0x0000000f,
+        CombatBeingHealedNtf = 0x00000010,
+        CombatSkillAnchorPositionNtf = 0x00000011,
     };
 
-    // PEHBOMIKLHF__Enum
     enum class ForwardType__Enum : int32_t {
         ForwardLocal = 0x00000000,
         ForwardToAll = 0x00000001,
@@ -6920,21 +6922,21 @@ namespace app {
         struct NHHMPCAAKGF__Fields fields;
     };
 
-    struct HPAJEKCBMID__Fields {
+    struct Proto_CombatInvokeEntry__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        GBCFKNINCEI__Enum FNCGEGNMAAD;
-        ForwardType__Enum PPBIOJBJAHO;
-        struct NHHMPCAAKGF* GEOJBAGNEDC;
+        ForwardType__Enum forwardType_;
+        Proto_CombatTypeArgument__Enum argumentType_;
+    	struct Google_Protobuf_ByteString* combatData_;
     };
 
-    struct HPAJEKCBMID {
-        struct HPAJEKCBMID__Class* klass;
+    struct Proto_CombatInvokeEntry {
+        struct Proto_CombatInvokeEntry__Class* klass;
         MonitorData* monitor;
-        struct HPAJEKCBMID__Fields fields;
+        struct Proto_CombatInvokeEntry__Fields fields;
     };
 
     struct __declspec(align(8)) AJKACNNKJGG__Fields {
-        struct HPAJEKCBMID* PANOALIPEFB;
+        struct Proto_CombatInvokeEntry* PANOALIPEFB;
         struct MAKEGCIBGMD* IHFPAPEDDBM;
     };
 
@@ -11002,11 +11004,11 @@ namespace app {
 
     struct GadgetInteractRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        int32_t retcode_;
-        InterOpType__Enum opType_;
         InteractType__Enum interactType_;
-        uint32_t gadgetEntityId_;
         uint32_t gadgetId_;
+        int32_t retcode_;
+        uint32_t gadgetEntityId_;
+        InterOpType__Enum opType_;
     };
 
     struct GadgetInteractRsp {
@@ -11164,13 +11166,13 @@ namespace app {
 
     struct FishBattleEndRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        bool isGotReward_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* KNIFJPABHLH;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* CPIOJKAIMFE;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* HKGCOLOMEPO;
-        int32_t retcode_;
-        Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_FishNoRewardReason__Enum noRewardReason_;
         FishBattleResult__Enum battleResult_;
+        Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_FishNoRewardReason__Enum noRewardReason_;
+        int32_t retcode_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* dropItemList_;
+        bool isGotReward_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* talentItemList_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* rewardItemList_;
     };
 
     struct FishBattleEndRsp {
@@ -11707,12 +11709,12 @@ namespace app {
 
     struct PlayerCookRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
         int32_t retcode_;
-        uint32_t cookCount_; // need debug
-        uint32_t qteQuality_; // need debug
         struct CookRecipeData_1* recipeData_;
         struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
+        uint32_t cookCount_; //need debug
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
+        uint32_t qteQuality_; //need debug
     };
 
     struct PlayerCookRsp {
@@ -12793,19 +12795,19 @@ namespace app {
         struct Proto_SceneEntityInfo__Fields fields;
     };
 
-    enum class KIOMHHDFLGB__Enum : int32_t {
-        JAEEILGFCIF = 0x00000000,
-        GPBMPFOFKPI = 0x00000001,
-        PDNEMDNJLAK = 0x00000002,
-        CNONBPNAGKM = 0x00000003,
+    enum class Proto_LuaShellType__Enum : int32_t {
+        LuashellNone = 0x00000000,
+        LuashellNormal = 0x00000001,
+        LuashellSecurity = 0x00000002,
+        LuashellShellCode = 0x00000003,
     };
 
     struct Proto_PlayerLuaShellNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        KIOMHHDFLGB__Enum KJGNKMBMJAF;
-        uint32_t KDEAHJMLKOH;
-        struct JIBNKGMEPOL* CBPBIHBNKPB;
-        uint32_t PDHPAMDOCIL;
+        uint32_t id_;
+        Proto_LuaShellType__Enum shellType_;
+        struct Google_Protobuf_ByteString* luaShell_;
+        uint32_t useType_;
     };
 
     struct Proto_PlayerLuaShellNotify {
@@ -12868,11 +12870,11 @@ namespace app {
 
     struct Proto_CheckAddItemExceedLimitNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        bool is_drop_;
-        enum Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum msgType_;
         struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemTypeList_;
         struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemList_;
         uint32_t reason_;
+        bool is_drop_;
+        enum Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum msgType_;
     };
 
     struct Proto_CheckAddItemExceedLimitNotify {
