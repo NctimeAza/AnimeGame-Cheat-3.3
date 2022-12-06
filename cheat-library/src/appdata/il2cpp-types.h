@@ -12455,6 +12455,7 @@ namespace app {
         struct List_1_MoleMole_ActorAbility_* _appliedAbilities;
         struct Dictionary_2_System_UInt32_System_Int32_* _appliedAbilitiesIndex;
         struct Dictionary_2_System_String_MoleMole_ActorAbility_* CKDBIBGCPOB;
+        struct UnknownStruct* _unknwon;
         uint32_t nextValidAbilityID;
     };
 
