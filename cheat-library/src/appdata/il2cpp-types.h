@@ -5234,8 +5234,6 @@ namespace app {
         uint32_t targetUid_;
         struct Vector_1* prevPos_;
         struct String* sceneTransaction_;
-    	uint32_t prevSceneId_;
-        bool isSkipUi_;
     };
 
     struct PlayerEnterSceneNotify {
