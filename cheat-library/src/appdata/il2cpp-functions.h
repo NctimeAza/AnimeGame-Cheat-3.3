@@ -252,7 +252,7 @@ DO_APP_FUNC(0x04C7F970, 0x04C85D40, float, Miscs_CalcCurrentGroundHeight, (float
 DO_APP_FUNC(0x04C7FA20, 0x04C85DF0, float, Miscs_CalcCurrentGroundHeight_1, (float x, float z, float rayStartHeight, float rayDetectLength, int32_t layer, MethodInfo* method));
 DO_APP_FUNC(0x04C7FCF0, 0x04C860C0, Vector3, Miscs_CalcCurrentGroundNorm, (Vector3 pos, MethodInfo* method));
 DO_APP_FUNC(0x04C882D0, 0x04C8E6C0, Vector3, Miscs_GenWorldPos, (Vector2 levelMapPos, MethodInfo* method));
-DO_APP_FUNC(0x04C87F70, 0x04C8E1F0, Vector2, Miscs_GenLevelPos_1, (Vector3 worldPos, MethodInfo* method));
+DO_APP_FUNC(0x04C87F70, 0x04C8E360, Vector2, Miscs_GenLevelPos_1, (Vector3 worldPos, MethodInfo* method));
 DO_APP_FUNC(0x04C9B820, 0x04CA16B0, int32_t, Miscs_GetSceneGroundLayerMask, (MethodInfo* method));
 
 DO_APP_FUNC(0x0861DE80, 0x086204B0, Vector3, WorldShiftManager_GetAbsolutePosition, (Vector3 pos, MethodInfo* method));

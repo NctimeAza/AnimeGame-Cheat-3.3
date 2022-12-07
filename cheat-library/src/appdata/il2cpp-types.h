@@ -12451,11 +12451,11 @@ namespace app {
         struct List_1_MoleMole_MonoEffectProxyHandle_* _effectProxyListCache;
         struct List_1_MoleMole_MonoEffectProxyHandle_* _effectProxyListCacheForChangFollowDampTime;
         struct List_1_UnityEngine_Vector3_* _pushedPosList;
-        struct MoleMole_LCAbility* _owner;
+        struct Action_3_MoleMole_BaseEntity_PPBOJBFBPMM_MoleMole_ActorAbility_* _unknwon;
+    	struct MoleMole_LCAbility* _owner;
         struct List_1_MoleMole_ActorAbility_* _appliedAbilities;
         struct Dictionary_2_System_UInt32_System_Int32_* _appliedAbilitiesIndex;
         struct Dictionary_2_System_String_MoleMole_ActorAbility_* CKDBIBGCPOB;
-        struct UnknownStruct* _unknwon;
         uint32_t nextValidAbilityID;
     };
 
