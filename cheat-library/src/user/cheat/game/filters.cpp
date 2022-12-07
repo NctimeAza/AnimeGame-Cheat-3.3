@@ -352,6 +352,7 @@ namespace cheat::game::filters
 		SimpleFilter EverlightCell = { EntityType__Enum_1::Field, "LaserGenerator" };
 		SimpleFilter PrimalEmber = { EntityType__Enum_1::Field, "CommonOperatorOnWall" };
 		SimpleFilter PrimalSandglass = { EntityType__Enum_1::Gadget, "DeshretSandglass" };
+		SimpleFilter GoldenAmber = { EntityType__Enum_1::Gadget, "GoldenAmber" };
 	}
 
 	namespace combined
@@ -388,7 +389,10 @@ namespace cheat::game::filters
 		SimpleFilter BreakableObjects = {
 			puzzle::AncientRime,
 			puzzle::LargeRockPile,
-			puzzle::SmallRockPile
+			puzzle::SmallRockPile,
+			puzzle::Geogranum,
+			puzzle::GoldenAmber
+			//puzzle::TheWithering
 		};
 		WhitelistFilter Doodads = {
 			EntityType__Enum_1::Gadget,
