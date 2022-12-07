@@ -118,6 +118,7 @@ namespace cheat::feature
                 "Katheryne",
                 "Wagner",
                 "Ahangar",
+                "MasterZhang",
                 "Cat_Prince"
             };
             auto dialogPartnerID = context->fields._inteeID;
