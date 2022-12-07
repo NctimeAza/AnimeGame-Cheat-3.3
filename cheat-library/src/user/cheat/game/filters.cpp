@@ -295,7 +295,7 @@ namespace cheat::game::filters
 		SimpleFilter SumeruRose = { EntityType__Enum_1::GatherObject, "_XumiRose" };
 		SimpleFilter Viparyas = { EntityType__Enum_1::GatherObject, "_DreamerPlant" };
 		SimpleFilter ZaytunPeach = { EntityType__Enum_1::GatherObject, "_Olea" };
-		SimpleFilter Redcrest = { EntityType__Enum_1::GatherObject, "RedPearlFruit" };
+		SimpleFilter HennaBerry = { EntityType__Enum_1::GatherObject, "RedPearlFruit" };
 		SimpleFilter AjilenakhNut = { EntityType__Enum_1::GatherObject, "DatePalm" };
 	}
 

@@ -3522,7 +3522,7 @@
     <Image Include="res\iconsHD\PrimalConstruct.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\iconsHD\Redcrest.png">
+    <Image Include="res\iconsHD\HennaBerry.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\iconsHD\Scarab.png">
@@ -3540,7 +3540,7 @@
     <Image Include="res\icons\PrimalConstruct.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\icons\Redcrest.png">
+    <Image Include="res\icons\HennaBerry.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icons\Scarab.png">
@@ -3685,6 +3685,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\iconsHD\Wander.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\InteractionRewards.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\InteractionRewards.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

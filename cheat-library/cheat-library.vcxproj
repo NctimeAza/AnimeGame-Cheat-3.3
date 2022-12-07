@@ -497,6 +497,7 @@
     <Image Include="res\iconsHD\IllusionMural.png" />
     <Image Include="res\iconsHD\ImagingConch.png" />
     <Image Include="res\iconsHD\InazumaShrineofDepths.png" />
+    <Image Include="res\iconsHD\InteractionRewards.png" />
     <Image Include="res\iconsHD\Inu.png" />
     <Image Include="res\iconsHD\IronChunk.png" />
     <Image Include="res\iconsHD\IronPoint.png" />
@@ -657,7 +658,7 @@
     <Image Include="res\iconsHD\Razor.png" />
     <Image Include="res\iconsHD\Recipe.png" />
     <Image Include="res\iconsHD\RecurveBow.png" />
-    <Image Include="res\iconsHD\Redcrest.png" />
+    <Image Include="res\iconsHD\HennaBerry.png" />
     <Image Include="res\iconsHD\RedFinnedUnagi.png" />
     <Image Include="res\iconsHD\RedHornedLizard.png" />
     <Image Include="res\iconsHD\RedhornStonethresher.png" />
@@ -1045,6 +1046,7 @@
     <Image Include="res\icons\IllusionMural.png" />
     <Image Include="res\icons\ImagingConch.png" />
     <Image Include="res\icons\InazumaShrineofDepths.png" />
+    <Image Include="res\icons\InteractionRewards.png" />
     <Image Include="res\icons\Inu.png" />
     <Image Include="res\icons\IronChunk.png" />
     <Image Include="res\icons\ItemDrops.png" />
@@ -1148,7 +1150,7 @@
     <Image Include="res\icons\RaimeiAngelfish.png" />
     <Image Include="res\icons\RawMeat.png" />
     <Image Include="res\icons\Recipe.png" />
-    <Image Include="res\icons\Redcrest.png" />
+    <Image Include="res\icons\HennaBerry.png" />
     <Image Include="res\icons\RedFinnedUnagi.png" />
     <Image Include="res\icons\RedHornedLizard.png" />
     <Image Include="res\icons\RedTailedLizard.png" />
