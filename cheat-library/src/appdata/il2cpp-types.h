@@ -9342,7 +9342,6 @@ namespace app {
         uint32_t _mapFogHandle;
         struct Action* _loadingCallback;
         struct Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _transPointMarks;
-        struct Dictionary_2_System_Int32_Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _markType2markDic;
         struct Rect _mapViewRect;
         struct MonoMapMark* _localAvatarMark;
         struct Rect _markContainerViewport;
@@ -9364,6 +9363,7 @@ namespace app {
         uint32_t _customMarkTrackQuestID;
         MoleMole_CustomMarkTrackReasonType__Enum _customMarkTrackReasonType;
         bool _isAdventureHandbookOpened;
+        bool GDGKMHJBOOE; // 0x27D
         float _slideValue;
         struct MoleMole_ResinViewComponent* _resinComp;
         struct MoleMole_ZoomAudioComponent* _zoomAudioComp;
@@ -9397,6 +9397,8 @@ namespace app {
         struct GameObject* _currOverGameObject;
         bool _anyMarkUnderCursor;
         bool _resinOpened;
+        bool EBMIHJPIIDA; // 0x352
+        struct FABCAHHFGGN_UInt32_* MFGNFKPLBBM; // 0x358
         MoleMole_Config_MapTagType__Enum _currTag;
         uint32_t _currShownID;
         uint32_t _currSelectedID;
@@ -9428,6 +9430,8 @@ namespace app {
         bool BOBCGLGMNIP;
         struct MoleMole_RewardPreviewComponent* _moonfinTrialRewardPreviewComponent;
         struct Coroutine* _updateReviveCooldownCoroutine;
+        struct List_1_UInt32_* PPGOICBBODE; // 0x400
+        struct List_1_UInt32_* GEPKCDMLNKN; // 0x408
         int32_t _selectedMapTagIndex;
         int32_t _selectedPanelTagIndex;
         struct MonoMapMark* _selectedCustomMark;
@@ -9435,6 +9439,11 @@ namespace app {
         struct MoleMole_Config_MarkIconType__Enum__Array* _customMarkIcons;
         struct Vector2 _currMapPos;
         struct Dictionary_2_System_UInt32_List_1_MoleMole_InLevelMapPageContext_ICEOCBLOLOA_* DOLIEMJIHII;
+        struct List_1_GeneralMarkData_* GCEJFJHBPPE; // 0x440
+        struct Dictionary_2_Int32_MGEJPPCPDPI_GHNEBNOAJOP_* PDCEOOIABID; // 0x448
+        struct Dictionary_2_UInt32_List_1_MGEJPPCPDPI_OHDIFOECFDP_* LEEMKGHJJLD; // 0x450
+        struct Boolean AFEDCLKINCA; // 0x458
+        struct Boolean OBCIIEKNEJH; // 0x459
         int32_t HOABPOCFADI;
     };
 
