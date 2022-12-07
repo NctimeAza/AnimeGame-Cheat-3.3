@@ -8480,6 +8480,7 @@ namespace app {
         uint32_t _lastTriggerAttackeeEntityId;
         int32_t _attackTagTriggeredFrameCount;
         struct HashSet_1_System_String_* _attackTagTriggeredThisFrame;
+        struct Dictionary_2_OEFMIBLPBEO_OLLOGJOELBI_MCJPIHGOIPK_* LOIHENPOMNH; // 0x1A0
         struct LCBaseCombat_AttackTarget _attackTarget;
         bool _isSafeDestroied;
         float _recoverEndureTime;
