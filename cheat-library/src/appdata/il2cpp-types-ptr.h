@@ -13,7 +13,7 @@ DO_TYPEDEF(0x0C6E3948, 0x0C6E6948, Byte);
 
 // Up   r   GameManager_ChangeGameWorld+15  mov     rax, cs:GameManager__TypeInfo; GameManager
 // 3.3 ResolveCall("e8 ? ? ? ? 48 8b 0d ? ? ? ? 83 b9 ? ? ? ? ? 75 ? e8 ? ? ? ? b1 ? e8 ? ? ? ? 48 8b 0d ? ? ? ? 83 b9 ? ? ? ? ? 75 ? e8 ? ? ? ? e8 ? ? ? ? 48 8b cb") + 0x15;
-DO_TYPEDEF(0x0C6F68F8, 0x029774C0, GameManager);
+DO_TYPEDEF(0x0C6F68F8, 0x0C6F7118, GameManager);
 
 // Up   r   MoleMole_LCChestPlugin_HideIntee+6  mov     rax, cs:MoleMole_LCChestPlugin__TypeInfo; MoleMole_LCChestPlugin
 // Up   r   MoleMole_LCChestPlugin_Destroy+6    mov     rax, cs:MoleMole_LCChestPlugin__TypeInfo; MoleMole_LCChestPlugin
