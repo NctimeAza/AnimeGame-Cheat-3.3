@@ -9442,8 +9442,8 @@ namespace app {
         struct List_1_GeneralMarkData_* GCEJFJHBPPE; // 0x440
         struct Dictionary_2_Int32_MGEJPPCPDPI_GHNEBNOAJOP_* PDCEOOIABID; // 0x448
         struct Dictionary_2_UInt32_List_1_MGEJPPCPDPI_OHDIFOECFDP_* LEEMKGHJJLD; // 0x450
-        struct Boolean AFEDCLKINCA; // 0x458
-        struct Boolean OBCIIEKNEJH; // 0x459
+        unsigned char AFEDCLKINCA; // 0x458
+        unsigned char OBCIIEKNEJH; // 0x459
         int32_t HOABPOCFADI;
     };
 
