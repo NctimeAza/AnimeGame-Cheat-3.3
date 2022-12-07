@@ -3678,5 +3678,14 @@
     <Image Include="anim\akebi_bounce.gif">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\Layla.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Faruzan.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Wander.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

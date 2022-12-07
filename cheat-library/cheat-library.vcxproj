@@ -339,6 +339,7 @@
     <Image Include="res\iconsHD\EyeofPerception.png" />
     <Image Include="res\iconsHD\FadingTwilight.png" />
     <Image Include="res\iconsHD\Falcon.png" />
+    <Image Include="res\iconsHD\Faruzan.png" />
     <Image Include="res\iconsHD\FavoniusCodex.png" />
     <Image Include="res\iconsHD\FavoniusGreatsword.png" />
     <Image Include="res\iconsHD\FavoniusLance.png" />
@@ -532,6 +533,7 @@
     <Image Include="res\iconsHD\KukiShinobu.png" />
     <Image Include="res\iconsHD\LargeRockPile.png" />
     <Image Include="res\iconsHD\LavenderMelon.png" />
+    <Image Include="res\iconsHD\Layla.png" />
     <Image Include="res\iconsHD\LazuriteAxeMarlin.png" />
     <Image Include="res\iconsHD\LightningStrikeProbe.png" />
     <Image Include="res\iconsHD\LightUpTilePuzzle.png" />
@@ -829,6 +831,7 @@
     <Image Include="res\iconsHD\Viparyas.png" />
     <Image Include="res\iconsHD\VortexVanquisher.png" />
     <Image Include="res\iconsHD\Vulture.png" />
+    <Image Include="res\iconsHD\Wander.png" />
     <Image Include="res\iconsHD\WanderingEvenstar.png" />
     <Image Include="res\iconsHD\WarmingSeelie.png" />
     <Image Include="res\iconsHD\WasterGreatsword.png" />
