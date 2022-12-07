@@ -549,6 +549,8 @@ HDHARRAFRUIT            PNG                     "iconsHD\\HarraFruit.png"
 
 HDHARVESTABLEPLANT      PNG                     "iconsHD\\HarvestablePlant.png"
 
+HDHENNABERRY            PNG                     "iconsHD\\HennaBerry.png"
+
 HDHILICHURL             PNG                     "iconsHD\\Hilichurl.png"
 
 HDHILICHURLCHIEFTAIN    PNG                     "iconsHD\\HilichurlChieftain.png"
@@ -576,6 +578,8 @@ HDILLUSIONMURAL         PNG                     "iconsHD\\IllusionMural.png"
 HDIMAGINGCONCH          PNG                     "iconsHD\\ImagingConch.png"
 
 HDINAZUMASHRINEOFDEPTHS PNG                     "iconsHD\\InazumaShrineofDepths.png"
+
+HDINTERACTIONREWARDS    PNG                     "iconsHD\\InteractionRewards.png"
 
 HDINU                   PNG                     "iconsHD\\Inu.png"
 
@@ -908,8 +912,6 @@ HDRAZOR                 PNG                     "iconsHD\\Razor.png"
 HDRECIPE                PNG                     "iconsHD\\Recipe.png"
 
 HDRECURVEBOW            PNG                     "iconsHD\\RecurveBow.png"
-
-HDREDCREST              PNG                     "iconsHD\\Redcrest.png"
 
 HDREDFINNEDUNAGI        PNG                     "iconsHD\\RedFinnedUnagi.png"
 
@@ -1661,6 +1663,8 @@ HARRAFRUIT              PNG                     "icons\\HarraFruit.png"
 
 HARVESTABLEPLANT        PNG                     "icons\\HarvestablePlant.png"
 
+HENNABERRY              PNG                     "icons\\HennaBerry.png"
+
 HILICHURL               PNG                     "icons\\Hilichurl.png"
 
 HILICHURLCHIEFTAIN      PNG                     "icons\\HilichurlChieftain.png"
@@ -1682,6 +1686,8 @@ ILLUSIONMURAL           PNG                     "icons\\IllusionMural.png"
 IMAGINGCONCH            PNG                     "icons\\ImagingConch.png"
 
 INAZUMASHRINEOFDEPTHS   PNG                     "icons\\InazumaShrineofDepths.png"
+
+INTERACTIONREWARDS      PNG                     "icons\\InteractionRewards.png"
 
 INU                     PNG                     "icons\\Inu.png"
 
@@ -1902,8 +1908,6 @@ RAIMEIANGELFISH         PNG                     "icons\\RaimeiAngelfish.png"
 RAWMEAT                 PNG                     "icons\\RawMeat.png"
 
 RECIPE                  PNG                     "icons\\Recipe.png"
-
-REDCREST                PNG                     "icons\\Redcrest.png"
 
 REDFINNEDUNAGI          PNG                     "icons\\RedFinnedUnagi.png"
 

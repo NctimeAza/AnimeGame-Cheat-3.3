@@ -169,11 +169,14 @@ namespace cheat::game
 
 	bool Entity::isLoaded() const
 	{
+		SAFE_BEGIN()
 		if (m_RawEntity == nullptr || !app::MoleMole_BaseEntity_IsActive(m_RawEntity, nullptr))
 			return false;
 
 		m_IsLoaded = m_IsLoaded || app::MoleMole_BaseEntity_get_rootGameObject(m_RawEntity, nullptr);
+		SAFE_ERROR()
 		return m_IsLoaded;
+		SAFE_END()
 	}
 
 	app::VCBaseMove* Entity::moveComponent()
@@ -231,6 +234,18 @@ namespace cheat::game
 
 		SAFE_BEGIN();
 		return app::MoleMole_BaseEntity_get_gameObject(m_RawEntity, nullptr);
+		SAFE_ERROR();
+		return nullptr;
+		SAFE_END();
+	}
+
+	app::GameObject* Entity::rootGameObject()
+	{
+		if (!isLoaded())
+			return nullptr;
+
+		SAFE_BEGIN();
+		return app::MoleMole_BaseEntity_get_rootGameObject(m_RawEntity, nullptr);
 		SAFE_ERROR();
 		return nullptr;
 		SAFE_END();

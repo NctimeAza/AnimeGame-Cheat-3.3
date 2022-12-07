@@ -117,7 +117,9 @@ namespace cheat::feature
                 "Djinn",
                 "Katheryne",
                 "Wagner",
-                "Ahangar"
+                "Ahangar",
+                "MasterZhang",
+                "Cat_Prince"
             };
             auto dialogPartnerID = context->fields._inteeID;
             auto& manager = game::EntityManager::instance();

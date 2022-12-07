@@ -38,6 +38,7 @@ namespace cheat::game
 		app::LCBaseCombat* combat();
 
 		app::GameObject* gameObject();
+		app::GameObject* rootGameObject();
 		app::Rigidbody* rigidbody();
 		app::Animator* animator();
 

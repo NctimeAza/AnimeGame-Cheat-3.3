@@ -5,48 +5,48 @@
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
 
-namespace cheat::feature 
+namespace cheat::feature
 {
-    InfiniteStamina::InfiniteStamina() : Feature(),
-        NFP(f_Enabled, "InfiniteStamina", "Infinite Stamina", false),
-        NF(f_PacketReplacement, "InfiniteStamina", false)
-    {
+	InfiniteStamina::InfiniteStamina() : Feature(),
+		NFP(f_Enabled, "InfiniteStamina", "Infinite Stamina", false),
+		NF(f_PacketReplacement, "InfiniteStamina", false)
+	{
 		HookManager::install(app::MoleMole_DataItem_HandleNormalProp, DataItem_HandleNormalProp_Hook);
-
+		HookManager::install(app::VCHumanoidMove_MNKKEGMDFFO, VCHumanoidMove_MNKKEGMDFFO_Hook);
 		events::MoveSyncEvent += MY_METHOD_HANDLER(InfiniteStamina::OnMoveSync);
-    }
+	}
 
-    const FeatureGUIInfo& InfiniteStamina::GetGUIInfo() const
-    {
+	const FeatureGUIInfo& InfiniteStamina::GetGUIInfo() const
+	{
 		TRANSLATED_GROUP_INFO("Infinite Stamina", "Player");
-        return info;
-    }
+		return info;
+	}
 
-    void InfiniteStamina::DrawMain()
-    {
+	void InfiniteStamina::DrawMain()
+	{
 		ConfigWidget(_TR("Enabled"), f_Enabled, _TR("Enables infinite stamina option."));
 
 		ConfigWidget(_TR("Move Sync Packet Replacement"), f_PacketReplacement,
 			_TR("This mode prevents sending server packets with stamina cost actions,\n"
-			"e.g. swim, climb, sprint, etc.\n"
-			"NOTE: This is may be more safe than the standard method. More testing is needed."));
-    }
+				"e.g. swim, climb, sprint, etc.\n"
+				"NOTE: This is may be more safe than the standard method. More testing is needed."));
+	}
 
-    bool InfiniteStamina::NeedStatusDraw() const
-{
-        return f_Enabled->enabled();
-    }
+	bool InfiniteStamina::NeedStatusDraw() const
+	{
+		return f_Enabled->enabled();
+	}
 
-    void InfiniteStamina::DrawStatus() 
-    { 
-        ImGui::Text("%s [%s]", _TR("Inf. Stamina"), f_PacketReplacement ? _TR("Packet") : _TR("Normal"));
-    }
+	void InfiniteStamina::DrawStatus()
+	{
+		ImGui::Text("%s [%s]", _TR("Inf. Stamina"), f_PacketReplacement ? _TR("Packet") : _TR("Normal"));
+	}
 
-    InfiniteStamina& InfiniteStamina::GetInstance()
-    {
-        static InfiniteStamina instance;
-        return instance;
-    }
+	InfiniteStamina& InfiniteStamina::GetInstance()
+	{
+		static InfiniteStamina instance;
+		return instance;
+	}
 
 	// Infinite stamina offline mode. Blocks changes for stamina property. 
 	// Note. Changes received from the server (not sure about this for current time), 
@@ -61,9 +61,9 @@ namespace cheat::feature
 			override_cheat = true;
 
 		const bool result = !f_Enabled->enabled() || f_PacketReplacement || override_cheat ||
-							(propType != PT::PROP_MAX_STAMINA &&
-							 propType != PT::PROP_CUR_PERSIST_STAMINA &&
-							 propType != PT::PROP_CUR_TEMPORARY_STAMINA);
+			(propType != PT::PROP_MAX_STAMINA &&
+				propType != PT::PROP_CUR_PERSIST_STAMINA &&
+				propType != PT::PROP_CUR_TEMPORARY_STAMINA);
 
 		if (propType == PT::PROP_MAX_STAMINA)
 			override_cheat = false;
@@ -116,7 +116,7 @@ namespace cheat::feature
 			}
 		}
 	}
-	
+
 	void InfiniteStamina::DataItem_HandleNormalProp_Hook(app::DataItem* __this, uint32_t type, int64_t value, app::DataPropOp__Enum state, MethodInfo* method)
 	{
 		auto& infiniteStamina = GetInstance();
@@ -125,6 +125,17 @@ namespace cheat::feature
 		bool isValid = infiniteStamina.OnPropertySet(propType);
 		if (isValid)
 			CALL_ORIGIN(DataItem_HandleNormalProp_Hook, __this, type, value, state, method);
+	}
+
+	// Infinite Stamina for Wanderer alone.
+	void InfiniteStamina::VCHumanoidMove_MNKKEGMDFFO_Hook(app::VCHumanoidMove* __this, float JJJEOEHLNGP, MethodInfo* method)
+	{
+		auto& infiniteStamina = GetInstance();
+
+		if (infiniteStamina.f_Enabled || infiniteStamina.f_PacketReplacement)
+			JJJEOEHLNGP = 0.f;
+
+		CALL_ORIGIN(VCHumanoidMove_MNKKEGMDFFO_Hook, __this, JJJEOEHLNGP, method);
 	}
 }
 

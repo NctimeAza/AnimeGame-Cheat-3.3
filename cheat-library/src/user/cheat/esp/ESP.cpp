@@ -1051,6 +1051,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(plant, FluorescentFungus);
 		ADD_FILTER_FIELD(plant, GlazeLily);
 		ADD_FILTER_FIELD(plant, HarraFruit);
+		ADD_FILTER_FIELD(plant, HennaBerry);
 		ADD_FILTER_FIELD(plant, Horsetail);
 		ADD_FILTER_FIELD(plant, JueyunChili);
 		ADD_FILTER_FIELD(plant, KalpalataLotus);
@@ -1067,7 +1068,6 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(plant, Pinecone);
 		ADD_FILTER_FIELD(plant, Qingxin);
 		ADD_FILTER_FIELD(plant, Radish);
-		ADD_FILTER_FIELD(plant, Redcrest);
 		ADD_FILTER_FIELD(plant, RukkhashavaMushroom);
 		ADD_FILTER_FIELD(plant, SakuraBloom);
 		ADD_FILTER_FIELD(plant, SangoPearl);

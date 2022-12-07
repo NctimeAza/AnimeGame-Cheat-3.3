@@ -53,7 +53,7 @@ namespace cheat::feature
 
     // Raise when player start game log in (after press a door)
     // Contains information about player system and game integrity
-    static void SendInfo_Hook(app::MoleMole_NetworkManager* __this, app::GKOJAICIOPA* info, MethodInfo* method)
+    static void SendInfo_Hook(app::MoleMole_NetworkManager* __this, app::PlayerLoginReq* info, MethodInfo* method)
     {
         LOG_TRACE("Game sending game info to server.");
         LOG_TRACE("Content: ");

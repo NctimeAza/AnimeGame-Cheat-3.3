@@ -267,7 +267,7 @@
                     "y_pos": -107.61239636667642
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/a1e6d42d614a36b3f248d15761867b7a_3583691230971212151.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/48a998426e4b457da6c16bb662b4ab7f_4375544147966215461.png"
         },
         "16": {
             "name": "Crystal Chunk",
@@ -672,6 +672,36 @@
                     "id": 26733,
                     "x_pos": 192.4499969482422,
                     "y_pos": 411.8095219251486
+                },
+                {
+                    "id": 41298,
+                    "x_pos": -195.75,
+                    "y_pos": -248.75
+                },
+                {
+                    "id": 41299,
+                    "x_pos": -189.5,
+                    "y_pos": -252
+                },
+                {
+                    "id": 41300,
+                    "x_pos": -190.5,
+                    "y_pos": -249
+                },
+                {
+                    "id": 41301,
+                    "x_pos": -199.5,
+                    "y_pos": -247
+                },
+                {
+                    "id": 41321,
+                    "x_pos": -131.2487235736005,
+                    "y_pos": -361.64246260759865
+                },
+                {
+                    "id": 41322,
+                    "x_pos": -121.99893753126776,
+                    "y_pos": -377.4003651592309
                 }
             ],
             "icon": "https://act.hoyoverse.com/map_manage/20220928/5d28b68268829ef9673d3f41d769bc5a_5453055352953307529.png"
@@ -1103,7 +1133,7 @@
                     "y_pos": 130.99272661023588
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220930/8de3558f991ac422463712dd095278b3_109842752079072307.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/926971d36ee457985e5c0a2b174656df_5544907598451433132.png"
         },
         "24": {
             "name": "Abyss Mage",
@@ -1175,7 +1205,7 @@
                     "y_pos": 228.9498757482129
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220323/d2fa99f9123c46cd98de7410adfe1d7a_8479587568669217286.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/d2fa99f9123c46cd98de7410adfe1d7a_8191344608484479745.png"
         },
         "27": {
             "name": "Ruin Guard",
@@ -1192,7 +1222,7 @@
                     "y_pos": 129.9974693066979
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/a90a60e07a1a942bf89fbb071efacf78_4504588708900504078.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/c56fdd1dff7599590b215122dfb67514_8585031967786541683.png"
         },
         "40": {
             "name": "Cor Lapis",
@@ -1646,7 +1676,7 @@
                     "y_pos": 410
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220824/5938abaf948c3b2fa47a3ac3938aabf3_4865664785447822197.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221125/4a11a7f98ed845d76765cb99da5f1e68_1066514311006332786.png"
         },
         "54": {
             "name": "Fatui Skirmisher",
@@ -1683,7 +1713,7 @@
                     "y_pos": -126.14968963330261
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/71cffd628025a16813dfbb1337e5cfca_1951629793205322023.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/71cffd628025a16813dfbb1337e5cfca_1933623048059295916.png"
         },
         "55": {
             "name": "Hilichurl",
@@ -1715,7 +1745,7 @@
                     "y_pos": 270.67710876464844
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/4cca7114e8db044283d84ed3b0b72b06_5192184377885677903.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/4cca7114e8db044283d84ed3b0b72b06_1934374751037927964.png"
         },
         "58": {
             "name": "Treasure Hoarder",
@@ -1867,7 +1897,7 @@
                     "y_pos": -560.7441787719727
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/8d42ff5f7bdfb638bca30feb75856b76_3677046310229927021.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/8d42ff5f7bdfb638bca30feb75856b76_6680181144106123256.png"
         },
         "59": {
             "name": "Slime",
@@ -1969,7 +1999,7 @@
                     "y_pos": -153.37203979492188
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220824/380ece40b8222cd7cd17cf44ba325739_5103907981293273194.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/1fa215326de3094ac81f509479056809_5482169204620521279.png"
         },
         "61": {
             "name": "Mist Flower Corolla",
@@ -2001,7 +2031,7 @@
                     "y_pos": 111.03570176275207
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/379f3acf5091d5c9bab5d238398ed74b_1299253059491585322.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/379f3acf5091d5c9bab5d238398ed74b_4043712974452324846.png"
         },
         "64": {
             "name": "Time Trial Challenge",
@@ -2083,7 +2113,7 @@
                     "y_pos": -424.50000381469727
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220930/5f0745a1c1812d249a90601c8de54552_2767759384451412130.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/80fb45f0539e8a30bebc49674f7d4624_4924044601209939106.png"
         },
         "70": {
             "name": "Elemental Monument",
@@ -2165,7 +2195,7 @@
                     "y_pos": -129.25
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220930/f381e3a85279e3c1815874f324355c4e_7651994827911834755.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/670304cc9bdc9452ce3050042c51dd7e_4428820328534567979.png"
         },
         "72": {
             "name": "Large Rock Pile",
@@ -2187,7 +2217,7 @@
                     "y_pos": -152.24965778757246
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/836ae8b9a526ceeb1ebdf0fedb693356_4054736939908165382.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/2b8f481203d5190f488e3605570a4b75_7912786785352362786.png"
         },
         "77": {
             "name": "Mini Puzzle",
@@ -2339,7 +2369,7 @@
                     "y_pos": -429.75
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220930/8318e95c402c3f8120c236d569b7c30d_4122189942380617256.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/aeacbcc6ad46920a65f5300f0514fbdd_8228998968394817192.png"
         },
         "79": {
             "name": "Enemies (First-Time Victory)",
@@ -2361,7 +2391,7 @@
                     "y_pos": -527
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/4cca7114e8db044283d84ed3b0b72b06_6968745740726409394.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/4cca7114e8db044283d84ed3b0b72b06_3013383440599720966.png"
         },
         "85": {
             "name": "Viewpoint",
@@ -2403,7 +2433,7 @@
                     "y_pos": 144.75
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/873545b6a19891b8d21ae766cd1b70e4_4883968056261625769.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/1388ed089e9dd98c3427f3c5b3868d29_9194471507104123976.png"
         },
         "90": {
             "name": "Crystal Core",
@@ -2525,7 +2555,7 @@
                     "y_pos": -50.13701941596423
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/621ef976ab2ea278ad1a9371ad845eea_2155132189350895110.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/621ef976ab2ea278ad1a9371ad845eea_2155132189350895110.png"
         },
         "92": {
             "name": "Snapdragon",
@@ -2547,7 +2577,7 @@
                     "y_pos": -409.62286077058843
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210428/5cb9b715be7356eddae0d8aa197d4673_5925617248491431715.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/5cb9b715be7356eddae0d8aa197d4673_8475728651207738476.png"
         },
         "94": {
             "name": "Frog",
@@ -2594,7 +2624,7 @@
                     "y_pos": -231.0000094298946
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220826/2100d4b4cc447908da0119057bc17ba6_9022240694827521309.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/2100d4b4cc447908da0119057bc17ba6_9022240694827521309.png"
         },
         "114": {
             "name": "Artifact",
@@ -2639,6 +2669,76 @@
                     "id": 26798,
                     "x_pos": 214,
                     "y_pos": -369.9759406581113
+                },
+                {
+                    "id": 41285,
+                    "x_pos": -416.463370021487,
+                    "y_pos": -459.8737235645333
+                },
+                {
+                    "id": 41286,
+                    "x_pos": -350.684688891105,
+                    "y_pos": -436.1257044807767
+                },
+                {
+                    "id": 41287,
+                    "x_pos": 146.4311258488292,
+                    "y_pos": -426.6237375146477
+                },
+                {
+                    "id": 41288,
+                    "x_pos": 293.81229204253896,
+                    "y_pos": -219.8730260588136
+                },
+                {
+                    "id": 41289,
+                    "x_pos": -184.2047321371906,
+                    "y_pos": -80.1247698231125
+                },
+                {
+                    "id": 41290,
+                    "x_pos": -213.6907270238171,
+                    "y_pos": -6.375843981920752
+                },
+                {
+                    "id": 41291,
+                    "x_pos": -7.204480548327865,
+                    "y_pos": 191.62764354667706
+                },
+                {
+                    "id": 41292,
+                    "x_pos": -36.200119674702364,
+                    "y_pos": -437.1252580771163
+                },
+                {
+                    "id": 41293,
+                    "x_pos": 8.812459768447525,
+                    "y_pos": -426.3749511745996
+                },
+                {
+                    "id": 41294,
+                    "x_pos": 41.32587784114094,
+                    "y_pos": -415.87644383683937
+                },
+                {
+                    "id": 41295,
+                    "x_pos": -143.94206883108632,
+                    "y_pos": -435.3725936052674
+                },
+                {
+                    "id": 41296,
+                    "x_pos": 271.7514190648444,
+                    "y_pos": -366.15379900607104
+                },
+                {
+                    "id": 41297,
+                    "x_pos": 50.49883159523233,
+                    "y_pos": -553.69758007429
+                },
+                {
+                    "id": 41320,
+                    "x_pos": 57.03478499351786,
+                    "y_pos": -173.87260755538205
                 }
             ],
             "icon": "https://act.hoyoverse.com/map_manage/20220826/a9f458cf7ba149ec659aabb581050a0b_766781731981267833.png"
@@ -2718,7 +2818,7 @@
                     "y_pos": -107.85714671795654
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210428/b99807ea1b34d21c3fa4fa74f57a25e3_1998878996251730722.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/b99807ea1b34d21c3fa4fa74f57a25e3_1998878996251730722.png"
         },
         "122": {
             "name": "Fish",
@@ -2770,7 +2870,7 @@
                     "y_pos": -501.96429313582985
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220323/e01bf2dd86cd24121b1f09285f7304d8_2830373650601356948.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/e01bf2dd86cd24121b1f09285f7304d8_2830373650601356948.png"
         },
         "127": {
             "name": "Mora",
@@ -2871,7 +2971,7 @@
                     "y_pos": -56.85099187009155
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/a90a60e07a1a942bf89fbb071efacf78_6801467019841823806.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/c56fdd1dff7599590b215122dfb67514_8967345652730584566.png"
         },
         "169": {
             "name": "Geovishap",
@@ -2898,7 +2998,7 @@
                     "y_pos": -516.101036729154
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210428/7395724ddaff18a17da140bbc03243b4_7346214567256973914.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/3a602ef72fe5e7b5c6a578ab2b221a61_8599296668138501956.png"
         },
         "172": {
             "name": "Iron Chunk",
@@ -3055,7 +3155,7 @@
                     "y_pos": -320.9054077320775
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/9cee1c61743200ad2e5cfcb0ab74fe2e_3187639542103597221.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/9cee1c61743200ad2e5cfcb0ab74fe2e_244390305278728347.png"
         },
         "195": {
             "name": "Luminescent Spine",
@@ -3237,7 +3337,7 @@
                     "y_pos": -117.5
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/86fc768c90691a768b983487ee8fd27d_2443134744517808602.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/68c10379d6ba6e79e208e344446c7768_6176828316143514772.png"
         },
         "210": {
             "name": "Fatui Mirror Maiden",
@@ -3254,7 +3354,7 @@
                     "y_pos": -340.2496081164793
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/596c028652f0797454c80c8c2e57856f_2639242042836509216.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/596c028652f0797454c80c8c2e57856f_2639242042836509216.png"
         },
         "215": {
             "name": "Ruin Sentinel",
@@ -3321,7 +3421,7 @@
                     "y_pos": 423.59801879359657
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/804e80a2ad9a790c2b07cfad29af9121_8586441830330297038.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/d5615db318276d109561c0ac0f7959e3_2519597510484609283.png"
         },
         "221": {
             "name": "Fungi",
@@ -3453,7 +3553,7 @@
                     "y_pos": 417.5512973544455
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/4a8c1a3622c155a3e29c438b4b21e6d9_8497499512663683568.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/4a8c1a3622c155a3e29c438b4b21e6d9_5478740390101492054.png"
         },
         "224": {
             "name": "Ores",
@@ -3553,7 +3653,7 @@
             "icon": "https://act.hoyoverse.com/map_manage/20220826/9cee1c61743200ad2e5cfcb0ab74fe2e_4171622996361539631.png"
         },
         "231": {
-            "name": "Light-Up Tile Puzzle\n",
+            "name": "Light-Up Tile Puzzle",
             "clear_name": "LightUpTilePuzzle",
             "points": [
                 {
@@ -3562,7 +3662,7 @@
                     "y_pos": 426.5
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/50b2473f03dabd7c69ef2a4f4f2f2219_8669391996585562169.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/cca73ff542eb5d96fe631aad5df42f41_4837142277292180726.png"
         },
         "233": {
             "name": "Medaka",
@@ -3574,7 +3674,7 @@
                     "y_pos": -171
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220824/c73727c8c2154882fec62e362a5cefc2_5995468836888288778.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/c73727c8c2154882fec62e362a5cefc2_881834034736659587.png"
         },
         "235": {
             "name": "Sweet-Flower Medaka",
@@ -3586,7 +3686,7 @@
                     "y_pos": 92.25
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/39e4e58062fc81109a2284a0f7dba7e7_4836412121549584085.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/39e4e58062fc81109a2284a0f7dba7e7_8964791849987182837.png"
         },
         "237": {
             "name": "Dawncatcher",
@@ -3598,7 +3698,7 @@
                     "y_pos": 92.25
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220824/707349e7b91298d9cda04d72411ac518_6268973006179235717.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/707349e7b91298d9cda04d72411ac518_8683061829125421936.png"
         },
         "238": {
             "name": "Crystalfish",
@@ -3610,7 +3710,7 @@
                     "y_pos": 92.25
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/da1383e42e316097e81720215233b21d_1998660093109411895.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/da1383e42e316097e81720215233b21d_9205406583193138517.png"
         },
         "240": {
             "name": "Betta",
@@ -3622,7 +3722,7 @@
                     "y_pos": -171
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/ca977ea3a679616cc5199fc28adffedc_3480458975965199093.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/ca977ea3a679616cc5199fc28adffedc_6485688839503590856.png"
         },
         "242": {
             "name": "Akai Maou",
@@ -3639,7 +3739,7 @@
                     "y_pos": -171
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220824/d79d8099ab913f885308563ed6cc69a6_5248974579798155262.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/d79d8099ab913f885308563ed6cc69a6_4269394419088844613.png"
         },
         "246": {
             "name": "Brown Shirakodai",
@@ -3651,7 +3751,7 @@
                     "y_pos": -171
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/652e137f1b983b8b2e79b8a99c89d9ee_6350020359542918263.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/652e137f1b983b8b2e79b8a99c89d9ee_1087966765173339890.png"
         },
         "251": {
             "name": "Pufferfish",
@@ -3663,7 +3763,7 @@
                     "y_pos": 92.25
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/4d081837e56ebd43c0879666130dfebe_1996513933409704189.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/4d081837e56ebd43c0879666130dfebe_3502137763619263629.png"
         },
         "252": {
             "name": "Bitter Pufferfish",
@@ -3675,7 +3775,7 @@
                     "y_pos": -171
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20210729/29dbdc379c07bbb0319b19bcb5146d7d_7008418784153823631.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/29dbdc379c07bbb0319b19bcb5146d7d_7008418784153823631.png"
         },
         "261": {
             "name": "Fishing Point",
@@ -3724,7 +3824,7 @@
                     "y_pos": 338.6648830914605
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220903/77c551e9d59042686c274c95ccbf61fa_6488691826595353793.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/af5ab7b5b442decc05a6c65603289c5e_4343998609146419401.png"
         },
         "285": {
             "name": "Red Horned Lizard",
@@ -3751,7 +3851,7 @@
                     "y_pos": 9.464294454378205
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/503ba3861998de072e10d086b214d252_2150181738238989287.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/64721a62ad0bd3c87723b80296ba4216_7457610476030742958.png"
         },
         "296": {
             "name": "Blue Horned Lizard",
@@ -3994,7 +4094,7 @@
                     "y_pos": 337.9610786367175
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20211220/2f65ec2b056435291f0e36dbd9034eef_859534947571588850.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/e25ba3df7ca041e75737523924f0a186_3062747161673421897.png"
         },
         "344": {
             "name": "The Black Serpents",
@@ -4066,7 +4166,7 @@
                     "y_pos": -110.5
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220609/1d9c7154a354efd5c37d635619820b20_1895337279536858608.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/b40cbfe1ab36e97ba81f789eb2da1481_4009365023523592003.png"
         },
         "350": {
             "name": "Lucklight Fly",
@@ -4292,7 +4392,7 @@
                     "y_pos": -120.25
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220315/7811156993c81de7018658749e4ad9f1_6324008873758288020.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/7811156993c81de7018658749e4ad9f1_7778789128293841912.png"
         },
         "355": {
             "name": "Starshroom",
@@ -4639,7 +4739,7 @@
                     "y_pos": -179.57143412694109
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220928/9d8bbf1a80d407c82de17042ba2869a7_6794176729743334303.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/d2a186bffbaa23b9dff4cd0b17dda094_3704907944924656093.png"
         },
         "357": {
             "name": "Lumenspar",
@@ -5061,7 +5161,7 @@
                     "y_pos": -473
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220310/e4fab80370548e0ddce4db0e3e1be4dc_1266036035787531353.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221111/8ce45ebc5957dc0fcb53cd6bca98e3d1_1584874857143365555.png"
         },
         "358": {
             "name": "Lumenlamp",
@@ -5223,7 +5323,7 @@
                     "y_pos": -380.75
                 }
             ],
-            "icon": "https://upload-static.hoyoverse.com/map_manage/20220316/199be36c70a3befa17ee7055371db2f9_2964552706133707771.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221125/309da7c0cae2168535959be3ed0a2dfe_7618879842734350458.png"
         },
         "359": {
             "name": "Rock Pile",
@@ -5370,7 +5470,7 @@
                     "y_pos": 154.5
                 }
             ],
-            "icon": "https://act.hoyoverse.com/map_manage/20220930/67f677c001b0f43c749f493a1e66ffbb_4133034866915659827.png"
+            "icon": "https://act.hoyoverse.com/map_manage/20221124/990f7a4c4c5b74900cf22674c0d57c18_8418225548325827077.png"
         }
     },
     "categories": [
@@ -5389,33 +5489,25 @@
         },
         {
             "id": 4,
-            "name": "Oculi",
+            "name": "Special Items",
             "children": [
                 5,
                 6,
                 141,
                 182,
+                184,
                 194,
                 320,
                 325,
                 326,
                 327,
                 328,
+                356,
                 357,
                 362,
                 383,
                 403,
                 429
-            ]
-        },
-        {
-            "id": 7,
-            "name": "Shrines of Depths",
-            "children": [
-                8,
-                9,
-                212,
-                411
             ]
         },
         {
@@ -5465,42 +5557,8 @@
                 139,
                 142,
                 172,
-                202
-            ]
-        },
-        {
-            "id": 12,
-            "name": "Enemies (Elite)",
-            "children": [
-                19,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                49,
-                53,
-                149,
-                150,
-                151,
-                152,
-                169,
-                206,
-                207,
-                210,
-                214,
-                215,
-                255,
-                257,
-                265,
-                337,
-                344,
-                388,
-                434
+                202,
+                224
             ]
         },
         {
@@ -5515,58 +5573,125 @@
             ]
         },
         {
-            "id": 14,
-            "name": "Puzzles",
-            "children": [
-                76,
-                155,
-                156,
-                159,
-                191,
-                193,
-                259,
-                260,
-                264,
-                321,
-                330,
-                331,
-                332,
-                346,
-                349,
-                361
-            ]
-        },
-        {
             "id": 50,
-            "name": "Enemies (Common)",
+            "name": "Enemies",
             "children": [
+                24,
+                25,
+                26,
+                27,
+                28,
                 47,
                 48,
+                49,
+                53,
                 54,
                 55,
                 56,
                 57,
                 58,
                 59,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                149,
+                150,
+                151,
+                157,
+                169,
+                181,
+                183,
+                203,
+                204,
                 209,
+                210,
                 213,
+                214,
+                215,
                 221,
                 222,
                 229,
+                257,
+                262,
+                263,
+                265,
+                318,
+                333,
+                337,
+                344,
                 345,
-                389
+                352,
+                388,
+                389,
+                390,
+                391,
+                432,
+                433,
+                434,
+                452
             ]
         },
         {
             "id": 51,
-            "name": "World Quests",
+            "name": "Experience",
             "children": [
-                52
+                52,
+                85,
+                87,
+                111,
+                112,
+                114,
+                127,
+                128,
+                129,
+                130,
+                144,
+                145,
+                146,
+                147,
+                155,
+                156,
+                159,
+                171,
+                208,
+                223,
+                253,
+                260,
+                264,
+                267,
+                268,
+                317,
+                321,
+                322,
+                323,
+                324,
+                329,
+                330,
+                331,
+                332,
+                334,
+                347,
+                349,
+                358,
+                359,
+                361,
+                395,
+                404,
+                406,
+                409,
+                415,
+                416,
+                424,
+                439
             ]
         },
         {
             "id": 60,
-            "name": "Materials",
+            "name": "Inventory / Materials",
             "children": [
                 61,
                 62,
@@ -5597,7 +5722,6 @@
                 166,
                 167,
                 168,
-                184,
                 195,
                 200,
                 201,
@@ -5605,7 +5729,6 @@
                 342,
                 343,
                 355,
-                356,
                 360,
                 384,
                 385,
@@ -5615,111 +5738,15 @@
             ]
         },
         {
-            "id": 84,
-            "name": "Geography",
-            "children": [
-                85
-            ]
-        },
-        {
-            "id": 86,
-            "name": "Enemies (Easter Egg)",
-            "children": [
-                87
-            ]
-        },
-        {
-            "id": 88,
-            "name": "Events",
-            "children": []
-        },
-        {
             "id": 110,
             "name": "Books/Recipes",
-            "children": [
-                111,
-                112
-            ]
-        },
-        {
-            "id": 113,
-            "name": "Investigation",
-            "children": [
-                114,
-                127,
-                128,
-                129,
-                130,
-                223,
-                224,
-                256,
-                329,
-                359,
-                439
-            ]
-        },
-        {
-            "id": 131,
-            "name": "Enemies (Boss)",
-            "children": [
-                132,
-                133,
-                134,
-                135,
-                136,
-                137,
-                138,
-                157,
-                181,
-                183,
-                203,
-                204,
-                262,
-                263,
-                318,
-                333,
-                352,
-                390,
-                391,
-                432,
-                433,
-                452
-            ]
+            "children": []
         },
         {
             "id": 143,
             "name": "Guide",
             "children": [
-                144,
-                145,
-                146,
-                147,
-                208,
-                253,
-                267,
-                268,
-                322,
-                323,
-                324,
-                334,
-                347,
-                358,
-                404,
-                405,
-                406,
-                409,
-                415,
-                416
-            ]
-        },
-        {
-            "id": 170,
-            "name": "NPC",
-            "children": [
-                171,
-                225,
-                226,
-                270
+                405
             ]
         },
         {
@@ -5748,6 +5775,8 @@
             "id": 186,
             "name": "Puzzle Chest",
             "children": [
+                8,
+                9,
                 18,
                 64,
                 65,
@@ -5761,6 +5790,7 @@
                 73,
                 74,
                 75,
+                76,
                 77,
                 79,
                 83,
@@ -5769,10 +5799,15 @@
                 188,
                 189,
                 205,
+                212,
                 216,
+                225,
+                226,
                 230,
                 231,
                 258,
+                259,
+                270,
                 341,
                 353,
                 354,
@@ -5789,6 +5824,7 @@
                 398,
                 399,
                 407,
+                411,
                 444,
                 445,
                 446,
@@ -5899,14 +5935,6 @@
                 316,
                 410,
                 414
-            ]
-        },
-        {
-            "id": 427,
-            "name": "Aranara",
-            "children": [
-                395,
-                424
             ]
         }
     ]
