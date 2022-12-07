@@ -285,6 +285,9 @@
     <ClInclude Include="src\user\cheat\teleport\QuestTeleport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\user\cheat\misc\RSAPatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\Ruda-Bold.ttf" />
@@ -527,6 +530,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\user\cheat\teleport\QuestTeleport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\user\cheat\misc\RSAPatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -3516,7 +3522,7 @@
     <Image Include="res\iconsHD\PrimalConstruct.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\iconsHD\Redcrest.png">
+    <Image Include="res\iconsHD\HennaBerry.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\iconsHD\Scarab.png">
@@ -3534,7 +3540,7 @@
     <Image Include="res\icons\PrimalConstruct.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\icons\Redcrest.png">
+    <Image Include="res\icons\HennaBerry.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icons\Scarab.png">
@@ -3670,6 +3676,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="anim\akebi_bounce.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Layla.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Faruzan.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Wander.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\InteractionRewards.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\InteractionRewards.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

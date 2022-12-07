@@ -295,7 +295,7 @@ namespace cheat::game::filters
 		extern SimpleFilter SumeruRose;
 		extern SimpleFilter Viparyas;
 		extern SimpleFilter ZaytunPeach;
-		extern SimpleFilter Redcrest;
+		extern SimpleFilter HennaBerry;
 		extern SimpleFilter AjilenakhNut;
 	}
 

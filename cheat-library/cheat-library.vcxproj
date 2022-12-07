@@ -18,6 +18,7 @@
     <ClInclude Include="src\user\cheat\game\xxHash.hpp" />
     <ClInclude Include="src\user\cheat\misc\About.h" />
     <ClInclude Include="src\user\cheat\misc\BlockWindSeed.h" />
+    <ClInclude Include="src\user\cheat\misc\RSAPatch.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipeModifyData.h" />
     <ClInclude Include="src\user\cheat\misc\sniffer\pipe\messages\PipePacketData.h" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="src\user\cheat\misc\About.cpp" />
     <ClCompile Include="src\user\cheat\misc\BlockWindSeed.cpp" />
+    <ClCompile Include="src\user\cheat\misc\RSAPatch.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeModifyData.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipePacketData.cpp" />
@@ -337,6 +339,7 @@
     <Image Include="res\iconsHD\EyeofPerception.png" />
     <Image Include="res\iconsHD\FadingTwilight.png" />
     <Image Include="res\iconsHD\Falcon.png" />
+    <Image Include="res\iconsHD\Faruzan.png" />
     <Image Include="res\iconsHD\FavoniusCodex.png" />
     <Image Include="res\iconsHD\FavoniusGreatsword.png" />
     <Image Include="res\iconsHD\FavoniusLance.png" />
@@ -494,6 +497,7 @@
     <Image Include="res\iconsHD\IllusionMural.png" />
     <Image Include="res\iconsHD\ImagingConch.png" />
     <Image Include="res\iconsHD\InazumaShrineofDepths.png" />
+    <Image Include="res\iconsHD\InteractionRewards.png" />
     <Image Include="res\iconsHD\Inu.png" />
     <Image Include="res\iconsHD\IronChunk.png" />
     <Image Include="res\iconsHD\IronPoint.png" />
@@ -530,6 +534,7 @@
     <Image Include="res\iconsHD\KukiShinobu.png" />
     <Image Include="res\iconsHD\LargeRockPile.png" />
     <Image Include="res\iconsHD\LavenderMelon.png" />
+    <Image Include="res\iconsHD\Layla.png" />
     <Image Include="res\iconsHD\LazuriteAxeMarlin.png" />
     <Image Include="res\iconsHD\LightningStrikeProbe.png" />
     <Image Include="res\iconsHD\LightUpTilePuzzle.png" />
@@ -653,7 +658,7 @@
     <Image Include="res\iconsHD\Razor.png" />
     <Image Include="res\iconsHD\Recipe.png" />
     <Image Include="res\iconsHD\RecurveBow.png" />
-    <Image Include="res\iconsHD\Redcrest.png" />
+    <Image Include="res\iconsHD\HennaBerry.png" />
     <Image Include="res\iconsHD\RedFinnedUnagi.png" />
     <Image Include="res\iconsHD\RedHornedLizard.png" />
     <Image Include="res\iconsHD\RedhornStonethresher.png" />
@@ -827,6 +832,7 @@
     <Image Include="res\iconsHD\Viparyas.png" />
     <Image Include="res\iconsHD\VortexVanquisher.png" />
     <Image Include="res\iconsHD\Vulture.png" />
+    <Image Include="res\iconsHD\Wander.png" />
     <Image Include="res\iconsHD\WanderingEvenstar.png" />
     <Image Include="res\iconsHD\WarmingSeelie.png" />
     <Image Include="res\iconsHD\WasterGreatsword.png" />
@@ -1040,6 +1046,7 @@
     <Image Include="res\icons\IllusionMural.png" />
     <Image Include="res\icons\ImagingConch.png" />
     <Image Include="res\icons\InazumaShrineofDepths.png" />
+    <Image Include="res\icons\InteractionRewards.png" />
     <Image Include="res\icons\Inu.png" />
     <Image Include="res\icons\IronChunk.png" />
     <Image Include="res\icons\ItemDrops.png" />
@@ -1143,7 +1150,7 @@
     <Image Include="res\icons\RaimeiAngelfish.png" />
     <Image Include="res\icons\RawMeat.png" />
     <Image Include="res\icons\Recipe.png" />
-    <Image Include="res\icons\Redcrest.png" />
+    <Image Include="res\icons\HennaBerry.png" />
     <Image Include="res\icons\RedFinnedUnagi.png" />
     <Image Include="res\icons\RedHornedLizard.png" />
     <Image Include="res\icons\RedTailedLizard.png" />

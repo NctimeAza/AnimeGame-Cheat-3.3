@@ -3464,7 +3464,7 @@ namespace app {
         struct String* string_15;
     };
 
-    struct GKOJAICIOPA {
+    struct PlayerLoginReq {
         void* klass;
         MonitorData* monitor;
         struct PlayerLoginReq__Fields fields;
@@ -3835,6 +3835,14 @@ namespace app {
         struct Component_1__Fields fields;
     };
 
+    struct Component_1__Array {
+        struct Component_1__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        struct Component_1* vector[32];
+    };
+
     struct Transform__Fields {
         struct Component_1__Fields _;
     };
@@ -4167,109 +4175,113 @@ namespace app {
 
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
-        struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic; //0x10
-        struct Config_ConfigEntity* jsonConfig; //0x18
-        struct Config_EntityExcelConfig* excelConfig; //0x20
-        uint32_t _runtimeID_k__BackingField; //0x28
-        uint32_t _preRuntimeID_k__BackingField; //0x2c
-        uint32_t _configID_k__BackingField; //0x30
-        uint32_t _questID_k__BackingField; //0x34
-        uint32_t _switchToQuestID_k__BackingField; //0x38
-        struct SimpleSafeUInt32 campID; //0x3c
-        bool isDestroied; //0x40
-        bool _isToBeRemoved; //0x41
-        bool isInCutscene; //0x42
-        bool isDontDestroyGameObject; //0x43
-        struct String* alias; //0x48
-        int32_t order; //0x50
-        bool isForceClientSynced; //0x54
-        int32_t HHCOJOALGNJ; //0x58
-        bool IJMFPLJHCPJ; //0x5c
-        struct ComponentManager* _logicComponentManager; //0x60
-        struct ComponentManager* _visualComponentManager; //0x68
-        bool _isInited; //0x70
-        struct Action_1_EvtEntityTimeScaleChange_* _onLevelTimeScaleChange; //0x78
-        struct Action* _syncAnimatorSpeed; //0x80
-        struct Action* _onTimeScaleChangedByAbility; //0x88
-        struct EntityQueryIndex* _queryIndex; //0x90
-        struct AbilityComponentProxy* _abilityProxy; //0x98
-        struct TokenManager* _tokenMgr; //0xa0
-        VisionType__Enum _disappearVisionType_k__BackingField; //0xa8
-        bool _MMIHONCELFL_k__BackingField; //0xac
-        bool PLEPGEFAIND; //0xad
-        bool _GDKDNDAGBFB_k__BackingField; //0xae
-        bool PBKECDHGBIN; //0xaf
-        float OACIBKKCGCO; //0xb0
-        bool HBECPLJFPOI; //0xb4
-        struct Action_1_BaseEntity_* onComponentInitPostCallback; //0xb8
-        struct Action_1_BaseEntity_* onEntityReadyPreCallback; //0xc0
-        struct Action_1_BaseEntity_* onEntityReadyBeforePostCallback; //0xc8
-        bool _IsTickable; //0xd0
-        bool _forceTickVisualComMgrIfDisable_k__BackingField; // 0xd1
-        bool _logicHasAnyTickComponent_k__BackingField; // 0xd2
-        bool _visualHasAnyTickComponent_k__BackingField; // 0xd3
-        bool _logicHasAnyLateTickComponent_k__BackingField; // 0xd4
-        bool _visualHasAnyLateTickComponent_k__BackingField; // 0xd5
-        bool isLightInitializationEntity; //0xd6
-        bool _canBeDestroied_k__BackingField; //0xd7
-        bool _isDestroying; //0xd8
-        struct Action_1_BaseEntity_* onEntityRemovedCallback; //0xe0
-        struct Action_1_BaseEntity_* onDestroyCallback; //0xe8
-        bool _isAlive; //0xf0
-        struct Action_1_BaseEntity_* onSetAliveFalseCallback; //0xf8
-        bool _isActive; //0x100
-        struct Action_1_BaseEntity_* preAnimatorInitUpdateCallback; //0x108
-        bool _needSetActiveOnEntityReady; //0x110
-        bool _setActiveOnEntityReady; //0x111
-        struct Action_2_BaseEntity_Boolean_* onSetActiveCallback; //0x118
-        bool _withGameObjWhenSetActive; //0x120
-        bool _isLightActive; //0x121
-        bool _playDefault; //0x122
-        bool _deepIfInactive; //0x123
-        bool _forceSkipAnimatorUpdate; //0x124
-        bool _hasActiveInited; //0x125
-        bool _duringSetComponentsEnabledOnSetActive_k__BackingField; //0x12c
-        float _lastTimeScale; //0x128
-        float _timeScale; //0x12c
-        float GALBNKDJLPA; //0x130
-        bool ignoreLevelTimeScale; //0x134
-        struct FixedStack_1_System_Single_* _timeScaleStack; //0x138
-        struct LCAbilityState* _lcAblityState; //0x140
-    	uint32_t _nextComponentID; //0x148
-        EntityType__Enum_1 entityType;//i've gone completely mental 0x14c
-        bool _isAuthority; //0x150
-        uint32_t authorityPeerId; //0x154
-        bool OMMGADFPHPB; //0x158
-        bool OBBDCKGMCMI; //0x159
-        struct HashList_1_BaseComponent_* _componentsForEntityTickManager; //0x160
-        float _lastTickTime_k__BackingField; //0x168
-        struct List_1_BaseEntity_BaseEntity_ComponentInitNotifyData_* _notifyListOnComponentInit; //0x170
-        struct Dictionary_2_System_String_DynamicCollisionInfo_* _collisionTagDic; //0x178
-        bool _needSafeEntityInit; //0x180
-        struct List_1_EntitySafeCmd_* _entitySafeCmds; //0x188
-        struct Vector3 _sharedPosition; //0x190
-        struct Vector3 _sharedForward; //0x19c
-        struct MEventDispatcher* _eventDispatcher; //0x1a8
-        struct Func_1_Boolean_* onShouldNoPause; //0x1c0
-        struct Action_3_UnityEngine_TickState_Boolean_Boolean_* onAnimatorTickStateChange; //0x1b8
-        struct HashList_1_IRenderable_* _extraRenderers; //0x1c0
-        struct HashSet_1_IRequestOwnerEntityNoPauseTask_* _noPauseTaskRequests; //0x1c8
-        bool MJOFOGPHHLG; //0x1d0
-        bool LOMGNEIMJKI; //0x1d1
-        TickState__Enum _currentAnimatorTickState; //0x1d4
-        struct EntityTickBalanceProxy* _tickBalanceProxy; //0x1d8
-        bool IIFCMNHLCHL; //0x1e0
-        bool _bIgnoreIntervalTick_k__BackingField; //0x1e1
-        bool _AFKDABPOMLB_k__BackingField; //0x1e2
-        float __fullTickSqrMag_k__BackingField; //0x1e4
-        int32_t _greaterToDisableInterval_k__BackingField; //0x1e8
-        struct Func_1_Single_* _getBalanceTickDeltaTimeHandler; //0x1f0
-        struct Func_1_Boolean_* _getRequestPauseHandler; //0x1f8
-        uint64_t animatorConfigPath; //0x200
-        struct Config_ConfigAnimator* _animatorConfig; //0x208
-        struct AnimatorOverrideController* _animatorOverrideController; //0x210
-        int32_t _lastSetOverrideAnimeFrame; //0x218
-        struct AnimatorOverrideController* _originAnimatorController; //0x220
+        struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
+        struct Config_ConfigEntity* jsonConfig;
+        struct Config_EntityExcelConfig* excelConfig;
+        uint32_t _runtimeID_k__BackingField;
+        uint32_t _preRuntimeID_k__BackingField;
+        uint32_t _configID_k__BackingField;
+        uint32_t _questID_k__BackingField;
+        uint32_t _switchToQuestID_k__BackingField;
+        struct SimpleSafeUInt32 campID;
+        bool isDestroied;
+        bool _isToBeRemoved;
+        bool isInCutscene;
+        bool isDontDestroyGameObject;
+        struct String* alias;
+        int32_t order;
+        bool isForceClientSynced;
+        int32_t HHCOJOALGNJ;
+        bool IJMFPLJHCPJ;
+        struct ComponentManager* _logicComponentManager;
+        struct ComponentManager* _visualComponentManager;
+        bool _isInited;
+        bool FECILNEAGPK;
+        struct Action_1_EvtEntityTimeScaleChange_* _onLevelTimeScaleChange;
+        struct Action* _syncAnimatorSpeed;
+        struct Action* _onTimeScaleChangedByAbility;
+        struct EntityQueryIndex* _queryIndex;
+        struct AbilityComponentProxy* _abilityProxy;
+        struct TokenManager* _tokenMgr;
+        VisionType__Enum _disappearVisionType_k__BackingField;
+        bool _MMIHONCELFL_k__BackingField;
+        MoleMole_BaseEntity_MoleMole_BaseEntity_ReInitReason__Enum GDPCPCNFNGN;
+        bool CELCEPAEEOI;
+        bool NAPKKPCLEJL;
+        bool _GDKDNDAGBFB_k__BackingField;
+        bool PBKECDHGBIN;
+        float OACIBKKCGCO;
+        bool HBECPLJFPOI;
+        struct Action_1_BaseEntity_* onComponentInitPostCallback;
+        struct Action_1_BaseEntity_* onEntityReadyPreCallback;
+        struct Action_1_BaseEntity_* onEntityReadyBeforePostCallback;
+        bool _IsTickable;
+        bool _forceTickVisualComMgrIfDisable_k__BackingField;
+        bool _logicHasAnyTickComponent_k__BackingField;
+        bool _visualHasAnyTickComponent_k__BackingField;
+        bool _logicHasAnyLateTickComponent_k__BackingField;
+        bool _visualHasAnyLateTickComponent_k__BackingField;
+        bool isLightInitializationEntity;
+        bool _canBeDestroied_k__BackingField;
+        bool _isDestroying;
+        struct Action_1_BaseEntity_* onEntityRemovedCallback;
+        struct Action_1_BaseEntity_* onDestroyCallback;
+        bool _isAlive;
+        struct Action_1_BaseEntity_* onSetAliveFalseCallback;
+        bool _isActive;
+        struct Action_1_BaseEntity_* preAnimatorInitUpdateCallback;
+        struct Action* KCJIPIAHCGM;
+        bool _needSetActiveOnEntityReady;
+        bool _setActiveOnEntityReady;
+        struct Action_2_BaseEntity_Boolean_* onSetActiveCallback;
+        bool _withGameObjWhenSetActive;
+        bool _isLightActive;
+        bool _playDefault;
+        bool _deepIfInactive;
+        bool _forceSkipAnimatorUpdate;
+        bool _hasActiveInited;
+        bool _duringSetComponentsEnabledOnSetActive_k__BackingField;
+        float _lastTimeScale;
+        float _timeScale;
+        float GALBNKDJLPA;
+        bool ignoreLevelTimeScale;
+        struct FixedStack_1_System_Single_* _timeScaleStack;
+        struct LCAbilityState* _lcAblityState;
+        uint32_t _nextComponentID;
+        EntityType__Enum_1 entityType;//i've gone completely mental
+        bool _isAuthority;
+        uint32_t authorityPeerId;
+        bool OMMGADFPHPB;
+        bool OBBDCKGMCMI;
+        struct HashList_1_BaseComponent_* _componentsForEntityTickManager;
+        float _lastTickTime_k__BackingField;
+        struct List_1_BaseEntity_BaseEntity_ComponentInitNotifyData_* _notifyListOnComponentInit;
+        struct Dictionary_2_System_String_DynamicCollisionInfo_* _collisionTagDic;
+        bool _needSafeEntityInit;
+        struct List_1_EntitySafeCmd_* _entitySafeCmds;
+        struct Vector3 _sharedPosition;
+        struct Vector3 _sharedForward;
+        struct MEventDispatcher* _eventDispatcher;
+        struct Func_1_Boolean_* onShouldNoPause;
+        struct Action_3_UnityEngine_TickState_Boolean_Boolean_* onAnimatorTickStateChange;
+        struct HashList_1_IRenderable_* _extraRenderers;
+        struct HashSet_1_IRequestOwnerEntityNoPauseTask_* _noPauseTaskRequests;
+        bool MJOFOGPHHLG;
+        bool LOMGNEIMJKI;
+        TickState__Enum _currentAnimatorTickState;
+        struct EntityTickBalanceProxy* _tickBalanceProxy;
+        bool IIFCMNHLCHL;
+        bool _bIgnoreIntervalTick_k__BackingField;
+        bool _AFKDABPOMLB_k__BackingField;
+        float __fullTickSqrMag_k__BackingField;
+        int32_t _greaterToDisableInterval_k__BackingField;
+        struct Func_1_Single_* _getBalanceTickDeltaTimeHandler;
+        struct Func_1_Boolean_* _getRequestPauseHandler;
+        uint64_t animatorConfigPath;
+        struct Config_ConfigAnimator* _animatorConfig;
+        struct AnimatorOverrideController* _animatorOverrideController;
+        int32_t _lastSetOverrideAnimeFrame;
+        struct AnimatorOverrideController* _originAnimatorController;
         struct Dictionary_2_System_String_BaseEntity_BaseEntity_AnimeLoadInfo_* _curLoadedAnime;
         struct RecycledLinkedList_1_BaseEntity_BaseEntity_AnimeLoadInfo_* _needFlushResetAnimes;
         int32_t _curForceCacheFreeStyleId;
@@ -5207,21 +5219,21 @@ namespace app {
     struct PlayerEnterSceneNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
         uint32_t prevSceneId_;
-        uint32_t dungeonId_;
         bool isSkipUi_;
+        uint32_t worldLevel_;
+    	struct Vector_1* pos_;
+        bool isFirstLoginEnterScene_;
+        uint32_t enterReason_;
+        uint32_t enterSceneToken_;
+        uint32_t dungeonId_;
         uint32_t sceneId_;
         EnterType__Enum type_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* sceneTagIdList_;
         uint64_t sceneBeginTime_;
-        uint32_t worldLevel_;
         uint32_t worldType_;
         uint32_t targetUid_;
-        bool isFirstLoginEnterScene_;
-        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* sceneTagIdList_;
-        struct String* sceneTransaction_;
         struct Vector_1* prevPos_;
-        uint32_t enterReason_;
-        struct Vector_1* pos_;
-        uint32_t enterSceneToken_;
+        struct String* sceneTransaction_;
     };
 
     struct PlayerEnterSceneNotify {
@@ -5292,837 +5304,1023 @@ namespace app {
         ElementReactionNotify = 0x00000013,
         OnApplicationFocus = 0x00000014,
         AvatarSkillInfoUpdate = 0x00000015,
-        AddMiniMapMark = 0x00000016,
-        MapNotify = 0x00000017,
-        MapToggle = 0x00000018,
-        EnterArea = 0x00000019,
-        EnterSubArea = 0x0000001a,
-        ExitSubArea = 0x0000001b,
-        EnterErosionArea = 0x0000001c,
-        MapMarkChanged = 0x0000001d,
-        MapMarkMoved = 0x0000001e,
-        MapMarkDailyTaskChanged = 0x0000001f,
-        MapMarkDungeonEntryExploreChanged = 0x00000020,
-        AreaExploreUpdated = 0x00000021,
-        AreaUnlcoked = 0x00000022,
-        GuidePointAppear = 0x00000023,
-        GuidePointDisappear = 0x00000024,
-        NavigationPointAppear = 0x00000025,
-        NavigationPointDisappear = 0x00000026,
-        NavigationPointRefresh = 0x00000027,
-        NavigationShowGuideTips = 0x00000028,
-        PlayMarkUnlockEffect = 0x00000029,
-        UnlockTransPoint = 0x0000002a,
-        UnlockScenePoint = 0x0000002b,
-        AddGadgetIndicator = 0x0000002c,
-        RemoveGadgetIndicator = 0x0000002d,
-        SetGadgetIndicatorCountDown = 0x0000002e,
-        MapMarkClicked = 0x0000002f,
-        MapMarkClickNeared = 0x00000030,
-        RefreshMapRewardTips = 0x00000031,
-        RefreshMapMarkTips = 0x00000032,
-        MapAreaUpdated = 0x00000033,
-        PlaceNameUpdated = 0x00000034,
-        MarkManagerReady = 0x00000035,
-        DungeonEntryInfo = 0x00000036,
-        DungeonEntryAppeared = 0x00000037,
-        DungeonEntryDisappeared = 0x00000038,
-        DungeonPlayerDie = 0x00000039,
-        DungeonSettled = 0x0000003a,
-        DungeonGetReward = 0x0000003b,
-        GetDailyDungeonEntryInfo = 0x0000003c,
-        GetDungeonEntryExploreCondition = 0x0000003d,
-        GeneralInteeCreate = 0x0000003e,
-        GeneralInteeCommand = 0x0000003f,
-        RegisterUICombatBar = 0x00000040,
-        UnregisterUICombatBar = 0x00000041,
-        RefreshUICombatBars = 0x00000042,
-        ShowUICombatBarSpark = 0x00000043,
-        ShowUICombatBarCharge = 0x00000044,
-        ShowUICombatBarFireEffect = 0x00000045,
-        ShowShakeOff = 0x00000046,
-        InteractionUITrigger = 0x00000047,
-        InteractionUIClose = 0x00000048,
-        InteractionRealStart = 0x00000049,
-        GroupLinkUpdated = 0x0000004a,
-        ChallengeBegin = 0x0000004b,
-        ChallengeUpdated = 0x0000004c,
-        ChallengeFailed = 0x0000004d,
-        ChallengeCompleted = 0x0000004e,
-        ChallengeAddSub = 0x0000004f,
-        ChallengeSubFinish = 0x00000050,
-        ChallengeSubFail = 0x00000051,
-        DialogSelectNotify = 0x00000052,
-        DialogSelectFinishNotify = 0x00000053,
-        DialogSelectItemNotify = 0x00000054,
-        DialogSelectItemTimeOut = 0x00000055,
-        AutoTalkDialogFinish = 0x00000056,
-        ChangeAutoTalk = 0x00000057,
-        CoopSelectNotify = 0x00000058,
-        CurrCoopConfidenceValueChanged = 0x00000059,
-        CurrCoopTemperamentValueChanged = 0x0000005a,
-        CoopTemperamentSelect = 0x0000005b,
-        CoopTakeChapterReward = 0x0000005c,
-        CoopUnlockChapter = 0x0000005d,
-        CoopStartPointFromPage = 0x0000005e,
-        CoopCancelQuest = 0x0000005f,
-        CoopUIRefresh = 0x00000060,
-        CoopChapterViewed = 0x00000061,
-        CoopStartFirstPoint = 0x00000062,
-        CoopShowDefeatDialog = 0x00000063,
-        CoopTryStartPoint = 0x00000064,
-        CoopStartPointFailed = 0x00000065,
-        CoopDefeatNotify = 0x00000066,
-        QuestDialogToggle = 0x00000067,
-        QuestBookUpdate = 0x00000068,
-        QuestBookSelectItem = 0x00000069,
-        AddQuestHint = 0x0000006a,
-        QuestTalkHistory = 0x0000006b,
-        PaimenNavigationEnabled = 0x0000006c,
-        PaimenNavigationFailed = 0x0000006d,
-        PaimenNavigationAlreadyInArea = 0x0000006e,
-        RemindQuest = 0x0000006f,
-        BindTransButton = 0x00000070,
-        QuestProgressHint = 0x00000071,
-        QuestLackHint = 0x00000072,
-        ActiveMainQuestDeleted = 0x00000073,
-        QuestStateUpdated = 0x00000074,
-        MainQuestStateUpdated = 0x00000075,
-        QuestTalkFinished = 0x00000076,
-        QuestGlobalVarUpdate = 0x00000077,
-        QuestTakePhotograph = 0x00000078,
-        BagWeightUIRefresh = 0x00000079,
-        BagDialogToggle = 0x0000007a,
-        BagSlotUpdate = 0x0000007b,
-        BagItemUsed = 0x0000007c,
-        BagItemDrop = 0x0000007d,
-        BagAddChest = 0x0000007e,
-        BagAddWidget = 0x0000007f,
-        BagCombinableMaterialRPChanged = 0x00000080,
-        ForceCloseBagPage = 0x00000081,
-        BagItemDeleteReturnNotify = 0x00000082,
-        NewItemEncountered = 0x00000083,
-        SpecialItemEncountered = 0x00000084,
-        ItemAdded = 0x00000085,
-        MaterialDeleteReturnItemAdded = 0x00000086,
-        ItemAddExceedLimitNotify = 0x00000087,
-        GatherItemAdded = 0x00000088,
-        GeneralItemAdded = 0x00000089,
-        GeneralItemMiddleShowAdded = 0x0000008a,
-        QuestItemAdded = 0x0000008b,
-        DailyTaskItemAdded = 0x0000008c,
-        RandTaskItemAdded = 0x0000008d,
-        ActivityItemAdded = 0x0000008e,
-        HuntingItemAdded = 0x0000008f,
-        BlossomItemAdded = 0x00000090,
-        VirtualShopItemAdded = 0x00000091,
-        ItemGivingFinish = 0x00000092,
-        CloseItemGiving = 0x00000093,
-        DestroyItemFinish = 0x00000094,
-        GetCalcWeaponUpgradeReturnItemsResult = 0x00000095,
-        ChangeEquipLockState = 0x00000096,
-        UseItemFail = 0x00000097,
-        AvatarVehicleStateChange = 0x00000098,
-        VehicleHPChange = 0x00000099,
-        VehicleLevelChange = 0x0000009a,
-        AvatarInfoUIRefresh = 0x0000009b,
-        AvatarFightPropRefresh = 0x0000009c,
-        AvatarEquipUIRefresh = 0x0000009d,
-        AvatarEquipChanged = 0x0000009e,
-        AvatarSwitch = 0x0000009f,
-        ManekinCtrl = 0x000000a0,
-        TeamInfoRefresh = 0x000000a1,
-        TeamNameRefresh = 0x000000a2,
-        CurrentTeamChanged = 0x000000a3,
-        AvatarDead = 0x000000a4,
-        AvatarSkillDepotIdChanged = 0x000000a5,
-        AvatarBreakLevelChanged = 0x000000a6,
-        AvatarBreakRewardGet = 0x000000a7,
-        RefreshBreachMaterialBtnRPShow = 0x000000a8,
-        AvatarLifeStateChanged = 0x000000a9,
-        AvatarFetterExpChanged = 0x000000aa,
-        AvatarFetterRewardGet = 0x000000ab,
-        AvatarHPChanged = 0x000000ac,
-        AvatarHungerChanged = 0x000000ad,
-        BackgroundAvatarRefreshed = 0x000000ae,
-        AvatarUpgradeNotify = 0x000000af,
-        AvatarLevelChanged = 0x000000b0,
-        AvatarEnergyAdded = 0x000000b1,
-        AvatarEnergyFull = 0x000000b2,
-        CharacterSprintBS = 0x000000b3,
-        AvatarSkillChanged = 0x000000b4,
-        AvatarSkillDisable = 0x000000b5,
-        AvatarSkillCDChanged = 0x000000b6,
-        AvatarSkillEnable = 0x000000b7,
-        AvatarHideSkill = 0x000000b8,
-        CurAvatarNum = 0x000000b9,
-        FocusAvatar = 0x000000ba,
-        AvatarFlycloakChanged = 0x000000bb,
-        AvatarGainFlycloak = 0x000000bc,
-        ActivitySkillState = 0x000000bd,
-        ShowActivitySkill = 0x000000be,
-        AvatarCostumeChanged = 0x000000bf,
-        AvatarGainCostume = 0x000000c0,
-        TipShow = 0x000000c1,
-        TipClose = 0x000000c2,
-        ActivityCommonPlayerTipsStart = 0x000000c3,
-        ActivityCommonPlayerTipsFinish = 0x000000c4,
-        ActivityCommonPlayerTipsFail = 0x000000c5,
-        ShopOpen = 0x000000c6,
-        ShopClose = 0x000000c7,
-        ShopItemSelect = 0x000000c8,
-        ShopRefresh = 0x000000c9,
-        ShopMaterialRefresh = 0x000000ca,
-        ShopRequest = 0x000000cb,
-        ShopRequestRecommend = 0x000000cc,
-        ShopRequestPackage = 0x000000cd,
-        ShopMallRequest = 0x000000ce,
-        ShopDataUpdated = 0x000000cf,
-        ActivityShopSheetUpdated = 0x000000d0,
-        ShopOpenSubTab = 0x000000d1,
-        MallJumpRecommend = 0x000000d2,
-        ActivityRegionSearchProgressUpdate = 0x000000d3,
-        ActivityRegionSearchProgressBegin = 0x000000d4,
-        ActivityRegionSearchProgressComplete = 0x000000d5,
-        ActivityRegionSearchIn = 0x000000d6,
-        ActivityRegionSearchOut = 0x000000d7,
-        ActivityRegionSearchRegionRewardGet = 0x000000d8,
-        ActivityRegionSearchRegionDisappear = 0x000000d9,
-        ActivityRegionSearchRegionAppear = 0x000000da,
-        ActivityRegionSearchRegionInfoUpdate = 0x000000db,
-        CountDownUIStart = 0x000000dc,
-        CountDownUITerminate = 0x000000dd,
-        DungeonCountDownUpdate = 0x000000de,
-        DungeonCountDownEnd = 0x000000df,
-        CountNumUIStart = 0x000000e0,
-        CountNumUpdate = 0x000000e1,
-        CountNumUITerminate = 0x000000e2,
-        CountNumUIStartNew = 0x000000e3,
-        CountNumUpdateNew = 0x000000e4,
-        CountNumUITerminateNew = 0x000000e5,
-        QuestQuitShow = 0x000000e6,
-        QuestQuitHide = 0x000000e7,
-        GachaWishUpdate = 0x000000e8,
-        LoadingNewScenePre = 0x000000e9,
-        LoadingScene = 0x000000ea,
-        LevelPreLoaded = 0x000000eb,
-        LevelLoaded = 0x000000ec,
-        LevelPostLoad = 0x000000ed,
-        LevelLoadBegin = 0x000000ee,
-        LoadingBundle = 0x000000ef,
-        LevelLoadFinish = 0x000000f0,
-        NoStaminaStopSprint = 0x000000f1,
-        JumpFly = 0x000000f2,
-        PostAvatarEntityReady = 0x000000f3,
-        AudioEventPost = 0x000000f4,
-        LevelTagNotify = 0x000000f5,
-        TouchMsgBoard = 0x000000f6,
-        EasyTouchWorking = 0x000000f7,
-        RefreshUISetting = 0x000000f8,
-        ScreenResolutionChanged = 0x000000f9,
-        RefreshAvatarTalent = 0x000000fa,
-        RefreshAvatarTalentPRShow = 0x000000fb,
-        Resist = 0x000000fc,
-        GuideUpdate = 0x000000fd,
-        PageLoad = 0x000000fe,
-        UIContextOpen = 0x000000ff,
-        UIContextClose = 0x00000100,
-        PageDestroy = 0x00000101,
-        ElementViewChange = 0x00000102,
-        SealProgress = 0x00000103,
-        CommonChallengeStartTips = 0x00000104,
-        CommonChallengeEndTips = 0x00000105,
-        RefreshGuide = 0x00000106,
-        GeneralGuideFinish = 0x00000107,
-        RefreshDebugUI = 0x00000108,
-        CheckDebugLoginServerList = 0x00000109,
-        ShowDebugLoginPanel = 0x0000010a,
-        TimeChanged = 0x0000010b,
-        PlayerGameTimeNotify = 0x0000010c,
-        TeamSceneReady = 0x0000010d,
-        TeamChanged = 0x0000010e,
-        AvatarReviveRequested = 0x0000010f,
-        TeamRttRefresh = 0x00000110,
-        ShowTeamBtn = 0x00000111,
-        LevelUpItemFinished = 0x00000112,
-        PostSetupMPTeamPanel = 0x00000113,
-        WeaponUpgrade = 0x00000114,
-        WeaponPromote = 0x00000115,
-        WeaponAwaken = 0x00000116,
-        ReliquaryUpgrade = 0x00000117,
-        ReliquaryPromote = 0x00000118,
-        TeammateSpeechBegin = 0x00000119,
-        TeammateSpeechEnd = 0x0000011a,
-        AvatarCardChange = 0x0000011b,
-        SpringVolumeChanged = 0x0000011c,
-        WebviewClose = 0x0000011d,
-        MihoyoAccountInfoChanged = 0x0000011e,
-        MihoyoAccountRegisterSuccess = 0x0000011f,
-        CutsceneStart = 0x00000120,
-        CutsceneFinish = 0x00000121,
-        FinalTalkFinished = 0x00000122,
-        CutsceneQTEJump = 0x00000123,
-        CurrentQTEGiveUp = 0x00000124,
-        CurrentQTEBlackScreenStart = 0x00000125,
-        CutsceneQTEEnableSavePoint = 0x00000126,
-        CutsceneQTEEnableSavePointId = 0x00000127,
-        CutsceneChangeTimeScale = 0x00000128,
-        CutsceneResumeTimeScale = 0x00000129,
-        SetMainPageMoveToggleActive = 0x0000012a,
-        SetMainPageMoveToggleToWalk = 0x0000012b,
-        OpenStateInit = 0x0000012c,
-        OpenStateChange = 0x0000012d,
-        StartFadeOutWormhole = 0x0000012e,
-        EnterSneakMode = 0x0000012f,
-        ExitSneakMode = 0x00000130,
-        PlayModeChange = 0x00000131,
-        RefreshCookPage = 0x00000132,
-        GetCookQTEArgs = 0x00000133,
-        OnCookRecipeDataNotify = 0x00000134,
-        RefreshCookCompoundPage = 0x00000135,
-        GetCompoundOutput = 0x00000136,
-        GetCombineOutput = 0x00000137,
-        CombineFormulaUnlock = 0x00000138,
-        SmeltSuccess = 0x00000139,
-        SmeltGetDrop = 0x0000013a,
-        GetForgeQueue = 0x0000013b,
-        ForgeQueueUpdate = 0x0000013c,
-        GetForgeOutput = 0x0000013d,
-        ForgeStart = 0x0000013e,
-        ForgeStop = 0x0000013f,
-        ForgeFormulaUnlock = 0x00000140,
-        RefreshMailPage = 0x00000141,
-        RefreshMailPageAfterDel = 0x00000142,
-        MailDataReady = 0x00000143,
-        ShowMailItemGet = 0x00000144,
-        NewMailGot = 0x00000145,
-        AddToFavorites = 0x00000146,
-        RefreshMailFavoritesDialog = 0x00000147,
-        RefreshMailFavoritesDialogAfterDel = 0x00000148,
-        RefreshMailPageAfterFavMailChange = 0x00000149,
-        RefreshCoinNum = 0x0000014a,
-        MutiPlayerAvailableChange = 0x0000014b,
-        MutiPlayerModeChange = 0x0000014c,
-        CompanionCurrAvatarChanged = 0x0000014d,
-        CompanionAvatarHPChanged = 0x0000014e,
-        KickGuestFailed = 0x0000014f,
-        MPTeamChangeFailed = 0x00000150,
-        MPDeathOpenChat = 0x00000151,
-        MPCloseMainPageBtn = 0x00000152,
-        MPOpenMainPageBtn = 0x00000153,
-        PlayerMatchInfoUpdate = 0x00000154,
-        WorldPlayerDie = 0x00000155,
-        MpSettingType = 0x00000156,
-        JoinOtherPlayerScene = 0x00000157,
-        BackMyWorld = 0x00000158,
-        UpdateDungeonExitBtn = 0x00000159,
-        DungeonTeamChanged = 0x0000015a,
-        DungeonTeamChangeFailed = 0x0000015b,
-        DungeonTeamDismissed = 0x0000015c,
-        DungeonInviteRefused = 0x0000015d,
-        DungeonTeamKicked = 0x0000015e,
-        EnterTowerLevel = 0x0000015f,
-        TowerStarRefresh = 0x00000160,
-        TowerRecordHandbookRefresh = 0x00000161,
-        RefreshPlayGuestState = 0x00000162,
-        CloseMPPlayDialog = 0x00000163,
-        CloseMPPlayPage = 0x00000164,
-        MpPlayGuestReplyInviteSucc = 0x00000165,
-        PlayerLevelChange = 0x00000166,
-        PlayerExpChange = 0x00000167,
-        PlayerWorldLevelChange = 0x00000168,
-        ClosePlayerProfilePage = 0x00000169,
-        PlayerWorldLevelAdjust = 0x0000016a,
-        ShowGuideRatingDialog = 0x0000016b,
-        ChargeBarValueChange = 0x0000016c,
-        DailyTaskStarted = 0x0000016d,
-        DailyTaskProgresUpdated = 0x0000016e,
-        DailyTaskComplete = 0x0000016f,
-        DailyTaskExitRegion = 0x00000170,
-        DailyTaskScoreReward = 0x00000171,
-        DailyTaskRefresh = 0x00000172,
-        TaskVarChange = 0x00000173,
-        RandTaskStarted = 0x00000174,
-        RandTaskComplete = 0x00000175,
-        RandTaskFail = 0x00000176,
-        RandTaskExitRegion = 0x00000177,
-        RoutineStarted = 0x00000178,
-        RoutineProgresUpdated = 0x00000179,
-        RoutineComplete = 0x0000017a,
-        RoutineExitRegion = 0x0000017b,
-        RoutineScoreReward = 0x0000017c,
-        RoutineRefresh = 0x0000017d,
-        ProudSkillChange = 0x0000017e,
-        CombatSkillChange = 0x0000017f,
-        PlayerLevelRewardChange = 0x00000180,
-        GetInvestigationMonsterList = 0x00000181,
-        InvestigationChange = 0x00000182,
-        InvestigationChapterComplete = 0x00000183,
-        InvestigationTargetChange = 0x00000184,
-        ExplorationAllDataChange = 0x00000185,
-        ExplorationCharacterDataChange = 0x00000186,
-        MainPageTips = 0x00000187,
-        MiracleRingItemAdded = 0x00000188,
-        NewPlayerAppling = 0x00000189,
-        PushTipsChange = 0x0000018a,
-        GetPushTipsReward = 0x0000018b,
-        PushTipsNotifyFinish = 0x0000018c,
-        NewPushTips = 0x0000018d,
-        GetTowerAllData = 0x0000018e,
-        GetTowerStarReward = 0x0000018f,
-        VersusBattleBegin = 0x00000190,
-        VersusBattleUpdate = 0x00000191,
-        VersusBattleEnd = 0x00000192,
-        ActivityOpen = 0x00000193,
-        ActivityClose = 0x00000194,
-        ActivityContextClose = 0x00000195,
-        ActivityRefresh = 0x00000196,
-        ActivityUpdate = 0x00000197,
-        ActivityBannerShow = 0x00000198,
-        ActivityBannerEffectShow = 0x00000199,
-        ActivitySeaLampContriFinish = 0x0000019a,
-        ActivityStart = 0x0000019b,
-        ActivityCrucibleInfo = 0x0000019c,
-        ActivityOperationBonusUpdate = 0x0000019d,
-        ActivityWatcherUpdate = 0x0000019e,
-        ActivityDeliveryRewardUpdate = 0x0000019f,
-        ActivityDeliveryUpdate = 0x000001a0,
-        ActivityWatcherFinish = 0x000001a1,
-        ActivityAsterScoreUpdate = 0x000001a2,
-        ActivitySaleUpdate = 0x000001a3,
-        ActivityEchoShellUpdate = 0x000001a4,
-        ActivityCoinInfoNotify = 0x000001a5,
-        ActivityBlitzRushContentClose = 0x000001a6,
-        ActivityCondUpdate = 0x000001a7,
-        ActivityPotionStageReset = 0x000001a8,
-        CloseActivityMainPage = 0x000001a9,
-        EffigyChallengeResultNotify = 0x000001aa,
-        MistTrialTimeOutNotify = 0x000001ab,
-        BannerReminderAppeared = 0x000001ac,
-        BannerReminderDisappeared = 0x000001ad,
-        InLevelQuestHintReminderAppeared = 0x000001ae,
-        InLevelQuestHintReminderDisappeared = 0x000001af,
-        OnGetGameplayRecommendationNotify = 0x000001b0,
-        CloseRecommendationNotify = 0x000001b1,
-        OnGetGameplayRecommendationFailedNotify = 0x000001b2,
-        CameraLookBegin = 0x000001b3,
-        CameraLock = 0x000001b4,
-        CameraFieldLook = 0x000001b5,
-        DisableMainPageControl = 0x000001b6,
-        DisableMainPageControlWithConfigName = 0x000001b7,
-        ResinChanged = 0x000001b8,
-        ResinPurchased = 0x000001b9,
-        BlossomBriefInfoNotify = 0x000001ba,
-        BlossomStart = 0x000001bb,
-        BlossomUpdate = 0x000001bc,
-        BlossomEnd = 0x000001bd,
-        BlossomFinish = 0x000001be,
-        ShowDamageTextComponent = 0x000001bf,
-        SinInRefresh = 0x000001c0,
-        OnSignInInfoRsp = 0x000001c1,
-        BonusActivityRewardRsp = 0x000001c2,
-        ShowActivityMainBtn = 0x000001c3,
-        OnBonusActivityInfoRsp = 0x000001c4,
-        OnOpActivityStateRsp = 0x000001c5,
-        OnOpActivityStateNotify = 0x000001c6,
-        TrialActivityRewardUpdate = 0x000001c7,
-        SalesManTakeRewardRsp = 0x000001c8,
-        SalesmanDeliverItemRsp = 0x000001c9,
-        GetAuthSalesmanInfoRsp = 0x000001ca,
-        OnVirtualDialAction = 0x000001cb,
-        OnVirtualDialEntryAction = 0x000001cc,
-        OnTransmitStart = 0x000001cd,
-        OnTransmitEnd = 0x000001ce,
-        OnTransmitAfterAudioEvent = 0x000001cf,
-        BundleDownloadStart = 0x000001d0,
-        BundleDownloadRestart = 0x000001d1,
-        BundleDownloadStartForLogin = 0x000001d2,
-        BargainStart = 0x000001d3,
-        BargainPriceRsp = 0x000001d4,
-        BargainTerminate = 0x000001d5,
-        BargainDataRsp = 0x000001d6,
-        AllActivatedBargainData = 0x000001d7,
-        HideRoom = 0x000001d8,
-        ShowRoom = 0x000001d9,
-        DeleteFriend = 0x000001da,
-        RefreshFriendList = 0x000001db,
-        RefreshFriendListWithAni = 0x000001dc,
-        RefreshFriendRequestList = 0x000001dd,
-        RefreshFriendRequestListWithAni = 0x000001de,
-        RefreshBlacklist = 0x000001df,
-        RefreshMultiplayRecentlyListWithAni = 0x000001e0,
-        RefreshPSNFriendList = 0x000001e1,
-        RefreshPSNFriendListWithAni = 0x000001e2,
-        GetPlayerSocialDetail = 0x000001e3,
-        GetFriendShowAvatarInfo = 0x000001e4,
-        RefreshNickname = 0x000001e5,
-        RefreshRemarkname = 0x000001e6,
-        RefreshHeadPortrait = 0x000001e7,
-        RefreshNameCard = 0x000001e8,
-        RefreshAllNameCard = 0x000001e9,
-        RefreshSignature = 0x000001ea,
-        RefreshAvatarShowList = 0x000001eb,
-        RefreshNameCardShowList = 0x000001ec,
-        NicknameWordIllegal = 0x000001ed,
-        TeamNameIllegal = 0x000001ee,
-        SignatureIllegal = 0x000001ef,
-        RefreshBirthday = 0x000001f0,
-        AddInBlockChatList = 0x000001f1,
-        RemoveFromBlockChatList = 0x000001f2,
-        AddInBlacklist = 0x000001f3,
-        RemoveFromBlacklist = 0x000001f4,
-        ChatRoomInfoUpdate = 0x000001f5,
-        RefreshMainPageChatContent = 0x000001f6,
-        RefreshMainPageChatContentForce = 0x000001f7,
-        RefreshChatEmojiCollectionList = 0x000001f8,
-        BattlePassMissionChange = 0x000001f9,
-        BattlePassScheduleChange = 0x000001fa,
-        BattlePassProductPay = 0x000001fb,
-        BattlePassLevelChange = 0x000001fc,
-        BattlePassBuySuccess = 0x000001fd,
-        RefreshLocalNotification = 0x000001fe,
-        EnterSceneDone = 0x000001ff,
-        PSNStateChange = 0x00000200,
-        PS5LaunchActivity = 0x00000201,
-        MpPlayPrepareNotify = 0x00000202,
-        GadgetPlayStartNotify = 0x00000203,
-        GadgetPlayDataNotify = 0x00000204,
-        GadgetPlayUidOpNotify = 0x00000205,
-        GadgetPlayStopNotify = 0x00000206,
-        GadgetChainChangeNotify = 0x00000207,
-        ScenePlayBattlePrepare = 0x00000208,
-        ScenePlayBattlePrestart = 0x00000209,
-        ScenePlayBattleStart = 0x0000020a,
-        ScenePlayBattleStop = 0x0000020b,
-        ScenePlayBattleInterrupt = 0x0000020c,
-        ScenePlayUidOpNotify = 0x0000020d,
-        StartChargeCountDown = 0x0000020e,
-        InterruptChargeCountDown = 0x0000020f,
-        ShowTemplateReminderNotify = 0x00000210,
-        CloseTemplateReminderDialog = 0x00000211,
-        ShowPromptDownReminderNotify = 0x00000212,
-        NormalUidOpNotify = 0x00000213,
-        OnDispatchConfigSet = 0x00000214,
-        ShowDistanceTarget = 0x00000215,
-        CloseDistanceTarget = 0x00000216,
-        ClimateMeterType = 0x00000217,
-        ClimateMeterValue = 0x00000218,
-        ClimateAreaType = 0x00000219,
-        ClimateAreaID = 0x0000021a,
-        ClimateMeterValueChanged = 0x0000021b,
-        ClimateMeterTypeChanged = 0x0000021c,
-        ClimateAreaTypeChanged = 0x0000021d,
-        ClimateMeterWarning = 0x0000021e,
-        ClimateMeterRefresh = 0x0000021f,
-        ShowClimateInfoDialog = 0x00000220,
-        DungeonFactorDialogClose = 0x00000221,
-        ShowMonthlyCardReward = 0x00000222,
-        AchievementPageRefresh = 0x00000223,
-        AchievementItemAdded = 0x00000224,
-        RefreshAvatarLinePage = 0x00000225,
-        OnPersonalLineAllDataRsp = 0x00000226,
-        AvatarLineGetKey = 0x00000227,
-        AvatarLineUnlock = 0x00000228,
-        ShareComplete = 0x00000229,
-        SDKPayStart = 0x0000022a,
-        SDKPayEnd = 0x0000022b,
-        SDKGetProductList = 0x0000022c,
-        AvatarAddNotify = 0x0000022d,
-        TrialAvatarDelete = 0x0000022e,
-        OnTakeReputationLevelReward = 0x0000022f,
-        RefreshReputation = 0x00000230,
-        OnCityReputationLevelup = 0x00000231,
-        RefreshHunting = 0x00000232,
-        HuntingStart = 0x00000233,
-        HuntingRevealClue = 0x00000234,
-        HuntingRevealFinal = 0x00000235,
-        HuntingSuccess = 0x00000236,
-        HuntingFail = 0x00000237,
-        CloseReputationHuntingDialog = 0x00000238,
-        CloseReputationRequestDialog = 0x00000239,
-        HuntingTaken = 0x0000023a,
-        HuntingFinished = 0x0000023b,
-        TakeOfferingLevelReward = 0x0000023c,
-        OfferingLevelChange = 0x0000023d,
-        OfferingLevelChangeReward = 0x0000023e,
-        ForbiddenToggleMoveStateChange = 0x0000023f,
-        OnToggleMoveSettingChange = 0x00000240,
-        KeyboardLayoutUpdate = 0x00000241,
-        ControllerMapModified = 0x00000242,
-        OnControllerConnected = 0x00000243,
-        OnDeviceTypeSet = 0x00000244,
-        SetDeviceTypeInSettingPage = 0x00000245,
-        OnJoypadIconDisplayTypeChange = 0x00000246,
-        WidgetActionBtnRefresh = 0x00000247,
-        WidgetEquipChange = 0x00000248,
-        WidgetCollectorWindSeed = 0x00000249,
-        WidgetQuickUseButtonRelease = 0x0000024a,
-        WidgetQuickUseRsp = 0x0000024b,
-        ForcePlayBattleBtnCdEndEffect = 0x0000024c,
-        FlightChallengeBegin = 0x0000024d,
-        FlightChallengeFinish = 0x0000024e,
-        ReportSuccNotify = 0x0000024f,
-        PlayerQuitFromMpByHostBlock = 0x00000250,
-        PlayerQuitFromMpByGuestBlock = 0x00000251,
-        ActivityBlessingDataRefresh = 0x00000252,
-        ActivityBlessingScanSuccess = 0x00000253,
-        ActivityBlessingScanFail = 0x00000254,
-        ActivityBlessingRefresh = 0x00000255,
-        ActivityGiveFriendPicSuccess = 0x00000256,
-        TreasureHuntCurrencyNumChange = 0x00000257,
-        ReunionAddToOpActivityListNotify = 0x00000258,
-        ReunionRemoveFromOpActivityListNotify = 0x00000259,
-        ReunionGetFirstRewardSuccNotify = 0x0000025a,
-        ReunionSignInGetRewardNotify = 0x0000025b,
-        ReunionTaskClaimFinalRewardSuccNotify = 0x0000025c,
-        ReunionTaskClaimWatcherRewardSuccNotify = 0x0000025d,
-        AvatarExpeditionStartNtf = 0x0000025e,
-        ShowLendHistoryNotify = 0x0000025f,
-        ExpeditionActivityStartNotify = 0x00000260,
-        ExpeditionActivityRecallNotify = 0x00000261,
-        ExpeditionActivityRewardClaimedNotify = 0x00000262,
-        ExpeditionActivityInfoUpdateNotify = 0x00000263,
-        OpenExpeditionMap = 0x00000264,
-        OnExpeditionChallengeEnterRegion = 0x00000265,
-        OnExpeditionChallengeFinish = 0x00000266,
-        GetExpeditionRewardNotify = 0x00000267,
-        GadgetGroupButtonAddNotify = 0x00000268,
-        GadgetGroupButtonRemoveNotify = 0x00000269,
-        ActivityUpdateRegion = 0x0000026a,
-        WalkModeChanged = 0x0000026b,
-        FireUIEffectNotify = 0x0000026c,
-        AttachUIEffectNotify = 0x0000026d,
-        UntachUIEffectNotify = 0x0000026e,
-        PlayerApplyEnterMpResult = 0x0000026f,
-        PlayerQuitFromMp = 0x00000270,
-        PlayerVehilceUpdate = 0x00000271,
-        UpdateFriendsWishNotify = 0x00000272,
-        UpdateRecvGiftsNotify = 0x00000273,
-        UpdateGiftRecvInfoNotify = 0x00000274,
-        UpdateGiveGiftDialog = 0x00000275,
-        HaveRecvGiftNotify = 0x00000276,
-        GachaActivityPercentNotify = 0x00000277,
-        GachaActivityCreateRobotRsp = 0x00000278,
-        GachaActivityResetRsp = 0x00000279,
-        GachaActivityTakeRewardRsp = 0x0000027a,
-        GachaActivityNextStageRsp = 0x0000027b,
-        GetMechanicusInfoRsp = 0x0000027c,
-        UpdateGearItem = 0x0000027d,
-        UnLockGearItem = 0x0000027e,
-        FoundationOpLockFailed = 0x0000027f,
-        MechanicusCoinNotify = 0x00000280,
-        FoundationUpdateNotify = 0x00000281,
-        OnInBattleMechanicusStageKillStartNotify = 0x00000282,
-        OnInBattleMechanicusStageKillEndNotify = 0x00000283,
-        OnInBattleMechanicusStageCardFlipEndNotify = 0x00000284,
-        OnInBattleMechanicusStart = 0x00000285,
-        OnInBattleMechanicusUpdate = 0x00000286,
-        OnInBattleMechanicusFinish = 0x00000287,
-        OnInBattleMechanicusPickCardRsp = 0x00000288,
-        OnInBattleMechanicusPickCardNotify = 0x00000289,
-        OnInBattleMechanicusConfirmCardRsp = 0x0000028a,
-        OnInBattleMechanicusConfirmCardNotify = 0x0000028b,
-        OnInBattleMechanicusCardResultNotify = 0x0000028c,
-        OnInBattleChessPickCardNotify = 0x0000028d,
-        OnInBattleChessCandidateCardsNotify = 0x0000028e,
-        FleurFairDungeonPreview = 0x0000028f,
-        FleurFairDungeonPrepare = 0x00000290,
-        FleurFairDungeonGallery = 0x00000291,
-        FleurFairDungeonBoss = 0x00000292,
-        FleurFairDungeonGallerySettle = 0x00000293,
-        FleurFairDungeonBossSettle = 0x00000294,
-        FleurFairDungeonEnergy = 0x00000295,
-        FleurFairDungeonGalleryUpdate = 0x00000296,
-        SummerTimeStage4JoypadFocusChange = 0x00000297,
-        SummerTimeSprintBoatRedpointChange = 0x00000298,
-        GalleryDialogShow = 0x00000299,
-        GalleryStart = 0x0000029a,
-        GalleryStop = 0x0000029b,
-        GalleryUpdateAll = 0x0000029c,
-        GalleryBalloonShoot = 0x0000029d,
-        GalleryBalloonScore = 0x0000029e,
-        GalleryFallCatch = 0x0000029f,
-        GalleryFallScore = 0x000002a0,
-        GalleryMusicGameClose = 0x000002a1,
-        GallerySettleRestart = 0x000002a2,
-        SlabCheckEnterLoopDungeon = 0x000002a3,
-        SlabEquipBuffChange = 0x000002a4,
-        GallerySumoStageStart = 0x000002a5,
-        GallerySumoStageFinish = 0x000002a6,
-        GallerySumoChangeTeam = 0x000002a7,
-        GallerySumoChangeTeamCdUpdate = 0x000002a8,
-        GallerySumoChangeTeamUpdateScore = 0x000002a9,
-        StartCrystalLinkGalleryNotify = 0x000002aa,
-        UpdateCrystalLinkGalleryNotify = 0x000002ab,
-        StopCrystalLinkGalleryNotify = 0x000002ac,
-        CrystalLinkBuffUpdate = 0x000002ad,
-        CrystalLinkBuffEffect = 0x000002ae,
-        CrystalLinkBuffActiveNotify = 0x000002af,
-        QuickSwitchTeamFetchNextTeamInfo = 0x000002b0,
-        QuickSwitchTeamReqToChangeTeam = 0x000002b1,
-        ArenaChallengeStart = 0x000002b2,
-        ArenaChallengeTakeWatcherReward = 0x000002b3,
-        ActivityMistTrialTakeReward = 0x000002b4,
-        ActivityMistTrialExhibitionRefresh = 0x000002b5,
-        ActivityMistTrialGalleryCountDown = 0x000002b6,
-        ActivityMiniTomoClose = 0x000002b7,
-        HomeWorldCompInfoUpdate = 0x000002b8,
-        HomeWorldModuleChange = 0x000002b9,
-        HomeWorldModuleChoose = 0x000002ba,
-        HomeWorldModuleSeenUpdate = 0x000002bb,
-        HomeWorldModulePrepareGoIn = 0x000002bc,
-        HomeWorldFurnitureMakeInfoRefresh = 0x000002bd,
-        HomeWorldFurnitureMakeGetResult = 0x000002be,
-        HomeWorldFurnitureMakeCancel = 0x000002bf,
-        HomeWorldFurnitureFormulaUnlock = 0x000002c0,
-        HomeWorldLevelUp = 0x000002c1,
-        HomeWorldSuiteDetailShow = 0x000002c2,
-        GetHomeworldVisitor = 0x000002c3,
-        HomeKickPlayerRspSuccess = 0x000002c4,
-        HomeWorldComfortInfoUpdate = 0x000002c5,
-        ClearDeployGadgetData = 0x000002c6,
-        HomeWorldChangeBGM = 0x000002c7,
-        HomeWorldUnlockBGM = 0x000002c8,
-        HideAndSeekStagePrepare = 0x000002c9,
-        HideAndSeekStagePick = 0x000002ca,
-        HideAndSeekStageHide = 0x000002cb,
-        HideAndSeekStageSeek = 0x000002cc,
-        HideAndSeekPlayerSetAvatarNotify = 0x000002cd,
-        HideAndSeekSelectSkillRsp = 0x000002ce,
-        HideAndSeekPlayerReadyNotify = 0x000002cf,
-        HideAndSeekStageSettle = 0x000002d0,
-        HideAndSeekCaught = 0x000002d1,
-        AvatarChargeSkillNotify = 0x000002d2,
-        LoginSceneNotify = 0x000002d3,
-        CharacterPageNotify = 0x000002d4,
-        CloseCharacterPageNotify = 0x000002d5,
-        WeaponPageNotify = 0x000002d6,
-        CloseWeaponPageNotify = 0x000002d7,
-        LoadingBeginNotify = 0x000002d8,
-        LoadingEndNotify = 0x000002d9,
-        GachaItemNotify = 0x000002da,
-        CloseGachaNotify = 0x000002db,
-        GoToGachaPageNotify = 0x000002dc,
-        GrowFlowersUpdateTodaySeedNotify = 0x000002dd,
-        GrowFlowersUpdateExchangePage = 0x000002de,
-        GrowFlowersUpdateFriendsWishNotify = 0x000002df,
-        GrowFlowersUpdateRecvFlowersNotify = 0x000002e0,
-        GrowFlowersUpdateRecvInfo = 0x000002e1,
-        GrowFlowersUpdateGiveDialog = 0x000002e2,
-        WinterCampSnowmanUpdateFriendsWishNotify = 0x000002e3,
-        WinterCampSnowmanUpdateRecvItemNotify = 0x000002e4,
-        WinterCampSnowmanUpdateRecvInfo = 0x000002e5,
-        WinterCampSnowmanUpdateGiveDialog = 0x000002e6,
-        StartBuoyantCombatGallerySuccess = 0x000002e7,
-        StartBuoyantCombatGalleryNotify = 0x000002e8,
-        UpdateBuoyantCombatGalleryNotify = 0x000002e9,
-        StopBuoyantCombatGalleryNotify = 0x000002ea,
-        StartGalleryProgressNotify = 0x000002eb,
-        UpdateGalleryProgressNotify = 0x000002ec,
-        StopGalleryProgressNotify = 0x000002ed,
-        StartDigCombatGalleryNotify = 0x000002ee,
-        UpdateDigCombatGalleryNotify = 0x000002ef,
-        StopDigCombatGalleryNotify = 0x000002f0,
-        SalvagePreventUpdateNotify = 0x000002f1,
-        SalvageEscortUpdateNotify = 0x000002f2,
-        UpdateSalvageBundleMark = 0x000002f3,
-        UpdateBounceConjuringScore = 0x000002f4,
-        AddBounceConjuringScore = 0x000002f5,
-        LunaRiteSacrificeSuccess = 0x000002f6,
-        LunaRiteRefresh = 0x000002f7,
-        MoonfinTrialWatcherUpdated = 0x000002f8,
-        TryShowQTEDialog = 0x000002f9,
-        EnableSubtitleInputPenetrate = 0x000002fa,
-        CodexKillNumRefresh = 0x000002fb,
-        FishBaitUpdate = 0x000002fc,
-        FishQteStart = 0x000002fd,
-        FishBattleEnd = 0x000002fe,
-        ExitFishing = 0x000002ff,
-        FishRippleEffectStart = 0x00000300,
-        FishRippleEffectEnd = 0x00000301,
-        OnShikigamiSkillUpgrade = 0x00000302,
-        OnRefreshRoguelikeDungeonCardRsp = 0x00000303,
-        OnTakeRoguelikeStageFirstPassReward = 0x00000304,
-        OnEnterRoguelikeDungeonNotify = 0x00000305,
-        ActivityRogueContentClose = 0x00000306,
-        CustomGadgetSubmitRsp = 0x00000307,
-        IrodoriEditFlowerSubmitRsp = 0x00000308,
-        CustomGadgetPendingDataUnexpectedlyRemoved = 0x00000309,
-        ProjectionGameGuideFinishFreeRotationXY = 0x0000030a,
-        ProjectionGameGuideFinishFreeRotationZ = 0x0000030b,
-        ProjectionGameGuideFinishSwitch = 0x0000030c,
-        ProjectionGameAnswerUnlocked = 0x0000030d,
-        FireworkMakerRefreshPage = 0x0000030e,
-        FireworkReformSettlement = 0x0000030f,
-        LanternRiteStartFireworksReformRsp = 0x00000310,
-        LanternRiteDoFireworksReformRsp = 0x00000311,
-        LanternRiteEndFireworksReformRsp = 0x00000312,
-        LanternRiteEndFireworksReform = 0x00000313,
-        LanternRiteFireworksReformDoOnce = 0x00000314,
-        LocalAvatarStateIDChanged = 0x00000315,
-        LocalAvatarAttackTag = 0x00000316,
-        LocalAvatarDoSkillSucc = 0x00000317,
-        LocalAvatarAnimatorStateChangedBeforeClear = 0x00000318,
-        CustomLevelDungeonUpdate = 0x00000319,
-        CustomDungeonTryTypeChanged = 0x0000031a,
-        CustomLevelSearchResult = 0x0000031b,
-        CustomLevelSubscribeResult = 0x0000031c,
-        CustomLevelLikeResult = 0x0000031d,
-        CustomLevelSaveResult = 0x0000031e,
-        RegionalPlayEnable = 0x0000031f,
-        RegionalPlayDisable = 0x00000320,
-        MichiaeBattleSkillUnlock = 0x00000321,
-        ShowSignalMichiae = 0x00000322,
-        LifeCountShow = 0x00000323,
-        LifeCountHide = 0x00000324,
-        LifeCountChange = 0x00000325,
-        AttachBartenderEffectNotify = 0x00000326,
-        DetachBartenderEffectNotify = 0x00000327,
-        BartenderRecipeUnlockNotify = 0x00000328,
-        HomeBalloonShootStartNotify = 0x00000329,
-        HomeBalloonShootScoreUpdateNotify = 0x0000032a,
-        HomeBalloonShootEndNotify = 0x0000032b,
-        SpiceActivityProcessFoodRsp = 0x0000032c,
-        SpiceActivityFinishMakeSpiceRsp = 0x0000032d,
-        IrodoriAcitvityInfoUpdate = 0x0000032e,
-        IrodoriAcitvityWatcherInfoUpdate = 0x0000032f,
-        FillPoetry = 0x00000330,
-        ScanPoetryEntity = 0x00000331,
-        MasterGalleryStart = 0x00000332,
-        MasterGallerySettle = 0x00000333,
-        IrodoriChessEquipCardUpdate = 0x00000334,
-        WidgetToyOnPhotographRelease = 0x00000335,
-        WidgetToyStartTakingPhoto = 0x00000336,
-        OnPhotoSettleNotify = 0x00000337,
-        OnGalleryPhotoStart = 0x00000338,
-        OnGalleryPhotoEnd = 0x00000339,
-        GetQuestLackingResourceRsp = 0x0000033a,
-        ArrangeSaveFoundNotify = 0x0000033b,
-        ArrangeSaveNotFoundNotify = 0x0000033c,
-        UGCLimitedNotify = 0x0000033d,
-        UGCLockedNotify = 0x0000033e,
-        UGCStateUpdateNotify = 0x0000033f,
-        CheckHistorySavesUpdateNotify = 0x00000340,
-        MusicGameRewardUnlockNotify = 0x00000341,
-        MusicGameRefreshUgcArchivesNotify = 0x00000342,
-        MusicGameImportOfficialLevelNotify = 0x00000343,
-        MusicGameImportUgcLevelNotify = 0x00000344,
-        MusicGameCompareUgcLevelNotify = 0x00000345,
-        MusicGameTrialUgcLevelNotify = 0x00000346,
-        MusicGamePlayUgcLevelNotify = 0x00000347,
-        MusicGameSettleNotify = 0x00000348,
-        MusicGameEndNotify = 0x00000349,
-        MusicGameRestartNotify = 0x0000034a,
-        RogueDiaryCardReroll = 0x0000034b,
-        RogueDiaryStartDungeon = 0x0000034c,
-        RogueDiaryResetDungeon = 0x0000034d,
-        RogueDiaryCardSelected = 0x0000034e,
-        RogueDiaryAvatarRevive = 0x0000034f,
-        RogueDiaryFinishBanPick = 0x00000350,
-        ActivityQuickOpen = 0x00000351,
-        ActivitySpecialItem = 0x00000352,
-        ChasmChallengeGalleryInfoUpdateNotify = 0x00000353,
-        HomeSeekGalleryInfoUpdateNotify = 0x00000354,
+        FestivalUpdateNotify = 0x00000016,
+        AvatarRenameInfoReady = 0x00000017,
+        AvatarRenameInfoUpdated = 0x00000018,
+        AvatarRenameValidityCheckPassed = 0x00000019,
+        AvatarRenameValidityCheckFailed = 0x0000001a,
+        AddMiniMapMark = 0x0000001b,
+        MapNotify = 0x0000001c,
+        MapToggle = 0x0000001d,
+        EnterArea = 0x0000001e,
+        EnterAreaLateUpdate = 0x0000001f,
+        EnterSubArea = 0x00000020,
+        ExitSubArea = 0x00000021,
+        EnterErosionArea = 0x00000022,
+        MapMarkChanged = 0x00000023,
+        MapMarkMoved = 0x00000024,
+        MapMarkDailyTaskChanged = 0x00000025,
+        MapMarkDungeonEntryExploreChanged = 0x00000026,
+        AreaExploreUpdated = 0x00000027,
+        AreaUnlcoked = 0x00000028,
+        GuidePointAppear = 0x00000029,
+        GuidePointDisappear = 0x0000002a,
+        NavigationPointAppear = 0x0000002b,
+        NavigationPointDisappear = 0x0000002c,
+        NavigationPointRefresh = 0x0000002d,
+        NavigationShowGuideTips = 0x0000002e,
+        POIIndicatorAppear = 0x0000002f,
+        POIIndicatorDisappear = 0x00000030,
+        PlayMarkUnlockEffect = 0x00000031,
+        UnlockTransPoint = 0x00000032,
+        UnlockScenePoint = 0x00000033,
+        AddGadgetIndicator = 0x00000034,
+        RemoveGadgetIndicator = 0x00000035,
+        SetGadgetIndicatorCountDown = 0x00000036,
+        MapMarkClicked = 0x00000037,
+        MapMarkClickNeared = 0x00000038,
+        RefreshMapRewardTips = 0x00000039,
+        RefreshMapMarkTips = 0x0000003a,
+        MapAreaUpdated = 0x0000003b,
+        MapPlaceNameUpdated = 0x0000003c,
+        MarkManagerReady = 0x0000003d,
+        MarkRemovedOnCancelTracing = 0x0000003e,
+        DungeonEntryInfo = 0x0000003f,
+        DungeonEntryAppeared = 0x00000040,
+        DungeonEntryDisappeared = 0x00000041,
+        DungeonPlayerDie = 0x00000042,
+        DungeonSettled = 0x00000043,
+        DungeonGetReward = 0x00000044,
+        GetDailyDungeonEntryInfo = 0x00000045,
+        GetDungeonEntryExploreCondition = 0x00000046,
+        GeneralInteeCreate = 0x00000047,
+        GeneralInteeCommand = 0x00000048,
+        RegisterUICombatBar = 0x00000049,
+        UnregisterUICombatBar = 0x0000004a,
+        RefreshUICombatBars = 0x0000004b,
+        ShowUICombatBarSpark = 0x0000004c,
+        ShowUICombatBarCharge = 0x0000004d,
+        ShowUICombatBarFireEffect = 0x0000004e,
+        ShowShakeOff = 0x0000004f,
+        VehicleSkillDepotChange = 0x00000050,
+        InteractionUITrigger = 0x00000051,
+        InteractionUIClose = 0x00000052,
+        InteractionRealStart = 0x00000053,
+        GroupLinkUpdated = 0x00000054,
+        GroupLinkRemoved = 0x00000055,
+        CheckGroupReplacedRsp = 0x00000056,
+        ChallengeBegin = 0x00000057,
+        ChallengeUpdated = 0x00000058,
+        ChallengeFailed = 0x00000059,
+        ChallengeCompleted = 0x0000005a,
+        ChallengeAddSub = 0x0000005b,
+        ChallengeSubFinish = 0x0000005c,
+        ChallengeSubFail = 0x0000005d,
+        DialogSelectNotify = 0x0000005e,
+        DialogSelectFinishNotify = 0x0000005f,
+        DialogSelectItemNotify = 0x00000060,
+        DialogSelectItemTimeOut = 0x00000061,
+        AutoTalkDialogFinish = 0x00000062,
+        ChangeAutoTalk = 0x00000063,
+        CutScenePageShowTopText = 0x00000064,
+        CutScenePageCloseTopText = 0x00000065,
+        CoopSelectNotify = 0x00000066,
+        CurrCoopConfidenceValueChanged = 0x00000067,
+        CurrCoopTemperamentValueChanged = 0x00000068,
+        CoopTemperamentSelect = 0x00000069,
+        CoopTakeChapterReward = 0x0000006a,
+        CoopUnlockChapter = 0x0000006b,
+        CoopStartPointFromPage = 0x0000006c,
+        CoopCancelQuest = 0x0000006d,
+        CoopUIRefresh = 0x0000006e,
+        CoopNewChapterAdd = 0x0000006f,
+        CoopChapterViewed = 0x00000070,
+        CoopStartFirstPoint = 0x00000071,
+        CoopShowDefeatDialog = 0x00000072,
+        CoopTryStartPoint = 0x00000073,
+        CoopStartPointFailed = 0x00000074,
+        CoopDefeatNotify = 0x00000075,
+        QuestDialogToggle = 0x00000076,
+        QuestBookUpdate = 0x00000077,
+        QuestBookSelectItem = 0x00000078,
+        AddQuestHint = 0x00000079,
+        QuestTalkHistory = 0x0000007a,
+        PaimenNavigationEnabled = 0x0000007b,
+        PaimenNavigationFailed = 0x0000007c,
+        PaimenNavigationAlreadyInArea = 0x0000007d,
+        PaimenNavigationGuideHint = 0x0000007e,
+        RemindQuest = 0x0000007f,
+        BindTransButton = 0x00000080,
+        QuestProgressHint = 0x00000081,
+        QuestLackHint = 0x00000082,
+        ActiveMainQuestDeleted = 0x00000083,
+        QuestStateUpdated = 0x00000084,
+        MainQuestStateUpdated = 0x00000085,
+        QuestTalkFinished = 0x00000086,
+        QuestGlobalVarUpdate = 0x00000087,
+        QuestTakePhotograph = 0x00000088,
+        NpcReady = 0x00000089,
+        BagWeightUIRefresh = 0x0000008a,
+        BagDialogToggle = 0x0000008b,
+        BagSlotUpdate = 0x0000008c,
+        BagItemUsed = 0x0000008d,
+        BagItemDrop = 0x0000008e,
+        BagAddChest = 0x0000008f,
+        BagAddWidget = 0x00000090,
+        BagAddQuest = 0x00000091,
+        BagCombinableMaterialRPChanged = 0x00000092,
+        ForceCloseBagPage = 0x00000093,
+        BagItemDeleteReturnNotify = 0x00000094,
+        NewItemEncountered = 0x00000095,
+        SpecialItemEncountered = 0x00000096,
+        ItemAdded = 0x00000097,
+        MaterialDeleteReturnItemAdded = 0x00000098,
+        ItemAddExceedLimitNotify = 0x00000099,
+        GatherItemAdded = 0x0000009a,
+        GeneralItemAdded = 0x0000009b,
+        GeneralItemMiddleShowAdded = 0x0000009c,
+        QuestItemAdded = 0x0000009d,
+        DailyTaskItemAdded = 0x0000009e,
+        RandTaskItemAdded = 0x0000009f,
+        ActivityItemAdded = 0x000000a0,
+        HuntingItemAdded = 0x000000a1,
+        BlossomItemAdded = 0x000000a2,
+        VirtualShopItemAdded = 0x000000a3,
+        BatchItemAdded = 0x000000a4,
+        ItemGivingFinish = 0x000000a5,
+        CloseItemGiving = 0x000000a6,
+        GadgetGivingClose = 0x000000a7,
+        DestroyItemFinish = 0x000000a8,
+        GetCalcWeaponUpgradeReturnItemsResult = 0x000000a9,
+        ChangeEquipLockState = 0x000000aa,
+        UseItemFail = 0x000000ab,
+        BagAddRenameItem = 0x000000ac,
+        AvatarVehicleStateChange = 0x000000ad,
+        VehicleHPChange = 0x000000ae,
+        VehicleLevelChange = 0x000000af,
+        AvatarInfoUIRefresh = 0x000000b0,
+        AvatarFightPropRefresh = 0x000000b1,
+        AvatarEquipUIRefresh = 0x000000b2,
+        AvatarEquipChanged = 0x000000b3,
+        AvatarSwitch = 0x000000b4,
+        ManekinCtrl = 0x000000b5,
+        TeamInfoRefresh = 0x000000b6,
+        TeamNameRefresh = 0x000000b7,
+        CurrentTeamChanged = 0x000000b8,
+        AvatarDead = 0x000000b9,
+        AvatarSkillDepotIdChanged = 0x000000ba,
+        AvatarBreakLevelChanged = 0x000000bb,
+        AvatarBreakRewardGet = 0x000000bc,
+        RefreshBreachMaterialBtnRPShow = 0x000000bd,
+        AvatarLifeStateChanged = 0x000000be,
+        AvatarFetterExpChanged = 0x000000bf,
+        AvatarFetterRewardGet = 0x000000c0,
+        AvatarHPChanged = 0x000000c1,
+        AvatarHPChangedEnd = 0x000000c2,
+        AvatarHungerChanged = 0x000000c3,
+        BackgroundAvatarRefreshed = 0x000000c4,
+        AvatarUpgradeNotify = 0x000000c5,
+        AvatarLevelChanged = 0x000000c6,
+        AvatarEnergyAdded = 0x000000c7,
+        AvatarEnergyFull = 0x000000c8,
+        CharacterSprintBS = 0x000000c9,
+        AvatarSkillChanged = 0x000000ca,
+        AvatarSkillDisable = 0x000000cb,
+        AvatarSkillCDChanged = 0x000000cc,
+        AvatarSkillEnable = 0x000000cd,
+        AvatarHideSkill = 0x000000ce,
+        AvatarAttackModeChanged = 0x000000cf,
+        CurAvatarNum = 0x000000d0,
+        FocusAvatar = 0x000000d1,
+        AvatarFlycloakChanged = 0x000000d2,
+        AvatarGainFlycloak = 0x000000d3,
+        ActivitySkillState = 0x000000d4,
+        ShowActivitySkill = 0x000000d5,
+        AvatarCostumeChanged = 0x000000d6,
+        AvatarGainCostume = 0x000000d7,
+        TipShow = 0x000000d8,
+        TipClose = 0x000000d9,
+        ActivityCommonPlayerTipsStart = 0x000000da,
+        ActivityCommonPlayerTipsFinish = 0x000000db,
+        ActivityCommonPlayerTipsFail = 0x000000dc,
+        ShopOpen = 0x000000dd,
+        ShopClose = 0x000000de,
+        ShopItemSelect = 0x000000df,
+        ShopRefresh = 0x000000e0,
+        ShopMaterialRefresh = 0x000000e1,
+        ShopRequest = 0x000000e2,
+        ShopRequestRecommend = 0x000000e3,
+        ShopRequestPackage = 0x000000e4,
+        ShopMallRequest = 0x000000e5,
+        ShopDataUpdated = 0x000000e6,
+        ActivityShopSheetUpdated = 0x000000e7,
+        ShopOpenSubTab = 0x000000e8,
+        MallJumpRecommend = 0x000000e9,
+        ActivityRegionSearchProgressUpdate = 0x000000ea,
+        ActivityRegionSearchProgressBegin = 0x000000eb,
+        ActivityRegionSearchProgressComplete = 0x000000ec,
+        ActivityRegionSearchIn = 0x000000ed,
+        ActivityRegionSearchOut = 0x000000ee,
+        ActivityRegionSearchRegionRewardGet = 0x000000ef,
+        ActivityRegionSearchRegionDisappear = 0x000000f0,
+        ActivityRegionSearchRegionAppear = 0x000000f1,
+        ActivityRegionSearchRegionInfoUpdate = 0x000000f2,
+        CountDownUIStart = 0x000000f3,
+        CountDownUIEndLevelTime = 0x000000f4,
+        CountDownUITerminate = 0x000000f5,
+        DungeonCountDownUpdate = 0x000000f6,
+        DungeonCountDownEnd = 0x000000f7,
+        CountNumUIStart = 0x000000f8,
+        CountNumUpdate = 0x000000f9,
+        CountNumUITerminate = 0x000000fa,
+        CountNumUIStartNew = 0x000000fb,
+        CountNumUpdateNew = 0x000000fc,
+        CountNumUITerminateNew = 0x000000fd,
+        QuestQuitShow = 0x000000fe,
+        QuestQuitHide = 0x000000ff,
+        GachaWishUpdate = 0x00000100,
+        LoadingNewScenePre = 0x00000101,
+        LoadingScene = 0x00000102,
+        LevelPreLoaded = 0x00000103,
+        LevelLoaded = 0x00000104,
+        LevelPostLoad = 0x00000105,
+        LevelLoadBegin = 0x00000106,
+        LoadingBundle = 0x00000107,
+        LevelLoadFinish = 0x00000108,
+        NoStaminaStopSprint = 0x00000109,
+        JumpFly = 0x0000010a,
+        PostAvatarEntityReady = 0x0000010b,
+        AudioEventPost = 0x0000010c,
+        LevelTagNotify = 0x0000010d,
+        TouchMsgBoard = 0x0000010e,
+        EasyTouchWorking = 0x0000010f,
+        RefreshUISetting = 0x00000110,
+        ScreenResolutionChanged = 0x00000111,
+        RefreshAvatarTalent = 0x00000112,
+        RefreshAvatarTalentPRShow = 0x00000113,
+        Resist = 0x00000114,
+        GuideUpdate = 0x00000115,
+        PageLoad = 0x00000116,
+        UIContextOpen = 0x00000117,
+        UIContextClose = 0x00000118,
+        PageDestroy = 0x00000119,
+        ElementViewChange = 0x0000011a,
+        SealProgress = 0x0000011b,
+        CommonChallengeStartTips = 0x0000011c,
+        CommonChallengeEndTips = 0x0000011d,
+        RefreshGuide = 0x0000011e,
+        GeneralGuideFinish = 0x0000011f,
+        GeneralGuideUpdate = 0x00000120,
+        ActionToUINotify = 0x00000121,
+        RefreshDebugUI = 0x00000122,
+        CheckDebugLoginServerList = 0x00000123,
+        ShowDebugLoginPanel = 0x00000124,
+        TimeChanged = 0x00000125,
+        PlayerGameTimeNotify = 0x00000126,
+        TeamSceneReady = 0x00000127,
+        TeamChanged = 0x00000128,
+        AvatarReviveRequested = 0x00000129,
+        TeamRttRefresh = 0x0000012a,
+        ShowTeamBtn = 0x0000012b,
+        LevelUpItemFinished = 0x0000012c,
+        PostSetupMPTeamPanel = 0x0000012d,
+        WeaponUpgrade = 0x0000012e,
+        WeaponPromote = 0x0000012f,
+        WeaponAwaken = 0x00000130,
+        ReliquaryUpgrade = 0x00000131,
+        ReliquaryPromote = 0x00000132,
+        TeammateSpeechBegin = 0x00000133,
+        TeammateSpeechEnd = 0x00000134,
+        AvatarCardChange = 0x00000135,
+        SpringVolumeChanged = 0x00000136,
+        WebviewClose = 0x00000137,
+        MihoyoAccountInfoChanged = 0x00000138,
+        MihoyoAccountRegisterSuccess = 0x00000139,
+        CutsceneStart = 0x0000013a,
+        CutsceneFinish = 0x0000013b,
+        FinalTalkFinished = 0x0000013c,
+        CutsceneQTEJump = 0x0000013d,
+        CurrentQTEFinishCS = 0x0000013e,
+        CurrentQTEBlackScreenStart = 0x0000013f,
+        CutsceneQTEEnableSavePoint = 0x00000140,
+        CutsceneQTEEnableSavePointId = 0x00000141,
+        CutsceneChangeTimeScale = 0x00000142,
+        CutsceneResumeTimeScale = 0x00000143,
+        SetMainPageMoveToggleActive = 0x00000144,
+        SetMainPageMoveToggleToWalk = 0x00000145,
+        OpenStateInit = 0x00000146,
+        OpenStateChange = 0x00000147,
+        StartFadeOutWormhole = 0x00000148,
+        EnterSneakMode = 0x00000149,
+        EnterCombatSneakMode = 0x0000014a,
+        ExitSneakMode = 0x0000014b,
+        PlayModeChange = 0x0000014c,
+        ActionSlotChange = 0x0000014d,
+        ActionPanelRefresh = 0x0000014e,
+        ActionPanelClearInputState = 0x0000014f,
+        RefreshCookPage = 0x00000150,
+        GetCookQTEArgs = 0x00000151,
+        OnCookRecipeDataNotify = 0x00000152,
+        RefreshCookCompoundPage = 0x00000153,
+        GetCompoundOutput = 0x00000154,
+        CompoundBoostRsp = 0x00000155,
+        GetCombineOutput = 0x00000156,
+        CombineFormulaUnlock = 0x00000157,
+        SmeltSuccess = 0x00000158,
+        SmeltGetDrop = 0x00000159,
+        GetForgeQueue = 0x0000015a,
+        ForgeQueueUpdate = 0x0000015b,
+        GetForgeOutput = 0x0000015c,
+        ForgeStart = 0x0000015d,
+        ForgeStop = 0x0000015e,
+        ForgeFormulaUnlock = 0x0000015f,
+        RefreshMailPage = 0x00000160,
+        RefreshMailPageAfterDel = 0x00000161,
+        MailDataReady = 0x00000162,
+        ShowMailItemGet = 0x00000163,
+        NewMailGot = 0x00000164,
+        AddToFavorites = 0x00000165,
+        RefreshMailFavoritesDialog = 0x00000166,
+        RefreshMailFavoritesDialogAfterDel = 0x00000167,
+        RefreshMailPageAfterFavMailChange = 0x00000168,
+        FavoriteMailDataReady = 0x00000169,
+        RefreshCoinNum = 0x0000016a,
+        MutiPlayerAvailableChange = 0x0000016b,
+        MutiPlayerModeChange = 0x0000016c,
+        CompanionCurrAvatarChanged = 0x0000016d,
+        CompanionAvatarHPChanged = 0x0000016e,
+        CompanionAvatarHPChangedEnd = 0x0000016f,
+        KickGuestFailed = 0x00000170,
+        MPTeamChangeFailed = 0x00000171,
+        MPDeathOpenChat = 0x00000172,
+        MPCloseMainPageBtn = 0x00000173,
+        MPOpenMainPageBtn = 0x00000174,
+        PlayerMatchInfoUpdate = 0x00000175,
+        WorldPlayerDie = 0x00000176,
+        MpSettingType = 0x00000177,
+        JoinOtherPlayerScene = 0x00000178,
+        BackMyWorld = 0x00000179,
+        UpdateDungeonExitBtn = 0x0000017a,
+        DungeonTeamChanged = 0x0000017b,
+        DungeonTeamChangeFailed = 0x0000017c,
+        DungeonTeamDismissed = 0x0000017d,
+        DungeonInviteRefused = 0x0000017e,
+        DungeonTeamKicked = 0x0000017f,
+        EnterTowerLevel = 0x00000180,
+        TowerStarRefresh = 0x00000181,
+        TowerRecordHandbookRefresh = 0x00000182,
+        RefreshPlayGuestState = 0x00000183,
+        CloseMPPlayDialog = 0x00000184,
+        CloseMPPlayPage = 0x00000185,
+        MpPlayGuestReplyInviteSucc = 0x00000186,
+        GCGMatchSucc = 0x00000187,
+        GCGMatchStateUpdated = 0x00000188,
+        GCGBattleInvitationStateUpdated = 0x00000189,
+        CloseGCGMatchDialog = 0x0000018a,
+        GCGWorldPlayerStateGot = 0x0000018b,
+        PlayerMatchAgreedResultNotify = 0x0000018c,
+        MpPlayInviteResultNotify = 0x0000018d,
+        ScenePlayInviteResultNotify = 0x0000018e,
+        DraftInviteResultNotify = 0x0000018f,
+        DraftTwiceConfirmResultNotify = 0x00000190,
+        PlayerLevelChange = 0x00000191,
+        PlayerExpChange = 0x00000192,
+        PlayerWorldLevelChange = 0x00000193,
+        ClosePlayerProfilePage = 0x00000194,
+        PlayerWorldLevelAdjust = 0x00000195,
+        ShowGuideRatingDialog = 0x00000196,
+        ChargeBarValueChange = 0x00000197,
+        DailyTaskStarted = 0x00000198,
+        DailyTaskProgresUpdated = 0x00000199,
+        DailyTaskComplete = 0x0000019a,
+        DailyTaskExitRegion = 0x0000019b,
+        DailyTaskScoreReward = 0x0000019c,
+        DailyTaskRefresh = 0x0000019d,
+        TaskVarChange = 0x0000019e,
+        RandTaskStarted = 0x0000019f,
+        RandTaskComplete = 0x000001a0,
+        RandTaskFail = 0x000001a1,
+        RandTaskExitRegion = 0x000001a2,
+        RoutineStarted = 0x000001a3,
+        RoutineProgresUpdated = 0x000001a4,
+        RoutineComplete = 0x000001a5,
+        RoutineExitRegion = 0x000001a6,
+        RoutineScoreReward = 0x000001a7,
+        RoutineRefresh = 0x000001a8,
+        ProudSkillChange = 0x000001a9,
+        CombatSkillChange = 0x000001aa,
+        PlayerLevelRewardChange = 0x000001ab,
+        GetInvestigationMonsterList = 0x000001ac,
+        GetInvestigationMonsterListForMark = 0x000001ad,
+        InvestigationChange = 0x000001ae,
+        InvestigationChapterComplete = 0x000001af,
+        InvestigationTargetChange = 0x000001b0,
+        InvestigationQuestDailyNotify = 0x000001b1,
+        ExplorationAllDataChange = 0x000001b2,
+        ExplorationCharacterDataChange = 0x000001b3,
+        MainPageTips = 0x000001b4,
+        MiracleRingItemAdded = 0x000001b5,
+        NewPlayerAppling = 0x000001b6,
+        PushTipsChange = 0x000001b7,
+        GetPushTipsReward = 0x000001b8,
+        PushTipsNotifyFinish = 0x000001b9,
+        NewPushTips = 0x000001ba,
+        GetTowerAllData = 0x000001bb,
+        GetTowerStarReward = 0x000001bc,
+        VersusBattleBegin = 0x000001bd,
+        VersusBattleUpdate = 0x000001be,
+        VersusBattleEnd = 0x000001bf,
+        ActivityOpen = 0x000001c0,
+        ActivityClose = 0x000001c1,
+        ActivityContextClose = 0x000001c2,
+        ActivityRefresh = 0x000001c3,
+        ActivityUpdate = 0x000001c4,
+        ActivityBannerShow = 0x000001c5,
+        ActivityBannerEffectShow = 0x000001c6,
+        ActivitySeaLampContriFinish = 0x000001c7,
+        ActivityStart = 0x000001c8,
+        ActivityCrucibleInfo = 0x000001c9,
+        ActivityOperationBonusUpdate = 0x000001ca,
+        ActivityWatcherUpdate = 0x000001cb,
+        ActivityDeliveryRewardUpdate = 0x000001cc,
+        ActivityDeliveryUpdate = 0x000001cd,
+        ActivityWatcherFinish = 0x000001ce,
+        ActivityAsterScoreUpdate = 0x000001cf,
+        ActivitySaleUpdate = 0x000001d0,
+        ActivityEchoShellUpdate = 0x000001d1,
+        ActivityCoinInfoNotify = 0x000001d2,
+        ActivityBlitzRushContentClose = 0x000001d3,
+        ActivityCondUpdate = 0x000001d4,
+        ActivityPotionStageReset = 0x000001d5,
+        CloseActivityMainPage = 0x000001d6,
+        EffigyChallengeResultNotify = 0x000001d7,
+        MistTrialTimeOutNotify = 0x000001d8,
+        BannerReminderAppeared = 0x000001d9,
+        BannerReminderDisappeared = 0x000001da,
+        BannerReminderForceClosed = 0x000001db,
+        InLevelQuestHintReminderAppeared = 0x000001dc,
+        InLevelQuestHintReminderDisappeared = 0x000001dd,
+        OnGetGameplayRecommendationNotify = 0x000001de,
+        CloseRecommendationNotify = 0x000001df,
+        OnGetGameplayRecommendationFailedNotify = 0x000001e0,
+        CameraLookBegin = 0x000001e1,
+        CameraLock = 0x000001e2,
+        CameraFieldLook = 0x000001e3,
+        DisableMainPageControl = 0x000001e4,
+        DisableMainPageControlWithConfigName = 0x000001e5,
+        ResinChanged = 0x000001e6,
+        ResinPurchased = 0x000001e7,
+        BlossomBriefInfoNotify = 0x000001e8,
+        BlossomStart = 0x000001e9,
+        BlossomUpdate = 0x000001ea,
+        BlossomEnd = 0x000001eb,
+        BlossomFinish = 0x000001ec,
+        ShowDamageTextComponent = 0x000001ed,
+        SinInRefresh = 0x000001ee,
+        OnSignInInfoRsp = 0x000001ef,
+        BonusActivityRewardRsp = 0x000001f0,
+        ShowActivityMainBtn = 0x000001f1,
+        OnBonusActivityInfoRsp = 0x000001f2,
+        OnOpActivityStateRsp = 0x000001f3,
+        OnOpActivityStateNotify = 0x000001f4,
+        TrialActivityRewardUpdate = 0x000001f5,
+        SalesManTakeRewardRsp = 0x000001f6,
+        SalesmanDeliverItemRsp = 0x000001f7,
+        GetAuthSalesmanInfoRsp = 0x000001f8,
+        OnVirtualDialAction = 0x000001f9,
+        OnVirtualDialEntryAction = 0x000001fa,
+        OnTransmitStart = 0x000001fb,
+        OnTransmitEnd = 0x000001fc,
+        OnTransmitAfterAudioEvent = 0x000001fd,
+        BundleDownloadStart = 0x000001fe,
+        BundleDownloadRestart = 0x000001ff,
+        BundleDownloadStartForLogin = 0x00000200,
+        BargainStart = 0x00000201,
+        BargainPriceRsp = 0x00000202,
+        BargainTerminate = 0x00000203,
+        BargainDataRsp = 0x00000204,
+        AllActivatedBargainData = 0x00000205,
+        HideRoom = 0x00000206,
+        ShowRoom = 0x00000207,
+        DeleteFriend = 0x00000208,
+        RefreshFriendList = 0x00000209,
+        RefreshFriendListWithAni = 0x0000020a,
+        RefreshFriendRequestList = 0x0000020b,
+        RefreshFriendRequestListWithAni = 0x0000020c,
+        RefreshBlacklist = 0x0000020d,
+        RefreshMultiplayRecentlyListWithAni = 0x0000020e,
+        RefreshPSNFriendList = 0x0000020f,
+        RefreshPSNFriendListWithAni = 0x00000210,
+        GetPlayerSocialDetail = 0x00000211,
+        GetFriendShowAvatarInfo = 0x00000212,
+        GetFriendShowAvatarInfoInCD = 0x00000213,
+        RefreshNickname = 0x00000214,
+        RefreshRemarkname = 0x00000215,
+        RefreshHeadPortrait = 0x00000216,
+        RefreshNameCard = 0x00000217,
+        RefreshAllNameCard = 0x00000218,
+        RefreshSignature = 0x00000219,
+        RefreshAvatarShowList = 0x0000021a,
+        RefreshNameCardShowList = 0x0000021b,
+        NicknameWordIllegal = 0x0000021c,
+        TeamNameIllegal = 0x0000021d,
+        SignatureIllegal = 0x0000021e,
+        RefreshBirthday = 0x0000021f,
+        AddInBlockChatList = 0x00000220,
+        RemoveFromBlockChatList = 0x00000221,
+        AddInBlacklist = 0x00000222,
+        RemoveFromBlacklist = 0x00000223,
+        ChatRoomInfoUpdate = 0x00000224,
+        RefreshMainPageChatContent = 0x00000225,
+        RefreshMainPageChatContentForce = 0x00000226,
+        RefreshChatEmojiCollectionList = 0x00000227,
+        ChatChannelBanStateUpdate = 0x00000228,
+        ChatChannelHideStateUpdate = 0x00000229,
+        BattlePassMissionChange = 0x0000022a,
+        BattlePassScheduleChange = 0x0000022b,
+        BattlePassProductPay = 0x0000022c,
+        BattlePassLevelChange = 0x0000022d,
+        BattlePassBuySuccess = 0x0000022e,
+        RefreshLocalNotification = 0x0000022f,
+        EnterSceneDone = 0x00000230,
+        PSNStateChange = 0x00000231,
+        PS5LaunchActivity = 0x00000232,
+        MpPlayPrepareNotify = 0x00000233,
+        GadgetPlayStartNotify = 0x00000234,
+        GadgetPlayDataNotify = 0x00000235,
+        GadgetPlayUidOpNotify = 0x00000236,
+        GadgetPlayStopNotify = 0x00000237,
+        GadgetChainChangeNotify = 0x00000238,
+        ScenePlayBattlePrepare = 0x00000239,
+        ScenePlayBattlePrestart = 0x0000023a,
+        ScenePlayBattleStart = 0x0000023b,
+        ScenePlayBattleStop = 0x0000023c,
+        ScenePlayBattleInterrupt = 0x0000023d,
+        ScenePlayUidOpNotify = 0x0000023e,
+        StartChargeCountDown = 0x0000023f,
+        InterruptChargeCountDown = 0x00000240,
+        ShowTemplateReminderNotify = 0x00000241,
+        CloseTemplateReminderDialog = 0x00000242,
+        ShowPromptDownReminderNotify = 0x00000243,
+        NormalUidOpNotify = 0x00000244,
+        OnDispatchConfigSet = 0x00000245,
+        ShowDistanceTarget = 0x00000246,
+        CloseDistanceTarget = 0x00000247,
+        ClimateMeterType = 0x00000248,
+        ClimateMeterValue = 0x00000249,
+        ClimateAreaType = 0x0000024a,
+        ClimateAreaID = 0x0000024b,
+        ClimateMeterValueChanged = 0x0000024c,
+        ClimateMeterTypeChanged = 0x0000024d,
+        ClimateAreaTypeChanged = 0x0000024e,
+        ClimateMeterWarning = 0x0000024f,
+        ClimateMeterRefresh = 0x00000250,
+        ShowClimateInfoDialog = 0x00000251,
+        DungeonFactorDialogClose = 0x00000252,
+        ShowMonthlyCardReward = 0x00000253,
+        AchievementPageRefresh = 0x00000254,
+        AchievementItemAdded = 0x00000255,
+        RefreshAvatarLinePage = 0x00000256,
+        OnPersonalLineAllDataRsp = 0x00000257,
+        AvatarLineGetKey = 0x00000258,
+        AvatarLineUnlock = 0x00000259,
+        ShareComplete = 0x0000025a,
+        SDKPayStart = 0x0000025b,
+        SDKPayEnd = 0x0000025c,
+        SDKGetProductList = 0x0000025d,
+        AvatarAddNotify = 0x0000025e,
+        TrialAvatarDelete = 0x0000025f,
+        OnTakeReputationLevelReward = 0x00000260,
+        RefreshReputation = 0x00000261,
+        OnCityReputationLevelup = 0x00000262,
+        RefreshHunting = 0x00000263,
+        HuntingStart = 0x00000264,
+        HuntingRevealClue = 0x00000265,
+        HuntingRevealFinal = 0x00000266,
+        HuntingSuccess = 0x00000267,
+        HuntingFail = 0x00000268,
+        CloseReputationHuntingDialog = 0x00000269,
+        CloseReputationRequestDialog = 0x0000026a,
+        HuntingTaken = 0x0000026b,
+        HuntingFinished = 0x0000026c,
+        TakeOfferingLevelReward = 0x0000026d,
+        OfferingLevelChange = 0x0000026e,
+        OfferingLevelChangeReward = 0x0000026f,
+        ForbiddenToggleMoveStateChange = 0x00000270,
+        OnToggleMoveSettingChange = 0x00000271,
+        KeyboardLayoutUpdate = 0x00000272,
+        ControllerMapModified = 0x00000273,
+        OnControllerConnected = 0x00000274,
+        OnDeviceTypeSet = 0x00000275,
+        SetDeviceTypeInSettingPage = 0x00000276,
+        OnJoypadIconDisplayTypeChange = 0x00000277,
+        WidgetActionBtnRefresh = 0x00000278,
+        WidgetEquipChange = 0x00000279,
+        WidgetCollectorWindSeed = 0x0000027a,
+        WidgetQuickUseButtonRelease = 0x0000027b,
+        WidgetQuickUseRsp = 0x0000027c,
+        ForcePlayBattleBtnCdEndEffect = 0x0000027d,
+        FlightChallengeBegin = 0x0000027e,
+        FlightChallengeFinish = 0x0000027f,
+        ReportSuccNotify = 0x00000280,
+        PlayerQuitFromMpByHostBlock = 0x00000281,
+        PlayerQuitFromMpByGuestBlock = 0x00000282,
+        ActivityBlessingDataRefresh = 0x00000283,
+        ActivityBlessingScanSuccess = 0x00000284,
+        ActivityBlessingScanFail = 0x00000285,
+        ActivityBlessingRefresh = 0x00000286,
+        ActivityGiveFriendPicSuccess = 0x00000287,
+        TreasureHuntCurrencyNumChange = 0x00000288,
+        ReunionAddToOpActivityListNotify = 0x00000289,
+        ReunionRemoveFromOpActivityListNotify = 0x0000028a,
+        ReunionGetFirstRewardSuccNotify = 0x0000028b,
+        ReunionSignInGetRewardNotify = 0x0000028c,
+        ReunionTaskClaimFinalRewardSuccNotify = 0x0000028d,
+        ReunionTaskClaimWatcherRewardSuccNotify = 0x0000028e,
+        AvatarExpeditionStartNtf = 0x0000028f,
+        ShowLendHistoryNotify = 0x00000290,
+        ExpeditionActivityStartNotify = 0x00000291,
+        ExpeditionActivityRecallNotify = 0x00000292,
+        ExpeditionActivityRewardClaimedNotify = 0x00000293,
+        ExpeditionActivityInfoUpdateNotify = 0x00000294,
+        OpenExpeditionMap = 0x00000295,
+        OnExpeditionChallengeEnterRegion = 0x00000296,
+        OnExpeditionChallengeFinish = 0x00000297,
+        GetExpeditionRewardNotify = 0x00000298,
+        GadgetGroupButtonAddNotify = 0x00000299,
+        GadgetGroupButtonRemoveNotify = 0x0000029a,
+        ActivityUpdateRegion = 0x0000029b,
+        WalkModeChanged = 0x0000029c,
+        FireUIEffectNotify = 0x0000029d,
+        AttachUIEffectNotify = 0x0000029e,
+        UntachUIEffectNotify = 0x0000029f,
+        PlayerApplyEnterMpResult = 0x000002a0,
+        PlayerQuitFromMp = 0x000002a1,
+        PlayerVehilceUpdate = 0x000002a2,
+        UpdateFriendsWishNotify = 0x000002a3,
+        UpdateRecvGiftsNotify = 0x000002a4,
+        UpdateGiftRecvInfoNotify = 0x000002a5,
+        UpdateGiveGiftDialog = 0x000002a6,
+        HaveRecvGiftNotify = 0x000002a7,
+        OnActivitySetGiftWishRsp = 0x000002a8,
+        GachaActivityPercentNotify = 0x000002a9,
+        GachaActivityCreateRobotRsp = 0x000002aa,
+        GachaActivityResetRsp = 0x000002ab,
+        GachaActivityTakeRewardRsp = 0x000002ac,
+        GachaActivityNextStageRsp = 0x000002ad,
+        GetMechanicusInfoRsp = 0x000002ae,
+        UpdateGearItem = 0x000002af,
+        UnLockGearItem = 0x000002b0,
+        FoundationOpLockFailed = 0x000002b1,
+        MechanicusCoinNotify = 0x000002b2,
+        FoundationUpdateNotify = 0x000002b3,
+        OnInBattleMechanicusStageKillStartNotify = 0x000002b4,
+        OnInBattleMechanicusStageKillEndNotify = 0x000002b5,
+        OnInBattleMechanicusStageCardFlipEndNotify = 0x000002b6,
+        OnInBattleMechanicusStart = 0x000002b7,
+        OnInBattleMechanicusUpdate = 0x000002b8,
+        OnInBattleMechanicusFinish = 0x000002b9,
+        OnInBattleMechanicusPickCardRsp = 0x000002ba,
+        OnInBattleMechanicusPickCardNotify = 0x000002bb,
+        OnInBattleMechanicusConfirmCardRsp = 0x000002bc,
+        OnInBattleMechanicusConfirmCardNotify = 0x000002bd,
+        OnInBattleMechanicusCardResultNotify = 0x000002be,
+        OnInBattleChessPickCardNotify = 0x000002bf,
+        OnInBattleChessCandidateCardsNotify = 0x000002c0,
+        FleurFairDungeonPreview = 0x000002c1,
+        FleurFairDungeonPrepare = 0x000002c2,
+        FleurFairDungeonGallery = 0x000002c3,
+        FleurFairDungeonBoss = 0x000002c4,
+        FleurFairDungeonGallerySettle = 0x000002c5,
+        FleurFairDungeonBossSettle = 0x000002c6,
+        FleurFairDungeonEnergy = 0x000002c7,
+        FleurFairDungeonGalleryUpdate = 0x000002c8,
+        SummerTimeStage4JoypadFocusChange = 0x000002c9,
+        SummerTimeSprintBoatRedpointChange = 0x000002ca,
+        GalleryDialogShow = 0x000002cb,
+        GalleryPreStart = 0x000002cc,
+        GalleryStart = 0x000002cd,
+        GalleryStop = 0x000002ce,
+        GalleryUpdateAll = 0x000002cf,
+        GalleryBalloonShoot = 0x000002d0,
+        GalleryBalloonScore = 0x000002d1,
+        GalleryFallCatch = 0x000002d2,
+        GalleryFallScore = 0x000002d3,
+        GalleryMusicGameClose = 0x000002d4,
+        GallerySettleRestart = 0x000002d5,
+        GalleryPreInitCountDownStart = 0x000002d6,
+        GalleryPreInitCountDownEnd = 0x000002d7,
+        RefreshAvatarPanel = 0x000002d8,
+        CheckUIOpenState = 0x000002d9,
+        SlabCheckEnterLoopDungeon = 0x000002da,
+        SlabEquipBuffChange = 0x000002db,
+        GallerySumoStageStart = 0x000002dc,
+        GallerySumoStageFinish = 0x000002dd,
+        GallerySumoChangeTeam = 0x000002de,
+        GallerySumoChangeTeamCdUpdate = 0x000002df,
+        GallerySumoChangeTeamUpdateScore = 0x000002e0,
+        StartCrystalLinkGalleryNotify = 0x000002e1,
+        UpdateCrystalLinkGalleryNotify = 0x000002e2,
+        StopCrystalLinkGalleryNotify = 0x000002e3,
+        CrystalLinkBuffUpdate = 0x000002e4,
+        CrystalLinkBuffEffect = 0x000002e5,
+        CrystalLinkBuffActiveNotify = 0x000002e6,
+        QuickSwitchTeamFetchNextTeamInfo = 0x000002e7,
+        QuickSwitchTeamReqToChangeTeam = 0x000002e8,
+        ArenaChallengeStart = 0x000002e9,
+        ArenaChallengeTakeWatcherReward = 0x000002ea,
+        ActivityMistTrialTakeReward = 0x000002eb,
+        ActivityMistTrialExhibitionRefresh = 0x000002ec,
+        ActivityMistTrialGalleryCountDown = 0x000002ed,
+        ActivityMiniTomoClose = 0x000002ee,
+        HomeWorldCompInfoUpdate = 0x000002ef,
+        HomeWorldModuleChange = 0x000002f0,
+        HomeWorldModuleChoose = 0x000002f1,
+        HomeWorldModuleSeenUpdate = 0x000002f2,
+        HomeWorldModulePrepareGoIn = 0x000002f3,
+        HomeWorldFurnitureMakeInfoRefresh = 0x000002f4,
+        HomeWorldFurnitureMakeGetResult = 0x000002f5,
+        HomeWorldFurnitureMakeCancel = 0x000002f6,
+        HomeWorldFurnitureFormulaUnlock = 0x000002f7,
+        HomeWorldLevelUp = 0x000002f8,
+        HomeWorldSuiteDetailShow = 0x000002f9,
+        GetHomeworldVisitor = 0x000002fa,
+        HomeKickPlayerRspSuccess = 0x000002fb,
+        HomeWorldComfortInfoUpdate = 0x000002fc,
+        ClearDeployGadgetData = 0x000002fd,
+        HomeWorldChangeBGM = 0x000002fe,
+        HomeWorldUnlockBGM = 0x000002ff,
+        HomeWorldBlueprintSearchInfoUpdate = 0x00000300,
+        HideAndSeekStagePrepare = 0x00000301,
+        HideAndSeekStagePick = 0x00000302,
+        HideAndSeekStageHide = 0x00000303,
+        HideAndSeekStageSeek = 0x00000304,
+        HideAndSeekPlayerSetAvatarNotify = 0x00000305,
+        HideAndSeekSelectSkillRsp = 0x00000306,
+        HideAndSeekPlayerReadyNotify = 0x00000307,
+        HideAndSeekStageSettle = 0x00000308,
+        HideAndSeekCaught = 0x00000309,
+        HideAndSeekBecomeGhost = 0x0000030a,
+        HideAndSeekPlayerChosenMapUpdate = 0x0000030b,
+        AvatarChargeSkillNotify = 0x0000030c,
+        LoginSceneNotify = 0x0000030d,
+        CharacterPageNotify = 0x0000030e,
+        CloseCharacterPageNotify = 0x0000030f,
+        WeaponPageNotify = 0x00000310,
+        CloseWeaponPageNotify = 0x00000311,
+        LoadingBeginNotify = 0x00000312,
+        LoadingEndNotify = 0x00000313,
+        GachaItemNotify = 0x00000314,
+        CloseGachaNotify = 0x00000315,
+        GoToGachaPageNotify = 0x00000316,
+        GrowFlowersUpdateTodaySeedNotify = 0x00000317,
+        GrowFlowersUpdateExchangePage = 0x00000318,
+        GrowFlowersUpdateFriendsWishNotify = 0x00000319,
+        GrowFlowersUpdateRecvFlowersNotify = 0x0000031a,
+        GrowFlowersUpdateRecvInfo = 0x0000031b,
+        GrowFlowersUpdateGiveDialog = 0x0000031c,
+        WinterCampSnowmanUpdateFriendsWishNotify = 0x0000031d,
+        WinterCampSnowmanUpdateRecvItemNotify = 0x0000031e,
+        WinterCampSnowmanUpdateRecvInfo = 0x0000031f,
+        WinterCampSnowmanUpdateGiveDialog = 0x00000320,
+        StartBuoyantCombatGallerySuccess = 0x00000321,
+        StartBuoyantCombatGalleryNotify = 0x00000322,
+        UpdateBuoyantCombatGalleryNotify = 0x00000323,
+        StopBuoyantCombatGalleryNotify = 0x00000324,
+        StartGalleryProgressNotify = 0x00000325,
+        UpdateGalleryProgressNotify = 0x00000326,
+        StopGalleryProgressNotify = 0x00000327,
+        StartDigCombatGalleryNotify = 0x00000328,
+        UpdateDigCombatGalleryNotify = 0x00000329,
+        StopDigCombatGalleryNotify = 0x0000032a,
+        SalvagePreventUpdateNotify = 0x0000032b,
+        SalvageEscortUpdateNotify = 0x0000032c,
+        UpdateSalvageBundleMark = 0x0000032d,
+        UpdateBounceConjuringScore = 0x0000032e,
+        AddBounceConjuringScore = 0x0000032f,
+        LunaRiteSacrificeSuccess = 0x00000330,
+        LunaRiteRefresh = 0x00000331,
+        MoonfinTrialWatcherUpdated = 0x00000332,
+        TryShowQTEDialog = 0x00000333,
+        EnableSubtitleInputPenetrate = 0x00000334,
+        CodexKillNumRefresh = 0x00000335,
+        FishBaitUpdate = 0x00000336,
+        FishQteStart = 0x00000337,
+        FishBattleEnd = 0x00000338,
+        ExitFishing = 0x00000339,
+        FishRippleEffectStart = 0x0000033a,
+        FishRippleEffectEnd = 0x0000033b,
+        OnShikigamiSkillUpgrade = 0x0000033c,
+        OnRefreshRoguelikeDungeonCardRsp = 0x0000033d,
+        OnTakeRoguelikeStageFirstPassReward = 0x0000033e,
+        OnEnterRoguelikeDungeonNotify = 0x0000033f,
+        ActivityRogueContentClose = 0x00000340,
+        CustomGadgetSubmitRsp = 0x00000341,
+        IrodoriEditFlowerSubmitRsp = 0x00000342,
+        CustomGadgetPendingDataUnexpectedlyRemoved = 0x00000343,
+        ProjectionGameGuideFinishFreeRotationXY = 0x00000344,
+        ProjectionGameGuideFinishFreeRotationZ = 0x00000345,
+        ProjectionGameGuideFinishSwitch = 0x00000346,
+        ProjectionGameAnswerUnlocked = 0x00000347,
+        FireworkMakerRefreshPage = 0x00000348,
+        FireworkReformSettlement = 0x00000349,
+        LanternRiteStartFireworksReformRsp = 0x0000034a,
+        LanternRiteDoFireworksReformRsp = 0x0000034b,
+        LanternRiteEndFireworksReformRsp = 0x0000034c,
+        LanternRiteEndFireworksReform = 0x0000034d,
+        LanternRiteFireworksReformDoOnce = 0x0000034e,
+        LocalAvatarStateIDChanged = 0x0000034f,
+        LocalAvatarAttackTag = 0x00000350,
+        LocalAvatarDoSkillSucc = 0x00000351,
+        LocalAvatarAnimatorStateChangedBeforeClear = 0x00000352,
+        BattleFervorAuthorityOnBeingHit = 0x00000353,
+        BattleFervorAttackDamageResult = 0x00000354,
+        BattleFervorKilledNotify = 0x00000355,
+        CustomLevelDungeonUpdate = 0x00000356,
+        CustomDungeonTryTypeChanged = 0x00000357,
+        CustomLevelSearchResult = 0x00000358,
+        CustomLevelSubscribeResult = 0x00000359,
+        CustomLevelLikeResult = 0x0000035a,
+        CustomLevelSaveResult = 0x0000035b,
+        RegionalPlayEnable = 0x0000035c,
+        RegionalPlayDisable = 0x0000035d,
+        MichiaeBattleSkillUnlock = 0x0000035e,
+        ShowSignalMichiae = 0x0000035f,
+        LifeCountShow = 0x00000360,
+        LifeCountHide = 0x00000361,
+        LifeCountChange = 0x00000362,
+        AttachBartenderEffectNotify = 0x00000363,
+        DetachBartenderEffectNotify = 0x00000364,
+        BartenderRecipeUnlockNotify = 0x00000365,
+        HomeBalloonShootStartNotify = 0x00000366,
+        HomeBalloonShootScoreUpdateNotify = 0x00000367,
+        HomeBalloonShootEndNotify = 0x00000368,
+        SpiceActivityProcessFoodRsp = 0x00000369,
+        SpiceActivityFinishMakeSpiceRsp = 0x0000036a,
+        IrodoriAcitvityInfoUpdate = 0x0000036b,
+        IrodoriAcitvityWatcherInfoUpdate = 0x0000036c,
+        FillPoetry = 0x0000036d,
+        ScanPoetryEntity = 0x0000036e,
+        MasterGalleryStart = 0x0000036f,
+        MasterGallerySettle = 0x00000370,
+        IrodoriChessEquipCardUpdate = 0x00000371,
+        WidgetToyOnPhotographRelease = 0x00000372,
+        WidgetToyStartTakingPhoto = 0x00000373,
+        OnPhotoSettleNotify = 0x00000374,
+        OnGalleryPhotoStart = 0x00000375,
+        OnGalleryPhotoEnd = 0x00000376,
+        ActivityPhotoConfirmCameraSetting = 0x00000377,
+        PostActivityPhotoConfirmCameraSetting = 0x00000378,
+        OnPhotoActivityFinishRsp = 0x00000379,
+        BeforeShowActivityPhotoAdjustCameraPage = 0x0000037a,
+        GetQuestLackingResourceRsp = 0x0000037b,
+        ArrangeSaveFoundNotify = 0x0000037c,
+        ArrangeSaveNotFoundNotify = 0x0000037d,
+        UGCLimitedNotify = 0x0000037e,
+        UGCLockedNotify = 0x0000037f,
+        UGCStateUpdateNotify = 0x00000380,
+        CheckHistorySavesUpdateNotify = 0x00000381,
+        MusicGameRewardUnlockNotify = 0x00000382,
+        MusicGameRefreshUgcArchivesNotify = 0x00000383,
+        MusicGameImportOfficialLevelNotify = 0x00000384,
+        MusicGameImportUgcLevelNotify = 0x00000385,
+        MusicGameCompareUgcLevelNotify = 0x00000386,
+        MusicGameTrialUgcLevelNotify = 0x00000387,
+        MusicGamePlayUgcLevelNotify = 0x00000388,
+        MusicGameSettleNotify = 0x00000389,
+        MusicGameEndNotify = 0x0000038a,
+        MusicGameRestartNotify = 0x0000038b,
+        RogueDiaryCardReroll = 0x0000038c,
+        RogueDiaryStartDungeon = 0x0000038d,
+        RogueDiaryResetDungeon = 0x0000038e,
+        RogueDiaryCardSelected = 0x0000038f,
+        RogueDiaryAvatarRevive = 0x00000390,
+        RogueDiaryFinishBanPick = 0x00000391,
+        ActivityQuickOpen = 0x00000392,
+        ActivitySpecialItem = 0x00000393,
+        ChasmChallengeGalleryInfoUpdateNotify = 0x00000394,
+        HomeSeekGalleryInfoUpdateNotify = 0x00000395,
+        IslandMoutainSelectRsp = 0x00000396,
+        IslandPartyAcitvityWatcherInfoUpdate = 0x00000397,
+        IslandPartyRaftReminderRefresh = 0x00000398,
+        IslandPartyRaftGalleryInfoUpdate = 0x00000399,
+        IslandPartySailGalleryInfoUpdate = 0x0000039a,
+        IslandPartyDownHillGalleryInfoUpdate = 0x0000039b,
+        ActivityJigsawGameSuccess = 0x0000039c,
+        ActivityGearGameSuccess = 0x0000039d,
+        ActivityGearAutoPlaceUpperLayer = 0x0000039e,
+        ActivityGearAutoFlip = 0x0000039f,
+        PlotInferenceFinishTalk = 0x000003a0,
+        PlotInferenceUpdate = 0x000003a1,
+        TeamManaged = 0x000003a2,
+        BackupTeamDeleted = 0x000003a3,
+        UpdateShownTeamId = 0x000003a4,
+        DeathZoneActiveChange = 0x000003a5,
+        MuqadasPotionGalleryInfoUpdate = 0x000003a6,
+        InstableSprayTeamRefresh = 0x000003a7,
+        InstableSprayGalleryInfoUpdate = 0x000003a8,
+        InstableSpraySwitchTeamRsp = 0x000003a9,
+        HomeWoodExchangeInfoRefresh = 0x000003aa,
+        HomeWoodExchangeUpdate = 0x000003ab,
+        HomeWoodSelectedMaterialExchange = 0x000003ac,
+        HomeWoodSelectedMaterialDialogClsoe = 0x000003ad,
+        WindFieldActivityWatcherInfoUpdate = 0x000003ae,
+        WindFieldGalleryInfoUpdate = 0x000003af,
+        WindFieldChallengeInfoUpdate = 0x000003b0,
+        VintageHuntingGalleryStart = 0x000003b1,
+        VintageHuntingGalleryStop = 0x000003b2,
+        VintageHuntingGalleryUpdate = 0x000003b3,
+        OnVintageMarketStrategySlotUnlockRsp = 0x000003b4,
+        OnVintageMarketStoreChooseStrategyRsp = 0x000003b5,
+        OnVintageMarketStoreViewStrategyRsp = 0x000003b6,
+        OnVintageMarketDividendFinishNotify = 0x000003b7,
+        OnVintageMarketNpcEventFinishNotify = 0x000003b8,
+        OnVintageStoreAttrTooSmall = 0x000003b9,
+        OnVintageMarketFinishStorePlayRsp = 0x000003ba,
+        SwitchSkillIcon = 0x000003bb,
+        CalalogWatcherUpdated = 0x000003bc,
+        GCGClientSettle = 0x000003bd,
+        GcgGuideTaskStateCancel = 0x000003be,
+        RefreshGcgDeckName = 0x000003bf,
+        GcgRefreshDeck = 0x000003c0,
+        GcgDeckSaved = 0x000003c1,
+        GcgCurrentDeckChanged = 0x000003c2,
+        GcgRefreshCardDetail = 0x000003c3,
+        GcgCardNumChanged = 0x000003c4,
+        GcgFilterDataConfirm = 0x000003c5,
+        GcgFilterDialogVisionStateChanged = 0x000003c6,
+        GcgFilterDialogShow = 0x000003c7,
+        GcgFilterDialogUpdate = 0x000003c8,
+        RefreshGcgDeckAppearance = 0x000003c9,
+        GcgPlayerDataReady = 0x000003ca,
+        GcgPlayerDataUpdate = 0x000003cb,
+        GcgPlayerLevelInfoUpdate = 0x000003cc,
+        GcgHandbookWeeklyChallengeInfoUpdate = 0x000003cd,
+        GCGWeekChallengeNotifyNpcChange = 0x000003ce,
+        GcgCardProficiencyUpdate = 0x000003cf,
+        GcgCardProficiencyRewardTaken = 0x000003d0,
+        GcgCardProficiencyRewardItemAdded = 0x000003d1,
+        GcgBannedCardListUpdate = 0x000003d2,
+        GcgBannedCardListUpdateRefresh = 0x000003d3,
+        GcgCardFaceUnlock = 0x000003d4,
+        FungusFighterCaptureGalleryStart = 0x000003d5,
+        FungusFighterCaptureGalleryInfoUpdate = 0x000003d6,
+        FungusFighterCaptureGallerySettle = 0x000003d7,
+        FungusFighterCaptureGalleryStop = 0x000003d8,
+        FungusFighterTrainingGalleryStart = 0x000003d9,
+        FungusFighterTrainingGalleryInfoUpdate = 0x000003da,
+        FungusFighterTrainingGallerySettle = 0x000003db,
+        FungusFighterTrainingGalleryStop = 0x000003dc,
+        FungusFighterTrainingOrganizeSuccess = 0x000003dd,
+        FungusFighterTrainingBackupSuccess = 0x000003de,
+        FungusFighterTrainingClearSuccess = 0x000003df,
+        FungusFighterPartnerUseSkillSuccess = 0x000003e0,
+        CharAmusementStagePreview = 0x000003e1,
+        CharAmusementStagePrepare = 0x000003e2,
+        CharAmusementStageGallery = 0x000003e3,
+        CharAmusementGalleryInfoUpdate = 0x000003e4,
+        FungusFighterLevelUp = 0x000003e5,
+        FungusFighterLevelError = 0x000003e6,
+        FungusRenameSuccess = 0x000003e7,
+        FungusRenameFailed = 0x000003e8,
+        EffigyV2GalleryInfoUpdate = 0x000003e9,
+        HomeworldBlueprintSlotInfoUpdate = 0x000003ea,
+        HomeworldBlueprintFriendCopyOption = 0x000003eb,
+        HomeworldBlueprintSlotOptionUpdate = 0x000003ec,
+        HomeworldBlueprintCreateInfo = 0x000003ed,
+        HomeworldBlueprintDeleInfo = 0x000003ee,
+        HomeworldPreviewBlockChange = 0x000003ef,
+        HomeworldCrossModulePreview = 0x000003f0,
+        HomeworldEnterPreviewModeSuccess = 0x000003f1,
+        HomeworldResumeBlueprintHandBook = 0x000003f2,
+        HomeworldSceneFishpondFarmSuccess = 0x000003f3,
+        BrickBreakerStagePrepare = 0x000003f4,
+        BrickBreakerStagePick = 0x000003f5,
+        BrickBreakerStageGame = 0x000003f6,
+        BrickBreakerPlayerSetAvatarNotify = 0x000003f7,
+        BrickBreakerSelectSkillRsp = 0x000003f8,
+        BrickBreakerPlayerSetSkillNotify = 0x000003f9,
+        BrickBreakerPlayerReadyNotify = 0x000003fa,
+        BrickBreakerStageSettle = 0x000003fb,
+        BrickBreakerPlayerChangingNotify = 0x000003fc,
+        OnSingleStartBrickBreakerRsp = 0x000003fd,
+        OnInBattleBrickBreakerStart = 0x000003fe,
+        OnInBattleBrickBreakerUpdate = 0x000003ff,
+        OnInBattleBrickBreakerFinish = 0x00000400,
+        OnInBattleBrickBreakerShowBanner = 0x00000401,
+        BrickBreakerLevelChecked = 0x00000402,
+        BrickBreakerWatcherInfoUpdate = 0x00000403,
+        CoinCollectSkillSelectFailed = 0x00000404,
+        CoinCollectSkillSelectSucceed = 0x00000405,
+        CoinCollectInviteCheckFailed = 0x00000406,
+        CoinCollectInviteCheckSucceed = 0x00000407,
+        CoinCollectGalleryInfoUpdate = 0x00000408,
+        CoinCollectGalleryReady = 0x00000409,
+        CoinCollectMultistagePrepare = 0x0000040a,
+        CoinCollectMultistageCutScene = 0x0000040b,
+        CoinCollectMultistageGallery = 0x0000040c,
+        CoinCollectMultistageEnd = 0x0000040d,
+        CoinCollectMultistagePlayerInfoUpdate = 0x0000040e,
     };
 
     enum class ScenePointType__Enum : int32_t {
@@ -6678,27 +6876,27 @@ namespace app {
         struct MoleMole_CombatEntryProxy* vector[32];
     };
 
-    enum class GBCFKNINCEI__Enum : int32_t {
-        HAKNGINBAOC = 0x00000000,
-        NGEKCHOHNOP = 0x00000001,
-        ILNKLKMFPEK = 0x00000002,
-        FBMKDOBDCAH = 0x00000003,
-        DIFAKMKJBLO = 0x00000004,
-        ICHJIGAMFOE = 0x00000005,
-        BADAJKFEECO = 0x00000006,
-        PDNFEHPDLFJ = 0x00000007,
-        IONAKFGOPKC = 0x00000008,
-        LLMMGINHILB = 0x00000009,
-        PONJALOOAAJ = 0x0000000a,
-        BLBGDJOBDCA = 0x0000000b,
-        NNHMAMFCPKO = 0x0000000c,
-        LKFOOCDOEBK = 0x0000000d,
-        HNPDJAIAKIM = 0x0000000e,
-        CNEKEMFNBLD = 0x0000000f,
-        LJEAKMDCMFF = 0x00000010,
+    enum class Proto_CombatTypeArgument__Enum : int32_t {
+        CombatNone = 0x00000000,
+        CombatEvtBeingHit = 0x00000001,
+        CombatAnimatorStateChanged = 0x00000002,
+        CombatFaceToDir = 0x00000003,
+        CombatSetAttackTarget = 0x00000004,
+        CombatRushMove = 0x00000005,
+        CombatAnimatorParameterChanged = 0x00000006,
+        EntityMove = 0x00000007,
+        SyncEntityPosition = 0x00000008,
+        CombatSteerMotionInfo = 0x00000009,
+        CombatForceSetPosInfo = 0x0000000a,
+        CombatCompensatePosDiff = 0x0000000b,
+        CombatMonsterDoBlink = 0x0000000c,
+        CombatFixedRushMove = 0x0000000d,
+        CombatSyncTransform = 0x0000000e,
+        CombatLightCoreMove = 0x0000000f,
+        CombatBeingHealedNtf = 0x00000010,
+        CombatSkillAnchorPositionNtf = 0x00000011,
     };
 
-    // PEHBOMIKLHF__Enum
     enum class ForwardType__Enum : int32_t {
         ForwardLocal = 0x00000000,
         ForwardToAll = 0x00000001,
@@ -6722,21 +6920,21 @@ namespace app {
         struct NHHMPCAAKGF__Fields fields;
     };
 
-    struct HPAJEKCBMID__Fields {
+    struct Proto_CombatInvokeEntry__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        GBCFKNINCEI__Enum FNCGEGNMAAD;
-        ForwardType__Enum PPBIOJBJAHO;
-        struct NHHMPCAAKGF* GEOJBAGNEDC;
+        ForwardType__Enum forwardType_;
+        Proto_CombatTypeArgument__Enum argumentType_;
+    	struct Google_Protobuf_ByteString* combatData_;
     };
 
-    struct HPAJEKCBMID {
-        struct HPAJEKCBMID__Class* klass;
+    struct Proto_CombatInvokeEntry {
+        struct Proto_CombatInvokeEntry__Class* klass;
         MonitorData* monitor;
-        struct HPAJEKCBMID__Fields fields;
+        struct Proto_CombatInvokeEntry__Fields fields;
     };
 
     struct __declspec(align(8)) AJKACNNKJGG__Fields {
-        struct HPAJEKCBMID* PANOALIPEFB;
+        struct Proto_CombatInvokeEntry* PANOALIPEFB;
         struct MAKEGCIBGMD* IHFPAPEDDBM;
     };
 
@@ -7181,117 +7379,117 @@ namespace app {
     };
 
     struct __declspec(align(8)) CombatProperty__Fields {
-    struct SafeFloat maxHP; // 0x10
-    struct SafeFloat HP; // 0x20
-    struct SafeFloat elemEnergy; // 0x30
-    struct SafeFloat maxElemEnergy; // 0x40
-    struct SafeFloat attackBase; // 0x50
-    struct SafeFloat attackPermanent; // 0x60
-    struct SafeFloat defenseBase; // 0x70
-    struct SafeFloat defensePermanent; // 0x80
-    struct SafeFloat addHurtBase; // 0x90
-    struct SafeFloat subHurtBase; // 0xA0
-    struct SafeFloat criticalHurtBase; // 0xB0
-    struct SafeFloat criticalBase; // 0xC0
-    struct SafeFloat antiCriticalBase; // 0xD0
-    struct SafeFloat physicalSubHurtBase; // 0xE0
-    struct SafeFloat GLLHLKAONCK; // 0xF0
-    struct SafeFloat AMMLOFAEBPF; // 0x100
-    struct SafeFloat NMOEINCFOIL; // 0x110
-    struct SafeFloat MDJFMKMEIIN; // 0x120
-    struct SafeFloat BHLONKDLCLC; // 0x130
-    struct SafeFloat NJPBPIJDNBD; // 0x140
-    struct SafeFloat GDEJAPKOKFN; // 0x150
-    struct SafeFloat BEMFDLDEKAF; // 0x160
-    struct SafeFloat GNFEHPLABAM; // 0x170
-    struct SafeFloat AGJJLGONEPJ; // 0x180
-    struct SafeFloat ALHFLGABIBG; // 0x190
-    struct SafeFloat NAFKFNENFAE; // 0x1A0
-    struct SafeFloat GMLBLPOKMPM; // 0x1B0
-    struct SafeFloat MHDHODBFKOJ; // 0x1C0
-    struct SafeFloat DFAMAMIOLDF; // 0x1D0
-    struct SafeFloat HIJAAGIAPBJ; // 0x1E0
-    struct SafeFloat BGGDHGGOIIB; // 0x1F0
-    struct SafeFloat IGPLDEFLKAP; // 0x200
-    struct SafeFloat LGJFLMNLEBJ; // 0x210
-    struct SafeFloat ECKCEIIANJI; // 0x220
-    struct SafeFloat EILLOLJEPBP; // 0x230
-    struct SafeFloat FDICILELCAM; // 0x240
-    struct SafeFloat KGKBEKECCKL; // 0x250
-    struct SafeFloat OEHJIEGCDCD; // 0x260
-    struct SafeFloat GLKLDAGLMLD; // 0x270
-    struct SafeFloat OPMENIDKNGK; // 0x280
-    struct SafeFloat LNCCLOMPFHJ; // 0x290
-    struct SafeFloat LJGDKDNPCFL; // 0x2A0
-    struct SafeFloat LAHCEIHKHEH; // 0x2B0
-    struct SafeFloat FENPPKOPDBD; // 0x2C0
-    struct SafeFloat JPCAGGFKDFA; // 0x2D0
-    struct SafeFloat JOOMCGNILPB; // 0x2E0
-    struct SafeFloat ECIBKJPMIJP; // 0x2F0
-    struct SafeFloat KIFAFBPPIDJ; // 0x300
-    struct SafeFloat BFFIGNMHPJC; // 0x310
-    struct SafeFloat JJHFKGEPMKO; // 0x320
-    struct SafeFloat HKKDJJOFCIM; // 0x330
-    struct SafeFloat KJFMGICOGEE; // 0x340
-    struct SafeFloat HOFOFLJJPGB; // 0x350
-    struct SafeFloat CLIKAEMOJLA; // 0x360
-    struct SafeFloat HOEBPCCODAJ; // 0x370
-    struct SafeFloat PEKFECEPDEL; // 0x380
-    struct SafeFloat GPKMLFEGPHE; // 0x390
-    struct SafeFloat GFAEBLKAJNB; // 0x3A0
-    struct SafeFloat HJADDAMBMJA; // 0x3B0
-    struct SafeFloat BLIFPELOGIN; // 0x3C0
-    struct SafeFloat BKIPGJPBPMK; // 0x3D0
-    struct SafeFloat DFCCKCEIEGB; // 0x3E0
-    struct SafeFloat IGAMOIDDIFE; // 0x3F0
-    struct SafeFloat EOBHDMLFNGI; // 0x400
-    struct SafeFloat MIFGEHHLABD; // 0x410
-    struct SafeFloat LKJMENMPGBO; // 0x420
-    struct SafeFloat FGICMKCHLFG; // 0x430
-    struct SafeFloat KHEHPPLEGCF; // 0x440
-    struct SafeFloat GHCNGBFPABP; // 0x450
-    struct SafeFloat OFAGIKILIEB; // 0x460
-    struct SafeFloat BPJGHCMEAJA; // 0x470
-    struct SafeFloat HHLNPMMOEDH; // 0x480
-    struct SafeFloat DAJCINDIGAN; // 0x490
-    struct SafeFloat KBDMLOCNCMH; // 0x4A0
-    struct SafeFloat DIFHLDCEOIH; // 0x4B0
-    struct SafeFloat NCOFCJBGPJC; // 0x4C0
-    struct SafeFloat IPCJMLNCPKM; // 0x4D0
-    struct SafeFloat OCIBHGOMJFF; // 0x4E0
-    struct SafeFloat POMOHEHHMGH; // 0x4F0
-    struct SafeFloat DKOJCAPOFBK; // 0x500
-    struct SafeFloat EHHLLDIIILD; // 0x510
-    struct SafeFloat BOLFGJOHOIA; // 0x520
-    struct SafeFloat KPDAAOIPIOL; // 0x530
-    struct SafeFloat ILDKJPKJEIA; // 0x540
-    struct SafeFloat JLGMEOHCIHH; // 0x550
-    struct SafeFloat APEFFAPLJHB; // 0x560
-    struct SafeFloat MOPNGNANEGC; // 0x570
-    struct SafeFloat AKNEEOAAKMN; // 0x580
-    struct SafeFloat JLKKEADCBJD; // 0x590
-    struct SafeFloat IAPMABEMEMG; // 0x5A0
-    struct SafeFloat HCBNKNMHPLF; // 0x5B0
-    struct SafeFloat HCEFAFCDMPC; // 0x5C0
-    ElementType__Enum elemType; // 0x5D0
-    struct SafeFloat weight; // 0x5D8
-    struct SafeFloat endure; // 0x5E8
-    struct SafeFloat endureShake; // 0x5F8
-    struct SafeFloat gaugeLength; // 0x608
-    struct SafeFloat waneSpeed; // 0x618
-    struct SafeFloat recoverTime; // 0x628
-    struct SafeFloat endurance; // 0x638
-    struct FixedBoolStack* denyLockOn; // 0x648
-    struct FixedBoolStack* isInvincible; // 0x650
-    struct FixedBoolStack* islockHP; // 0x658
-    struct FixedBoolStack* isNoheal; // 0x660
-    struct FixedBoolStack* isGhostToAllied; // 0x668
-    struct FixedBoolStack* isGhostToEnemy; // 0x670
-    struct FixedBoolStack* canTriggerBullet; // 0x678
-    struct FixedBoolStack* denyElementStick; // 0x680
-    struct LCAbilityState* _ability; // 0x688
-    bool useAbilityProperty; // 0x690
-    //void* ANJJMGPDHKO; // 0x698 not rly important lol
+        struct SafeFloat maxHP; // 0x10
+        struct SafeFloat HP; // 0x20
+        struct SafeFloat elemEnergy; // 0x30
+        struct SafeFloat maxElemEnergy; // 0x40
+        struct SafeFloat attackBase; // 0x50
+        struct SafeFloat attackPermanent; // 0x60
+        struct SafeFloat defenseBase; // 0x70
+        struct SafeFloat defensePermanent; // 0x80
+        struct SafeFloat addHurtBase; // 0x90
+        struct SafeFloat subHurtBase; // 0xA0
+        struct SafeFloat criticalHurtBase; // 0xB0
+        struct SafeFloat criticalBase; // 0xC0
+        struct SafeFloat antiCriticalBase; // 0xD0
+        struct SafeFloat physicalSubHurtBase; // 0xE0
+        struct SafeFloat GLLHLKAONCK; // 0xF0
+        struct SafeFloat AMMLOFAEBPF; // 0x100
+        struct SafeFloat NMOEINCFOIL; // 0x110
+        struct SafeFloat MDJFMKMEIIN; // 0x120
+        struct SafeFloat BHLONKDLCLC; // 0x130
+        struct SafeFloat NJPBPIJDNBD; // 0x140
+        struct SafeFloat GDEJAPKOKFN; // 0x150
+        struct SafeFloat BEMFDLDEKAF; // 0x160
+        struct SafeFloat GNFEHPLABAM; // 0x170
+        struct SafeFloat AGJJLGONEPJ; // 0x180
+        struct SafeFloat ALHFLGABIBG; // 0x190
+        struct SafeFloat NAFKFNENFAE; // 0x1A0
+        struct SafeFloat GMLBLPOKMPM; // 0x1B0
+        struct SafeFloat MHDHODBFKOJ; // 0x1C0
+        struct SafeFloat DFAMAMIOLDF; // 0x1D0
+        struct SafeFloat HIJAAGIAPBJ; // 0x1E0
+        struct SafeFloat BGGDHGGOIIB; // 0x1F0
+        struct SafeFloat IGPLDEFLKAP; // 0x200
+        struct SafeFloat LGJFLMNLEBJ; // 0x210
+        struct SafeFloat ECKCEIIANJI; // 0x220
+        struct SafeFloat EILLOLJEPBP; // 0x230
+        struct SafeFloat FDICILELCAM; // 0x240
+        struct SafeFloat KGKBEKECCKL; // 0x250
+        struct SafeFloat OEHJIEGCDCD; // 0x260
+        struct SafeFloat GLKLDAGLMLD; // 0x270
+        struct SafeFloat OPMENIDKNGK; // 0x280
+        struct SafeFloat LNCCLOMPFHJ; // 0x290
+        struct SafeFloat LJGDKDNPCFL; // 0x2A0
+        struct SafeFloat LAHCEIHKHEH; // 0x2B0
+        struct SafeFloat FENPPKOPDBD; // 0x2C0
+        struct SafeFloat JPCAGGFKDFA; // 0x2D0
+        struct SafeFloat JOOMCGNILPB; // 0x2E0
+        struct SafeFloat ECIBKJPMIJP; // 0x2F0
+        struct SafeFloat KIFAFBPPIDJ; // 0x300
+        struct SafeFloat BFFIGNMHPJC; // 0x310
+        struct SafeFloat JJHFKGEPMKO; // 0x320
+        struct SafeFloat HKKDJJOFCIM; // 0x330
+        struct SafeFloat KJFMGICOGEE; // 0x340
+        struct SafeFloat HOFOFLJJPGB; // 0x350
+        struct SafeFloat CLIKAEMOJLA; // 0x360
+        struct SafeFloat HOEBPCCODAJ; // 0x370
+        struct SafeFloat PEKFECEPDEL; // 0x380
+        struct SafeFloat GPKMLFEGPHE; // 0x390
+        struct SafeFloat GFAEBLKAJNB; // 0x3A0
+        struct SafeFloat HJADDAMBMJA; // 0x3B0
+        struct SafeFloat BLIFPELOGIN; // 0x3C0
+        struct SafeFloat BKIPGJPBPMK; // 0x3D0
+        struct SafeFloat DFCCKCEIEGB; // 0x3E0
+        struct SafeFloat IGAMOIDDIFE; // 0x3F0
+        struct SafeFloat EOBHDMLFNGI; // 0x400
+        struct SafeFloat MIFGEHHLABD; // 0x410
+        struct SafeFloat LKJMENMPGBO; // 0x420
+        struct SafeFloat FGICMKCHLFG; // 0x430
+        struct SafeFloat KHEHPPLEGCF; // 0x440
+        struct SafeFloat GHCNGBFPABP; // 0x450
+        struct SafeFloat OFAGIKILIEB; // 0x460
+        struct SafeFloat BPJGHCMEAJA; // 0x470
+        struct SafeFloat HHLNPMMOEDH; // 0x480
+        struct SafeFloat DAJCINDIGAN; // 0x490
+        struct SafeFloat KBDMLOCNCMH; // 0x4A0
+        struct SafeFloat DIFHLDCEOIH; // 0x4B0
+        struct SafeFloat NCOFCJBGPJC; // 0x4C0
+        struct SafeFloat IPCJMLNCPKM; // 0x4D0
+        struct SafeFloat OCIBHGOMJFF; // 0x4E0
+        struct SafeFloat POMOHEHHMGH; // 0x4F0
+        struct SafeFloat DKOJCAPOFBK; // 0x500
+        struct SafeFloat EHHLLDIIILD; // 0x510
+        struct SafeFloat BOLFGJOHOIA; // 0x520
+        struct SafeFloat KPDAAOIPIOL; // 0x530
+        struct SafeFloat ILDKJPKJEIA; // 0x540
+        struct SafeFloat JLGMEOHCIHH; // 0x550
+        struct SafeFloat APEFFAPLJHB; // 0x560
+        struct SafeFloat MOPNGNANEGC; // 0x570
+        struct SafeFloat AKNEEOAAKMN; // 0x580
+        struct SafeFloat JLKKEADCBJD; // 0x590
+        struct SafeFloat IAPMABEMEMG; // 0x5A0
+        struct SafeFloat HCBNKNMHPLF; // 0x5B0
+        struct SafeFloat HCEFAFCDMPC; // 0x5C0
+        ElementType__Enum elemType; // 0x5D0
+        struct SafeFloat weight; // 0x5D8
+        struct SafeFloat endure; // 0x5E8
+        struct SafeFloat endureShake; // 0x5F8
+        struct SafeFloat gaugeLength; // 0x608
+        struct SafeFloat waneSpeed; // 0x618
+        struct SafeFloat recoverTime; // 0x628
+        struct SafeFloat endurance; // 0x638
+        struct FixedBoolStack* denyLockOn; // 0x648
+        struct FixedBoolStack* isInvincible; // 0x650
+        struct FixedBoolStack* islockHP; // 0x658
+        struct FixedBoolStack* isNoheal; // 0x660
+        struct FixedBoolStack* isGhostToAllied; // 0x668
+        struct FixedBoolStack* isGhostToEnemy; // 0x670
+        struct FixedBoolStack* canTriggerBullet; // 0x678
+        struct FixedBoolStack* denyElementStick; // 0x680
+        struct LCAbilityState* _ability; // 0x688
+        bool useAbilityProperty; // 0x690
+        //void* ANJJMGPDHKO; // 0x698 not rly important lol
     };
 
     struct CombatProperty {
@@ -8007,50 +8205,54 @@ namespace app {
         struct BaseEntity* _entity; // 0x28
         bool _isToBeRemoved; // 0x30
         bool _enabled; // 0x31
-        bool hasTick; // 0x32
-        bool hasLateTick; // 0x33
-        bool _selfHasTick; // 0x34
-        bool _selfHasLateTick; // 0x35
-        bool _managerTick; // 0x36
-        bool _managerLateTick; // 0x37
-        struct List_1_System_Int32_* onEventIDs; // 0x38
-        struct List_1_System_Int32_* listenEventIDs; // 0x40
-        struct Int32__Array* _selfOnEventIDsCache; // 0x48
-        bool _isSelfOnEventIDsCached; // 0x50
-        struct Int32__Array* _selfListenEventIDsCache; // 0x58
-        bool _isSelfListenEventIDsCached; // 0x60
-        struct Action* preInitCallback; // 0x68
-        struct Action* initCallback; // 0x70
-        bool _canTickIfDisable; // 0x78
-        bool canTickIfDie; // 0x79
-        bool canHandleEventIfDie; // 0x7A
-        bool _hasEnabledInited; // 0x7B
-        int32_t _tickIntervalRatio; // 0x7C
-        int32_t _lastTickInterval; // 0x80
-        struct Action_1_Single_* _tickMethodForEntityTickManager; // 0x88
-        struct Nullable_1_Boolean_ _isTickableForEntityTickManager; // 0x90
-        struct Action_1_Single_* _lateTickMethodForEntityTickManager; // 0x98
-        struct Nullable_1_Boolean_ _isLateTickableForEntityTickManager; // 0xA0
-        struct Action_1_Single_* _latePreTickMethodForEntityTickManager; // 0xA8
-        struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager; // 0xB0
-        bool needRetarget; // 0xB2
-        bool isInited; // 0xB3
-        bool isPreInited; // 0xB4
-        bool hasCallEntityReady; // 0xB5
-        bool _isDestroied; // 0xB6
-        bool _listenEventValid_k__BackingField; // 0xB7
-        struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap; // 0xB8
-        struct List_1_MoleMole_BaseComponentPlugin_* _pluginList; // 0xC0
-        struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins; // 0xC8
-        struct List_1_MoleMole_BaseComponentPlugin_* _lateTickPlugins; // 0xD0
-        struct Dictionary_2_System_Type_System_Int32_* _disableNoTickPlugins; // 0xD8
-        struct Dictionary_2_System_Type_System_Int32_* _disableNoLateTickPlugins; // 0xE0
-        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _onEventPluginMap; // 0xE8
-        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _onEventPluginsMap; // 0xF0
-        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _listenEventPluginMap; // 0xF8
-        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _listenEventPluginsMap; // 0x100
-        bool _bIgnoreIntervalTick_k__BackingField; // 0x108
-        int32_t _greaterToDisableInterval_k__BackingField; // 0x10C
+        bool _dynamicAdd; // 0x32
+        bool _dynamicRemove; // 0x33
+        bool hasTick; // 0x34
+        bool hasLateTick; // 0x35
+        bool _selfHasTick; // 0x36
+        bool _selfHasLateTick; // 0x37
+        bool _managerTick; // 0x38
+        bool _managerLateTick; // 0x39
+        struct List_1_System_Int32_* onEventIDs; // 0x40
+        struct List_1_System_Int32_* listenEventIDs; // 0x48
+        struct Int32__Array* _selfOnEventIDsCache; // 0x50
+        bool _isSelfOnEventIDsCached; // 0x58
+        struct Int32__Array* _selfListenEventIDsCache; // 0x60
+        bool _isSelfListenEventIDsCached; // 0x68
+        struct Action* preInitCallback; // 0x70
+        struct Action* initCallback; // 0x78
+        bool _canTickIfDisable; // 0x80
+        bool canTickIfDie; // 0x81
+        bool canHandleEventIfDie; // 0x82
+        bool _hasEnabledInited; // 0x83
+        int32_t _tickIntervalRatio; // 0x84
+        int32_t _lastTickInterval; // 0x88
+        struct Action_1_Single_* _tickMethodForEntityTickManager; // 0x90
+        struct Nullable_1_Boolean_ _isTickableForEntityTickManager; // 0x98
+        struct Action_1_Single_* _lateTickMethodForEntityTickManager; // 0xA0
+        struct Nullable_1_Boolean_ _isLateTickableForEntityTickManager; // 0xA8
+        struct Action_1_Single_* _latePreTickMethodForEntityTickManager; // 0xB0
+        struct Nullable_1_Boolean_ _isLatePreTickableForEntityTickManager; // 0xB8
+        bool needRetarget; // 0xBA
+        bool isCleared; // 0xBB
+        bool isInited; // 0xBC
+        bool isPreInited; // 0xBD
+        bool isPreInitedPost; // 0xBE
+        bool hasCallEntityReady; // 0xBF
+        bool _isDestroied; // 0xC0
+        bool _listenEventValid_k__BackingField; // 0xC1
+        struct Dictionary_2_System_Type_MoleMole_BaseComponentPlugin_* _pluginMap; // 0xC8
+        struct List_1_MoleMole_BaseComponentPlugin_* _pluginList; // 0xD0
+        struct List_1_MoleMole_BaseComponentPlugin_* _tickPlugins; // 0xD8
+        struct List_1_MoleMole_BaseComponentPlugin_* _lateTickPlugins; // 0xE0
+        struct Dictionary_2_System_Type_System_Int32_* _disableNoTickPlugins; // 0xE8
+        struct Dictionary_2_System_Type_System_Int32_* _disableNoLateTickPlugins; // 0xF0
+        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _onEventPluginMap; // 0xF8
+        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _onEventPluginsMap; // 0x100
+        struct Dictionary_2_System_Int32_MoleMole_BaseComponentPlugin_* _listenEventPluginMap; // 0x108
+        struct Dictionary_2_System_Int32_List_1_MoleMole_BaseComponentPlugin_* _listenEventPluginsMap; // 0x110
+        bool _bIgnoreIntervalTick_k__BackingField; // 0x118
+        int32_t _greaterToDisableInterval_k__BackingField; // 0x11C
     };
 
     struct VCBase__Fields {
@@ -8342,40 +8544,39 @@ namespace app {
     struct VCHumanoidMove__Fields {
         struct VCBaseMove__Fields _;
         Config_BodyType__Enum moveModelType;
-        float minClimbSlope;
-        float maxClimbSlope;
-        float maxMoveSlope;
-        float minSlipSlope;
-        float upstairTanConst;
-        float slipDropThreshold;
-        float maxSlipSpeed;
-        float slipAcceleration;
-        float slipRapidDecelerationSlope;
-        float slipRapidDecelerationRatio;
-        float slipHaltSlope;
-        float waterfallExtraDownAngle;
-        float dropCliffAngleThreshold;
-        float dropLandLightMaxSpeed;
-        float dropLandMiddleMaxSpeed;
-        float yawSpeedRatio;
-        float swimYawSpeedRatio;
-        float swimDashYawSpeedRatio;
-        float startSwimHeightRatio;
-        float stopSwimHeightRatio;
-        float SwimHeightRatio;
-        float airToSwimHeightRatio;
-        float swimEnableSprintHeightRatio;
-        float climbCloseToGroundDist;
-        float hipOffsetFromIK;
-        float allowMoveNoDropHeightRatio;
-        float _avatarHeight_k__BackingField;
-        float avatarModelHeight;
-        float avatarModelClimbHeight;
-        float avatarWaitToheadHeight;
-        float _avatarShoesHeight_k__BackingField;
-        float _avatarRadius_k__BackingField;
-        float _avatarHeadExtraHeight_k__BackingField;
-        float moveSphereCastRadius;
+        float minClimbSlope; // 0x204
+        float maxClimbSlope; // 0x208
+        float maxMoveSlope; // 0x20C
+        float minSlipSlope; // 0x210
+        float slipDropThreshold; // 0x218
+        float maxSlipSpeed; // 0x21C
+        float slipAcceleration; // 0x220
+        float slipRapidDecelerationSlope; // 0x224
+        float slipRapidDecelerationRatio; // 0x228
+        float slipHaltSlope; // 0x22C
+        float waterfallExtraDownAngle; // 0x230
+        float dropCliffAngleThreshold; // 0x234
+        float dropLandLightMaxSpeed; // 0x238
+        float dropLandMiddleMaxSpeed; // 0x23C
+        float yawSpeedRatio; // 0x240
+        float swimYawSpeedRatio; // 0x244
+        float swimDashYawSpeedRatio; // 0x248
+        float startSwimHeightRatio; // 0x24C
+        float stopSwimHeightRatio; // 0x250
+        float SwimHeightRatio; // 0x254
+        float airToSwimHeightRatio; // 0x258
+        float swimEnableSprintHeightRatio; // 0x25C
+        float climbCloseToGroundDist; // 0x260
+        float hipOffsetFromIK; // 0x264
+        float allowMoveNoDropHeightRatio; // 0x268
+        float _avatarHeight_k__BackingField; // 0x26C
+        struct KPOMBBFHBFC* avatarModelHeight; // 0x270
+        struct KPOMBBFHBFC* avatarModelClimbHeight; // 0x280
+        struct KPOMBBFHBFC* avatarWaitToheadHeight; // 0x290
+        float _avatarShoesHeight_k__BackingField; // 0x2A0
+        float _avatarRadius_k__BackingField; // 0x2A4
+        float _avatarHeadExtraHeight_k__BackingField; // 0x2A8
+        float moveSphereCastRadius; // 0x2AC
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyHard;
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyMiddle;
         struct HumanoidMoveFSMGoUpstairsState_PoseParameter climbToStandbyLight;
@@ -8400,6 +8601,18 @@ namespace app {
         struct Vector3 _center;
         int32_t _rotationFrame;
         bool applyGravityExternal;
+        bool enableHitAirRetreatInAir; // 0x419
+        bool _enableLeanLayer; // 0x41A
+        struct NGCDLPPHCBG* _moveControlType; // 0x41C
+        bool useStrafeStamina; // 0x420
+        float _strafeSpeed; // 0x424
+        float _strafeDropSpeed; // 0x428
+        float _strafeAngularSpeed; // 0x42C
+        bool _strafeUseRootMotion; // 0x430
+        bool _strafeUseGravity; // 0x431
+        bool _strafeRotateToTarget; // 0x432
+        struct Vector3 remoteStrafeTargetPos; // 0x434
+        struct Vector3 remoteStrafeTargetDir; // 0x440
         struct VCHumanoidMoveConfig* _moveConfig;
         struct RuntimeAnimatorController* _cacheRuntimeAnimatorCtrl;
         struct HumanoidMoveFSM* _humanoidMoveFSM;
@@ -8425,6 +8638,8 @@ namespace app {
         int32_t _lastAnimatorStateShortNameHash;
         bool _needFaceToAnimParamEver;
         float stayInAirCountToTrampoline;
+        float maxStrafeStamina; // 0x504
+        float _strafeStamina; // 0x508
         struct LCAbilityState* lcAblityState;
         struct VCAvatarEquipController* _equipController;
         struct Vector3 repeatlySetPos;
@@ -9027,6 +9242,11 @@ namespace app {
         Normal = 0x000003e8,
     };
 
+    enum class GDCNKCIOPMO__Enum : int32_t {
+        Normal = 0x00000000,
+        Heavy = 0x00000001,
+    };
+
     struct __declspec(align(8)) BaseContext__Fields {
         struct PLGGMHHGNJK* config;
         int32_t uiType;
@@ -9044,6 +9264,7 @@ namespace app {
         struct List_1_MoleMole_MonoEventTrigger_* _eventTriggers;
         struct List_1_UnityEngine_Coroutine_* _bindedCoroutines;
         struct Coroutine* _fadeOutCoroutine;
+        GDCNKCIOPMO__Enum performanceType; // 0x78
         struct Action_1_MoleMole_BaseContext_* onLoadFinish;
         struct Action* closeCallback;
         struct Action* releaseCallback;
@@ -9121,7 +9342,6 @@ namespace app {
         uint32_t _mapFogHandle;
         struct Action* _loadingCallback;
         struct Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _transPointMarks;
-        struct Dictionary_2_System_Int32_Dictionary_2_System_UInt32_MoleMole_MonoMapMark_* _markType2markDic;
         struct Rect _mapViewRect;
         struct MonoMapMark* _localAvatarMark;
         struct Rect _markContainerViewport;
@@ -9143,6 +9363,7 @@ namespace app {
         uint32_t _customMarkTrackQuestID;
         MoleMole_CustomMarkTrackReasonType__Enum _customMarkTrackReasonType;
         bool _isAdventureHandbookOpened;
+        bool GDGKMHJBOOE; // 0x27D
         float _slideValue;
         struct MoleMole_ResinViewComponent* _resinComp;
         struct MoleMole_ZoomAudioComponent* _zoomAudioComp;
@@ -9176,6 +9397,8 @@ namespace app {
         struct GameObject* _currOverGameObject;
         bool _anyMarkUnderCursor;
         bool _resinOpened;
+        bool EBMIHJPIIDA; // 0x352
+        struct FABCAHHFGGN_UInt32_* MFGNFKPLBBM; // 0x358
         MoleMole_Config_MapTagType__Enum _currTag;
         uint32_t _currShownID;
         uint32_t _currSelectedID;
@@ -9207,6 +9430,8 @@ namespace app {
         bool BOBCGLGMNIP;
         struct MoleMole_RewardPreviewComponent* _moonfinTrialRewardPreviewComponent;
         struct Coroutine* _updateReviveCooldownCoroutine;
+        struct List_1_UInt32_* PPGOICBBODE; // 0x400
+        struct List_1_UInt32_* GEPKCDMLNKN; // 0x408
         int32_t _selectedMapTagIndex;
         int32_t _selectedPanelTagIndex;
         struct MonoMapMark* _selectedCustomMark;
@@ -9214,6 +9439,11 @@ namespace app {
         struct MoleMole_Config_MarkIconType__Enum__Array* _customMarkIcons;
         struct Vector2 _currMapPos;
         struct Dictionary_2_System_UInt32_List_1_MoleMole_InLevelMapPageContext_ICEOCBLOLOA_* DOLIEMJIHII;
+        struct List_1_GeneralMarkData_* GCEJFJHBPPE; // 0x440
+        struct Dictionary_2_Int32_MGEJPPCPDPI_GHNEBNOAJOP_* PDCEOOIABID; // 0x448
+        struct Dictionary_2_UInt32_List_1_MGEJPPCPDPI_OHDIFOECFDP_* LEEMKGHJJLD; // 0x450
+        unsigned char AFEDCLKINCA; // 0x458
+        unsigned char OBCIIEKNEJH; // 0x459
         int32_t HOABPOCFADI;
     };
 
@@ -9232,31 +9462,31 @@ namespace app {
 
     struct TalkDialogContext__Fields {
         struct BaseDialogContext__Fields _;
-        bool _inCoopSelect; // 0x1A0
-        bool _inCoopTemperamentSelect; // 0x1A1
-        bool _coopSelectShow; // 0x1A2
-        int32_t _selectCoopIndex; // 0x1A4
-        struct List_1_MonoUIContainer_* _confidenceItemArray; // 0x1A8
-        struct DialogAction* _currDialogAction; // 0x1B0
-        struct DialogSelectAction* _currDialogSelectAction; // 0x1B8
-        struct MonoTalkDialog* _dialogMono; // 0x1C0
-        struct Config_ConfigDialogScheme* _currDialog; // 0x1C8
-        float _protectTime; // 0x1D0
-        bool _autoClick; // 0x1D4
-        void* /*private List<EFHJDLFFCPO>*/ EIGCPCDAOHO; // 0x1D8
-        struct Action* JEGCFOEACOA; // 0x1E0
-        struct List_1_System_Int32_* KGMFJCLBCEP; // 0x1E8
-        bool OBDPLKKDFBN; // 0x1F0
-        bool GGFOHLGGCHI; // 0x1F1
-        void* /*GAAFMMJFHNJ*/ FOAKHOBIOOE; // 0x1F8
-        struct Action* _onFreeClick; // 0x200
-        float _interactableTime; // 0x208
-        float _autoTalkInteractableTime; // 0x20C
-        struct Coroutine* _showClickTipCoroutine; // 0x210
-        bool _differentRole; // 0x218
-        struct Coroutine* _showSelectOptionsCoroutine; // 0x220
-        bool _inSelect; // 0x228
-        struct Coroutine* WaitDialogSelectCoroutine; // 0x230
+        bool _inCoopSelect; // 0x1A8
+        bool _inCoopTemperamentSelect; // 0x1A9
+        bool _coopSelectShow; // 0x1AA
+        int32_t _selectCoopIndex; // 0x1AC
+        struct List_1_MonoUIContainer_* _confidenceItemArray; // 0x1B0
+        struct DialogAction* _currDialogAction; // 0x1B8
+        struct DialogSelectAction* _currDialogSelectAction; // 0x1C0
+        struct MonoTalkDialog* _dialogMono; // 0x1C8
+        struct Config_ConfigDialogScheme* _currDialog; // 0x1D0
+        float _protectTime; // 0x1D8
+        bool _autoClick; // 0x1DC
+        struct List_1_EFHJDLFFCPO_* EIGCPCDAOHO; // 0x1E0
+        struct Action* JEGCFOEACOA; // 0x1E8
+        struct List_1_System_Int32_* KGMFJCLBCEP; // 0x1F0
+        bool OBDPLKKDFBN; // 0x1F8
+        bool GGFOHLGGCHI; // 0x1F9
+        struct GAAFMMJFHNJ* FOAKHOBIOOE; // 0x200
+        struct Action* _onFreeClick; // 0x208
+        float _interactableTime; // 0x210
+        float _autoTalkInteractableTime; // 0x214
+        struct Coroutine* _showClickTipCoroutine; // 0x218
+        bool _differentRole; // 0x220
+        struct Coroutine* _showSelectOptionsCoroutine; // 0x228
+        bool _inSelect; // 0x230
+        struct Coroutine* WaitDialogSelectCoroutine; // 0x238
     };
 
     struct TalkDialogContext {
@@ -10781,11 +11011,11 @@ namespace app {
 
     struct GadgetInteractRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        uint32_t gadgetEntityId_;
         InteractType__Enum interactType_;
-        InterOpType__Enum opType_;
-        int32_t retcode_;
         uint32_t gadgetId_;
+        int32_t retcode_;
+        uint32_t gadgetEntityId_;
+        InterOpType__Enum opType_;
     };
 
     struct GadgetInteractRsp {
@@ -10943,13 +11173,13 @@ namespace app {
 
     struct FishBattleEndRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        bool isGotReward_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* KNIFJPABHLH;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* CPIOJKAIMFE;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* HKGCOLOMEPO;
-        int32_t retcode_;
-        Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_FishNoRewardReason__Enum noRewardReason_;
         FishBattleResult__Enum battleResult_;
+        Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_Proto_FishBattleEndRsp_Proto_FishBattleEndRsp_Types_FishNoRewardReason__Enum noRewardReason_;
+        int32_t retcode_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* dropItemList_;
+        bool isGotReward_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* talentItemList_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* rewardItemList_;
     };
 
     struct FishBattleEndRsp {
@@ -11486,12 +11716,12 @@ namespace app {
 
     struct PlayerCookRsp__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
-        uint32_t cookCount_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
         int32_t retcode_;
-        uint32_t qteQuality_;
         struct CookRecipeData_1* recipeData_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* itemList_;
+        uint32_t cookCount_; //need debug
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ItemParam_* extralItemList_;
+        uint32_t qteQuality_; //need debug
     };
 
     struct PlayerCookRsp {
@@ -11586,8 +11816,8 @@ namespace app {
 
     struct CookRecipeData_1__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        uint32_t recipeId_;
         uint32_t proficiency_;
+        uint32_t recipeId_;
     };
 
     struct CookRecipeData_1 {
@@ -12230,7 +12460,8 @@ namespace app {
         struct List_1_MoleMole_MonoEffectProxyHandle_* _effectProxyListCache;
         struct List_1_MoleMole_MonoEffectProxyHandle_* _effectProxyListCacheForChangFollowDampTime;
         struct List_1_UnityEngine_Vector3_* _pushedPosList;
-        struct MoleMole_LCAbility* _owner;
+        struct Action_3_MoleMole_BaseEntity_PPBOJBFBPMM_MoleMole_ActorAbility_* _unknwon;
+    	struct MoleMole_LCAbility* _owner;
         struct List_1_MoleMole_ActorAbility_* _appliedAbilities;
         struct Dictionary_2_System_UInt32_System_Int32_* _appliedAbilitiesIndex;
         struct Dictionary_2_System_String_MoleMole_ActorAbility_* CKDBIBGCPOB;
@@ -12572,19 +12803,19 @@ namespace app {
         struct Proto_SceneEntityInfo__Fields fields;
     };
 
-    enum class KIOMHHDFLGB__Enum : int32_t {
-        JAEEILGFCIF = 0x00000000,
-        GPBMPFOFKPI = 0x00000001,
-        PDNEMDNJLAK = 0x00000002,
-        CNONBPNAGKM = 0x00000003,
+    enum class Proto_LuaShellType__Enum : int32_t {
+        LuashellNone = 0x00000000,
+        LuashellNormal = 0x00000001,
+        LuashellSecurity = 0x00000002,
+        LuashellShellCode = 0x00000003,
     };
 
     struct Proto_PlayerLuaShellNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        KIOMHHDFLGB__Enum KJGNKMBMJAF;
-        uint32_t KDEAHJMLKOH;
-        struct JIBNKGMEPOL* CBPBIHBNKPB;
-        uint32_t PDHPAMDOCIL;
+        uint32_t id_;
+        Proto_LuaShellType__Enum shellType_;
+        struct Google_Protobuf_ByteString* luaShell_;
+        uint32_t useType_;
     };
 
     struct Proto_PlayerLuaShellNotify {
@@ -12647,11 +12878,11 @@ namespace app {
 
     struct Proto_CheckAddItemExceedLimitNotify__Fields {
         struct Google_Protobuf_MessageBase__Fields _;
-        bool is_drop_;
-        enum Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum msgType_;
         struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemTypeList_;
         struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* exceededItemList_;
         uint32_t reason_;
+        bool is_drop_;
+        enum Proto_CheckAddItemExceedLimitNotify_ItemExceedLimitMsgType__Enum msgType_;
     };
 
     struct Proto_CheckAddItemExceedLimitNotify {
@@ -12937,134 +13168,155 @@ namespace app {
         struct MiHoYoLodLoader__Fields fields;
     };
 
-	struct MoleMole_ItemParam
-	{
-		uint32_t item_id;
-		uint64_t guid;
-		uint32_t cur_count;
-		uint32_t expire_time;
-		int32_t itemType;
-		int32_t lockState;
-		struct Proto_Weapon* weapon;
-		struct Proto_Reliquary* reliquary;
-		struct Proto_Material* material;
-		struct Proto_Furniture* furniture;
-	};
+    struct MoleMole_ItemParam
+    {
+        uint32_t item_id;
+        uint64_t guid;
+        uint32_t cur_count;
+        uint32_t expire_time;
+        int32_t itemType;
+        int32_t lockState;
+        struct Proto_Weapon* weapon;
+        struct Proto_Reliquary* reliquary;
+        struct Proto_Material* material;
+        struct Proto_Furniture* furniture;
+    };
 
-	struct __declspec(align(8)) MoleMole_BagItem__Fields
-	{
-		struct MoleMole_ItemParam _itemParam;
-		bool KDKCPMCGMPP;
-		bool JFFGFOCDKKN;
-	};
+    struct __declspec(align(8)) MoleMole_BagItem__Fields
+    {
+        struct MoleMole_ItemParam _itemParam;
+        bool KDKCPMCGMPP;
+        bool JFFGFOCDKKN;
+    };
 
-	struct MoleMole_BagItem
-	{
-		struct MoleMole_BagItem__Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_BagItem__Fields fields;
-	};
+    struct MoleMole_BagItem
+    {
+        struct MoleMole_BagItem__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_BagItem__Fields fields;
+    };
 
-	struct __declspec(align(8)) MoleMole_BagItemSlot__Fields
-	{
-		int32_t typeIndex;
-		struct MoleMole_BagItem* _item;
-	};
+    struct __declspec(align(8)) MoleMole_BagItemSlot__Fields
+    {
+        int32_t typeIndex;
+        struct MoleMole_BagItem* _item;
+    };
 
-	struct MoleMole_BagItemSlot
-	{
-		struct MoleMole_BagItemSlot__Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_BagItemSlot__Fields fields;
-	};
+    struct MoleMole_BagItemSlot
+    {
+        struct MoleMole_BagItemSlot__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_BagItemSlot__Fields fields;
+    };
 
-	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_
-	{
-		uint32_t runtimeID;
-		struct MoleMole_AvatarEntity* _entityRef;
-	};
+    struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_
+    {
+        uint32_t runtimeID;
+        struct MoleMole_AvatarEntity* _entityRef;
+    };
 
-	struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Boxed
-	{
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Class* klass;
-		MonitorData* monitor;
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ fields;
-	};
+    struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Boxed
+    {
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity___Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ fields;
+    };
 
-	struct MonoActionBtn__Fields
-	{
-		struct MonoSpriteProxy__Fields _;
-		struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ avatarHandle;
-		struct Button* _button;
-		bool _isPointerHold;
-		float _holdTime;
-		float _totalHoldTime;
-		bool _buttonClickTrigger;
-		bool _buttonUpTrigger;
-		bool resetButtonOnDisable;
-		struct Action* onPressDownCallback;
-		struct Action* onPressUpCallback;
-	};
+    struct MonoActionBtn__Fields
+    {
+        struct MonoSpriteProxy__Fields _;
+        struct MoleMole_EntityHandle_1_MoleMole_AvatarEntity_ avatarHandle;
+        struct Button* _button;
+        bool _isPointerHold;
+        float _holdTime;
+        float _totalHoldTime;
+        bool _buttonClickTrigger;
+        bool _buttonUpTrigger;
+        bool resetButtonOnDisable;
+        struct Action* onPressDownCallback;
+        struct Action* onPressUpCallback;
+    };
 
-	struct MonoQuickUseButton__Fields
-	{
-		struct MonoActionBtn__Fields _;
-		struct Image_1* _icon;
-		struct CanvasGroup* _iconCanvasGroup;
-		struct Image_1* _disableIcon;
-		struct Material* _foodWorstMat;
-		struct Material* _defaultMat;
-		struct GameObject* _numGrp;
-		struct CanvasGroup* _numCanvasGroup;
-		struct SimpleText* _numText;
-		struct Color _numNormalColor;
-		struct Color _numNotEnoughColor;
-		struct GameObject* _cdGrp;
-		struct SimpleText* _cdText;
-		struct SmoothMask* _cdMask;
-		struct Image_1* _buffIcon;
-		struct GameObject* _foodBestImg;
-		struct MonoPrefabPlugin* _prefabPlugin;
-		struct MonoUIEffect* _hintEffect;
-		float effectCD;
-		struct GameObject* _returnGrp;
-		struct GameObject* _maxHaloGrp;
-		struct Image_1* _progressFullHalo;
-		struct Image_1* _progressFullHaloBlur;
-		struct GameObject* _progressGrp;
-		struct GameObject* _energyEffectGrp;
-		struct MonoUIEffect* _addEffect;
-		struct MonoUIEffect* _maxEffect;
-		struct SmoothMask* _progressMask;
-		struct Image_1* _progressImage;
-		struct Animator* _energyBarAnimator;
-		struct SmoothMask* _energyBarMask;
-		struct GameObject* _activityEffctGrp;
-		struct MonoUIEffect* _addActivityEffect;
-		struct MonoUIEffect* _maxAddActivityEffect;
-		struct MoleMole_LCWidget* _lcWidget;
-		struct MoleMole_WidgetSystemManager* _widgetSystemManager;
-		int32_t _currentActionPanelState;
-		int32_t _nextActionPanelState;
-		struct MoleMole_ISelfRecordState__Array* _uiStateArray;
-		struct ParticleSystem* CCLNLFNIDOM;
-		struct GameObject* CIGIKEIABOK;
-		struct GameObject* DJANGJCDJJA;
-		struct ParticleSystem__Array* _cdEndEffect;
-		bool _energyFull;
-		float lastCd;
-		bool _lastCdState;
-		bool _currentCdState;
-		bool _inCD_k__BackingField;
-		struct String__Array* cdTextStr;
-	};
+    struct MonoQuickUseButton__Fields
+    {
+        struct MonoActionBtn__Fields _;
+        struct Image_1* _icon;
+        struct CanvasGroup* _iconCanvasGroup;
+        struct Image_1* _disableIcon;
+        struct Material* _foodWorstMat;
+        struct Material* _defaultMat;
+        struct GameObject* _numGrp;
+        struct CanvasGroup* _numCanvasGroup;
+        struct SimpleText* _numText;
+        struct Color _numNormalColor;
+        struct Color _numNotEnoughColor;
+        struct GameObject* _cdGrp;
+        struct SimpleText* _cdText;
+        struct SmoothMask* _cdMask;
+        struct Image_1* _buffIcon;
+        struct GameObject* _foodBestImg;
+        struct MonoPrefabPlugin* _prefabPlugin;
+        struct MonoUIEffect* _hintEffect;
+        float effectCD;
+        struct GameObject* _returnGrp;
+        struct GameObject* _maxHaloGrp;
+        struct Image_1* _progressFullHalo;
+        struct Image_1* _progressFullHaloBlur;
+        struct GameObject* _progressGrp;
+        struct GameObject* _energyEffectGrp;
+        struct MonoUIEffect* _addEffect;
+        struct MonoUIEffect* _maxEffect;
+        struct SmoothMask* _progressMask;
+        struct Image_1* _progressImage;
+        struct Animator* _energyBarAnimator;
+        struct SmoothMask* _energyBarMask;
+        struct GameObject* _activityEffctGrp;
+        struct MonoUIEffect* _addActivityEffect;
+        struct MonoUIEffect* _maxAddActivityEffect;
+        struct MoleMole_LCWidget* _lcWidget;
+        struct MoleMole_WidgetSystemManager* _widgetSystemManager;
+        int32_t _currentActionPanelState;
+        int32_t _nextActionPanelState;
+        struct MoleMole_ISelfRecordState__Array* _uiStateArray;
+        struct ParticleSystem* CCLNLFNIDOM;
+        struct GameObject* CIGIKEIABOK;
+        struct GameObject* DJANGJCDJJA;
+        struct ParticleSystem__Array* _cdEndEffect;
+        bool _energyFull;
+        float lastCd;
+        bool _lastCdState;
+        bool _currentCdState;
+        bool _inCD_k__BackingField;
+        struct String__Array* cdTextStr;
+    };
 
-	struct MonoQuickUseButton
-	{
-		struct MonoQuickUseButton__Class* klass;
-		MonitorData* monitor;
-		struct MonoQuickUseButton__Fields fields;
-	};
+    struct MonoQuickUseButton
+    {
+        struct MonoQuickUseButton__Class* klass;
+        MonitorData* monitor;
+        struct MonoQuickUseButton__Fields fields;
+    };
+
+    struct __declspec(align(8)) AsymmetricAlgorithm__Fields {
+        int32_t KeySizeValue;
+        struct KeySizes__Array* LegalKeySizesValue;
+    };
+
+    struct AsymmetricAlgorithm {
+        struct AsymmetricAlgorithm__Class* klass;
+        MonitorData* monitor;
+        struct AsymmetricAlgorithm__Fields fields;
+    };
+
+    struct RSA__Fields {
+        struct AsymmetricAlgorithm__Fields _;
+    };
+
+    struct RSA {
+        struct RSA__Class* klass;
+        MonitorData* monitor;
+        struct RSA__Fields fields;
+    };
 
     struct MonoTeamBtn__Fields {
         struct MonoSpriteProxy__Fields _;
@@ -13192,6 +13444,205 @@ namespace app {
         struct MoleMole_EquipLevelUpDialogContext__Class* klass;
         MonitorData* monitor;
         struct MoleMole_EquipLevelUpDialogContext__Fields fields;
+    };
+
+    enum class MoleMole_QuestModule_MoleMole_QuestModule_NavigationState__Enum : int32_t {
+        Disabled = 0x00000000,
+        AutoEnabled = 0x00000001,
+        ManualEnabled = 0x00000002,
+    };
+
+    struct __declspec(align(8)) MoleMole_QuestModule__Fields {
+        struct Queue_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestConfigCheckRequest_* _configCheckRequestQueue;
+        bool _configCheckRequestProcessing;
+        struct Dictionary_2_System_UInt32_System_UInt32_* _rqRuntimeId2ConfigIdDic;
+        struct Queue_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestProtoRequest_* _protoRequestQueue;
+        struct Dictionary_2_System_UInt64_MoleMole_QuestModule_MoleMole_QuestModule_LuaPreloadState_* _cachedPreloadLua;
+        struct Dictionary_2_System_UInt32_List_1_MoleMole_QuestModule_MoleMole_QuestModule_LuaPreloadState_* _mainQuestCachedLua;
+        struct MoleMole_SimpleObjectPool_1_MoleMole_QuestModule_MoleMole_QuestModule_LuaPreloadState_* _luaPreloadStatePool;
+        struct Dictionary_2_System_UInt32_MoleMole_QuestModule_MoleMole_QuestModule_AnimePreLoadState_* _mainQuestCachedAnime;
+        struct Queue_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestUpdateRequest_* _updateRequestQueue;
+        struct Queue_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestUpdateRequest_* _wait2UpdateQueue;
+        bool _questUpdateRequestProcessing;
+        bool _questUpdateWaiting;
+        struct MoleMole_QuestModule_MoleMole_QuestModule_QuestUpdateRequest* _lastQuestUpdateRequest;
+        struct List_1_System_UInt32_* _mainIDList;
+        struct List_1_System_UInt32_* _mainIDFinishedList;
+        struct Dictionary_2_System_UInt32_System_Boolean_* _questRewindDic;
+        struct HashSet_1_System_UInt32_* _questForceRewindDic;
+        struct Dictionary_2_System_UInt32_MoleMole_QuestModule_MoleMole_QuestModule_QuestVarLocal_* _mainQuestVarDic;
+        struct HashSet_1_System_UInt32_* _mainQuestFinishedSet;
+        struct Dictionary_2_System_UInt32_List_1_MoleMole_QuestProxy_* _mainQuestID2SubListDic;
+        struct Dictionary_2_System_UInt32_List_1_System_UInt32_* _mainQuestID2FactorListDic;
+        struct Dictionary_2_System_UInt32_System_Boolean_* _mainQuestID2Preload;
+        struct Dictionary_2_System_UInt32_MoleMole_QuestProxy_* _questID2Dic;
+        struct List_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestNotifyCache_* _questCacheList;
+        struct List_1_MoleMole_QuestModule_MoleMole_QuestModule_QuestProtoRequest_* _questPostCacheList;
+        bool _isPostInited;
+        struct Dictionary_2_System_UInt32_MoleMole_Config_QuestState_* _mainQuestID2StateDic;
+        bool _delayQuestHint;
+        struct Queue_1_System_ValueTuple_2_* _questHintCache;
+        struct StringBuilder* stringBuilder;
+        struct Dictionary_2_System_UInt32_System_Single_* _questGuideAreaRadius;
+        struct Dictionary_2_System_UInt32_MoleMole_EntityInfoCacheData_* _spawnCacheDic;
+        struct Queue_1_System_String_* _unSpawnAliasQueue;
+        struct List_1_MoleMole_QuestModule_MoleMole_QuestModule_AliasBindCache_* _bindCacheList;
+        struct HashSet_1_System_UInt32_* _npcPreQuestTalkIdSet;
+        struct Dictionary_2_System_UInt32_System_Int32_* _questGlobalVarDic;
+        struct List_1_System_UInt32_* _onGoingPersonalLineList;
+        struct List_1_System_UInt32_* _canBeUnlockPersonalLineList;
+        struct List_1_System_UInt32_* _lockedPersonalLineList;
+        struct Dictionary_2_System_UInt32_Proto_LockedPersonallineData_* _lockedLineDic;
+        bool _isBanNpcTalk;
+        struct Dictionary_2_System_Uint32_List_1_HHIPCLONEPH_* IIOOPPFDPBD; // 0x150
+        struct Dictionary_2_System_Uint32_List_1_System_UInt32_* PNMDNNENMHE; // 0x158
+        struct Dictionary_2_System_Uint32_List_1_System_UInt32_* ECGHMMFGDJA; // 0x160
+        struct Dictionary_2_System_Uint32_BOHLHNJEELN_* JKLGGDGBJCD; // 0x168
+        struct Dictionary_2_System_String_CAOJPAFBIPB_* CENEJOKJPLE; // 0x170
+        struct MoleMole_QuestModule_MoleMole_QuestModule_QuestTrackingMainData* _trackingMainData;
+        bool _canSaveQuestData;
+        struct Coroutine* curCoroutine;
+        bool _lateTrackSome_k__BackingField;
+        struct List_1_System_UInt32_* _suggestTrackMainQuestList;
+        bool _suggestTrackOutOfOrder;
+        struct List_1_System_UInt32_* _newMainQuest;
+        MoleMole_QuestModule_MoleMole_QuestModule_NavigationState__Enum _navigationState;
+        uint32_t _navigatedMainQuestID;
+        struct List_1_System_UInt32_* _navigatedSubQuestIDList;
+    };
+
+    struct MoleMole_QuestModule {
+        struct MoleMole_QuestModule__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_QuestModule__Fields fields;
+    };
+
+    struct Proto_NpcTalkRsp__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t curTalkId_;
+        uint32_t npcEntityId_;
+        int32_t retcode_;
+        uint32_t entityId_;
+    };
+
+    struct Proto_NpcTalkRsp {
+        struct Proto_NpcTalkRsp__Class* klass;
+        MonitorData* monitor;
+        struct Proto_NpcTalkRsp__Fields fields;
+    };
+
+    enum class MoleMole_Config_ElementType__Enum : int32_t {
+        None = 0x00000000,
+        Fire = 0x00000001,
+        Water = 0x00000002,
+        Grass = 0x00000003,
+        Electric = 0x00000004,
+        Ice = 0x00000005,
+        Frozen = 0x00000006,
+        Wind = 0x00000007,
+        Rock = 0x00000008,
+        AntiFire = 0x00000009,
+        VehicleMuteIce = 0x0000000a,
+        COUNT = 0x0000000b,
+    };
+
+    enum class Proto_PropValue_Proto_PropValue_ValueOneofCase__Enum : int32_t {
+        None = 0x00000000,
+        Ival = 0x00000002,
+        Fval = 0x00000003,
+    };
+
+    struct Proto_PropValue__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t type_;
+        int64_t val_;
+        struct Object* value_;
+        Proto_PropValue_Proto_PropValue_ValueOneofCase__Enum valueCase_;
+    };
+
+    struct Proto_PropValue {
+        struct Proto_PropValue__Class* klass;
+        MonitorData* monitor;
+        struct Proto_PropValue__Fields fields;
+    };
+
+    struct __declspec(align(8)) MoleMole_GlobalElementDurability__Fields {
+        struct MoleMole_LevelSceneWaterPlugin* waterPlugin;
+        int64_t waterId;
+        MoleMole_Config_ElementType__Enum elementType;
+    };
+
+    struct MoleMole_GlobalElementDurability {
+        struct MoleMole_GlobalElementDurability__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_GlobalElementDurability__Fields fields;
+    };
+
+    enum class EyeKey_EyeKeyController__Enum : int32_t {
+        EmoSync = 0x00000000,
+        LookAtEyeCtrl = 0x00000001,
+    };
+
+    struct EyeKey__Fields {
+        struct MonoBehaviour__Fields _;
+        EyeKey_EyeKeyController__Enum currentController;
+        struct Transform* leftEyeBone;
+        struct Transform* rightEyeBone;
+        struct Transform* leftEyeBallBone;
+        struct Transform* rightEyeBallBone;
+        struct Vector3 leftEyeRot;
+        struct Vector3 rightEyeRot;
+        bool _previewMode_k__BackingField;
+        bool _isTickable;
+        bool _isScriptEnable;
+        struct Vector3 _leftEyeRotTarget;
+        struct Vector3 _rightEyeRotTarget;
+        float _rotTargetCurrtime;
+        float _rotDuration;
+        bool ControlledByInteractionManager;
+        bool enableApply;
+        struct Vector3 leftEyeBallScale;
+        struct Vector3 rightEyeBallScale;
+        struct Vector3 _leftEyeBallScaleTarget;
+        struct Vector3 _rightEyeBallScaleTarget;
+        float _scaleTargetCurrtime;
+        float _scaleDuration;
+        struct Vector3 leftEyeScale;
+        struct Vector3 rightEyeScale;
+        struct Vector3 leftEyeBallRot;
+        struct Vector3 rightEyeBallRot;
+        struct Transform* teethUpBone;
+        struct Transform* teethDownBone;
+        struct Vector3 teethUpRot;
+        struct Vector3 teethDownRot;
+        struct Vector3 teethUpScale;
+        struct Vector3 teethDownScale;
+        struct Vector3 teethDownPos;
+        int32_t _leftEyeBoneHash;
+        int32_t _rightEyeBoneHash;
+        int32_t _leftEyeBallBoneHash;
+        int32_t _rightEyeBallBoneHash;
+        int32_t _teethUpHash;
+        int32_t _teethDownHash;
+        struct Vector3 _originLeftEyeRot;
+        struct Vector3 _originRightEyeRot;
+        struct Vector3 _originLeftEyeScale;
+        struct Vector3 _originRightEyeScale;
+        struct Vector3 _originLeftEyeBallRot;
+        struct Vector3 _originRightEyeBallRot;
+        struct Vector3 _originLeftEyeBallScale;
+        struct Vector3 _originRightEyeBallScale;
+        struct Vector3 _originUpTeethRot;
+        struct Vector3 _originDownTeethRot;
+        struct Vector3 _originUpTeethScale;
+        struct Vector3 _originDownTeethScale;
+        struct Vector3 _originDownTeethPos;
+    };
+
+    struct EyeKey {
+        struct EyeKey__Class* klass;
+        MonitorData* monitor;
+        struct EyeKey__Fields fields;
     };
 
 #if !defined(_GHIDRA_) && !defined(_IDA_)
