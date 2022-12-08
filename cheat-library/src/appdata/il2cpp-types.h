@@ -13646,6 +13646,63 @@ namespace app {
         struct EyeKey__Fields fields;
     };
 
+    struct GcgGrpSettle__Fields {
+        bool _SettleReceived_k__BackingField; // 0x18
+        bool _SettlePageShowed_k__BackingField; // 0x19
+        uint32_t _GameId_k__BackingField; // 0x1C
+        struct FFCGFKMGLKB* _EndReason_k__BackingField; // 0x20
+        struct HHELPIDMIPK* _BusinessType_k__BackingField; // 0x24
+        bool _IsSelfWinGame_k__BackingField; // 0x28
+        bool _IsOppoWinGame_k__BackingField; // 0x29
+        struct List_1_GcgGrpSettle_RewardPair_* _RewardList_k__BackingField; // 0x30
+        struct List_1_UInt32_* _FinishedList_k__BackingField; // 0x38
+        struct List_1_UInt32_* _CanNotFinishList_k__BackingField; // 0x40
+        bool _HavePlayerLevelUpdate_k__BackingField; // 0x48
+        uint32_t _PlayerUpdatePrevLevel_k__BackingField; // 0x4C
+        uint32_t _PlayerUpdateNewLevel_k__BackingField; // 0x50
+        uint32_t _PlayerUpdatePrevExp_k__BackingField; // 0x54
+        uint32_t _PlayerUpdateNewExp_k__BackingField; // 0x58
+        struct List_1_GcgGrpSettle_CachedAchievement_* _CachedAchievements_k__BackingField; // 0x60
+    };
+
+    struct GcgGrpSettle {
+        struct GcgGrpSettle__Class* klass;
+        MonitorData* monitor;
+        struct GcgGrpSettle__Fields fields;
+    };
+
+    enum class LFADJECDHHB__Enum : int32_t {
+        GCG_ELEMENT_PHYSIC = 0x00000000,
+        GCG_ELEMENT_CRYO = 0x00000001,
+        GCG_ELEMENT_HYDRO = 0x00000002,
+        GCG_ELEMENT_PYRO = 0x00000003,
+        GCG_ELEMENT_ELECTRO = 0x00000004,
+        GCG_ELEMENT_GEO = 0x00000005,
+        GCG_ELEMENT_DENDRO = 0x00000006,
+        GCG_ELEMENT_ANEMO = 0x00000007,
+        GCG_ELEMENT_ANY = 0x00000008
+    };
+
+    struct GcgClientMsgSkillResult__Fields {
+        bool _isNoDamage; // 0x18
+        uint32_t _skillId; // 0x1C
+        uint32_t _sourceCardGuid; // 0x20
+        uint32_t _targetCardGuid; // 0x24
+        LFADJECDHHB__Enum _elementType; // 0x28
+        struct List_1_GcgDamageDetail_* _detailList; // 0x30
+        uint32_t _resultSeq; // 0x38
+        uint32_t _fromResultSeq; // 0x3C
+        uint32_t _damage; // 0x40
+        uint32_t _lastHp; // 0x44
+    };
+
+    struct GcgClientMsgSkillResult {
+        struct GcgClientMsgSkillResult__Class* klass;
+        MonitorData* monitor;
+        struct GcgClientMsgSkillResult__Fields fields;
+    };
+    
+
 #if !defined(_GHIDRA_) && !defined(_IDA_)
 }
 #endif
