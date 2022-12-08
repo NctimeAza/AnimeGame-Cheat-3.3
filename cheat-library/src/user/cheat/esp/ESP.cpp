@@ -545,6 +545,7 @@ namespace cheat::feature
 			m_CustomFilters.erase(m_CustomFilters.begin() + rowToDelete);
 			m_CustomFilterInfos.erase(m_CustomFilterInfos.begin() + rowToDelete);
 			rowToDelete = -1;
+			SaveCustomFilters();
 		}
 	}
 
