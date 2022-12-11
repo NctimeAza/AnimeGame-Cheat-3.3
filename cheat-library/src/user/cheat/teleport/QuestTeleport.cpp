@@ -4,13 +4,11 @@
 #include <cheat/game/util.h>
 #include <cheat/teleport/MapTeleport.h>
 
-#include <cheat/GenshinCM.h>
-
 namespace cheat::feature
 {
 	QuestTeleport::QuestTeleport() : Feature(),
 		NFP(f_QuestTP, "QuestTeleport", "QuestTP", false),
-		NF(f_Key, "QuestTeleport", Hotkey('V'))
+		NF(f_Key, "QuestTeleport", Hotkey())
 	{
 		f_Key.value().PressedEvent += MY_METHOD_HANDLER(QuestTeleport::QuestPointTeleport);
 	}	
@@ -24,9 +22,8 @@ namespace cheat::feature
 	void QuestTeleport::DrawMain()
 	{
 		ConfigWidget(_TR("QuestTP"), f_QuestTP, _TR("Teleport to QuestPoint.(Does not work for some Quest Areas) \n Press the V key to track the Quest, then press the hotkey to teleport."));
-		if (f_QuestTP->enabled()) {
-			ConfigWidget(_TR("QuestTpKey"), f_Key, true);
-		}
+		if (f_QuestTP->enabled()) 
+			ConfigWidget(_TR("QuestTpKey"), f_Key, true);	
 	}
 
 	bool QuestTeleport::NeedStatusDraw() const
@@ -58,29 +55,20 @@ namespace cheat::feature
 			if (MarkComponent) {
 				auto MarkGameObject = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(MarkComponent), nullptr);
 				auto QuestComponent = app::GameObject_GetComponentByName(MarkGameObject, string_to_il2cppi("MonoMapMark"), nullptr);
-
 				if (QuestComponent) {
-					auto questType = app::MoleMole_Config_MarkIconType__Enum::MarkQuest;
-					auto questTypeCommission = app::MoleMole_Config_MarkIconType__Enum::MarkDailyTask;
-					auto questRandom = app::MoleMole_Config_MarkIconType__Enum::MarkRandomTask;
-					auto questArea = app::MoleMole_Config_MarkIconType__Enum::MarkQuestArea;
-					auto questArea_1 = app::MoleMole_Config_MarkIconType__Enum::MarkDangerousQuestArea;
-					auto MarkType = app::MonoMapMark_get_iconType(reinterpret_cast<app::MonoMapMark*>(QuestComponent), nullptr);
-
-					if (MarkType == questType || MarkType == questArea || MarkType == questTypeCommission || MarkType == questRandom || MarkType == questArea_1) {
-						auto LevelMapPos = app::MonoMapMark_get_levelMapPos(reinterpret_cast<app::MonoMapMark*>(QuestComponent), nullptr);
-						auto height = (reinterpret_cast<app::MonoMapMark*>(QuestComponent))->fields.height;
-						auto WorldPos = app::Miscs_GenWorldPos(LevelMapPos, nullptr);
-						WorldPos.y = height;
+					auto MarkType = (reinterpret_cast<app::MonoMapMark*>(QuestComponent))->fields._markType;
+					//"Quest" Including normal Quests and random Quests etc."Task" is commission quests
+					if (MarkType == app::MoleMole_Config_MarkType__Enum::Quest || MarkType == app::MoleMole_Config_MarkType__Enum::Task) {
+						auto WorldPos = app::Miscs_GenWorldPos((reinterpret_cast<app::MonoMapMark*>(QuestComponent))->fields._levelMapPos, nullptr);
+						WorldPos.y = (reinterpret_cast<app::MonoMapMark*>(QuestComponent))->fields.height+0.75f;
 						//Prevent error Pos caused by error when obtaining quest point.(e.g x = 4294967294)
-						if (f_QuestTP->enabled() && WorldPos.x != 0.0f && WorldPos.z != 0.0f && WorldPos.x <= 20000.0f && WorldPos.z <= 20000.0f && WorldPos.x >= -20000.0f && WorldPos.z >= -20000.0f && WorldPos.y<1000.0f && WorldPos.y > -1000.0f) {
+						if (f_QuestTP->enabled() && WorldPos.x != 0.0f && WorldPos.z != 0.0f && WorldPos.x <= 20000.0f && WorldPos.z <= 20000.0f && WorldPos.x >= -20000.0f && WorldPos.z >= -20000.0f && WorldPos.y<1000.0f && WorldPos.y > -1000.0f) 
 							teleport.TeleportTo(WorldPos);
-							//LOG_DEBUG("QuestPointPosition: x=%f, y=%f z=%f", WorldPos.x, WorldPos.y, WorldPos.z);
-						}
-						Layer3 = nullptr;
+							//LOG_DEBUG("QuestPointPosition: x=%f, y=%f z=%f", WorldPos.x, WorldPos.y, WorldPos.z);									
 						}
 					}
-			   }
+			    }
+			Layer3 = nullptr;
 		   }
        }
    }
