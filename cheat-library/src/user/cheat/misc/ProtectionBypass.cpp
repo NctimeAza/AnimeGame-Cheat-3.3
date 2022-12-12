@@ -29,8 +29,8 @@ namespace cheat::feature
 		NF(f_SpoofLuaShell, "General::ProtectionBypass", true),
 		m_CorrectSignatures({})
     {
-		HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
-		HookManager::install(app::CrashReporter, CrashReporter_Hook);
+		//HookManager::install(app::Unity_RecordUserData, RecordUserData_Hook);
+		//HookManager::install(app::CrashReporter, CrashReporter_Hook);
 	}
 
 	void ProtectionBypass::Init()

@@ -220,7 +220,7 @@ LGameVersion UserSelectGameVersion()
 // IL2CPP application initializer
 void init_il2cpp()
 {
-	_gameVersion = GetGameVersion();
+	_gameVersion = LGameVersion::GLOBAL;
 	if (_gameVersion == LGameVersion::NONE)
 	{
 		LOG_ERROR("Failed to detect any game version. If you sure that cheat has updated for current game version, and you downloaded the correct one.");
