@@ -123,7 +123,7 @@ DO_APP_FUNC(0x0446B180, 0x0, void, MoleMole_EventManager_FireEvent, (MoleMole_Ev
 DO_APP_FUNC(0x092AE450, 0x0, bool, MoleMole_FixedBoolStack_get_value, (FixedBoolStack* __this, MethodInfo* method));
 
 // 3.4 ResolveCall("e8 ? ? ? ? 48 8b f8 48 85 c0 74 ? 8b d6 48 8b c8 e8 ? ? ? ? 45 33 c0");
-DO_APP_FUNC(0x022ACDD0, 0x0, EvtCrash*, MoleMole_EventHelper_Allocate_103, (MethodInfo* method));
+DO_APP_FUNC(0x02FACDD0, 0x0, EvtCrash*, MoleMole_EventHelper_Allocate_103, (MethodInfo* method));
 // 3.4 ResolveMov("f3 0f 59 c9 0f 2f f9 0f 82 ? ? ? ? 48 8b 05"//goto 1st JE); GMAJJHDBLFA_JCNOMMJCPLG_MethodInfo
 DO_APP_FUNC_METHODINFO(0x0D1F7080, 0x0, MoleMole_EventHelper_Allocate_103__MethodInfo);
 
