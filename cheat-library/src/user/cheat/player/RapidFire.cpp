@@ -217,7 +217,7 @@ namespace cheat::feature
 		auto avatarID = manager.avatar()->runtimeID();
 		auto attackerID = attacker.runtimeID();
 
-		return attackerID == avatarID || IsAvatarOwner(attacker) || attacker.type() == app::EntityType__Enum_1::Bullet;
+		return attackerID == avatarID || IsAvatarOwner(attacker) || attacker.type() == app::EntityType__Enum_1::Bullet || attacker.type() == app::EntityType__Enum_1::Gadget;
 	}
 
 	bool IsConfigByAvatar(game::Entity& attacker)

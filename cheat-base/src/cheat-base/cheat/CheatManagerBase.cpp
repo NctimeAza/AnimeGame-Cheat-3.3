@@ -108,10 +108,10 @@ namespace cheat
 
 		ImGui::BeginChild("ChildL", ImVec2(f_ModuleListWidth, -FLT_MIN), true);
 
-		//if (ImGui::Checkbox(_TR("Block key/mouse"), &m_IsBlockingInput))
-		//{
-		//	renderer::SetInputLock(this, m_IsBlockingInput);
-		//}
+		if (ImGui::Checkbox(_TR("Block key/mouse"), &m_IsBlockingInput))
+		{
+			renderer::SetInputLock(this, m_IsBlockingInput);
+		}
 
 		size_t index = 0;
 		for (auto& moduleName : m_ModuleOrder)
