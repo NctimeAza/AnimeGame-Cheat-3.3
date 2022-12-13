@@ -1404,7 +1404,22 @@
       "AT": "AT",
       "CR": "CR",
       "PF": "PF",
-      "FL": "FL"
+      "FL": "FL",
+      "Custom Element": "Custom Element",
+      "Allows you to customize the element type of damage.\nThis may not work for some characters. \n(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)": "Allows you to customize the element type of damage.\nThis may not work for some characters. \n(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)",
+      "RandomElementType": "RandomElementType",
+      "Random element type (excluding physics)": "Random element type (excluding physics)",
+      "ElementType": "ElementType",
+      "ElementTypes": "ElementTypes",
+      "Auto weakspot": "Auto weakspot",
+      "Only bow character.": "Only bow character.",
+      "Outline Color": "Outline Color",
+      "Color of the arrow outline.": "Color of the arrow outline..",
+      "Circle Color": "Circle Color",
+      "Color of the circle icon fill.": "Color of the circle icon fill.",
+      "Show Icons": "Show Icons",
+      "Show arrows with icons.": "Show arrows with icons.",
+      "HD": "HD"
     }
   },
   "SimplifiedChinese": {
@@ -2824,7 +2839,14 @@
       "ElementType": "元素类型",
       "ElementTypes": "元素类型",
       "Auto weakspot": "自动弱点",
-      "Only bow character.": "仅限弓箭角色"
+      "Only bow character.": "仅限弓箭角色",
+      "Outline Color": "轮廓颜色",
+      "Color of the arrow outline.": "箭头轮廓的颜色.",
+      "Circle Color": "圆圈颜色",
+      "Color of the circle icon fill.": "圆圈图标填充颜色",
+      "Show Icons": "显示图标",
+      "Show arrows with icons.": "显示带有图标的箭头",
+      "HD": "高清"
     }
   },
   "TraditionalChinese": {
@@ -4242,7 +4264,14 @@
       "ElementType": "元素類型",
       "ElementTypes": "元素類型",
       "Auto weakspot": "自動弱點",
-      "Only bow character.": "僅限弓箭角色"
+      "Only bow character.": "僅限弓箭角色",
+      "Outline Color": "Outline Color",
+      "Color of the arrow outline.": "Color of the arrow outline..",
+      "Circle Color": "Circle Color",
+      "Color of the circle icon fill.": "Color of the circle icon fill.",
+      "Show Icons": "Show Icons",
+      "Show arrows with icons.": "Show arrows with icons.",
+      "HD": "HD"
     }
   },
   "Russian": {
@@ -5653,7 +5682,14 @@
       "ElementType": "тип элемента",
       "ElementTypes": "тип элемента",
       "Auto weakspot": "автоматическая слабость",
-      "Only bow character.": "Только персонажи с луком и стрелами могут использовать"
+      "Only bow character.": "Только персонажи с луком и стрелами могут использовать",
+      "Outline Color": "Outline Color",
+      "Color of the arrow outline.": "Color of the arrow outline..",
+      "Circle Color": "Circle Color",
+      "Color of the circle icon fill.": "Color of the circle icon fill.",
+      "Show Icons": "Show Icons",
+      "Show arrows with icons.": "Show arrows with icons.",
+      "HD": "HD"
     }
   }
 }
