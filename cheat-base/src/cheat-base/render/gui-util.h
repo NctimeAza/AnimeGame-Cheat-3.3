@@ -168,3 +168,13 @@ bool ConfigWidget(config::Field<config::Enum<T>>& field, const char* desc = null
 {
 	return ConfigWidget(field.friendName().c_str(), field, desc);
 }
+
+inline ImVec2 operator - (const ImVec2& A, const float k)
+{
+	return { A.x - k, A.y - k };
+}
+
+inline ImVec2 operator + (const ImVec2& A, const float k)
+{
+	return { A.x + k, A.y + k };
+}

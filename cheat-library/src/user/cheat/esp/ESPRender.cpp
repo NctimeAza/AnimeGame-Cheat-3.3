@@ -9,7 +9,6 @@
 #include <helpers.h>
 #include <cheat/game/EntityManager.h>
 
-
 #include <sys/timeb.h>
 #include "ESP.h"
 
@@ -439,43 +438,27 @@ namespace cheat::feature::esp::render
   
 #define PI 3.14159265358979323846f
 
-	static void DrawOffscreenArrows(game::Entity* entity, const ImColor& color)
+	static void DrawOffscreenArrows(game::Entity* entity, const ImColor& color, const std::string& entryName)
 	{
 		ImRect screen_rect = { 0.0f, 0.0f, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y };
 		auto entity_pos = WorldToScreenPosScalled(entity->relativePosition());
 		if (entity_pos.z > 0 && screen_rect.Contains({ entity_pos.x, entity_pos.y }))
 			return;
 
-		auto screen_center = screen_rect.GetCenter();
-		auto angle = atan2(screen_center.y - entity_pos.y, screen_center.x - entity_pos.x);
+		ImVec2 screen_center = screen_rect.GetCenter();
+		float angle = atan2(screen_center.y - entity_pos.y, screen_center.x - entity_pos.x);
 		angle += entity_pos.z > 0 ? PI : 0.0f;
 
+		float cosA = cosf(angle);
+		float sinA = sinf(angle);
+
 		auto& esp = ESP::GetInstance();
-		ImVec2 arrow_center {
-			screen_center.x + esp.f_ArrowRadius * cosf(angle),
-			screen_center.y + esp.f_ArrowRadius * sinf(angle)
+		ImVec2 arrow_center{
+			screen_center.x + esp.f_ArrowRadius * cosA,
+			screen_center.y + esp.f_ArrowRadius * sinA
 		};
 
-		// Triangle
-		std::array<ImVec2, 4> points {
-			ImVec2(-22.0f, -8.6f),
-			ImVec2(0.0f, 0.0f),
-			ImVec2(-22.0f, 8.6f),
-			ImVec2(-18.0f, 0.0f)
-		};
-
-		for (auto& point : points)
-		{
-			auto x = point.x * esp.f_TracerSize ;
-			auto y = point.y * esp.f_TracerSize;
-
-			point.x = arrow_center.x + x * cosf(angle) - y * sinf(angle);
-			point.y = arrow_center.y + x * sinf(angle) + y * cosf(angle);
-		}
-
-		
-		auto draw = ImGui::GetBackgroundDrawList();
-
+		// Alpha fade in/out
 		float alpha = 1.0f;
 		if (entity_pos.z > 0)
 		{
@@ -484,17 +467,73 @@ namespace cheat::feature::esp::render
 				entity_pos.x < 0 ? abs(entity_pos.x) : (entity_pos.x > screen_rect.Max.x ? entity_pos.x - screen_rect.Max.x : 0.0f),
 				entity_pos.y < 0 ? abs(entity_pos.y) : (entity_pos.y > screen_rect.Max.y ? entity_pos.y - screen_rect.Max.y : 0.0f),
 			};
-			float distance = static_cast<float>(std::pow(screen_outer_diff.x, 2) + std::pow(screen_outer_diff.y, 2));
+			float distance = powf(screen_outer_diff.x, 2) + powf(screen_outer_diff.y, 2);
 			alpha = entity_pos.z < 0 ? 1.0f : (distance / nearThreshold);
 		}
-		auto arrowColor = color; // Copy
-		arrowColor.Value.w = std::min(alpha, 1.0f);
+		alpha = std::min(alpha, 1.0f);
 
-		// Draw the arrow
-		draw->AddTriangleFilled(points[0], points[1], points[3], arrowColor);
-		draw->AddTriangleFilled(points[2], points[1], points[3], arrowColor);
-		// draw->AddQuad(points[0], points[1], points[2], points[3], ImColor(0.0f, 0.0f, 0.0f, alpha), 0.6f);
-		draw->AddQuad(points[0], points[1], points[2], points[3], ImColor(0.0f, 0.0f, 0.0f, alpha), esp.f_OutlineThickness);
+		// Copy
+		auto arrowColor = color;
+		auto lineColor = esp.f_OutlineColor.value();
+		auto circleColor = esp.f_CircleColor.value();
+
+		// Apply transparency
+		arrowColor.Value.w = alpha;
+		lineColor.Value.w = alpha;
+		circleColor.Value.w = alpha;
+
+		// Triangle dimensions
+		const float height = 22.0f;
+		const float width = 8.6f;
+
+		// Tangent circle center and radius
+		const float magnitude = sqrtf(powf(height, 2) + powf(width, 2));
+		const ImVec2 normal = ImVec2(height, width) / magnitude;
+		const float hypotenuse = width / normal.x;
+		const float base = hypotenuse * normal.y;
+
+		std::array<ImVec2, 4> points {
+		// Triangle points
+			ImVec2(-height, -width),
+			ImVec2(0.0f, 0.0f),
+			ImVec2(-height, width),
+		// Circle center
+			ImVec2(-height - base, 0.0f)
+		};
+
+		// Adjust points
+		for (auto& point : points)
+		{
+			float x = point.x * esp.f_TracerSize;
+			float y = point.y * esp.f_TracerSize;
+			point.x = arrow_center.x + x * cosA - y * sinA;
+			point.y = arrow_center.y + x * sinA + y * cosA;
+		}
+
+		float radius = hypotenuse * esp.f_TracerSize;
+		auto draw = ImGui::GetBackgroundDrawList();
+
+		draw->AddCircleFilled(points[3], radius + esp.f_OutlineThickness, lineColor); // Circle outline
+		draw->AddTriangleFilled(points[0], points[1], points[2], arrowColor);
+		draw->AddTriangle(points[0], points[1], points[2], lineColor, esp.f_OutlineThickness);
+		draw->AddCircleFilled(points[3], radius, arrowColor); // Circle BG
+
+		if (esp.f_ShowArrowIcons && !entryName.empty())
+		{
+			auto imageInfo = ImageLoader::GetImage(util::Unsplit(esp.f_ShowHDIcons ? "HD" + entryName : entryName));
+			auto textureID = imageInfo ? imageInfo->textureID : nullptr;
+
+			if (textureID)
+			{
+				radius *= 0.9f;
+				ImVec2 imageStartPos = points[3] - radius;
+				ImVec2 imageEndPos = points[3] + radius;
+
+				draw->AddCircleFilled(points[3], radius, circleColor); // Circle icon fill
+				draw->AddImageRounded(textureID, imageStartPos + 2.0f, imageEndPos - 2.0f,
+					ImVec2(0, 0), ImVec2(1, 1), ImColor(1.0f, 1.0f, 1.0f, arrowColor.Value.w), radius);
+			}
+		}
 	}
 
 	static void DrawName(const Rect& boxRect, game::Entity* entity, const std::string& name, const ImColor& color, const ImColor& contrastColor)
@@ -640,7 +679,7 @@ namespace cheat::feature::esp::render
 		return entityRect;
 	}
 
-	bool DrawEntity(const std::string& name, game::Entity* entity, const ImColor& color, const ImColor& contrastColor)
+	bool DrawEntity(const std::string& entryName, const std::string& displayName, game::Entity* entity, const ImColor& color, const ImColor& contrastColor)
 	{
 		SAFE_BEGIN();
 		auto& esp = ESP::GetInstance();
@@ -667,14 +706,14 @@ namespace cheat::feature::esp::render
 			DrawLine(entity, esp.f_GlobalLineColor ? esp.f_GlobalLineColor : color);
 			break;
 		case ESP::DrawTracerMode::OffscreenArrows:
-			DrawOffscreenArrows(entity, esp.f_GlobalLineColor ? esp.f_GlobalLineColor : color);
+			DrawOffscreenArrows(entity, esp.f_GlobalLineColor ? esp.f_GlobalLineColor : color, entryName);
 			break;
 		default:
 			break;
 		}
 
 		if (esp.f_DrawName || esp.f_DrawDistance)
-			DrawName(rect, entity, name, esp.f_GlobalFontColor ? esp.f_GlobalFontColor : color,
+			DrawName(rect, entity, displayName, esp.f_GlobalFontColor ? esp.f_GlobalFontColor : color,
 				esp.m_FontContrastColor ? esp.m_FontContrastColor : contrastColor);
 		if (esp.f_DrawHealth)
 			DrawHealth(rect, entity, esp.f_GlobalFontColor ? esp.f_GlobalFontColor : color,

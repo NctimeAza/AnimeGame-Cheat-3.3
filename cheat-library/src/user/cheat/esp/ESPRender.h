@@ -10,6 +10,6 @@
 
 namespace cheat::feature::esp::render
 {
-	bool DrawEntity(const std::string& name, game::Entity* entity, const ImColor& color, const ImColor& contrastColor);
+	bool DrawEntity(const std::string& entryName, const std::string& displayName, game::Entity* entity, const ImColor& color, const ImColor& contrastColor);
 	void PrepareFrame();
 }

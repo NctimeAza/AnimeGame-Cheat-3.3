@@ -32,8 +32,13 @@ namespace cheat::feature
 		NF(f_FillTransparency, "ESP", 0.5f),
 
 		NF(f_ArrowRadius, "ESP", 100.0f),
-		NF(f_OutlineThickness, "ESP", 1.0f),
 		NF(f_TracerSize, "ESP", 1.0f),
+		NF(f_OutlineThickness, "ESP", 1.0f),
+		NF(f_OutlineColor, "ESP", ImColor(0.91f, 0.68f, 0.36f)),
+		NF(f_CircleColor, "ESP", ImColor(0.23f, 0.26f, 0.32f)),
+		NF(f_ShowArrowIcons, "ESP", true),
+		NF(f_ShowHDIcons, "ESP", false),
+
 		NF(f_MiddleScreenTracer, "ESP", false),
 		NF(f_DrawDistance, "ESP", false),
 		NF(f_DrawName, "ESP", false),	
@@ -90,8 +95,18 @@ namespace cheat::feature
 				if (ImGui::BeginGroupPanel(_TR("Arrow tracer options"), true))
 				{
 					ConfigWidget(_TR("Tracer Size"), f_TracerSize, 0.005f, 0.1f, 10.0f, _TR("Size of tracer."));
-					ConfigWidget(_TR("Arrow Radius"), f_ArrowRadius, 0.5f, 50.0f, 300.0f, _TR("Radius of arrow."));
-					ConfigWidget(_TR("Outline Thickness"), f_OutlineThickness, 0.005f, 0.0f, 10.0f, _TR("Outline thickness of arrow."));
+					ConfigWidget(_TR("Arrow Radius"), f_ArrowRadius, 0.5f, 50.0f, 400.0f, _TR("Radius of arrow."));
+					ConfigWidget(_TR("Outline Thickness"), f_OutlineThickness, 0.005f, 1.0f, 10.0f, _TR("Outline thickness of arrow."));
+
+					ConfigWidget(_TR("Outline Color"), f_OutlineColor, _TR("Color of the arrow outline."));
+					ConfigWidget(_TR("Circle Color"), f_CircleColor, _TR("Color of the circle icon fill."));
+
+					ConfigWidget(_TR("Show Icons"), f_ShowArrowIcons, _TR("Show arrows with icons."));
+					if (f_ShowArrowIcons)
+					{
+						ImGui::SameLine();
+						ConfigWidget(_TR("HD"), f_ShowHDIcons, _TR("Toggle icons to HD format."));
+					}
 				}
 				ImGui::EndGroupPanel();
 			}
@@ -365,21 +380,11 @@ namespace cheat::feature
 		}
 	}
 
-	std::string Unsplit(const std::string& value)
-	{
-		std::stringstream in(value);
-		std::stringstream out;
-		std::string word;
-		while (in >> word)
-			out << word;
-		return out.str();
-	}
-
 	void FilterItemSelector(const char* label, ImTextureID image, const config::Field<esp::ESPItem>& field, const ImVec2& size = ImVec2(200, 0), float icon_size = 30);
 
 	void ESP::DrawFilterField(const config::Field<esp::ESPItem>& field)
 	{
-		auto imageInfo = ImageLoader::GetImage(Unsplit(field.value().m_Name));
+		auto imageInfo = ImageLoader::GetImage(util::Unsplit(field.value().m_Name));
 		FilterItemSelector(field.value().m_Name.c_str(), imageInfo ? imageInfo->textureID : nullptr, field);
 	}
 
@@ -414,13 +419,13 @@ namespace cheat::feature
                     case "Electro Seelie"_h:
                         if (f_HideCompleted && ESP::CheckPuzzleFinished(entity))
                             break;
-                        esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                        esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         break;
 
                     case "Buried Chest"_h:
                         if (isBuriedChest(entity))
                         {
-                            esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                            esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         }
                         break;
 
@@ -434,12 +439,12 @@ namespace cheat::feature
                         {
                             std::string name = entity->name();
                             GetNpcName(name);
-                            esp::render::DrawEntity(Translator::RuntimeTranslate(name), entity, entry.m_Color, entry.m_ContrastColor);
+                            esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(name), entity, entry.m_Color, entry.m_ContrastColor);
                         }
                         break;
 
                     default:
-                        esp::render::DrawEntity(Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                        esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         break;
                     }
                     break;

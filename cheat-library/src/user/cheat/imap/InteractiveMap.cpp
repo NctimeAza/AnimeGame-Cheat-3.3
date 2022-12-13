@@ -1540,16 +1540,6 @@ namespace cheat::feature
 		return screenPosition;
 	}
 
-    inline ImVec2 operator - (const ImVec2& A, const float k)
-	{
-		return { A.x - k, A.y - k };
-	}
-
-	inline ImVec2 operator + (const ImVec2& A, const float k)
-	{
-		return { A.x + k, A.y + k };
-	}
-
 	static std::mutex _windowRectsMutex;
 	static std::vector<ImRect> _windowRects;
 
