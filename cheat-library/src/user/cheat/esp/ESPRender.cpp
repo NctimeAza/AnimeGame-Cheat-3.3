@@ -442,7 +442,7 @@ namespace cheat::feature::esp::render
 	{
 		ImRect screen_rect = { 0.0f, 0.0f, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y };
 		auto entity_pos = WorldToScreenPosScalled(entity->relativePosition());
-		if (entity_pos.z > 0 && screen_rect.Contains({ entity_pos.x, entity_pos.y }))
+		if (entity_pos.z == 0 || (entity_pos.z > 0 && screen_rect.Contains({ entity_pos.x, entity_pos.y })))
 			return;
 
 		ImVec2 screen_center = screen_rect.GetCenter();
