@@ -71,10 +71,10 @@ namespace cheat::feature
         
 		ImGui::Text(_TR("Main developer and updater:"));
 		ImGui::SameLine();
-		ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga");
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga74164");
 
 		ImGui::Text(_TR("Main contributors:"));
-		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, Shichiha, harlanx, andiabrudan, hellomykami, FawazTakhji, RedDango");
+		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, harlanx, andiabrudan, hellomykami, NctimeAza, FawazTakhji, RedDango");
 
 		ImGui::Text(_TR("Full contributor list:"));
 		TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
