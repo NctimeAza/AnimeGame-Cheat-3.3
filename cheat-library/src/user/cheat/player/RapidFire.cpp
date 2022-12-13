@@ -20,6 +20,22 @@ namespace cheat::feature
 		-584054938, 0, // Skill, Burst and Charged Bow Release
 	};
 
+	static std::map<RapidFire::ElementType, app::ElementType__Enum> elementType
+	{
+		{ RapidFire::ElementType::None, app::ElementType__Enum::None },
+		{ RapidFire::ElementType::Pyro, app::ElementType__Enum::Fire },
+		{ RapidFire::ElementType::Hydro, app::ElementType__Enum::Water },
+		{ RapidFire::ElementType::Dendro, app::ElementType__Enum::Grass },
+		{ RapidFire::ElementType::Electro, app::ElementType__Enum::Electric },
+		{ RapidFire::ElementType::Cryo, app::ElementType__Enum::Ice },
+		{ RapidFire::ElementType::Frozen, app::ElementType__Enum::Frozen },
+		{ RapidFire::ElementType::Anemo, app::ElementType__Enum::Wind },
+		{ RapidFire::ElementType::Geo, app::ElementType__Enum::Rock },
+		{ RapidFire::ElementType::AntiFire, app::ElementType__Enum::AntiFire },
+		{ RapidFire::ElementType::VehicleMuteIce, app::ElementType__Enum::VehicleMuteIce },
+		{ RapidFire::ElementType::Unknown, app::ElementType__Enum::COUNT }
+	};
+
 	RapidFire::RapidFire() : Feature(),
 		NFP(f_Enabled, "RapidFire", "Attack Effects", false),
 		NFP(f_MultiHit, "RapidFire", "Multi-Hit", false),
@@ -35,6 +51,10 @@ namespace cheat::feature
 		NF(f_AnimationState, "RapidFire", 0.5f),
 		NFP(f_AttackSpeed, "RapidFire", "Attack speed", false),
 		NF(f_SpeedMultiplier, "RapidFire", 1.5f),
+		NFP(f_CustomElement, "RapidFire", "CustomElement", false),
+		NF(f_ElementType, "RapidFire", RapidFire::ElementType::Electro),
+		NF(f_isRandType, "RapodFire", false),
+		NF(f_HeadShot, "RapodFire", false),
 		animationCounter(1)
 	{
 		// HookManager::install(app::MoleMole_LCBaseCombat_DoHitEntity, LCBaseCombat_DoHitEntity_Hook); -- Looks like FireBeingHitEvent is superior to this.
@@ -102,11 +122,20 @@ namespace cheat::feature
 			"Results can vary alongside Animation Multiplier"));
 		ConfigWidget(_TR("Attack Speed"), f_AttackSpeed, _TR("Enables fast animation attacks.\n"));
 		ConfigWidget(_TR("Speed Multiplier"), f_SpeedMultiplier, 0.1f, 1.0f, 5.0f, _TR("Attack speed multiplier."));
+
+		ConfigWidget(_TR("Custom Element"), f_CustomElement, _TR("Allows you to customize the element type of damage.\n" \
+			"This may not work for some characters. \n" \
+			"(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)"));
+		ImGui::Indent();
+		ConfigWidget(_TR("RandomElementType"), f_isRandType, _TR("Random element type (excluding physics)"));
+		ConfigWidget(_TR("ElementType"), f_ElementType, _TR("ElementTypes"));
+		ImGui::Unindent();
+		ConfigWidget(_TR("Auto weakspot"), f_HeadShot, _TR("Only bow character."));
 	}
 
 	bool RapidFire::NeedStatusDraw() const
 	{
-		return (f_Enabled->enabled() && (f_MultiHit->enabled() || f_MultiTarget->enabled())) || f_MultiAnimation->enabled() || f_AttackSpeed->enabled();
+		return (f_Enabled->enabled() && (f_MultiHit->enabled() || f_MultiTarget->enabled())) || f_MultiAnimation->enabled() || f_AttackSpeed->enabled() || f_CustomElement->enabled();
 	}
 
 	void RapidFire::DrawStatus()
@@ -132,6 +161,9 @@ namespace cheat::feature
 		
 		if (f_AttackSpeed->enabled())
 			ImGui::Text("%s [%0.1f]", _TR("Attack Speed"), f_SpeedMultiplier.value());
+
+		if (f_CustomElement->enabled())
+			ImGui::Text("%s", _TR("Custom Element"));
 	}
 
 	RapidFire& RapidFire::GetInstance()
@@ -217,7 +249,7 @@ namespace cheat::feature
 		auto avatarID = manager.avatar()->runtimeID();
 		auto attackerID = attacker.runtimeID();
 
-		return attackerID == avatarID || IsAvatarOwner(attacker) || attacker.type() == app::EntityType__Enum_1::Bullet;
+		return attackerID == avatarID || IsAvatarOwner(attacker) || attacker.type() == app::EntityType__Enum_1::Bullet || attacker.type() == app::EntityType__Enum_1::Field;
 	}
 
 	bool IsConfigByAvatar(game::Entity& attacker)
@@ -245,6 +277,30 @@ namespace cheat::feature
 			game::filters::puzzle::SmallRockPile.IsValid(entity))
 			return true;
 		return false;
+	}
+
+	app::ElementType__Enum GetElementType()
+	{
+		RapidFire& rapidFire = RapidFire::GetInstance();
+		int randNum = std::rand() % 11;
+		if (!rapidFire.f_isRandType)
+		return elementType.at(rapidFire.f_ElementType.value());
+		else switch (randNum)
+		{
+		default:return app::ElementType__Enum::None;
+		case 0:return app::ElementType__Enum::AntiFire;
+		case 1:return app::ElementType__Enum::COUNT;
+		case 2:return app::ElementType__Enum::Electric;
+		case 3:return app::ElementType__Enum::Fire;
+		case 4:return app::ElementType__Enum::Frozen;
+		case 5:return app::ElementType__Enum::Grass;
+		case 6:return app::ElementType__Enum::Ice;
+		case 7:return app::ElementType__Enum::Rock;
+		case 8:return app::ElementType__Enum::VehicleMuteIce;
+		case 9:return app::ElementType__Enum::Water;
+		case 10:return app::ElementType__Enum::Wind;
+			break;
+		}
 	}
 
 	// Raises when any entity do hit event.
@@ -305,17 +361,24 @@ namespace cheat::feature
 	{
 		auto attacker = game::Entity(__this->fields._._._entity);
 		RapidFire& rapidFire = RapidFire::GetInstance();
+
 		if (!IsConfigByAvatar(attacker) || !IsAttackByAvatar(attacker) || !rapidFire.f_Enabled)
 			return CALL_ORIGIN(LCBaseCombat_FireBeingHitEvent_Hook, __this, attackeeRuntimeID, attackResult, method);
 
 		auto& manager = game::EntityManager::instance();
 		auto originalTarget = manager.entity(attackeeRuntimeID);
 
+		if (rapidFire.f_HeadShot)
+			attackResult->fields.hitPosType = app::HitBoxType__Enum::Head;
+		if (rapidFire.f_CustomElement->enabled())
+			attackResult->fields._attackerAttackProperty->fields._elementType = GetElementType();
+
 		if (!IsValidByFilter(originalTarget))
 			return CALL_ORIGIN(LCBaseCombat_FireBeingHitEvent_Hook, __this, attackeeRuntimeID, attackResult, method);
 
 		std::vector<cheat::game::Entity*> validEntities;
 		validEntities.push_back(originalTarget);
+		
 
 		if (rapidFire.f_MultiTarget->enabled())
 		{
