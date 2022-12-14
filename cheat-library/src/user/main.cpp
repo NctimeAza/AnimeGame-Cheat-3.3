@@ -40,13 +40,14 @@ void Run(HMODULE* phModule)
 		LOG_DEBUG("UserAssembly.dll isn't initialized, waiting for 2 sec.");
 		Sleep(2000);
 	}
-
+	
 #ifdef _DEBUG
 	LOG_DEBUG("Waiting 10sec for loading game library.");
 	Sleep(15000);
 #else
-	LOG_DEBUG("Waiting 15sec for game initialize.");
-    Sleep(15000);
+	uint32_t delay = settings.f_InitializationDelay.value();
+	LOG_DEBUG("Waiting %.3f sec for game to initialize.\n(If Genshin crashes after this line you might want to try longer delay in cfg.ini)", (float)delay/1000);
+    Sleep(delay);
 #endif
 	
 	DebuggerBypassPost();
