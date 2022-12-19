@@ -961,7 +961,7 @@
       "Plant": "Plant",
       "Plants": "Plants",
       "Player": "Player",
-      "Please contribute to issue on GitHub.": "Please contribute to issue on GitHub.",
+      "Please report the issue on our Discord server": "Please report the issue on our Discord server",
       "Pocket Grimoire": "Pocket Grimoire",
       "Point finding range": "Point finding range",
       "Polar Star": "Polar Star",
@@ -1427,7 +1427,20 @@
       "list": "list",
       "not found": "not found",
       "|Fixed": "|Fixed",
-      "|Rate({})": "|Rate({})"
+      "|Rate({})": "|Rate({})",
+      "I haven't tested how high the risk is": "I haven't tested how high the risk is",
+      "Monsters": "Monsters",
+      "Wow, you found unknown chest names. This means this chest type has no filter yet.": "Wow, you found unknown chest names. This means this chest type has no filter yet.",
+      "Copy to clipboard": "Copy to clipboard",
+      "Unknown Names:\n": "Unknown Names:\n",
+      "%s; Position: %s; Scene: %u\n": "%s; Position: %s; Scene: %u\n",
+      "Rect": "Rect",
+      "CornerBox": "CornerBox",
+      "Henna Berry": "Henna Berry",
+      "Unknown Items": "Unknown Items",
+      "Glaze Lily": "Glaze Lily",
+      "RSA Patch": "RSA Patch",
+      "Rate": "Rate"
     }
   },
   "SimplifiedChinese": {
@@ -2392,7 +2405,7 @@
       "Plant": "植物",
       "Plants": "植物",
       "Player": "玩家",
-      "Please contribute to issue on GitHub.": "请在 GitHub 上提交问题。",
+      "Please report the issue on our Discord server": "请在我们的Discord上提交问题。",
       "Pocket Grimoire": "口袋魔导书",
       "Point finding range": "点位寻找范围",
       "Polar Star": "冬极白星",
@@ -2711,7 +2724,7 @@
       "Teleport Previous": "传送上一个",
       "Teleport Waypoint": "传送锚点",
       "Teleport to Nearest": "就近传送",
-      "Teleport to QuestPoint.(Does not work for some Quest Areas) \n Press the V key to track the Quest, then press the hotkey to teleport.": "传送到任务点.(一些任务区域无法生效) \n 首先追踪任务，然后再按下快捷键以进行传送",
+      "Teleport to QuestPoint.(Does not work for some Quest Areas) \n Press the V key to track the Quest, then press the hotkey to teleport.": "传送到任务点(一些任务区域无法生效) \n 首先追踪任务，然后再按下快捷键以进行传送",
       "Teleports": "传送",
       "Temari": "手鞠",
       "Texture Changer": "纹理修改器",
@@ -2858,7 +2871,20 @@
       "list": "列表",
       "not found": "未找到",
       "|Fixed": "固定",
-      "|Rate({})": "|百分比({})"
+      "|Rate({})": "|百分比({})",
+      "I haven't tested how high the risk is": "风险尚未测试",
+      "Monsters": "怪物",
+      "Wow, you found unknown chest names. This means this chest type has no filter yet.": "哇，你发现了未知的宝箱名称， 这代表这种宝箱类型还没有过滤器。",
+      "Copy to clipboard": "复制到剪贴板",
+      "Unknown Names:\n": "未知名稱:\n",
+      "%s; Position: %s; Scene: %u\n": "%s; Position: %s; Scene: %u\n",
+      "Rect": "矩形",
+      "CornerBox": "四角",
+      "Henna Berry": "赤念果",
+      "Unknown Items": "未知物品",
+      "Glaze Lily": "琉璃百合",
+      "RSA Patch": "RSA补丁",
+      "Rate": "次数"
     }
   },
   "TraditionalChinese": {
@@ -3823,7 +3849,7 @@
       "Plant": "植物",
       "Plants": "植物",
       "Player": "玩家",
-      "Please contribute to issue on GitHub.": "請在 GitHub 上提交問題。",
+      "Please report the issue on our Discord server": "請在我們的Discord上提交問題。",
       "Pocket Grimoire": "口袋魔導書",
       "Point finding range": "點位尋找範圍",
       "Polar Star": "冬極白星",
@@ -4289,7 +4315,20 @@
       "list": "列表",
       "not found": "未找到",
       "|Fixed": "固定",
-      "|Rate({})": "|百分比({})"
+      "|Rate({})": "|百分比({})",
+      "I haven't tested how high the risk is": "風險尚未測試",
+      "Monsters": "怪物",
+      "Wow, you found unknown chest names. This means this chest type has no filter yet.": "哇，你發現了未知的寶箱名稱。這代表著這種寶箱類型還沒有過濾器。",
+      "Copy to clipboard": "複製到剪貼板",
+      "Unknown Names:\n": "未知名称:\n",
+      "%s; Position: %s; Scene: %u\n": "%s; Position: %s; Scene: %u\n",
+      "Rect": "矩形",
+      "CornerBox": "四角",
+      "Henna Berry": "赤念果",
+      "Unknown Items": "未知物品",
+      "Glaze Lily": "琉璃百合",
+      "RSA Patch": "RSA補丁",
+      "Rate": "次數"
     }
   },
   "Russian": {
@@ -5254,7 +5293,7 @@
       "Plant": "Растение",
       "Plants": "Растения",
       "Player": "Игрок",
-      "Please contribute to issue on GitHub.": "Please contribute to issue on GitHub.",
+      "Please report the issue on our Discord server": "Please report the issue on our Discord server",
       "Pocket Grimoire": "Pocket Grimoire",
       "Point finding range": "Point finding range",
       "Polar Star": "Polar Star",
@@ -5720,7 +5759,20 @@
       "list": "список",
       "not found": "не найдено",
       "|Fixed": "|Fixed",
-      "|Rate({})": "|Rate({})"
+      "|Rate({})": "|Rate({})",
+      "I haven't tested how high the risk is": "I haven't tested how high the risk is",
+      "Monsters": "Monsters",
+      "Wow, you found unknown chest names. This means this chest type has no filter yet.": "Wow, you found unknown chest names. This means this chest type has no filter yet.",
+      "Copy to clipboard": "Copy to clipboard",
+      "Unknown Names:\n": "Unknown Names:\n",
+      "%s; Position: %s; Scene: %u\n": "%s; Position: %s; Scene: %u\n",
+      "Rect": "Rect",
+      "CornerBox": "CornerBox",
+      "Henna Berry": "Красноплодник",
+      "Unknown Items": "Unknown Items",
+      "Glaze Lily": "Глазурная лилия",
+      "RSA Patch": "RSA Patch",
+      "Rate": "Rate"
     }
   }
 }

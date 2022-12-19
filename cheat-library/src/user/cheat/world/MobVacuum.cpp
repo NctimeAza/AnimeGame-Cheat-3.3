@@ -41,7 +41,7 @@ namespace cheat::feature
             "Mobs within the specified radius will move\nto a specified distance in front of the player."));
 
         bool filtersChanged = false;
-        ImGui::BeginGroupPanel("Monsters");
+        ImGui::BeginGroupPanel(_TR("Monsters"));
         {
             filtersChanged |= ConfigWidget(_TR("Include Monsters"), f_IncludeMonsters, _TR("Include monsters in vacuum."));
             filtersChanged |= ConfigWidget(_TR("Common"), f_MonsterCommon, _TR("Common enemies.")); ImGui::SameLine();
@@ -50,7 +50,7 @@ namespace cheat::feature
         }
         ImGui::EndGroupPanel();
         
-        ImGui::BeginGroupPanel("Animals");
+        ImGui::BeginGroupPanel(_TR("Animals"));
         {
             filtersChanged |= ConfigWidget(_TR("Include Animals"), f_IncludeAnimals, _TR("Include animals in vacuum."));
             filtersChanged |= ConfigWidget(_TR("Droppers"), f_AnimalDrop, _TR("Animals you need to kill before collecting.")); ImGui::SameLine();

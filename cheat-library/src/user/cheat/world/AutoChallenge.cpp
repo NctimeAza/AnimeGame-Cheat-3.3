@@ -29,7 +29,7 @@ namespace cheat::feature
 		ImGui::SameLine();
 		ConfigWidget(_TR("Destroy Bomb"), f_BombDestroy, _TR("Auto destroy bombbarrel"));
 		ImGui::SameLine();
-		ImGui::TextColored(ImColor(255, 165, 0, 255), "I haven't tested how high the risk is");
+		ImGui::TextColored(ImColor(255, 165, 0, 255), _TR("I haven't tested how high the risk is"));
 		ImGui::SetNextItemWidth(200.f);
 		ConfigWidget(_TR("Range"), f_Range, 0.1f, 0.f, 300.f, _TR("Collect range."));
 		ImGui::SameLine();

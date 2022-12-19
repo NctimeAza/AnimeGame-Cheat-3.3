@@ -75,7 +75,7 @@ namespace cheat::feature
 		ImGui::Text("%s [%s%s]\n[%.01fm|%s|%dms|%dms]",
 			_TR("Kill Aura"),
 			f_DamageMode->enabled() && f_InstantDeathMode->enabled() ? _TR("Extreme") : f_DamageMode->enabled() ? _TR("Crash") : f_InstantDeathMode->enabled() ? _TR("Instant") : _TR("None"),
-			f_DamageMode->enabled() ? !f_PercentDamageMode->enabled() ? _TR("|Fixed") : fmt::format(_TR("|Rate({})"), f_PercentDamageTimes.value()).c_str() : "",
+			f_DamageMode->enabled() ? !f_PercentDamageMode->enabled() ? _TR("|Fixed") : fmt::format("|{}({})", _TR("Rate"), f_PercentDamageTimes.value()).c_str() : "",
 			f_Range.value(),
 			f_OnlyTargeted ? _TR("Aggro") : _TR("All"),
 			f_AttackDelay.value(),
