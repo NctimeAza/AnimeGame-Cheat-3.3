@@ -77,7 +77,7 @@ namespace cheat::feature
 		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, harlanx, andiabrudan, hellomykami, NctimeAza, FawazTakhji, RedDango");
 
 		ImGui::Text(_TR("Full contributor list:"));
-		TextURL(_TR("Github link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
+		TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
 
         ImGui::Text(_TR("Translators list:"));
         ImGui::Text(_TR("  Russian:"));
