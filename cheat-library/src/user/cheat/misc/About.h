@@ -23,6 +23,7 @@ namespace cheat::feature
 		int height_picture;
 		int timer;
 		std::string lang;
+		config::Field<bool> f_IsFirstTime;
 	private:
 		About();
 	};

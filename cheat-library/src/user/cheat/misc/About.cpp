@@ -7,7 +7,8 @@
 
 namespace cheat::feature 
 {
-    About::About() : Feature()
+    About::About() : Feature(),
+        NF(f_IsFirstTime, "About", true)
     {
         std::string syslang = setlocale(LC_ALL, "");
         if (syslang.starts_with("Arabic_"))
@@ -114,6 +115,7 @@ namespace cheat::feature
         auto warning = GetScamWarningW();
         game::ShowInGameGeneralDialog(warning.first, warning.second, app::GeneralDialogContext_GeneralDialogType__Enum::SINGLE_BUTTON);
         m_IsScamWarningShowed = true;
+        f_IsFirstTime = false;
         return;
     }
 
