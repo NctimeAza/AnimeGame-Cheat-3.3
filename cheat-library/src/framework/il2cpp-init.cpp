@@ -137,6 +137,7 @@ void init_scanned_offsets(LGameVersion gameVersion)
 
 LGameVersion GetGameVersion()
 {
+#ifdef LINUX
 	char name[64];
 	GetModuleFileNameA(GetModuleHandleA(NULL), name, sizeof(name));
 
@@ -147,6 +148,60 @@ LGameVersion GetGameVersion()
 	} else if (base_name == "YuanShen.exe") {
 		return LGameVersion::CHINA;
 	}
+#else
+	std::array<std::pair<std::string, LGameVersion>, 2> gameVersions = {{
+			{ "china", LGameVersion::CHINA },
+			{ "global", LGameVersion::GLOBAL }
+		}};
+
+	std::string targetChecksumsRaw = ResourceLoader::Load("AssemblyChecksums", RT_RCDATA);
+	nlohmann::json targetChecksums = nlohmann::json::parse(targetChecksumsRaw, nullptr, false);
+	if (targetChecksums.is_discarded())
+	{
+		LOG_ERROR("Failed to parse assembly checksum data.");
+		return LGameVersion::NONE;
+	}
+
+	static config::Field<nlohmann::json> checksumTimestamps =
+		config::CreateField<nlohmann::json>("m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
+
+	PatternScanner scanner;
+	for (const auto& [lVersionName, lVersion] : gameVersions)
+	{
+		if (!targetChecksums.contains(lVersionName))
+		{
+			LOG_ERROR("Assembly checksum info is corrupted. Not found the key: %s.", lVersionName);
+			continue;
+		}
+		
+		nlohmann::json lVersionChecksum = targetChecksums.at(lVersionName);
+		std::string version = lVersionChecksum.at("game_version");
+
+		bool isValid = true;
+		for (auto& [moduleName, checksumData] : lVersionChecksum.at("modules").items())
+		{
+			//if (checksumTimestamps.value().contains(moduleName))
+			//	checksumData["timestamp"] = checksumTimestamps.value()[moduleName];
+
+			if (!scanner.IsValidModuleHash(moduleName, checksumData))
+			{
+				LOG_INFO("Failed to detect version: %s.", version.c_str());
+				isValid = false;
+				break;
+			}
+
+			checksumTimestamps.value()[moduleName] = scanner.GetModuleTimestamp(moduleName);
+		}
+
+		if (!isValid)
+			continue;
+		
+		checksumTimestamps.FireChanged();
+
+		LOG_INFO("Detected version: %s.", version.c_str());
+		return lVersion;
+	}
+#endif
 
 	return LGameVersion::NONE;
 }
