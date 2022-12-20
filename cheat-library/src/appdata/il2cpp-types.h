@@ -7482,8 +7482,8 @@ namespace app {
         struct SafeFloat AKNEEOAAKMN; // 0x580
         struct SafeFloat JLKKEADCBJD; // 0x590
         struct SafeFloat IAPMABEMEMG; // 0x5A0
-        struct SafeFloat HCBNKNMHPLF; // 0x5B0
-        struct SafeFloat HCEFAFCDMPC; // 0x5C0
+        struct SafeFloat level; // 0x5B0
+        struct SafeFloat exp; // 0x5C0
         ElementType__Enum elemType; // 0x5D0
         struct SafeFloat weight; // 0x5D8
         struct SafeFloat endure; // 0x5E8

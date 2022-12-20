@@ -236,14 +236,31 @@ namespace cheat::feature
             auto combatProp = combat->fields._combatProperty_k__BackingField;
             auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
             auto HP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.HP, nullptr);
+            auto weight = app::MoleMole_SafeFloat_get_Value(combatProp->fields.weight, nullptr);
+            auto level = app::MoleMole_SafeFloat_get_Value(combatProp->fields.level, nullptr);
+            auto denyLockOn = combatProp->fields.denyLockOn == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.denyLockOn, nullptr);
             auto isLockHp = combatProp->fields.islockHP == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.islockHP, nullptr);
             auto isInvincible = combatProp->fields.isInvincible == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isInvincible, nullptr);
+            auto isNoheal = combatProp->fields.isNoheal == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isNoheal, nullptr);
+            auto isGhostToAllied = combatProp->fields.isGhostToAllied == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isGhostToAllied, nullptr);
+            auto isGhostToEnemy = combatProp->fields.isGhostToEnemy == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.isGhostToEnemy, nullptr);
+            auto canTriggerBullet = combatProp->fields.canTriggerBullet == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.canTriggerBullet, nullptr);
+            auto denyElementStick = combatProp->fields.denyElementStick == nullptr || app::MoleMole_FixedBoolStack_get_value(combatProp->fields.denyElementStick, nullptr);
             ImGui::BeginTooltip();
             ImGui::Text(_TR("Combat: %s"), combat == nullptr ? "No" : "Yes");
             ImGui::Text(_TR("Combat Prop: %s"), combatProp == nullptr ? "No" : "Yes");
             ImGui::Text(_TR("HP Curr/Max: %.01f/%.01f"), HP, maxHP);
+            ImGui::Text(_TR("Weight: %.01f"), weight);
+            ImGui::Text(_TR("Level: %.01f"), level);
+            ImGui::Text(_TR("elementType: %s"), magic_enum::enum_name(combatProp->fields.elemType).data());
+            ImGui::Text(_TR("denyLockOn: %s"), denyLockOn ? "Yes" : "No");
             ImGui::Text(_TR("Locked HP: %s"), isLockHp ? "Yes" : "No");
             ImGui::Text(_TR("Invincible: %s"), isInvincible ? "Yes" : "No");
+            ImGui::Text(_TR("isNoheal: %s"), isNoheal ? "Yes" : "No");
+            ImGui::Text(_TR("isGhostToAllied: %s"), isGhostToAllied ? "Yes" : "No");
+            ImGui::Text(_TR("isGhostToEnemy: %s"), isGhostToEnemy ? "Yes" : "No");
+            ImGui::Text(_TR("canTriggerBullet: %s"), canTriggerBullet ? "Yes" : "No");
+            ImGui::Text(_TR("denyElementStick: %s"), denyElementStick ? "Yes" : "No");
             ImGui::EndTooltip();
         }
     }
