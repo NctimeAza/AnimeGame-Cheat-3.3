@@ -41,9 +41,14 @@ namespace cheat::feature
 		config::Field<bool> f_DrawName;
 		config::Field<bool> f_DrawHealth;
 		config::Field<bool> f_HideCompleted;
+
 		config::Field<float> f_ArrowRadius;
-		config::Field<float> f_OutlineThickness;
 		config::Field<float> f_TracerSize;
+		config::Field<float> f_OutlineThickness;
+		config::Field<ImColor> f_OutlineColor;
+		config::Field<ImColor> f_CircleColor;
+		config::Field<bool> f_ShowArrowIcons;
+		config::Field<bool> f_ShowHDIcons;
 		config::Field<bool> f_MiddleScreenTracer;
 
 		config::Field<int> f_FontSize;

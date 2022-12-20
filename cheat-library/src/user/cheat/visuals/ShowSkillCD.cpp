@@ -84,26 +84,28 @@ namespace cheat::feature
 			if (showSkillCD.f_Enabled)
 			{
 				auto* lcCombat = teamBtn->fields._lcCombat;
-				auto* skillDepot = lcCombat->fields._skillDepotConfig;
-
-				if (skillDepot != nullptr) // is nullptr when avatar has been removed from team
+				if (lcCombat != nullptr) // is nullptr when changing teams in abyss
 				{
-					uint32_t configID = app::MoleMole_SimpleSafeUInt32_get_Value(skillDepot->fields.idRawNum, nullptr);
-					uint32_t skillID = showSkillCD.m_skillDataMap[configID].id;
+					auto* skillDepot = lcCombat->fields._skillDepotConfig;
+					if (skillDepot != nullptr) // is nullptr when avatar has been removed from team
+					{
+						uint32_t configID = app::MoleMole_SimpleSafeUInt32_get_Value(skillDepot->fields.idRawNum, nullptr);
+						uint32_t skillID = showSkillCD.m_skillDataMap[configID].id;
 
-					float cd = showSkillCD.m_skillDataMap[configID].cd;
-					int32_t maxCharge = app::MoleMole_LCAvatarCombat_GetSkillMaxChargesCount(lcCombat, skillID, nullptr);
-					int32_t currCharge = app::MoleMole_LCAvatarCombat_GetSkillCurrentChargesCount(lcCombat, skillID, nullptr);
+						float cd = showSkillCD.m_skillDataMap[configID].cd;
+						int32_t maxCharge = app::MoleMole_LCAvatarCombat_GetSkillMaxChargesCount(lcCombat, skillID, nullptr);
+						int32_t currCharge = app::MoleMole_LCAvatarCombat_GetSkillCurrentChargesCount(lcCombat, skillID, nullptr);
 
-					bool ready = cd <= 0;
-					std::string color = ready ? "green" : currCharge > 0 ? "olive" : "maroon";
-					std::string cdStr = ready ? "Ready" : std::format("{:.1f}s", cd);
-					std::string finalStr = std::format("<color={}>{}\n{:3}/{:<3}</color>", color, cdStr, currCharge, maxCharge);
+						bool ready = cd <= 0;
+						std::string color = ready ? "green" : currCharge > 0 ? "olive" : "maroon";
+						std::string cdStr = ready ? "Ready" : std::format("{:.1f}s", cd);
+						std::string finalStr = std::format("<color={}>{}\n{:3}/{:<3}</color>", color, cdStr, currCharge, maxCharge);
 
-					app::MonoTeamBtn_set_PCKey(teamBtn, string_to_il2cppi(finalStr), nullptr);
+						app::MonoTeamBtn_set_PCKey(teamBtn, string_to_il2cppi(finalStr), nullptr);
+						continue;
+					}
 				}
-				else
-					showSkillCD.m_teamBtnMap.erase(it);
+				showSkillCD.m_teamBtnMap.erase(it);
 			}
 			else if (isPS4Layout) // minimize PCKey "blinking" effect in controller UI when feature is disabled
 				app::MonoTeamBtn_set_PCKey(teamBtn, nullptr, nullptr);
