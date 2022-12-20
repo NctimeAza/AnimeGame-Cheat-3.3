@@ -117,7 +117,6 @@ namespace cheat::feature
         //game::ShowInGameInfoMessage(warning.second, true, app::UIShowPriority__Enum::None);
         m_IsScamWarningShowed = true;
         f_IsFirstTime = false;
-        return;
     }
 
     std::pair<std::wstring, std::wstring> About::GetScamWarningW()
@@ -132,14 +131,18 @@ namespace cheat::feature
             return std::make_pair(L"<i>欺詐警告！</i>", L"這是一個<color=#a80000ff>公開、免費使用</color>的輔助。\n如果你是付費購買的，那麼你被騙了。\n<size=20>更多相關消息，請查看菜單中的\"關於\"</size>");
         case app::SystemLanguage__Enum::Japanese:
             return std::make_pair(L"<i>詐欺警告！</i>", L"このチートは<color=#a80000ff>無料で使用できますが</color>、\n購入した場合は詐欺に遭っています。\n<size=20>詳細については「About」を確認してください</size>");
+        case app::SystemLanguage__Enum::Vietnamese:
+            return std::make_pair(L"<i>Cảnh báo lừa đảo!</i>", L"Đây là <color=#a80000ff>phần mềm miễn phí</color>. \nNếu bạn trả tiền cho nó, bạn đã bị lừa đảo. \n<size=20>Để biết thêm thông tin chi tiết, vui lòng kiểm tra phần \"About\" trong Menu</size>");
+        case app::SystemLanguage__Enum::French:
+            return std::make_pair(L"<i>Alerte Anarque!</i>", L"Ce cheat est entièrement <color=#a80000ff>Gratuit d’utilisation</color>.\nSi vous l’avez acheté, vous avez subis une arnaque.\n<size=20>Pour plus d’informations lisez le panneau \"À Propos\".</size>");
+        case app::SystemLanguage__Enum::Spanish:
+            return std::make_pair(L"<i>¡Advertencia de estafa!</i>", L"Este truco es <color=#a80000ff>Gratuito</color>.\nSi lo has comprado, te han estafado.\n<size=20>Para más información consulta la pestaña \"Acerca\" de</size>");
         case app::SystemLanguage__Enum::Portuguese:
             return std::make_pair(L"<i>Alerta de scam!</i>", L"Esse cheat é <color=#a80000ff>gratuito</color>. \nSe você pagou por ele, você foi scammado. \n<size=20>Para mais informações, cheque a guia \"About\"</size>");
         case app::SystemLanguage__Enum::Russian:
             return std::make_pair(L"<i>Предупреждение о мошенничестве!</i>", L"Данный чит является <color=#a80000ff>бесплатным</color>. \nEсли вы его купили - поздравляем, вас обманули. \n<size=20>Для получения дополнительной информации смотрите вкладку \"About\"</size>.");
         case app::SystemLanguage__Enum::Ukrainian:
             return std::make_pair(L"<i>Попередження про шахрайство!</i>", L"Цей чит є <color=#a80000ff>безкоштовним</color>. \nЯкщо ви купили його  - вітаємо, вас ошукали. \n<size=20>Для отримання додаткової інформації дивіться вкладку \"About\"</size>.");
-        case app::SystemLanguage__Enum::Vietnamese:
-            return std::make_pair(L"<i>Cảnh báo lừa đảo!</i>", L"Đây là <color=#a80000ff>phần mềm miễn phí</color>. \nNếu bạn trả tiền cho nó, bạn đã bị lừa đảo. \n<size=20>Để biết thêm thông tin chi tiết, vui lòng kiểm tra phần \"About\" trong Menu</size>");
         case app::SystemLanguage__Enum::German:
             return std::make_pair(L"<i>Warnung vor Betrug!</i>", L"Dieser Cheat kann <color=#a80000ff>kostenlos heruntergeladen werden</color>.\nWenn Sie ihn gekauft haben, wurden Sie um ihr geld betrogen.\n<size=20>Weitere Informationen finden Sie auf der \"about\" Registerkarte</size>");
         case app::SystemLanguage__Enum::Danish:
