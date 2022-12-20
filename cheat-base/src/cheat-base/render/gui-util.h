@@ -8,6 +8,7 @@
 #include <cheat-base/cheat/fields/TranslatedHotkey.h>
 #include <cheat-base/config/fields/Toggle.h>
 #include <cheat-base/config/fields/Enum.h>
+#include <cheat-base/Translator.h>
 
 #define BLOCK_FOCUS() 
 
@@ -89,7 +90,7 @@ namespace ImGui
 	bool BeginGroupPanel(const char* label, bool node = false, const ImVec2& size = ImVec2(-1.0f, 0.0f));
 	void EndGroupPanel();
 
-	bool BeginSelectableGroupPanel(const char* label, bool& value, bool& changed, bool node = false, const ImVec2& size = ImVec2(-1.0f, 0.0f), const char* selectLabel = "Select");
+	bool BeginSelectableGroupPanel(const char* label, bool& value, bool& changed, bool node = false, const ImVec2& size = ImVec2(-1.0f, 0.0f), const char* selectLabel = Translator::RuntimeTranslate("Select").c_str());
 	void EndSelectableGroupPanel();
 
 	void NextGroupPanelHeaderItem(const ImVec2& size, bool rightAlign = false);
@@ -114,7 +115,7 @@ float GetMaxEnumWidth()
 template <typename T>
 bool ComboEnum(const char* label, T* currentValue, std::vector<T>* whitelist = nullptr)
 {
-	auto name = magic_enum::enum_name(*currentValue);
+	auto name = Translator::RuntimeTranslate(magic_enum::enum_name(*currentValue).data());
 	auto& current = *currentValue;
 	bool result = false;
 	static auto width = GetMaxEnumWidth<T>();
@@ -135,8 +136,8 @@ bool ComboEnum(const char* label, T* currentValue, std::vector<T>* whitelist = n
 			if (whitelist != nullptr && whiteSet.count(entry.first) == 0)
 				continue;
 
-			bool is_selected = (name == entry.second);
-			if (ImGui::Selectable(entry.second.data(), is_selected))
+			bool is_selected = (name == Translator::RuntimeTranslate(entry.second.data()));
+			if (ImGui::Selectable(Translator::RuntimeTranslate(entry.second.data()).data(), is_selected))
 			{
 				current = entry.first;
 				result = true;
@@ -167,4 +168,14 @@ template <typename T>
 bool ConfigWidget(config::Field<config::Enum<T>>& field, const char* desc = nullptr)
 {
 	return ConfigWidget(field.friendName().c_str(), field, desc);
+}
+
+inline ImVec2 operator - (const ImVec2& A, const float k)
+{
+	return { A.x - k, A.y - k };
+}
+
+inline ImVec2 operator + (const ImVec2& A, const float k)
+{
+	return { A.x + k, A.y + k };
 }

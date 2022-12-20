@@ -3803,6 +3803,19 @@ namespace app {
         struct Dictionary_2_System_String_MoleMole_BaseActor___Fields fields;
     };
 
+    struct __declspec(align(8)) List_1_System_String___Fields {
+        struct String__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_String_ {
+        struct List_1_System_String___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_String___Fields fields;
+    };
+
     struct __declspec(align(8)) List_1_MoleMole_BaseActor___Fields {
         struct BaseActor__Array* _items;
         int32_t _size;
@@ -4176,8 +4189,8 @@ namespace app {
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
         struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
-        struct Config_ConfigEntity* jsonConfig;
-        struct Config_EntityExcelConfig* excelConfig;
+        struct ConfigEntity* jsonConfig;
+        struct EntityExcelConfig* excelConfig;
         uint32_t _runtimeID_k__BackingField;
         uint32_t _preRuntimeID_k__BackingField;
         uint32_t _configID_k__BackingField;
@@ -7877,6 +7890,27 @@ namespace app {
         struct ConfigEntityTags* _entityTags;
     };
 
+    struct MoleMole_SimpleSafeFloat {
+        uint32_t _value;
+    };
+
+    struct MoleMole_SimpleSafeFloat__Boxed {
+        struct MoleMole_SimpleSafeFloat__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_SimpleSafeFloat fields;
+    };
+
+    struct __declspec(align(8)) ConfigGlobalValue__Fields {
+        struct String__Array* _serverGlobalValues;
+        struct Dictionary_2_System_String_MoleMole_SimpleSafeFloat_* _initServerGlobalValues;
+    };
+
+    struct ConfigGlobalValue {
+        struct ConfigGlobalValue__Class* klass;
+        MonitorData* monitor;
+        struct ConfigGlobalValue__Fields fields;
+    };
+
     struct __declspec(align(8)) ConfigEntityTags__Fields {
         struct String__Array* _initTags;
     };
@@ -8493,6 +8527,109 @@ namespace app {
         struct LCBaseCombat__Class* klass;
         MonitorData* monitor;
         struct LCBaseCombat__Fields fields;
+    };
+
+    enum class MoleMole_Config_AbilityState__Enum : uint64_t {
+        None = 0x0000000000000000,
+        Invincible = 0x0000000000000001,
+        DenyLockOn = 0x0000000000000002,
+        IsGhostToAllied = 0x0000000000000004,
+        IsGhostToEnemy = 0x0000000000000008,
+        ElementBurning = 0x0000000000000010,
+        ElementWet = 0x0000000000000020,
+        ElementFrozen = 0x0000000000000080,
+        LockHP = 0x0000000000000200,
+        IgnoreTriggerBullet = 0x0000000000000400,
+        ElementShock = 0x0000000000000800,
+        Struggle = 0x0000000000001000,
+        ElementRock = 0x0000000000002000,
+        ElementIce = 0x0000000000008000,
+        ElementFreeze = 0x0000000000010000,
+        AttackUp = 0x0000000000020000,
+        DefenseUp = 0x0000000000040000,
+        SpeedUp = 0x0000000000080000,
+        DefenseDown = 0x0000000000100000,
+        SpeedDown = 0x0000000000200000,
+        ElementWind = 0x0000000000400000,
+        ElementElectric = 0x0000000000800000,
+        ElementFire = 0x0000000001000000,
+        NoHeal = 0x0000000002000000,
+        Limbo = 0x0000000004000000,
+        MuteTaunt = 0x0000000008000000,
+        ElementPetrifaction = 0x0000000010000000,
+        IgnoreAddEnergy = 0x0000000040000000,
+        ElementGrass = 0x0000000080000000,
+        ElementOverdose = 0x0000000100000000,
+        Corruption = 0x0000000200000000,
+        UnlockFrequencyLimit = 0x0000000400000000,
+        ElementDeadTime = 0x0000000800000000,
+        OvergrowVariation = 0x0000001000000000
+    };
+
+    struct LCAbilityState__Fields {
+        struct LCBase__Fields _;
+        int32_t _freezeMassRatioIx;
+        int32_t _freezeSpeedRatioIx;
+        int32_t _petrifactionMassRatioIx;
+        int32_t _petrifactionSpeedRatioIx;
+        int32_t _paralyzeSpeedRatioIx;
+        int32_t JNGMGKLPIBE;
+        struct Action_2_MoleMole_Config_AbilityState_Boolean_* onAbilityStateAdd;
+        struct Action_1_MoleMole_Config_AbilityState_* onAbilityStateRemove;
+        struct Action_1_MoleMole_Config_AbilityState_* onAbilityStateImmune;
+        int32_t _abilityStateChangedFrameCount;
+        struct List_1_System_ValueTuple_3__2* _abilityStateChanged;
+        struct Action_1_System_Collections_Generic_List_1__1* onAbilityStateChangedPost;
+        struct LCAbility* _selfLCAbility;
+        MoleMole_Config_AbilityState__Enum abilityState;
+        struct List_1_MoleMole_LCAbilityState_AbilityStateEntry_* _abilityStatePushCount;
+        struct List_1_MoleMole_LCAbilityState_AbilityStateEntry_* _abilityStateImmuneCount;
+        int32_t _immuneCount;
+        struct List_1_System_Nullable_1_* _abilityStateEffectIxLs;
+        int32_t _maxSpeedPropertyIx;
+        int32_t _paralyzeAniDefenceStackIx;
+        struct Dictionary_2_MoleMole_EncryptedString_FixedSafeFloatStack_* _properties;
+        struct Dictionary_2_MoleMole_EncryptedString_System_Action_* _propertyChangedCallbacks;
+        struct Dictionary_2_MoleMole_EncryptedString_MoleMole_Config_ConfigAbilityPropertyEntry_* _createdAbilityDefinedProperties;
+        struct LCAbility* _levelAbilityCom;
+        bool _canShakeOff;
+        bool CLJALEKDCDO;
+    };
+
+    struct LCAbilityState {
+        struct MoleMole_LCAbilityState__Class* klass;
+        MonitorData* monitor;
+        struct LCAbilityState__Fields fields;
+    };
+
+    enum class MoleMole_LCAbility_SyncAbilityState__Enum : int32_t {
+        NotSynced = 0x00000000,
+        HasSynced = 0x00000001,
+    };
+
+    struct LCAbility__Fields {
+        struct LCBase__Fields _;
+        struct MoleMole_ActorAbilityPlugin* abilityPlugin;
+        struct ActorAbilityLogPlugin* AbilityLogPlugin;
+        struct ConfigEntityAbilityEntry__Array* allBornAbilities;
+        struct List_1_System_ValueTuple_2_* staticConfigAbilities;
+        struct List_1_System_ValueTuple_2_* dynamicConfigAbilities;
+        bool muteCheckDoOffStage;
+        struct List_1_Config_ConfigBuffDebuffResistance_* _resistanceBuffDebuffs;
+        struct List_1_Config_ConfigBuffDebuffAddition_* _additionBuffDebuffs;
+        struct HashSet_1_System_String_* _serverGlobalValues;
+        bool KALGKNLBHCC;
+        MoleMole_LCAbility_SyncAbilityState__Enum _syncStateFromServer;
+        struct Action_1_String_* _addDynamicConfigAbilityWithoutOverrideCallBack;
+        struct Action_2_String_Boolean_* _addPreDynamicConfigAbilityWithoutOverrideCallBack;
+        struct Dictionary_2_System_Int32_System_ValueTuple_2_* _elementTypeResistances;
+        struct Proto_AbilitySyncStateInfo* _abilitySyncInfoOnChangeAuthority;
+    };
+
+    struct LCAbility {
+        struct MoleMole_LCAbility__Class* klass;
+        MonitorData* monitor;
+        struct LCAbility__Fields fields;
     };
 
     enum class EvtFallOnGround_GroundType__Enum : int32_t {
@@ -12216,42 +12353,6 @@ namespace app {
         struct MoleMole_VCBaseSetDitherValue__Class* klass;
         MonitorData* monitor;
         struct MoleMole_VCBaseSetDitherValue__Fields fields;
-    };
-
-    enum class MoleMole_Config_AbilityState__Enum : uint64_t {
-        None = 0x0000000000000000,
-        Invincible = 0x0000000000000001,
-        DenyLockOn = 0x0000000000000002,
-        IsGhostToAllied = 0x0000000000000004,
-        IsGhostToEnemy = 0x0000000000000008,
-        ElementBurning = 0x0000000000000010,
-        ElementWet = 0x0000000000000020,
-        ElementFrozen = 0x0000000000000080,
-        LockHP = 0x0000000000000200,
-        IgnoreTriggerBullet = 0x0000000000000400,
-        ElementShock = 0x0000000000000800,
-        Struggle = 0x0000000000001000,
-        ElementRock = 0x0000000000002000,
-        ElementIce = 0x0000000000008000,
-        ElementFreeze = 0x0000000000010000,
-        AttackUp = 0x0000000000020000,
-        DefenseUp = 0x0000000000040000,
-        SpeedUp = 0x0000000000080000,
-        DefenseDown = 0x0000000000100000,
-        SpeedDown = 0x0000000000200000,
-        ElementWind = 0x0000000000400000,
-        ElementElectric = 0x0000000000800000,
-        ElementFire = 0x0000000001000000,
-        NoHeal = 0x0000000002000000,
-        Limbo = 0x0000000004000000,
-        MuteTaunt = 0x0000000008000000,
-        ElementPetrifaction = 0x0000000010000000,
-        IgnoreAddEnergy = 0x0000000040000000,
-        ElementGrass = 0x0000000080000000,
-        ElementOverdose = 0x0000000100000000,
-        Corruption = 0x0000000200000000,
-        UnlockFrequencyLimit = 0x0000000400000000,
-        ElementDeadTime = 0x0000000800000000,
     };
 
     enum class MoleMole_Config_ModifierTimeScale__Enum : int32_t {

@@ -37,7 +37,7 @@ bool InputHotkey(const char* label, Hotkey* hotkey, bool clearable)
 
     if (clearable) {
         char labelBuffer[128];
-        std::snprintf(labelBuffer, 128, "Clear ## %s_1", label);
+        std::snprintf(labelBuffer, 128, "%s ## %s_1", Translator::RuntimeTranslate("Clear").c_str(), label);
 
         if (ImGui::Button(labelBuffer, ImVec2(75, 0)))
         {
@@ -55,7 +55,7 @@ bool InputHotkey(const char* label, Hotkey* hotkey, bool clearable)
 float CalcWidth(const std::string_view& view)
 {
 	ImGuiContext& g = *GImGui;
-	return ImGui::CalcTextSize(view.data()).x + g.Style.FramePadding.x * 2.0f + 25.0f;
+	return ImGui::CalcTextSize(Translator::RuntimeTranslate(view.data()).data()).x + g.Style.FramePadding.x * 2.0f + 25.0f;
 }
 
 
