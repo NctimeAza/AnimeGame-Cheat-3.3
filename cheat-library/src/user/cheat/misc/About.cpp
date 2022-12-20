@@ -5,7 +5,7 @@
 #include <cheat/events.h>
 #include <regex>
 
-namespace cheat::feature 
+namespace cheat::feature
 {
     About::About() : Feature(),
         NF(f_IsFirstTime, "About", true)
@@ -29,8 +29,8 @@ namespace cheat::feature
             lang = "RussianW";
         else if (syslang.starts_with("Vietnamese_"))
             lang = "VietnameseW";
-		else
-			lang = "EnglishW";
+        else
+            lang = "EnglishW";
 
         width = app::Screen_get_width(nullptr);
         height = app::Screen_get_height(nullptr);
@@ -55,7 +55,7 @@ namespace cheat::feature
         std::optional<ImageLoader::GIFData*> gif = ImageLoader::GetGIF("ANIM_AKEBIBOUNCE");
         if (gif)
         {
-			gif.value()->render(ImVec2(ImGui::GetWindowSize().x / 3.5f, ImGui::GetWindowSize().y / 2.5f));
+            gif.value()->render(ImVec2(ImGui::GetWindowSize().x / 3.5f, ImGui::GetWindowSize().y / 2.5f));
         }
 
         ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowSize().x);
@@ -63,22 +63,22 @@ namespace cheat::feature
         ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi github:"));
         TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/", true, false);
 
-		ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi discord:"));
-		TextURL(_TR("Discord invite link"), "https://discord.com/invite/MmV8hNZB9S", true, false);
+        ImGui::TextColored(ImColor(28, 202, 214, 255), _TR("Akebi discord:"));
+        TextURL(_TR("Discord invite link"), "https://discord.com/invite/MmV8hNZB9S", true, false);
 
         ImGui::Text(_TR("Founder:"));
         ImGui::SameLine();
         ImGui::TextColored(ImColor(0, 102, 255, 255), "Callow");
-        
-		ImGui::Text(_TR("Main developer and updater:"));
-		ImGui::SameLine();
-		ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga74164");
 
-		ImGui::Text(_TR("Main contributors:"));
-		ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, harlanx, andiabrudan, hellomykami, NctimeAza, FawazTakhji, RedDango, RainAfterDark");
+        ImGui::Text(_TR("Main developer and updater:"));
+        ImGui::SameLine();
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "Taiga74164");
 
-		ImGui::Text(_TR("Full contributor list:"));
-		TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
+        ImGui::Text(_TR("Main contributors:"));
+        ImGui::TextColored(ImColor(0, 102, 255, 255), "RyujinZX, WitchGod, m0nkrel, harlanx, andiabrudan, hellomykami, NctimeAza, FawazTakhji, RedDango, RainAfterDark");
+
+        ImGui::Text(_TR("Full contributor list:"));
+        TextURL(_TR("GitHub link"), "https://github.com/Papaya-Group/Akebi-GC/graphs/contributors", true, false);
 
         ImGui::Text(_TR("Translators list:"));
         ImGui::Text(_TR("  Russian:"));
@@ -114,6 +114,7 @@ namespace cheat::feature
             return;
         auto warning = GetScamWarningW();
         game::ShowInGameGeneralDialog(warning.first, warning.second, app::GeneralDialogContext_GeneralDialogType__Enum::SINGLE_BUTTON);
+        //game::ShowInGameInfoMessage(warning.second, true, app::UIShowPriority__Enum::None);
         m_IsScamWarningShowed = true;
         f_IsFirstTime = false;
         return;
@@ -125,20 +126,26 @@ namespace cheat::feature
 
         switch (lang)
         {
-            case app::SystemLanguage__Enum::ChineseSimplified:
-                return std::make_pair(L"<i>欺诈警告！</i>", L"这是一个<color=#a80000ff>公开、免费使用</color>的辅助。\n如果你是付费购买的，那么你被骗了。\n<size=20>更多相关消息，请查看菜单中的\"关于\"</size>");
-            case app::SystemLanguage__Enum::ChineseTraditional:
-                return std::make_pair(L"<i>欺詐警告！</i>", L"這是一個<color=#a80000ff>公開、免費使用</color>的輔助。\n如果你是付費購買的，那麼你被騙了。\n<size=20>更多相關消息，請查看菜單中的\"關於\"</size>");
-            case app::SystemLanguage__Enum::Japanese:
-                return std::make_pair(L"<i>詐欺警告！</i>", L"これは<color=#a80000ff>公開されており、無料で使用できます</color>。\nお金を払ったら詐欺です。\n<size=20>詳細については、メニューの \"概要\" を確認してください</size>");
-            case app::SystemLanguage__Enum::Portuguese:
-                return std::make_pair(L"<i>Alerta de fraude!</i>", L"Este é um auxílio <color=#a80000ff>público, de uso gratuito</color>. \nSe você pagou, foi enganado. \n<size=20>Para obter mais informações, consulte \"Sobre\" no menu</size>");
-            case app::SystemLanguage__Enum::Russian:
-                return std::make_pair(L"<i>Предупреждение о мошенничестве!</i>", L"Это <color=#a80000ff>общедоступное бесплатное</color> пособие. \nЕсли вы заплатили за это, вас обманули. \n<size=20>Дополнительную информацию см. в разделе \"О программе\"</size>.");
-            case app::SystemLanguage__Enum::Vietnamese:
-                return std::make_pair(L"<i>Cảnh báo lừa đảo!</i>", L"Đây là hỗ trợ <color=#a80000ff>công khai, miễn phí sử dụng</color>. \nNếu bạn đã trả tiền cho nó, bạn đã bị lừa đảo. \n<size=20>Để biết thêm thông tin, vui lòng kiểm tra \"Giới thiệu\" trong menu</size>");
-            default:
-                return std::make_pair(L"<i>Scammed Warning!</i>", L"This cheat is <color=#a80000ff>Free to ues</color>.\nIf you've bought it, you've been scammed.\n<size=20>For more info check the \"about\" tab</size>");
+        case app::SystemLanguage__Enum::ChineseSimplified:
+            return std::make_pair(L"<i>欺诈警告！</i>", L"这是一个<color=#a80000ff>公开、免费使用</color>的辅助。\n如果你是付费购买的，那么你被骗了。\n<size=20>更多相关消息，请查看菜单中的\"关于\"</size>");
+        case app::SystemLanguage__Enum::ChineseTraditional:
+            return std::make_pair(L"<i>欺詐警告！</i>", L"這是一個<color=#a80000ff>公開、免費使用</color>的輔助。\n如果你是付費購買的，那麼你被騙了。\n<size=20>更多相關消息，請查看菜單中的\"關於\"</size>");
+        case app::SystemLanguage__Enum::Japanese:
+            return std::make_pair(L"<i>詐欺警告！</i>", L"このチートは<color=#a80000ff>無料で使用できますが</color>、\n購入した場合は詐欺に遭っています。\n<size=20>詳細については「About」を確認してください</size>");
+        case app::SystemLanguage__Enum::Portuguese:
+            return std::make_pair(L"<i>Alerta de scam!</i>", L"Esse cheat é <color=#a80000ff>gratuito</color>. \nSe você pagou por ele, você foi scammado. \n<size=20>Para mais informações, cheque a guia \"About\"</size>");
+        case app::SystemLanguage__Enum::Russian:
+            return std::make_pair(L"<i>Предупреждение о мошенничестве!</i>", L"Данный чит является <color=#a80000ff>бесплатным</color>. \nEсли вы его купили - поздравляем, вас обманули. \n<size=20>Для получения дополнительной информации смотрите вкладку \"About\"</size>.");
+        case app::SystemLanguage__Enum::Ukrainian:
+            return std::make_pair(L"<i>Попередження про шахрайство!</i>", L"Цей чит є <color=#a80000ff>безкоштовним</color>. \nЯкщо ви купили його  - вітаємо, вас ошукали. \n<size=20>Для отримання додаткової інформації дивіться вкладку \"About\"</size>.");
+        case app::SystemLanguage__Enum::Vietnamese:
+            return std::make_pair(L"<i>Cảnh báo lừa đảo!</i>", L"Đây là <color=#a80000ff>phần mềm miễn phí</color>. \nNếu bạn trả tiền cho nó, bạn đã bị lừa đảo. \n<size=20>Để biết thêm thông tin chi tiết, vui lòng kiểm tra phần \"About\" trong Menu</size>");
+        case app::SystemLanguage__Enum::German:
+            return std::make_pair(L"<i>Warnung vor Betrug!</i>", L"Dieser Cheat kann <color=#a80000ff>kostenlos heruntergeladen werden</color>.\nWenn Sie ihn gekauft haben, wurden Sie um ihr geld betrogen.\n<size=20>Weitere Informationen finden Sie auf der \"about\" Registerkarte</size>");
+        case app::SystemLanguage__Enum::Danish:
+            return std::make_pair(L"<i>Svindel Advarsel!</i>", L"Dette snyd er<color=#a80000ff>gratis at bruge</color>.\nHvis du har købt det, er du blevet svindlet.\n<size=20>For mere information tjek \"About\" kanalen</size>");
+        default:
+            return std::make_pair(L"<i>Scam Warning!</i>", L"This cheat is <color=#a80000ff>Free to use</color>.\nIf you've bought it, you've been scammed.\n<size=20>For more info check the \"About\" tab</size>");
         }
     }
 
