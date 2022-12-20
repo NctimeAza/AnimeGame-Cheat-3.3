@@ -613,7 +613,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(chest, LuxuriousChest);
 		ADD_FILTER_FIELD(chest, RemarkableChest);
 		// Other Chests
-		ADD_FILTER_FIELD(chest, BuriedChest);
+		//ADD_FILTER_FIELD(chest, BuriedChest);
 		ADD_FILTER_FIELD(chest, SearchPoint);
 		ADD_FILTER_FIELD(chest, CrudeChest);
 		
