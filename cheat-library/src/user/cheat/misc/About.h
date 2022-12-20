@@ -13,7 +13,10 @@ namespace cheat::feature
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;
 		void OnGameUpdate();
+		void ShowInGameScamWarning();
+		std::pair<std::wstring, std::wstring> GetScamWarningW();
 		bool show = true;
+		bool m_IsScamWarningShowed = false;
 		int width;
 		int height;
 		int width_picture;

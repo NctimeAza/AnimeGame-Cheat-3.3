@@ -172,4 +172,65 @@ namespace cheat::game
 
 		return playerModule->fields._accountData_k__BackingField;
 	}
+
+    bool IsInGame()
+    {
+		auto loadingManager = GET_SINGLETON(MoleMole_LoadingManager);
+        if (loadingManager == nullptr || !app::MoleMole_LoadingManager_IsLoaded(loadingManager, nullptr))
+			return false;
+		return true;
+    }
+
+    void ShowInGameNormalMessage(std::string content, app::Color bgColor, bool showBackground)
+    {
+		auto uiManager = GET_SINGLETON(MoleMole_UIManager);
+		if (uiManager == nullptr)
+			return;
+		app::MoleMole_UIManager_TryShowNormalMessage(uiManager, string_to_il2cppi(content), bgColor, showBackground, nullptr);
+    }
+
+    void ShowInGameInfoMessage(std::string content, bool discardIfDuplicated, app::UIShowPriority__Enum priority)
+    {
+        auto uiManager = GET_SINGLETON(MoleMole_UIManager);
+        if (uiManager == nullptr)
+            return;
+		app::MoleMole_UIManager_TryShowInfoMessageWithoutBlockInput(uiManager, string_to_il2cppi(content), discardIfDuplicated, priority, nullptr);
+    }
+
+    void ShowInGameGeneralDialog(std::string title, std::string content, app::GeneralDialogContext_GeneralDialogType__Enum dialogType, app::UIType__Enum uiType, app::UIShowPriority__Enum mode, bool showNormalCloseBtn, bool isToggleDialog)
+    {
+		app::MoleMole_UIUtil_TryShowGeneralDialog(string_to_il2cppi(title), string_to_il2cppi(content), nullptr, uiType, nullptr, dialogType, mode, showNormalCloseBtn, isToggleDialog, false, nullptr);
+    }
+
+    void ShowInGameSimpleGeneralDialog(std::string title, std::string content)
+    {
+		app::MoleMole_UIUtil_TryShowSimpleGeneralDialog_1(string_to_il2cppi(title), string_to_il2cppi(content), nullptr, nullptr);
+    }
+
+    void ShowInGameNormalMessage(std::wstring content, app::Color bgColor, bool showBackground)
+    {
+        auto uiManager = GET_SINGLETON(MoleMole_UIManager);
+        if (uiManager == nullptr)
+            return;
+        app::MoleMole_UIManager_TryShowNormalMessage(uiManager, string_to_il2cppi(content), bgColor, showBackground, nullptr);
+    }
+
+    void ShowInGameInfoMessage(std::wstring content, bool discardIfDuplicated, app::UIShowPriority__Enum priority)
+    {
+        auto uiManager = GET_SINGLETON(MoleMole_UIManager);
+        if (uiManager == nullptr)
+            return;
+        app::MoleMole_UIManager_TryShowInfoMessageWithoutBlockInput(uiManager, string_to_il2cppi(content), discardIfDuplicated, priority, nullptr);
+    }
+
+    void ShowInGameGeneralDialog(std::wstring title, std::wstring content, app::GeneralDialogContext_GeneralDialogType__Enum dialogType, app::UIType__Enum uiType, app::UIShowPriority__Enum mode, bool showNormalCloseBtn, bool isToggleDialog)
+    {
+        app::MoleMole_UIUtil_TryShowGeneralDialog(string_to_il2cppi(title), string_to_il2cppi(content), nullptr, uiType, nullptr, dialogType, mode, showNormalCloseBtn, isToggleDialog, false, nullptr);
+    }
+
+    void ShowInGameSimpleGeneralDialog(std::wstring title, std::wstring content)
+    {
+        app::MoleMole_UIUtil_TryShowSimpleGeneralDialog_1(string_to_il2cppi(title), string_to_il2cppi(content), nullptr, nullptr);
+    }
+
 }

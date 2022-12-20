@@ -18,7 +18,7 @@ DO_APP_FUNC(0x0406AF70, 0x04070520, bool, MoleMole_MapModule_IsAreaUnlock, (Mole
 DO_APP_FUNC(0x0431B9D0, 0x04320790, uint16_t, MoleMole_SimpleSafeUInt16_get_Value, (SimpleSafeUInt16 v, MethodInfo* method));
 DO_APP_FUNC(0x03F128A0, 0x03F17650, uint32_t, MoleMole_SimpleSafeUInt32_get_Value, (SimpleSafeUInt32 v, MethodInfo* method));
 DO_APP_FUNC(0x08882280, 0x08885010, String*, Marshal_PtrToStringAnsi, (void* ptr, MethodInfo* method));
-
+DO_APP_FUNC(0x08882310, 0x088850A0, String*, Marshal_PtrToStringUni, (void* ptr, MethodInfo* method));
 
 // Map utility
 DO_APP_FUNC(0x02E803A0, 0x02E84C90, Rect, MonoInLevelMapPage_get_mapRect, (MonoInLevelMapPage* __this, MethodInfo* method));
@@ -326,6 +326,11 @@ DO_APP_FUNC(0x057878A0, 0x0578C1C0, BaseEntity*, MoleMole_GadgetEntity_GetOwnerE
 
 DO_APP_FUNC(0x0333A2D0, 0x0333F060, bool, MoleMole_UIManager_HasEnableMapCamera, (MoleMole_UIManager* __this, MethodInfo* method));
 DO_APP_FUNC(0x0333DD00, 0x03342A90, void, MoleMole_UIManager_EnableInput, (MoleMole_UIManager* __this, bool playerInput, bool clearCurInputState, bool ignoreTouch, MethodInfo* method));
+DO_APP_FUNC(0x0333AA60, 0x0333F7F0, void, MoleMole_UIManager_TryShowNormalMessage, (MoleMole_UIManager* __this, String* content, Color bgColor, bool showBackground, MethodInfo* method));
+DO_APP_FUNC(0x0333EF50, 0x03343CF0, void, MoleMole_UIManager_TryShowInfoMessageWithoutBlockInput, (MoleMole_UIManager* __this, String* content, bool discardIfDuplicated, UIShowPriority__Enum priority, MethodInfo* method));
+DO_APP_FUNC(0x042A9F10, 0x042AF460, /*MoleMole_GeneralDialogContext*/void*, MoleMole_UIUtil_TryShowGeneralDialog, (String* title, String* desc, /*Action_1_Boolean_*/void* callback, UIType__Enum uiType, /*MoleMole_WaitForGeneralDialog*/void* yieldIns, GeneralDialogContext_GeneralDialogType__Enum dialogType, UIShowPriority__Enum mode, bool showNormalCloseBtn, bool isToggleDialog, bool MCJCBLMKDKC, MethodInfo* method));
+DO_APP_FUNC(0x0429C210, 0x042A1720, /*MoleMole_GeneralDialogContext*/void*, MoleMole_UIUtil_TryShowSimpleGeneralDialog_1, (String* title, String* content, /*Action*/void* buttonCallback, MethodInfo* method));
+DO_APP_FUNC(0x090BDDE0, 0x090BF280, SystemLanguage__Enum, Application_get_systemLanguage, (MethodInfo* method));
 
 DO_APP_FUNC(0x02E87430, 0x02E8BD20, void, MonoMiniMap_Update, (MonoMiniMap* __this, MethodInfo* method));
 DO_APP_FUNC(0x06673430, 0x030B38D0, MonoMiniMap*, MonoInLevelMainPage_get_miniMap, (void* __this, MethodInfo* method));

@@ -1,4 +1,4 @@
-#include "pch-il2cpp.h"
+﻿#include "pch-il2cpp.h"
 #include "About.h"
 
 #include <cheat/game/util.h>
@@ -106,4 +106,38 @@ namespace cheat::feature
         static About instance;
         return instance;
     }
+
+    void About::ShowInGameScamWarning()
+    {
+        if (!game::IsInGame())
+            return;
+        auto warning = GetScamWarningW();
+        game::ShowInGameGeneralDialog(warning.first, warning.second, app::GeneralDialogContext_GeneralDialogType__Enum::SINGLE_BUTTON);
+        m_IsScamWarningShowed = true;
+        return;
+    }
+
+    std::pair<std::wstring, std::wstring> About::GetScamWarningW()
+    {
+        auto lang = app::Application_get_systemLanguage(nullptr);
+
+        switch (lang)
+        {
+            case app::SystemLanguage__Enum::ChineseSimplified:
+                return std::make_pair(L"<i>欺诈警告！</i>", L"这是一个<color=#a80000ff>公开、免费使用</color>的辅助。\n如果你是付费购买的，那么你被骗了。\n<size=20>更多相关消息，请查看菜单中的\"关于\"</size>");
+            case app::SystemLanguage__Enum::ChineseTraditional:
+                return std::make_pair(L"<i>欺詐警告！</i>", L"這是一個<color=#a80000ff>公開、免費使用</color>的輔助。\n如果你是付費購買的，那麼你被騙了。\n<size=20>更多相關消息，請查看菜單中的\"關於\"</size>");
+            case app::SystemLanguage__Enum::Japanese:
+                return std::make_pair(L"<i>詐欺警告！</i>", L"これは<color=#a80000ff>公開されており、無料で使用できます</color>。\nお金を払ったら詐欺です。\n<size=20>詳細については、メニューの \"概要\" を確認してください</size>");
+            case app::SystemLanguage__Enum::Portuguese:
+                return std::make_pair(L"<i>Alerta de fraude!</i>", L"Este é um auxílio <color=#a80000ff>público, de uso gratuito</color>. \nSe você pagou, foi enganado. \n<size=20>Para obter mais informações, consulte \"Sobre\" no menu</size>");
+            case app::SystemLanguage__Enum::Russian:
+                return std::make_pair(L"<i>Предупреждение о мошенничестве!</i>", L"Это <color=#a80000ff>общедоступное бесплатное</color> пособие. \nЕсли вы заплатили за это, вас обманули. \n<size=20>Дополнительную информацию см. в разделе \"О программе\"</size>.");
+            case app::SystemLanguage__Enum::Vietnamese:
+                return std::make_pair(L"<i>Cảnh báo lừa đảo!</i>", L"Đây là hỗ trợ <color=#a80000ff>công khai, miễn phí sử dụng</color>. \nNếu bạn đã trả tiền cho nó, bạn đã bị lừa đảo. \n<size=20>Để biết thêm thông tin, vui lòng kiểm tra \"Giới thiệu\" trong menu</size>");
+            default:
+                return std::make_pair(L"<i>Scammed Warning!</i>", L"This cheat is <color=#a80000ff>Free to ues</color>.\nIf you've bought it, you've been scammed.\n<size=20>For more info check the \"about\" tab</size>");
+        }
+    }
+
 }

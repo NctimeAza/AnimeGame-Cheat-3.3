@@ -13772,6 +13772,276 @@ namespace app {
         struct GcgGrpSettle__Fields fields;
     };
 
+    enum class UIShowPriority__Enum : int32_t {
+        Cutscene = 0x00000003,
+        Error = 0x00000006,
+        Init = 0x00000004,
+        Loading = 0x00000005,
+        None = 0x00000000,
+        Normal = 0x00000001,
+        Pop = 0x00000002,
+    };
+
+    enum class GeneralDialogContext_GeneralDialogType__Enum : int32_t {
+        DOUBLE_BUTTON = 0x00000000,
+        SINGLE_BUTTON = 0x00000001,
+    };
+
+    enum class SystemLanguage__Enum : int32_t {
+        Afrikaans = 0x00000000,
+        Arabic = 0x00000001,
+        Basque = 0x00000002,
+        Belarusian = 0x00000003,
+        Bulgarian = 0x00000004,
+        Catalan = 0x00000005,
+        Chinese = 0x00000006,
+        ChineseSimplified = 0x00000028,
+        ChineseTraditional = 0x00000029,
+        Czech = 0x00000007,
+        Danish = 0x00000008,
+        Dutch = 0x00000009,
+        English = 0x0000000A,
+        Estonian = 0x0000000B,
+        Faroese = 0x0000000C,
+        Finnish = 0x0000000D,
+        French = 0x0000000E,
+        German = 0x0000000F,
+        Greek = 0x00000010,
+        Hebrew = 0x00000011,
+        Hungarian = 0x00000012,
+        Icelandic = 0x00000013,
+        Indonesian = 0x00000014,
+        Italian = 0x00000015,
+        Japanese = 0x00000016,
+        Korean = 0x00000017,
+        Latvian = 0x00000018,
+        Lithuanian = 0x00000019,
+        Norwegian = 0x0000001A,
+        Polish = 0x0000001B,
+        Portuguese = 0x0000001C,
+        Romanian = 0x0000001D,
+        Russian = 0x0000001E,
+        SerboCroatian = 0x0000001F,
+        Slovak = 0x00000020,
+        Slovenian = 0x00000021,
+        Spanish = 0x00000022,
+        Swedish = 0x00000023,
+        Thai = 0x00000024,
+        Turkish = 0x00000025,
+        Ukrainian = 0x00000026,
+        Unknown = 0x0000002A,
+        Vietnamese = 0x00000027,
+    };
+
+    struct __declspec(align(8)) List_1_System_UInt32___Fields {
+        struct System_UInt32__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_UInt32_ {
+        struct List_1_System_UInt32___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_UInt32___Fields fields;
+    };
+
+    struct System_UInt32__Array {
+        struct System_UInt32__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        uint32_t vector[32];
+    };
+
+    struct __declspec(align(8)) List_1_System_Int32___Fields {
+        struct System_Int32__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_Int32_ {
+        struct List_1_System_Int32___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_Int32___Fields fields;
+    };
+
+    struct System_Int32__Array {
+        struct System_Int32__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        int32_t vector[32];
+    };
+
+    enum class GcgDiceType__Enum : int32_t {
+        NONE = 0x00000000,
+        CRYO = 0x00000001,
+        HYDRO = 0x00000002,
+        PYRO = 0x00000003,
+        ELECTRO = 0x00000004,
+        GEO = 0x00000005,
+        DENDRO = 0x00000006,
+        ANEMO = 0x00000007,
+        ANY = 0x00000008
+    };
+
+    enum class GcgCost__Enum : int32_t {
+        Equal = 0,
+        Increase = 1,
+        Reduce = 2
+    };
+
+    struct __declspec(align(8)) List_1_GcgCost___Fields {
+        struct GcgCost__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_GcgCost_ {
+        struct List_1_GcgCost___Class* klass;
+        MonitorData* monitor;
+        struct List_1_GcgCost___Fields fields;
+    };
+
+    struct GcgCost__Array {
+        struct GcgCost__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        GcgCost__Enum vector[32];
+    };
+
+    enum class CostDiceOperationType__Enum : int32_t {
+        UseSkill = 0,
+        UseCard = 1,
+        OnStageCharChange = 2,
+        Reboot = 3
+    };
+
+    enum class GcgCostCheckLevel__Enum : int32_t {
+        Precisely = 0,
+        Roughly = 1
+    };
+
+    enum class CostDiceOperationCheckState__Enum : int32_t {
+        Invalid = 0,
+        DiceNotMatchEnergyLess = 1,
+        DiceNotMatchTooLess = 2,
+        DiceNotMatch = 3,
+        DiceNotMatchTooMuch = 4,
+        DiceMatch = 5,
+        DiceMatchTooMuch = 6,
+        ConditionDenied = 7
+    };
+
+    enum class GcgCardInfoMessagePriority__Enum : int64_t {
+        None = 0,
+        Normal = 1,
+        Pop = 2,
+        Cutscene = 3,
+        Init = 4,
+        Loading = 5,
+        Error = 6
+    };
+
+    struct __declspec(align(8)) OperationCostCheckDesc__Fields {
+        CostDiceOperationType__Enum inputOperationType;
+        uint32_t inputOperationParameter;
+        struct List_1_System_UInt32_* inputPtrDiceIndexList;
+        GcgCostCheckLevel__Enum inputCheckLevel;
+        bool outputIsPass;
+        CostDiceOperationCheckState__Enum outputCheckState;
+        String* outputHintMsgIfNotPass;
+        struct List_1_System_Int32_* outputPtrBestMatchDiceIndex;
+    };
+
+    struct OperationCostCheckDesc {
+        struct OperationCostCheckDesc__Fields fields;
+    };
+
+    struct GcgLevelMinistry__Fields {
+        struct GcgLevel* _level;
+    };
+
+    struct GcgGroup__Fields {
+        GcgLevelMinistry__Fields _;
+    };
+
+    enum class GcgLevelPhaseType__Enum : int32_t {
+        ILIOMJIILGE = 0,
+        MCGONJAEMCF = 1,
+        OFENBLPADLI = 2,
+        LBFOICKNNIK = 3,
+        LPIOPPFOLCG = 4,
+        BPFHLNOAKOI = 5,
+        GCOCGIKGBJI = 6,
+        DPHIBPOFILC = 7,
+        OHFHKCJJNIA = 8,
+        GJOJLDFKPLN = 9,
+        IMLJAEGLHFA = 10
+    };
+
+    struct __declspec(align(8)) GcgLevelPhaseController__Fields {
+        GcgLevelMinistry__Fields _;
+        struct GcgPhase* _phase;
+        GcgLevelPhaseType__Enum _lastPhase;
+        GcgLevelPhaseType__Enum _currentPhase;
+        struct Dictionary_2_System_Uint32_System_Uint32_* _controllerActionChanceMap;
+        bool _PhaseChanging_k__BackingField;
+    };
+
+    struct GcgLevelPhaseController {
+        struct GcgLevelPhaseController__Class* klass;
+        MonitorData* monitor;
+        struct GcgLevelPhaseController__Fields fields;
+    };
+
+    struct GcgGrpOperationCost__Fields {
+        struct GcgCostRepo* _costMap; // 0x18
+        struct List_1_GcgGrpOperationCost_DicePriorityInfo_* _dicePriorityInfoList; // 0x20
+    };
+
+    struct GcgGrpOperationCost {
+        struct GcgGrpOperationCost__Class* klass;
+        MonitorData* monitor;
+        struct GcgGrpOperationCost__Fields fields;
+    };
+
+    struct __declspec(align(8)) List_1_GcgDiceType___Fields {
+        struct GcgDiceType__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_GcgDiceType_ {
+        struct List_1_FPMFOPCJDJP___Class* klass;
+        MonitorData* monitor;
+        struct List_1_GcgDiceType___Fields fields;
+    };
+
+    struct GcgDiceType__Array {
+        struct FPMFOPCJDJP__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        GcgDiceType__Enum vector[32];
+    };
+
+    struct GcgPlayerDice__Fields {
+        struct List_1_GcgDiceType_* _diceList;
+        uint32_t _diceNum;
+    };
+
+    struct GcgPlayerDice {
+        struct GcgPlayerDice__Class* klass;
+        MonitorData* monitor;
+        struct GcgPlayerDice__Fields fields;
+    };
+
     enum class LFADJECDHHB__Enum : int32_t {
         GCG_ELEMENT_PHYSIC = 0x00000000,
         GCG_ELEMENT_CRYO = 0x00000001,
@@ -13782,6 +14052,64 @@ namespace app {
         GCG_ELEMENT_DENDRO = 0x00000006,
         GCG_ELEMENT_ANEMO = 0x00000007,
         GCG_ELEMENT_ANY = 0x00000008
+    };
+
+    enum class GcgCardCostType__Enum : int32_t {
+        GCG_COST_INVALID = 0,
+        GCG_COST_ENERGY = 1,
+        GCG_COST_DICE_SAME = 3,
+        GCG_COST_DICE_PAIMON = 5,
+        GCG_COST_DICE_VOID = 10,
+        GCG_COST_DICE_CRYO = 11,
+        GCG_COST_DICE_HYDRO = 12,
+        GCG_COST_DICE_PYRO = 13,
+        GCG_COST_DICE_ELECTRO = 14,
+        GCG_COST_DICE_GEO = 15,
+        GCG_COST_DICE_DENDRO = 16,
+        GCG_COST_DICE_ANEMO = 17
+    };
+
+    enum class GcgCardSkinFaceType__Enum : uint64_t {
+        GCG_CARD_FACE_NORMAL = 0x00000000,
+        GCG_CARD_FACE_GOLD = 0x00000001
+    };
+
+    struct MonoBaseCard__Fields {
+        MonoBehaviour__Fields _;
+        struct Renderer__Array* renderers;
+        struct Transform* goldenGrp;
+        struct Transform* normalGrp;
+        GcgCardSkinFaceType__Enum _Skin_k__BackingField;
+        struct List_1_Renderer_* _listRenderers;
+    };
+
+    struct __declspec(align(8)) Object__Fields {
+        void* m_CachedPtr;
+    };
+
+    struct MonoGcgUICard__Fields {
+        struct MonoSpriteProxy__Fields _;
+        struct Animator* _animator;
+        struct RawImage* _cardRawImage;
+        struct Image* _cardImage;
+        struct GameObject* _cardFrameNormal;
+        struct GameObject* _cardFrameGold;
+        struct MonoUIContainer* _cardInfoContainer;
+        struct MonoUIContainer* _cardDetailContainer;
+        struct MonoRightClickButton* _actionBtn;
+        struct MonoLongPressButton* _longPressBtn;
+        struct MonoUIContainer* _PS4InputBtn;
+    };
+    struct MonoGcgUICard {
+        struct MonoGcgUICard__Class* klass;
+        MonitorData* monitor;
+        struct MonoGcgUICard__Fields fields;
+    };
+
+    struct MonoBaseCard {
+        struct MonoBaseCard__Class* klass;
+        MonitorData* monitor;
+        struct MonoBaseCard__Fields fields;
     };
 
     struct GcgClientMsgSkillResult__Fields {
