@@ -52,6 +52,7 @@ void il2cppi_new_console() {
     freopen_s((FILE**)stdin, "CONIN$", "r", stdin);
     freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
     freopen_s((FILE**)stderr, "CONOUT$", "w", stderr);
+    SetConsoleOutputCP(CP_UTF8);
 }
 
 void il2cppi_close_console() {
@@ -91,6 +92,9 @@ app::String* string_to_il2cppi(std::string input) {
     return app::Marshal_PtrToStringAnsi((void*)input.c_str(), nullptr);
 }
 
+app::String* string_to_il2cppi(std::wstring input) {
+    return app::Marshal_PtrToStringUni((void*)input.c_str(), nullptr);
+}
 
 std::string to_hex_string(app::Byte__Array* barray, int length) {
     if (barray == nullptr)
