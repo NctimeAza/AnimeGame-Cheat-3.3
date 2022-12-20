@@ -163,7 +163,7 @@ namespace cheat::feature
 		ImGui::Text("%s [%.01fm|%s|%s%s%s%s%s]",
 			_TR("ESP"),
 			f_Range.value(),
-			f_DrawBoxMode.value() == DrawMode::Box ? _TR("Box") : f_DrawBoxMode.value() == DrawMode::Rectangle ? _TR("Rect") : _TR("None"),
+			f_DrawBoxMode.value() == DrawMode::Box ? _TR("Box") : f_DrawBoxMode.value() == DrawMode::Rectangle ? _TR("Rect") : f_DrawBoxMode.value() == DrawMode::CornerBox ? _TR("CornerBox") : _TR("None"),
 			f_Fill ? "F" : "",
 			f_DrawTracerMode.value() == DrawTracerMode::Line ? "L" : f_DrawTracerMode.value() == DrawTracerMode::OffscreenArrows ? "A" : "",
 			f_DrawName ? "N" : "",
