@@ -9,6 +9,22 @@ namespace cheat::feature
 	class RapidFire : public Feature
     {
 	public:
+		
+		enum class ElementType
+		{
+			None,
+			Pyro,
+			Hydro,
+			Dendro,
+			Electro,
+			Cryo,
+			Frozen,
+			Anemo,
+			Geo,
+			AntiFire,
+			VehicleMuteIce,
+			Unknown,
+		};
 		config::Field<TranslatedHotkey> f_Enabled;
 		config::Field<TranslatedHotkey> f_MultiHit;
 		config::Field<int> f_Multiplier;
@@ -23,6 +39,10 @@ namespace cheat::feature
 		config::Field<float> f_AnimationState;
 		config::Field<TranslatedHotkey> f_AttackSpeed;
 		config::Field<float> f_SpeedMultiplier;
+		config::Field<TranslatedHotkey> f_CustomElement;
+		config::Field<config::Enum<ElementType>> f_ElementType;
+		config::Field<bool> f_isRandType;
+		config::Field<bool> f_HeadShot;
 		int animationCounter;
 
 		static RapidFire& GetInstance();

@@ -2817,7 +2817,15 @@
       "AT": "交互",
       "CR": "范围",
       "PF": "过滤",
-      "FL": "随机"
+      "FL": "随机",
+      "Custom Element": "自定义元素",
+      "Allows you to customize the element type of damage.\nThis may not work for some characters. \n(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)": "使你可以修改伤害的元素类型\n 有些角色可能没用\n （如果要彻底关闭这个功能，你需要重新加载场景，比如重进游戏或者进副本）",
+      "RandomElementType": "随机元素类型",
+      "Random element type (excluding physics)": "使元素类型随机（不会打出物伤）",
+      "ElementType": "元素类型",
+      "ElementTypes": "元素类型",
+      "Auto weakspot": "自动弱点",
+      "Only bow character.": "仅限弓箭角色"
     }
   },
   "TraditionalChinese": {
@@ -4227,7 +4235,15 @@
       "AT": "交互",
       "CR": "範圍",
       "PF": "過濾",
-      "FL": "隨機"
+      "FL": "隨機",
+      "Custom Element": "自定義元素",
+      "Allows you to customize the element type of damage.\nThis may not work for some characters. \n(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)": "使你可以修改傷害的元素類型\n有些角色可能沒用\n（如果要徹底關閉這個功能，請重新加载场景，例如重新進入游戲）",
+      "RandomElementType": "隨機元素類型",
+      "Random element type (excluding physics)": "使元素類型隨機（不會打出物理傷害）",
+      "ElementType": "元素類型",
+      "ElementTypes": "元素類型",
+      "Auto weakspot": "自動弱點",
+      "Only bow character.": "僅限弓箭角色"
     }
   },
   "Russian": {
@@ -5640,7 +5656,15 @@
       "Yun Jin": "Yun Jin",
       "Zaytun Peach": "Персик зайтун",
       "Zhongli": "Zhongli",
-      "Zoom Speed": "Скорость приближения"
+      "Zoom Speed": "Скорость приближения",
+      "Custom Element": "пользовательский элемент",
+      "Allows you to customize the element type of damage.\nThis may not work for some characters. \n(If you want to completely close this function, you need to reload the scene, e.g. entering the dungeon or re-entering the game)": "Позволяет изменить тип урона элемента\nнекоторые люди могут не вступить в силу\n（Чтобы отключить эту функцию, пожалуйста, повторно войдите в игру.）",
+      "RandomElementType": "случайный тип элемента",
+      "Random element type (excluding physics)": "случайный тип элемента（нет физического повреждения）",
+      "ElementType": "тип элемента",
+      "ElementTypes": "тип элемента",
+      "Auto weakspot": "автоматическая слабость",
+      "Only bow character.": "Только персонажи с луком и стрелами могут использовать"
     }
   }
 }
