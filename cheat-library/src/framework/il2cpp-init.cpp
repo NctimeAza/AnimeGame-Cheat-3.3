@@ -8,6 +8,8 @@
 
 #include <cheat/ILPatternScanner.h>
 
+#include <windows.h>
+
 // IL2CPP APIs
 #define DO_API(OS_OFFSET, CN_OFFSET, RETURN_T, NAME, PARAMS) RETURN_T (*NAME) PARAMS
 #include "il2cpp-api-functions.h"
@@ -135,57 +137,15 @@ void init_scanned_offsets(LGameVersion gameVersion)
 
 LGameVersion GetGameVersion()
 {
-	std::array<std::pair<std::string, LGameVersion>, 2> gameVersions = {{
-			{ "china", LGameVersion::CHINA },
-			{ "global", LGameVersion::GLOBAL }
-		}};
+	char name[64];
+	GetModuleFileNameA(GetModuleHandleA(NULL), name, sizeof(name));
 
-	std::string targetChecksumsRaw = ResourceLoader::Load("AssemblyChecksums", RT_RCDATA);
-	nlohmann::json targetChecksums = nlohmann::json::parse(targetChecksumsRaw, nullptr, false);
-	if (targetChecksums.is_discarded())
-	{
-		LOG_ERROR("Failed to parse assembly checksum data.");
-		return LGameVersion::NONE;
-	}
+	std::string base_name = std::filesystem::path(name).filename().string();
 
-	static config::Field<nlohmann::json> checksumTimestamps =
-		config::CreateField<nlohmann::json>("m_CheckSumTimestamp", "PatternScanner", true, nlohmann::json::object());
-
-	PatternScanner scanner;
-	for (const auto& [lVersionName, lVersion] : gameVersions)
-	{
-		if (!targetChecksums.contains(lVersionName))
-		{
-			LOG_ERROR("Assembly checksum info is corrupted. Not found the key: %s.", lVersionName);
-			continue;
-		}
-		
-		nlohmann::json lVersionChecksum = targetChecksums.at(lVersionName);
-		std::string version = lVersionChecksum.at("game_version");
-
-		bool isValid = true;
-		for (auto& [moduleName, checksumData] : lVersionChecksum.at("modules").items())
-		{
-			//if (checksumTimestamps.value().contains(moduleName))
-			//	checksumData["timestamp"] = checksumTimestamps.value()[moduleName];
-
-			if (!scanner.IsValidModuleHash(moduleName, checksumData))
-			{
-				LOG_INFO("Failed to detect version: %s.", version.c_str());
-				isValid = false;
-				break;
-			}
-
-			checksumTimestamps.value()[moduleName] = scanner.GetModuleTimestamp(moduleName);
-		}
-
-		if (!isValid)
-			continue;
-		
-		checksumTimestamps.FireChanged();
-
-		LOG_INFO("Detected version: %s.", version.c_str());
-		return lVersion;
+	if (base_name == "GenshinImpact.exe") {
+		return LGameVersion::GLOBAL;
+	} else if (base_name == "YuanShen.exe") {
+		return LGameVersion::CHINA;
 	}
 
 	return LGameVersion::NONE;

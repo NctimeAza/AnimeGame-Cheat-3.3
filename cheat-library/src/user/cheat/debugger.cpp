@@ -100,7 +100,8 @@ static void DisableVMP()
 {
 	DWORD oldProtect;
 	auto ntdll = GetModuleHandleA("ntdll.dll");
-	BYTE callCode = ((BYTE*)GetProcAddress(ntdll, "NtQuerySection"))[4] - 1;
+	bool isWine = (GetProcAddress(ntdll, "wine_get_version") != NULL);
+	BYTE callCode = ((BYTE*)GetProcAddress(ntdll, isWine ? "NtPulseEvent" : "NtQuerySection"))[4] - 1;
 	BYTE restore[] = { 0x4C, 0x8B, 0xD1, 0xB8, callCode };
 	auto nt_vp = (BYTE*)GetProcAddress(ntdll, "NtProtectVirtualMemory");
 	VirtualProtect(nt_vp, sizeof(restore), PAGE_EXECUTE_READWRITE, &oldProtect);
