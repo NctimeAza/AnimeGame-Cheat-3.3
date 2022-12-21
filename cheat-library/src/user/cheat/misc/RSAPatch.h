@@ -8,6 +8,8 @@ namespace cheat::feature
 	{
 	public:
 		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<config::Toggle<std::string>> f_PublicKey;
+		config::Field<config::Toggle<std::string>> f_PrivateKey;
 
 		static RSAPatch& GetInstance();
 
