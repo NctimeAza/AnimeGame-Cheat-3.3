@@ -8,6 +8,8 @@
 
 #include <cheat/ILPatternScanner.h>
 
+#include <windows.h>
+
 // IL2CPP APIs
 #define DO_API(OS_OFFSET, CN_OFFSET, RETURN_T, NAME, PARAMS) RETURN_T (*NAME) PARAMS
 #include "il2cpp-api-functions.h"
@@ -135,6 +137,18 @@ void init_scanned_offsets(LGameVersion gameVersion)
 
 LGameVersion GetGameVersion()
 {
+#ifdef LINUX
+	char name[64];
+	GetModuleFileNameA(GetModuleHandleA(NULL), name, sizeof(name));
+
+	std::string base_name = std::filesystem::path(name).filename().string();
+
+	if (base_name == "GenshinImpact.exe") {
+		return LGameVersion::GLOBAL;
+	} else if (base_name == "YuanShen.exe") {
+		return LGameVersion::CHINA;
+	}
+#else
 	std::array<std::pair<std::string, LGameVersion>, 2> gameVersions = {{
 			{ "china", LGameVersion::CHINA },
 			{ "global", LGameVersion::GLOBAL }
@@ -187,6 +201,7 @@ LGameVersion GetGameVersion()
 		LOG_INFO("Detected version: %s.", version.c_str());
 		return lVersion;
 	}
+#endif
 
 	return LGameVersion::NONE;
 }
