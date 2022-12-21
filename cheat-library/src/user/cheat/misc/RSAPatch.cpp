@@ -23,15 +23,15 @@ namespace cheat::feature
 	void RSAPatch::DrawMain()
 	{
 		ConfigWidget(_TR("Enable RSA Patch"), f_Enabled, _TR("Runtime patcher. Only use it on private servers."));
-		ConfigWidget(_TR("Custom Public Key"), f_PublicKey, _TR("If disabled, use grasscutter's Public RSA key."));
-		ConfigWidget(_TR("Custom Private Key"), f_PrivateKey, _TR("If disabled, don't patch Private RSA key"));
+		ConfigWidget(_TR("Custom Public Key"), f_PublicKey, _TR("If disabled, use grasscutter's public RSA key."));
+		ConfigWidget(_TR("Custom Private Key"), f_PrivateKey, _TR("If disabled, don't patch private RSA key"));
 	}
 
 	bool RSAPatch::NeedStatusDraw() const
 	{
 		return f_Enabled->enabled();
 	}
-
+	
 	void RSAPatch::DrawStatus()
 	{
 		ImGui::Text(_TR("RSA Patch"));
