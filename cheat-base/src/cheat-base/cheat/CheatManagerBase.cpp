@@ -549,8 +549,11 @@ namespace cheat
 		if (settings.f_FpsShow)
 			DrawFps();
 		
-		if (about.show)
+		if (about.show && !about.f_IsFirstTime)
 			DrawWarning();
+
+		if (!about.m_IsScamWarningShowed && about.f_IsFirstTime)
+			about.ShowInGameScamWarning();
 
 		if (settings.f_NotificationsShow)
 			DrawNotifications();

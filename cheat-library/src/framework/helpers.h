@@ -283,6 +283,7 @@ std::string il2cppi_to_string(app::Vector vec);
 std::string il2cppi_to_string(app::Vector2 vec);
 std::string il2cppi_to_string(app::Vector3 vec);
 app::String* string_to_il2cppi(std::string input);
+app::String* string_to_il2cppi(std::wstring input);
 std::string to_hex_string(app::Byte__Array* barray, int length);
 #endif
 
