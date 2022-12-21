@@ -66,7 +66,7 @@ namespace cheat::feature
 			if ((key.rfind("<RSAKeyValue><Modulus>15RBm/vARY0axYksImhsTicpv09OYfS4+wCvmE7") != std::string::npos || key.rfind("<RSAKeyValue><Modulus>lCwdYrveozYYcKOSz4cjBfORvd6POZSxsM9JybW") != std::string::npos)) // 2nd time fn is called
 			{
 				memcpy(xmlString, public_key, public_key->fields.length * 2);
-				LOG_INFO("Public Key Patched");
+				LOG_INFO("Public Key Patched.");
 			}
 
 			// Private key: no need to patch on grasscutter
@@ -77,7 +77,7 @@ namespace cheat::feature
 				if (key.find("</DP>") != std::string::npos && key.rfind("</InverseQ>") != std::string::npos)
 				{
 					memcpy(xmlString, private_key, private_key->fields.length * 2);
-					LOG_WARNING("Private Key Patched");
+					LOG_INFO("Private Key Patched.");
 				}
 			}
 		}
