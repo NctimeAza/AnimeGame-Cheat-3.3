@@ -8,10 +8,12 @@ namespace cheat::feature
 	{
 	public:
 		config::Field<TranslatedHotkey> f_Enabled;
+		config::Field<config::Toggle<std::string>> f_PublicKey;
+		config::Field<config::Toggle<std::string>> f_PrivateKey;
 
-		static RSAPatch& GetInstance();
+		static RSAPatch &GetInstance();
 
-		const FeatureGUIInfo& GetGUIInfo() const override;
+		const FeatureGUIInfo &GetGUIInfo() const override;
 		void DrawMain() override;
 
 		virtual bool NeedStatusDraw() const override;
