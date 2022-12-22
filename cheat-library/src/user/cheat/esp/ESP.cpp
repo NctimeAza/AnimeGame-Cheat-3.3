@@ -735,9 +735,13 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, AeonblightDrake);
 		ADD_FILTER_FIELD(monster, AlgorithmOfSemiIntransientMatrixOfOverseerNetwork);
 		ADD_FILTER_FIELD(monster, JadeplumeTerrorshroom);
+		ADD_FILTER_FIELD(monster, SetekhWenut);
 		// Regular. Alphabetical.
 		ADD_FILTER_FIELD(monster, AbyssMage);
 		ADD_FILTER_FIELD(monster, BlackSerpentKnight);
+		ADD_FILTER_FIELD(monster, BlessboneFlyingSerpent);
+		ADD_FILTER_FIELD(monster, BlessboneRedVulture);
+		ADD_FILTER_FIELD(monster, BlessboneScorpion);
 		ADD_FILTER_FIELD(monster, Cicin);
 		ADD_FILTER_FIELD(monster, ElectroAbyssLector);
 		ADD_FILTER_FIELD(monster, Eremite);
@@ -747,6 +751,7 @@ namespace cheat::feature
 		ADD_FILTER_FIELD(monster, FatuiMirrorMaiden);
 		ADD_FILTER_FIELD(monster, FatuiSkirmisher);
 		ADD_FILTER_FIELD(monster, FloatingFungus);
+		ADD_FILTER_FIELD(monster, FlyingSerpent);
 		ADD_FILTER_FIELD(monster, Geovishap);
 		ADD_FILTER_FIELD(monster, GeovishapHatchling);
 		ADD_FILTER_FIELD(monster, GroundedShroom);
