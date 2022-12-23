@@ -101,6 +101,8 @@ namespace cheat::feature
 		std::vector<std::shared_ptr<ESPCustomFilter>> m_CustomFilters;
 		CustomFilters m_CustomFilterInfos;
 		bool b_DrawCustomFiltersWindow;
+		int i_CustomFiltersEditId;
+		int i_CustomFilterNameEditId;
 
 		void InstallFilters();
 		void InstallCustomFilters();

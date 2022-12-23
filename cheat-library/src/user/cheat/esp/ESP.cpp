@@ -65,6 +65,8 @@ namespace cheat::feature
 		m_CustomFilterNames({}),
 		m_CustomFilters({}),
 		m_CustomFilterInfos({}),
+		i_CustomFiltersEditId(-1),
+		i_CustomFilterNameEditId(-1),
 		m_Search({})
 	{
 		InstallFilters();
@@ -472,6 +474,7 @@ namespace cheat::feature
 	{
 		const float clipSize = static_cast<float>(min(m_CustomFilterNames.size(), 15) + 1); // Number of rows in table as initial view. Past this is scrollbar territory.
 		static ImGuiTableFlags flags = ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY;
+		static ImGuiSelectableFlags selectableFlags = ImGuiSelectableFlags_SpanAvailWidth;
 
 		static int rowToDelete = -1;
 		if (ImGui::BeginTable("Names", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
@@ -491,11 +494,22 @@ namespace cheat::feature
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
 
-					ImGui::Text(name.c_str());
+					auto isSelected = false;
+					auto isItemClicked = false;
+
+					if (ImGui::Selectable(name.c_str(), &isSelected, selectableFlags))
+						isItemClicked = isSelected && (ImGui::IsMouseReleased(ImGuiMouseButton_Left) || ImGui::IsMouseReleased(ImGuiMouseButton_Right));
+
 					ImGui::TableNextColumn();
 
 					if (ImGui::SmallButton(_TR("Delete")))
 						rowToDelete = row_n;
+
+					if (isItemClicked)
+					{
+						i_CustomFilterNameEditId = row_n;
+						m_CustomFilterNameToAdd = m_CustomFilterNames.at(row_n);
+					}
 
 					ImGui::PopID();
 				}
@@ -506,6 +520,7 @@ namespace cheat::feature
 		if (rowToDelete > -1)
 		{
 			m_CustomFilterNames.erase(m_CustomFilterNames.begin() + rowToDelete);
+			i_CustomFilterNameEditId = -1;
 			rowToDelete = -1;
 		}
 	}
@@ -514,6 +529,7 @@ namespace cheat::feature
 	{
 		const float clipSize = static_cast<float>(min(m_CustomFilters.size(), 15) + 1); // Number of rows in table as initial view. Past this is scrollbar territory.
 		static ImGuiTableFlags flags = ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_NoBordersInBody | ImGuiTableFlags_ScrollY;
+		static ImGuiSelectableFlags selectableFlags = ImGuiSelectableFlags_SpanAvailWidth;
 
 		static int rowToDelete = -1;
 		if (ImGui::BeginTable("Filters", 2, flags, ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * clipSize), 0.0f))
@@ -533,11 +549,26 @@ namespace cheat::feature
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
 
-					ImGui::Text(filter->m_FilterName.c_str());
+					auto isSelected = false;
+					auto isItemClicked = false;
+
+					if (ImGui::Selectable(filter->m_FilterName.c_str(), &isSelected, selectableFlags))
+						isItemClicked = isSelected && (ImGui::IsMouseReleased(ImGuiMouseButton_Left) || ImGui::IsMouseReleased(ImGuiMouseButton_Right));
+
 					ImGui::TableNextColumn();
 
 					if (ImGui::SmallButton(_TR("Delete")))
 						rowToDelete = row_n;
+
+					if (isItemClicked)
+					{
+						i_CustomFiltersEditId = row_n;
+						i_CustomFilterNameEditId = -1;
+						m_CustomFilterUiName = filter->m_FilterName;
+						f_CustomFilterType = filter->m_Type;
+						m_CustomFilterNameToAdd = "";
+						m_CustomFilterNames = std::vector(filter->m_Names);
+					}
 
 					ImGui::PopID();
 				}
@@ -547,6 +578,8 @@ namespace cheat::feature
 
 		if (rowToDelete > -1)
 		{
+			i_CustomFiltersEditId = -1;
+			i_CustomFilterNameEditId = -1;
 			m_CustomFilters.erase(m_CustomFilters.begin() + rowToDelete);
 			m_CustomFilterInfos.erase(m_CustomFilterInfos.begin() + rowToDelete);
 			rowToDelete = -1;
@@ -576,23 +609,72 @@ namespace cheat::feature
 				ImGui::InputText(_TR("Name"), &m_CustomFilterNameToAdd);
 
 				ImGui::SameLine();
-				if (ImGui::Button(_TR("Add")))
+				auto isNamesInEditMode = i_CustomFilterNameEditId > -1;
+				if (ImGui::Button(isNamesInEditMode ? _TR("Update name") : _TR("Add")))
 				{
-					m_CustomFilterNames.push_back(m_CustomFilterNameToAdd);
+					if (isNamesInEditMode)
+						m_CustomFilterNames[i_CustomFilterNameEditId] = m_CustomFilterNameToAdd;
+					else
+						m_CustomFilterNames.push_back(m_CustomFilterNameToAdd);
+
+					i_CustomFilterNameEditId = -1;
 					m_CustomFilterNameToAdd = "";
+				}
+
+				if (isNamesInEditMode)
+				{
+					ImGui::SameLine();
+					if (ImGui::Button(_TR("Cancel editing name")))
+					{
+						i_CustomFilterNameEditId = -1;
+						m_CustomFilterNameToAdd = "";
+					}
 				}
 
 				DrawCustomFilterNames();
 
-				//ImGui::CalcButtonSize
-				ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - ImGui::CalcButtonSize(_TR("Add filter")).x);
-				if (ImGui::Button(_TR("Add filter")))
+				auto isEditMode = i_CustomFiltersEditId > -1;
+				if (isEditMode)
+				{
+					if (ImGui::Button(_TR("Cancel editing")))
+					{
+						i_CustomFiltersEditId = -1;
+						i_CustomFilterNameEditId = -1;
+
+						m_CustomFilterUiName = "";
+						f_CustomFilterType = app::EntityType__Enum_1::None;
+						m_CustomFilterNameToAdd = "";
+
+						m_CustomFilterNames = {};
+					}
+
+					ImGui::SameLine();
+				}
+
+				auto addOrUpdateButtonName = isEditMode ? _TR("Update filter") : _TR("Add filter");
+				ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetContentRegionAvail().x - ImGui::CalcButtonSize(addOrUpdateButtonName).x);
+				if (ImGui::Button(addOrUpdateButtonName))
 				{
 					auto filter = ESPCustomFilter(m_CustomFilterUiName, f_CustomFilterType.value(), m_CustomFilterNames);
-					AddCustomFilter(filter, true);
+					if (isEditMode)
+					{
+						auto existingFilter = m_CustomFilters.at(i_CustomFiltersEditId);
+						existingFilter->m_FilterName = m_CustomFilterUiName;
+						existingFilter->SetType(f_CustomFilterType.value());
+						existingFilter->SetNames(m_CustomFilterNames);
 
+						SaveCustomFilters();
+					}
+					else
+					{
+						AddCustomFilter(filter, true);
+					}
+
+					i_CustomFiltersEditId = -1;
+					i_CustomFilterNameEditId = -1;
 					m_CustomFilterUiName = "";
 					m_CustomFilterNames = {};
+					f_CustomFilterType = app::EntityType__Enum_1::None;
 				}
 			}
 			ImGui::EndGroupPanel();
