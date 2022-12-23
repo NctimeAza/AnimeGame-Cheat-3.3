@@ -592,7 +592,12 @@ namespace cheat::feature
 		if (!f_ShowCustomFiltersWindow.value())
 			return;
 
-		static ImGuiWindowFlags flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize;
+		static ImGuiWindowFlags flags = ImGuiWindowFlags_None /*ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize*/;
+
+		auto warningText = _TR("NOTE: Custom filter is only for advanced users or contributors! You must know what are you doing.");
+		auto warningTextSz = ImGui::CalcTextSize(warningText);
+
+		ImGui::SetNextWindowSizeConstraints(ImVec2(warningTextSz.x + 30.f, 400.f), ImVec2(INFINITY, INFINITY));
 
 		if (ImGui::Begin(_TR("Custom filters"), &f_ShowCustomFiltersWindow.value(), flags))
 		{
