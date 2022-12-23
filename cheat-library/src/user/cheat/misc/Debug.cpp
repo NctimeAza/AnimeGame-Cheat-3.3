@@ -1152,10 +1152,10 @@ namespace cheat::feature
             if (!unexplored)
                 continue;
 
-            bool isSelected = esp::render::DrawEntity(entity->name(), entity, ImColor(255, 0, 0, 255), ImColor(255, 0, 0, 255));
+            bool isSelected = esp::render::DrawEntity("", entity->name(), entity, ImColor(255, 0, 0, 255), ImColor(255, 0, 0, 255));
             if (isSelected && selectedEntity == nullptr)
             {
-                esp::render::DrawEntity(entity->name(), entity, ImColor(0, 255, 0, 255), ImColor(255, 0, 255, 255));
+                esp::render::DrawEntity("", entity->name(), entity, ImColor(0, 255, 0, 255), ImColor(255, 0, 255, 255));
                 selectedEntity = entity;
             }
         }

@@ -3699,5 +3699,53 @@
     <Image Include="res\iconsHD\InteractionRewards.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\iconsHD\FlyingSerpent.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\SetekhWenut.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\BlessboneScorpion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\EremiteScorchingLoremaster.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\EremiteFloralRingDancer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\BlessboneFlyingSerpent.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\BlessboneRedVulture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\BlessboneFlyingSerpent.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\BlessboneRedVulture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\BlessboneScorpion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\EremiteFloralRingDancer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\EremiteScorchingLoremaster.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\FlyingSerpent.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\SetekhWenut.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Yaoyao.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\iconsHD\Alhatham.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

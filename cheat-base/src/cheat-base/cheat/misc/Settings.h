@@ -35,8 +35,12 @@ namespace cheat::feature
 		std::filesystem::path themesDir;
 		config::Field<std::string> f_DefaultTheme;
 
+		config::Field<uint32_t> f_InitializationDelay;
 
 		static Settings& GetInstance();
+
+		void InitializationDelayLoad();
+		void WriteInitializationDelay(uint32_t delay);
 
 		const FeatureGUIInfo& GetGUIInfo() const override;
 		void DrawMain() override;

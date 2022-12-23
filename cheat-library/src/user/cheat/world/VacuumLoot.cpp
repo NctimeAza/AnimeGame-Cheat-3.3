@@ -35,7 +35,7 @@ namespace cheat::feature
 			"(Item Drops and Equipments)"));
 		ConfigWidget(_TR("Distance (m)"), f_Distance, 0.1f, 1.0f, 10.0f, _TR("Distance between the player and the loot.\n"
 			"Values under 1.5 may be too intruding."));
-		if (ImGui::TreeNode("Loot Types"))
+		if (ImGui::TreeNode(_TR("Loot Types")))
 		{
 			for (auto& [section, filters] : m_Sections)
 			{
@@ -117,7 +117,7 @@ namespace cheat::feature
 		bool checked = std::all_of(filters.begin(), filters.end(), [](const FilterInfo& filter) {  return filter.first; });
 		bool changed = false;
 
-		if (ImGui::BeginSelectableGroupPanel(section.c_str(), checked, changed, true))
+		if (ImGui::BeginSelectableGroupPanel(Translator::RuntimeTranslate(section).c_str(), checked, changed, true))
 		{
 			// TODO : Get Max Container Width and Calculate Max Item Width of Checkbox + Text / or specify same width for all columns
 			// then divide MaxWidth by ItemWidth/ColumnWidth and asign a floor result >= 1 to columns.
@@ -125,7 +125,7 @@ namespace cheat::feature
 
 			int columns = 3;
 
-			if (ImGui::BeginTable(section.c_str(), columns == 0 ? 1 : columns )) {
+			if (ImGui::BeginTable(Translator::RuntimeTranslate(section).c_str(), columns == 0 ? 1 : columns )) {
 				int i = 0;
 				for (std::pair<config::Field<bool>, game::IEntityFilter*> filter : filters) {
 
@@ -138,7 +138,7 @@ namespace cheat::feature
 						ImGui::TableNextColumn();
 
 					ImGui::PushID(&filter);
-					ConfigWidget(filter.first.name().c_str(), filter.first);
+					ConfigWidget(Translator::RuntimeTranslate(filter.first.name()).c_str(), filter.first);
 					ImGui::PopID();
 					i++;
 				}

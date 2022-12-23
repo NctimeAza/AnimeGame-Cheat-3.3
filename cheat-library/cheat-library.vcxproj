@@ -256,6 +256,7 @@
     <Image Include="res\iconsHD\Ajilenakh.png" />
     <Image Include="res\iconsHD\Akuoumaru.png" />
     <Image Include="res\iconsHD\Albedo.png" />
+    <Image Include="res\iconsHD\Alhatham.png" />
     <Image Include="res\iconsHD\AlleyHunter.png" />
     <Image Include="res\iconsHD\Aloy.png" />
     <Image Include="res\iconsHD\Amber.png" />
@@ -281,6 +282,9 @@
     <Image Include="res\iconsHD\BlackcliffWarbow.png" />
     <Image Include="res\iconsHD\BlackSerpentKnight.png" />
     <Image Include="res\iconsHD\BlackTassel.png" />
+    <Image Include="res\iconsHD\BlessboneFlyingSerpent.png" />
+    <Image Include="res\iconsHD\BlessboneRedVulture.png" />
+    <Image Include="res\iconsHD\BlessboneScorpion.png" />
     <Image Include="res\iconsHD\BloodtaintedGreatsword.png" />
     <Image Include="res\iconsHD\Boar.png" />
     <Image Include="res\iconsHD\BookPage.png" />
@@ -335,6 +339,8 @@
     <Image Include="res\iconsHD\EndoftheLine.png" />
     <Image Include="res\iconsHD\EngulfingLightning.png" />
     <Image Include="res\iconsHD\Eremite.png" />
+    <Image Include="res\iconsHD\EremiteFloralRingDancer.png" />
+    <Image Include="res\iconsHD\EremiteScorchingLoremaster.png" />
     <Image Include="res\iconsHD\Eula.png" />
     <Image Include="res\iconsHD\EverlastingMoonglow.png" />
     <Image Include="res\iconsHD\EverlightCell.png" />
@@ -353,6 +359,7 @@
     <Image Include="res\iconsHD\Finch.png" />
     <Image Include="res\iconsHD\Fischl.png" />
     <Image Include="res\iconsHD\FloatinghHydroFungus.png" />
+    <Image Include="res\iconsHD\FlyingSerpent.png" />
     <Image Include="res\iconsHD\ForestRegalia.png" />
     <Image Include="res\iconsHD\Fox.png" />
     <Image Include="res\iconsHD\FreedomSworn.png" />
@@ -725,6 +732,7 @@
     <Image Include="res\iconsHD\SeelieLamp.png" />
     <Image Include="res\iconsHD\SemiPerpetualControlMatrix.png" />
     <Image Include="res\iconsHD\SerpentSpine.png" />
+    <Image Include="res\iconsHD\SetekhWenut.png" />
     <Image Include="res\iconsHD\ShadowyHusk.png" />
     <Image Include="res\iconsHD\ShaggySumpterBeast.png" />
     <Image Include="res\iconsHD\SharpshootersOath.png" />
@@ -867,6 +875,7 @@
     <Image Include="res\iconsHD\XiphosMoonlight.png" />
     <Image Include="res\iconsHD\YaeMiko.png" />
     <Image Include="res\iconsHD\Yanfei.png" />
+    <Image Include="res\iconsHD\Yaoyao.png" />
     <Image Include="res\iconsHD\Yelan.png" />
     <Image Include="res\iconsHD\Yoimiya.png" />
     <Image Include="res\iconsHD\YumemiruWood.png" />
@@ -884,6 +893,9 @@
     <Image Include="res\icons\Avatar.png" />
     <Image Include="res\icons\Azhdaha.png" />
     <Image Include="res\icons\BlackSerpentKnight.png" />
+    <Image Include="res\icons\BlessboneFlyingSerpent.png" />
+    <Image Include="res\icons\BlessboneRedVulture.png" />
+    <Image Include="res\icons\BlessboneScorpion.png" />
     <Image Include="res\icons\Boar.png" />
     <Image Include="res\icons\BookPage.png" />
     <Image Include="res\icons\BouncyMushroom.png" />
@@ -912,10 +924,13 @@
     <Image Include="res\icons\ElectroAbyssLector.png" />
     <Image Include="res\icons\ElectroRegisvine.png" />
     <Image Include="res\icons\Eremite.png" />
+    <Image Include="res\icons\EremiteFloralRingDancer.png" />
+    <Image Include="res\icons\EremiteScorchingLoremaster.png" />
     <Image Include="res\icons\EverlightCell.png" />
     <Image Include="res\icons\Falcon.png" />
     <Image Include="res\icons\Finch.png" />
     <Image Include="res\icons\FloatingHydroFungus.png" />
+    <Image Include="res\icons\FlyingSerpent.png" />
     <Image Include="res\icons\Fox.png" />
     <Image Include="res\icons\Fungi.png" />
     <Image Include="res\icons\GroundedShroom.png" />
@@ -1200,6 +1215,7 @@
     <Image Include="res\icons\SeelieCourt.png" />
     <Image Include="res\icons\SeelieLamp.png" />
     <Image Include="res\icons\SemiPerpetualControlMatrix.png" />
+    <Image Include="res\icons\SetekhWenut.png" />
     <Image Include="res\icons\ShadowyHusk.png" />
     <Image Include="res\icons\ShaggySumpterBeast.png" />
     <Image Include="res\icons\Shogun.png" />

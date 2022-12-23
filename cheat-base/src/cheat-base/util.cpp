@@ -226,6 +226,16 @@ namespace util
 		return outStream.str();
 	}
 
+	std::string Unsplit(const std::string& value)
+	{
+		std::stringstream in(value);
+		std::stringstream out;
+		std::string word;
+		while (in >> word)
+			out << word;
+		return out.str();
+	}
+
 	std::string MakeCapital(std::string value)
 	{
 		if (islower(value[0]))

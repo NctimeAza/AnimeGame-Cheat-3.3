@@ -236,10 +236,15 @@ namespace cheat::game::filters
 		SimpleFilter AeonblightDrake = { EntityType__Enum_1::Monster, "Gargoyle_Fafnir_" };
 		SimpleFilter PrimalConstruct = { EntityType__Enum_1::Monster, "Monolith_Ordinator_" };
 		SimpleFilter AlgorithmOfSemiIntransientMatrixOfOverseerNetwork = { EntityType__Enum_1::Monster, "Monolith_Starchild" };
-		SimpleFilter Scorpion = { EntityType__Enum_1::Monster, "Scorpion_" };
-		SimpleFilter Vulture = { EntityType__Enum_1::Monster, "Vulture_" };
+		SimpleFilter Scorpion = { EntityType__Enum_1::Monster, "Animal_Scorpion" };// Animal
+		SimpleFilter Vulture = { EntityType__Enum_1::Monster, "Animal_Vulture" };// Animal
 		SimpleFilter DendroHypostasis = { EntityType__Enum_1::Monster, "Effigy_Grass" };
 		SimpleFilter ShoukiNoKami = { EntityType__Enum_1::Monster, "Monster_Nada" };
+		SimpleFilter FlyingSerpent = { EntityType__Enum_1::Monster, "Animal_Chrysopelea_" };// Animal
+		SimpleFilter BlessboneFlyingSerpent = { EntityType__Enum_1::Monster, "Chrysopelea_Sacred" };
+		SimpleFilter BlessboneRedVulture = { EntityType__Enum_1::Monster, "Vulture_Sacred" };
+		SimpleFilter BlessboneScorpion = { EntityType__Enum_1::Monster, "Scorpion_Sacred" };
+		SimpleFilter SetekhWenut = { EntityType__Enum_1::Monster, "Sandworm_" };
 	}
 
 	namespace plant
@@ -323,7 +328,7 @@ namespace cheat::game::filters
 		SimpleFilter PirateHelm = { EntityType__Enum_1::Field, "_PirateHelm" };
 		WhitelistFilter PressurePlate = { {EntityType__Enum_1::Field, EntityType__Enum_1::Gadget }, {"Gear_Gravity", "_LitPathPlate" } };
 		SimpleFilter SealLocations = { EntityType__Enum_1::Gadget, "_RunesKey" };
-		SimpleFilter SeelieLamp = { EntityType__Enum_1::Field, {"Gear_SeeliaLamp", "LifeSeelieBase"} };
+		SimpleFilter SeelieLamp = { EntityType__Enum_1::Field, {"Gear_SeeliaLamp", "LifeSeelieBase", "Gear_DesertSeeliaLamp"} };
 		SimpleFilter Seelie = { EntityType__Enum_1::Platform, {"Gear_Seelie", "_LifeSeelie"} };
 		SimpleFilter SmallRockPile = { EntityType__Enum_1::Gadget, "_StonePile_01" };
 		SimpleFilter StormBarrier = { EntityType__Enum_1::Field, "_WindField_PushField" };
@@ -440,7 +445,8 @@ namespace cheat::game::filters
 			monster::RishbolandTiger,
 			monster::Spincrocodile,
 			monster::Scorpion,
-			monster::Vulture
+			monster::Vulture,
+			monster::FlyingSerpent
 		};
 		SimpleFilter AnimalPickUp = {
 			living::CrystalCore,
@@ -486,6 +492,9 @@ namespace cheat::game::filters
 			monster::WhirlingFungus,
 			monster::WingedShroom,
 			monster::GroundedShroom,
+			monster::BlessboneFlyingSerpent,
+			monster::BlessboneRedVulture,
+			monster::BlessboneScorpion
 		};
 		SimpleFilter MonsterElites = {
 			monster::Mitachurl,
@@ -557,7 +566,8 @@ namespace cheat::game::filters
 			monster::JadeplumeTerrorshroom,
 			monster::AeonblightDrake,
 			monster::AlgorithmOfSemiIntransientMatrixOfOverseerNetwork,
-			monster::DendroHypostasis
+			monster::DendroHypostasis,
+			monster::SetekhWenut
 		};
 		SimpleFilter MonsterShielded = {
 			// Taken from https://genshin-impact.fandom.com/wiki/Shields/Enemy.

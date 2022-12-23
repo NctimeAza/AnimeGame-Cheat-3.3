@@ -3803,6 +3803,19 @@ namespace app {
         struct Dictionary_2_System_String_MoleMole_BaseActor___Fields fields;
     };
 
+    struct __declspec(align(8)) List_1_System_String___Fields {
+        struct String__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_String_ {
+        struct List_1_System_String___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_String___Fields fields;
+    };
+
     struct __declspec(align(8)) List_1_MoleMole_BaseActor___Fields {
         struct BaseActor__Array* _items;
         int32_t _size;
@@ -4176,8 +4189,8 @@ namespace app {
     // Entity fields
     struct __declspec(align(8)) BaseEntity__Fields {
         struct Dictionary_2_System_UInt32_AIPerceptionInfo_* _aiPerceptionDic;
-        struct Config_ConfigEntity* jsonConfig;
-        struct Config_EntityExcelConfig* excelConfig;
+        struct ConfigEntity* jsonConfig;
+        struct EntityExcelConfig* excelConfig;
         uint32_t _runtimeID_k__BackingField;
         uint32_t _preRuntimeID_k__BackingField;
         uint32_t _configID_k__BackingField;
@@ -7877,6 +7890,27 @@ namespace app {
         struct ConfigEntityTags* _entityTags;
     };
 
+    struct MoleMole_SimpleSafeFloat {
+        uint32_t _value;
+    };
+
+    struct MoleMole_SimpleSafeFloat__Boxed {
+        struct MoleMole_SimpleSafeFloat__Class* klass;
+        MonitorData* monitor;
+        struct MoleMole_SimpleSafeFloat fields;
+    };
+
+    struct __declspec(align(8)) ConfigGlobalValue__Fields {
+        struct String__Array* _serverGlobalValues;
+        struct Dictionary_2_System_String_MoleMole_SimpleSafeFloat_* _initServerGlobalValues;
+    };
+
+    struct ConfigGlobalValue {
+        struct ConfigGlobalValue__Class* klass;
+        MonitorData* monitor;
+        struct ConfigGlobalValue__Fields fields;
+    };
+
     struct __declspec(align(8)) ConfigEntityTags__Fields {
         struct String__Array* _initTags;
     };
@@ -8493,6 +8527,109 @@ namespace app {
         struct LCBaseCombat__Class* klass;
         MonitorData* monitor;
         struct LCBaseCombat__Fields fields;
+    };
+
+    enum class MoleMole_Config_AbilityState__Enum : uint64_t {
+        None = 0x0000000000000000,
+        Invincible = 0x0000000000000001,
+        DenyLockOn = 0x0000000000000002,
+        IsGhostToAllied = 0x0000000000000004,
+        IsGhostToEnemy = 0x0000000000000008,
+        ElementBurning = 0x0000000000000010,
+        ElementWet = 0x0000000000000020,
+        ElementFrozen = 0x0000000000000080,
+        LockHP = 0x0000000000000200,
+        IgnoreTriggerBullet = 0x0000000000000400,
+        ElementShock = 0x0000000000000800,
+        Struggle = 0x0000000000001000,
+        ElementRock = 0x0000000000002000,
+        ElementIce = 0x0000000000008000,
+        ElementFreeze = 0x0000000000010000,
+        AttackUp = 0x0000000000020000,
+        DefenseUp = 0x0000000000040000,
+        SpeedUp = 0x0000000000080000,
+        DefenseDown = 0x0000000000100000,
+        SpeedDown = 0x0000000000200000,
+        ElementWind = 0x0000000000400000,
+        ElementElectric = 0x0000000000800000,
+        ElementFire = 0x0000000001000000,
+        NoHeal = 0x0000000002000000,
+        Limbo = 0x0000000004000000,
+        MuteTaunt = 0x0000000008000000,
+        ElementPetrifaction = 0x0000000010000000,
+        IgnoreAddEnergy = 0x0000000040000000,
+        ElementGrass = 0x0000000080000000,
+        ElementOverdose = 0x0000000100000000,
+        Corruption = 0x0000000200000000,
+        UnlockFrequencyLimit = 0x0000000400000000,
+        ElementDeadTime = 0x0000000800000000,
+        OvergrowVariation = 0x0000001000000000
+    };
+
+    struct LCAbilityState__Fields {
+        struct LCBase__Fields _;
+        int32_t _freezeMassRatioIx;
+        int32_t _freezeSpeedRatioIx;
+        int32_t _petrifactionMassRatioIx;
+        int32_t _petrifactionSpeedRatioIx;
+        int32_t _paralyzeSpeedRatioIx;
+        int32_t JNGMGKLPIBE;
+        struct Action_2_MoleMole_Config_AbilityState_Boolean_* onAbilityStateAdd;
+        struct Action_1_MoleMole_Config_AbilityState_* onAbilityStateRemove;
+        struct Action_1_MoleMole_Config_AbilityState_* onAbilityStateImmune;
+        int32_t _abilityStateChangedFrameCount;
+        struct List_1_System_ValueTuple_3__2* _abilityStateChanged;
+        struct Action_1_System_Collections_Generic_List_1__1* onAbilityStateChangedPost;
+        struct LCAbility* _selfLCAbility;
+        MoleMole_Config_AbilityState__Enum abilityState;
+        struct List_1_MoleMole_LCAbilityState_AbilityStateEntry_* _abilityStatePushCount;
+        struct List_1_MoleMole_LCAbilityState_AbilityStateEntry_* _abilityStateImmuneCount;
+        int32_t _immuneCount;
+        struct List_1_System_Nullable_1_* _abilityStateEffectIxLs;
+        int32_t _maxSpeedPropertyIx;
+        int32_t _paralyzeAniDefenceStackIx;
+        struct Dictionary_2_MoleMole_EncryptedString_FixedSafeFloatStack_* _properties;
+        struct Dictionary_2_MoleMole_EncryptedString_System_Action_* _propertyChangedCallbacks;
+        struct Dictionary_2_MoleMole_EncryptedString_MoleMole_Config_ConfigAbilityPropertyEntry_* _createdAbilityDefinedProperties;
+        struct LCAbility* _levelAbilityCom;
+        bool _canShakeOff;
+        bool CLJALEKDCDO;
+    };
+
+    struct LCAbilityState {
+        struct MoleMole_LCAbilityState__Class* klass;
+        MonitorData* monitor;
+        struct LCAbilityState__Fields fields;
+    };
+
+    enum class MoleMole_LCAbility_SyncAbilityState__Enum : int32_t {
+        NotSynced = 0x00000000,
+        HasSynced = 0x00000001,
+    };
+
+    struct LCAbility__Fields {
+        struct LCBase__Fields _;
+        struct MoleMole_ActorAbilityPlugin* abilityPlugin;
+        struct ActorAbilityLogPlugin* AbilityLogPlugin;
+        struct ConfigEntityAbilityEntry__Array* allBornAbilities;
+        struct List_1_System_ValueTuple_2_* staticConfigAbilities;
+        struct List_1_System_ValueTuple_2_* dynamicConfigAbilities;
+        bool muteCheckDoOffStage;
+        struct List_1_Config_ConfigBuffDebuffResistance_* _resistanceBuffDebuffs;
+        struct List_1_Config_ConfigBuffDebuffAddition_* _additionBuffDebuffs;
+        struct HashSet_1_System_String_* _serverGlobalValues;
+        bool KALGKNLBHCC;
+        MoleMole_LCAbility_SyncAbilityState__Enum _syncStateFromServer;
+        struct Action_1_String_* _addDynamicConfigAbilityWithoutOverrideCallBack;
+        struct Action_2_String_Boolean_* _addPreDynamicConfigAbilityWithoutOverrideCallBack;
+        struct Dictionary_2_System_Int32_System_ValueTuple_2_* _elementTypeResistances;
+        struct Proto_AbilitySyncStateInfo* _abilitySyncInfoOnChangeAuthority;
+    };
+
+    struct LCAbility {
+        struct MoleMole_LCAbility__Class* klass;
+        MonitorData* monitor;
+        struct LCAbility__Fields fields;
     };
 
     enum class EvtFallOnGround_GroundType__Enum : int32_t {
@@ -12218,42 +12355,6 @@ namespace app {
         struct MoleMole_VCBaseSetDitherValue__Fields fields;
     };
 
-    enum class MoleMole_Config_AbilityState__Enum : uint64_t {
-        None = 0x0000000000000000,
-        Invincible = 0x0000000000000001,
-        DenyLockOn = 0x0000000000000002,
-        IsGhostToAllied = 0x0000000000000004,
-        IsGhostToEnemy = 0x0000000000000008,
-        ElementBurning = 0x0000000000000010,
-        ElementWet = 0x0000000000000020,
-        ElementFrozen = 0x0000000000000080,
-        LockHP = 0x0000000000000200,
-        IgnoreTriggerBullet = 0x0000000000000400,
-        ElementShock = 0x0000000000000800,
-        Struggle = 0x0000000000001000,
-        ElementRock = 0x0000000000002000,
-        ElementIce = 0x0000000000008000,
-        ElementFreeze = 0x0000000000010000,
-        AttackUp = 0x0000000000020000,
-        DefenseUp = 0x0000000000040000,
-        SpeedUp = 0x0000000000080000,
-        DefenseDown = 0x0000000000100000,
-        SpeedDown = 0x0000000000200000,
-        ElementWind = 0x0000000000400000,
-        ElementElectric = 0x0000000000800000,
-        ElementFire = 0x0000000001000000,
-        NoHeal = 0x0000000002000000,
-        Limbo = 0x0000000004000000,
-        MuteTaunt = 0x0000000008000000,
-        ElementPetrifaction = 0x0000000010000000,
-        IgnoreAddEnergy = 0x0000000040000000,
-        ElementGrass = 0x0000000080000000,
-        ElementOverdose = 0x0000000100000000,
-        Corruption = 0x0000000200000000,
-        UnlockFrequencyLimit = 0x0000000400000000,
-        ElementDeadTime = 0x0000000800000000,
-    };
-
     enum class MoleMole_Config_ModifierTimeScale__Enum : int32_t {
         Owner = 0x00000000,
         Level = 0x00000001,
@@ -13671,6 +13772,276 @@ namespace app {
         struct GcgGrpSettle__Fields fields;
     };
 
+    enum class UIShowPriority__Enum : int32_t {
+        Cutscene = 0x00000003,
+        Error = 0x00000006,
+        Init = 0x00000004,
+        Loading = 0x00000005,
+        None = 0x00000000,
+        Normal = 0x00000001,
+        Pop = 0x00000002,
+    };
+
+    enum class GeneralDialogContext_GeneralDialogType__Enum : int32_t {
+        DOUBLE_BUTTON = 0x00000000,
+        SINGLE_BUTTON = 0x00000001,
+    };
+
+    enum class SystemLanguage__Enum : int32_t {
+        Afrikaans = 0x00000000,
+        Arabic = 0x00000001,
+        Basque = 0x00000002,
+        Belarusian = 0x00000003,
+        Bulgarian = 0x00000004,
+        Catalan = 0x00000005,
+        Chinese = 0x00000006,
+        ChineseSimplified = 0x00000028,
+        ChineseTraditional = 0x00000029,
+        Czech = 0x00000007,
+        Danish = 0x00000008,
+        Dutch = 0x00000009,
+        English = 0x0000000A,
+        Estonian = 0x0000000B,
+        Faroese = 0x0000000C,
+        Finnish = 0x0000000D,
+        French = 0x0000000E,
+        German = 0x0000000F,
+        Greek = 0x00000010,
+        Hebrew = 0x00000011,
+        Hungarian = 0x00000012,
+        Icelandic = 0x00000013,
+        Indonesian = 0x00000014,
+        Italian = 0x00000015,
+        Japanese = 0x00000016,
+        Korean = 0x00000017,
+        Latvian = 0x00000018,
+        Lithuanian = 0x00000019,
+        Norwegian = 0x0000001A,
+        Polish = 0x0000001B,
+        Portuguese = 0x0000001C,
+        Romanian = 0x0000001D,
+        Russian = 0x0000001E,
+        SerboCroatian = 0x0000001F,
+        Slovak = 0x00000020,
+        Slovenian = 0x00000021,
+        Spanish = 0x00000022,
+        Swedish = 0x00000023,
+        Thai = 0x00000024,
+        Turkish = 0x00000025,
+        Ukrainian = 0x00000026,
+        Unknown = 0x0000002A,
+        Vietnamese = 0x00000027,
+    };
+
+    struct __declspec(align(8)) List_1_System_UInt32___Fields {
+        struct System_UInt32__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_UInt32_ {
+        struct List_1_System_UInt32___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_UInt32___Fields fields;
+    };
+
+    struct System_UInt32__Array {
+        struct System_UInt32__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        uint32_t vector[32];
+    };
+
+    struct __declspec(align(8)) List_1_System_Int32___Fields {
+        struct System_Int32__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_System_Int32_ {
+        struct List_1_System_Int32___Class* klass;
+        MonitorData* monitor;
+        struct List_1_System_Int32___Fields fields;
+    };
+
+    struct System_Int32__Array {
+        struct System_Int32__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        int32_t vector[32];
+    };
+
+    enum class GcgDiceType__Enum : int32_t {
+        NONE = 0x00000000,
+        CRYO = 0x00000001,
+        HYDRO = 0x00000002,
+        PYRO = 0x00000003,
+        ELECTRO = 0x00000004,
+        GEO = 0x00000005,
+        DENDRO = 0x00000006,
+        ANEMO = 0x00000007,
+        ANY = 0x00000008
+    };
+
+    enum class GcgCost__Enum : int32_t {
+        Equal = 0,
+        Increase = 1,
+        Reduce = 2
+    };
+
+    struct __declspec(align(8)) List_1_GcgCost___Fields {
+        struct GcgCost__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_GcgCost_ {
+        struct List_1_GcgCost___Class* klass;
+        MonitorData* monitor;
+        struct List_1_GcgCost___Fields fields;
+    };
+
+    struct GcgCost__Array {
+        struct GcgCost__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        GcgCost__Enum vector[32];
+    };
+
+    enum class CostDiceOperationType__Enum : int32_t {
+        UseSkill = 0,
+        UseCard = 1,
+        OnStageCharChange = 2,
+        Reboot = 3
+    };
+
+    enum class GcgCostCheckLevel__Enum : int32_t {
+        Precisely = 0,
+        Roughly = 1
+    };
+
+    enum class CostDiceOperationCheckState__Enum : int32_t {
+        Invalid = 0,
+        DiceNotMatchEnergyLess = 1,
+        DiceNotMatchTooLess = 2,
+        DiceNotMatch = 3,
+        DiceNotMatchTooMuch = 4,
+        DiceMatch = 5,
+        DiceMatchTooMuch = 6,
+        ConditionDenied = 7
+    };
+
+    enum class GcgCardInfoMessagePriority__Enum : int64_t {
+        None = 0,
+        Normal = 1,
+        Pop = 2,
+        Cutscene = 3,
+        Init = 4,
+        Loading = 5,
+        Error = 6
+    };
+
+    struct __declspec(align(8)) OperationCostCheckDesc__Fields {
+        CostDiceOperationType__Enum inputOperationType;
+        uint32_t inputOperationParameter;
+        struct List_1_System_UInt32_* inputPtrDiceIndexList;
+        GcgCostCheckLevel__Enum inputCheckLevel;
+        bool outputIsPass;
+        CostDiceOperationCheckState__Enum outputCheckState;
+        String* outputHintMsgIfNotPass;
+        struct List_1_System_Int32_* outputPtrBestMatchDiceIndex;
+    };
+
+    struct OperationCostCheckDesc {
+        struct OperationCostCheckDesc__Fields fields;
+    };
+
+    struct GcgLevelMinistry__Fields {
+        struct GcgLevel* _level;
+    };
+
+    struct GcgGroup__Fields {
+        GcgLevelMinistry__Fields _;
+    };
+
+    enum class GcgLevelPhaseType__Enum : int32_t {
+        ILIOMJIILGE = 0,
+        MCGONJAEMCF = 1,
+        OFENBLPADLI = 2,
+        LBFOICKNNIK = 3,
+        LPIOPPFOLCG = 4,
+        BPFHLNOAKOI = 5,
+        GCOCGIKGBJI = 6,
+        DPHIBPOFILC = 7,
+        OHFHKCJJNIA = 8,
+        GJOJLDFKPLN = 9,
+        IMLJAEGLHFA = 10
+    };
+
+    struct __declspec(align(8)) GcgLevelPhaseController__Fields {
+        GcgLevelMinistry__Fields _;
+        struct GcgPhase* _phase;
+        GcgLevelPhaseType__Enum _lastPhase;
+        GcgLevelPhaseType__Enum _currentPhase;
+        struct Dictionary_2_System_Uint32_System_Uint32_* _controllerActionChanceMap;
+        bool _PhaseChanging_k__BackingField;
+    };
+
+    struct GcgLevelPhaseController {
+        struct GcgLevelPhaseController__Class* klass;
+        MonitorData* monitor;
+        struct GcgLevelPhaseController__Fields fields;
+    };
+
+    struct GcgGrpOperationCost__Fields {
+        struct GcgCostRepo* _costMap; // 0x18
+        struct List_1_GcgGrpOperationCost_DicePriorityInfo_* _dicePriorityInfoList; // 0x20
+    };
+
+    struct GcgGrpOperationCost {
+        struct GcgGrpOperationCost__Class* klass;
+        MonitorData* monitor;
+        struct GcgGrpOperationCost__Fields fields;
+    };
+
+    struct __declspec(align(8)) List_1_GcgDiceType___Fields {
+        struct GcgDiceType__Array* _items;
+        int32_t _size;
+        int32_t _version;
+        struct Object* _syncRoot;
+    };
+
+    struct List_1_GcgDiceType_ {
+        struct List_1_FPMFOPCJDJP___Class* klass;
+        MonitorData* monitor;
+        struct List_1_GcgDiceType___Fields fields;
+    };
+
+    struct GcgDiceType__Array {
+        struct FPMFOPCJDJP__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        GcgDiceType__Enum vector[32];
+    };
+
+    struct GcgPlayerDice__Fields {
+        struct List_1_GcgDiceType_* _diceList;
+        uint32_t _diceNum;
+    };
+
+    struct GcgPlayerDice {
+        struct GcgPlayerDice__Class* klass;
+        MonitorData* monitor;
+        struct GcgPlayerDice__Fields fields;
+    };
+
     enum class LFADJECDHHB__Enum : int32_t {
         GCG_ELEMENT_PHYSIC = 0x00000000,
         GCG_ELEMENT_CRYO = 0x00000001,
@@ -13681,6 +14052,64 @@ namespace app {
         GCG_ELEMENT_DENDRO = 0x00000006,
         GCG_ELEMENT_ANEMO = 0x00000007,
         GCG_ELEMENT_ANY = 0x00000008
+    };
+
+    enum class GcgCardCostType__Enum : int32_t {
+        GCG_COST_INVALID = 0,
+        GCG_COST_ENERGY = 1,
+        GCG_COST_DICE_SAME = 3,
+        GCG_COST_DICE_PAIMON = 5,
+        GCG_COST_DICE_VOID = 10,
+        GCG_COST_DICE_CRYO = 11,
+        GCG_COST_DICE_HYDRO = 12,
+        GCG_COST_DICE_PYRO = 13,
+        GCG_COST_DICE_ELECTRO = 14,
+        GCG_COST_DICE_GEO = 15,
+        GCG_COST_DICE_DENDRO = 16,
+        GCG_COST_DICE_ANEMO = 17
+    };
+
+    enum class GcgCardSkinFaceType__Enum : uint64_t {
+        GCG_CARD_FACE_NORMAL = 0x00000000,
+        GCG_CARD_FACE_GOLD = 0x00000001
+    };
+
+    struct MonoBaseCard__Fields {
+        MonoBehaviour__Fields _;
+        struct Renderer__Array* renderers;
+        struct Transform* goldenGrp;
+        struct Transform* normalGrp;
+        GcgCardSkinFaceType__Enum _Skin_k__BackingField;
+        struct List_1_Renderer_* _listRenderers;
+    };
+
+    struct __declspec(align(8)) Object__Fields {
+        void* m_CachedPtr;
+    };
+
+    struct MonoGcgUICard__Fields {
+        struct MonoSpriteProxy__Fields _;
+        struct Animator* _animator;
+        struct RawImage* _cardRawImage;
+        struct Image* _cardImage;
+        struct GameObject* _cardFrameNormal;
+        struct GameObject* _cardFrameGold;
+        struct MonoUIContainer* _cardInfoContainer;
+        struct MonoUIContainer* _cardDetailContainer;
+        struct MonoRightClickButton* _actionBtn;
+        struct MonoLongPressButton* _longPressBtn;
+        struct MonoUIContainer* _PS4InputBtn;
+    };
+    struct MonoGcgUICard {
+        struct MonoGcgUICard__Class* klass;
+        MonitorData* monitor;
+        struct MonoGcgUICard__Fields fields;
+    };
+
+    struct MonoBaseCard {
+        struct MonoBaseCard__Class* klass;
+        MonitorData* monitor;
+        struct MonoBaseCard__Fields fields;
     };
 
     struct GcgClientMsgSkillResult__Fields {

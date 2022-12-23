@@ -240,6 +240,11 @@ namespace cheat::game::filters
 		extern SimpleFilter Vulture;
 		extern SimpleFilter DendroHypostasis;
 		extern SimpleFilter ShoukiNoKami;
+		extern SimpleFilter FlyingSerpent;
+		extern SimpleFilter BlessboneFlyingSerpent;
+		extern SimpleFilter BlessboneRedVulture;
+		extern SimpleFilter BlessboneScorpion;
+		extern SimpleFilter SetekhWenut;
 	}
 
 	namespace plant
