@@ -7,6 +7,8 @@
 
 namespace cheat::feature
 {
+    const double eps = 1e-8;
+#define Equ(a, b) (fabs((a)-(b))<(eps))
 
 	AutoChallenge::AutoChallenge() : Feature(),
 		NFP(f_Enabled, "AutoChallenge", "Auto Challenge", false),
@@ -76,8 +78,11 @@ namespace cheat::feature
 				{
 					auto combatProp = combat->fields._combatProperty_k__BackingField;
 					auto maxHP = app::MoleMole_SafeFloat_get_Value(combatProp->fields.maxHP, nullptr);
+					auto level = app::MoleMole_SafeFloat_get_Value(combatProp->fields.level, nullptr);
+
 					// so many entities named "SkillObj_EmptyGadget", but the collection's hp is 99999.f
-					if (maxHP > 99998 && maxHP < 99999.9)
+					// the Rock is lv.84 . the Electric is lv.90 . cant find wind
+                    if (Equ(maxHP, 99999.0f) && (Equ(level, 84.0f) || Equ(level, 90.0f)))
 					{
 						entity->setRelativePosition(avatarEntity->relativePosition());
 					}
