@@ -55,17 +55,17 @@ DO_TYPEDEF(0x0C6F9F38, 0x0C6FCF38, MoleMole_ActorModifier);
 // Proto_SceneAvatarInfo_MergeFrom+2E7¡ür                    3.3 CHBAEJOHKBK_AKCIEGFAGII:loc_4F8CEDF¡ür
 // cmp     dword ptr [rbx+90h], 0Ah -> 0xa = Proto_SceneAvatarInfo
 // 3.3 ("83 BB ?? ?? ?? ?? ?? 48 8B CE 75 ?? 48 8B ?? ?? ?? ?? ?? 48 ?? ?? ?? ?? ?? ?? 48 85 C0 74 ??") + 0x13;
-DO_TYPEDEF(0x0C70D630, 0x0C70D630, Proto_SceneAvatarInfo); // 3.3 CHBAEJOHKBK
+DO_TYPEDEF(0x0C70A630, 0x0C70D630, Proto_SceneAvatarInfo); // 3.3 CHBAEJOHKBK
 
 // cmp     dword ptr [rbx+90h], 0Bh -> 0xb = Proto_SceneMonsterInfo
 // 3.3 ("83 BB ?? ?? ?? ?? ?? 48 8B CE 75 ?? 48 8B ?? ?? ?? ?? ?? 48 ?? ?? ?? ?? ?? ?? 48 85 C0 74 ??") + 0x13;
-DO_TYPEDEF(0x0C706D10, 0x0C706D10, Proto_SceneMonsterInfo); // 3.3 KMOPDKLNLCA
+DO_TYPEDEF(0x0C703D10, 0x0C706D10, Proto_SceneMonsterInfo); // 3.3 KMOPDKLNLCA
 
 // cmp     dword ptr [rbx+90h], 0Ch -> 0xc = Proto_SceneNpcInfo
 // 3.3 ("83 BB ?? ?? ?? ?? ?? 48 8B CE 75 ?? 48 8B ?? ?? ?? ?? ?? 48 ?? ?? ?? ?? ?? ?? 48 85 C0 74 ??") + 0x13;
-DO_TYPEDEF(0x0C6F99D8, 0x0C6F99D8, Proto_SceneNpcInfo); // 3.3 ADOEJHLFEAN
+DO_TYPEDEF(0x0C6F69D8, 0x0C6F99D8, Proto_SceneNpcInfo); // 3.3 ADOEJHLFEAN
 
 // mov     rcx, [rbx+88h]
 // mov     rdx, cs:Proto_SceneGadgetInfo__Typeinfo
 // 3.3 ResolveMov("48 8B ?? ?? ?? ?? ?? 48 ?? ?? ?? ?? ?? ?? 48 85 C9 74 ?? 48 39 11 48 0F 44 F1 48 85 F6 0F ?? ?? ?? ?? ?? 48 8B CE E8 ?? ?? ?? ??") + 0x7;
-DO_TYPEDEF(0x0C7223C8, 0x0C7223C8, Proto_SceneGadgetInfo); // 3.3 IEICHBADIFO
+DO_TYPEDEF(0x0C71F3C8, 0x0C7223C8, Proto_SceneGadgetInfo); // 3.3 IEICHBADIFO
