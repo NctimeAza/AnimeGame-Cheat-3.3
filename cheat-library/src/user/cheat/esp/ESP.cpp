@@ -8,8 +8,10 @@
 
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
+#include <cheat/visuals/FlycloakModifier.h>
 #include "ESPRender.h"
 #include <cheat/game/filters.h>
+#include <cheat/game/util.h>
 #include <cheat/game/xxHash.hpp>
 
 #define IMGUI_DEFINE_MATH_OPERATORS
@@ -21,6 +23,12 @@
 namespace cheat::feature
 {
 	using namespace xxh;
+
+    static void MoleMole_GadgetModule_DoOnGadgetStateNotify_Hook(app::GadgetModule* __this, uint32_t gadgetEntityId, uint32_t gadgetState, bool isEnableInteract, MethodInfo* method);
+    static void MoleMole_LevelModule_OnSceneEntityAppear_Hook(app::LevelModule* __this, app::Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method);
+    static void MoleMole_LevelModule_OnSceneEntityAppearAsync_Hook(app::LevelModule* __this, app::Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method);
+
+	static std::mutex m_GadgetLock;
 
 	ESP::ESP() : Feature(),
 		NFP(f_Enabled, "ESP", "ESP", false),
@@ -62,6 +70,9 @@ namespace cheat::feature
 
 		m_FontContrastColor = ImGui::CalcContrastColor(f_GlobalFontColor);
 
+        HookManager::install(app::MoleMole_GadgetModule_DoOnGadgetStateNotify, MoleMole_GadgetModule_DoOnGadgetStateNotify_Hook);
+        HookManager::install(app::MoleMole_LevelModule_OnSceneEntityAppear, MoleMole_LevelModule_OnSceneEntityAppear_Hook);
+        HookManager::install(app::MoleMole_LevelModule_OnSceneEntityAppearAsync, MoleMole_LevelModule_OnSceneEntityAppearAsync_Hook);
 		::events::KeyUpEvent += MY_METHOD_HANDLER(ESP::OnKeyUp);
 	}
 
@@ -180,59 +191,63 @@ namespace cheat::feature
 
 	bool ESP::CheckPuzzleFinished(game::Entity* entity)
 	{
-		if (game::filters::puzzle::ElementalMonument.IsValid(entity))
-		{
-			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
-			if (EntityGameObject == nullptr)
-				return false;
-			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
-			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 2, nullptr);
-			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
-			auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
+#pragma region OldImplement
+        //if (game::filters::puzzle::ElementalMonument.IsValid(entity))
+        //{
+        //    auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+        //    if (EntityGameObject == nullptr)
+        //        return false;
+        //    auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+        //    auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 2, nullptr);
+        //    auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+        //    auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
 
-			return status;//if monument finished - returns true
-		}
-		else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
-		{
-			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
-			if (EntityGameObject == nullptr)
-				return false;
-			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
-			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 1, nullptr);
-			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
-			auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
+        //    return status;//if monument finished - returns true
+        //}
+        //else if (game::filters::puzzle::ElectroSeelie.IsValid(entity))
+        //{
+        //    auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+        //    if (EntityGameObject == nullptr)
+        //        return false;
+        //    auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+        //    auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 1, nullptr);
+        //    auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+        //    auto status = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status), nullptr);
 
-			return status;//if seelie finished - returns true
-		}
-		else if (game::filters::puzzle::BloattyFloatty.IsValid(entity))
-		{
-			auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
-			if (EntityGameObject == nullptr)
-				return false;
-			auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
-			auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 0, nullptr);
-			auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
-			//now we take childs from 1st child
-			auto Transform1 = app::GameObject_GetComponentByName(pre_status, string_to_il2cppi("Transform"), nullptr);
-			auto child1 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 1, nullptr);
-			auto child2 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 2, nullptr);
-			auto child3 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 3, nullptr);
+        //    return status;//if seelie finished - returns true
+        //}
+        //else if (game::filters::puzzle::BloattyFloatty.IsValid(entity))
+        //{
+        //    auto EntityGameObject = app::MoleMole_BaseEntity_get_rootGameObject(entity->raw(), nullptr);
+        //    if (EntityGameObject == nullptr)
+        //        return false;
+        //    auto Transform = app::GameObject_GetComponentByName(EntityGameObject, string_to_il2cppi("Transform"), nullptr);
+        //    auto child = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform), 0, nullptr);
+        //    auto pre_status = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child), nullptr);
+        //    //now we take childs from 1st child
+        //    auto Transform1 = app::GameObject_GetComponentByName(pre_status, string_to_il2cppi("Transform"), nullptr);
+        //    auto child1 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 1, nullptr);
+        //    auto child2 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 2, nullptr);
+        //    auto child3 = app::Transform_GetChild(reinterpret_cast<app::Transform*>(Transform1), 3, nullptr);
 
-			auto pre_status1 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child1), nullptr);
-			auto pre_status2 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child2), nullptr);
-			auto pre_status3 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child3), nullptr);
+        //    auto pre_status1 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child1), nullptr);
+        //    auto pre_status2 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child2), nullptr);
+        //    auto pre_status3 = app::Component_1_get_gameObject(reinterpret_cast<app::Component_1*>(child3), nullptr);
 
-			auto status1 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status1), nullptr);
-			auto status2 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status2), nullptr);
-			auto status3 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status3), nullptr);
+        //    auto status1 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status1), nullptr);
+        //    auto status2 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status2), nullptr);
+        //    auto status3 = app::GameObject_get_active(reinterpret_cast<app::GameObject*>(pre_status3), nullptr);
 
-			if (status1 || status2 || status3)//if even one of them active - plant isn't finished
-				return false;
-			else
-				return true;
-		}
-		else
-			return false;
+        //    if (status1 || status2 || status3)//if even one of them active - plant isn't finished
+        //        return false;
+        //    else
+        //        return true;
+        //}
+        //else
+        //    return false;
+#pragma endregion
+		auto& gadgetState = m_Gadgets[entity->runtimeID()].gadgetState;
+		return gadgetState == app::GadgetState__Enum::GearStart || gadgetState == app::GadgetState__Enum::GearStop || gadgetState == app::GadgetState__Enum::GearAction1;
 	}
 
 
@@ -414,13 +429,13 @@ namespace cheat::feature
 
                     switch (name_hash)
                     {
-                    case "Elemental Monument"_h:
-                    case "Bloatty Floatty"_h:
-                    case "Electro Seelie"_h:
-                        if (f_HideCompleted && ESP::CheckPuzzleFinished(entity))
-                            break;
-                        esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
-                        break;
+                    //case "Elemental Monument"_h:
+                    //case "Bloatty Floatty"_h:
+                    //case "Electro Seelie"_h:
+                    //    if (f_HideCompleted && ESP::CheckPuzzleFinished(entity))
+                    //        break;
+                    //    esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
+                    //    break;
 
                     case "Buried Chest"_h:
                         if (isBuriedChest(entity))
@@ -444,6 +459,8 @@ namespace cheat::feature
                         break;
 
                     default:
+                        if (f_HideCompleted && ESP::CheckPuzzleFinished(entity))
+                            break;
                         esp::render::DrawEntity(entry.m_Name, Translator::RuntimeTranslate(entry.m_Name), entity, entry.m_Color, entry.m_ContrastColor);
                         break;
                     }
@@ -594,6 +611,86 @@ namespace cheat::feature
 
 		return;
 	}
+
+	// fk error 2712
+	static void GadgetAppend(ESP::GadgetInfo info)
+	{
+		auto& esp = ESP::GetInstance();
+		std::lock_guard<std::mutex> _lock(m_GadgetLock);
+		esp.m_Gadgets[info.entityId] = info;
+	}
+
+	static void ProcessNotify(app::Proto_SceneEntityAppearNotify* notify)
+	{
+        auto entityList = notify->fields.entityList_;
+		if (entityList == nullptr)
+			return;
+        SAFE_BEGIN();
+        for (int i = 0; i < entityList->fields.values->fields._size; i++)
+        {
+            auto& itemFields = entityList->fields.values->fields._items->vector[i]->fields;
+            switch (itemFields.entityCase_)
+            {
+                case app::Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum::Avatar:
+                {
+                    auto avatar = CastTo<app::Proto_SceneAvatarInfo>(itemFields.entity_, *app::Proto_SceneAvatarInfo__TypeInfo);
+                    if (avatar != nullptr)
+                    {
+                        auto& flycloakModifier = FlycloakModifier::GetInstance();
+                        if (flycloakModifier.f_Enabled->enabled())
+                            avatar->fields.wearingFlycloakId_ = flycloakModifier.GetFlycloakType();
+                    }
+                }   break;
+                case app::Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum::Monster: break;
+                case app::Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum::Npc: break;
+                case app::Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum::Gadget:
+                {
+                    auto gadget = CastTo<app::Proto_SceneGadgetInfo>(itemFields.entity_, *app::Proto_SceneGadgetInfo__TypeInfo);
+                    if (gadget != nullptr)
+                    {
+						GadgetAppend({
+							itemFields.entityId_,
+							gadget->fields.gadgetId_,
+							gadget->fields.ownerEntityId_,
+							static_cast<app::Proto_GadgetBornType__Enum>(gadget->fields.bornType_),
+							static_cast<app::GadgetState__Enum>(gadget->fields.gadgetState_),
+							static_cast<app::GadgetType_Enum>(gadget->fields.gadgetType_),
+							gadget->fields.isEnableInteract_,
+							static_cast<app::Proto_SceneGadgetInfo_ContentOneofCase__Enum>(gadget->fields.contentCase_),
+							gadget });
+                    }
+                }   break;
+                default: break;
+            }
+        }
+		SAFE_EEND();
+	}
+
+	static void ProcessStateNotify(uint32_t gadgetEntityId,uint32_t gadgetState,bool isEnableInteract)
+	{
+        auto& esp = ESP::GetInstance();
+        std::lock_guard<std::mutex> _lcok(m_GadgetLock);
+		esp.m_Gadgets[gadgetEntityId].gadgetState = static_cast<app::GadgetState__Enum>(gadgetState);
+		esp.m_Gadgets[gadgetEntityId].isEnableInteract = isEnableInteract;
+	}
+
+    void MoleMole_GadgetModule_DoOnGadgetStateNotify_Hook(app::GadgetModule* __this, uint32_t gadgetEntityId, uint32_t gadgetState, bool isEnableInteract, MethodInfo* method)
+    {
+        CALL_ORIGIN(MoleMole_GadgetModule_DoOnGadgetStateNotify_Hook, __this, gadgetEntityId, gadgetState, isEnableInteract, method);
+		ProcessStateNotify(gadgetEntityId, gadgetState, isEnableInteract);
+    }
+
+    void MoleMole_LevelModule_OnSceneEntityAppear_Hook(app::LevelModule* __this, app::Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method)
+    {
+        CALL_ORIGIN(MoleMole_LevelModule_OnSceneEntityAppear_Hook, __this, notify, JOODHPBLPMA, method);
+		ProcessNotify(notify);
+    }
+
+    void MoleMole_LevelModule_OnSceneEntityAppearAsync_Hook(app::LevelModule* __this, app::Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method)
+    {
+        CALL_ORIGIN(MoleMole_LevelModule_OnSceneEntityAppearAsync_Hook, __this, notify, JOODHPBLPMA, method);
+		ProcessNotify(notify);
+    }
 
 #define ADD_FILTER_FIELD(section, name) AddFilter(util::MakeCapital(#section), util::SplitWords(#name), &game::filters::##section##::##name##)
 	void ESP::InstallFilters()

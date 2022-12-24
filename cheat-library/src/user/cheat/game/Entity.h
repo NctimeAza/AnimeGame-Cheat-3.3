@@ -75,6 +75,31 @@ namespace cheat::game
 			SAFE_END();
 		}
 
+		template<class T>
+		T* Component(void* pClass)
+		{
+			if (m_RawEntity == nullptr)
+				return nullptr;
+
+			SAFE_BEGIN();
+            auto logicComponentsRaw = app::MoleMole_BaseEntity_GetAllLogicComponents(m_RawEntity, nullptr);
+            auto logicComponents = TO_UNI_LIST(logicComponentsRaw, app::BaseComponent*);
+            if (logicComponents == nullptr)
+                return nullptr;
+
+            for (auto& component : *logicComponents)
+            {
+				T* value = CastTo<T>(component, pClass);
+				if (value != nullptr)
+					return value;
+            }
+			return nullptr;
+
+			SAFE_ERROR();
+			return nullptr;
+			SAFE_END();
+		}
+
 	private:
 
 		app::BaseEntity* m_RawEntity;
