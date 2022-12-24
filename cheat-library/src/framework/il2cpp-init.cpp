@@ -138,10 +138,14 @@ void init_scanned_offsets(LGameVersion gameVersion)
 LGameVersion GetGameVersion()
 {
 #ifdef LINUX
-	char name[64];
-	GetModuleFileNameA(GetModuleHandleA(NULL), name, sizeof(name));
+	std::vector<char> path;
+	DWORD pathLen = 0;
+	do {
+		path.resize(path.size() + MAX_PATH);
+		pathLen = GetModuleFileNameA(GetModuleHandleA(NULL), path.data(), (DWORD)path.size());
+	} while (pathLen >= path.size());
 
-	std::string base_name = std::filesystem::path(name).filename().string();
+	std::string base_name = std::filesystem::path(path.data()).filename().string();
 
 	if (base_name == "GenshinImpact.exe") {
 		return LGameVersion::GLOBAL;
