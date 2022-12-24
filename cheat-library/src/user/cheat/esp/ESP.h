@@ -3,8 +3,10 @@
 #include <cheat-base/config/config.h>
 
 #include <cheat/esp/ESPItem.h>
+#include <cheat/esp/ESPCustomFilter.h>
 #include <cheat/game/IEntityFilter.h>
 #include <cheat/game/CacheFilterExecutor.h>
+#include <cheat/game/SimpleFilter.h>
 
 #include <cheat-base/cheat/fields/TranslatedHotkey.h>
 
@@ -64,6 +66,14 @@ namespace cheat::feature
 		config::Field<float> f_MinSize;
 		config::Field<float> f_Range;
 
+		// custom filters related block
+		config::Field<bool> f_ShowCustomFiltersWindow;
+		config::Field<nlohmann::json> f_CustomFilterJson;
+		std::string m_CustomFilterUiName;
+		config::Field<config::Enum<app::EntityType__Enum_1>> f_CustomFilterType;
+		std::string m_CustomFilterNameToAdd;
+		std::vector<std::string> m_CustomFilterNames;
+
 		std::string m_Search;
 
 		static ESP& GetInstance();
@@ -76,25 +86,42 @@ namespace cheat::feature
 
 		void DrawExternal() override;
 
+		void AddCustomFilter(ESPCustomFilter filter, bool convertToJson = false);
+
 	private:
 		using FilterInfo = std::pair<config::Field<esp::ESPItem>, game::IEntityFilter*>;
 		using Filters = std::vector<FilterInfo>;
 		using Sections = std::map<std::string, Filters>;
 
+		using CustomFilterInfo = std::pair<config::Field<esp::ESPItem>, ESPCustomFilter*>;
+		using CustomFilters = std::vector<CustomFilterInfo>;
+
 		Sections m_Sections;
 		game::CacheFilterExecutor m_FilterExecutor;
+		std::vector<std::shared_ptr<ESPCustomFilter>> m_CustomFilters;
+		CustomFilters m_CustomFilterInfos;
+		bool b_DrawCustomFiltersWindow;
+		int i_CustomFiltersEditId;
+		int i_CustomFilterNameEditId;
 
 		void InstallFilters();
+		void InstallCustomFilters();
 		void AddFilter(const std::string& section, const std::string& name, game::IEntityFilter* filter);
-		
+
 		void DrawSection(const std::string& section, const Filters& filters);
+		void DrawCustomSection();
 		void DrawFilterField(const config::Field<esp::ESPItem>& field);
+		void DrawCustomFilterNames();
+		void DrawCustomFiltersTable();
+		void DrawCustomFiltersUi();
 
 		void GetNpcName(std::string& name);
 		bool isBuriedChest(game::Entity* entity);
 		bool CheckPuzzleFinished(game::Entity* entity);
 
 		void OnKeyUp(short key, bool& cancelled);
+
+		void SaveCustomFilters();
 
 		ESP();
 	};

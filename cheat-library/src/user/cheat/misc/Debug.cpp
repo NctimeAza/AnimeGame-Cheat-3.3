@@ -6,6 +6,7 @@
 #include <fstream>
 
 #include <cheat/events.h>
+#include <cheat/esp/ESP.h>
 #include <cheat/teleport/MapTeleport.h>
 #include <cheat/game/EntityManager.h>
 #include <cheat/game/util.h>
@@ -277,6 +278,18 @@ namespace cheat::feature
             CopyEntityDetailsToClipboard(entity);
         if (ImGui::IsItemHovered())
             ImGui::SetTooltip("Copy Details");
+
+        ImGui::SameLine();
+        if (ImGui::SmallButton("E"))
+        {
+            auto& esp = ESP::GetInstance();
+            esp.f_ShowCustomFiltersWindow = true;
+            esp.m_CustomFilterUiName = entity->name();
+            esp.m_CustomFilterNameToAdd = entity->name();
+            esp.f_CustomFilterType = entity->type();
+        }
+        if (ImGui::IsItemHovered())
+            ImGui::SetTooltip("Copy to ESP custom filters");
     }
 
     std::vector<game::Entity*> SortEntities(std::vector<game::Entity*> entities, Debug::EntitySortCondition condition)
