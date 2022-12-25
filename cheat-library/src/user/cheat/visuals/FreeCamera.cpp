@@ -297,26 +297,26 @@ namespace cheat::feature
 					hpOverlay = app::GameObject_Find(string_to_il2cppi("AvatarBoardCanvasV2(Clone)"), nullptr);
 				}
 			}
+
+			if (f_BlockInput) {
+				if (!isBlock) {
+					app::MoleMole_UIManager_EnableInput(uiManager, false, false, false, nullptr);
+					isBlock = true;
+				}
+			} else {
+				if (isBlock) {
+					app::MoleMole_UIManager_EnableInput(uiManager, true, false, false, nullptr);
+					isBlock = false;
+				}
+			}
 		}
 		else
 		{
 			DisableFreeCam();
 			damageOverlay = nullptr;
 			hpOverlay = nullptr;
-		}
 
-		if (f_BlockInput)
-		{
-			if (!isBlock)
-			{
-				app::MoleMole_UIManager_EnableInput(uiManager, false, false, false, nullptr);
-				isBlock = true;
-			}
-		}
-		else
-		{
-			if (isBlock)
-			{
+			if (isBlock) {
 				app::MoleMole_UIManager_EnableInput(uiManager, true, false, false, nullptr);
 				isBlock = false;
 			}
