@@ -4086,8 +4086,13 @@ namespace app {
         CustomGadget = 0x0000003f,
         RoguelikeOperatorGadget = 0x00000040,
         ActivityInteractGadget = 0x00000041,
-        SubEquip = 0x00000042,
-        UIInteractGadget = 0x00000043,
+        BlackMud = 0x00000042,
+        SubEquip = 0x00000043,
+        UIInteractGadget = 0x00000044,
+        NightCrowGadget = 0x00000045,
+        Partner = 0x00000046,
+        DeshretObeliskGadget = 0x00000047,
+        CoinCollectLevelGadget = 0x00000048,
         PlaceHolder = 0x00000063,
     };
 
@@ -6431,7 +6436,10 @@ namespace app {
         Rock = 0x00000008,
         AntiFire = 0x00000009,
         VehicleMuteIce = 0x0000000a,
-        COUNT = 0x0000000b,
+        Mushroom = 0x0000000b,
+        Overdose = 0x0000000c,
+        Wood = 0x0000000d,
+        COUNT = 0x0000000e,
     };
 
     enum class Config_WorldAreaType__Enum : int32_t {
@@ -10511,10 +10519,12 @@ namespace app {
         ChestBramble = 0x00000068,
         ChestFrozen = 0x00000069,
         ChestRock = 0x0000006a,
+        ExcitedState = 0x000000C8,
         GearStart = 0x000000c9,
         GearStop = 0x000000ca,
         GearAction1 = 0x000000cb,
         GearAction2 = 0x000000cc,
+        DestroyState = 0x0000012C,
         CrystalResonate1 = 0x0000012d,
         CrystalResonate2 = 0x0000012e,
         CrystalExplode = 0x0000012f,
@@ -10522,7 +10532,442 @@ namespace app {
         StatueActive = 0x00000191,
         Action01 = 0x00000385,
         Action02 = 0x00000386,
-        Action03 = 0x00000387,
+        Action03 = 0x00000387
+    };
+
+    struct __declspec(align(8)) CharacterModule__Fields {
+        struct Dictionary_2_UInt32_Dictionary_2_Int32_List_1_ACKDIFHFDFH* ABAFJGKPOKL;
+    };
+
+    struct GadgetModule__Fields {
+        struct CharacterModule__Fields _;
+        struct Action_1_Google_Protobuf_MessageBase* gadgetStateNotifyHandler;
+        struct List_1_HMFJEHBIDOC* _costItemsTemp;
+        struct Action_1_Google_Protobuf_MessageBase* JPACBAMHGJA;
+        struct Dictionary_2_UInt32_UInt32* gadgetChainLevelMap;
+        struct Dictionary_2_UInt32_BBBPBOJOJNG_CMAOLGMPBLD* gadgetIndicatorDic;
+        uint32_t _FHJJBLPDIJO_k__BackingField;
+        uint32_t _LCNMGLNMKKN_k__BackingField;
+        uint32_t _IJFNNAGCOJG_k__BackingField;
+        struct MNNGLHDICPB* _LJBFCLJCDEC_k__BackingField;
+        uint32_t _FNPOHLBBDCN_k__BackingField;
+        struct List_1_UInt32* _HOMLOPLPIBB_k__BackingField;
+        ElementType__Enum _elementType_k__BackingField;
+        uint32_t _CPLEODDNLEK_k__BackingField;
+        uint32_t _ILKHNJDDAJC_k__BackingField;
+        uint32_t _JDHIABIFHMN_k__BackingField;
+        uint32_t _NEIMOFMEAPJ_k__BackingField;
+        struct BELDGBAIBGF_BKJDCJEJMOP* _JGPBKHKEMDF_k__BackingField;
+        struct Dictionary_2_UInt32_GadgetModule_LIJDIIFADCC* BGBOPADECHP;
+    };
+
+    struct GadgetModule {
+        struct GadgetModule__Class* klass;
+        MonitorData* monitor;
+        struct GadgetModule__Fields fields;
+    };
+
+    struct __declspec(align(8)) LevelModule__Fields {
+        struct FCIDDGCLKOA* _GFPBPGMJELO_k__BackingField;
+        uint32_t _worldLevel;
+        uint64_t _cdOverTime;
+        bool _ICNNLIAEKFG_k__BackingField;
+        bool isDungeonSettled;
+        struct List_1_Double__Array** NHKEOIDBCFH;
+        struct Action_1_Google_Protobuf_MessageBase* _entityTagChangeNotifyHandler;
+        struct Action_1_Google_Protobuf_MessageBase* entityFightPropNotifyHandler;
+        struct Action_1_Google_Protobuf_MessageBase* entityFightPropUpdateNotifyHandler;
+        struct Action_1_Google_Protobuf_MessageBase* entityPropNotifyHandler;
+        struct Coroutine* loadEntityCoroutine;
+        struct Action_1_Google_Protobuf_MessageBase* HNDIGCBPDMB;
+        struct Action_2_Google_Protobuf_MessageBase_ValueTuple_4_Int32_Proto_VisionType_UInt32_UInt32* entityAppearInLevelBy2ParamHandler;
+        struct Action_2_Google_Protobuf_MessageBase_ValueTuple_4_UInt32_Proto_VisionType_UInt32_UInt32* onSceneEntityDisappearBy2ParamHandler;
+        struct Action_1_Google_Protobuf_MessageBase* entityFightPropChangeReasonNotifyHandler;
+        struct Action_2_Google_Protobuf_MessageBase_UInt32* lifeStateChangeNotifyHandler;
+        uint64_t _forceDragTime;
+        bool _inServerCutScene;
+        struct List_1_LevelModule_EntityAppearWaitForOwner* _entitiesWaitForOwner;
+        struct List_1_UInt32* NJLGIPEKAMN;
+        struct List_1_UInt32* DEJONMIDFGD;
+        struct Dictionary_2_BHLCIANBHPP_LODIGGIOLCC* HMDLPDMCFAH;
+        struct IINFDNCMDLN* OOIHFLGMNOJ;
+    };
+
+    struct LevelModule {
+        struct LevelModule__Class* klass;
+        MonitorData* monitor;
+        struct LevelModule__Fields fields;
+    };
+
+    struct Google_Protobuf_MessageBase {
+        struct Google_Protobuf_MessageBase__Class* klass;
+        MonitorData* monitor;
+        struct Google_Protobuf_MessageBase__Fields fields;
+    };
+
+    enum class Proto_VisionType__Enum : int32_t {
+        VisionNone = 0x00000000,
+        VisionMeet = 0x00000001,
+        VisionReborn = 0x00000002,
+        VisionReplace = 0x00000003,
+        VisionWaypointReborn = 0x00000004,
+        VisionMiss = 0x00000005,
+        VisionDie = 0x00000006,
+        VisionGatherEscape = 0x00000007,
+        VisionRefresh = 0x00000008,
+        VisionTransport = 0x00000009,
+        VisionReplaceDie = 0x0000000a,
+        VisionReplaceNoNotify = 0x0000000b,
+        VisionBorn = 0x0000000c,
+        VisionPickup = 0x0000000d,
+        VisionRemove = 0x0000000e,
+        VisionChangeCostume = 0x0000000f,
+        VisionFishRefresh = 0x00000010,
+        VisionFishBigShock = 0x00000011,
+        VisionFishQteSucc = 0x00000012,
+        CHECIGAOMEO = 0x00000013
+    };
+
+    enum class Proto_ProtEntityType__Enum : int32_t {
+        ProtEntityNone = 0x00000000,
+        ProtEntityAvatar = 0x00000001,
+        ProtEntityMonster = 0x00000002,
+        ProtEntityNpc = 0x00000003,
+        ProtEntityGadget = 0x00000004,
+        ProtEntityRegion = 0x00000005,
+        ProtEntityWeapon = 0x00000006,
+        ProtEntityWeather = 0x00000007,
+        ProtEntityScene = 0x00000008,
+        ProtEntityTeam = 0x00000009,
+        ProtEntityMassiveEntity = 0x0000000a,
+        ProtEntityMpLevel = 0x0000000b,
+        ProtEntityPlayTeamEntity = 0x0000000c,
+        ProtEntityEyePoint = 0x0000000d,
+        ProtEntityMax = 0x0000000e,
+    };
+
+    enum class Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum : int32_t {
+        None = 0x00000000,
+        Avatar = 0x0000000a,
+        Monster = 0x0000000b,
+        Npc = 0x0000000c,
+        Gadget = 0x0000000d,
+    };
+
+    enum class Proto_MonsterBornType__Enum : int32_t {
+        MonsterBornNone = 0x00000000,
+        MonsterBornDefault = 0x00000001,
+        MonsterBornRandom = 0x00000002,
+    };
+
+    enum class Proto_SceneMonsterInfo_Proto_SceneMonsterInfo_ContentOneofCase__Enum : int32_t {
+        None = 0x00000000,
+        FishInfo = 0x00000032,
+    };
+
+    enum class Proto_GadgetBornType__Enum : int32_t {
+        GadgetBornNone = 0x00000000,
+        GadgetBornInAir = 0x00000001,
+        GadgetBornPlayer = 0x00000002,
+        GadgetBornMonsterHit = 0x00000003,
+        GadgetBornMonsterDie = 0x00000004,
+        GadgetBornGadget = 0x00000005,
+        GadgetBornGround = 0x00000006,
+    };
+
+    enum class Proto_SceneGadgetInfo_ContentOneofCase__Enum : int32_t {
+        None = 0x00000000,
+        TrifleItem = 0x0000000c,
+        GatherGadget = 0x0000000d,
+        Worktop = 0x0000000e,
+        ClientGadget = 0x0000000f,
+        Weather = 0x00000011,
+        AbilityGadget = 0x00000012,
+        StatueGadget = 0x00000013,
+        BossChest = 0x00000014,
+        BlossomChest = 0x00000029,
+        MpPlayReward = 0x0000002a,
+        GeneralReward = 0x0000002b,
+        OfferingInfo = 0x0000002c,
+        FoundationInfo = 0x0000002d,
+        VehicleInfo = 0x0000002e,
+        ShellInfo = 0x0000002f,
+        ScreenInfo = 0x00000030,
+        FishPoolInfo = 0x0000003b,
+        CustomGadgetTreeInfo = 0x0000003c,
+        RoguelikeGadgetInfo = 0x0000003d,
+    };
+
+    enum class GadgetType_Enum : int32_t {
+        GADGET_NONE = 0,
+        GADGET_WORLD_CHECT = 1,
+        GADGET_DUNGEON_SECRET_CHEST = 2,
+        GADGET_DUNGEON_PASS_CHEST = 3
+    };
+
+    struct Proto_GadgetStateNotify__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t gadgetEntityId_;
+        uint32_t gadgetState_;
+        bool isEnableInteract_;
+    };
+
+    struct Proto_GadgetStateNotify {
+        struct Proto_GadgetStateNotify__Class* klass;
+        MonitorData* monitor;
+        struct Proto_GadgetStateNotify__Fields fields;
+    };
+
+    struct Proto_SceneEntityInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        Proto_ProtEntityType__Enum entityType_;
+        uint32_t entityId_;
+        struct String* name_;
+        struct Proto_MotionInfo* motionInfo_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_PropPair_* propList_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_FightPropPair_* fightPropList_;
+        uint32_t lifeState_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AnimatorParameterValueInfoPair_* animatorParaList_;
+        uint32_t lastMoveSceneTimeMs_;
+        uint32_t lastMoveReliableSeq_;
+        struct Proto_EntityClientData* entityClientData_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_EntityEnvironmentInfo_* entityEnvironmentInfoList_;
+        struct Proto_EntityAuthorityInfo* entityAuthorityInfo_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_String_* tagList_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ServerBuff_* serverBuffList_;
+        struct Object* entity_;
+        Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum entityCase_;
+    };
+
+    struct Proto_SceneEntityInfo {
+        struct Proto_SceneEntityInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneEntityInfo__Fields fields;
+    };
+
+    struct KeyValuePair_2_System_UInt32_System_UInt32_ {
+        uint32_t key;
+        uint32_t value;
+    };
+
+    struct __declspec(align(8)) DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Fields {
+        bool _isValid;
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2_* prev;
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2_* next;
+        struct KeyValuePair_2_System_UInt32_System_UInt32_ data;
+        struct DoublyList_1_System_Collections_Generic_KeyValuePair_2_* list;
+    };
+
+    struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2_ {
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Class* klass;
+        MonitorData* monitor;
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Fields fields;
+    };
+
+    struct __declspec(align(8)) DoublyList_1_System_Collections_Generic_KeyValuePair_2___Fields {
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2_* _head;
+        int32_t _count;
+        uint32_t _enumeratorIndex;
+    };
+
+    struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Array {
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2_* vector[32];
+    };
+
+    struct __declspec(align(8)) Dictionary_2_System_UInt32_MoleMole_DoublyList_1_ListNode___Fields {
+        struct Int32__Array* table;
+        struct Link__Array* linkSlots;
+        struct UInt32__Array* keySlots;
+        struct DoublyList_1_T_ListNode_System_Collections_Generic_KeyValuePair_2___Array* valueSlots;
+        int32_t touchedSlots;
+        int32_t emptySlot;
+        int32_t count;
+        int32_t threshold;
+        struct IEqualityComparer_1_System_UInt32_* hcp;
+        struct SerializationInfo* serialization_info;
+        int32_t generation;
+    };
+
+    struct Dictionary_2_System_UInt32_MoleMole_DoublyList_1_ListNode_ {
+        struct Dictionary_2_System_UInt32_MoleMole_DoublyList_1_ListNode___Class* klass;
+        MonitorData* monitor;
+        struct Dictionary_2_System_UInt32_MoleMole_DoublyList_1_ListNode___Fields fields;
+    };
+
+    struct DoublyList_1_System_Collections_Generic_KeyValuePair_2_ {
+        struct DoublyList_1_System_Collections_Generic_KeyValuePair_2___Class* klass;
+        MonitorData* monitor;
+        struct DoublyList_1_System_Collections_Generic_KeyValuePair_2___Fields fields;
+    };
+
+    struct __declspec(align(8)) Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32___Fields {
+        struct Dictionary_2_System_UInt32_MoleMole_DoublyList_1_ListNode_* map;
+        struct DoublyList_1_System_Collections_Generic_KeyValuePair_2_* list;
+    };
+
+    struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32_ {
+        struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32___Class* klass;
+        MonitorData* monitor;
+        struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32___Fields fields;
+    };
+
+    struct Proto_SceneAvatarInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t uid_;
+        uint32_t avatarId_;
+        uint64_t guid_;
+        uint32_t peerId_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* equipIdList_;
+        uint32_t skillDepotId_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* talentIdList_;
+        struct Proto_SceneWeaponInfo* weapon_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneReliquaryInfo_* reliquaryList_;
+        uint32_t coreProudSkillLevel_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* inherentProudSkillList_;
+        struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32_* skillLevelMap_;
+        struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32_* proudSkillExtraLevelMap_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ServerBuff_* serverBuffList_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* teamResonanceList_;
+        uint32_t wearingFlycloakId_;
+        uint32_t bornTime_;
+        uint32_t costumeId_;
+        struct Proto_CurVehicleInfo* curVehicleInfo_;
+        struct Proto_AvatarExcelInfo* excelInfo_;
+        uint32_t animHash_;
+    };
+
+    struct Proto_SceneAvatarInfo {
+        struct Proto_SceneAvatarInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneAvatarInfo__Fields fields;
+    };
+
+    struct Proto_SceneMonsterInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t monsterId_;
+        uint32_t groupId_;
+        uint32_t configId_;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneWeaponInfo_* weaponList_;
+        uint32_t authorityPeerId_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* affixList_;
+        bool isElite_;
+        uint32_t ownerEntityId_;
+        uint32_t summonedTag_;
+        struct Google_Protobuf_Collections_MapField_2_System_UInt32_System_UInt32_* summonTagMap_;
+        uint32_t poseId_;
+        Proto_MonsterBornType__Enum bornType_;
+        uint32_t blockId_;
+        uint32_t markFlag_;
+        uint32_t titleId_;
+        uint32_t specialNameId_;
+        uint32_t attackTargetId_;
+        struct Proto_MonsterRoute* monsterRoute_;
+        uint32_t aiConfigId_;
+        uint32_t levelRouteId_;
+        uint32_t initPoseId_;
+        bool GBADIACMCAJ;
+        uint32_t BEFNCKKBBDN;
+        struct Object* content_;
+        Proto_SceneMonsterInfo_Proto_SceneMonsterInfo_ContentOneofCase__Enum contentCase_;
+    };
+
+    struct Proto_SceneMonsterInfo {
+        struct Proto_SceneMonsterInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneMonsterInfo__Fields fields;
+    };
+
+    struct Proto_SceneNpcInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t npcId_;
+        uint32_t roomId_;
+        uint32_t parentQuestId_;
+        uint32_t blockId_;
+    };
+
+    struct Proto_SceneNpcInfo {
+        struct Proto_SceneNpcInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneNpcInfo__Fields fields;
+    };
+
+    struct Proto_SceneGadgetInfo__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        uint32_t gadgetId_;
+        uint32_t groupId_;
+        uint32_t configId_;
+        uint32_t ownerEntityId_;
+        Proto_GadgetBornType__Enum bornType_;
+        uint32_t gadgetState_;
+        uint32_t gadgetType_;
+        bool isShowCutscene_;
+        uint32_t authorityPeerId_;
+        bool isEnableInteract_;
+        uint32_t interactId_;
+        uint32_t markFlag_;
+        uint32_t propOwnerEntityId_;
+        struct Proto_PlatformInfo* platform_;
+        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_UInt32_* interactUidList_;
+        uint32_t draftId_;
+        uint32_t gadgetTalkState_;
+        struct Proto_GadgetPlayInfo* playInfo_;
+        struct Object* content_;
+        Proto_SceneGadgetInfo_ContentOneofCase__Enum contentCase_;
+    };
+
+    struct Proto_SceneGadgetInfo {
+        struct Proto_SceneGadgetInfo__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneGadgetInfo__Fields fields;
+    };
+
+    struct __declspec(align(8)) List_1_Proto_SceneEntityInfo___Fields {
+        struct Proto_SceneEntityInfo__Array* _items;
+        int32_t _size;
+        int32_t _version;
+    };
+
+    struct List_1_Proto_SceneEntityInfo_ {
+        struct List_1_Proto_SceneEntityInfo___Class* klass;
+        MonitorData* monitor;
+        struct List_1_Proto_SceneEntityInfo___Fields fields;
+    };
+
+    struct Proto_SceneEntityInfo__Array {
+        struct Proto_SceneEntityInfo__Array__Class* klass;
+        MonitorData* monitor;
+        Il2CppArrayBounds* bounds;
+        il2cpp_array_size_t max_length;
+        struct Proto_SceneEntityInfo* vector[32];
+    };
+
+    struct __declspec(align(8)) Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneEntityInfo___Fields {
+        struct List_1_Proto_SceneEntityInfo_* values;
+        bool _isInPool;
+        int32_t _count;
+    };
+
+    struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneEntityInfo_ {
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneEntityInfo___Class* klass;
+        MonitorData* monitor;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneEntityInfo___Fields fields;
+    };
+
+    struct Proto_SceneEntityAppearNotify__Fields {
+        struct Google_Protobuf_MessageBase__Fields _;
+        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_SceneEntityInfo_* entityList_;
+        Proto_VisionType__Enum appearType_;
+        uint32_t param_;
+    };
+
+    struct Proto_SceneEntityAppearNotify {
+        struct Proto_SceneEntityAppearNotify__Class* klass;
+        MonitorData* monitor;
+        struct Proto_SceneEntityAppearNotify__Fields fields;
     };
 
     enum class AGGAOKGNDPF__Enum : int32_t {
@@ -12852,59 +13297,6 @@ namespace app {
         struct EmoSync__Fields fields;
     };
 
-    enum class Proto_ProtEntityType__Enum : int32_t {
-        ProtEntityNone = 0x00000000,
-        ProtEntityAvatar = 0x00000001,
-        ProtEntityMonster = 0x00000002,
-        ProtEntityNpc = 0x00000003,
-        ProtEntityGadget = 0x00000004,
-        ProtEntityRegion = 0x00000005,
-        ProtEntityWeapon = 0x00000006,
-        ProtEntityWeather = 0x00000007,
-        ProtEntityScene = 0x00000008,
-        ProtEntityTeam = 0x00000009,
-        ProtEntityMassiveEntity = 0x0000000a,
-        ProtEntityMpLevel = 0x0000000b,
-        ProtEntityPlayTeamEntity = 0x0000000c,
-        ProtEntityEyePoint = 0x0000000d,
-        ProtEntityMax = 0x0000000e,
-    };
-
-    enum class Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum : int32_t {
-        None = 0x00000000,
-        Avatar = 0x0000000a,
-        Monster = 0x0000000b,
-        Npc = 0x0000000c,
-        Gadget = 0x0000000d,
-    };
-
-    struct Proto_SceneEntityInfo__Fields {
-        struct Google_Protobuf_MessageBase__Fields _;
-        Proto_ProtEntityType__Enum entityType_;
-        uint32_t entityId_;
-        struct String* name_;
-        struct Proto_MotionInfo* motionInfo_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_PropPair_* propList_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_FightPropPair_* fightPropList_;
-        uint32_t lifeState_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_AnimatorParameterValueInfoPair_* animatorParaList_;
-        uint32_t lastMoveSceneTimeMs_;
-        uint32_t lastMoveReliableSeq_;
-        struct Proto_EntityClientData* entityClientData_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_EntityEnvironmentInfo_* entityEnvironmentInfoList_;
-        struct Proto_EntityAuthorityInfo* entityAuthorityInfo_;
-        struct Google_Protobuf_Collections_RepeatedPrimitiveField_1_System_String_* tagList_;
-        struct Google_Protobuf_Collections_RepeatedMessageField_1_Proto_ServerBuff_* serverBuffList_;
-        struct Object* entity_;
-        Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum entityCase_;
-    };
-
-    struct Proto_SceneEntityInfo {
-        struct Proto_SceneEntityInfo__Class* klass;
-        MonitorData* monitor;
-        struct Proto_SceneEntityInfo__Fields fields;
-    };
-
     enum class Proto_LuaShellType__Enum : int32_t {
         LuashellNone = 0x00000000,
         LuashellNormal = 0x00000001,
@@ -13645,7 +14037,10 @@ namespace app {
         Rock = 0x00000008,
         AntiFire = 0x00000009,
         VehicleMuteIce = 0x0000000a,
-        COUNT = 0x0000000b,
+        Mushroom = 0x0000000b,
+        Overdose = 0x0000000c,
+        Wood = 0x0000000d,
+        COUNT = 0x0000000e,
     };
 
     enum class Proto_PropValue_Proto_PropValue_ValueOneofCase__Enum : int32_t {

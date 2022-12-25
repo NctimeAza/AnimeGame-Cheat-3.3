@@ -422,6 +422,11 @@ DO_APP_FUNC(0x04875D10, 0x0487BEA0, void, MoleMole_EquipOverviewPageContext_Play
 //RSA Patch
 DO_APP_FUNC(0x087F4290, 0x087F6020, void, RSA_FromXmlString, (RSA* __this, String* xmlString, MethodInfo* method));
 
+// Esp
+DO_APP_FUNC(0x05AFDD50, 0x05B01B80, void, MoleMole_GadgetModule_DoOnGadgetStateNotify, (GadgetModule* __this, uint32_t gadgetEntityId, uint32_t gadgetState, bool isEnableInteract, MethodInfo* method));
+DO_APP_FUNC(0x03099B50, 0x0309E520, void, MoleMole_LevelModule_OnSceneEntityAppear, (LevelModule* __this, Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method));
+DO_APP_FUNC(0x0309A2B0, 0x0309EC80, void, MoleMole_LevelModule_OnSceneEntityAppearAsync, (LevelModule* __this, Proto_SceneEntityAppearNotify* notify, uint32_t JOODHPBLPMA, MethodInfo* method));
+
 // Singletons
 // 3.3 ResolveCall("e8 ? ? ? ? 48 85 c0 0f 84 ? ? ? ? 48 89 74 24 ? 48 8b 0d ? ? ? ? 83 b9 ? ? ? ? ? 75 ? e8 ? ? ? ? 48 8b 0d");
 DO_APP_FUNC(0x02151860, 0x02160EF0, void*, Singleton_GetInstance, (MethodInfo* method));
