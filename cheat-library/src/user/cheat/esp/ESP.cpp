@@ -9,6 +9,7 @@
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
 #include <cheat/visuals/FlycloakModifier.h>
+#include <cheat/visuals/SkinModifier.h>
 #include "ESPRender.h"
 #include <cheat/game/filters.h>
 #include <cheat/game/util.h>
@@ -637,8 +638,12 @@ namespace cheat::feature
                     if (avatar != nullptr)
                     {
                         auto& flycloakModifier = FlycloakModifier::GetInstance();
+						auto& skinModifier = SkinModifier::GetInstance();
+
                         if (flycloakModifier.f_Enabled->enabled())
                             avatar->fields.wearingFlycloakId_ = flycloakModifier.GetFlycloakType();
+						if (skinModifier.f_Enabled->enabled())
+							avatar->fields.costumeId_ = skinModifier.GetSkinId(avatar->fields.avatarId_);
                     }
                 }   break;
                 case app::Proto_SceneEntityInfo_Proto_SceneEntityInfo_EntityOneofCase__Enum::Monster: break;

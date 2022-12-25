@@ -31,6 +31,7 @@
     <ClInclude Include="src\user\cheat\visuals\EmotionChanger.h" />
     <ClInclude Include="src\user\cheat\visuals\FlycloakModifier.h" />
     <ClInclude Include="src\user\cheat\visuals\ShowSkillCD.h" />
+    <ClInclude Include="src\user\cheat\visuals\SkinModifier.h" />
     <ClInclude Include="src\user\cheat\visuals\TextureChanger.h" />
     <ClInclude Include="src\user\cheat\visuals\FreeCamera.h" />
     <ClInclude Include="src\user\cheat\world\AutoChallenge.h" />
@@ -136,6 +137,7 @@
     <ClCompile Include="src\user\cheat\visuals\EmotionChanger.cpp" />
     <ClCompile Include="src\user\cheat\visuals\FlycloakModifier.cpp" />
     <ClCompile Include="src\user\cheat\visuals\ShowSkillCD.cpp" />
+    <ClCompile Include="src\user\cheat\visuals\SkinModifier.cpp" />
     <ClCompile Include="src\user\cheat\visuals\TextureChanger.cpp" />
     <ClCompile Include="src\user\cheat\visuals\FreeCamera.cpp" />
     <ClCompile Include="src\user\cheat\world\AutoChallenge.cpp" />

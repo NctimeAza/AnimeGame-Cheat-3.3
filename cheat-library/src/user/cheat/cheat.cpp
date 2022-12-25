@@ -68,6 +68,7 @@
 #include <cheat/visuals/EmotionChanger.h>
 #include <cheat/visuals/ShowSkillCD.h>
 #include <cheat/visuals/FlycloakModifier.h>
+#include <cheat/visuals/SkinModifier.h>
 
 #include <resource.h>
 
@@ -149,6 +150,7 @@ namespace cheat
 			FEAT_INST(HideUI),
 			FEAT_INST(EnablePeeking),
 			FEAT_INST(FlycloakModifier),
+			FEAT_INST(SkinModifier),
 			
 			FEAT_INST(ProfileChanger),
 			FEAT_INST(PaimonFollow),
