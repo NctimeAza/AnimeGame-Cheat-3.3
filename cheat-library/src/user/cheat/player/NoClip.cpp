@@ -28,8 +28,8 @@ namespace cheat::feature
 		NFP(f_VelocityMode, "NoClip", "Velocity Mode", false),
 		NFP(f_FreeflightMode, "NoClip", "Freeflight Mode", false),
 		NF(f_AltSpeedEnabled, "NoClip", false),
-		NF(f_AltSpeed, "NoClip", 1.0f)
-
+		NF(f_AltSpeed, "NoClip", 1.0f),
+		NFP(f_AntiDragBack, "NoClip", "Drag Back Bypass", false)
 	{
 		HookManager::install(app::MoleMole_HumanoidMoveFSM_LateTick, HumanoidMoveFSM_LateTick_Hook);
 
@@ -81,6 +81,9 @@ namespace cheat::feature
 			ConfigWidget(_TR("Descend HotKey"), f_DescendKey, true, _TR("Set Descend Key"));
 			ConfigWidget(_TR("Alt Speed Key"), f_AltSpeedKey, true, _TR("Set AltSpeed HotKey"));
 		}
+		ConfigWidget(_TR("DragBackBypass"), f_AntiDragBack,
+			_TR("Prevent being dragged back by the server due to excessive speed.\n" \
+			"When the server dragback player, in-place teleport."));
 	}
 
 	bool NoClip::NeedStatusDraw() const

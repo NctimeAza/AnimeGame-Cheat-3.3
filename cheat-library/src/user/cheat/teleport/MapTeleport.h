@@ -40,8 +40,8 @@ namespace cheat::feature
 
 		void OnGetTargetPos(app::Vector3& position);
 		bool IsNeedTransByServer(bool originResult, app::Vector3& position);
-		void OnPerformPlayerTransmit(app::Vector3& position);
-		void OnSetAvatarPosition(app::Vector3& position);
+		void OnPerformPlayerTransmit(app::Vector3& position, bool isAntiDragBack);
+		void OnSetAvatarPosition(app::Vector3& position, bool isAntiDragBack);
 		void OnGameUpdate();
 
 		// Map client interactions

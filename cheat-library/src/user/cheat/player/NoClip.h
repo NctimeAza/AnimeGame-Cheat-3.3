@@ -30,6 +30,8 @@ namespace cheat::feature
 		config::Field<bool> f_AltSpeedEnabled;
 		config::Field<float> f_AltSpeed;
 
+		config::Field<TranslatedHotkey> f_AntiDragBack;
+
 
 		static NoClip& GetInstance();
 
