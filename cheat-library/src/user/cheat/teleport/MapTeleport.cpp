@@ -4,10 +4,12 @@
 #include <helpers.h>
 #include <cheat/events.h>
 #include <cheat/game/EntityManager.h>
+#include <cheat/player/NoClip.h>
 #include <cheat/game/util.h>
 
 namespace cheat::feature
 {
+	bool isNeedAntiDragBack;
 
 	MapTeleport::MapTeleport() : Feature(),
 		NFP(f_Enabled, "MapTeleport", "Map Teleport", false),
@@ -219,7 +221,7 @@ namespace cheat::feature
 
 	// After server responded, it will give us the waypoint target location to load. 
 	// Change it to teleport location.
-	void MapTeleport::OnPerformPlayerTransmit(app::Vector3& position)
+	void MapTeleport::OnPerformPlayerTransmit(app::Vector3& position,bool isAntiDragBack)
 	{
 		if (taskInfo.currentStage == 2)
 		{
@@ -227,11 +229,13 @@ namespace cheat::feature
 			position = taskInfo.targetPosition;
 			taskInfo.currentStage--;
 		}
+		if (isAntiDragBack)
+			position = app::ActorUtils_GetAvatarPos(nullptr);
 	}
 
 	// Last event in teleportation is avatar teleport, we just change avatar position from
 	// waypoint location to teleport location. And also recalculate ground position if it needed.
-	void MapTeleport::OnSetAvatarPosition(app::Vector3& position)
+	void MapTeleport::OnSetAvatarPosition(app::Vector3& position, bool isAntiDragBack)
 	{
 		if (taskInfo.currentStage == 1)
 		{
@@ -264,6 +268,8 @@ namespace cheat::feature
 			LOG_DEBUG("Finish.  Teleport to mark finished.");
 			taskInfo.currentStage--;
 		}
+		if(isAntiDragBack)
+			position = app::ActorUtils_GetAvatarPos(nullptr);
 	}
 
 	bool MapTeleport::LoadingManager_NeedTransByServer_Hook(app::MoleMole_LoadingManager* __this, uint32_t sceneId, app::Vector3 position, MethodInfo* method)
@@ -279,8 +285,17 @@ namespace cheat::feature
 		uint32_t someUint1, app::EvtTransmitAvatar_EvtTransmitAvatar_TransmitType__Enum teleportType, uint32_t someUint2, MethodInfo* method)
 	{
 		MapTeleport& mapTeleport = MapTeleport::GetInstance();
-		mapTeleport.OnPerformPlayerTransmit(position);
+		auto& manager = game::EntityManager::instance();
+		NoClip& noclip = NoClip::GetInstance();
 
+		mapTeleport.OnPerformPlayerTransmit(position, false);
+		//See Proto_EnterReason__Enum
+		if (noclip.f_AntiDragBack->enabled() && someUint2 == 0x0000002c || someUint2 == 0x00000015) {
+				mapTeleport.OnPerformPlayerTransmit(position, true);
+				isNeedAntiDragBack = true;
+				CALL_ORIGIN(LoadingManager_PerformPlayerTransmit_Hook, __this, position, someEnum, someUint1, app::EvtTransmitAvatar_EvtTransmitAvatar_TransmitType__Enum::DirectlySetPos, someUint2, method);				
+		}		
+		else
 		CALL_ORIGIN(LoadingManager_PerformPlayerTransmit_Hook, __this, position, someEnum, someUint1, teleportType, someUint2, method);
 	}
 
@@ -291,9 +306,13 @@ namespace cheat::feature
 		if (manager.avatar()->raw() == __this)
 		{
 			MapTeleport& mapTeleport = MapTeleport::GetInstance();
-			mapTeleport.OnSetAvatarPosition(position);
+			if (isNeedAntiDragBack) {
+				mapTeleport.OnSetAvatarPosition(position, true);
+				isNeedAntiDragBack = false;
+			}
+			else
+			mapTeleport.OnSetAvatarPosition(position,false);
 		}
-
 		CALL_ORIGIN(MoleMole_BaseEntity_SetAbsolutePosition_Hook, __this, position, someBool, method);
 	}
 

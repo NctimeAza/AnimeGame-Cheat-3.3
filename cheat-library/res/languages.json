@@ -1545,7 +1545,9 @@
       "Mona_PactOfStarsandMoon": "Mona: PactOfStarsandMoon",
       "Rosaria_ToTheChurchsFreeSpirit": "Rosaria: ToTheChurchsFreeSpirit",
       "Diluc_RedDeadOfNight": "Diluc: RedDeadOfNight",
-      "Fischl_EinImmernachtstraum": "Fischl: EinImmernachtstraum"
+      "Fischl_EinImmernachtstraum": "Fischl: EinImmernachtstraum",
+      "DragBackBypass": "DragBackBypass",
+      "Prevent being dragged back by the server due to excessive speed.\nWhen the server dragback player, in-place teleport.": "Prevent being dragged back by the server due to excessive speed.\nWhen the server dragback player, in-place teleport."
     }
   },
   "SimplifiedChinese": {
@@ -3093,7 +3095,9 @@
       "Mona_PactOfStarsandMoon": "莫娜：星与月之约",
       "Rosaria_ToTheChurchsFreeSpirit": "罗莎莉亚：致教会自由人",
       "Diluc_RedDeadOfNight": "迪卢克：殷红终夜",
-      "Fischl_EinImmernachtstraum": "菲谢尔：极夜真梦"
+      "Fischl_EinImmernachtstraum": "菲谢尔：极夜真梦",
+      "DragBackBypass": "防拉回",
+      "Prevent being dragged back by the server due to excessive speed.\nWhen the server dragback player, in-place teleport.": "防止因为跑得太快而被服务器拉回\n 当服务器尝试拉回玩家的时候，进行原地传送"
     }
   },
   "TraditionalChinese": {
@@ -4641,7 +4645,10 @@
       "Mona_PactOfStarsandMoon": "莫娜：星與月之約",
       "Rosaria_ToTheChurchsFreeSpirit": "羅莎莉亞：致教會自由人",
       "Diluc_RedDeadOfNight": "迪盧克：殷紅終夜",
-      "Fischl_EinImmernachtstraum": "菲謝爾：極夜真夢"
+      "Fischl_EinImmernachtstraum": "菲謝爾：極夜真夢",
+      "DragBackBypass": "防拉回",
+      "Prevent being dragged back by the server due to excessive speed.\nWhen the server dragback player, in-place teleport.": "防止因爲移動速度太快被伺服器拉回\n當伺服器拉回玩家時，原地傳送"
+
     }
   },
   "Russian": {
@@ -6199,7 +6206,9 @@
       "Mona_PactOfStarsandMoon": "Mona: PactOfStarsandMoon",
       "Rosaria_ToTheChurchsFreeSpirit": "Rosaria: ToTheChurchsFreeSpirit",
       "Diluc_RedDeadOfNight": "Diluc: RedDeadOfNight",
-      "Fischl_EinImmernachtstraum": "Fischl: EinImmernachtstraum"
+      "Fischl_EinImmernachtstraum": "Fischl: EinImmernachtstraum",
+      "DragBackBypass": "Анти возращение",
+      "Prevent being dragged back by the server due to excessive speed.\nWhen the server dragback player, in-place teleport.": "Предотвращает возращение назад из-за большой скорости\nКогда сервер тянет игрока назад, телепортируйтесь"
     }
   }
 }
