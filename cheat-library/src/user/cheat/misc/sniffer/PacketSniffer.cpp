@@ -64,7 +64,7 @@ namespace cheat::feature
 			auto message_size = static_cast<uint32_t>(modify_data->content.size());
 
 			util::WriteMapped(data, 0, static_cast<uint16_t>(0x4567)); // Magic number
-			util::WriteMapped(data, 2, modify_data->messageID); // Message id
+			util::WriteMapped(data, 2, static_cast<uint16_t>(modify_data->messageID)); // Message id
 			util::WriteMapped(data, 4, head_size); // Head size
 			util::WriteMapped(data, 6, message_size); // Message size
 
