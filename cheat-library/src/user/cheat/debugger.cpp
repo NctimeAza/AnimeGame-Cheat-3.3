@@ -4,7 +4,7 @@ void DebuggerBypassPre()
 {
 	system("chcp 936");
 	system("cls");
-	LOG_ERROR("Äãµ÷ÊÔÄãÂèÄØ?");
+	LOG_ERROR("ä½ è°ƒè¯•ä½ å¦ˆå‘¢??");
 }
 void DebuggerBypassPost()
 {
