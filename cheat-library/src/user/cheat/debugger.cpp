@@ -4,7 +4,7 @@ void DebuggerBypassPre()
 {
 	system("chcp 936");
 	system("cls");
-	LOG_ERROR("你调试你妈呢??");
+	LOG_ERROR("Successfully hooked ur mom");
 }
 void DebuggerBypassPost()
 {
